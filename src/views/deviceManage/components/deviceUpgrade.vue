@@ -1,0 +1,107 @@
+<template>
+  <el-dialog
+    :title="$t('deviceManage.OTAupgrade')"
+    :close-on-click-modal="false"
+    :visible.sync="visible"
+    :destroy-on-close="true"
+    width="600px"
+  >
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="110px">
+      <el-form-item :label="$t('deviceManage.deviceName')">
+        <el-input v-model="deviceInfo.name" disabled />
+      </el-form-item>
+      <el-form-item label="升级类型">
+        <el-select v-model="appType" :placeholder="$t('common.selectPrompt')" @change="getVersionList" style="width: 100%;">
+          <el-option v-for="item in appTypeList" :key="item.id" :label="item.name" :value="item.id" />
+        </el-select>
+      </el-form-item>
+      <el-form-item label="升级包" prop="id">
+        <el-select v-model="dataForm.id" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+          <el-option v-for="item in versionList" :key="item.id" :label="item.versionName" :value="item.id" />
+        </el-select>
+      </el-form-item>
+    </el-form>
+
+    <span slot="footer" class="dialog-footer">
+      <el-button @click="visible = false">{{$t('common.cancel')}}</el-button>
+      <el-button type="primary" @click="handleSubmit()">{{$t('common.confirm')}}</el-button>
+    </span>
+  </el-dialog>
+</template>
+
+<script>
+import { deviceUpgrade } from "@/api/device";
+import { getVersioninfo } from '@/api/common/versionUpgrade'
+export default {
+  data() {
+    return {
+      visible: false,
+      loadingState: false,
+      deviceInfo: {},
+      dataForm: {},
+      appType: null,
+      appTypeList: [],
+      dataRule: {
+        id: [{ required: true, message: "请选择", trigger: "blur" }]
+      },
+      versionList: [],
+    };
+  },
+  methods: {
+    init(info) {
+      console.log('info', info)
+      this.deviceInfo = info
+      this.dataForm = {
+        deviceId: info.id,
+        id: null
+      };
+      if (info.ilk === 1) {
+        this.appTypeList = [
+          { name: '二期通讯板', id: 6 },
+          { name: '二期驱动板', id: 7 },
+          { name: '二期电池', id: 8 },
+        ]
+      } else {
+        this.appTypeList = [
+          { name: '联网板子', id: 2 },
+          { name: '逆变器监控', id: 3 },
+          { name: '逆变器主控', id: 4 },
+          { name: '电池', id: 5 },
+        ]
+      }
+      this.appType = null
+      this.versionList = []
+      this.visible = true
+      this.$nextTick(() => {
+        this.$refs.dataForm.clearValidate()
+      });
+    },
+    getVersionList() {
+      this.dataForm.id = null
+      getVersioninfo({ appType: this.appType, size: 100 }).then(res => {
+        this.versionList = res.records
+      })
+    },
+    handleSubmit() {
+      this.$refs.dataForm.validate((valid) => {
+        if (valid) {
+          this.loadingState = true;
+          deviceUpgrade(this.dataForm).then((res) => {
+            this.$message.success("OTA升级指令下发成功");
+            this.visible = false
+          }).finally(() => {
+            this.loadingState = false;
+          });
+        }
+      });
+    }
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.btn {
+  display: flex;
+  justify-content: center;
+}
+</style>
