@@ -81,12 +81,12 @@ export default {
           data: xData
         },
         legend: {
-          data: ['电池', '光伏', '负载', '卖电', '买电']
+          data: [this.$t('deviceManage.battery'), this.$t('deviceManage.photovoltaic'), this.$t('deviceManage.load'), this.$t('deviceManage.sellingElectricity'), this.$t('deviceManage.buyingElectricity')]
         },
-        tooltip: {
-          trigger: 'axis',
-          formatter: '{b0}<br />电池：{c0}w<br />光伏：{c1}w<br />负载：{c2}w<br />卖电：{c3}w<br />买电：{c4}w'
-        },
+        // tooltip: {
+        //   trigger: 'axis',
+        //   formatter: '{b0}<br />电池：{c0}w<br />光伏：{c1}w<br />负载：{c2}w<br />卖电：{c3}w<br />买电：{c4}w'
+        // },
         grid: {
           top: 20,
           bottom: 35,
@@ -100,27 +100,27 @@ export default {
           {
             data: yDataBattery,
             type: 'line',
-            name: '电池',
+            name: this.$t('deviceManage.battery'),
             color: '#50EE55'
           }, {
             data: yDataPvElec,
             type: 'line',
-            name: '光伏',
+            name: this.$t('deviceManage.photovoltaic'),
             color: '#FAC858'
           }, {
             data: yDataLoadElec,
             type: 'line',
-            name: '负载',
+            name: this.$t('deviceManage.load'),
             color: '#21BDE8'
           }, {
             data: yDataFeedNetwork,
             type: 'line',
-            name: '卖电',
+            name: this.$t('deviceManage.sellingElectricity'),
             color: '#FF3D44'
           }, {
             data: yDataBuyElec,
             type: 'line',
-            name: '买电',
+            name: this.$t('deviceManage.buyingElectricity'),
             color: '#B65FF3'
           }
         ]

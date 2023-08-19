@@ -1,32 +1,32 @@
 <template>
   <el-dialog
-    title="设备电池设置"
+    :title="$t('deviceManage.deviceBatterySettings')"
     :close-on-click-modal="false"
     :visible.sync="visible"
-    width="650px"
+    width="800px"
   >
   <el-row :gutter="20">
-    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="110px">
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="200px">
       <el-col :span="12">
-        <el-form-item label="充电开关" prop="chargeSwitch">
+        <el-form-item :label="$t('deviceManage.chargingSwitch')" prop="chargeSwitch">
           <el-radio-group v-model="dataForm.chargeSwitch">
-            <el-radio :label="1">开启</el-radio>
-            <el-radio :label="0">关闭</el-radio>
+            <el-radio :label="1">{{$t('common.enable')}}</el-radio>
+            <el-radio :label="0">{{$t('common.disable')}}</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="充电截至SOC" prop="chargeCutOff">
-          <el-input v-model="dataForm.chargeCutOff" placeholder="请输入">
+        <el-form-item :label="$t('deviceManage.socOfChargeUp')" prop="chargeCutOff">
+          <el-input v-model="dataForm.chargeCutOff" :placeholder="$t('common.inputPrompt')">
             <template slot="append">%</template>
           </el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24">
-        <el-form-item label="充电时间段">
+        <el-form-item :label="$t('deviceManage.timePeriodOfCharging')">
           <div v-for="(item, index) in dataForm.chargeTimeQuantum" :key="index" style="margin-bottom: 10px;">
-            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" placeholder="起始时间" v-model="item.start" />
-            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" placeholder="结束时间" v-model="item.end" />
+            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.startingTime')" v-model="item.start" />
+            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.endTime')" v-model="item.end" />
             <el-button @click="addChargeTime()" style="margin-left: 10px;" type="primary" icon="el-icon-plus" circle v-if="index === 0"  />
             <el-button @click="delChargeTime(index)" style="margin-left: 10px;" type="danger" icon="el-icon-delete" circle v-else />
           </div>
@@ -34,25 +34,25 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item label="卖电开关" prop="dischargeSwitch">
+        <el-form-item :label="$t('deviceManage.electricitySellingSwitch')" prop="dischargeSwitch">
           <el-radio-group v-model="dataForm.dischargeSwitch">
-            <el-radio :label="1">开启</el-radio>
-            <el-radio :label="0">关闭</el-radio>
+            <el-radio :label="1">{{$t('common.enable')}}</el-radio>
+            <el-radio :label="0">{{$t('common.disable')}}</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="卖电截至SOC" prop="dischargeCutOff">
-          <el-input v-model="dataForm.dischargeCutOff" type="Number" placeholder="请输入">
+        <el-form-item :label="$t('deviceManage.socOfSellElectricity')" prop="dischargeCutOff">
+          <el-input v-model="dataForm.dischargeCutOff" type="Number" :placeholder="$t('common.inputPrompt')">
             <template slot="append">%</template>
           </el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24">
-        <el-form-item label="卖电时间段">
+        <el-form-item :label="$t('deviceManage.timePeriodOfElectricitySales')">
           <div v-for="(item, index) in dataForm.dischargeTimeQuantum" :key="index" style="margin-bottom: 10px;">
-            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" placeholder="起始时间" v-model="item.start" />
-            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" placeholder="结束时间" v-model="item.end" />
+            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.startingTime')" v-model="item.start" />
+            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.endTime')" v-model="item.end" />
             <el-button @click="addDischargeTime()" style="margin-left: 10px;" type="primary" icon="el-icon-plus" circle v-if="index === 0"  />
             <el-button @click="delDischargeTime(index)" style="margin-left: 10px;" type="danger" icon="el-icon-delete" circle v-else />
           </div>
@@ -60,25 +60,25 @@
       </el-col>
 
       <el-col :span="12">
-        <el-form-item label="放电开关" prop="releaseSwitch">
+        <el-form-item :label="$t('deviceManage.dischargeSwitch')" prop="releaseSwitch">
           <el-radio-group v-model="dataForm.releaseSwitch">
-            <el-radio :label="1">开启</el-radio>
-            <el-radio :label="0">关闭</el-radio>
+            <el-radio :label="1">{{$t('common.enable')}}</el-radio>
+            <el-radio :label="0">{{$t('common.disable')}}</el-radio>
           </el-radio-group>
         </el-form-item>
       </el-col>
       <el-col :span="12">
-        <el-form-item label="放电截至SOC" prop="releaseCutOff">
-          <el-input v-model="dataForm.releaseCutOff" type="Number" placeholder="请输入">
+        <el-form-item :label="$t('deviceManage.socOfDischargingOff')" prop="releaseCutOff">
+          <el-input v-model="dataForm.releaseCutOff" type="Number" :placeholder="$t('common.inputPrompt')">
             <template slot="append">%</template>
           </el-input>
         </el-form-item>
       </el-col>
       <el-col :span="24">
-        <el-form-item label="放电时间段">
+        <el-form-item :label="$t('deviceManage.timePeriodOfDischarging')">
           <el-row v-for="(item, index) in dataForm.releaseTimeQuantum" :key="index" style="margin-bottom: 10px;">
-            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" placeholder="起始时间" v-model="item.start" />
-            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" placeholder="结束时间" v-model="item.end" />
+            <el-time-picker style="width: 200px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.startingTime')" v-model="item.start" />
+            <el-time-picker style="width: 200px; margin-left: 10px;" format="HH:mm"  value-format="HH:mm" :placeholder="$t('common.endTime')" v-model="item.end" />
             <el-button @click="addReleaseTime()" style="margin-left: 10px;" type="primary" icon="el-icon-plus" circle v-if="index === 0"  />
             <el-button @click="delReleaseTime(index)" style="margin-left: 10px;" type="danger" icon="el-icon-delete" circle v-else />
           </el-row>
@@ -87,9 +87,9 @@
     </el-form>
   </el-row>
     <span slot="footer">
-      <el-button @click="visible = false">取消</el-button>
-      <el-button type="warning" @click="handleDefault()">恢复默认设置</el-button>
-      <el-button type="primary" @click="handleSubmit()">确定</el-button>
+      <el-button @click="visible = false">{{$t('common.cancel')}}</el-button>
+      <el-button type="warning" @click="handleDefault()">{{$t('deviceManage.restoreDefaultSettings')}}</el-button>
+      <el-button type="primary" @click="handleSubmit()">{{$t('common.confirm')}}</el-button>
     </span>
   </el-dialog>
 </template>
@@ -104,8 +104,8 @@ export default {
       loadingState: false,
       dataForm: {},
       dataRule: {
-        chargeCutOff: [{ required: true, message: "请输入充电时间段充电截至SOC", trigger: "blur" }],
-        dischargeCutOff: [{ required: true, message: "请输入卖电时间段充电截至SOC", trigger: "blur" }]
+        chargeCutOff: [{ required: true, message: this.$t('deviceManage.validateCharge'), trigger: "blur" }],
+        dischargeCutOff: [{ required: true, message: this.$t('deviceManage.validateDischarge'), trigger: "blur" }]
       },
       deviceId: ''
     };
@@ -213,7 +213,7 @@ export default {
     },
     verifyData(addData, state) {
       if (!addData.start || !addData.end) {
-        this.$message.warning('请将数据填写完整')
+        this.$message.warning(this.$t('deviceManage.validateData'))
         return false
       }
       let allData = []
@@ -232,7 +232,7 @@ export default {
         let addTimeStart = this.timeToMin(addData.start)
         let addTimeEnd = this.timeToMin(addData.end)
         if ((addTimeStart >= itemStart && addTimeStart <= itemEnd) || (addTimeEnd >= itemStart && addTimeEnd <= itemEnd)) {
-          this.$message.warning('时间段范围不能重合')
+          this.$message.warning(this.$t('deviceManage.validateTimePeriod'))
           return false
         }
       }
@@ -241,7 +241,6 @@ export default {
     addChargeTime() {
       const lastData = this.dataForm.chargeTimeQuantum[this.dataForm.chargeTimeQuantum.length - 1]
       if (this.verifyData(lastData, 'chargeTime')) {
-        console.log('校验成功')
         const sort = lastData.sort + 1
         let startTime = ''
         if (lastData.end) {

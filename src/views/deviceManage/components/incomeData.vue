@@ -81,7 +81,7 @@ export default {
           data: xData
         },
         legend: {
-          data: ['自发收益', '卖电收益', '总收益']
+          data: [this.$t('deviceManage.spontaneousRevenue'), this.$t('deviceManage.electricitySalesRevenue'), this.$t('deviceManage.totalRevenue')]
         },
         tooltip: {
           trigger: 'axis'
@@ -99,17 +99,17 @@ export default {
           {
             data: yDataSpontaneousIncome,
             type: 'bar',
-            name: '自发收益',
+            name: this.$t('deviceManage.spontaneousRevenue'),
             color: '#19D2B3'
           }, {
             data: yDataSellIncome,
             type: 'bar',
-            name: '卖电收益',
+            name: this.$t('deviceManage.electricitySalesRevenue'),
             color: '#71C6FF'
           }, {
             data: yDataAvgIncome,
             type: 'bar',
-            name: '总收益',
+            name: this.$t('deviceManage.totalRevenue'),
             color: '#FFF06E'
           }
         ]

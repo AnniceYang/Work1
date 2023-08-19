@@ -6,16 +6,16 @@
     :destroy-on-close="true"
     width="600px"
   >
-    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="110px">
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="140px">
       <el-form-item :label="$t('deviceManage.deviceName')">
         <el-input v-model="deviceInfo.name" disabled />
       </el-form-item>
-      <el-form-item label="升级类型">
+      <el-form-item :label="$t('deviceManage.upgradeType')">
         <el-select v-model="appType" :placeholder="$t('common.selectPrompt')" @change="getVersionList" style="width: 100%;">
           <el-option v-for="item in appTypeList" :key="item.id" :label="item.name" :value="item.id" />
         </el-select>
       </el-form-item>
-      <el-form-item label="升级包" prop="id">
+      <el-form-item :label="$t('deviceManage.upgradePackage')" prop="id">
         <el-select v-model="dataForm.id" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
           <el-option v-for="item in versionList" :key="item.id" :label="item.versionName" :value="item.id" />
         </el-select>
@@ -42,7 +42,7 @@ export default {
       appType: null,
       appTypeList: [],
       dataRule: {
-        id: [{ required: true, message: "请选择", trigger: "blur" }]
+        id: [{ required: true, message: this.$t('deviceManage.validateP'), trigger: "blur" }]
       },
       versionList: [],
     };
@@ -57,16 +57,16 @@ export default {
       };
       if (info.ilk === 1) {
         this.appTypeList = [
-          { name: '二期通讯板', id: 6 },
-          { name: '二期驱动板', id: 7 },
-          { name: '二期电池', id: 8 },
+          { name: this.$t('deviceManage.IIcb'), id: 6 },
+          { name: this.$t('deviceManage.IIdb'), id: 7 },
+          { name: this.$t('deviceManage.IIbattery'), id: 8 },
         ]
       } else {
         this.appTypeList = [
-          { name: '联网板子', id: 2 },
-          { name: '逆变器监控', id: 3 },
-          { name: '逆变器主控', id: 4 },
-          { name: '电池', id: 5 },
+          { name: this.$t('deviceManage.networkConnectingBoard'), id: 2 },
+          { name: this.$t('deviceManage.inverterMCU'), id: 3 },
+          { name: this.$t('deviceManage.inverterDSP'), id: 4 },
+          { name: this.$t('deviceManage.battery'), id: 5 },
         ]
       }
       this.appType = null
@@ -87,7 +87,7 @@ export default {
         if (valid) {
           this.loadingState = true;
           deviceUpgrade(this.dataForm).then((res) => {
-            this.$message.success("OTA升级指令下发成功");
+            this.$message.success(this.$t('deviceManage.success'));
             this.visible = false
           }).finally(() => {
             this.loadingState = false;

@@ -1,28 +1,28 @@
 <template>
   <el-dialog
-    :title='`${info.name}-升级记录`'
-    :visible.sync="visible"
+    :title='`${info.name}-${$t("deviceManage.upgradeRecord")}`'
+    :visible.sync="visible"   
     width="900px"
   >
     <div class="avue-crud">
       <el-table :data="dataList" fit v-loading="listLoading">
-        <el-table-column align="center" prop="versionCode" label="	版本号" />
-        <el-table-column align="center" label="升级状态">
+        <el-table-column align="center" prop="versionCode" :label="$t('deviceManage.versionNumber')" />
+        <el-table-column align="center" :label="$t('deviceManage.upgradeStatus')">
           <template slot-scope="scope">
             {{ scope.row.status | updateStatusFilter }}
           </template>
         </el-table-column>
-        <el-table-column align="center" label="升级类型">
+        <el-table-column align="center" :label="$t('deviceManage.upgradeType')">
           <template slot-scope="scope">
             {{ scope.row.type | updateType }}
           </template>
         </el-table-column>
-        <el-table-column align="center" label="更新时间" width="150">
+        <el-table-column align="center" :label="$t('deviceManage.updateTime')" width="150">
           <template slot-scope="scope">
             {{ scope.row.updateTime | parseTime }}
           </template>
         </el-table-column>
-        <el-table-column align="center" label="创建时间" width="150">
+        <el-table-column align="center" :label="$t('common.createTime')" width="150">
           <template slot-scope="scope">
             {{ scope.row.createTime | parseTime }}
           </template>
@@ -40,7 +40,7 @@
         background
         layout="total, sizes, prev, pager, next, jumper"
       />
-    </div>
+    </div>  
   </el-dialog>
 </template>
 

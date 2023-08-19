@@ -1,87 +1,87 @@
 <template>
   <div class="app-container calendar-list-container">
     <basic-container>
-      <el-page-header @back="goBack" content="设备数据统计"></el-page-header>
-      <el-descriptions title="设备信息" style="margin-top: 20px">
-        <el-descriptions-item label="设备名称">{{
+      <el-page-header @back="goBack" :content="$t('deviceManage.equipmentDataStatistics')"></el-page-header>
+      <el-descriptions :title="$t('deviceManage.deviceInformation')" style="margin-top: 20px">
+        <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.name
         }}</el-descriptions-item>
-        <el-descriptions-item label="SN码">{{
+        <el-descriptions-item :label="$t('deviceManage.snCode')">{{
           deviceInfo.sn
         }}</el-descriptions-item>
-        <el-descriptions-item label="型号名称">{{
+        <el-descriptions-item :label="$t('deviceManage.modelName')">{{
           deviceInfo.modelName
         }}</el-descriptions-item>
-        <el-descriptions-item label="设备类型">{{
+        <!-- <el-descriptions-item label="设备类型">{{
           deviceInfo.type === 0 ? "NB" : "涂鸦"
-        }}</el-descriptions-item>
-        <el-descriptions-item label="设备状态">{{
+        }}</el-descriptions-item> -->
+        <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{
           deviceInfo.status | devStatusFilter
         }}</el-descriptions-item>
-        <el-descriptions-item label="在线状态">{{
+        <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
           deviceInfo.onlineStatus | onlineStatusFilter
         }}</el-descriptions-item>
-        <el-descriptions-item label="创建时间">{{
+        <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
         }}</el-descriptions-item>
-        <el-descriptions-item label="通讯棒软件版本">{{
+        <el-descriptions-item :label="$t('deviceManage.communicationStickSoftwareVersion')">{{
           deviceInfo.versionNet
         }}</el-descriptions-item>
 
-        <el-descriptions-item label="买电量">{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item label="卖电量">{{ deviceInfo.sellElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item label="光伏发电量">{{ deviceInfo.cumulativeElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item label="总消耗">{{ deviceInfo.totalConsume }}kWh</el-descriptions-item>
-        <el-descriptions-item label="累计收益">{{
+        <el-descriptions-item :label="$t('deviceManage.buyingElectricity')">{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.sellingElectricity')">{{ deviceInfo.sellElectricity }}kWh</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.photovoltaicPowerGeneration')">{{ deviceInfo.cumulativeElectricity }}kWh</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.totalConsumption')">{{ deviceInfo.totalConsume }}kWh</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.cumulativeGain')">{{
           deviceInfo.cumulativeIncome
         }}</el-descriptions-item>
-        <el-descriptions-item label="PV功率">{{ deviceInfo.pvPower }}W</el-descriptions-item>
-        <el-descriptions-item label="设备备注">{{
+        <el-descriptions-item :label="$t('deviceManage.pvPower')">{{ deviceInfo.pvPower }}W</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.equipmentRemarks')">{{
           deviceInfo.remarks
         }}</el-descriptions-item>
       </el-descriptions>
 
-      <el-descriptions title="用户信息" style="margin-top: 20px">
-        <el-descriptions-item label="用户名称">{{
+      <el-descriptions :title="$t('deviceManage.userInformation')" style="margin-top: 20px">
+        <el-descriptions-item :label="$t('deviceManage.userName')">{{
           deviceInfo.bindUserName
         }}</el-descriptions-item>
-        <el-descriptions-item label="设备命名">{{
+        <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.bindName
         }}</el-descriptions-item>
-        <el-descriptions-item label="绑定时间">{{
+        <el-descriptions-item :label="$t('deviceManage.bindingTime')">{{
           deviceInfo.bindTime | parseTime
         }}</el-descriptions-item>
       </el-descriptions>
 
-      <el-descriptions title="安装商信息" style="margin-top: 20px">
-        <el-descriptions-item label="安装商名称">{{
+      <el-descriptions :title="$t('deviceManage.installerInformation')" style="margin-top: 20px">
+        <el-descriptions-item :label="$t('deviceManage.installerName')">{{
           deviceInfo.installerName
         }}</el-descriptions-item>
-        <el-descriptions-item label="设备命名">{{
+        <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.installName
         }}</el-descriptions-item>
-        <el-descriptions-item label="安装时间">{{
+        <el-descriptions-item :label="$t('deviceManage.installationTime')">{{
           deviceInfo.installTime | parseTime
         }}</el-descriptions-item>
       </el-descriptions>
 
       <div style="margin-top: 20px">
         <el-form :inline="true">
-          <el-form-item label="类型">
-            <el-select v-model="listQuery.type" placeholder="请选择">
-              <el-option label="日" :value="0"></el-option>
-              <el-option label="月" :value="1"></el-option>
-              <el-option label="年" :value="2"></el-option>
+          <el-form-item :label="$t('deviceManage.type')">
+            <el-select v-model="listQuery.type" :placeholder="$t('common.selectPrompt')">
+              <el-option :label="$t('deviceManage.day')" :value="0"></el-option>
+              <el-option :label="$t('deviceManage.month')" :value="1"></el-option>
+              <el-option :label="$t('deviceManage.year')" :value="2"></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item label="时间范围">
-            <el-date-picker v-model="timeList" type="daterange" value-format="timestamp" range-separator="至"
-              start-placeholder="开始日期" end-placeholder="结束日期" @change="changeTime">
+          <el-form-item :label="$t('deviceManage.timeFrame')">
+            <el-date-picker v-model="timeList" type="daterange" value-format="timestamp" :range-separator="$t('deviceManage.to')"
+              :start-placeholder="$t('common.startingTime')" :end-placeholder="$t('common.endTime')" @change="changeTime">
             </el-date-picker>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="getData()">搜索</el-button>
-            <el-button type="primary" @click="handleReset()">重置</el-button>
+            <el-button type="primary" @click="getData()">{{$t('common.search')}}</el-button>
+            <el-button type="primary" @click="handleReset()">{{$t('common.reset')}}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -90,7 +90,7 @@
         <el-col :span="12">
           <el-card style="margin-top: 0px">
             <div slot="header">
-              <span>用电信息</span>
+              <span>{{$t('deviceManage.electricityInformation')}}</span>
             </div>
             <div class="card-content">
               <ElectricityData :chartData="chartData1" />
@@ -101,8 +101,8 @@
         <el-col :span="12">
           <el-card style="margin-top: 0px">
             <div slot="header" class="card-header">
-              <span>发电收益</span>
-              <span style="margin-left: 10px; font-weight: bold">(总收益：￥{{ money || 0 }})</span>
+              <span>{{$t('deviceManage.powerGenerationRevenue')}}</span>
+              <span style="margin-left: 10px; font-weight: bold">({{$t('deviceManage.totalRevenue')}}：￥{{ money || 0 }})</span>
             </div>
             <div class="card-content">
               <IncomeData :chartData="chartData2" />
@@ -113,9 +113,9 @@
 
       <el-card style="margin-top: 20px">
         <div slot="header">
-          <span>实时功率</span>
+          <span>{{$t('deviceManage.realTimePower')}}</span>
           <el-date-picker style="margin-left: 10px" @change="getDevicePowerData" v-model="time" type="date"
-            value-format="timestamp" placeholder="选择日期">
+            value-format="timestamp" :placeholder="$t('common.selectPrompt')">
           </el-date-picker>
         </div>
         <div class="card-content">
@@ -125,9 +125,9 @@
 
       <el-card style="margin-top: 20px">
         <div slot="header">
-          <span>实时数据</span>
+          <span>{{$t('deviceManage.realTime')}}</span>
           <el-date-picker style="margin-left: 10px" @change="getDeviceRecordData" v-model="time2" type="date"
-            value-format="timestamp" placeholder="选择日期">
+            value-format="timestamp" :placeholder="$t('common.selectPrompt')">
           </el-date-picker>
         </div>
         <div class="card2-content">
@@ -139,28 +139,28 @@
           </div>
           <div class="menu">
             <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="0">表格</el-menu-item>
-              <el-menu-item index="1">曲线</el-menu-item>
+              <el-menu-item index="0">{{$t('deviceManage.table')}}</el-menu-item>
+              <el-menu-item index="1">{{$t('deviceManage.curve')}}</el-menu-item>
             </el-menu>
           </div>
           <div v-if="activeIndex === '0'" style="margin-top: 20px;height: 560px">
             <el-table border stripe :data="recordData.slice((pageNum - 1) * pageSize, pageNum * pageSize)">
-              <el-table-column align="center" label="时间">
+              <el-table-column align="center" :label="$t('deviceManage.time')">
                 <template slot-scope="scope">
                   {{ scope.row.time }}
                 </template>
               </el-table-column>
-              <el-table-column align="center" label="数据内容">
+              <el-table-column align="center" :label="$t('deviceManage.dataContent')">
                 <template slot-scope="scope">
                   {{ paramsList[paramsIndex].name }}
                 </template>
               </el-table-column>
-              <el-table-column align="center" label="数值">
+              <el-table-column align="center" :label="$t('deviceManage.value')">
                 <template slot-scope="scope">
                   {{ scope.row[paramsList[paramsIndex].value] }}
                 </template>
               </el-table-column>
-              <el-table-column align="center" label="单位">
+              <el-table-column align="center" :label="$t('deviceManage.unit')">
                 <template slot-scope="scope">
                   {{ paramsList[paramsIndex].unit }}
                 </template>
@@ -238,78 +238,78 @@ export default {
       time2: "",
       timeList: [],
       paramsList: [
-        { name: "DCDC温度", value: "dcdcTemperature", color: "#25C5D9", unit: "℃" },
-        { name: "母线电压", value: "busbarVoltage", color: "#FD9F15", unit: "V" },
-        { name: "PV1电压", value: "pv1Voltage", color: "#FDCB01", unit: "V" },
-        { name: "PV1电流", value: "pv1Current", color: "#89BD77", unit: "A" },
-        { name: "PV1功率", value: "pv1Power", color: "#25C5D9", unit: "W" },
-        { name: "PV2电压", value: "pv2Voltage", color: "#D17DFD", unit: "V" },
-        { name: "PV2电流", value: "pv2Current", color: "#409DFF", unit: "A" },
-        { name: "PV2功率", value: "pv2Power", color: "#25C5D9", unit: "W" },
-        { name: "电池电压", value: "batteryVoltage", color: "#FD9F15", unit: "V" },
-        { name: "电池电流", value: "batteryCurrent", color: "#FDCB01", unit: "A" },
+        { name: this.$t('deviceManage.dcdcTemperature'), value: "dcdcTemperature", color: "#25C5D9", unit: "℃" },
+        { name: this.$t('deviceManage.busbarVoltage'), value: "busbarVoltage", color: "#FD9F15", unit: "V" },
+        { name: this.$t('deviceManage.pv1Voltage'), value: "pv1Voltage", color: "#FDCB01", unit: "V" },
+        { name: this.$t('deviceManage.pv1Current'), value: "pv1Current", color: "#89BD77", unit: "A" },
+        { name: this.$t('deviceManage.pv1Power'), value: "pv1Power", color: "#25C5D9", unit: "W" },
+        { name: this.$t('deviceManage.pv2Voltage'), value: "pv2Voltage", color: "#D17DFD", unit: "V" },
+        { name: this.$t('deviceManage.pv2Current'), value: "pv2Current", color: "#409DFF", unit: "A" },
+        { name: this.$t('deviceManage.pv2Power'), value: "pv2Power", color: "#25C5D9", unit: "W" },
+        { name: this.$t('deviceManage.batteryVoltage'), value: "batteryVoltage", color: "#FD9F15", unit: "V" },
+        { name: this.$t('deviceManage.batteryCurrent'), value: "batteryCurrent", color: "#FDCB01", unit: "A" },
 
-        { name: "电池功率", value: "batteryPower", color: "#D17DFD", unit: "W" },
-        { name: "电池总SOC", value: "batteryTotalSoc", color: "#3F9DFF", unit: "%" },
+        { name: this.$t('deviceManage.batteryPower'), value: "batteryPower", color: "#D17DFD", unit: "W" },
+        { name: this.$t('deviceManage.batteryTotalSoc'), value: "batteryTotalSoc", color: "#3F9DFF", unit: "%" },
         {
-          name: "(A相)电网频率",
+          name: this.$t('deviceManage.phaseAGridFrequency'),
           value: "phaseAGridFrequency",
           color: "#89BD77",
           unit: "Hz"
         },
-        { name: "(A相)电网电压", value: "phaseAGridVoltage", color: "#FD9F15", unit: "V" },
-        { name: "电网有功功率", value: "gridActivePower", color: "#25C5D9", unit: "W" },
-        { name: "CT电流", value: "ctCurrent", color: "#3F9DFF", unit: "A" },
-        { name: "CT功率", value: "ctPower", color: "#FDCB01", unit: "W" },
+        { name: this.$t('deviceManage.phaseAGridVoltage'), value: "phaseAGridVoltage", color: "#FD9F15", unit: "V" },
+        { name: this.$t('deviceManage.gridActivePower'), value: "gridActivePower", color: "#25C5D9", unit: "W" },
+        { name: this.$t('deviceManage.ctCurrent'), value: "ctCurrent", color: "#3F9DFF", unit: "A" },
+        { name: this.$t('deviceManage.ctPower'), value: "ctPower", color: "#FDCB01", unit: "W" },
         {
-          name: "逆变侧温度",
+          name: this.$t('deviceManage.inverterSideTemperature'),
           value: "inverterSideTemperature",
           color: "#3F9DFF",
           unit: "℃"
         },
         {
-          name: "(A相)逆变输出频率",
+          name: this.$t('deviceManage.phaseAInverterOutputFrequency'),
           value: "phaseAInverterOutputFrequency",
           color: "#25C5D9",
           unit: "Hz"
         },
         {
-          name: "(A相)逆变输出电压",
+          name: this.$t('deviceManage.phaseAInverterOutputVoltage'),
           value: "phaseAInverterOutputVoltage",
           color: "#FD9F15",
           unit: "V"
         },
 
         {
-          name: "(A相)逆变输出电流",
+          name: this.$t('deviceManage.phaseAInverterOutputCurrent'),
           value: "phaseAInverterOutputCurrent",
           color: "#3F9DFF",
           unit: "A"
         },
         {
-          name: "(A相)逆变有功功率",
+          name: this.$t('deviceManage.phaseAInverterActivePower'),
           value: "phaseAInverterActivePower",
           color: "#89BD77",
           unit: "W"
         },
-        { name: "(A相)负载电压", value: "phaseALoadVoltage", color: "#FDCB01", unit: "V" },
-        { name: "(A相)负载电流", value: "phaseALoadCurrent", color: "#D17DFD", unit: "A" },
+        { name: this.$t('deviceManage.phaseALoadVoltage'), value: "phaseALoadVoltage", color: "#FDCB01", unit: "V" },
+        { name: this.$t('deviceManage.phaseALoadCurrent'), value: "phaseALoadCurrent", color: "#D17DFD", unit: "A" },
         {
-          name: "(A相)负载有功功率",
+          name: this.$t('deviceManage.phaseALoadActivePower'),
           value: "phaseAActivePower",
           color: "#89BD77",
           unit: "W"
         },
-        { name: "负载实时功率", value: "loadRealTimePower", color: "#25C5D9", unit: "W" },
+        { name: this.$t('deviceManage.loadRealTimePower'), value: "loadRealTimePower", color: "#25C5D9", unit: "W" },
         {
-          name: "中间母线电压",
+          name: this.$t('deviceManage.middleBusbarVoltage'),
           value: "middleBusbarVoltage",
           color: "#3F9DFF",
           unit: "V"
         },
-        { name: "BuckBoost电流", value: "buckBoostCurrent", color: "#FDCB01", unit: "A" },
+        { name: this.$t('deviceManage.buckBoostCurrent'), value: "buckBoostCurrent", color: "#FDCB01", unit: "A" },
         {
-          name: "继电器中间电压",
+          name: this.$t('deviceManage.electricRelayMiddleVoltage'),
           value: "electricRelayMiddleVoltage",
           color: "#D17DFD",
           unit: "V"

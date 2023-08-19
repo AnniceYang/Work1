@@ -4,75 +4,75 @@
       <el-page-header @back="goBack" content="设备详细信息"></el-page-header>
 
       <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="7">运行信息</el-menu-item>
+        <el-menu-item index="7">{{$t('deviceManage.operationInformation')}}</el-menu-item>
         <el-menu-item index="8">系统设置</el-menu-item>
         <el-menu-item index="9">电池参数</el-menu-item>
         <el-menu-item index="0">自检</el-menu-item>
       </el-menu>
       <div v-loading="loading">
       <el-card  style="margin-top: 20px;">
-        <el-descriptions title="设备信息" :column="4">
-          <el-descriptions-item label="设备名称">{{ deviceInfo.name }}</el-descriptions-item>
-          <el-descriptions-item label="SN码">{{ deviceInfo.sn }}</el-descriptions-item>
-          <el-descriptions-item label="设备状态">{{ deviceInfo.status | devStatusFilter }}</el-descriptions-item>
-          <el-descriptions-item label="创建时间">{{ deviceInfo.createTime | parseTime }}</el-descriptions-item>
+        <el-descriptions :title="$t('deviceManage.deviceInformation')" :column="4">
+          <el-descriptions-item :label="$t('deviceManage.deviceName')">{{ deviceInfo.name }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('deviceManage.snCode')">{{ deviceInfo.sn }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{ deviceInfo.status | devStatusFilter }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('common.createTime')">{{ deviceInfo.createTime | parseTime }}</el-descriptions-item>
         </el-descriptions>
       </el-card>
 
       <template v-if="activeIndex === '7'">
         <el-card style="margin-top: 10px;" v-if="operationInformation.runInformation">
-          <el-descriptions title="运行信息" :column="4">
-            <el-descriptions-item label="显示类型" v-if="operationInformation.runInformationObj.displayType">
+          <el-descriptions :title="$t('deviceManage.operationInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.displayType')" v-if="operationInformation.runInformationObj.displayType">
               {{ operationInformation.runInformationObj.displayTypeVal | displayTypeValFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="MCU软件版本" v-if="operationInformation.runInformationObj.mcuSoftwareVersion">{{ operationInformation.runInformationObj.mcuSoftwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="DSP软件版本" v-if="operationInformation.runInformationObj.dspSoftwareVersion">{{ operationInformation.runInformationObj.dspSoftwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="MCU硬件版本" v-if="operationInformation.runInformationObj.mcuHardwareVersion">{{ operationInformation.runInformationObj.mcuHardwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="DSP硬件版本" v-if="operationInformation.runInformationObj.dspHardwareVersion">{{ operationInformation.runInformationObj.dspHardwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="系统当前模式" v-if="operationInformation.runInformationObj.currentModeOfTheSystem">
+            <el-descriptions-item :label="$t('deviceManage.MCUSoftwareVersion')" v-if="operationInformation.runInformationObj.mcuSoftwareVersion">{{ operationInformation.runInformationObj.mcuSoftwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.DSPSoftwareVersion')" v-if="operationInformation.runInformationObj.dspSoftwareVersion">{{ operationInformation.runInformationObj.dspSoftwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MCUHardwareVersion')" v-if="operationInformation.runInformationObj.mcuHardwareVersion">{{ operationInformation.runInformationObj.mcuHardwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.DSPHardwareVersion')" v-if="operationInformation.runInformationObj.dspHardwareVersion">{{ operationInformation.runInformationObj.dspHardwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentModeOfTheSystem')" v-if="operationInformation.runInformationObj.currentModeOfTheSystem">
               {{ operationInformation.runInformationObj.currentModeOfTheSystemVal | systemModeFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="系统运行状态" v-if="operationInformation.runInformationObj.systemRunStatus">
+            <el-descriptions-item :label="$t('deviceManage.systemOperationStatus')" v-if="operationInformation.runInformationObj.systemRunStatus">
               {{ operationInformation.runInformationObj.systemRunStatusVal | systemStateFilter }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.basicInformation">
-          <el-descriptions title="基本信息" :column="4">
-            <el-descriptions-item label="DCDC温度" v-if="operationInformation.basicInformationObj.dcdcTemperature">{{ operationInformation.basicInformationObj.dcdcTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="国家码" v-if="operationInformation.basicInformationObj.countryCode">
+          <el-descriptions :title="$t('deviceManage.basicInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.dcdcTemperature')" v-if="operationInformation.basicInformationObj.dcdcTemperature">{{ operationInformation.basicInformationObj.dcdcTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.countryCode')" v-if="operationInformation.basicInformationObj.countryCode">
               {{ operationInformation.basicInformationObj.countryCodeVal | countryCodeValFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="母线电压" v-if="operationInformation.basicInformationObj.busVoltage">{{ operationInformation.basicInformationObj.busVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="日发电量" v-if="operationInformation.basicInformationObj.dailyPowerGeneration">{{ operationInformation.basicInformationObj.dailyPowerGenerationVal }}kWh</el-descriptions-item>
-            <el-descriptions-item label="总发电量" v-if="operationInformation.basicInformationObj.totalPowerGeneration">{{ operationInformation.basicInformationObj.totalPowerGenerationVal }}kWh</el-descriptions-item>
-            <el-descriptions-item label="额定功率" v-if="operationInformation.basicInformationObj.ratedPower">{{ operationInformation.basicInformationObj.ratedPowerVal }}KW</el-descriptions-item>
-            <el-descriptions-item label="电池能量" v-if="operationInformation.basicInformationObj.batteryEnergy">{{ operationInformation.basicInformationObj.batteryEnergyVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.busbarVoltage')" v-if="operationInformation.basicInformationObj.busVoltage">{{ operationInformation.basicInformationObj.busVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dailyPowerGeneration')" v-if="operationInformation.basicInformationObj.dailyPowerGeneration">{{ operationInformation.basicInformationObj.dailyPowerGenerationVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPowerGeneration')" v-if="operationInformation.basicInformationObj.totalPowerGeneration">{{ operationInformation.basicInformationObj.totalPowerGenerationVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ratedPower')" v-if="operationInformation.basicInformationObj.ratedPower">{{ operationInformation.basicInformationObj.ratedPowerVal }}KW</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryEnergy')" v-if="operationInformation.basicInformationObj.batteryEnergy">{{ operationInformation.basicInformationObj.batteryEnergyVal }}kWh</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.pvInformation">
-          <el-descriptions title="PV信息" :column="4" >
-            <el-descriptions-item label="PV1电压" v-if="operationInformation.pvInformationObj.pv1Voltage">{{ operationInformation.pvInformationObj.pv1VoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="PV1电流" v-if="operationInformation.pvInformationObj.pv1Current">{{ operationInformation.pvInformationObj.pv1CurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="PV1功率" v-if="operationInformation.pvInformationObj.pv1Power">{{ operationInformation.pvInformationObj.pv1PowerVal }}W</el-descriptions-item>
-            <el-descriptions-item label="PV2电压" v-if="operationInformation.pvInformationObj.pv2Voltage">{{ operationInformation.pvInformationObj.pv2VoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="PV2电流" v-if="operationInformation.pvInformationObj.pv2Current">{{ operationInformation.pvInformationObj.pv2CurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="PV2功率" v-if="operationInformation.pvInformationObj.pv2Power">{{ operationInformation.pvInformationObj.pv2PowerVal }}W</el-descriptions-item>
+          <el-descriptions :title="$t('deviceManage.pvInformation')" :column="4" >
+            <el-descriptions-item :label="$t('deviceManage.pv1Voltage')" v-if="operationInformation.pvInformationObj.pv1Voltage">{{ operationInformation.pvInformationObj.pv1VoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.pv1Current')" v-if="operationInformation.pvInformationObj.pv1Current">{{ operationInformation.pvInformationObj.pv1CurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.pv1Power')" v-if="operationInformation.pvInformationObj.pv1Power">{{ operationInformation.pvInformationObj.pv1PowerVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.pv2Voltage')" v-if="operationInformation.pvInformationObj.pv2Voltage">{{ operationInformation.pvInformationObj.pv2VoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.pv2Current')" v-if="operationInformation.pvInformationObj.pv2Current">{{ operationInformation.pvInformationObj.pv2CurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.pv2Power')" v-if="operationInformation.pvInformationObj.pv2Power">{{ operationInformation.pvInformationObj.pv2PowerVal }}W</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.batteryInformation">
-          <el-descriptions title="电池信息" :column="4">
-            <el-descriptions-item label="电池状态" v-if="operationInformation.batteryInformationObj.batteryStatus">
+          <el-descriptions :title="$t('deviceManage.batteryInfo')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.batteryStatus')" v-if="operationInformation.batteryInformationObj.batteryStatus">
               {{ operationInformation.batteryInformationObj.batteryStatusVal | batteryStatusFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池电压" v-if="operationInformation.batteryInformationObj.batteryVoltage">{{ operationInformation.batteryInformationObj.batteryVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="电池电流" v-if="operationInformation.batteryInformationObj.batteryCurrent">{{ operationInformation.batteryInformationObj.batteryCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="电池功率" v-if="operationInformation.batteryInformationObj.batteryPower">{{ operationInformation.batteryInformationObj.batteryPowerVal }}W</el-descriptions-item>
-            <el-descriptions-item label="电池总SOC" v-if="operationInformation.batteryInformationObj.batteryTotalSoc">{{ operationInformation.batteryInformationObj.batteryTotalSocVal }}%</el-descriptions-item>
-            <el-descriptions-item label="BMS标志" v-if="operationInformation.batteryInformationObj.bmsSign">
+            <el-descriptions-item :label="$t('deviceManage.batteryVoltage')" v-if="operationInformation.batteryInformationObj.batteryVoltage">{{ operationInformation.batteryInformationObj.batteryVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryCurrent')" v-if="operationInformation.batteryInformationObj.batteryCurrent">{{ operationInformation.batteryInformationObj.batteryCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryPower')" v-if="operationInformation.batteryInformationObj.batteryPower">{{ operationInformation.batteryInformationObj.batteryPowerVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryTotalSoc')" v-if="operationInformation.batteryInformationObj.batteryTotalSoc">{{ operationInformation.batteryInformationObj.batteryTotalSocVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.BMSlogo')" v-if="operationInformation.batteryInformationObj.bmsSign">
               {{ operationInformation.batteryInformationObj.bmsSignVal | BMSFilter }}
             </el-descriptions-item>
           </el-descriptions>
@@ -80,220 +80,219 @@
 
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.powerGridInformation">
-          <el-descriptions title="电网信息" :column="4">
-            <el-descriptions-item label="电网状态" v-if="operationInformation.powerGridInformationObj.powerGridStatus">
+          <el-descriptions :title="$t('deviceManage.powerGridInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.powerGridStatus')" v-if="operationInformation.powerGridInformationObj.powerGridStatus">
               {{ operationInformation.powerGridInformationObj.powerGridStatusVal | GridStateFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="A相电网频率" v-if="operationInformation.powerGridInformationObj.gridFrequencyA">{{ operationInformation.powerGridInformationObj.gridFrequencyAVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="B相电网频率" v-if="operationInformation.powerGridInformationObj.gridFrequencyB">{{ operationInformation.powerGridInformationObj.gridFrequencyBVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="C相电网频率" v-if="operationInformation.powerGridInformationObj.gridFrequencyC">{{ operationInformation.powerGridInformationObj.gridFrequencyCVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="A相电网电压" v-if="operationInformation.powerGridInformationObj.gridVoltageA">{{ operationInformation.powerGridInformationObj.gridVoltageAVal }}V</el-descriptions-item>
-            <el-descriptions-item label="B相电网电压" v-if="operationInformation.powerGridInformationObj.gridVoltageB">{{ operationInformation.powerGridInformationObj.gridVoltageBVal }}V</el-descriptions-item>
-            <el-descriptions-item label="C相电网电压" v-if="operationInformation.powerGridInformationObj.gridVoltageC">{{ operationInformation.powerGridInformationObj.gridVoltageCVal }}V</el-descriptions-item>
-            <el-descriptions-item label="电网视在功率" v-if="operationInformation.powerGridInformationObj.apparentPowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.apparentPowerOfThePowerGridVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="电网有功功率" v-if="operationInformation.powerGridInformationObj.activePowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.activePowerOfThePowerGridVal }}W</el-descriptions-item>
-            <el-descriptions-item label="电网无功功率" v-if="operationInformation.powerGridInformationObj.reactivePowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.reactivePowerOfThePowerGridVal }}VAR</el-descriptions-item>
-            <el-descriptions-item label="CT电流" v-if="operationInformation.powerGridInformationObj.ctCurrent">{{ operationInformation.powerGridInformationObj.ctCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="CT功率" v-if="operationInformation.powerGridInformationObj.ctPower">{{ operationInformation.powerGridInformationObj.ctPowerVal }}W</el-descriptions-item>
-            <el-descriptions-item label="CT方向" v-if="operationInformation.powerGridInformationObj.ctDirection">
+            <el-descriptions-item :label="$t('deviceManage.phaseAGridFrequency')" v-if="operationInformation.powerGridInformationObj.gridFrequencyA">{{ operationInformation.powerGridInformationObj.gridFrequencyAVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBGridFrequency')" v-if="operationInformation.powerGridInformationObj.gridFrequencyB">{{ operationInformation.powerGridInformationObj.gridFrequencyBVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCGridFrequency')" v-if="operationInformation.powerGridInformationObj.gridFrequencyC">{{ operationInformation.powerGridInformationObj.gridFrequencyCVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAGridVoltage')" v-if="operationInformation.powerGridInformationObj.gridVoltageA">{{ operationInformation.powerGridInformationObj.gridVoltageAVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBGridVoltage')" v-if="operationInformation.powerGridInformationObj.gridVoltageB">{{ operationInformation.powerGridInformationObj.gridVoltageBVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCGridVoltage')" v-if="operationInformation.powerGridInformationObj.gridVoltageC">{{ operationInformation.powerGridInformationObj.gridVoltageCVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.apparentPowerOfThePowerGrid')" v-if="operationInformation.powerGridInformationObj.apparentPowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.apparentPowerOfThePowerGridVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.gridActivePower')" v-if="operationInformation.powerGridInformationObj.activePowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.activePowerOfThePowerGridVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.reactivePowerOfThePowerGrid')" v-if="operationInformation.powerGridInformationObj.reactivePowerOfThePowerGrid">{{ operationInformation.powerGridInformationObj.reactivePowerOfThePowerGridVal }}VAR</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ctCurrent')" v-if="operationInformation.powerGridInformationObj.ctCurrent">{{ operationInformation.powerGridInformationObj.ctCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ctPower')" v-if="operationInformation.powerGridInformationObj.ctPower">{{ operationInformation.powerGridInformationObj.ctPowerVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.CTDirection')" v-if="operationInformation.powerGridInformationObj.ctDirection">
               {{ operationInformation.powerGridInformationObj.ctDirectionVal | CTFilter }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.inverterInformation">
-          <el-descriptions title="逆变器信息" :column="4">
-            <el-descriptions-item label="逆变器温度" v-if="operationInformation.inverterInformationObj.inverterTemperature">{{ operationInformation.inverterInformationObj.inverterTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="逆变状态" v-if="operationInformation.inverterInformationObj.inversionState">
+          <el-descriptions :title="$t('deviceManage.inverterInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.inverterSideTemperature')" v-if="operationInformation.inverterInformationObj.inverterTemperature">{{ operationInformation.inverterInformationObj.inverterTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.inversionState')" v-if="operationInformation.inverterInformationObj.inversionState">
               {{ operationInformation.inverterInformationObj.inversionStateVal | invertingStateFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出频率" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyA">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyAVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出频率" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyB">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyBVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出频率" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyC">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyCVal }}Hz</el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出电压" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageA">{{ operationInformation.inverterInformationObj.inverterOutputVoltageAVal }}V</el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出电压" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageB">{{ operationInformation.inverterInformationObj.inverterOutputVoltageBVal }}V</el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出电压" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageC">{{ operationInformation.inverterInformationObj.inverterOutputVoltageCVal }}V</el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出电流" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentA">{{ operationInformation.inverterInformationObj.inverterOutputCurrentAVal }}A</el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出电流" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentB">{{ operationInformation.inverterInformationObj.inverterOutputCurrentBVal }}A</el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出电流" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentC">{{ operationInformation.inverterInformationObj.inverterOutputCurrentCVal }}A</el-descriptions-item>
-            <el-descriptions-item label="A相逆变视在功率" v-if="operationInformation.inverterInformationObj.invertedApparentPowerA">{{ operationInformation.inverterInformationObj.invertedApparentPowerAVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="B相逆变视在功率" v-if="operationInformation.inverterInformationObj.invertedApparentPowerB">{{ operationInformation.inverterInformationObj.invertedApparentPowerBVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="C相逆变视在功率" v-if="operationInformation.inverterInformationObj.invertedApparentPowerC">{{ operationInformation.inverterInformationObj.invertedApparentPowerCVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="A相逆变有功功率" v-if="operationInformation.inverterInformationObj.invertedActivePowerA">{{ operationInformation.inverterInformationObj.invertedActivePowerAVal }}W</el-descriptions-item>
-            <el-descriptions-item label="B相逆变有功功率" v-if="operationInformation.inverterInformationObj.invertedActivePowerB">{{ operationInformation.inverterInformationObj.invertedActivePowerBVal }}W</el-descriptions-item>
-            <el-descriptions-item label="C相逆变有功功率" v-if="operationInformation.inverterInformationObj.invertedActivePowerC">{{ operationInformation.inverterInformationObj.invertedActivePowerCVal }}W</el-descriptions-item>
-            <el-descriptions-item label="A相逆变无功功率" v-if="operationInformation.inverterInformationObj.invertedReactivePowerA">{{ operationInformation.inverterInformationObj.invertedReactivePowerAVal }}VAR</el-descriptions-item>
-            <el-descriptions-item label="B相逆变无功功率" v-if="operationInformation.inverterInformationObj.invertedReactivePowerB">{{ operationInformation.inverterInformationObj.invertedReactivePowerBVal }}VAR</el-descriptions-item>
-            <el-descriptions-item label="C相逆变无功功率" v-if="operationInformation.inverterInformationObj.invertedReactivePowerC">{{ operationInformation.inverterInformationObj.invertedReactivePowerCVal }}VAR</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterOutputFrequency')" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyA">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyAVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBInverterOutputFrequency')" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyB">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyBVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCInverterOutputFrequency')" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyC">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyCVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterOutputVoltage')" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageA">{{ operationInformation.inverterInformationObj.inverterOutputVoltageAVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBInverterOutputVoltage')" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageB">{{ operationInformation.inverterInformationObj.inverterOutputVoltageBVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCInverterOutputVoltage')" v-if="operationInformation.inverterInformationObj.inverterOutputVoltageC">{{ operationInformation.inverterInformationObj.inverterOutputVoltageCVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterOutputCurrent')" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentA">{{ operationInformation.inverterInformationObj.inverterOutputCurrentAVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBInverterOutputCurrent')" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentB">{{ operationInformation.inverterInformationObj.inverterOutputCurrentBVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCInverterOutputCurrent')" v-if="operationInformation.inverterInformationObj.inverterOutputCurrentC">{{ operationInformation.inverterInformationObj.inverterOutputCurrentCVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterApparentPower')" v-if="operationInformation.inverterInformationObj.invertedApparentPowerA">{{ operationInformation.inverterInformationObj.invertedApparentPowerAVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBInverterApparentPower')" v-if="operationInformation.inverterInformationObj.invertedApparentPowerB">{{ operationInformation.inverterInformationObj.invertedApparentPowerBVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCInverterApparentPower')" v-if="operationInformation.inverterInformationObj.invertedApparentPowerC">{{ operationInformation.inverterInformationObj.invertedApparentPowerCVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterActivePower')" v-if="operationInformation.inverterInformationObj.invertedActivePowerA">{{ operationInformation.inverterInformationObj.invertedActivePowerAVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBInverterActivePower')" v-if="operationInformation.inverterInformationObj.invertedActivePowerB">{{ operationInformation.inverterInformationObj.invertedActivePowerBVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCInverterActivePower')" v-if="operationInformation.inverterInformationObj.invertedActivePowerC">{{ operationInformation.inverterInformationObj.invertedActivePowerCVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterReactivePower')" v-if="operationInformation.inverterInformationObj.invertedReactivePowerA">{{ operationInformation.inverterInformationObj.invertedReactivePowerAVal }}VAR</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterReactivePower')" v-if="operationInformation.inverterInformationObj.invertedReactivePowerB">{{ operationInformation.inverterInformationObj.invertedReactivePowerBVal }}VAR</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseAInverterReactivePower')" v-if="operationInformation.inverterInformationObj.invertedReactivePowerC">{{ operationInformation.inverterInformationObj.invertedReactivePowerCVal }}VAR</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.loadInformation">
-          <el-descriptions title="负载信息" :column="4">
-            <el-descriptions-item label="A相负载电压" v-if="operationInformation.loadInformationObj.loadVoltageA">{{ operationInformation.loadInformationObj.loadVoltageAVal }}V</el-descriptions-item>
-            <el-descriptions-item label="B相负载电压" v-if="operationInformation.loadInformationObj.loadVoltageB">{{ operationInformation.loadInformationObj.loadVoltageBVal }}V</el-descriptions-item>
-            <el-descriptions-item label="C相负载电压" v-if="operationInformation.loadInformationObj.loadVoltageC">{{ operationInformation.loadInformationObj.loadVoltageCVal }}V</el-descriptions-item>
-            <el-descriptions-item label="A相负载电流" v-if="operationInformation.loadInformationObj.loadCurrentA">{{ operationInformation.loadInformationObj.loadCurrentAVal }}A</el-descriptions-item>
-            <el-descriptions-item label="B相负载电流" v-if="operationInformation.loadInformationObj.loadCurrentB">{{ operationInformation.loadInformationObj.loadCurrentBVal }}A</el-descriptions-item>
-            <el-descriptions-item label="C相负载电流" v-if="operationInformation.loadInformationObj.loadCurrentC">{{ operationInformation.loadInformationObj.loadCurrentCVal }}A</el-descriptions-item>
-            <el-descriptions-item label="A相负载视在功率" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadA">{{ operationInformation.loadInformationObj.apparentPowerOfLoadAVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="B相负载视在功率" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadB">{{ operationInformation.loadInformationObj.apparentPowerOfLoadBVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="C相负载视在功率" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadC">{{ operationInformation.loadInformationObj.apparentPowerOfLoadCVal }}VA</el-descriptions-item>
-            <el-descriptions-item label="A相负载有功功率" v-if="operationInformation.loadInformationObj.loadActivePowerA">{{ operationInformation.loadInformationObj.loadActivePowerAVal }}W</el-descriptions-item>
-            <el-descriptions-item label="B相负载有功功率" v-if="operationInformation.loadInformationObj.loadActivePowerB">{{ operationInformation.loadInformationObj.loadActivePowerBVal }}W</el-descriptions-item>
-            <el-descriptions-item label="C相负载有功功率" v-if="operationInformation.loadInformationObj.loadActivePowerC">{{ operationInformation.loadInformationObj.loadActivePowerCVal }}W</el-descriptions-item>
-            <el-descriptions-item label="A相负载功率百分比" v-if="operationInformation.loadInformationObj.loadPowerPercentageA">{{ operationInformation.loadInformationObj.loadPowerPercentageAVal }}%</el-descriptions-item>
-            <el-descriptions-item label="B相负载功率百分比" v-if="operationInformation.loadInformationObj.loadPowerPercentageB">{{ operationInformation.loadInformationObj.loadPowerPercentageBVal }}%</el-descriptions-item>
-            <el-descriptions-item label="C相负载功率百分比" v-if="operationInformation.loadInformationObj.loadPowerPercentageC">{{ operationInformation.loadInformationObj.loadPowerPercentageCVal }}%</el-descriptions-item>
-            <el-descriptions-item label="负载实时功率" v-if="operationInformation.loadInformationObj.realTimePowerOfLoad">{{ operationInformation.loadInformationObj.realTimePowerOfLoadVal }}W</el-descriptions-item>
-            <el-descriptions-item label="用电量" v-if="operationInformation.loadInformationObj.powerConsumption">{{ operationInformation.loadInformationObj.powerConsumptionVal }}kWh</el-descriptions-item>
+          <el-descriptions :title="$t('deviceManage.loadInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.phaseALoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageA">{{ operationInformation.loadInformationObj.loadVoltageAVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBLoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageB">{{ operationInformation.loadInformationObj.loadVoltageBVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCLoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageC">{{ operationInformation.loadInformationObj.loadVoltageCVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseALoadCurrent')" v-if="operationInformation.loadInformationObj.loadCurrentA">{{ operationInformation.loadInformationObj.loadCurrentAVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBLoadCurrent')" v-if="operationInformation.loadInformationObj.loadCurrentB">{{ operationInformation.loadInformationObj.loadCurrentBVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCLoadCurrent')" v-if="operationInformation.loadInformationObj.loadCurrentC">{{ operationInformation.loadInformationObj.loadCurrentCVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.apparentPowerOfPhaseALoad')" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadA">{{ operationInformation.loadInformationObj.apparentPowerOfLoadAVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.apparentPowerOfPhaseBLoad')" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadB">{{ operationInformation.loadInformationObj.apparentPowerOfLoadBVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.apparentPowerOfPhaseCLoad')" v-if="operationInformation.loadInformationObj.apparentPowerOfLoadC">{{ operationInformation.loadInformationObj.apparentPowerOfLoadCVal }}VA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseALoadActivePower')" v-if="operationInformation.loadInformationObj.loadActivePowerA">{{ operationInformation.loadInformationObj.loadActivePowerAVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBLoadActivePower')" v-if="operationInformation.loadInformationObj.loadActivePowerB">{{ operationInformation.loadInformationObj.loadActivePowerBVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCLoadActivePower')" v-if="operationInformation.loadInformationObj.loadActivePowerC">{{ operationInformation.loadInformationObj.loadActivePowerCVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseALoadPowerPercentage')" v-if="operationInformation.loadInformationObj.loadPowerPercentageA">{{ operationInformation.loadInformationObj.loadPowerPercentageAVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseBLoadPowerPercentage')" v-if="operationInformation.loadInformationObj.loadPowerPercentageB">{{ operationInformation.loadInformationObj.loadPowerPercentageBVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.phaseCLoadPowerPercentage')" v-if="operationInformation.loadInformationObj.loadPowerPercentageC">{{ operationInformation.loadInformationObj.loadPowerPercentageCVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.loadRealTimePower')" v-if="operationInformation.loadInformationObj.realTimePowerOfLoad">{{ operationInformation.loadInformationObj.realTimePowerOfLoadVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.powerConsumption')" v-if="operationInformation.loadInformationObj.powerConsumption">{{ operationInformation.loadInformationObj.powerConsumptionVal }}kWh</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.electricityMeterInformation">
-          <el-descriptions title="电表信息" :column="4">
-            <el-descriptions-item label="电表正常标志" v-if="operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeter">
+          <el-descriptions :title="$t('deviceManage.electricityMeterInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.normalIndicatorOfElectricityMeter')" v-if="operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeter">
               {{ operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeterVal | meterNormalFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="电表电压" v-if="operationInformation.electricityMeterInformationObj.meterVoltage">{{ operationInformation.electricityMeterInformationObj.meterVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="当前组合有功电能" v-if="operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergyVal }}kWh</el-descriptions-item>
-            <el-descriptions-item label="当前正向有功电能" v-if="operationInformation.electricityMeterInformationObj.currentPositiveActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentPositiveActiveEnergyVal }}kWh</el-descriptions-item>
-            <el-descriptions-item label="当前反向有功电能" v-if="operationInformation.electricityMeterInformationObj.currentReverseActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentReverseActiveEnergyVal }}kWh</el-descriptions-item>
-            <el-descriptions-item label="电表电流" v-if="operationInformation.electricityMeterInformationObj.electricityMeterCurrent">{{ operationInformation.electricityMeterInformationObj.electricityMeterCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="电表功率" v-if="operationInformation.electricityMeterInformationObj.electricityMeterPower">{{ operationInformation.electricityMeterInformationObj.electricityMeterPowerVal }}W</el-descriptions-item>
-            <el-descriptions-item label="电表功率因数" v-if="operationInformation.electricityMeterInformationObj.electricityMeterPowerFactor">{{ operationInformation.electricityMeterInformationObj.electricityMeterPowerFactorVal }}</el-descriptions-item>
-            <el-descriptions-item label="电表频率" v-if="operationInformation.electricityMeterInformationObj.electricityMeterFrequency">{{ operationInformation.electricityMeterInformationObj.electricityMeterFrequencyVal }}Hz</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.meterVoltage')" v-if="operationInformation.electricityMeterInformationObj.meterVoltage">{{ operationInformation.electricityMeterInformationObj.meterVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentCombinedActiveEnergy')" v-if="operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergyVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentPositiveActiveEnergy')" v-if="operationInformation.electricityMeterInformationObj.currentPositiveActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentPositiveActiveEnergyVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentReverseActiveEnergy')" v-if="operationInformation.electricityMeterInformationObj.currentReverseActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentReverseActiveEnergyVal }}kWh</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.meterCurrent')" v-if="operationInformation.electricityMeterInformationObj.electricityMeterCurrent">{{ operationInformation.electricityMeterInformationObj.electricityMeterCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.meterPower')" v-if="operationInformation.electricityMeterInformationObj.electricityMeterPower">{{ operationInformation.electricityMeterInformationObj.electricityMeterPowerVal }}W</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.meterPowerFactor')" v-if="operationInformation.electricityMeterInformationObj.electricityMeterPowerFactor">{{ operationInformation.electricityMeterInformationObj.electricityMeterPowerFactorVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.meterFrequency')" v-if="operationInformation.electricityMeterInformationObj.electricityMeterFrequency">{{ operationInformation.electricityMeterInformationObj.electricityMeterFrequencyVal }}Hz</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.otherInformation">
-          <el-descriptions title="其他信息" :column="4">
-            <el-descriptions-item label="自检状态" v-if="operationInformation.otherInformationObj.selfInspectionStatus">
+          <el-descriptions :title="$t('deviceManage.otherInformation')" :column="4">
+            <el-descriptions-item :label="$t('deviceManage.selfInspectionStatus')" v-if="operationInformation.otherInformationObj.selfInspectionStatus">
               {{ operationInformation.otherInformationObj.selfInspectionStatusVal | selfCheckFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="自检实际保护阀值" v-if="operationInformation.otherInformationObj.selfCheckActualProtectionThreshold">
+            <el-descriptions-item :label="$t('deviceManage.protectionThreshold')" v-if="operationInformation.otherInformationObj.selfCheckActualProtectionThreshold">
               {{ operationInformation.otherInformationObj.selfCheckActualProtectionThresholdVal }}V/Hz
             </el-descriptions-item>
-            <el-descriptions-item label="自检实际保护时间" v-if="operationInformation.otherInformationObj.selfCheckActualProtectionTime">
+            <el-descriptions-item :label="$t('deviceManage.protectionTime')" v-if="operationInformation.otherInformationObj.selfCheckActualProtectionTime">
               {{ operationInformation.otherInformationObj.selfCheckActualProtectionTimeVal }}ms
             </el-descriptions-item>
-            <el-descriptions-item label="自检实时保护阀值" v-if="operationInformation.otherInformationObj.selfCheckRealTimeProtectionThreshold">
+            <el-descriptions-item :label="$t('deviceManage.realTimeProtectionThreshold')" v-if="operationInformation.otherInformationObj.selfCheckRealTimeProtectionThreshold">
               {{ operationInformation.otherInformationObj.selfCheckRealTimeProtectionThresholdVal }}V/Hz
             </el-descriptions-item>
-            <el-descriptions-item label="USB状态" v-if="operationInformation.otherInformationObj.usbStatus">
+            <el-descriptions-item :label="$t('deviceManage.USBStatus')" v-if="operationInformation.otherInformationObj.usbStatus">
               {{ operationInformation.otherInformationObj.usbStatusVal | USBFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="能流图线编号1-8段标志" v-if="operationInformation.otherInformationObj.energyFlowOne">
+            <el-descriptions-item :label="$t('deviceManage.lineNumber1')" v-if="operationInformation.otherInformationObj.energyFlowOne">
               {{ operationInformation.otherInformationObj.energyFlowOneVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="能流图线编号9-16段标志" v-if="operationInformation.otherInformationObj.energyFlowTwo">
+            <el-descriptions-item :label="$t('deviceManage.lineNumber2')" v-if="operationInformation.otherInformationObj.energyFlowTwo">
               {{ operationInformation.otherInformationObj.energyFlowTwoVal | energyFlowFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="能流图开关编号1-16标志" v-if="operationInformation.otherInformationObj.energyFlowThree">
+            <el-descriptions-item :label="$t('deviceManage.switchNumber')" v-if="operationInformation.otherInformationObj.energyFlowThree">
               {{ operationInformation.otherInformationObj.energyFlowThreeVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(天)" v-if="operationInformation.otherInformationObj.runTimeDay">
+            <el-descriptions-item :label="$t('deviceManage.runTimeD')" v-if="operationInformation.otherInformationObj.runTimeDay">
               {{ operationInformation.otherInformationObj.runTimeDayVal }}d
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(时)" v-if="operationInformation.otherInformationObj.runTimeHour">
+            <el-descriptions-item :label="$t('deviceManage.runTimeH')" v-if="operationInformation.otherInformationObj.runTimeHour">
               {{ operationInformation.otherInformationObj.runTimeHourVal }}h
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(分)" v-if="operationInformation.otherInformationObj.runTimeMinute">
+            <el-descriptions-item :label="$t('deviceManage.runTimeM')" v-if="operationInformation.otherInformationObj.runTimeMinute">
               {{ operationInformation.otherInformationObj.runTimeMinuteVal }}min
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(秒)" v-if="operationInformation.otherInformationObj.runTimeSecond">
+            <el-descriptions-item :label="$t('deviceManage.runTimeS')" v-if="operationInformation.otherInformationObj.runTimeSecond">
               {{ operationInformation.otherInformationObj.runTimeSecondVal }}s
             </el-descriptions-item>
-            <el-descriptions-item label="当日用电量" v-if="operationInformation.otherInformationObj.dailyElectricityConsumption">
+            <el-descriptions-item :label="$t('deviceManage.dailyElectricityConsumption')" v-if="operationInformation.otherInformationObj.dailyElectricityConsumption">
               {{ operationInformation.otherInformationObj.dailyElectricityConsumptionVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="累积用电量" v-if="operationInformation.otherInformationObj.accumulatedElectricityConsumption">
+            <el-descriptions-item :label="$t('deviceManage.accumulatedElectricityConsumption')" v-if="operationInformation.otherInformationObj.accumulatedElectricityConsumption">
               {{ operationInformation.otherInformationObj.accumulatedElectricityConsumptionVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="当日并网量" v-if="operationInformation.otherInformationObj.dailyGridConnectionVolume">
+            <el-descriptions-item :label="$t('deviceManage.dailyGridConnectionVolume')" v-if="operationInformation.otherInformationObj.dailyGridConnectionVolume">
               {{ operationInformation.otherInformationObj.dailyGridConnectionVolumeVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="累积并网量" v-if="operationInformation.otherInformationObj.accumulatedGridConnectionQuantity">
+            <el-descriptions-item :label="$t('deviceManage.accumulatedGridConnectionQuantity')" v-if="operationInformation.otherInformationObj.accumulatedGridConnectionQuantity">
               {{ operationInformation.otherInformationObj.accumulatedGridConnectionQuantityVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="当日购电量" v-if="operationInformation.otherInformationObj.dailyElectricityPurchase">
+            <el-descriptions-item :label="$t('deviceManage.dailyElectricityPurchase')" v-if="operationInformation.otherInformationObj.dailyElectricityPurchase">
               {{ operationInformation.otherInformationObj.dailyElectricityPurchaseVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="累积购电量" v-if="operationInformation.otherInformationObj.accumulatedPurchasingPower">
+            <el-descriptions-item :label="$t('deviceManage.accumulatedPurchasingPower')" v-if="operationInformation.otherInformationObj.accumulatedPurchasingPower">
               {{ operationInformation.otherInformationObj.accumulatedPurchasingPowerVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="当日充电量" v-if="operationInformation.otherInformationObj.dailyChargingCapacity">
+            <el-descriptions-item :label="$t('deviceManage.dailyChargingCapacity')" v-if="operationInformation.otherInformationObj.dailyChargingCapacity">
               {{ operationInformation.otherInformationObj.dailyChargingCapacityVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="累积充电量" v-if="operationInformation.otherInformationObj.accumulatedChargingCapacity">
+            <el-descriptions-item :label="$t('deviceManage.accumulatedChargingCapacity')" v-if="operationInformation.otherInformationObj.accumulatedChargingCapacity">
               {{ operationInformation.otherInformationObj.accumulatedChargingCapacityVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="当日放电量" v-if="operationInformation.otherInformationObj.dailyDischargeCapacity">
+            <el-descriptions-item :label="$t('deviceManage.dailyDischargeCapacity')" v-if="operationInformation.otherInformationObj.dailyDischargeCapacity">
               {{ operationInformation.otherInformationObj.dailyDischargeCapacityVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="累积放电量" v-if="operationInformation.otherInformationObj.accumulatedDischargeCapacity">
+            <el-descriptions-item :label="$t('deviceManage.accumulatedDischargeCapacity')" v-if="operationInformation.otherInformationObj.accumulatedDischargeCapacity">
               {{ operationInformation.otherInformationObj.accumulatedDischargeCapacityVal }}kWh
             </el-descriptions-item>
-            <el-descriptions-item label="漏电流" v-if="operationInformation.otherInformationObj.leakageCurrent">
+            <el-descriptions-item :label="$t('deviceManage.leakageCurrent')" v-if="operationInformation.otherInformationObj.leakageCurrent">
               {{ operationInformation.otherInformationObj.leakageCurrentVal }}mA
             </el-descriptions-item>
-            <el-descriptions-item label="中间母线电压" v-if="operationInformation.otherInformationObj.intermediateBusbarVoltage">
+            <el-descriptions-item :label="$t('deviceManage.intermediateBusbarVoltage')" v-if="operationInformation.otherInformationObj.intermediateBusbarVoltage">
               {{ operationInformation.otherInformationObj.intermediateBusbarVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="BuckBoost电流" v-if="operationInformation.otherInformationObj.buckBoostCurrent">
+            <el-descriptions-item :label="$t('deviceManage.buckBoostCurrent')" v-if="operationInformation.otherInformationObj.buckBoostCurrent">
               {{ operationInformation.otherInformationObj.buckBoostCurrentVal }}A
             </el-descriptions-item>
-            <el-descriptions-item label="PVIso电压" v-if="operationInformation.otherInformationObj.pvIsoVoltage">
+            <el-descriptions-item :label="$t('deviceManage.PVIsoVoltage')" v-if="operationInformation.otherInformationObj.pvIsoVoltage">
               {{ operationInformation.otherInformationObj.pvIsoVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="零地电压" v-if="operationInformation.otherInformationObj.zeroGroundVoltage">
+            <el-descriptions-item :label="$t('deviceManage.zeroGroundVoltage')" v-if="operationInformation.otherInformationObj.zeroGroundVoltage">
               {{ operationInformation.otherInformationObj.zeroGroundVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="逆变电流直流分量" v-if="operationInformation.otherInformationObj.dcComponentOfInverterCurrent">
+            <el-descriptions-item :label="$t('deviceManage.DCInverterCurrent')" v-if="operationInformation.otherInformationObj.dcComponentOfInverterCurrent">
               {{ operationInformation.otherInformationObj.dcComponentOfInverterCurrentVal }}mA
             </el-descriptions-item>
-            <el-descriptions-item label="负载电压直流分量" v-if="operationInformation.otherInformationObj.dcComponentOfLoadVoltage">
+            <el-descriptions-item :label="$t('deviceManage.DCLoadVoltage')" v-if="operationInformation.otherInformationObj.dcComponentOfLoadVoltage">
               {{ operationInformation.otherInformationObj.dcComponentOfLoadVoltageVal }}mA
             </el-descriptions-item>
-            <el-descriptions-item label="继电器中间电压" v-if="operationInformation.otherInformationObj.relayIntermediateVoltage">
+            <el-descriptions-item :label="$t('deviceManage.relayIntermediateVoltage')" v-if="operationInformation.otherInformationObj.relayIntermediateVoltage">
               {{ operationInformation.otherInformationObj.relayIntermediateVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="历史记录条数" v-if="operationInformation.otherInformationObj.numberOfHistoryRecords">
+            <el-descriptions-item :label="$t('deviceManage.numberOfRecords')" v-if="operationInformation.otherInformationObj.numberOfHistoryRecords">
               {{ operationInformation.otherInformationObj.numberOfHistoryRecordsVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池充/放电加热使能状态" v-if="operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableState">
+            <el-descriptions-item :label="$t('deviceManage.enableState')" v-if="operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableState">
               {{ operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableStateVal | batteryChargingAndDischargingHeatingEnableStateValFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池出厂编码" v-if="operationInformation.otherInformationObj.batteryFactoryCode">
+            <el-descriptions-item :label="$t('deviceManage.factoryCode')" v-if="operationInformation.otherInformationObj.batteryFactoryCode">
               {{ operationInformation.otherInformationObj.batteryFactoryCodeVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池产品编号" v-if="operationInformation.otherInformationObj.batteryProductNumber">
+            <el-descriptions-item :label="$t('deviceManage.productNumber')" v-if="operationInformation.otherInformationObj.batteryProductNumber">
               {{ operationInformation.otherInformationObj.batteryProductNumberVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池出厂日期" v-if="operationInformation.otherInformationObj.batteryFactoryDate">
+            <el-descriptions-item :label="$t('deviceManage.factoryDate')" v-if="operationInformation.otherInformationObj.batteryFactoryDate">
               {{ operationInformation.otherInformationObj.batteryFactoryDateVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许充电电流" v-if="operationInformation.otherInformationObj.maximumAllowableChargingCurrent">
+            <el-descriptions-item :label="$t('deviceManage.chargingCurrent')" v-if="operationInformation.otherInformationObj.maximumAllowableChargingCurrent">
               {{ operationInformation.otherInformationObj.maximumAllowableChargingCurrentVal }}mA
             </el-descriptions-item>
-            <el-descriptions-item label="厂家信息" v-if="operationInformation.otherInformationObj.manufacturerInformation">
+            <el-descriptions-item :label="$t('deviceManage.manufacturerInformation')" v-if="operationInformation.otherInformationObj.manufacturerInformation">
               {{ operationInformation.otherInformationObj.manufacturerInformationVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器序列号" v-if="operationInformation.otherInformationObj.inverterSerialNumber">
+            <el-descriptions-item :label="$t('deviceManage.inverterSerialNumber')" v-if="operationInformation.otherInformationObj.inverterSerialNumber">
               {{ operationInformation.otherInformationObj.inverterSerialNumberVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许放电电流" v-if="operationInformation.otherInformationObj.maximumAllowableDischargeCurrent">
+            <el-descriptions-item :label="$t('deviceManage.dischargeCurrent')" v-if="operationInformation.otherInformationObj.maximumAllowableDischargeCurrent">
               {{ operationInformation.otherInformationObj.maximumAllowableDischargeCurrentVal }}mA
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器允许电池最大充电电流" v-if="operationInformation.otherInformationObj.maximumChargingCurrentAllowedByTheInverterForTheBattery">
+            <el-descriptions-item :label="$t('deviceManage.chargingByBattery')" v-if="operationInformation.otherInformationObj.maximumChargingCurrentAllowedByTheInverterForTheBattery">
               {{ operationInformation.otherInformationObj.maximumChargingCurrentAllowedByTheInverterForTheBatteryVal }}A
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器允许电池最大放电电流" v-if="operationInformation.otherInformationObj.maximumDischargeCurrentAllowedByTheInverterForTheBattery">
+            <el-descriptions-item :label="$t('deviceManage.dischargeByBattery')" v-if="operationInformation.otherInformationObj.maximumDischargeCurrentAllowedByTheInverterForTheBattery">
               {{ operationInformation.otherInformationObj.maximumDischargeCurrentAllowedByTheInverterForTheBatteryVal }}A
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
-
       </template>
 
       <template v-else-if="activeIndex === '8'">
@@ -578,106 +577,6 @@
           </el-descriptions>
         </el-card>
 
-        <!-- <el-card  style="margin-top: 10px;" v-if="systemSet.gridOvervoltageSet">
-          <el-descriptions title="电网过压设置" :column="3" border>
-            <el-descriptions-item label="电网一段过压自检阀值" v-if="systemSet.gridOvervoltageSetObj.selfInspectionThresholdForOvervoltageInTheFirstSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.selfInspectionThresholdForOvervoltageInTheFirstSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('selfInspectionThresholdForOvervoltageInTheFirstSectionOfThePowerGrid', systemSet.otherSetObj.selfInspectionThresholdForOvervoltageInTheFirstSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段过压自检时间" v-if="systemSet.gridOvervoltageSetObj.powerGridOvervoltageSelfCheckTime">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.powerGridOvervoltageSelfCheckTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerGridOvervoltageSelfCheckTime', systemSet.otherSetObj.powerGridOvervoltageSelfCheckTimeVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段过压自检阀值" v-if="systemSet.gridOvervoltageSetObj.thresholdForOvervoltageSelfCheckInSection2OfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.thresholdForOvervoltageSelfCheckInSection2OfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('thresholdForOvervoltageSelfCheckInSection2OfThePowerGrid', systemSet.otherSetObj.thresholdForOvervoltageSelfCheckInSection2OfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段过压自检时间" v-if="systemSet.gridOvervoltageSetObj.powerGridSection2OvervoltageSelfCheckTime">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.powerGridSection2OvervoltageSelfCheckTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerGridSection2OvervoltageSelfCheckTime', systemSet.otherSetObj.powerGridSection2OvervoltageSelfCheckTimeVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段欠压自检阀值" v-if="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckThresholdOfTheFirstSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckThresholdOfTheFirstSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underVoltageSelfCheckThresholdOfTheFirstSectionOfThePowerGrid', systemSet.otherSetObj.underVoltageSelfCheckThresholdOfTheFirstSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段欠压自检时间" v-if="systemSet.gridOvervoltageSetObj.powerGridUndervoltageSelfCheckTime">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.powerGridUndervoltageSelfCheckTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerGridUndervoltageSelfCheckTime', systemSet.otherSetObj.powerGridUndervoltageSelfCheckTimeVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段欠压自检阀值" v-if="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckThresholdOfTheSecondSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckThresholdOfTheSecondSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underVoltageSelfCheckThresholdOfTheSecondSectionOfThePowerGrid', systemSet.otherSetObj.underVoltageSelfCheckThresholdOfTheSecondSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段欠压自检时间" v-if="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckTimeOfTheSecondSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underVoltageSelfCheckTimeOfTheSecondSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underVoltageSelfCheckTimeOfTheSecondSectionOfThePowerGrid', systemSet.otherSetObj.underVoltageSelfCheckTimeOfTheSecondSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段过频自检阀值" v-if="systemSet.gridOvervoltageSetObj.thresholdForSelfCheckOfOverFrequencyInTheFirstSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.thresholdForSelfCheckOfOverFrequencyInTheFirstSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('thresholdForSelfCheckOfOverFrequencyInTheFirstSectionOfThePowerGrid', systemSet.otherSetObj.thresholdForSelfCheckOfOverFrequencyInTheFirstSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段过频自检时间" v-if="systemSet.gridOvervoltageSetObj.selfInspectionTimeForPeriodOfOverfrequencyInThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.selfInspectionTimeForPeriodOfOverfrequencyInThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('selfInspectionTimeForPeriodOfOverfrequencyInThePowerGrid', systemSet.otherSetObj.selfInspectionTimeForPeriodOfOverfrequencyInThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段过频自检阀值" v-if="systemSet.gridOvervoltageSetObj.gridSection2OverfrequencySelfTestThreshold">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.gridSection2OverfrequencySelfTestThresholdVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridSection2OverfrequencySelfTestThreshold', systemSet.otherSetObj.gridSection2OverfrequencySelfTestThresholdVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段过频自检时间" v-if="systemSet.gridOvervoltageSetObj.powerGridSection2OverFrequencySelfCheckTime">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.powerGridSection2OverFrequencySelfCheckTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerGridSection2OverFrequencySelfCheckTime', systemSet.otherSetObj.powerGridSection2OverFrequencySelfCheckTimeVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段欠频自检阀值" v-if="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckThresholdForTheFirstSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckThresholdForTheFirstSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underFrequencySelfCheckThresholdForTheFirstSectionOfThePowerGrid', systemSet.otherSetObj.underFrequencySelfCheckThresholdForTheFirstSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网一段欠频自检时间" v-if="systemSet.gridOvervoltageSetObj.powerGridUnderfrequencySelfCheckTime">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.powerGridUnderfrequencySelfCheckTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerGridUnderfrequencySelfCheckTime', systemSet.otherSetObj.powerGridUnderfrequencySelfCheckTimeVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段欠频自检阀值" v-if="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckThresholdOfTheSecondSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckThresholdOfTheSecondSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underFrequencySelfCheckThresholdOfTheSecondSectionOfThePowerGrid', systemSet.otherSetObj.underFrequencySelfCheckThresholdOfTheSecondSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item label="电网二段欠频自检时间" v-if="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckTimeOfTheSecondSectionOfThePowerGrid">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.gridOvervoltageSetObj.underFrequencySelfCheckTimeOfTheSecondSectionOfThePowerGridVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('underFrequencySelfCheckTimeOfTheSecondSectionOfThePowerGrid', systemSet.otherSetObj.underFrequencySelfCheckTimeOfTheSecondSectionOfThePowerGridVal)">保存</el-button>
-              </div>
-            </el-descriptions-item>
-          </el-descriptions>
-        </el-card> -->
 
         <el-card  style="margin-top: 10px;" v-if="systemSet.otherSet">
           <el-descriptions title="其他设置" :column="3" border>
