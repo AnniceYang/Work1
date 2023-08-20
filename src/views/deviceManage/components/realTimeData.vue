@@ -11,7 +11,7 @@
       </el-menu>
       <div v-loading="loading">
       <el-card  style="margin-top: 20px;">
-        <el-descriptions :title="$t('deviceManage.deviceInformation')" :column="4">
+        <el-descriptions :title="$t('deviceManage.deviceInformation')" :column="3">
           <el-descriptions-item :label="$t('deviceManage.deviceName')">{{ deviceInfo.name }}</el-descriptions-item>
           <el-descriptions-item :label="$t('deviceManage.snCode')">{{ deviceInfo.sn }}</el-descriptions-item>
           <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{ deviceInfo.status | devStatusFilter }}</el-descriptions-item>
@@ -21,7 +21,7 @@
 
       <template v-if="activeIndex === '7'">
         <el-card style="margin-top: 10px;" v-if="operationInformation.runInformation">
-          <el-descriptions :title="$t('deviceManage.operationInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.operationInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.displayType')" v-if="operationInformation.runInformationObj.displayType">
               {{ operationInformation.runInformationObj.displayTypeVal | displayTypeValFilter }}
             </el-descriptions-item>
@@ -39,7 +39,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.basicInformation">
-          <el-descriptions :title="$t('deviceManage.basicInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.basicInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.dcdcTemperature')" v-if="operationInformation.basicInformationObj.dcdcTemperature">{{ operationInformation.basicInformationObj.dcdcTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.countryCode')" v-if="operationInformation.basicInformationObj.countryCode">
               {{ operationInformation.basicInformationObj.countryCodeVal | countryCodeValFilter }}
@@ -53,7 +53,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.pvInformation">
-          <el-descriptions :title="$t('deviceManage.pvInformation')" :column="4" >
+          <el-descriptions :title="$t('deviceManage.pvInformation')" :column="3" >
             <el-descriptions-item :label="$t('deviceManage.pv1Voltage')" v-if="operationInformation.pvInformationObj.pv1Voltage">{{ operationInformation.pvInformationObj.pv1VoltageVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.pv1Current')" v-if="operationInformation.pvInformationObj.pv1Current">{{ operationInformation.pvInformationObj.pv1CurrentVal }}A</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.pv1Power')" v-if="operationInformation.pvInformationObj.pv1Power">{{ operationInformation.pvInformationObj.pv1PowerVal }}W</el-descriptions-item>
@@ -64,7 +64,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.batteryInformation">
-          <el-descriptions :title="$t('deviceManage.batteryInfo')" :column="4">
+          <el-descriptions :title="$t('deviceManage.batteryInfo')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.batteryStatus')" v-if="operationInformation.batteryInformationObj.batteryStatus">
               {{ operationInformation.batteryInformationObj.batteryStatusVal | batteryStatusFilter }}
             </el-descriptions-item>
@@ -80,7 +80,7 @@
 
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.powerGridInformation">
-          <el-descriptions :title="$t('deviceManage.powerGridInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.powerGridInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.powerGridStatus')" v-if="operationInformation.powerGridInformationObj.powerGridStatus">
               {{ operationInformation.powerGridInformationObj.powerGridStatusVal | GridStateFilter }}
             </el-descriptions-item>
@@ -102,7 +102,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.inverterInformation">
-          <el-descriptions :title="$t('deviceManage.inverterInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.inverterInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.inverterSideTemperature')" v-if="operationInformation.inverterInformationObj.inverterTemperature">{{ operationInformation.inverterInformationObj.inverterTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.inversionState')" v-if="operationInformation.inverterInformationObj.inversionState">
               {{ operationInformation.inverterInformationObj.inversionStateVal | invertingStateFilter }}
@@ -129,7 +129,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.loadInformation">
-          <el-descriptions :title="$t('deviceManage.loadInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.loadInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.phaseALoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageA">{{ operationInformation.loadInformationObj.loadVoltageAVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseBLoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageB">{{ operationInformation.loadInformationObj.loadVoltageBVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseCLoadVoltage')" v-if="operationInformation.loadInformationObj.loadVoltageC">{{ operationInformation.loadInformationObj.loadVoltageCVal }}V</el-descriptions-item>
@@ -151,7 +151,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.electricityMeterInformation">
-          <el-descriptions :title="$t('deviceManage.electricityMeterInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.electricityMeterInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.normalIndicatorOfElectricityMeter')" v-if="operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeter">
               {{ operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeterVal | meterNormalFilter }}
             </el-descriptions-item>
@@ -167,7 +167,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.otherInformation">
-          <el-descriptions :title="$t('deviceManage.otherInformation')" :column="4">
+          <el-descriptions :title="$t('deviceManage.otherInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.selfInspectionStatus')" v-if="operationInformation.otherInformationObj.selfInspectionStatus">
               {{ operationInformation.otherInformationObj.selfInspectionStatusVal | selfCheckFilter }}
             </el-descriptions-item>
@@ -300,74 +300,74 @@
           <el-descriptions title="常用设置" :column="3" border>
             <el-descriptions-item label="设置系统时间(年，月)" v-if="systemSet.commonSetObj.systemTime">
               <div style="display: flex;">
-                <el-input v-model="systemSet.commonSetObj.systemTimeVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTime', systemSet.commonSetObj.systemTimeVal)">保存</el-button>
+                <el-input v-model="systemSet.commonSetObj.systemTimeVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTime', systemSet.commonSetObj.systemTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="通讯协议类型" v-if="systemSet.commonSetObj.communicationProtocolType">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.communicationProtocolTypeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.communicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="用户" value="0" />
                   <el-option label="工程师" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType', systemSet.commonSetObj.communicationProtocolTypeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType', systemSet.commonSetObj.communicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="日发电量校准" v-if="systemSet.commonSetObj.dailyPowerGenerationCalibration">
               <div style="display: flex;">
-                <el-input v-model="systemSet.commonSetObj.dailyPowerGenerationCalibrationVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('dailyPowerGenerationCalibration', systemSet.commonSetObj.dailyPowerGenerationCalibrationVal)">保存</el-button>
+                <el-input v-model="systemSet.commonSetObj.dailyPowerGenerationCalibrationVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('dailyPowerGenerationCalibration', systemSet.commonSetObj.dailyPowerGenerationCalibrationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="总发电量校准" v-if="systemSet.commonSetObj.totalPowerGenerationCalibration">
               <div style="display: flex;">
-                <el-input v-model="systemSet.commonSetObj.totalPowerGenerationCalibrationVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('totalPowerGenerationCalibration', systemSet.commonSetObj.totalPowerGenerationCalibrationVal)">保存</el-button>
+                <el-input v-model="systemSet.commonSetObj.totalPowerGenerationCalibrationVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('totalPowerGenerationCalibration', systemSet.commonSetObj.totalPowerGenerationCalibrationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="清空用电量数据" v-if="systemSet.commonSetObj.clearElectricityConsumptionData">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.clearElectricityConsumptionDataVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.clearElectricityConsumptionDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
                   <el-option label="确定" value="65535" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearElectricityConsumptionData', systemSet.commonSetObj.clearElectricityConsumptionDataVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearElectricityConsumptionData', systemSet.commonSetObj.clearElectricityConsumptionDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="清空发电量数据" v-if="systemSet.commonSetObj.clearPowerGenerationData">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.clearPowerGenerationDataVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.clearPowerGenerationDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
                   <el-option label="确定" value="65535" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearPowerGenerationData', systemSet.commonSetObj.clearPowerGenerationDataVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearPowerGenerationData', systemSet.commonSetObj.clearPowerGenerationDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="开机命令" v-if="systemSet.commonSetObj.bootCommand">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.bootCommandVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.bootCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
                   <el-option label="确定" value="65535" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bootCommand', systemSet.commonSetObj.bootCommandVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bootCommand', systemSet.commonSetObj.bootCommandVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="关机命令" v-if="systemSet.commonSetObj.shutdownCommand">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.shutdownCommandVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.shutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
                   <el-option label="确定" value="65535" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('shutdownCommand', systemSet.commonSetObj.shutdownCommandVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('shutdownCommand', systemSet.commonSetObj.shutdownCommandVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="取消关机命令" v-if="systemSet.commonSetObj.cancelShutdownCommand">
               <div style="display: flex;">
-                <el-select v-model="systemSet.commonSetObj.cancelShutdownCommandVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.commonSetObj.cancelShutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
                   <el-option label="确定" value="65535" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('cancelShutdownCommand', systemSet.commonSetObj.cancelShutdownCommandVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('cancelShutdownCommand', systemSet.commonSetObj.cancelShutdownCommandVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -377,7 +377,7 @@
           <el-descriptions title="通讯设置" :column="3" border>
             <el-descriptions-item label="BMS型号" v-if="systemSet.communicationSetObj.bmsModel">
               <div style="display: flex;">
-                <el-select v-model="systemSet.communicationSetObj.bmsModelVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.communicationSetObj.bmsModelVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="None" value="0" />
                   <el-option label="Pylontech" value="1" />
                   <el-option label="XT" value="2" />
@@ -385,62 +385,62 @@
                   <el-option label="Pace" value="4" />
                   <el-option label="LeSY" value="5" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsModel', systemSet.communicationSetObj.bmsModelVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsModel', systemSet.communicationSetObj.bmsModelVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="BMS地址" v-if="systemSet.communicationSetObj.bmsAddress">
               <div style="display: flex;">
-                <el-input v-model="systemSet.communicationSetObj.bmsAddressVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsAddress', systemSet.communicationSetObj.bmsAddressVal)">保存</el-button>
+                <el-input v-model="systemSet.communicationSetObj.bmsAddressVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsAddress', systemSet.communicationSetObj.bmsAddressVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="BMS波特率" v-if="systemSet.communicationSetObj.bmsBaud">
               <div style="display: flex;">
-                <el-select v-model="systemSet.communicationSetObj.bmsBaudVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.communicationSetObj.bmsBaudVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="1200" value="1" />
                   <el-option label="2400" value="2" />
                   <el-option label="4800" value="3" />
                   <el-option label="9600" value="4" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsBaud', systemSet.communicationSetObj.bmsBaudVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsBaud', systemSet.communicationSetObj.bmsBaudVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="锂电池块数" v-if="systemSet.communicationSetObj.numberOfLithiumBatteryBlocks">
               <div style="display: flex;">
-                <el-input v-model="systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('numberOfLithiumBatteryBlocks', systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal)">保存</el-button>
+                <el-input v-model="systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('numberOfLithiumBatteryBlocks', systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="采集器通讯地址" v-if="systemSet.communicationSetObj.collectorCommunicationAddress">
               <div style="display: flex;">
-                <el-input v-model="systemSet.communicationSetObj.collectorCommunicationAddressVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationAddress', systemSet.communicationSetObj.collectorCommunicationAddressVal)">保存</el-button>
+                <el-input v-model="systemSet.communicationSetObj.collectorCommunicationAddressVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationAddress', systemSet.communicationSetObj.collectorCommunicationAddressVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="采集器通讯协议类型" v-if="systemSet.communicationSetObj.collectorCommunicationProtocolType">
               <div style="display: flex;">
-                <el-select v-model="systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="用户" value="0" />
                   <el-option label="工程师" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationProtocolType', systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationProtocolType', systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="采集器通讯波特率" v-if="systemSet.communicationSetObj.baudOfCollectorCommunication">
               <div style="display: flex;">
-                <el-select v-model="systemSet.communicationSetObj.baudOfCollectorCommunicationVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.communicationSetObj.baudOfCollectorCommunicationVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="1200" value="1" />
                   <el-option label="2400" value="2" />
                   <el-option label="4800" value="3" />
                   <el-option label="9600" value="4" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('baudOfCollectorCommunication', systemSet.communicationSetObj.baudOfCollectorCommunicationVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('baudOfCollectorCommunication', systemSet.communicationSetObj.baudOfCollectorCommunicationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设备通讯地址" v-if="systemSet.communicationSetObj.deviceCommunicationAddress">
               <div style="display: flex;">
-                <el-input v-model="systemSet.communicationSetObj.deviceCommunicationAddressVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationAddress', systemSet.communicationSetObj.deviceCommunicationAddressVal)">保存</el-button>
+                <el-input v-model="systemSet.communicationSetObj.deviceCommunicationAddressVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationAddress', systemSet.communicationSetObj.deviceCommunicationAddressVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -450,128 +450,128 @@
           <el-descriptions title="高级设置" :column="3" border>
             <el-descriptions-item label="并离网模式" v-if="systemSet.advancedSetObj.parallelOffGridMode">
               <div style="display: flex;">
-                <el-select v-model="systemSet.advancedSetObj.parallelOffGridModeVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.advancedSetObj.parallelOffGridModeVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="并网模式" value="0" />
                   <el-option label="防逆流模式" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('parallelOffGridMode', systemSet.advancedSetObj.parallelOffGridModeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('parallelOffGridMode', systemSet.advancedSetObj.parallelOffGridModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="系统模式设置" v-if="systemSet.advancedSetObj.systemModeSet">
               <div style="display: flex;">
-                <el-select v-model="systemSet.advancedSetObj.systemModeSetVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.advancedSetObj.systemModeSetVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="UPS" value="0" />
                   <el-option label="EPS" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSet', systemSet.advancedSetObj.systemModeSetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSet', systemSet.advancedSetObj.systemModeSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="PV连接设置" v-if="systemSet.advancedSetObj.pvConnectionSet">
               <div style="display: flex;">
-                <el-select v-model="systemSet.advancedSetObj.pvConnectionSetVal" placeholder="请选择"  style="width: 100%;">
+                <el-select v-model="systemSet.advancedSetObj.pvConnectionSetVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="独立" value="0" />
                   <el-option label="并联" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvConnectionSet', systemSet.advancedSetObj.pvConnectionSetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvConnectionSet', systemSet.advancedSetObj.pvConnectionSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="额定输出电压设置" v-if="systemSet.advancedSetObj.ratedOutputVoltageSet">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.ratedOutputVoltageSetVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.ratedOutputVoltageSetVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputVoltageSet', systemSet.advancedSetObj.ratedOutputVoltageSetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputVoltageSet', systemSet.advancedSetObj.ratedOutputVoltageSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="额定输出频率设置" v-if="systemSet.advancedSetObj.ratedOutputFrequencySet">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.ratedOutputFrequencySetVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.ratedOutputFrequencySetVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputFrequencySet', systemSet.advancedSetObj.ratedOutputFrequencySetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputFrequencySet', systemSet.advancedSetObj.ratedOutputFrequencySetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池类型设置" v-if="systemSet.advancedSetObj.batteryTypeSet">
               <div style="display: flex;">
-                <el-select v-model="systemSet.advancedSetObj.batteryTypeSetVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.advancedSetObj.batteryTypeSetVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="铅酸" value="0" />
                   <el-option label="锂电" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryTypeSet', systemSet.advancedSetObj.batteryTypeSetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryTypeSet', systemSet.advancedSetObj.batteryTypeSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池充电电流" v-if="systemSet.advancedSetObj.batteryChargingCurrent">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryChargingCurrentVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryChargingCurrentVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">A</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryChargingCurrent', systemSet.advancedSetObj.batteryChargingCurrentVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryChargingCurrent', systemSet.advancedSetObj.batteryChargingCurrentVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池放电电流" v-if="systemSet.advancedSetObj.batteryDischargeCurrent">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryDischargeCurrentVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryDischargeCurrentVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">A</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDischargeCurrent', systemSet.advancedSetObj.batteryDischargeCurrentVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDischargeCurrent', systemSet.advancedSetObj.batteryDischargeCurrentVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池均充电压" v-if="systemSet.advancedSetObj.batteryAverageChargingVoltage">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryAverageChargingVoltageVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryAverageChargingVoltageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryAverageChargingVoltage', systemSet.advancedSetObj.batteryAverageChargingVoltageVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryAverageChargingVoltage', systemSet.advancedSetObj.batteryAverageChargingVoltageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池浮充电压" v-if="systemSet.advancedSetObj.batteryFloatChargingVoltage">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryFloatChargingVoltageVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryFloatChargingVoltageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryFloatChargingVoltage', systemSet.advancedSetObj.batteryFloatChargingVoltageVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryFloatChargingVoltage', systemSet.advancedSetObj.batteryFloatChargingVoltageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池EOD" v-if="systemSet.advancedSetObj.batteryEod">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryEodVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryEodVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryEod', systemSet.advancedSetObj.batteryEodVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryEod', systemSet.advancedSetObj.batteryEodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池DOD" v-if="systemSet.advancedSetObj.batteryDod">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.batteryDodVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.batteryDodVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDod', systemSet.advancedSetObj.batteryDodVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDod', systemSet.advancedSetObj.batteryDodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="并网SOC下限" v-if="systemSet.advancedSetObj.lowerLimitOfGridConnectedSoc">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitOfGridConnectedSoc', systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitOfGridConnectedSoc', systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="离网SOC下限" v-if="systemSet.advancedSetObj.offGridSocLowerLimit">
               <div style="display: flex;">
-                <el-input v-model="systemSet.advancedSetObj.offGridSocLowerLimitVal" placeholder="请输入">
+                <el-input v-model="systemSet.advancedSetObj.offGridSocLowerLimitVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('offGridSocLowerLimit', systemSet.advancedSetObj.offGridSocLowerLimitVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('offGridSocLowerLimit', systemSet.advancedSetObj.offGridSocLowerLimitVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电表-CT" v-if="systemSet.advancedSetObj.electricityMeterCt">
               <div style="display: flex;">
-                <el-select v-model="systemSet.advancedSetObj.electricityMeterCtVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.advancedSetObj.electricityMeterCtVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="NULL" value="0" />
                   <el-option label="电表" value="1" />
                   <el-option label="CT" value="2" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('electricityMeterCt', systemSet.advancedSetObj.electricityMeterCtVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('electricityMeterCt', systemSet.advancedSetObj.electricityMeterCtVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
           </el-descriptions>
@@ -582,34 +582,34 @@
           <el-descriptions title="其他设置" :column="3" border>
             <el-descriptions-item label="复位设备通讯设置至初始值" v-if="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValues">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('resetDeviceCommunicationSettingsToInitialValues', systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('resetDeviceCommunicationSettingsToInitialValues', systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="清空记录数据" v-if="systemSet.otherSetObj.clearRecordData">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearRecordData', systemSet.otherSetObj.clearRecordDataVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearRecordData', systemSet.otherSetObj.clearRecordDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="恢复出厂设置" v-if="systemSet.otherSetObj.factoryReset">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.factoryResetVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.factoryResetVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="取消" value="0" />
                   <el-option label="确认" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('factoryReset', systemSet.otherSetObj.factoryResetVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('factoryReset', systemSet.otherSetObj.factoryResetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="逆变器重启" v-if="systemSet.otherSetObj.inverterRestart">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.inverterRestartVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterRestart', systemSet.otherSetObj.inverterRestartVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterRestart', systemSet.otherSetObj.inverterRestartVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="自检使能" v-if="systemSet.otherSetObj.selfCheckEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.selfCheckEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.selfCheckEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="空闲" value="0" />
                   <el-option label="一段过压(59.S1)" value="1" />
                   <el-option label="二段过压(59.S2)" value="2" />
@@ -620,75 +620,75 @@
                   <el-option label="一段欠频(81<.S1)" value="7" />
                   <el-option label="二段欠频(81<.S2)" value="8" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('selfCheckEnable', systemSet.otherSetObj.selfCheckEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('selfCheckEnable', systemSet.otherSetObj.selfCheckEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="手动清除故障" v-if="systemSet.otherSetObj.manuallyClearingFaults">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyClearingFaults', systemSet.otherSetObj.manuallyClearingFaultsVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyClearingFaults', systemSet.otherSetObj.manuallyClearingFaultsVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="自动运行" v-if="systemSet.otherSetObj.automaticOperation">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.automaticOperationVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.automaticOperationVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="手动" value="0" />
                   <el-option label="自动" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('automaticOperation', systemSet.otherSetObj.automaticOperationVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('automaticOperation', systemSet.otherSetObj.automaticOperationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="手动解锁系统锁" v-if="systemSet.otherSetObj.manuallyUnlockingTheSystemLock">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyUnlockingTheSystemLock', systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyUnlockingTheSystemLock', systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设备通讯波特率" v-if="systemSet.otherSetObj.deviceCommunicationBaud">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.deviceCommunicationBaudVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.deviceCommunicationBaudVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="1200" value="1" />
                   <el-option label="2400" value="2" />
                   <el-option label="4800" value="3" />
                   <el-option label="9600" value="4" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationBaud', systemSet.otherSetObj.deviceCommunicationBaudVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationBaud', systemSet.otherSetObj.deviceCommunicationBaudVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设备通讯校验位选择" v-if="systemSet.otherSetObj.deviceCommunicationCheckBitSelection">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="无校验位" value="0" />
                   <el-option label="偶校验" value="1" />
                   <el-option label="奇校验" value="2" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationCheckBitSelection', systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationCheckBitSelection', systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设备通讯停止位选择" v-if="systemSet.otherSetObj.deviceCommunicationStopBitSelection">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="1位停止位" value="0" />
                   <el-option label="2位停止位" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationStopBitSelection', systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationStopBitSelection', systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="倒计时关闭逆变器" v-if="systemSet.otherSetObj.countdownToTurnOffTheInverter">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.countdownToTurnOffTheInverterVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('countdownToTurnOffTheInverter', systemSet.otherSetObj.countdownToTurnOffTheInverterVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.countdownToTurnOffTheInverterVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('countdownToTurnOffTheInverter', systemSet.otherSetObj.countdownToTurnOffTheInverterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="延时启动逆变器" v-if="systemSet.otherSetObj.delayedStartInverter">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.delayedStartInverterVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('delayedStartInverter', systemSet.otherSetObj.delayedStartInverterVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.delayedStartInverterVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('delayedStartInverter', systemSet.otherSetObj.delayedStartInverterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="国家码" v-if="systemSet.otherSetObj.countryCode">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.countryCodeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.countryCodeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="中国" value="0" />
                   <el-option label="意大利" value="1" />
                   <el-option label="德国" value="2" />
@@ -696,125 +696,125 @@
                   <el-option label="比利时" value="4" />
                   <el-option label="南非" value="5" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('countryCode', systemSet.otherSetObj.countryCodeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('countryCode', systemSet.otherSetObj.countryCodeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="系统时间设置" v-if="systemSet.otherSetObj.systemTimeSetting">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="逆变有功设定" v-if="systemSet.otherSetObj.inverterActivePowerSetting">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.inverterActivePowerSettingVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.inverterActivePowerSettingVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterActivePowerSetting', systemSet.otherSetObj.inverterActivePowerSettingVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterActivePowerSetting', systemSet.otherSetObj.inverterActivePowerSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="485通讯协议类型" v-if="systemSet.otherSetObj.communicationProtocolType485">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.communicationProtocolType485Val" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.communicationProtocolType485Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="用户" value="0" />
                   <el-option label="工程师" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType485', systemSet.otherSetObj.communicationProtocolType485Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType485', systemSet.otherSetObj.communicationProtocolType485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="485通讯地址" v-if="systemSet.otherSetObj.communicationAddress485">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.communicationAddress485Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationAddress485', systemSet.otherSetObj.communicationAddress485Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.communicationAddress485Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationAddress485', systemSet.otherSetObj.communicationAddress485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="485通讯波特率" v-if="systemSet.otherSetObj.communicationBaud485">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.communicationBaud485Val" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.communicationBaud485Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="1200" value="1" />
                   <el-option label="2400" value="2" />
                   <el-option label="4800" value="3" />
                   <el-option label="9600" value="4" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationBaud485', systemSet.otherSetObj.communicationBaud485Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationBaud485', systemSet.otherSetObj.communicationBaud485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="硬限制使能" v-if="systemSet.otherSetObj.hardLimitEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.hardLimitEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.hardLimitEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="使能" value="1" />
                   <el-option label="屏蔽" value="0" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitEnable', systemSet.otherSetObj.hardLimitEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitEnable', systemSet.otherSetObj.hardLimitEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="硬限制功率设定值" v-if="systemSet.otherSetObj.hardLimitPowerSettingValue">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.hardLimitPowerSettingValueVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitPowerSettingValue', systemSet.otherSetObj.hardLimitPowerSettingValueVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.hardLimitPowerSettingValueVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitPowerSettingValue', systemSet.otherSetObj.hardLimitPowerSettingValueVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="澳洲地区选择" v-if="systemSet.otherSetObj.australianRegionSelection">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.australianRegionSelectionVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.australianRegionSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="澳洲A区" value="0" />
                   <el-option label="澳洲B区" value="1" />
                   <el-option label="澳洲C区" value="2" />
                   <el-option label="新西兰" value="3" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('australianRegionSelection', systemSet.otherSetObj.australianRegionSelectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('australianRegionSelection', systemSet.otherSetObj.australianRegionSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="蓝牙连接标志" v-if="systemSet.otherSetObj.bluetoothConnectionFlag">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.bluetoothConnectionFlagVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bluetoothConnectionFlag', systemSet.otherSetObj.bluetoothConnectionFlagVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.bluetoothConnectionFlagVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('bluetoothConnectionFlag', systemSet.otherSetObj.bluetoothConnectionFlagVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="PV有功设定" v-if="systemSet.otherSetObj.pvActivePowerSetting">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.pvActivePowerSettingVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.pvActivePowerSettingVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvActivePowerSetting', systemSet.otherSetObj.pvActivePowerSettingVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvActivePowerSetting', systemSet.otherSetObj.pvActivePowerSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="有功变化率限制" v-if="systemSet.otherSetObj.limitOfActivePowerChangeRate">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.limitOfActivePowerChangeRateVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('limitOfActivePowerChangeRate', systemSet.otherSetObj.limitOfActivePowerChangeRateVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.limitOfActivePowerChangeRateVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('limitOfActivePowerChangeRate', systemSet.otherSetObj.limitOfActivePowerChangeRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="孤岛检测使能" v-if="systemSet.otherSetObj.islandDetectionEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.islandDetectionEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.islandDetectionEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="不使能" value="0" />
                   <el-option label="使能" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('islandDetectionEnable', systemSet.otherSetObj.islandDetectionEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('islandDetectionEnable', systemSet.otherSetObj.islandDetectionEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="认证模式" v-if="systemSet.otherSetObj.authenticationMode">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.authenticationModeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.authenticationModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="关闭" value="0" />
                   <el-option label="开启" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('authenticationMode', systemSet.otherSetObj.authenticationModeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('authenticationMode', systemSet.otherSetObj.authenticationModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="当前系统运行模式控制源" v-if="systemSet.otherSetObj.currentSystemOperationModeControlSource">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.currentSystemOperationModeControlSourceVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.currentSystemOperationModeControlSourceVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="MCU 下发控制" value="0" />
                   <el-option label="DSP 下发控制" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentSystemOperationModeControlSource', systemSet.otherSetObj.currentSystemOperationModeControlSourceVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentSystemOperationModeControlSource', systemSet.otherSetObj.currentSystemOperationModeControlSourceVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="系统当前运行模式" v-if="systemSet.otherSetObj.currentOperatingModeOfTheSystem">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.currentOperatingModeOfTheSystemVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.currentOperatingModeOfTheSystemVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="电池优先模式" value="0" />
                   <el-option label="家庭负载优先模式" value="1" />
                   <el-option label="电网优先模式" value="2" />
@@ -824,44 +824,44 @@
                   <el-option label="纯PV模式" value="6" />
                   <el-option label="强制离网模式" value="7" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentOperatingModeOfTheSystem', systemSet.otherSetObj.currentOperatingModeOfTheSystemVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentOperatingModeOfTheSystem', systemSet.otherSetObj.currentOperatingModeOfTheSystemVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="APP启动标志" v-if="systemSet.otherSetObj.appStartupFlag">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.appStartupFlagVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('appStartupFlag', systemSet.otherSetObj.appStartupFlagVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.appStartupFlagVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('appStartupFlag', systemSet.otherSetObj.appStartupFlagVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="蜂鸣器响应时间" v-if="systemSet.otherSetObj.buzzerResponseTime">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.buzzerResponseTimeVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.buzzerResponseTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">min</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('buzzerResponseTime', systemSet.otherSetObj.buzzerResponseTimeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('buzzerResponseTime', systemSet.otherSetObj.buzzerResponseTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="交流类型" v-if="systemSet.otherSetObj.communicationType">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.communicationTypeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.communicationTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="电网" value="0" />
                   <el-option label="发电机" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationType', systemSet.otherSetObj.communicationTypeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationType', systemSet.otherSetObj.communicationTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="系统模式设置" v-if="systemSet.otherSetObj.systemModeSettings">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.systemModeSettingsVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.systemModeSettingsVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="UPS" value="0" />
                   <el-option label="EPS" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSettings', systemSet.otherSetObj.systemModeSettingsVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSettings', systemSet.otherSetObj.systemModeSettingsVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="USB操作" v-if="systemSet.otherSetObj.usbOperation">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.usbOperationVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.usbOperationVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="无" value="0" />
                   <el-option label="导出历史记录" value="1" />
                   <el-option label="导出配置参数" value="2" />
@@ -869,473 +869,473 @@
                   <el-option label="主控升级" value="4" />
                   <el-option label="监控升级" value="5" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('usbOperation', systemSet.otherSetObj.usbOperationVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('usbOperation', systemSet.otherSetObj.usbOperationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="功率因数" v-if="systemSet.otherSetObj.powerFactor">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.powerFactorVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerFactor', systemSet.otherSetObj.powerFactorVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.powerFactorVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerFactor', systemSet.otherSetObj.powerFactorVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="防逆流功率百分比" v-if="systemSet.otherSetObj.antiBackflowPowerPercentage">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.antiBackflowPowerPercentageVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.antiBackflowPowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('antiBackflowPowerPercentage', systemSet.otherSetObj.antiBackflowPowerPercentageVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('antiBackflowPowerPercentage', systemSet.otherSetObj.antiBackflowPowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="最大输出功率百分比" v-if="systemSet.otherSetObj.maximumOutputPowerPercentage">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.maximumOutputPowerPercentageVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.maximumOutputPowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('maximumOutputPowerPercentage', systemSet.otherSetObj.maximumOutputPowerPercentageVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('maximumOutputPowerPercentage', systemSet.otherSetObj.maximumOutputPowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="功率设置调节速率" v-if="systemSet.otherSetObj.powerSettingAdjustmentRate">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.powerSettingAdjustmentRateVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.powerSettingAdjustmentRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%Wmax/s</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerSettingAdjustmentRate', systemSet.otherSetObj.powerSettingAdjustmentRateVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerSettingAdjustmentRate', systemSet.otherSetObj.powerSettingAdjustmentRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="并网功率软起速率" v-if="systemSet.otherSetObj.gridConnectedPowerSoftStartRate">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%Wmax/Min</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridConnectedPowerSoftStartRate', systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridConnectedPowerSoftStartRate', systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="无功功率控制模式" v-if="systemSet.otherSetObj.reactivePowerControlMode">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.reactivePowerControlModeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.reactivePowerControlModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="无功为零" value="0" />
                   <el-option label="Volt-Var模式" value="1" />
                   <el-option label="固定功因模式" value="2" />
                   <el-option label="固定无功模式" value="3" />
                   <el-option label="Cos(P)模式" value="4" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerControlMode', systemSet.otherSetObj.reactivePowerControlModeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerControlMode', systemSet.otherSetObj.reactivePowerControlModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="无功功率调节速率" v-if="systemSet.otherSetObj.reactivePowerRegulationRate">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.reactivePowerRegulationRateVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.reactivePowerRegulationRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%VAmax/s</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerRegulationRate', systemSet.otherSetObj.reactivePowerRegulationRateVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerRegulationRate', systemSet.otherSetObj.reactivePowerRegulationRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限值1" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限值2" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限值3" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限值1" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限值2" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限值3" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压重连上限值" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压重连下限值" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限时间1" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限时间2" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护上限时间3" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限时间1" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限时间2" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护下限时间3" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网电压保护恢复时间" v-if="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridVoltageProtection', systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridVoltageProtection', systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限值1" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限值2" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限值3" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限值1" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限值2" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限值3" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率重连上限值" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率重连下限值" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限时间1" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限时间2" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护上限时间3" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限时间1" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限时间2" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护下限时间3" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网频率保护恢复时间" v-if="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtection">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridFrequencyProtection', systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridFrequencyProtection', systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电网10Min过压保护值" v-if="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGrid">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('tenMinOvervoltageProtectionValueOfThePowerGrid', systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('tenMinOvervoltageProtectionValueOfThePowerGrid', systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="连网等待时间" v-if="systemSet.otherSetObj.networkingWaitingTime">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.networkingWaitingTimeVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.networkingWaitingTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">s</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('networkingWaitingTime', systemSet.otherSetObj.networkingWaitingTimeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('networkingWaitingTime', systemSet.otherSetObj.networkingWaitingTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="重连等待时间" v-if="systemSet.otherSetObj.reconnectWaitingTime">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.reconnectWaitingTimeVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.reconnectWaitingTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">s</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reconnectWaitingTime', systemSet.otherSetObj.reconnectWaitingTimeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reconnectWaitingTime', systemSet.otherSetObj.reconnectWaitingTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="寒冷模式" v-if="systemSet.otherSetObj.coldMode">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.coldModeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.coldModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="关闭" value="0" />
                   <el-option label="开启" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('coldMode', systemSet.otherSetObj.coldModeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('coldMode', systemSet.otherSetObj.coldModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="无功功率百分比" v-if="systemSet.otherSetObj.reactivePowerPercentage">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.reactivePowerPercentageVal" placeholder="请输入">
+                <el-input v-model="systemSet.otherSetObj.reactivePowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
                 </el-input>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerPercentage', systemSet.otherSetObj.reactivePowerPercentageVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerPercentage', systemSet.otherSetObj.reactivePowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="Freq-Watt(曲线)使能" v-if="systemSet.otherSetObj.freqWattCurveEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.freqWattCurveEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.freqWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="不使能" value="0" />
                   <el-option label="使能" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('freqWattCurveEnable', systemSet.otherSetObj.freqWattCurveEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('freqWattCurveEnable', systemSet.otherSetObj.freqWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="Volt-Watt(曲线)使能" v-if="systemSet.otherSetObj.voltWattCurveEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.voltWattCurveEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.voltWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="不使能" value="0" />
                   <el-option label="使能" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltWattCurveEnable', systemSet.otherSetObj.voltWattCurveEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltWattCurveEnable', systemSet.otherSetObj.voltWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="Volt-Var(曲线)使能" v-if="systemSet.otherSetObj.voltVarCurveEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.voltVarCurveEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.voltVarCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="不使能" value="0" />
                   <el-option label="使能" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltVarCurveEnable', systemSet.otherSetObj.voltVarCurveEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltVarCurveEnable', systemSet.otherSetObj.voltVarCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="PF-Watt(曲线)使能" v-if="systemSet.otherSetObj.pfWattCurveEnable">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.pfWattCurveEnableVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.pfWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="不使能" value="0" />
                   <el-option label="使能" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pfWattCurveEnable', systemSet.otherSetObj.pfWattCurveEnableVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('pfWattCurveEnable', systemSet.otherSetObj.pfWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="定时模式类型" v-if="systemSet.otherSetObj.timingModeType">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.timingModeTypeVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.timingModeTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="按日期设置" value="0" />
                   <el-option label="按时间设置" value="1" />
                   <el-option label="实时切换当前系统运行模式" value="2" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('timingModeType', systemSet.otherSetObj.timingModeTypeVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('timingModeType', systemSet.otherSetObj.timingModeTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器1" v-if="systemSet.otherSetObj.setQuantityChangeRegister1">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister1Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister1', systemSet.otherSetObj.setQuantityChangeRegister1Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister1Val":placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister1', systemSet.otherSetObj.setQuantityChangeRegister1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器2" v-if="systemSet.otherSetObj.setQuantityChangeRegister2">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister2Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister2', systemSet.otherSetObj.setQuantityChangeRegister2Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister2Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister2', systemSet.otherSetObj.setQuantityChangeRegister2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器3" v-if="systemSet.otherSetObj.setQuantityChangeRegister3">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister3Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister3', systemSet.otherSetObj.setQuantityChangeRegister3Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister3Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister3', systemSet.otherSetObj.setQuantityChangeRegister3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器4" v-if="systemSet.otherSetObj.setQuantityChangeRegister4">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister4Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister4', systemSet.otherSetObj.setQuantityChangeRegister4Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister4Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister4', systemSet.otherSetObj.setQuantityChangeRegister4Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器5" v-if="systemSet.otherSetObj.setQuantityChangeRegister5">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister5Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister5', systemSet.otherSetObj.setQuantityChangeRegister5Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister5Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister5', systemSet.otherSetObj.setQuantityChangeRegister5Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器6" v-if="systemSet.otherSetObj.setQuantityChangeRegister6">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister6Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister6', systemSet.otherSetObj.setQuantityChangeRegister6Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister6Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister6', systemSet.otherSetObj.setQuantityChangeRegister6Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器7" v-if="systemSet.otherSetObj.setQuantityChangeRegister7">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister7Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister7', systemSet.otherSetObj.setQuantityChangeRegister7Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister7Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister7', systemSet.otherSetObj.setQuantityChangeRegister7Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="设置量变更寄存器8" v-if="systemSet.otherSetObj.setQuantityChangeRegister8">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister8Val" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister8', systemSet.otherSetObj.setQuantityChangeRegister8Val)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister8Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister8', systemSet.otherSetObj.setQuantityChangeRegister8Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="电池参数显示方式" v-if="systemSet.otherSetObj.batteryParameterDisplayMethod">
               <div style="display: flex;">
-                <el-select v-model="systemSet.otherSetObj.batteryParameterDisplayMethodVal" placeholder="请选择" style="width: 100%;">
+                <el-select v-model="systemSet.otherSetObj.batteryParameterDisplayMethodVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="自动轮询" value="0" />
                   <el-option label="手动切换" value="1" />
                 </el-select>
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryParameterDisplayMethod', systemSet.otherSetObj.batteryParameterDisplayMethodVal)">保存</el-button>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryParameterDisplayMethod', systemSet.otherSetObj.batteryParameterDisplayMethodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="当前显示参数的电池ID" v-if="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameter">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('theBatteryIdOfTheCurrentDisplayedParameter', systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('theBatteryIdOfTheCurrentDisplayedParameter', systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="MOS控制" v-if="systemSet.otherSetObj.mosControl">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.mosControlVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('mosControl', systemSet.otherSetObj.mosControlVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.mosControlVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('mosControl', systemSet.otherSetObj.mosControlVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="GPS通讯模块电源控制" v-if="systemSet.otherSetObj.gpsCommunicationModulePowerControl">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.gpsCommunicationModulePowerControlVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gpsCommunicationModulePowerControl', systemSet.otherSetObj.gpsCommunicationModulePowerControlVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.gpsCommunicationModulePowerControlVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('gpsCommunicationModulePowerControl', systemSet.otherSetObj.gpsCommunicationModulePowerControlVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item label="实时时钟" v-if="systemSet.otherSetObj.realTimeClock">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.realTimeClockVal" placeholder="请输入" />
-                <el-button type="text" style="margin-left: 5px;" @click="handleSave('realTimeClock', systemSet.otherSetObj.realTimeClockVal)">保存</el-button>
+                <el-input v-model="systemSet.otherSetObj.realTimeClockVal" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('realTimeClock', systemSet.otherSetObj.realTimeClockVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
           </el-descriptions>
