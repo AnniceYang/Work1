@@ -297,14 +297,14 @@
 
       <template v-else-if="activeIndex === '8'">
         <el-card style="margin-top: 10px;" v-if="systemSet.commonSet">
-          <el-descriptions title="常用设置" :column="3" border>
-            <el-descriptions-item label="设置系统时间(年，月)" v-if="systemSet.commonSetObj.systemTime">
+          <el-descriptions :title="$t('deviceManage.commonSettings')" :column="3" border>
+            <el-descriptions-item :label="$t('deviceManage.setSystemTime')" v-if="systemSet.commonSetObj.systemTime">
               <div style="display: flex;">
                 <el-input v-model="systemSet.commonSetObj.systemTimeVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTime', systemSet.commonSetObj.systemTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="通讯协议类型" v-if="systemSet.commonSetObj.communicationProtocolType">
+            <el-descriptions-item :label="$t('deviceManage.communicationType')" v-if="systemSet.commonSetObj.communicationProtocolType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.communicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="用户" value="0" />
@@ -313,19 +313,19 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType', systemSet.commonSetObj.communicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="日发电量校准" v-if="systemSet.commonSetObj.dailyPowerGenerationCalibration">
+            <el-descriptions-item :label="$t('deviceManage.dailyCalibration')" v-if="systemSet.commonSetObj.dailyPowerGenerationCalibration">
               <div style="display: flex;">
                 <el-input v-model="systemSet.commonSetObj.dailyPowerGenerationCalibrationVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('dailyPowerGenerationCalibration', systemSet.commonSetObj.dailyPowerGenerationCalibrationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="总发电量校准" v-if="systemSet.commonSetObj.totalPowerGenerationCalibration">
+            <el-descriptions-item :label="$t('deviceManage.totalCalibration')" v-if="systemSet.commonSetObj.totalPowerGenerationCalibration">
               <div style="display: flex;">
                 <el-input v-model="systemSet.commonSetObj.totalPowerGenerationCalibrationVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('totalPowerGenerationCalibration', systemSet.commonSetObj.totalPowerGenerationCalibrationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="清空用电量数据" v-if="systemSet.commonSetObj.clearElectricityConsumptionData">
+            <el-descriptions-item :label="$t('deviceManage.clearConsumptionData')" v-if="systemSet.commonSetObj.clearElectricityConsumptionData">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearElectricityConsumptionDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -334,7 +334,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearElectricityConsumptionData', systemSet.commonSetObj.clearElectricityConsumptionDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="清空发电量数据" v-if="systemSet.commonSetObj.clearPowerGenerationData">
+            <el-descriptions-item :label="$t('deviceManage.clearGenerationData')" v-if="systemSet.commonSetObj.clearPowerGenerationData">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearPowerGenerationDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -343,7 +343,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearPowerGenerationData', systemSet.commonSetObj.clearPowerGenerationDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="开机命令" v-if="systemSet.commonSetObj.bootCommand">
+            <el-descriptions-item :label="$t('deviceManage.bootCommand')" v-if="systemSet.commonSetObj.bootCommand">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.bootCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -352,7 +352,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bootCommand', systemSet.commonSetObj.bootCommandVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="关机命令" v-if="systemSet.commonSetObj.shutdownCommand">
+            <el-descriptions-item :label="$t('deviceManage.shutdownCommand')" v-if="systemSet.commonSetObj.shutdownCommand">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.shutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -361,7 +361,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('shutdownCommand', systemSet.commonSetObj.shutdownCommandVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="取消关机命令" v-if="systemSet.commonSetObj.cancelShutdownCommand">
+            <el-descriptions-item :label="$t('deviceManage.cancelShutdownCommand')" v-if="systemSet.commonSetObj.cancelShutdownCommand">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.cancelShutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -374,8 +374,8 @@
         </el-card>
 
         <el-card  style="margin-top: 10px;" v-if="systemSet.communicationSet">
-          <el-descriptions title="通讯设置" :column="3" border>
-            <el-descriptions-item label="BMS型号" v-if="systemSet.communicationSetObj.bmsModel">
+          <el-descriptions :label="$t('deviceManage.communicationSettings')" :column="3" border>
+            <el-descriptions-item :label="$t('deviceManage.BMSModel')" v-if="systemSet.communicationSetObj.bmsModel">
               <div style="display: flex;">
                 <el-select v-model="systemSet.communicationSetObj.bmsModelVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="None" value="0" />
@@ -388,13 +388,13 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsModel', systemSet.communicationSetObj.bmsModelVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="BMS地址" v-if="systemSet.communicationSetObj.bmsAddress">
+            <el-descriptions-item :label="$t('deviceManage.BMSAddress')" v-if="systemSet.communicationSetObj.bmsAddress">
               <div style="display: flex;">
                 <el-input v-model="systemSet.communicationSetObj.bmsAddressVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsAddress', systemSet.communicationSetObj.bmsAddressVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="BMS波特率" v-if="systemSet.communicationSetObj.bmsBaud">
+            <el-descriptions-item :label="$t('deviceManage.BMSBaudRate')" v-if="systemSet.communicationSetObj.bmsBaud">
               <div style="display: flex;">
                 <el-select v-model="systemSet.communicationSetObj.bmsBaudVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="1200" value="1" />
@@ -405,19 +405,19 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bmsBaud', systemSet.communicationSetObj.bmsBaudVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="锂电池块数" v-if="systemSet.communicationSetObj.numberOfLithiumBatteryBlocks">
+            <el-descriptions-item :label="$t('deviceManage.numberOfLithiumBattery')" v-if="systemSet.communicationSetObj.numberOfLithiumBatteryBlocks">
               <div style="display: flex;">
                 <el-input v-model="systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('numberOfLithiumBatteryBlocks', systemSet.communicationSetObj.numberOfLithiumBatteryBlocksVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯地址" v-if="systemSet.communicationSetObj.collectorCommunicationAddress">
+            <el-descriptions-item :label="$t('deviceManage.collectorAddress')"  v-if="systemSet.communicationSetObj.collectorCommunicationAddress">
               <div style="display: flex;">
                 <el-input v-model="systemSet.communicationSetObj.collectorCommunicationAddressVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationAddress', systemSet.communicationSetObj.collectorCommunicationAddressVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯协议类型" v-if="systemSet.communicationSetObj.collectorCommunicationProtocolType">
+            <el-descriptions-item :label="$t('deviceManage.collectorType')"  v-if="systemSet.communicationSetObj.collectorCommunicationProtocolType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="用户" value="0" />
@@ -426,7 +426,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationProtocolType', systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯波特率" v-if="systemSet.communicationSetObj.baudOfCollectorCommunication">
+            <el-descriptions-item :label="$t('deviceManage.collectorBaudRate')" v-if="systemSet.communicationSetObj.baudOfCollectorCommunication">
               <div style="display: flex;">
                 <el-select v-model="systemSet.communicationSetObj.baudOfCollectorCommunicationVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="1200" value="1" />
@@ -437,7 +437,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('baudOfCollectorCommunication', systemSet.communicationSetObj.baudOfCollectorCommunicationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯地址" v-if="systemSet.communicationSetObj.deviceCommunicationAddress">
+            <el-descriptions-item :label="$t('deviceManage.deviceAddress')" v-if="systemSet.communicationSetObj.deviceCommunicationAddress">
               <div style="display: flex;">
                 <el-input v-model="systemSet.communicationSetObj.deviceCommunicationAddressVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationAddress', systemSet.communicationSetObj.deviceCommunicationAddressVal)">{{$t('common.save')}}</el-button>
@@ -447,17 +447,17 @@
         </el-card>
 
         <el-card  style="margin-top: 10px;" v-if="systemSet.advancedSet">
-          <el-descriptions title="高级设置" :column="3" border>
-            <el-descriptions-item label="并离网模式" v-if="systemSet.advancedSetObj.parallelOffGridMode">
+          <el-descriptions :title="$t('deviceManage.advancedSetting')" :column="3" border>
+            <el-descriptions-item :label="$t('deviceManage.parallelOffMode')"  v-if="systemSet.advancedSetObj.parallelOffGridMode">
               <div style="display: flex;">
                 <el-select v-model="systemSet.advancedSetObj.parallelOffGridModeVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
-                  <el-option label="并网模式" value="0" />
-                  <el-option label="防逆流模式" value="1" />
+                  <el-option :label="$t('deviceManage.gridConnectionMode')" value="0" />
+                  <el-option :label="$t('deviceManage.antiBackflowMode')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('parallelOffGridMode', systemSet.advancedSetObj.parallelOffGridModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="系统模式设置" v-if="systemSet.advancedSetObj.systemModeSet">
+            <el-descriptions-item :label="$t('deviceManage.systemModeSettings')" v-if="systemSet.advancedSetObj.systemModeSet">
               <div style="display: flex;">
                 <el-select v-model="systemSet.advancedSetObj.systemModeSetVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
                   <el-option label="UPS" value="0" />
@@ -466,16 +466,16 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSet', systemSet.advancedSetObj.systemModeSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="PV连接设置" v-if="systemSet.advancedSetObj.pvConnectionSet">
+            <el-descriptions-item :label="$t('deviceManage.PVConnectionSettings')" v-if="systemSet.advancedSetObj.pvConnectionSet">
               <div style="display: flex;">
                 <el-select v-model="systemSet.advancedSetObj.pvConnectionSetVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
-                  <el-option label="独立" value="0" />
-                  <el-option label="并联" value="1" />
+                  <el-option :label="$t('deviceManage.independence')" value="0" />
+                  <el-option :label="$t('deviceManage.paralleling')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvConnectionSet', systemSet.advancedSetObj.pvConnectionSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="额定输出电压设置" v-if="systemSet.advancedSetObj.ratedOutputVoltageSet">
+            <el-descriptions-item :label="$t('deviceManage.ratedOutputVoltageSetting')" v-if="systemSet.advancedSetObj.ratedOutputVoltageSet">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.ratedOutputVoltageSetVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -483,7 +483,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputVoltageSet', systemSet.advancedSetObj.ratedOutputVoltageSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="额定输出频率设置" v-if="systemSet.advancedSetObj.ratedOutputFrequencySet">
+            <el-descriptions-item :label="$t('deviceManage.ratedOutputFrequencySetting')" v-if="systemSet.advancedSetObj.ratedOutputFrequencySet">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.ratedOutputFrequencySetVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -491,16 +491,16 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('ratedOutputFrequencySet', systemSet.advancedSetObj.ratedOutputFrequencySetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池类型设置" v-if="systemSet.advancedSetObj.batteryTypeSet">
+            <el-descriptions-item :label="$t('deviceManage.batteryTypeSettings')" v-if="systemSet.advancedSetObj.batteryTypeSet">
               <div style="display: flex;">
                 <el-select v-model="systemSet.advancedSetObj.batteryTypeSetVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="铅酸" value="0" />
-                  <el-option label="锂电" value="1" />
+                  <el-option :label="$t('deviceManage.leadAcid')" value="0" />
+                  <el-option :label="$t('deviceManage.lithiumBattery')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryTypeSet', systemSet.advancedSetObj.batteryTypeSetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池充电电流" v-if="systemSet.advancedSetObj.batteryChargingCurrent">
+            <el-descriptions-item :label="$t('deviceManage.batteryChargingCurrent')" v-if="systemSet.advancedSetObj.batteryChargingCurrent">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryChargingCurrentVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">A</template>
@@ -508,7 +508,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryChargingCurrent', systemSet.advancedSetObj.batteryChargingCurrentVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池放电电流" v-if="systemSet.advancedSetObj.batteryDischargeCurrent">
+            <el-descriptions-item :label="$t('deviceManage.batteryDischargeCurrent')" v-if="systemSet.advancedSetObj.batteryDischargeCurrent">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryDischargeCurrentVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">A</template>
@@ -516,7 +516,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDischargeCurrent', systemSet.advancedSetObj.batteryDischargeCurrentVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池均充电压" v-if="systemSet.advancedSetObj.batteryAverageChargingVoltage">
+            <el-descriptions-item :label="$t('deviceManage.batteryAverageChargingVoltage')" v-if="systemSet.advancedSetObj.batteryAverageChargingVoltage">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryAverageChargingVoltageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -524,7 +524,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryAverageChargingVoltage', systemSet.advancedSetObj.batteryAverageChargingVoltageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池浮充电压" v-if="systemSet.advancedSetObj.batteryFloatChargingVoltage">
+            <el-descriptions-item :label="$t('deviceManage.batteryFloatChargingVoltage')" v-if="systemSet.advancedSetObj.batteryFloatChargingVoltage">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryFloatChargingVoltageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -532,7 +532,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryFloatChargingVoltage', systemSet.advancedSetObj.batteryFloatChargingVoltageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池EOD" v-if="systemSet.advancedSetObj.batteryEod">
+            <el-descriptions-item :label="$t('deviceManage.batteryEOD')" v-if="systemSet.advancedSetObj.batteryEod">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryEodVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -540,7 +540,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryEod', systemSet.advancedSetObj.batteryEodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池DOD" v-if="systemSet.advancedSetObj.batteryDod">
+            <el-descriptions-item :label="$t('deviceManage.batteryDOD')" v-if="systemSet.advancedSetObj.batteryDod">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.batteryDodVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -548,7 +548,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryDod', systemSet.advancedSetObj.batteryDodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="并网SOC下限" v-if="systemSet.advancedSetObj.lowerLimitOfGridConnectedSoc">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitOfGridConnectedSOC')" v-if="systemSet.advancedSetObj.lowerLimitOfGridConnectedSoc">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -556,7 +556,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitOfGridConnectedSoc', systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="离网SOC下限" v-if="systemSet.advancedSetObj.offGridSocLowerLimit">
+            <el-descriptions-item :label="$t('deviceManage.offGridSOCLowerLimit')" v-if="systemSet.advancedSetObj.offGridSocLowerLimit">
               <div style="display: flex;">
                 <el-input v-model="systemSet.advancedSetObj.offGridSocLowerLimitVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -564,11 +564,11 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('offGridSocLowerLimit', systemSet.advancedSetObj.offGridSocLowerLimitVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电表-CT" v-if="systemSet.advancedSetObj.electricityMeterCt">
+            <el-descriptions-item :label="$t('deviceManage.electricityMeterCT')" v-if="systemSet.advancedSetObj.electricityMeterCt">
               <div style="display: flex;">
                 <el-select v-model="systemSet.advancedSetObj.electricityMeterCtVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="NULL" value="0" />
-                  <el-option label="电表" value="1" />
+                  <el-option :label="$t('deviceManage.electricityMeter')" value="1" />
                   <el-option label="CT" value="2" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('electricityMeterCt', systemSet.advancedSetObj.electricityMeterCtVal)">{{$t('common.save')}}</el-button>
