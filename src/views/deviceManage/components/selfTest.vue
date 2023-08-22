@@ -1,89 +1,89 @@
 <template>
   <el-card class="realTime" style="margin-top: 10px;">
-      <el-form label-width="80px" :inline="true">
-        <el-form-item label="自检项目">
-          <el-select v-model="checkVal" placeholder="请选择">
-            <el-option label="空闲" :value="0" />
-            <el-option label="一段过压(59.S1)" :value="1" />
-            <el-option label="二段过压(59.S2)" :value="2" />
-            <el-option label="一段欠压(27.S1)" :value="3" />
-            <el-option label="二段欠压(27.S2)" :value="4" />
-            <el-option label="一段过频(81>.S1)" :value="5" />
-            <el-option label="二段过频(81>.S2)" :value="6" />
-            <el-option label="一段欠频(81<.S1)" :value="7" />
-            <el-option label="二段欠频(81<.S2)" :value="8" />
+      <el-form label-width="120px" :inline="true">
+        <el-form-item :label="$t('deviceManage.selfInspection')">
+          <el-select v-model="checkVal" :placeholder="$t('common.selectPrompt')">
+            <el-option :label="$t('deviceManage.idle')" :value="0" />
+            <el-option :label="$t('deviceManage.overvoltageForASection')" :value="1" />
+            <el-option :label="$t('deviceManage.secondStageOvervoltage')" :value="2" />
+            <el-option :label="$t('deviceManage.oneSectionUnderVoltage')" :value="3" />
+            <el-option :label="$t('deviceManage.secondaryUndervoltage')" :value="4" />
+            <el-option :label="$t('deviceManage.overfrequencyOfASegment')" :value="5" />
+            <el-option :label="$t('deviceManage.secondStageOverfrequency')" :value="6" />
+            <el-option :label="$t('deviceManage.oneUnderfrequency')" :value="7" />
+            <el-option :label="$t('deviceManage.twoStageUnderfrequency')" :value="8" />
           </el-select>
         </el-form-item>
         <el-form-item >
-          <el-button :loading="loadingState" @click="handleSubmit" type="primary">自检</el-button>
+          <el-button :loading="loadingState" @click="handleSubmit" type="primary">{{$t('deviceManage.selfTest')}}</el-button>
         </el-form-item>
       </el-form>
 
       <el-row :gutter="20">
         <el-col :span="12">
           <el-table :data="tableData1" style="width: 100%">
-            <el-table-column prop="type" label="类目" width="200" />
-            <el-table-column prop="unit" label="单位" />
-            <el-table-column prop="value" label="数值" />
-            <el-table-column prop="range" label="范围" />
+            <el-table-column prop="type" :label="$t('deviceManage.category')" width="200" />
+            <el-table-column prop="unit" :label="$t('deviceManage.unit')" />
+            <el-table-column prop="value" :label="$t('deviceManage.value')" />
+            <el-table-column prop="range" :label="$t('deviceManage.range')" />
           </el-table>
         </el-col>
 
         <el-col :span="12">
           <el-table :data="tableData2" style="width: 100%">
-            <el-table-column prop="type" label="类目" width="200" />
-            <el-table-column prop="unit" label="单位" />
-            <el-table-column prop="value" label="数值" />
-            <el-table-column prop="range" label="范围" />
+            <el-table-column prop="type" :label="$t('deviceManage.category')" width="200" />
+            <el-table-column prop="unit" :label="$t('deviceManage.unit')" />
+            <el-table-column prop="value" :label="$t('deviceManage.value')" />
+            <el-table-column prop="range" :label="$t('deviceManage.range')" />
           </el-table>
         </el-col>
 
         <el-col :span="24">
           <el-card class="box-card">
             <div slot="header">
-              <span>自检记录</span>
+              <span>{{$t('deviceManage.selfInspectionRecords')}}</span>
             </div>
             <el-form :inline="true">
-              <el-form-item label="自检结果">
-                <el-select v-model="listQuery.checkStatus" placeholder="请选择">
-                  <el-option label="成功" :value="0" />
-                  <el-option label="失败" :value="1" />
+              <el-form-item :label="$t('deviceManage.selfInspectionResults')">
+                <el-select v-model="listQuery.checkStatus" :placeholder="$t('common.selectPrompt')">
+                  <el-option :label="$t('deviceManage.success')" :value="0" />
+                  <el-option :label="$t('deviceManage.fail')" :value="1" />
                 </el-select>
               </el-form-item>
-              <el-form-item label="自检项目">
-                <el-select v-model="listQuery.type" placeholder="请选择">
-                  <el-option label="空闲" :value="0" />
-                  <el-option label="一段过压(59.S1)" :value="1" />
-                  <el-option label="二段过压(59.S2)" :value="2" />
-                  <el-option label="一段欠压(27.S1)" :value="3" />
-                  <el-option label="二段欠压(27.S2)" :value="4" />
-                  <el-option label="一段过频(81>.S1)" :value="5" />
-                  <el-option label="二段过频(81>.S2)" :value="6" />
-                  <el-option label="一段欠频(81<.S1)" :value="7" />
-                  <el-option label="二段欠频(81<.S2)" :value="8" />
+              <el-form-item :label="$t('deviceManage.selfInspection')">
+                <el-select v-model="listQuery.type" :placeholder="$t('common.selectPrompt')">
+                  <el-option :label="$t('deviceManage.idle')" :value="0" />
+                  <el-option :label="$t('deviceManage.overvoltageForASection')" :value="1" />
+                  <el-option :label="$t('deviceManage.secondStageOvervoltage')" :value="2" />
+                  <el-option :label="$t('deviceManage.oneSectionUnderVoltage')" :value="3" />
+                  <el-option :label="$t('deviceManage.secondaryUndervoltage')" :value="4" />
+                  <el-option :label="$t('deviceManage.overfrequencyOfASegment')" :value="5" />
+                  <el-option :label="$t('deviceManage.secondStageOverfrequency')" :value="6" />
+                  <el-option :label="$t('deviceManage.oneUnderfrequency')" :value="7" />
+                  <el-option :label="$t('deviceManage.twoStageUnderfrequency')" :value="8" />
                 </el-select>
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="getData(true)">搜索</el-button>
-                <el-button type="primary" @click="handleReset()">重置</el-button>
+                <el-button type="primary" @click="getData(true)">{{$t('common.search')}}</el-button>
+                <el-button type="primary" @click="handleReset()">{{$t('common.reset')}}</el-button>
               </el-form-item>
             </el-form>
             <el-table :data="listData" style="width: 100%">
-              <el-table-column label="自检项目">
+              <el-table-column :label="$t('deviceManage.selfInspection')">
                 <template slot-scope="scope">
                   {{ scope.row.type | selfTestTypeFilter }}
                 </template>
               </el-table-column>
-              <el-table-column label="自检结果">
+              <el-table-column :label="$t('deviceManage.selfInspectionResults')">
                 <template slot-scope="scope">
-                  <el-tag type="success" v-if="scope.row.checkStatus === 0">成功</el-tag>
-                  <el-tag type="danger" v-else>失败</el-tag>
+                  <el-tag type="success" v-if="scope.row.checkStatus === 0">{{$t('deviceManage.success')}}</el-tag>
+                  <el-tag type="danger" v-else>{{$t('deviceManage.fail')}}</el-tag>
                 </template>
               </el-table-column>
-              <el-table-column prop="selfCheckActualProtectionThreshold" label="自检实际保护阀值" />
-              <el-table-column prop="selfCheckActualProtectionTime" label="自检实际保护时间" />
-              <el-table-column prop="selfCheckRealTimeProtectionThreshold" label="自检实时保护阀值" />
-              <el-table-column align="center" label="自检时间" width="150">
+              <el-table-column prop="selfCheckActualProtectionThreshold" :label="$t('deviceManage.selfCheckActualProtectionThreshold')" />
+              <el-table-column prop="selfCheckActualProtectionTime" :label="$t('deviceManage.selfCheckActualProtectionTime')" />
+              <el-table-column prop="selfCheckRealTimeProtectionThreshold" :label="$t('deviceManage.selfCheckRealtimeProtectionThreshold')" />
+              <el-table-column align="center" :label="$t('deviceManage.selfInspectionTime')" width="150">
                 <template slot-scope="scope">
                   {{ scope.row.checkTime | parseTime }}
                 </template>
@@ -98,7 +98,6 @@
                 layout="total, prev, pager, next"
               />
             </div>
-            
           </el-card>
         </el-col>
       </el-row>

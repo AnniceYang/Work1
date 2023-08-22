@@ -108,7 +108,7 @@
       <DeviceUpgrade ref="deviceUpgrade" />
 
       <!-- 设备二维码 -->
-      <QrCode ref="qrCode" title="SN码" />
+      <QrCode ref="qrCode" :title="$t('deviceManage.snCode')" />
 
       <!-- 升级记录 -->
       <UpdateRecord ref="updateRecord" />

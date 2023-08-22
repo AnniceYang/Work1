@@ -2,7 +2,8 @@
   <div class="avue-logo">
     <transition name="fade">
       <span v-if="keyCollapse" key="0" class="avue-logo_subtitle" @click="goIndex">
-        {{website.subtitle}}
+        <!-- {{website.subtitle}} -->
+        {{ $t('common.subtitle') }}
       </span>
     </transition>
     <transition-group name="fade">

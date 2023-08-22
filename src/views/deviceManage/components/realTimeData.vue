@@ -1,13 +1,13 @@
 <template>
   <div class="app-container realTime">
     <basic-container>
-      <el-page-header @back="goBack" content="设备详细信息"></el-page-header>
+      <el-page-header @back="goBack" :content="$t('deviceManage.deviceDetails')"></el-page-header>
 
       <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
         <el-menu-item index="7">{{$t('deviceManage.operationInformation')}}</el-menu-item>
-        <el-menu-item index="8">系统设置</el-menu-item>
-        <el-menu-item index="9">电池参数</el-menu-item>
-        <el-menu-item index="0">自检</el-menu-item>
+        <el-menu-item index="8">{{$t('deviceManage.systemSettings')}}</el-menu-item>
+        <el-menu-item index="9">{{$t('deviceManage.batteryParameters')}}</el-menu-item>
+        <el-menu-item index="0">{{$t('deviceManage.selfTest')}}</el-menu-item>
       </el-menu>
       <div v-loading="loading">
       <el-card  style="margin-top: 20px;">
@@ -167,7 +167,7 @@
         </el-card>
 
         <el-card style="margin-top: 10px;" v-if="operationInformation.otherInformation">
-          <el-descriptions :title="$t('deviceManage.otherInformation')" :column="3">
+          <el-descriptions :title="$t('deviceManage.otherInformation')" :column="2">
             <el-descriptions-item :label="$t('deviceManage.selfInspectionStatus')" v-if="operationInformation.otherInformationObj.selfInspectionStatus">
               {{ operationInformation.otherInformationObj.selfInspectionStatusVal | selfCheckFilter }}
             </el-descriptions-item>
@@ -307,8 +307,8 @@
             <el-descriptions-item :label="$t('deviceManage.communicationType')" v-if="systemSet.commonSetObj.communicationProtocolType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.communicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="用户" value="0" />
-                  <el-option label="工程师" value="1" />
+                  <el-option :label="$t('deviceManage.user')" value="0" />
+                  <el-option :label="$t('deviceManage.engineer')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType', systemSet.commonSetObj.communicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -420,8 +420,8 @@
             <el-descriptions-item :label="$t('deviceManage.collectorType')"  v-if="systemSet.communicationSetObj.collectorCommunicationProtocolType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal" :placeholder="$t('common.selectPrompt')"  style="width: 100%;">
-                  <el-option label="用户" value="0" />
-                  <el-option label="工程师" value="1" />
+                  <el-option :label="$t('deviceManage.user')" value="0" />
+                  <el-option :label="$t('deviceManage.engineer')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('collectorCommunicationProtocolType', systemSet.communicationSetObj.collectorCommunicationProtocolTypeVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -579,20 +579,20 @@
 
 
         <el-card  style="margin-top: 10px;" v-if="systemSet.otherSet">
-          <el-descriptions title="其他设置" :column="3" border>
-            <el-descriptions-item label="复位设备通讯设置至初始值" v-if="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValues">
+          <el-descriptions :title="$t('deviceManage.otherSettings')" :column="3" border>
+            <el-descriptions-item :label="$t('deviceManage.resetDeviceInitialValues')" v-if="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValues">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('resetDeviceCommunicationSettingsToInitialValues', systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="清空记录数据" v-if="systemSet.otherSetObj.clearRecordData">
+            <el-descriptions-item :label="$t('deviceManage.clearRecordData')" v-if="systemSet.otherSetObj.clearRecordData">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearRecordData', systemSet.otherSetObj.clearRecordDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="恢复出厂设置" v-if="systemSet.otherSetObj.factoryReset">
+            <el-descriptions-item :label="$t('deviceManage.restoreFactorySettings')" v-if="systemSet.otherSetObj.factoryReset">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.factoryResetVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="取消" value="0" />
@@ -601,50 +601,50 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('factoryReset', systemSet.otherSetObj.factoryResetVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器重启" v-if="systemSet.otherSetObj.inverterRestart">
+            <el-descriptions-item :label="$t('deviceManage.inverterRestart')" v-if="systemSet.otherSetObj.inverterRestart">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterRestart', systemSet.otherSetObj.inverterRestartVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="自检使能" v-if="systemSet.otherSetObj.selfCheckEnable">
+            <el-descriptions-item :label="$t('deviceManage.selfCheckEnable')" v-if="systemSet.otherSetObj.selfCheckEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.selfCheckEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="空闲" value="0" />
-                  <el-option label="一段过压(59.S1)" value="1" />
-                  <el-option label="二段过压(59.S2)" value="2" />
-                  <el-option label="一段欠压(27.S1)" value="3" />
-                  <el-option label="二段欠压(27.S2)" value="4" />
-                  <el-option label="一段过频(81>.S1)" value="5" />
-                  <el-option label="二段过频(81>.S2)" value="6" />
-                  <el-option label="一段欠频(81<.S1)" value="7" />
-                  <el-option label="二段欠频(81<.S2)" value="8" />
+                  <el-option :label="$t('deviceManage.idle')" value="0" />
+                  <el-option :label="$t('deviceManage.overvoltageForASection')" value="1" />
+                  <el-option :label="$t('deviceManage.secondStageOvervoltage')" value="2" />
+                  <el-option :label="$t('deviceManage.oneSectionUnderVoltage')" value="3" />
+                  <el-option :label="$t('deviceManage.secondaryUndervoltage')" value="4" />
+                  <el-option :label="$t('deviceManage.overfrequencyOfASegment')" value="5" />
+                  <el-option :label="$t('deviceManage.secondStageOverfrequency')" value="6" />
+                  <el-option :label="$t('deviceManage.oneUnderfrequency')" value="7" />
+                  <el-option :label="$t('deviceManage.twoStageUnderfrequency')" value="8" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('selfCheckEnable', systemSet.otherSetObj.selfCheckEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="手动清除故障" v-if="systemSet.otherSetObj.manuallyClearingFaults">
+            <el-descriptions-item :label="$t('deviceManage.manuallyClearingFaults')" v-if="systemSet.otherSetObj.manuallyClearingFaults">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyClearingFaults', systemSet.otherSetObj.manuallyClearingFaultsVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="自动运行" v-if="systemSet.otherSetObj.automaticOperation">
+            <el-descriptions-item :label="$t('deviceManage.automaticOperation')" v-if="systemSet.otherSetObj.automaticOperation">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.automaticOperationVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="手动" value="0" />
-                  <el-option label="自动" value="1" />
+                  <el-option :label="$t('deviceManage.handMovement')" value="0" />
+                  <el-option :label="$t('deviceManage.automatic')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('automaticOperation', systemSet.otherSetObj.automaticOperationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="手动解锁系统锁" v-if="systemSet.otherSetObj.manuallyUnlockingTheSystemLock">
+            <el-descriptions-item :label="$t('deviceManage.manuallyLock')" v-if="systemSet.otherSetObj.manuallyUnlockingTheSystemLock">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyUnlockingTheSystemLock', systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯波特率" v-if="systemSet.otherSetObj.deviceCommunicationBaud">
+            <el-descriptions-item :label="$t('deviceManage.deviceCommunicationBaudRate')" v-if="systemSet.otherSetObj.deviceCommunicationBaud">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.deviceCommunicationBaudVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="1200" value="1" />
@@ -655,57 +655,57 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationBaud', systemSet.otherSetObj.deviceCommunicationBaudVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯校验位选择" v-if="systemSet.otherSetObj.deviceCommunicationCheckBitSelection">
+            <el-descriptions-item :label="$t('deviceManage.deviceCheckBitSelection')" v-if="systemSet.otherSetObj.deviceCommunicationCheckBitSelection">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="无校验位" value="0" />
-                  <el-option label="偶校验" value="1" />
-                  <el-option label="奇校验" value="2" />
+                  <el-option :label="$t('deviceManage.noCheckDigit')" value="0" />
+                  <el-option :label="$t('deviceManage.evenParityCheck')" value="1" />
+                  <el-option :label="$t('deviceManage.oddCheck')" value="2" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationCheckBitSelection', systemSet.otherSetObj.deviceCommunicationCheckBitSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯停止位选择" v-if="systemSet.otherSetObj.deviceCommunicationStopBitSelection">
+            <el-descriptions-item :label="$t('deviceManage.deviceStopBitSelection')" v-if="systemSet.otherSetObj.deviceCommunicationStopBitSelection">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="1位停止位" value="0" />
-                  <el-option label="2位停止位" value="1" />
+                  <el-option :label="$t('deviceManage.bitStopBit1')" value="0" />
+                  <el-option :label="$t('deviceManage.bitStopBit2')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('deviceCommunicationStopBitSelection', systemSet.otherSetObj.deviceCommunicationStopBitSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="倒计时关闭逆变器" v-if="systemSet.otherSetObj.countdownToTurnOffTheInverter">
+            <el-descriptions-item :label="$t('deviceManage.countdownInverter')" v-if="systemSet.otherSetObj.countdownToTurnOffTheInverter">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.countdownToTurnOffTheInverterVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('countdownToTurnOffTheInverter', systemSet.otherSetObj.countdownToTurnOffTheInverterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="延时启动逆变器" v-if="systemSet.otherSetObj.delayedStartInverter">
+            <el-descriptions-item :label="$t('deviceManage.delayedStartInverter')" v-if="systemSet.otherSetObj.delayedStartInverter">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.delayedStartInverterVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('delayedStartInverter', systemSet.otherSetObj.delayedStartInverterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="国家码" v-if="systemSet.otherSetObj.countryCode">
+            <el-descriptions-item :label="$t('deviceManage.countryCode')" v-if="systemSet.otherSetObj.countryCode">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.countryCodeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="中国" value="0" />
-                  <el-option label="意大利" value="1" />
-                  <el-option label="德国" value="2" />
-                  <el-option label="澳大利亚" value="3" />
-                  <el-option label="比利时" value="4" />
-                  <el-option label="南非" value="5" />
+                  <el-option :label="$t('deviceManage.China')" value="0" />
+                  <el-option :label="$t('deviceManage.Italy')" value="1" />
+                  <el-option :label="$t('deviceManage.Germany')" value="2" />
+                  <el-option :label="$t('deviceManage.Australia')" value="3" />
+                  <el-option :label="$t('deviceManage.Belgium')" value="4" />
+                  <el-option :label="$t('deviceManage.SouthAfrica')" value="5" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('countryCode', systemSet.otherSetObj.countryCodeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="系统时间设置" v-if="systemSet.otherSetObj.systemTimeSetting">
+            <el-descriptions-item :label="$t('deviceManage.systemTimeSetting')" v-if="systemSet.otherSetObj.systemTimeSetting">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="逆变有功设定" v-if="systemSet.otherSetObj.inverterActivePowerSetting">
+            <el-descriptions-item :label="$t('deviceManage.inverterActivePowerSetting')" v-if="systemSet.otherSetObj.inverterActivePowerSetting">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.inverterActivePowerSettingVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -713,22 +713,22 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterActivePowerSetting', systemSet.otherSetObj.inverterActivePowerSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯协议类型" v-if="systemSet.otherSetObj.communicationProtocolType485">
+            <el-descriptions-item :label="$t('deviceManage.communicationProtocolType485')" v-if="systemSet.otherSetObj.communicationProtocolType485">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.communicationProtocolType485Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="用户" value="0" />
-                  <el-option label="工程师" value="1" />
+                  <el-option :label="$t('deviceManage.user')" value="0" />
+                  <el-option :label="$t('deviceManage.engineer')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationProtocolType485', systemSet.otherSetObj.communicationProtocolType485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯地址" v-if="systemSet.otherSetObj.communicationAddress485">
+            <el-descriptions-item :label="$t('deviceManage.communicationAddress485')" v-if="systemSet.otherSetObj.communicationAddress485">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.communicationAddress485Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationAddress485', systemSet.otherSetObj.communicationAddress485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯波特率" v-if="systemSet.otherSetObj.communicationBaud485">
+            <el-descriptions-item :label="$t('deviceManage.communicationBaudRate485')" v-if="systemSet.otherSetObj.communicationBaud485">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.communicationBaud485Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="1200" value="1" />
@@ -739,39 +739,39 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationBaud485', systemSet.otherSetObj.communicationBaud485Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="硬限制使能" v-if="systemSet.otherSetObj.hardLimitEnable">
+            <el-descriptions-item :label="$t('deviceManage.hardLimitEnable')" v-if="systemSet.otherSetObj.hardLimitEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.hardLimitEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="使能" value="1" />
-                  <el-option label="屏蔽" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                  <el-option :label="$t('deviceManage.shield')" value="0" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitEnable', systemSet.otherSetObj.hardLimitEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="硬限制功率设定值" v-if="systemSet.otherSetObj.hardLimitPowerSettingValue">
+            <el-descriptions-item :label="$t('deviceManage.hardLimitPower')" v-if="systemSet.otherSetObj.hardLimitPowerSettingValue">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.hardLimitPowerSettingValueVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitPowerSettingValue', systemSet.otherSetObj.hardLimitPowerSettingValueVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="澳洲地区选择" v-if="systemSet.otherSetObj.australianRegionSelection">
+            <el-descriptions-item :label="$t('deviceManage.australianRegionSelection')" v-if="systemSet.otherSetObj.australianRegionSelection">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.australianRegionSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="澳洲A区" value="0" />
-                  <el-option label="澳洲B区" value="1" />
-                  <el-option label="澳洲C区" value="2" />
-                  <el-option label="新西兰" value="3" />
+                  <el-option :label="$t('deviceManage.AustraliaZoneA')" value="0" />
+                  <el-option :label="$t('deviceManage.AustralianZoneB')" value="1" />
+                  <el-option :label="$t('deviceManage.AustralianZoneC')" value="2" />
+                  <el-option :label="$t('deviceManage.NewZealand')" value="3" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('australianRegionSelection', systemSet.otherSetObj.australianRegionSelectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="蓝牙连接标志" v-if="systemSet.otherSetObj.bluetoothConnectionFlag">
+            <el-descriptions-item :label="$t('deviceManage.bluetoothConnectionFlag')" v-if="systemSet.otherSetObj.bluetoothConnectionFlag">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.bluetoothConnectionFlagVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bluetoothConnectionFlag', systemSet.otherSetObj.bluetoothConnectionFlagVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="PV有功设定" v-if="systemSet.otherSetObj.pvActivePowerSetting">
+            <el-descriptions-item :label="$t('deviceManage.PVActivePowerSetting')" v-if="systemSet.otherSetObj.pvActivePowerSetting">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.pvActivePowerSettingVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -779,61 +779,61 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('pvActivePowerSetting', systemSet.otherSetObj.pvActivePowerSettingVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="有功变化率限制" v-if="systemSet.otherSetObj.limitOfActivePowerChangeRate">
+            <el-descriptions-item :label="$t('deviceManage.limitChangeRate')" v-if="systemSet.otherSetObj.limitOfActivePowerChangeRate">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.limitOfActivePowerChangeRateVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('limitOfActivePowerChangeRate', systemSet.otherSetObj.limitOfActivePowerChangeRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="孤岛检测使能" v-if="systemSet.otherSetObj.islandDetectionEnable">
+            <el-descriptions-item :label="$t('deviceManage.islandDetectionEnable')" v-if="systemSet.otherSetObj.islandDetectionEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.islandDetectionEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="不使能" value="0" />
-                  <el-option label="使能" value="1" />
+                  <el-option :label="$t('deviceManage.notEnable')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('islandDetectionEnable', systemSet.otherSetObj.islandDetectionEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="认证模式" v-if="systemSet.otherSetObj.authenticationMode">
+            <el-descriptions-item :label="$t('deviceManage.authenticationMode')" v-if="systemSet.otherSetObj.authenticationMode">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.authenticationModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="关闭" value="0" />
-                  <el-option label="开启" value="1" />
+                  <el-option :label="$t('menuManage.close')" value="0" />
+                  <el-option :label="$t('menuManage.open')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('authenticationMode', systemSet.otherSetObj.authenticationModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="当前系统运行模式控制源" v-if="systemSet.otherSetObj.currentSystemOperationModeControlSource">
+            <el-descriptions-item :label="$t('deviceManage.controlSource')" v-if="systemSet.otherSetObj.currentSystemOperationModeControlSource">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.currentSystemOperationModeControlSourceVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="MCU 下发控制" value="0" />
-                  <el-option label="DSP 下发控制" value="1" />
+                  <el-option :label="$t('deviceManage.MCUIssuedControl')" value="0" />
+                  <el-option :label="$t('deviceManage.DSPIssuedControl')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentSystemOperationModeControlSource', systemSet.otherSetObj.currentSystemOperationModeControlSourceVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="系统当前运行模式" v-if="systemSet.otherSetObj.currentOperatingModeOfTheSystem">
+            <el-descriptions-item :label="$t('deviceManage.modeSystem')" v-if="systemSet.otherSetObj.currentOperatingModeOfTheSystem">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.currentOperatingModeOfTheSystemVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="电池优先模式" value="0" />
-                  <el-option label="家庭负载优先模式" value="1" />
-                  <el-option label="电网优先模式" value="2" />
-                  <el-option label="全功率馈网模式" value="3" />
-                  <el-option label="应急后备模式" value="4" />
-                  <el-option label="AC充电关应急后备模式" value="5" />
-                  <el-option label="纯PV模式" value="6" />
-                  <el-option label="强制离网模式" value="7" />
+                  <el-option :label="$t('deviceManage.batteryPriorityMode')" value="0" />
+                  <el-option :label="$t('deviceManage.homeLoadPriorityMode')" value="1" />
+                  <el-option :label="$t('deviceManage.gridPriorityMode')" value="2" />
+                  <el-option :label="$t('deviceManage.fullPowerFeedMode')" value="3" />
+                  <el-option :label="$t('deviceManage.emergencyBackupMode')" value="4" />
+                  <el-option :label="$t('deviceManage.acBackupMode')" value="5" />
+                  <el-option :label="$t('deviceManage.purePVMode')" value="6" />
+                  <el-option :label="$t('deviceManage.forcedOffGridMode')" value="7" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('currentOperatingModeOfTheSystem', systemSet.otherSetObj.currentOperatingModeOfTheSystemVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="APP启动标志" v-if="systemSet.otherSetObj.appStartupFlag">
+            <el-descriptions-item :label="$t('deviceManage.APPStartupFlag')" v-if="systemSet.otherSetObj.appStartupFlag">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.appStartupFlagVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('appStartupFlag', systemSet.otherSetObj.appStartupFlagVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="蜂鸣器响应时间" v-if="systemSet.otherSetObj.buzzerResponseTime">
+            <el-descriptions-item :label="$t('deviceManage.buzzerResponseTime')" v-if="systemSet.otherSetObj.buzzerResponseTime">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.buzzerResponseTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">min</template>
@@ -841,16 +841,16 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('buzzerResponseTime', systemSet.otherSetObj.buzzerResponseTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="交流类型" v-if="systemSet.otherSetObj.communicationType">
+            <el-descriptions-item :label="$t('deviceManage.communicationType')" v-if="systemSet.otherSetObj.communicationType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.communicationTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="电网" value="0" />
-                  <el-option label="发电机" value="1" />
+                  <el-option :label="$t('deviceManage.powerGrid')" value="0" />
+                  <el-option :label="$t('deviceManage.alternator')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('communicationType', systemSet.otherSetObj.communicationTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="系统模式设置" v-if="systemSet.otherSetObj.systemModeSettings">
+            <el-descriptions-item :label="$t('deviceManage.systemModeSettings')" v-if="systemSet.otherSetObj.systemModeSettings">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.systemModeSettingsVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="UPS" value="0" />
@@ -859,26 +859,26 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('systemModeSettings', systemSet.otherSetObj.systemModeSettingsVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="USB操作" v-if="systemSet.otherSetObj.usbOperation">
+            <el-descriptions-item :label="$t('deviceManage.USBOperation')" v-if="systemSet.otherSetObj.usbOperation">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.usbOperationVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="无" value="0" />
-                  <el-option label="导出历史记录" value="1" />
-                  <el-option label="导出配置参数" value="2" />
-                  <el-option label="导入配置参数" value="3" />
-                  <el-option label="主控升级" value="4" />
-                  <el-option label="监控升级" value="5" />
+                  <el-option :label="$t('deviceManage.nothing')" value="0" />
+                  <el-option :label="$t('deviceManage.exportHistory')" value="1" />
+                  <el-option :label="$t('deviceManage.exportConfigurationParameters')" value="2" />
+                  <el-option :label="$t('deviceManage.importConfigurationParameters')" value="3" />
+                  <el-option :label="$t('deviceManage.masterUpgrade')" value="4" />
+                  <el-option :label="$t('deviceManage.monitoringUpgrade')" value="5" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('usbOperation', systemSet.otherSetObj.usbOperationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="功率因数" v-if="systemSet.otherSetObj.powerFactor">
+            <el-descriptions-item :label="$t('deviceManage.powerFactor')" v-if="systemSet.otherSetObj.powerFactor">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.powerFactorVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerFactor', systemSet.otherSetObj.powerFactorVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="防逆流功率百分比" v-if="systemSet.otherSetObj.antiBackflowPowerPercentage">
+            <el-descriptions-item :label="$t('deviceManage.antiBackflowPowerPercentage')" v-if="systemSet.otherSetObj.antiBackflowPowerPercentage">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.antiBackflowPowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -886,7 +886,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('antiBackflowPowerPercentage', systemSet.otherSetObj.antiBackflowPowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="最大输出功率百分比" v-if="systemSet.otherSetObj.maximumOutputPowerPercentage">
+            <el-descriptions-item :label="$t('deviceManage.maximumOutputPowerPercentage')" v-if="systemSet.otherSetObj.maximumOutputPowerPercentage">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.maximumOutputPowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -894,7 +894,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('maximumOutputPowerPercentage', systemSet.otherSetObj.maximumOutputPowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="功率设置调节速率" v-if="systemSet.otherSetObj.powerSettingAdjustmentRate">
+            <el-descriptions-item :label="$t('deviceManage.powerSettingAdjustmentRate')" v-if="systemSet.otherSetObj.powerSettingAdjustmentRate">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.powerSettingAdjustmentRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%Wmax/s</template>
@@ -902,7 +902,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('powerSettingAdjustmentRate', systemSet.otherSetObj.powerSettingAdjustmentRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="并网功率软起速率" v-if="systemSet.otherSetObj.gridConnectedPowerSoftStartRate">
+            <el-descriptions-item :label="$t('deviceManage.softStartRate')" v-if="systemSet.otherSetObj.gridConnectedPowerSoftStartRate">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%Wmax/Min</template>
@@ -910,19 +910,19 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridConnectedPowerSoftStartRate', systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率控制模式" v-if="systemSet.otherSetObj.reactivePowerControlMode">
+            <el-descriptions-item :label="$t('deviceManage.reactivePowerControlMode')" v-if="systemSet.otherSetObj.reactivePowerControlMode">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.reactivePowerControlModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="无功为零" value="0" />
-                  <el-option label="Volt-Var模式" value="1" />
-                  <el-option label="固定功因模式" value="2" />
-                  <el-option label="固定无功模式" value="3" />
-                  <el-option label="Cos(P)模式" value="4" />
+                  <el-option :label="$t('deviceManage.zeroReactivePower')" value="0" />
+                  <el-option :label="$t('deviceManage.voltVarMode')" value="1" />
+                  <el-option :label="$t('deviceManage.fixedFactorMode')" value="2" />
+                  <el-option :label="$t('deviceManage.fixedReactiveMode')" value="3" />
+                  <el-option :label="$t('deviceManage.cosMode')" value="4" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerControlMode', systemSet.otherSetObj.reactivePowerControlModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率调节速率" v-if="systemSet.otherSetObj.reactivePowerRegulationRate">
+            <el-descriptions-item :label="$t('deviceManage.reactivePowerRegulationRate')" v-if="systemSet.otherSetObj.reactivePowerRegulationRate">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.reactivePowerRegulationRateVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%VAmax/s</template>
@@ -930,7 +930,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerRegulationRate', systemSet.otherSetObj.reactivePowerRegulationRateVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值1" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValueOfVoltage1')" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -938,7 +938,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值2" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValueOfVoltage2')" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -946,7 +946,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值3" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValueOfVoltage3')" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -954,7 +954,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值1" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValueOfProtection1')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -962,7 +962,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值2" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValueOfProtection2')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -970,7 +970,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值3" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValueOfProtection3')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -978,7 +978,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压重连上限值" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnection">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValueVoltage')" v-if="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -986,7 +986,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压重连下限值" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnection">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValueVoltage')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -994,7 +994,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridVoltageReconnection', systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间1" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1">
+            <el-descriptions-item :label="$t('deviceManage.voltageUpperLimitTime1')" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1002,7 +1002,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间2" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2">
+            <el-descriptions-item :label="$t('deviceManage.voltageUpperLimitTime2')" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1010,7 +1010,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间3" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3">
+            <el-descriptions-item :label="$t('deviceManage.voltageUpperLimitTime3')" v-if="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1018,7 +1018,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间1" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1">
+            <el-descriptions-item :label="$t('deviceManage.voltageLowerLimitTime1')" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1026,7 +1026,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection1', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间2" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2">
+            <el-descriptions-item :label="$t('deviceManage.voltageLowerLimitTime2')" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1034,7 +1034,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection2', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间3" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3">
+            <el-descriptions-item :label="$t('deviceManage.voltageLowerLimitTime3')" v-if="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1042,7 +1042,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitTimeOfGridVoltageProtection3', systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护恢复时间" v-if="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtection">
+            <el-descriptions-item :label="$t('deviceManage.recoveryTimeVoltageProtection')" v-if="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1050,7 +1050,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridVoltageProtection', systemSet.otherSetObj.recoveryTimeOfGridVoltageProtectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值1" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValue1')" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1058,7 +1058,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值2" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValue2')" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1066,7 +1066,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值3" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValue3')" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1074,7 +1074,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.upperLimitValueOfGridFrequencyProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值1" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValue1')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1082,7 +1082,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection1', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值2" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValue2')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1090,7 +1090,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection2', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值3" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitValue3')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1098,7 +1098,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyProtection3', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyProtection3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率重连上限值" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnection">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitValueFrequency')" v-if="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1106,7 +1106,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('upperLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.upperLimitValueOfGridFrequencyReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率重连下限值" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnection">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitOfGridFrequency')" v-if="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">Hz</template>
@@ -1114,7 +1114,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('lowerLimitValueOfGridFrequencyReconnection', systemSet.otherSetObj.lowerLimitValueOfGridFrequencyReconnectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间1" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitTime1')" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1122,7 +1122,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间2" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitTime2')" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1130,7 +1130,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间3" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3">
+            <el-descriptions-item :label="$t('deviceManage.upperLimitTime3')" v-if="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1138,7 +1138,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionUpperLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间1" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitTime1')" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1146,7 +1146,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime1', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间2" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitTime2')" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1154,7 +1154,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime2', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间3" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3">
+            <el-descriptions-item :label="$t('deviceManage.lowerLimitTime3')" v-if="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1162,7 +1162,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gridFrequencyProtectionLowerLimitTime3', systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护恢复时间" v-if="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtection">
+            <el-descriptions-item :label="$t('deviceManage.recoveryTimeOfGrid')" v-if="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtection">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">ms</template>
@@ -1170,7 +1170,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('recoveryTimeOfGridFrequencyProtection', systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtectionVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电网10Min过压保护值" v-if="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGrid">
+            <el-descriptions-item :label="$t('deviceManage.minOvervoltage10')" v-if="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGrid">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">V</template>
@@ -1178,7 +1178,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('tenMinOvervoltageProtectionValueOfThePowerGrid', systemSet.otherSetObj.tenMinOvervoltageProtectionValueOfThePowerGridVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="连网等待时间" v-if="systemSet.otherSetObj.networkingWaitingTime">
+            <el-descriptions-item :label="$t('deviceManage.networkingWaitingTime')" v-if="systemSet.otherSetObj.networkingWaitingTime">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.networkingWaitingTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">s</template>
@@ -1186,7 +1186,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('networkingWaitingTime', systemSet.otherSetObj.networkingWaitingTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="重连等待时间" v-if="systemSet.otherSetObj.reconnectWaitingTime">
+            <el-descriptions-item :label="$t('deviceManage.reconnectWaitingTime')" v-if="systemSet.otherSetObj.reconnectWaitingTime">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.reconnectWaitingTimeVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">s</template>
@@ -1194,16 +1194,16 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('reconnectWaitingTime', systemSet.otherSetObj.reconnectWaitingTimeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="寒冷模式" v-if="systemSet.otherSetObj.coldMode">
+            <el-descriptions-item :label="$t('deviceManage.coldMode')" v-if="systemSet.otherSetObj.coldMode">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.coldModeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="关闭" value="0" />
-                  <el-option label="开启" value="1" />
+                  <el-option :label="$t('menuManage.close')" value="0" />
+                  <el-option :label="$t('menuManage.open')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('coldMode', systemSet.otherSetObj.coldModeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率百分比" v-if="systemSet.otherSetObj.reactivePowerPercentage">
+            <el-descriptions-item :label="$t('deviceManage.reactivePowerPercentage')" v-if="systemSet.otherSetObj.reactivePowerPercentage">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.reactivePowerPercentageVal" :placeholder="$t('common.inputPrompt')">
                   <template slot="append">%</template>
@@ -1211,128 +1211,128 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('reactivePowerPercentage', systemSet.otherSetObj.reactivePowerPercentageVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="Freq-Watt(曲线)使能" v-if="systemSet.otherSetObj.freqWattCurveEnable">
+            <el-descriptions-item :label="$t('deviceManage.freqWatt')" v-if="systemSet.otherSetObj.freqWattCurveEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.freqWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="不使能" value="0" />
-                  <el-option label="使能" value="1" />
+                  <el-option :label="$t('deviceManage.notEnable')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('freqWattCurveEnable', systemSet.otherSetObj.freqWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="Volt-Watt(曲线)使能" v-if="systemSet.otherSetObj.voltWattCurveEnable">
+            <el-descriptions-item :label="$t('deviceManage.voltWatt')" v-if="systemSet.otherSetObj.voltWattCurveEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.voltWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="不使能" value="0" />
-                  <el-option label="使能" value="1" />
+                  <el-option :label="$t('deviceManage.notEnable')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltWattCurveEnable', systemSet.otherSetObj.voltWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="Volt-Var(曲线)使能" v-if="systemSet.otherSetObj.voltVarCurveEnable">
+            <el-descriptions-item :label="$t('deviceManage.voltVar')" v-if="systemSet.otherSetObj.voltVarCurveEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.voltVarCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="不使能" value="0" />
-                  <el-option label="使能" value="1" />
+                  <el-option :label="$t('deviceManage.notEnable')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('voltVarCurveEnable', systemSet.otherSetObj.voltVarCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="PF-Watt(曲线)使能" v-if="systemSet.otherSetObj.pfWattCurveEnable">
+            <el-descriptions-item :label="$t('deviceManage.pFWatt')" v-if="systemSet.otherSetObj.pfWattCurveEnable">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.pfWattCurveEnableVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="不使能" value="0" />
-                  <el-option label="使能" value="1" />
+                  <el-option :label="$t('deviceManage.notEnable')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('pfWattCurveEnable', systemSet.otherSetObj.pfWattCurveEnableVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="定时模式类型" v-if="systemSet.otherSetObj.timingModeType">
+            <el-descriptions-item :label="$t('deviceManage.timingModeType')" v-if="systemSet.otherSetObj.timingModeType">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.timingModeTypeVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="按日期设置" value="0" />
-                  <el-option label="按时间设置" value="1" />
-                  <el-option label="实时切换当前系统运行模式" value="2" />
+                  <el-option :label="$t('deviceManage.setByDate')" value="0" />
+                  <el-option :label="$t('deviceManage.setByTime')" value="1" />
+                  <el-option :label="$t('deviceManage.realTimeSwitchingOfMode')" value="2" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('timingModeType', systemSet.otherSetObj.timingModeTypeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器1" v-if="systemSet.otherSetObj.setQuantityChangeRegister1">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister1')" v-if="systemSet.otherSetObj.setQuantityChangeRegister1">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister1Val":placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister1', systemSet.otherSetObj.setQuantityChangeRegister1Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器2" v-if="systemSet.otherSetObj.setQuantityChangeRegister2">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister2')" v-if="systemSet.otherSetObj.setQuantityChangeRegister2">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister2Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister2', systemSet.otherSetObj.setQuantityChangeRegister2Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器3" v-if="systemSet.otherSetObj.setQuantityChangeRegister3">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister3')" v-if="systemSet.otherSetObj.setQuantityChangeRegister3">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister3Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister3', systemSet.otherSetObj.setQuantityChangeRegister3Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器4" v-if="systemSet.otherSetObj.setQuantityChangeRegister4">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister4')" v-if="systemSet.otherSetObj.setQuantityChangeRegister4">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister4Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister4', systemSet.otherSetObj.setQuantityChangeRegister4Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器5" v-if="systemSet.otherSetObj.setQuantityChangeRegister5">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister5')" v-if="systemSet.otherSetObj.setQuantityChangeRegister5">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister5Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister5', systemSet.otherSetObj.setQuantityChangeRegister5Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器6" v-if="systemSet.otherSetObj.setQuantityChangeRegister6">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister6')" v-if="systemSet.otherSetObj.setQuantityChangeRegister6">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister6Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister6', systemSet.otherSetObj.setQuantityChangeRegister6Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器7" v-if="systemSet.otherSetObj.setQuantityChangeRegister7">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister7')" v-if="systemSet.otherSetObj.setQuantityChangeRegister7">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister7Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister7', systemSet.otherSetObj.setQuantityChangeRegister7Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器8" v-if="systemSet.otherSetObj.setQuantityChangeRegister8">
+            <el-descriptions-item :label="$t('deviceManage.changeRegister8')" v-if="systemSet.otherSetObj.setQuantityChangeRegister8">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.setQuantityChangeRegister8Val" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('setQuantityChangeRegister8', systemSet.otherSetObj.setQuantityChangeRegister8Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="电池参数显示方式" v-if="systemSet.otherSetObj.batteryParameterDisplayMethod">
+            <el-descriptions-item :label="$t('deviceManage.batteryDisplayMethod')" v-if="systemSet.otherSetObj.batteryParameterDisplayMethod">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.batteryParameterDisplayMethodVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="自动轮询" value="0" />
-                  <el-option label="手动切换" value="1" />
+                  <el-option :label="$t('deviceManage.automaticPolling')" value="0" />
+                  <el-option :label="$t('deviceManage.manualSwitching')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('batteryParameterDisplayMethod', systemSet.otherSetObj.batteryParameterDisplayMethodVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="当前显示参数的电池ID" v-if="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameter">
+            <el-descriptions-item :label="$t('deviceManage.theBatteryID')" v-if="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameter">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('theBatteryIdOfTheCurrentDisplayedParameter', systemSet.otherSetObj.theBatteryIdOfTheCurrentDisplayedParameterVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="MOS控制" v-if="systemSet.otherSetObj.mosControl">
+            <el-descriptions-item :label="$t('deviceManage.MOSControl')" v-if="systemSet.otherSetObj.mosControl">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.mosControlVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('mosControl', systemSet.otherSetObj.mosControlVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="GPS通讯模块电源控制" v-if="systemSet.otherSetObj.gpsCommunicationModulePowerControl">
+            <el-descriptions-item :label="$t('deviceManage.GPSPowerControl')" v-if="systemSet.otherSetObj.gpsCommunicationModulePowerControl">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.gpsCommunicationModulePowerControlVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gpsCommunicationModulePowerControl', systemSet.otherSetObj.gpsCommunicationModulePowerControlVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item label="实时时钟" v-if="systemSet.otherSetObj.realTimeClock">
+            <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="systemSet.otherSetObj.realTimeClock">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.realTimeClockVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('realTimeClock', systemSet.otherSetObj.realTimeClockVal)">{{$t('common.save')}}</el-button>
@@ -1344,264 +1344,264 @@
 
       <template v-else-if="activeIndex === '9'">
         <el-card style="margin-top: 10px;" v-if="batteryParameter.batterySet">
-          <el-descriptions title="电池设置" :column="4">
-            <el-descriptions-item label="电池组ID" v-if="batteryParameter.batterySetObj.batteryPackId">{{ batteryParameter.batterySetObj.batteryPackIdVal }}</el-descriptions-item>
-            <el-descriptions-item label="当前升级电池ID" v-if="batteryParameter.batterySetObj.currentUpgradedBatteryId">{{ batteryParameter.batterySetObj.currentUpgradedBatteryIdVal }}</el-descriptions-item>
-            <el-descriptions-item label="升级失败电池ID" v-if="batteryParameter.batterySetObj.upgradeFailedBatteryId">{{ batteryParameter.batterySetObj.upgradeFailedBatteryIdVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池包电芯串数 N" v-if="batteryParameter.batterySetObj.numberOfBatteryPackCellStringsN">{{ batteryParameter.batterySetObj.numberOfBatteryPackCellStringsNVal }}</el-descriptions-item>
-            <el-descriptions-item label="温度探头的总数 X" v-if="batteryParameter.batterySetObj.totalNumberOfTemperatureProbesX">{{ batteryParameter.batterySetObj.totalNumberOfTemperatureProbesXVal }}</el-descriptions-item>
-            <el-descriptions-item label="漏电流" v-if="batteryParameter.batterySetObj.leakageCurrent">{{ batteryParameter.batterySetObj.leakageCurrentVal }}mA</el-descriptions-item>
-            <el-descriptions-item label="中间母线电压" v-if="batteryParameter.batterySetObj.intermediateBusbarVoltage">{{ batteryParameter.batterySetObj.intermediateBusbarVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="BuckBoost电流" v-if="batteryParameter.batterySetObj.buckBoostCurrent">{{ batteryParameter.batterySetObj.buckBoostCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="PVIso电压" v-if="batteryParameter.batterySetObj.pvIsoVoltage">{{ batteryParameter.batterySetObj.pvIsoVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="零地电压" v-if="batteryParameter.batterySetObj.zeroGroundVoltage">{{ batteryParameter.batterySetObj.zeroGroundVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="逆变电流直流分量" v-if="batteryParameter.batterySetObj.dcComponentOfInverterCurrent">{{ batteryParameter.batterySetObj.dcComponentOfInverterCurrentVal }}mA</el-descriptions-item>
-            <el-descriptions-item label="负载电压直流分量" v-if="batteryParameter.batterySetObj.dcComponentOfLoadVoltage">{{ batteryParameter.batterySetObj.dcComponentOfLoadVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="继电器中间电压" v-if="batteryParameter.batterySetObj.relayIntermediateVoltage">{{ batteryParameter.batterySetObj.relayIntermediateVoltageVal }}V</el-descriptions-item>
-            <el-descriptions-item label="电芯电压1" v-if="batteryParameter.batterySetObj.cellVoltage1">{{ batteryParameter.batterySetObj.cellVoltage1Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压2" v-if="batteryParameter.batterySetObj.cellVoltage2">{{ batteryParameter.batterySetObj.cellVoltage2Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压3" v-if="batteryParameter.batterySetObj.cellVoltage3">{{ batteryParameter.batterySetObj.cellVoltage3Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压4" v-if="batteryParameter.batterySetObj.cellVoltage4">{{ batteryParameter.batterySetObj.cellVoltage4Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压5" v-if="batteryParameter.batterySetObj.cellVoltage5">{{ batteryParameter.batterySetObj.cellVoltage5Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压6" v-if="batteryParameter.batterySetObj.cellVoltage6">{{ batteryParameter.batterySetObj.cellVoltage6Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压7" v-if="batteryParameter.batterySetObj.cellVoltage7">{{ batteryParameter.batterySetObj.cellVoltage7Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压8" v-if="batteryParameter.batterySetObj.cellVoltage8">{{ batteryParameter.batterySetObj.cellVoltage8Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压9" v-if="batteryParameter.batterySetObj.cellVoltage9">{{ batteryParameter.batterySetObj.cellVoltage9Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压10" v-if="batteryParameter.batterySetObj.cellVoltage10">{{ batteryParameter.batterySetObj.cellVoltage10Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压11" v-if="batteryParameter.batterySetObj.cellVoltage11">{{ batteryParameter.batterySetObj.cellVoltage11Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压12" v-if="batteryParameter.batterySetObj.cellVoltage12">{{ batteryParameter.batterySetObj.cellVoltage12Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压13" v-if="batteryParameter.batterySetObj.cellVoltage13">{{ batteryParameter.batterySetObj.cellVoltage13Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压14" v-if="batteryParameter.batterySetObj.cellVoltage14">{{ batteryParameter.batterySetObj.cellVoltage14Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压15" v-if="batteryParameter.batterySetObj.cellVoltage15">{{ batteryParameter.batterySetObj.cellVoltage15Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯电压16" v-if="batteryParameter.batterySetObj.cellVoltage16">{{ batteryParameter.batterySetObj.cellVoltage16Val }}mV</el-descriptions-item>
-            <el-descriptions-item label="当前电流" v-if="batteryParameter.batterySetObj.currentCurrent">{{ batteryParameter.batterySetObj.currentCurrentVal }}mA</el-descriptions-item>
+          <el-descriptions :title="$t('deviceManage.batterySettings')" :column="2">
+            <el-descriptions-item :label="$t('deviceManage.batteryPackID')" v-if="batteryParameter.batterySetObj.batteryPackId">{{ batteryParameter.batterySetObj.batteryPackIdVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentUpgradedBatteryID')" v-if="batteryParameter.batterySetObj.currentUpgradedBatteryId">{{ batteryParameter.batterySetObj.currentUpgradedBatteryIdVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.upgradeFailedBatteryID')" v-if="batteryParameter.batterySetObj.upgradeFailedBatteryId">{{ batteryParameter.batterySetObj.upgradeFailedBatteryIdVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.numberCellStringsN')" v-if="batteryParameter.batterySetObj.numberOfBatteryPackCellStringsN">{{ batteryParameter.batterySetObj.numberOfBatteryPackCellStringsNVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.numberProbesX')" v-if="batteryParameter.batterySetObj.totalNumberOfTemperatureProbesX">{{ batteryParameter.batterySetObj.totalNumberOfTemperatureProbesXVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.leakageCurrent')" v-if="batteryParameter.batterySetObj.leakageCurrent">{{ batteryParameter.batterySetObj.leakageCurrentVal }}mA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.intermediateBusbarVoltage')" v-if="batteryParameter.batterySetObj.intermediateBusbarVoltage">{{ batteryParameter.batterySetObj.intermediateBusbarVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.buckBoostCurrent')" v-if="batteryParameter.batterySetObj.buckBoostCurrent">{{ batteryParameter.batterySetObj.buckBoostCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.PVIsoVoltage')" v-if="batteryParameter.batterySetObj.pvIsoVoltage">{{ batteryParameter.batterySetObj.pvIsoVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.zeroGroundVoltage')" v-if="batteryParameter.batterySetObj.zeroGroundVoltage">{{ batteryParameter.batterySetObj.zeroGroundVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.DCComponentOfInverterCurrent')" v-if="batteryParameter.batterySetObj.dcComponentOfInverterCurrent">{{ batteryParameter.batterySetObj.dcComponentOfInverterCurrentVal }}mA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.DCComponentOfLoadVoltage')" v-if="batteryParameter.batterySetObj.dcComponentOfLoadVoltage">{{ batteryParameter.batterySetObj.dcComponentOfLoadVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.relayIntermediateVoltage')" v-if="batteryParameter.batterySetObj.relayIntermediateVoltage">{{ batteryParameter.batterySetObj.relayIntermediateVoltageVal }}V</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage1')" v-if="batteryParameter.batterySetObj.cellVoltage1">{{ batteryParameter.batterySetObj.cellVoltage1Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage2')" v-if="batteryParameter.batterySetObj.cellVoltage2">{{ batteryParameter.batterySetObj.cellVoltage2Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage3')" v-if="batteryParameter.batterySetObj.cellVoltage3">{{ batteryParameter.batterySetObj.cellVoltage3Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage4')" v-if="batteryParameter.batterySetObj.cellVoltage4">{{ batteryParameter.batterySetObj.cellVoltage4Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage5')" v-if="batteryParameter.batterySetObj.cellVoltage5">{{ batteryParameter.batterySetObj.cellVoltage5Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage6')" v-if="batteryParameter.batterySetObj.cellVoltage6">{{ batteryParameter.batterySetObj.cellVoltage6Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage7')" v-if="batteryParameter.batterySetObj.cellVoltage7">{{ batteryParameter.batterySetObj.cellVoltage7Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage8')" v-if="batteryParameter.batterySetObj.cellVoltage8">{{ batteryParameter.batterySetObj.cellVoltage8Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage9')" v-if="batteryParameter.batterySetObj.cellVoltage9">{{ batteryParameter.batterySetObj.cellVoltage9Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage10')" v-if="batteryParameter.batterySetObj.cellVoltage10">{{ batteryParameter.batterySetObj.cellVoltage10Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage11')" v-if="batteryParameter.batterySetObj.cellVoltage11">{{ batteryParameter.batterySetObj.cellVoltage11Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage12')" v-if="batteryParameter.batterySetObj.cellVoltage12">{{ batteryParameter.batterySetObj.cellVoltage12Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage13')" v-if="batteryParameter.batterySetObj.cellVoltage13">{{ batteryParameter.batterySetObj.cellVoltage13Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage14')" v-if="batteryParameter.batterySetObj.cellVoltage14">{{ batteryParameter.batterySetObj.cellVoltage14Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage15')" v-if="batteryParameter.batterySetObj.cellVoltage15">{{ batteryParameter.batterySetObj.cellVoltage15Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellVoltage16')" v-if="batteryParameter.batterySetObj.cellVoltage16">{{ batteryParameter.batterySetObj.cellVoltage16Val }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.electricCurrent')" v-if="batteryParameter.batterySetObj.currentCurrent">{{ batteryParameter.batterySetObj.currentCurrentVal }}mA</el-descriptions-item>
             <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
             <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
             <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item>
-            <el-descriptions-item label="充电过流保护" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtection">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="充电过流保护延时" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtectionDelay">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过压保护" v-if="batteryParameter.batterySetObj.cellOvervoltageProtection">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过压保护延时" v-if="batteryParameter.batterySetObj.cellOvervoltageProtectionDelay">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过放保护" v-if="batteryParameter.batterySetObj.cellOverDischargeProtection">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过放保护延时" v-if="batteryParameter.batterySetObj.cellOverDischargeProtectionDelay">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="过压滞后电压" v-if="batteryParameter.batterySetObj.overvoltageHysteresisVoltage">{{ batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item label="过放滞后电压" v-if="batteryParameter.batterySetObj.overdischargeHysteresisVoltage">{{ batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过压恢复延时" v-if="batteryParameter.batterySetObj.cellOvervoltageRecoveryDelay">{{ batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯过放恢复延时" v-if="batteryParameter.batterySetObj.cellOverDischargeRecoveryDelay">{{ batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电高温保护" v-if="batteryParameter.batterySetObj.highTemperatureProtectionDuringDischarge">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电高温保护恢复" v-if="batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischarge">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电低温保护" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischarge">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电低温保护恢复" v-if="batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="充电高温保护" v-if="batteryParameter.batterySetObj.highTemperatureProtectionDuringCharging">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item label="充电高温保护恢复" v-if="batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringCharging">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item label="充电低温保护" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionDuringCharging">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item label="充电低温保护恢复" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringCharging">{{ batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item label="均衡开启电压" v-if="batteryParameter.batterySetObj.equalizingOpeningVoltage">{{ batteryParameter.batterySetObj.equalizingOpeningVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item label="均衡开启压差" v-if="batteryParameter.batterySetObj.equilibriumOpeningPressureDifference">{{ batteryParameter.batterySetObj.equilibriumOpeningPressureDifferenceVal }}</el-descriptions-item>
-            <el-descriptions-item label="电芯温度1" v-if="batteryParameter.batterySetObj.cellTemperature1">{{ batteryParameter.batterySetObj.cellTemperature1Val }}℃</el-descriptions-item>
-            <el-descriptions-item label="电芯温度2" v-if="batteryParameter.batterySetObj.cellTemperature2">{{ batteryParameter.batterySetObj.cellTemperature2Val }}℃</el-descriptions-item>
-            <el-descriptions-item label="电芯温度3" v-if="batteryParameter.batterySetObj.cellTemperature3">{{ batteryParameter.batterySetObj.cellTemperature3Val }}℃</el-descriptions-item>
-            <el-descriptions-item label="电芯温度4" v-if="batteryParameter.batterySetObj.cellTemperature4">{{ batteryParameter.batterySetObj.cellTemperature4Val }}℃</el-descriptions-item>
-            <el-descriptions-item label="MOS 温度" v-if="batteryParameter.batterySetObj.mosTemperature">{{ batteryParameter.batterySetObj.mosTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="环境温度" v-if="batteryParameter.batterySetObj.ambientTemperature">{{ batteryParameter.batterySetObj.ambientTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="均衡状态1" v-if="batteryParameter.batterySetObj.equilibriumState1">
+            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtection')" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtection">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtectionDelay')" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtectionDelay">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtection')" v-if="batteryParameter.batterySetObj.cellOvervoltageProtection">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtectionDelay')" v-if="batteryParameter.batterySetObj.cellOvervoltageProtectionDelay">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtection')" v-if="batteryParameter.batterySetObj.cellOverDischargeProtection">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtectionDelay')" v-if="batteryParameter.batterySetObj.cellOverDischargeProtectionDelay">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.overvoltageHysteresisVoltage')" v-if="batteryParameter.batterySetObj.overvoltageHysteresisVoltage">{{ batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.overdischargeHysteresisVoltage')" v-if="batteryParameter.batterySetObj.overdischargeHysteresisVoltage">{{ batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageRecoveryDelay')" v-if="batteryParameter.batterySetObj.cellOvervoltageRecoveryDelay">{{ batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeRecoveryDelay')" v-if="batteryParameter.batterySetObj.cellOverDischargeRecoveryDelay">{{ batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highProtectionDuringDischarge')" v-if="batteryParameter.batterySetObj.highTemperatureProtectionDuringDischarge">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeHighProtectionRecovery')" v-if="batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischarge">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowProtectionDuringDischarge')" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischarge">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeLowProtectionRecovery')" v-if="batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highDuringCharging')" v-if="batteryParameter.batterySetObj.highTemperatureProtectionDuringCharging">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highRecoveryDuringCharging')" v-if="batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringCharging">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowDuringCharging')" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionDuringCharging">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowRecoveryDuringCharging')" v-if="batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringCharging">{{ batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.equalizingOpeningVoltage')" v-if="batteryParameter.batterySetObj.equalizingOpeningVoltage">{{ batteryParameter.batterySetObj.equalizingOpeningVoltageVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.equilibriumOpeningPressureDifference')" v-if="batteryParameter.batterySetObj.equilibriumOpeningPressureDifference">{{ batteryParameter.batterySetObj.equilibriumOpeningPressureDifferenceVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellTemperature1')" v-if="batteryParameter.batterySetObj.cellTemperature1">{{ batteryParameter.batterySetObj.cellTemperature1Val }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellTemperature2')" v-if="batteryParameter.batterySetObj.cellTemperature2">{{ batteryParameter.batterySetObj.cellTemperature2Val }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellTemperature3')" v-if="batteryParameter.batterySetObj.cellTemperature3">{{ batteryParameter.batterySetObj.cellTemperature3Val }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellTemperature4')" v-if="batteryParameter.batterySetObj.cellTemperature4">{{ batteryParameter.batterySetObj.cellTemperature4Val }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSTemperature')" v-if="batteryParameter.batterySetObj.mosTemperature">{{ batteryParameter.batterySetObj.mosTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ambientTemperature')" v-if="batteryParameter.batterySetObj.ambientTemperature">{{ batteryParameter.batterySetObj.ambientTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.equilibriumState1')" v-if="batteryParameter.batterySetObj.equilibriumState1">
               {{ batteryParameter.batterySetObj.equilibriumState1Val }}
             </el-descriptions-item>
-            <el-descriptions-item label="均衡状态2" v-if="batteryParameter.batterySetObj.equilibriumState2">
+            <el-descriptions-item :label="$t('deviceManage.equilibriumState2')" v-if="batteryParameter.batterySetObj.equilibriumState2">
               {{ batteryParameter.batterySetObj.equilibriumState2Val }}
             </el-descriptions-item>
-            <el-descriptions-item label="软件版本" v-if="batteryParameter.batterySetObj.softwareVersion">{{ batteryParameter.batterySetObj.softwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="硬件版本" v-if="batteryParameter.batterySetObj.hardwareVersion">{{ batteryParameter.batterySetObj.hardwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item label="状态" v-if="batteryParameter.batterySetObj.state">{{ batteryParameter.batterySetObj.stateVal }}</el-descriptions-item>
-            <el-descriptions-item label="告警状态-电芯过放告警" v-if="batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.softwareVersion')" v-if="batteryParameter.batterySetObj.softwareVersion">{{ batteryParameter.batterySetObj.softwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.hardwareVersion')" v-if="batteryParameter.batterySetObj.hardwareVersion">{{ batteryParameter.batterySetObj.hardwareVersionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.state')" v-if="batteryParameter.batterySetObj.state">{{ batteryParameter.batterySetObj.stateVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-总过放告警" v-if="batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.totalOverDischargeAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-电芯过压告警" v-if="batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-总过压告警" v-if="batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-放电过流告警" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-放电过温告警" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.dischargeOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-充电过温告警" v-if="batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.chargingOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-环境高温告警" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-环境低温告警" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-SOC低告警" v-if="batteryParameter.batterySetObj.alarmStatusSocLowAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusSocLowAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusSocLowAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusSocLowAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-MOS高温告警" v-if="batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarmVal == 0 ? '无' : '告警' }}
+            <el-descriptions-item :label="$t('deviceManage.MOSHighTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item label="电池SOC" v-if="batteryParameter.batterySetObj.batterySoc">{{ batteryParameter.batterySetObj.batterySocVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池SOH" v-if="batteryParameter.batterySetObj.batterySoh">{{ batteryParameter.batterySetObj.batterySohVal }}</el-descriptions-item>
-            <el-descriptions-item label="循环次数" v-if="batteryParameter.batterySetObj.numberOfCycles">{{ batteryParameter.batterySetObj.numberOfCyclesVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电剩余时间" v-if="batteryParameter.batterySetObj.dischargeRemainingTime">{{ batteryParameter.batterySetObj.dischargeRemainingTimeVal }}min</el-descriptions-item>
-            <el-descriptions-item label="充电剩余时间" v-if="batteryParameter.batterySetObj.chargingRemainingTime">{{ batteryParameter.batterySetObj.chargingRemainingTimeVal }}min</el-descriptions-item>
-            <el-descriptions-item label="当前充电间隔" v-if="batteryParameter.batterySetObj.currentChargingInterval">{{ batteryParameter.batterySetObj.currentChargingIntervalVal }}h</el-descriptions-item>
-            <el-descriptions-item label="最长充电间隔" v-if="batteryParameter.batterySetObj.maximumChargingInterval">{{ batteryParameter.batterySetObj.maximumChargingIntervalVal }}h</el-descriptions-item>
-            <el-descriptions-item label="电池总电压" v-if="batteryParameter.batterySetObj.totalBatteryVoltage">{{ batteryParameter.batterySetObj.totalBatteryVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="电池包最高电压" v-if="batteryParameter.batterySetObj.maximumVoltageOfBatteryPack">{{ batteryParameter.batterySetObj.maximumVoltageOfBatteryPackVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="电池包最低电压" v-if="batteryParameter.batterySetObj.minimumVoltageOfBatteryPack">{{ batteryParameter.batterySetObj.minimumVoltageOfBatteryPackVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="最大允许放电电流" v-if="batteryParameter.batterySetObj.maximumAllowableDischargeCurrent">{{ batteryParameter.batterySetObj.maximumAllowableDischargeCurrentVal }}mA</el-descriptions-item>
-            <el-descriptions-item label="最大允许充电电流" v-if="batteryParameter.batterySetObj.maximumAllowableChargingCurrent">{{ batteryParameter.batterySetObj.maximumAllowableChargingCurrentVal }}mA</el-descriptions-item>
-            <el-descriptions-item label="标准充电电压" v-if="batteryParameter.batterySetObj.standardChargingVoltage">{{ batteryParameter.batterySetObj.standardChargingVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="当前湿度" v-if="batteryParameter.batterySetObj.currentHumidity">{{ batteryParameter.batterySetObj.currentHumidityVal }}RH%</el-descriptions-item>
-            <el-descriptions-item label="出厂编码" v-if="batteryParameter.batterySetObj.factoryCode">{{ batteryParameter.batterySetObj.factoryCodeVal }}</el-descriptions-item>
-            <el-descriptions-item label="产品编号" v-if="batteryParameter.batterySetObj.productNumber">{{ batteryParameter.batterySetObj.productNumberVal }}</el-descriptions-item>
-            <el-descriptions-item label="出厂日期" v-if="batteryParameter.batterySetObj.dateOfProduction">{{ batteryParameter.batterySetObj.dateOfProductionVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池检测电阻阻值" v-if="batteryParameter.batterySetObj.batteryDetectionResistanceValue">{{ batteryParameter.batterySetObj.batteryDetectionResistanceValueVal }}mΩ</el-descriptions-item>
-            <el-descriptions-item label="最高电芯温度" v-if="batteryParameter.batterySetObj.maximumCellTemperature">{{ batteryParameter.batterySetObj.maximumCellTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="最低电芯温度" v-if="batteryParameter.batterySetObj.minimumCellTemperature">{{ batteryParameter.batterySetObj.minimumCellTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="温差" v-if="batteryParameter.batterySetObj.temperatureDifference">{{ batteryParameter.batterySetObj.temperatureDifferenceVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="温差保护值" v-if="batteryParameter.batterySetObj.temperatureDifferenceProtectionValue">{{ batteryParameter.batterySetObj.temperatureDifferenceProtectionValueVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="温差告警值" v-if="batteryParameter.batterySetObj.temperatureDifferenceAlarmValue">{{ batteryParameter.batterySetObj.temperatureDifferenceAlarmValueVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="压差保护值" v-if="batteryParameter.batterySetObj.differentialPressureProtectionValue">{{ batteryParameter.batterySetObj.differentialPressureProtectionValueVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="压差告警值" v-if="batteryParameter.batterySetObj.differentialPressureAlarmValue">{{ batteryParameter.batterySetObj.differentialPressureAlarmValueVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="静置均衡时间" v-if="batteryParameter.batterySetObj.staticEquilibriumTime">{{ batteryParameter.batterySetObj.staticEquilibriumTimeVal }}min</el-descriptions-item>
-            <el-descriptions-item label="充电过流后自动恢复延时" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrentVal }}min</el-descriptions-item>
-            <el-descriptions-item label="充电过流后自动恢复锁定" v-if="batteryParameter.batterySetObj.automaticallyResumeLockingAfterOvercharging">{{ batteryParameter.batterySetObj.automaticallyResumeLockingAfterOverchargingVal }}min</el-descriptions-item>
-            <el-descriptions-item label="放电过流后自动恢复延时" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrentVal }}min</el-descriptions-item>
-            <el-descriptions-item label="放电过流后自动恢复锁定" v-if="batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}min</el-descriptions-item>
-            <el-descriptions-item label="逆变器电流超过限制电流" v-if="batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrent">{{ batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrentVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池参数显示方式" v-if="batteryParameter.batterySetObj.batteryParameterDisplayMethod">
+            <el-descriptions-item :label="$t('deviceManage.batterySOC')" v-if="batteryParameter.batterySetObj.batterySoc">{{ batteryParameter.batterySetObj.batterySocVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batterySOH')" v-if="batteryParameter.batterySetObj.batterySoh">{{ batteryParameter.batterySetObj.batterySohVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.numberOfCycles')" v-if="batteryParameter.batterySetObj.numberOfCycles">{{ batteryParameter.batterySetObj.numberOfCyclesVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeRemainingTime')" v-if="batteryParameter.batterySetObj.dischargeRemainingTime">{{ batteryParameter.batterySetObj.dischargeRemainingTimeVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingRemainingTime')" v-if="batteryParameter.batterySetObj.chargingRemainingTime">{{ batteryParameter.batterySetObj.chargingRemainingTimeVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentChargingInterval')" v-if="batteryParameter.batterySetObj.currentChargingInterval">{{ batteryParameter.batterySetObj.currentChargingIntervalVal }}h</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.maximumChargingInterval')" v-if="batteryParameter.batterySetObj.maximumChargingInterval">{{ batteryParameter.batterySetObj.maximumChargingIntervalVal }}h</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalBatteryVoltage')" v-if="batteryParameter.batterySetObj.totalBatteryVoltage">{{ batteryParameter.batterySetObj.totalBatteryVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.maximumVoltageOfPack')" v-if="batteryParameter.batterySetObj.maximumVoltageOfBatteryPack">{{ batteryParameter.batterySetObj.maximumVoltageOfBatteryPackVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.minimumVoltageOfPack')" v-if="batteryParameter.batterySetObj.minimumVoltageOfBatteryPack">{{ batteryParameter.batterySetObj.minimumVoltageOfBatteryPackVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.maximumAllowableDischargeCurrent')" v-if="batteryParameter.batterySetObj.maximumAllowableDischargeCurrent">{{ batteryParameter.batterySetObj.maximumAllowableDischargeCurrentVal }}mA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.maximumAllowableChargingCurrent')" v-if="batteryParameter.batterySetObj.maximumAllowableChargingCurrent">{{ batteryParameter.batterySetObj.maximumAllowableChargingCurrentVal }}mA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.standardChargingVoltage')" v-if="batteryParameter.batterySetObj.standardChargingVoltage">{{ batteryParameter.batterySetObj.standardChargingVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentHumidity')" v-if="batteryParameter.batterySetObj.currentHumidity">{{ batteryParameter.batterySetObj.currentHumidityVal }}RH%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.factoryCode')" v-if="batteryParameter.batterySetObj.factoryCode">{{ batteryParameter.batterySetObj.factoryCodeVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.productNumber')" v-if="batteryParameter.batterySetObj.productNumber">{{ batteryParameter.batterySetObj.productNumberVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dateOfProduction')" v-if="batteryParameter.batterySetObj.dateOfProduction">{{ batteryParameter.batterySetObj.dateOfProductionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryDetectionResistanceValue')" v-if="batteryParameter.batterySetObj.batteryDetectionResistanceValue">{{ batteryParameter.batterySetObj.batteryDetectionResistanceValueVal }}mΩ</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.maximumCellTemperature')" v-if="batteryParameter.batterySetObj.maximumCellTemperature">{{ batteryParameter.batterySetObj.maximumCellTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.minimumCellTemperature')" v-if="batteryParameter.batterySetObj.minimumCellTemperature">{{ batteryParameter.batterySetObj.minimumCellTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.temperatureDifference')" v-if="batteryParameter.batterySetObj.temperatureDifference">{{ batteryParameter.batterySetObj.temperatureDifferenceVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.temperatureProtectionValue')" v-if="batteryParameter.batterySetObj.temperatureDifferenceProtectionValue">{{ batteryParameter.batterySetObj.temperatureDifferenceProtectionValueVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.temperatureAlarmValue')" v-if="batteryParameter.batterySetObj.temperatureDifferenceAlarmValue">{{ batteryParameter.batterySetObj.temperatureDifferenceAlarmValueVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.differentialProtectionValue')" v-if="batteryParameter.batterySetObj.differentialPressureProtectionValue">{{ batteryParameter.batterySetObj.differentialPressureProtectionValueVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.differentialAlarmValue')" v-if="batteryParameter.batterySetObj.differentialPressureAlarmValue">{{ batteryParameter.batterySetObj.differentialPressureAlarmValueVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.staticEquilibriumTime')" v-if="batteryParameter.batterySetObj.staticEquilibriumTime">{{ batteryParameter.batterySetObj.staticEquilibriumTimeVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelay')" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrentVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticallyResumeLocking')" v-if="batteryParameter.batterySetObj.automaticallyResumeLockingAfterOvercharging">{{ batteryParameter.batterySetObj.automaticallyResumeLockingAfterOverchargingVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelay')" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrentVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryLocking')" v-if="batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.inverterCurrentLimit')" v-if="batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrent">{{ batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrentVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryParameterDisplayMethod')" v-if="batteryParameter.batterySetObj.batteryParameterDisplayMethod">
               {{ batteryParameter.batterySetObj.batteryParameterDisplayMethodVal == 0 ? '自动轮询' : '自动轮询' }}
             </el-descriptions-item>
-            <el-descriptions-item label="当前显示参数的电池ID" v-if="batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameter">{{ batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameterVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池包设计容量" v-if="batteryParameter.batterySetObj.batteryPackDesignCapacity">{{ batteryParameter.batterySetObj.batteryPackDesignCapacityVal }}</el-descriptions-item>
-            <el-descriptions-item label="当前电池满容量" v-if="batteryParameter.batterySetObj.currentBatteryFullCapacity">{{ batteryParameter.batterySetObj.currentBatteryFullCapacityVal }}</el-descriptions-item>
-            <el-descriptions-item label="电池剩余容量" v-if="batteryParameter.batterySetObj.remainingBatteryCapacity">{{ batteryParameter.batterySetObj.remainingBatteryCapacityVal }}</el-descriptions-item>
-            <el-descriptions-item label="MOS控制" v-if="batteryParameter.batterySetObj.mosControl">{{ batteryParameter.batterySetObj.mosControlVal }}</el-descriptions-item>
-            <el-descriptions-item label="充/放电加热使能" v-if="batteryParameter.batterySetObj.chargingDischargingHeatingEnable">
+            <el-descriptions-item :label="$t('deviceManage.batteryIDParameter')" v-if="batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameter">{{ batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameterVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryPackDesignCapacity')" v-if="batteryParameter.batterySetObj.batteryPackDesignCapacity">{{ batteryParameter.batterySetObj.batteryPackDesignCapacityVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentBatteryFullCapacity')" v-if="batteryParameter.batterySetObj.currentBatteryFullCapacity">{{ batteryParameter.batterySetObj.currentBatteryFullCapacityVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.remainingBatteryCapacity')" v-if="batteryParameter.batterySetObj.remainingBatteryCapacity">{{ batteryParameter.batterySetObj.remainingBatteryCapacityVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSControl')" v-if="batteryParameter.batterySetObj.mosControl">{{ batteryParameter.batterySetObj.mosControlVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingDischargingHeating')" v-if="batteryParameter.batterySetObj.chargingDischargingHeatingEnable">
               {{ batteryParameter.batterySetObj.chargingDischargingHeatingEnableVal }}
             </el-descriptions-item>
-            <el-descriptions-item label="GPS通讯模块电源控制" v-if="batteryParameter.batterySetObj.gpsCommunicationModulePowerControl">{{ batteryParameter.batterySetObj.gpsCommunicationModulePowerControlVal }}</el-descriptions-item>
-            <el-descriptions-item label="实时时钟" v-if="batteryParameter.batterySetObj.realTimeClock">{{ batteryParameter.batterySetObj.realTimeClockVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电过流1保护" v-if="batteryParameter.batterySetObj.dischargeOvercurrent1Protection">{{ batteryParameter.batterySetObj.dischargeOvercurrent1ProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="放电过流1延时" v-if="batteryParameter.batterySetObj.dischargeOvercurrent1Delay">{{ batteryParameter.batterySetObj.dischargeOvercurrent1DelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="环境高温保护" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureProtection">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="环境高温保护恢复" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="环境低温保护" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureProtection">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="环境低温保护恢复" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过压保护" v-if="batteryParameter.batterySetObj.totalPressureOvervoltageProtection">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过压保护恢复" v-if="batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecovery">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过放保护" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageProtection">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过放恢复" v-if="batteryParameter.batterySetObj.totalPressureOverDischargeRecovery">{{ batteryParameter.batterySetObj.totalPressureOverDischargeRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过压保护延时" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelay">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="总压过放保护延时" v-if="batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelay">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="总过压恢复延时" v-if="batteryParameter.batterySetObj.totalOvervoltageRecoveryDelay">{{ batteryParameter.batterySetObj.totalOvervoltageRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="总过放恢复延时" v-if="batteryParameter.batterySetObj.totalOverdischargeRecoveryDelay">{{ batteryParameter.batterySetObj.totalOverdischargeRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="MOS高温保护" v-if="batteryParameter.batterySetObj.mosHighTemperatureProtection">{{ batteryParameter.batterySetObj.mosHighTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item label="MOS高温恢复" v-if="batteryParameter.batterySetObj.mosHighTemperatureRecovery">{{ batteryParameter.batterySetObj.mosHighTemperatureRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item label="MOS高温保护延时" v-if="batteryParameter.batterySetObj.moshighTemperatureProtectionDelay">{{ batteryParameter.batterySetObj.moshighTemperatureProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item label="充满保护_总压高于" v-if="batteryParameter.batterySetObj.fullOfProtectionTotalPressureAbove">{{ batteryParameter.batterySetObj.fullOfProtectionTotalPressureAboveVal }}</el-descriptions-item>
-            <el-descriptions-item label="充满保护_充电电流低于" v-if="batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelow">{{ batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelowVal }}</el-descriptions-item>
-            <el-descriptions-item label="充满保护_延时时间" v-if="batteryParameter.batterySetObj.fullOfProtectionDelayTime">{{ batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal }}</el-descriptions-item>
-            <el-descriptions-item label="加热/风扇开启温度" v-if="batteryParameter.batterySetObj.heatingFanOnTemperature">{{ batteryParameter.batterySetObj.heatingFanOnTemperatureVal }}</el-descriptions-item>
-            <el-descriptions-item label="加热/风扇恢复温度" v-if="batteryParameter.batterySetObj.heatingFanRecoveryTemperature">{{ batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal }}</el-descriptions-item>
-            <el-descriptions-item label="使能设置-电压告警" v-if="batteryParameter.batterySetObj.enableSettingsVoltageAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsVoltageAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.GPSPowerControl')" v-if="batteryParameter.batterySetObj.gpsCommunicationModulePowerControl">{{ batteryParameter.batterySetObj.gpsCommunicationModulePowerControlVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="batteryParameter.batterySetObj.realTimeClock">{{ batteryParameter.batterySetObj.realTimeClockVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentProtection')" v-if="batteryParameter.batterySetObj.dischargeOvercurrent1Protection">{{ batteryParameter.batterySetObj.dischargeOvercurrent1ProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentDelay')" v-if="batteryParameter.batterySetObj.dischargeOvercurrent1Delay">{{ batteryParameter.batterySetObj.dischargeOvercurrent1DelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtection')" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureProtection">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtectionRecovery')" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtection')" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureProtection">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtectionRecovery')" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecovery">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtection')" v-if="batteryParameter.batterySetObj.totalPressureOvervoltageProtection">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtectionRecovery')" v-if="batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecovery">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalVoltageOvervoltageProtection')" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageProtection">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOverdischargeRecovery')" v-if="batteryParameter.batterySetObj.totalPressureOverDischargeRecovery">{{ batteryParameter.batterySetObj.totalPressureOverDischargeRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageProtectionDelay')" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelay">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeProtectionDelay')" v-if="batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelay">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageRecoveryDelay')" v-if="batteryParameter.batterySetObj.totalOvervoltageRecoveryDelay">{{ batteryParameter.batterySetObj.totalOvervoltageRecoveryDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeRecoveryDelay')" v-if="batteryParameter.batterySetObj.totalOverdischargeRecoveryDelay">{{ batteryParameter.batterySetObj.totalOverdischargeRecoveryDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighProtection')" v-if="batteryParameter.batterySetObj.mosHighTemperatureProtection">{{ batteryParameter.batterySetObj.mosHighTemperatureProtectionVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighRecovery')" v-if="batteryParameter.batterySetObj.mosHighTemperatureRecovery">{{ batteryParameter.batterySetObj.mosHighTemperatureRecoveryVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighProtectionDelay')" v-if="batteryParameter.batterySetObj.moshighTemperatureProtectionDelay">{{ batteryParameter.batterySetObj.moshighTemperatureProtectionDelayVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullTotalPressureAbove')" v-if="batteryParameter.batterySetObj.fullOfProtectionTotalPressureAbove">{{ batteryParameter.batterySetObj.fullOfProtectionTotalPressureAboveVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullChargingCurrentBelow')" v-if="batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelow">{{ batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelowVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullDelayTime')" v-if="batteryParameter.batterySetObj.fullOfProtectionDelayTime">{{ batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.heatingOnTemperature')" v-if="batteryParameter.batterySetObj.heatingFanOnTemperature">{{ batteryParameter.batterySetObj.heatingFanOnTemperatureVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.heatingRecoveryTemperature')" v-if="batteryParameter.batterySetObj.heatingFanRecoveryTemperature">{{ batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.voltageAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsVoltageAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingsVoltageAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-过流告警" v-if="batteryParameter.batterySetObj.enableSettingsOvercurrentAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsOvercurrentAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.overcurrentAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsOvercurrentAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingsOvercurrentAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-过温告警" v-if="batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.overTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-MOS过温告警" v-if="batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.MOSOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-电芯不均衡告警" v-if="batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.cellImbalanceAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-环境温度告警" v-if="batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.ambientTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-SOC低告警" v-if="batteryParameter.batterySetObj.enableSettingSocLowAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingSocLowAlarmVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.enableSettingSocLowAlarm">
+              {{ batteryParameter.batterySetObj.enableSettingSocLowAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-充电加热使能" v-if="batteryParameter.batterySetObj.enableSettingsUnlockSystemLocks">
-              {{ batteryParameter.batterySetObj.enableSettingsUnlockSystemLocksVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.chargingAndHeatingEnable')" v-if="batteryParameter.batterySetObj.enableSettingsUnlockSystemLocks">
+              {{ batteryParameter.batterySetObj.enableSettingsUnlockSystemLocksVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-总电压保护" v-if="batteryParameter.batterySetObj.enableSettingsTotalVoltageProtection">
-              {{ batteryParameter.batterySetObj.enableSettingsTotalVoltageProtectionVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.totalVoltageProtection')" v-if="batteryParameter.batterySetObj.enableSettingsTotalVoltageProtection">
+              {{ batteryParameter.batterySetObj.enableSettingsTotalVoltageProtectionVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-充电过流后放电恢复功能" v-if="batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrentVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.dischargeRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrent">
+              {{ batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-放电过流后延时自动恢复功能" v-if="batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrentVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.delayAutomaticRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent">
+              {{ batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-放电过流后充电恢复功能" v-if="batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrentVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.chargingRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrent">
+              {{ batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-静置均衡功能" v-if="batteryParameter.batterySetObj.enableSettingsStaticEquilibrium">
-              {{ batteryParameter.batterySetObj.enableSettingsStaticEquilibriumVal == 1 ? '开' : '关' }}
+            <el-descriptions-item :label="$t('deviceManage.staticEqualizationFunction')" v-if="batteryParameter.batterySetObj.enableSettingsStaticEquilibrium">
+              {{ batteryParameter.batterySetObj.enableSettingsStaticEquilibriumVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item label="系统锁状态序号" v-if="batteryParameter.batterySetObj.systemLockStatusSerialNumber">
+            <el-descriptions-item :label="$t('deviceManage.systemLockNumber')" v-if="batteryParameter.batterySetObj.systemLockStatusSerialNumber">
               {{ batteryParameter.batterySetObj.systemLockStatusSerialNumberVal | systemLockStatusSerialNumberValFilter }}
             </el-descriptions-item>
-            <el-descriptions-item label="总压过压告警电压" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="总压过放告警电压" v-if="batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="电芯过压告警电压" v-if="batteryParameter.batterySetObj.cellOvervoltageAlarmVoltage">
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageVoltage')" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeVoltage')" v-if="batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageVoltage')" v-if="batteryParameter.batterySetObj.cellOvervoltageAlarmVoltage">
               {{ batteryParameter.batterySetObj.cellOvervoltageAlarmVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过放告警电压" v-if="batteryParameter.batterySetObj.cellOverDischargeAlarmVoltage">
+            <el-descriptions-item :label="$t('deviceManage.cellOverdischargeVoltage')" v-if="batteryParameter.batterySetObj.cellOverDischargeAlarmVoltage">
               {{ batteryParameter.batterySetObj.cellOverDischargeAlarmVoltageVal }}V
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流告警电流" v-if="batteryParameter.batterySetObj.chargingOvercurrentAlarmCurrent">{{ batteryParameter.batterySetObj.chargingOvercurrentAlarmCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="放电过流告警电流" v-if="batteryParameter.batterySetObj.dischargeOvercurrentAlarmCurrent">{{ batteryParameter.batterySetObj.dischargeOvercurrentAlarmCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="充电高温告警温度" v-if="batteryParameter.batterySetObj.chargingHighTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.chargingHighTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="充电低温告警温度" v-if="batteryParameter.batterySetObj.chargingLowTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.chargingLowTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="放电高温告警温度" v-if="batteryParameter.batterySetObj.dischargeHighTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.dischargeHighTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="放电低温告警温度" v-if="batteryParameter.batterySetObj.dischargeLowTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.dischargeLowTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="MOS过温告警温度" v-if="batteryParameter.batterySetObj.mosOverTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.mosOverTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="MOS过温告警恢复温度" v-if="batteryParameter.batterySetObj.mosOverTemperatureAlarmRecoveryTemperature">{{ batteryParameter.batterySetObj.mosOverTemperatureAlarmRecoveryTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="电芯不均衡告警压差" v-if="batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifference">{{ batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifferenceVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="不均衡告警恢复压差" v-if="batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifference">{{ batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifferenceVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="环境高温告警" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureAlarm">{{ batteryParameter.batterySetObj.environmentalHighTemperatureAlarmVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="环境低温告警" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureAlarm">{{ batteryParameter.batterySetObj.environmentalLowTemperatureAlarmVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="SOC低告警" v-if="batteryParameter.batterySetObj.socLowAlarm">{{ batteryParameter.batterySetObj.socLowAlarmVal }}%</el-descriptions-item>
-            <el-descriptions-item label="充电限流功能" v-if="batteryParameter.batterySetObj.chargingCurrentLimitingFunction">
+            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentAlarm')" v-if="batteryParameter.batterySetObj.chargingOvercurrentAlarmCurrent">{{ batteryParameter.batterySetObj.chargingOvercurrentAlarmCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentAlarm')" v-if="batteryParameter.batterySetObj.dischargeOvercurrentAlarmCurrent">{{ batteryParameter.batterySetObj.dischargeOvercurrentAlarmCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingHighAlarm')" v-if="batteryParameter.batterySetObj.chargingHighTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.chargingHighTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingLowAlarm')" v-if="batteryParameter.batterySetObj.chargingLowTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.chargingLowTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeHighAlarm')" v-if="batteryParameter.batterySetObj.dischargeHighTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.dischargeHighTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeLowAlarm')" v-if="batteryParameter.batterySetObj.dischargeLowTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.dischargeLowTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSAlarmTemperature')" v-if="batteryParameter.batterySetObj.mosOverTemperatureAlarmTemperature">{{ batteryParameter.batterySetObj.mosOverTemperatureAlarmTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSRecoveryTemperature')" v-if="batteryParameter.batterySetObj.mosOverTemperatureAlarmRecoveryTemperature">{{ batteryParameter.batterySetObj.mosOverTemperatureAlarmRecoveryTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryImbalanceAlarmPressure')" v-if="batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifference">{{ batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifferenceVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.imbalancePressureDifference')" v-if="batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifference">{{ batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifferenceVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighTemperatureAlarm')" v-if="batteryParameter.batterySetObj.environmentalHighTemperatureAlarm">{{ batteryParameter.batterySetObj.environmentalHighTemperatureAlarmVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureAlarm">{{ batteryParameter.batterySetObj.environmentalLowTemperatureAlarmVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.socLowAlarm">{{ batteryParameter.batterySetObj.socLowAlarmVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingCurrentLimiting')" v-if="batteryParameter.batterySetObj.chargingCurrentLimitingFunction">
               {{ batteryParameter.batterySetObj.chargingCurrentLimitingFunctionVal == 1 ? '启用' : '禁用' }}
             </el-descriptions-item>
-            <el-descriptions-item label="掉电电压" v-if="batteryParameter.batterySetObj.powerDownVoltage">{{ batteryParameter.batterySetObj.powerDownVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="掉电电流" v-if="batteryParameter.batterySetObj.powerDownCurrent">{{ batteryParameter.batterySetObj.powerDownCurrentVal }}A</el-descriptions-item>
-            <el-descriptions-item label="掉电延时" v-if="batteryParameter.batterySetObj.powerDownDelay">{{ batteryParameter.batterySetObj.powerDownDelayVal }}min</el-descriptions-item>
-            <el-descriptions-item label="每月自放电率" v-if="batteryParameter.batterySetObj.monthlySelfDischargeRate">{{ batteryParameter.batterySetObj.monthlySelfDischargeRateVal }}%</el-descriptions-item>
-            <el-descriptions-item label="循环1次容量比" v-if="batteryParameter.batterySetObj.cycle1CapacityRatio">{{ batteryParameter.batterySetObj.cycle1CapacityRatioVal }}%</el-descriptions-item>
-            <el-descriptions-item label="SOC 0%单体电压" v-if="batteryParameter.batterySetObj.soc0PercentMonomerVoltage">{{ batteryParameter.batterySetObj.soc0PercentMonomerVoltageVal }}mV</el-descriptions-item>
-            <el-descriptions-item label="每循1次满容量衰减" v-if="batteryParameter.batterySetObj.fullCapacityAttenuationOncePerCycle">{{ batteryParameter.batterySetObj.fullCapacityAttenuationOncePerCycleVal }}%</el-descriptions-item>
-            <el-descriptions-item label="通讯地址" v-if="batteryParameter.batterySetObj.communicateAddress">{{ batteryParameter.batterySetObj.communicateAddressVal }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数1" v-if="batteryParameter.batterySetObj.customParameters1">{{ batteryParameter.batterySetObj.customParameters1Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数2" v-if="batteryParameter.batterySetObj.customParameters2">{{ batteryParameter.batterySetObj.customParameters2Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数3" v-if="batteryParameter.batterySetObj.customParameters3">{{ batteryParameter.batterySetObj.customParameters3Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数4" v-if="batteryParameter.batterySetObj.customParameters4">{{ batteryParameter.batterySetObj.customParameters4Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数5" v-if="batteryParameter.batterySetObj.customParameters5">{{ batteryParameter.batterySetObj.customParameters5Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数6" v-if="batteryParameter.batterySetObj.customParameters6">{{ batteryParameter.batterySetObj.customParameters6Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数7" v-if="batteryParameter.batterySetObj.customParameters7">{{ batteryParameter.batterySetObj.customParameters7Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义参数8" v-if="batteryParameter.batterySetObj.customParameters8">{{ batteryParameter.batterySetObj.customParameters8Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义状态1" v-if="batteryParameter.batterySetObj.customStatus1">{{ batteryParameter.batterySetObj.customStatus1Val }}</el-descriptions-item>
-            <el-descriptions-item label="自定义状态2" v-if="batteryParameter.batterySetObj.customStatus2">{{ batteryParameter.batterySetObj.customStatus2Val }}</el-descriptions-item>
-            <el-descriptions-item label="放电/静置加热使能" v-if="batteryParameter.batterySetObj.dischargeStaticHeatingEnable">{{ batteryParameter.batterySetObj.dischargeStaticHeatingEnableVal }}</el-descriptions-item>
-            <el-descriptions-item label="解锁系统锁" v-if="batteryParameter.batterySetObj.unlockSystemLock">
-              {{ batteryParameter.batterySetObj.unlockSystemLockVal == 1 ? '解锁' : '无效' }}
+            <el-descriptions-item :label="$t('deviceManage.powerDownVoltage')" v-if="batteryParameter.batterySetObj.powerDownVoltage">{{ batteryParameter.batterySetObj.powerDownVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.powerDownCurrent')" v-if="batteryParameter.batterySetObj.powerDownCurrent">{{ batteryParameter.batterySetObj.powerDownCurrentVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.powerDownDelay')" v-if="batteryParameter.batterySetObj.powerDownDelay">{{ batteryParameter.batterySetObj.powerDownDelayVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.monthlySelfDischargeRate')" v-if="batteryParameter.batterySetObj.monthlySelfDischargeRate">{{ batteryParameter.batterySetObj.monthlySelfDischargeRateVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.capacityRatio')" v-if="batteryParameter.batterySetObj.cycle1CapacityRatio">{{ batteryParameter.batterySetObj.cycle1CapacityRatioVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.SOCMonomerVoltage')" v-if="batteryParameter.batterySetObj.soc0PercentMonomerVoltage">{{ batteryParameter.batterySetObj.soc0PercentMonomerVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullCapacityOnce')" v-if="batteryParameter.batterySetObj.fullCapacityAttenuationOncePerCycle">{{ batteryParameter.batterySetObj.fullCapacityAttenuationOncePerCycleVal }}%</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.mailAddress')" v-if="batteryParameter.batterySetObj.communicateAddress">{{ batteryParameter.batterySetObj.communicateAddressVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter1')" v-if="batteryParameter.batterySetObj.customParameters1">{{ batteryParameter.batterySetObj.customParameters1Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter2')" v-if="batteryParameter.batterySetObj.customParameters2">{{ batteryParameter.batterySetObj.customParameters2Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter3')" v-if="batteryParameter.batterySetObj.customParameters3">{{ batteryParameter.batterySetObj.customParameters3Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter4')" v-if="batteryParameter.batterySetObj.customParameters4">{{ batteryParameter.batterySetObj.customParameters4Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter5')" v-if="batteryParameter.batterySetObj.customParameters5">{{ batteryParameter.batterySetObj.customParameters5Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter6')" v-if="batteryParameter.batterySetObj.customParameters6">{{ batteryParameter.batterySetObj.customParameters6Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter7')" v-if="batteryParameter.batterySetObj.customParameters7">{{ batteryParameter.batterySetObj.customParameters7Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customParameter8')" v-if="batteryParameter.batterySetObj.customParameters8">{{ batteryParameter.batterySetObj.customParameters8Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customStatus1')" v-if="batteryParameter.batterySetObj.customStatus1">{{ batteryParameter.batterySetObj.customStatus1Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.customStatus2')" v-if="batteryParameter.batterySetObj.customStatus2">{{ batteryParameter.batterySetObj.customStatus2Val }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.heatingEnable')" v-if="batteryParameter.batterySetObj.dischargeStaticHeatingEnable">{{ batteryParameter.batterySetObj.dischargeStaticHeatingEnableVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.unlockSystemLock')" v-if="batteryParameter.batterySetObj.unlockSystemLock">
+              {{ batteryParameter.batterySetObj.unlockSystemLockVal == 1 ? $t('deviceManage.unlock') : $t('deviceManage.invalid') }}
             </el-descriptions-item>
-            <el-descriptions-item label="放电开启加热温度" v-if="batteryParameter.batterySetObj.dischargeOnHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOnHeatingTemperatureVal }}℃</el-descriptions-item>
-            <el-descriptions-item label="放电关闭加热温度" v-if="batteryParameter.batterySetObj.dischargeOffHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOffHeatingTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.onHeating')" v-if="batteryParameter.batterySetObj.dischargeOnHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOnHeatingTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.offHeating')" v-if="batteryParameter.batterySetObj.dischargeOffHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOffHeatingTemperatureVal }}℃</el-descriptions-item>
           </el-descriptions>
         </el-card>
       </template>
