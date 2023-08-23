@@ -51,7 +51,7 @@
       </el-row>
     </el-form>
     <div slot="footer" class="dialog-footer">
-      <el-button type="primary" @click="dataFormSubmit">{{$t('common.sure')}}</el-button>
+      <el-button type="primary" @click="dataFormSubmit">{{$t('common.confirm')}}</el-button>
       <el-button @click="visible = false">{{$t('common.cancel')}}</el-button>
     </div>
   </el-dialog>

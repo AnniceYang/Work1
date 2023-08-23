@@ -7,7 +7,9 @@
         <el-menu-item index="7">{{$t('deviceManage.operationInformation')}}</el-menu-item>
         <el-menu-item index="8">{{$t('deviceManage.systemSettings')}}</el-menu-item>
         <el-menu-item index="9">{{$t('deviceManage.batteryParameters')}}</el-menu-item>
+        <el-menu-item index="10">三相电表</el-menu-item>
         <el-menu-item index="0">{{$t('deviceManage.selfTest')}}</el-menu-item>
+        
       </el-menu>
       <div v-loading="loading">
       <el-card  style="margin-top: 20px;">
@@ -329,7 +331,7 @@
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearElectricityConsumptionDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
-                  <el-option label="确定" value="65535" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearElectricityConsumptionData', systemSet.commonSetObj.clearElectricityConsumptionDataVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -338,7 +340,7 @@
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearPowerGenerationDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
-                  <el-option label="确定" value="65535" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearPowerGenerationData', systemSet.commonSetObj.clearPowerGenerationDataVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -347,7 +349,7 @@
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.bootCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
-                  <el-option label="确定" value="65535" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('bootCommand', systemSet.commonSetObj.bootCommandVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -356,7 +358,7 @@
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.shutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
-                  <el-option label="确定" value="65535" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('shutdownCommand', systemSet.commonSetObj.shutdownCommandVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -365,7 +367,7 @@
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.cancelShutdownCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
-                  <el-option label="确定" value="65535" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('cancelShutdownCommand', systemSet.commonSetObj.cancelShutdownCommandVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -595,8 +597,8 @@
             <el-descriptions-item :label="$t('deviceManage.restoreFactorySettings')" v-if="systemSet.otherSetObj.factoryReset">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.factoryResetVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
-                  <el-option label="取消" value="0" />
-                  <el-option label="确认" value="1" />
+                  <el-option :label="$t('common.cancel')" value="0" />
+                  <el-option :label="$t('common.confirm')" value="1" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('factoryReset', systemSet.otherSetObj.factoryResetVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -1576,7 +1578,7 @@
             <el-descriptions-item :label="$t('deviceManage.environmentalLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.environmentalLowTemperatureAlarm">{{ batteryParameter.batterySetObj.environmentalLowTemperatureAlarmVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.socLowAlarm">{{ batteryParameter.batterySetObj.socLowAlarmVal }}%</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.chargingCurrentLimiting')" v-if="batteryParameter.batterySetObj.chargingCurrentLimitingFunction">
-              {{ batteryParameter.batterySetObj.chargingCurrentLimitingFunctionVal == 1 ? '启用' : '禁用' }}
+              {{ batteryParameter.batterySetObj.chargingCurrentLimitingFunctionVal == 1 ? $t('common.enable') : $t('common.disable') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.powerDownVoltage')" v-if="batteryParameter.batterySetObj.powerDownVoltage">{{ batteryParameter.batterySetObj.powerDownVoltageVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.powerDownCurrent')" v-if="batteryParameter.batterySetObj.powerDownCurrent">{{ batteryParameter.batterySetObj.powerDownCurrentVal }}A</el-descriptions-item>
@@ -1604,6 +1606,10 @@
             <el-descriptions-item :label="$t('deviceManage.offHeating')" v-if="batteryParameter.batterySetObj.dischargeOffHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOffHeatingTemperatureVal }}℃</el-descriptions-item>
           </el-descriptions>
         </el-card>
+      </template>
+
+      <template v-else-if="activeIndex === '10'">
+        1234555
       </template>
 
       <template v-else-if="activeIndex === '0'">

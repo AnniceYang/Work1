@@ -29,7 +29,7 @@
     </el-form>
     <span slot="footer" class="dialog-footer">
       <el-button @click="visible = false">{{$t('common.cancel')}}</el-button>
-      <el-button type="primary" @click="handleSubmit()">{{$t('common.sure')}}</el-button>
+      <el-button type="primary" @click="handleSubmit()">{{$t('common.confirm')}}</el-button>
     </span>
   </el-dialog>
 </template>
