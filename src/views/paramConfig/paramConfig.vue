@@ -3,7 +3,7 @@
     <template v-if="type === '0'">
       <el-card>
         <div slot="header">
-          <span>运行信息</span>
+          <span>{{$t('parameterConfiguration.OperationInformation')}}</span>
           <el-switch
             style="margin-left: 10px"
             v-model="operationInformation.isShow"
@@ -13,61 +13,61 @@
             style="float: right; margin-top: -10px"
             type="primary"
             @click="handleSave()"
-            >保存</el-button
+            >{{$t('common.save')}}</el-button
           >
         </div>
 
         <el-card>
           <div slot="header">
-            <span>运行信息</span>
+            <span>{{$t('parameterConfiguration.OperationInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.runInformation"
               @change="changeOperationInformationItem('runInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="显示类型">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.DisplayType')">
               <el-switch
                 v-model="operationInformation.runInformationObj.displayType"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MCU软件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.MCUSoftwareVersion')">
               <el-switch
                 v-model="
                   operationInformation.runInformationObj.mcuSoftwareVersion
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="DSP软件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.DSPSoftwareVersion')">
               <el-switch
                 v-model="
                   operationInformation.runInformationObj.dspSoftwareVersion
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MCU硬件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.MCUHardwareVersion')">
               <el-switch
                 v-model="
                   operationInformation.runInformationObj.mcuHardwareVersion
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="DSP硬件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.DSPHardwareVersion')">
               <el-switch
                 v-model="
                   operationInformation.runInformationObj.dspHardwareVersion
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="系统当前模式">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentModeOfTheSystem')">
               <el-switch
                 v-model="
                   operationInformation.runInformationObj.currentModeOfTheSystem
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="系统运行状态">
+            <el-descriptions-item :label="$t('parameterConfiguration.SystemOperationStatus')">
               <el-switch
                 v-model="operationInformation.runInformationObj.systemRunStatus"
               />
@@ -77,51 +77,51 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>基本信息</span>
+            <span>{{$t('parameterConfiguration.BasicInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.basicInformation"
               @change="changeOperationInformationItem('basicInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="DCDC温度">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.DCDCTemperature')">
               <el-switch
                 v-model="
                   operationInformation.basicInformationObj.dcdcTemperature
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="国家码">
+            <el-descriptions-item :label="$t('parameterConfiguration.CountryCode')">
               <el-switch
                 v-model="operationInformation.basicInformationObj.countryCode"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="母线电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BusVoltage')">
               <el-switch
                 v-model="operationInformation.basicInformationObj.busVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="日发电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyPowerGeneration')">
               <el-switch
                 v-model="
                   operationInformation.basicInformationObj.dailyPowerGeneration
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总发电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerGeneration')">
               <el-switch
                 v-model="
                   operationInformation.basicInformationObj.totalPowerGeneration
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="额定功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.RatedPower')">
               <el-switch
                 v-model="operationInformation.basicInformationObj.ratedPower"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池能量">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryEnergy')">
               <el-switch
                 v-model="operationInformation.basicInformationObj.batteryEnergy"
               />
@@ -131,40 +131,40 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>PV信息</span>
+            <span>{{$t('parameterConfiguration.PVInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.pvInformation"
               @change="changeOperationInformationItem('pvInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="PV1电压">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV1Voltage')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv1Voltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV1电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV1Current')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv1Current"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV1功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV1Power')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv1Power"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV2电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV2Voltage')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv2Voltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV2电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV2Current')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv2Current"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV2功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.PV2Power')">
               <el-switch
                 v-model="operationInformation.pvInformationObj.pv2Power"
               />
@@ -174,50 +174,50 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>电池信息</span>
+            <span>{{$t('parameterConfiguration.BatteryInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.batteryInformation"
               @change="changeOperationInformationItem('batteryInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="电池状态">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryStatus')">
               <el-switch
                 v-model="
                   operationInformation.batteryInformationObj.batteryStatus
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryVoltage')">
               <el-switch
                 v-model="
                   operationInformation.batteryInformationObj.batteryVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryCurrent')">
               <el-switch
                 v-model="
                   operationInformation.batteryInformationObj.batteryCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryPower')">
               <el-switch
                 v-model="
                   operationInformation.batteryInformationObj.batteryPower
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池总SOC">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalSOCOfBattery')">
               <el-switch
                 v-model="
                   operationInformation.batteryInformationObj.batteryTotalSoc
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="BMS标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.BMSLogo')">
               <el-switch
                 v-model="operationInformation.batteryInformationObj.bmsSign"
               />
@@ -227,64 +227,64 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>电网信息</span>
+            <span>{{$t('parameterConfiguration.PowerGridInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.powerGridInformation"
               @change="changeOperationInformationItem('powerGridInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="电网状态">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerGridStatus')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.powerGridStatus
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相电网频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseGridFrequency')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridFrequencyA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相电网频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseGridFrequency')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridFrequencyB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相电网频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseGridFrequency')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridFrequencyC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相电网电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseGridVoltage')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridVoltageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相电网电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseGridVoltage')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridVoltageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相电网电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseGridVoltage')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.gridVoltageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ApparentPowerOfThePowerGrid')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj
@@ -292,7 +292,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ActivePowerOfThePowerGrid')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj
@@ -300,7 +300,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网无功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ReactivePowerOfThePowerGrid')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj
@@ -308,17 +308,17 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="CT电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.CTCurrent')">
               <el-switch
                 v-model="operationInformation.powerGridInformationObj.ctCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="CT功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CTPower')">
               <el-switch
                 v-model="operationInformation.powerGridInformationObj.ctPower"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="CT方向">
+            <el-descriptions-item :label="$t('parameterConfiguration.CTDirection')">
               <el-switch
                 v-model="
                   operationInformation.powerGridInformationObj.ctDirection
@@ -330,15 +330,15 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>逆变器信息</span>
+            <span>{{$t('parameterConfiguration.InverterInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.inverterInformation"
               @change="changeOperationInformationItem('inverterInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="逆变器温度">
+          <el-descriptions title="" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.InverterTemperature')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -346,14 +346,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变状态">
+            <el-descriptions-item :label="$t('parameterConfiguration.InversionState')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj.inversionState
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterOutputFrequency')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -361,7 +361,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterOutputFrequency')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -369,7 +369,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseInverterOutputFrequency')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -377,7 +377,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterOutputVoltage')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -385,7 +385,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterOutputVoltage')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -393,7 +393,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseInverterOutputVoltage')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -401,7 +401,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变输出电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterOutputCurrent')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -409,7 +409,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变输出电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterOutputCurrent')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -417,7 +417,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变输出电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseInverterOutputCurrent')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -425,7 +425,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.AhaseInverterApparentPower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -433,7 +433,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BhaseInverterApparentPower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -441,7 +441,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChaseInverterApparentPower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -449,7 +449,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterActivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -457,7 +457,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterActivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -465,7 +465,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseInverterActivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -473,7 +473,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相逆变无功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterReactivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -481,7 +481,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相逆变无功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterReactivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -489,7 +489,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相逆变无功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseInverterReactivePower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -502,115 +502,115 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>负载信息</span>
+            <span>{{$t('parameterConfiguration.LoadInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.loadInformation"
               @change="changeOperationInformationItem('loadInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="A相负载电压">
+          <el-descriptions title="" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseLoadVoltage')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadVoltageA"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相负载电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseLoadVoltage')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadVoltageB"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相负载电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseLoadVoltage')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadVoltageC"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相负载电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseLoadCurrent')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadCurrentA"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相负载电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseLoadCurrent')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadCurrentB"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相负载电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseLoadCurrent')">
               <el-switch
                 v-model="operationInformation.loadInformationObj.loadCurrentC"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相负载视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ApparentPowerOfAphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.apparentPowerOfLoadA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相负载视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ApparentPowerOfBphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.apparentPowerOfLoadB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相负载视在功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ApparentPowerOfCphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.apparentPowerOfLoadC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相负载有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ActivePowerOfAphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadActivePowerA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相负载有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ActivePowerOfBphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadActivePowerB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相负载有功功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ActivePowerOfCphaseLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadActivePowerC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="A相负载功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseLoadPowerPercentage')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadPowerPercentageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="B相负载功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseLoadPowerPercentage')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadPowerPercentageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="C相负载功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.CphaseLoadPowerPercentage')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.loadPowerPercentageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="负载实时功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.RealTimePowerOfLoad')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.realTimePowerOfLoad
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="用电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerConsumption')">
               <el-switch
                 v-model="
                   operationInformation.loadInformationObj.powerConsumption
@@ -622,7 +622,7 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>电表信息</span>
+            <span>{{$t('parameterConfiguration.ElectricityMeterInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.electricityMeterInformation"
@@ -631,8 +631,8 @@
               "
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="电表正常标志">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.NormalIndicatorOfElectricityMeter')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -640,7 +640,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.MeterVoltage')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -648,7 +648,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前组合有功电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentCombinedActiveEnergy')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -656,7 +656,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前正向有功电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentPositiveActiveEnergy')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -664,7 +664,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前反向有功电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentReverseActiveEnergy')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -672,7 +672,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.ElectricityMeterCurrent')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -680,7 +680,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.MeterPower')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -688,7 +688,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.MeterPowerFactor')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
@@ -696,11 +696,11 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.MeterFrequency')">
               <el-switch
                 v-model="
                   operationInformation.electricityMeterInformationObj
-                    .electricityMeterFrequency
+                    .electricityMeterFrequency 
                 "
               />
             </el-descriptions-item>
@@ -709,22 +709,22 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>其他信息</span>
+            <span>{{$t('parameterConfiguration.OtherInformation')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="operationInformation.otherInformation"
               @change="changeOperationInformationItem('otherInformation')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="自检状态">
+          <el-descriptions title="" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.SelfInspectionStatus')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.selfInspectionStatus
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自检实际保护阀值">
+            <el-descriptions-item :label="$t('parameterConfiguration.SelfCheckActualProtectionThreshold')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -732,7 +732,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自检实际保护时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.SelfCheckActualProtectionTime')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -740,7 +740,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自检实时保护阀值">
+            <el-descriptions-item :label="$t('parameterConfiguration.SelfCheckRealtimeProtectionThreshold')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -748,49 +748,49 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="USB状态">
+            <el-descriptions-item :label="$t('parameterConfiguration.USBStatus')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.usbStatus"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="能流图线编号1-8段标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.IdentificationOfEnergyFlowDiagramLineNumbersOneEight')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.energyFlowOne"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="能流图线编号9-16段标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.IdentificationOfEnergyFlowDiagramLineNumbersNineSixteen')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.energyFlowTwo"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="能流图开关编号1-16标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.IdentificationOfEnergyFlowDiagramLineNumbersOneSixteen')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.energyFlowThree
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(天)">
+            <el-descriptions-item :label="$t('parameterConfiguration.RunningTimeDays')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.runTimeDay"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(时)">
+            <el-descriptions-item :label="$t('parameterConfiguration.RunningTimeHours')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.runTimeHour"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(分)">
+            <el-descriptions-item :label="$t('parameterConfiguration.RunningTimeMinutes')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.runTimeMinute"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="运行时间(秒)">
+            <el-descriptions-item :label="$t('parameterConfiguration.RunTimeSeconds')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.runTimeSecond"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当日用电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyElectricityConsumption')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -798,7 +798,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="累积用电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.AccumulatedElectricityConsumption')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -806,7 +806,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当日并网量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyGridConnectionVolume')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -814,7 +814,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="累积并网量">
+            <el-descriptions-item :label="$t('parameterConfiguration.AccumulatedGridConnectionQuantity')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -822,7 +822,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当日购电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyElectricityPurchase')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -830,7 +830,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="累积购电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.AccumulatedPurchasingPower')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -838,14 +838,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当日充电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyChargingCapacity')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.dailyChargingCapacity
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="累积充电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.AccumulatedChargingCapacity')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -853,7 +853,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当日放电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyDischargeCapacity')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -861,7 +861,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="累积放电量">
+            <el-descriptions-item :label="$t('parameterConfiguration.AccumulatedDischargeCapacity')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -869,14 +869,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="漏电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.LeakageCurrent')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.leakageCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="中间母线电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.IntermediateBusbarVoltage')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -884,26 +884,26 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="BuckBoost电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BuckBoostCurrent')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.buckBoostCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PVIso电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.PVIsoVoltage')">
               <el-switch
                 v-model="operationInformation.otherInformationObj.pvIsoVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="零地电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.ZeroGroundVoltage')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.zeroGroundVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变电流直流分量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DCComponentOfInverterCurrent')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -911,7 +911,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="负载电压直流分量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DCComponentOfLoadVoltage')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -919,7 +919,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="继电器中间电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.RelayIntermediateVoltage')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -927,7 +927,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="历史记录条数">
+            <el-descriptions-item :label="$t('parameterConfiguration.NumberOfHistoryRecords')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -935,7 +935,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池充/放电加热使能状态">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryChargingDischargingHeatingEnableState')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -943,28 +943,28 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池出厂编码">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryFactoryCode')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.batteryFactoryCode
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池产品编号">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryProductNumber')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.batteryProductNumber
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池出厂日期">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryFactoryDate')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.batteryFactoryDate
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许充电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumAllowableChargingCurrent')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -972,7 +972,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="厂家信息">
+            <el-descriptions-item :label="$t('parameterConfiguration.ManufacturerInformation')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -980,14 +980,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器序列号">
+            <el-descriptions-item :label="$t('parameterConfiguration.InverterSerialNumber')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj.inverterSerialNumber
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许放电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumAllowableDischargeCurrent')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -995,7 +995,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器允许电池最大充电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TheMaximumChargingCurrentAllowedByTheInverterForTheBattery')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -1003,7 +1003,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器允许电池最大放电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TheMaximumDischargeCurrentAllowedByTheInverterForTheBattery')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj
@@ -1017,7 +1017,7 @@
 
       <el-card style="margin-top: 10px">
         <div slot="header">
-          <span>系统设置</span>
+          <span>{{$t('parameterConfiguration.SystemSettings')}}</span>
           <el-switch
             style="margin-left: 10px"
             v-model="systemSet.isShow"
@@ -1027,49 +1027,49 @@
 
         <el-card>
           <div slot="header">
-            <span>常用设置</span>
+            <span>{{$t('common.CommonSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.commonSet"
               @change="changeSystemSetItem('commonSet')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="设置系统时间">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetSystemTime')">
               <el-switch v-model="systemSet.commonSetObj.systemTime" />
             </el-descriptions-item>
-            <el-descriptions-item label="通讯协议类型">
+            <el-descriptions-item :label="$t('parameterConfiguration.CommunicationProtocolType')">
               <el-switch
                 v-model="systemSet.commonSetObj.communicationProtocolType"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="日发电量校准">
+            <el-descriptions-item :label="$t('parameterConfiguration.DailyPowerGenerationCalibration')">
               <el-switch
                 v-model="systemSet.commonSetObj.dailyPowerGenerationCalibration"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总发电量校准">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerGenerationCalibration')">
               <el-switch
                 v-model="systemSet.commonSetObj.totalPowerGenerationCalibration"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="清空用电量数据">
+            <el-descriptions-item :label="$t('parameterConfiguration.ClearElectricityConsumptionData')">
               <el-switch
                 v-model="systemSet.commonSetObj.clearElectricityConsumptionData"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="清空发电量数据">
+            <el-descriptions-item :label="$t('parameterConfiguration.ClearPowerGenerationData')">
               <el-switch
                 v-model="systemSet.commonSetObj.clearPowerGenerationData"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="开机命令">
+            <el-descriptions-item :label="$t('parameterConfiguration.BootCommand')">
               <el-switch v-model="systemSet.commonSetObj.bootCommand" />
             </el-descriptions-item>
-            <el-descriptions-item label="关机命令">
+            <el-descriptions-item :label="$t('parameterConfiguration.ShutdownCommand')">
               <el-switch v-model="systemSet.commonSetObj.shutdownCommand" />
             </el-descriptions-item>
-            <el-descriptions-item label="取消关机命令">
+            <el-descriptions-item :label="$t('parameterConfiguration.CancelShutdownCommand')">
               <el-switch
                 v-model="systemSet.commonSetObj.cancelShutdownCommand"
               />
@@ -1079,38 +1079,38 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>通讯设置</span>
+            <span>{{$t('parameterConfiguration.communication')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.communicationSet"
               @change="changeSystemSetItem('communicationSet')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="BMS型号">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.BMSModel')">
               <el-switch v-model="systemSet.communicationSetObj.bmsModel" />
             </el-descriptions-item>
-            <el-descriptions-item label="BMS地址">
+            <el-descriptions-item :label="$t('parameterConfiguration.BMSAddress')">
               <el-switch v-model="systemSet.communicationSetObj.bmsAddress" />
             </el-descriptions-item>
-            <el-descriptions-item label="BMS波特率">
+            <el-descriptions-item :label="$t('parameterConfiguration.BMSBaudRate')">
               <el-switch v-model="systemSet.communicationSetObj.bmsBaud" />
             </el-descriptions-item>
-            <el-descriptions-item label="锂电池块数">
+            <el-descriptions-item :label="$t('parameterConfiguration.NumberOfLithiumBatteryBlocks')">
               <el-switch
                 v-model="
                   systemSet.communicationSetObj.numberOfLithiumBatteryBlocks
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯地址">
+            <el-descriptions-item :label="$t('parameterConfiguration.CollectorCommunicationAddress')">
               <el-switch
                 v-model="
                   systemSet.communicationSetObj.collectorCommunicationAddress
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯协议类型">
+            <el-descriptions-item :label="$t('parameterConfiguration.CollectorCommunicationProtocolType')">
               <el-switch
                 v-model="
                   systemSet.communicationSetObj
@@ -1118,14 +1118,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="采集器通讯波特率">
+            <el-descriptions-item :label="$t('parameterConfiguration.CollectorCommunicationBaudRate')">
               <el-switch
                 v-model="
                   systemSet.communicationSetObj.baudOfCollectorCommunication
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯地址">
+            <el-descriptions-item :label="$t('parameterConfiguration.DeviceCommunicationAddress')">
               <el-switch
                 v-model="
                   systemSet.communicationSetObj.deviceCommunicationAddress
@@ -1137,75 +1137,75 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>高级设置</span>
+            <span>{{$t('parameterConfiguration.AdvancedSetting')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.advancedSet"
               @change="changeSystemSetItem('advancedSet')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="并离网模式">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.DeviceCommunicationAddress')">
               <el-switch
                 v-model="systemSet.advancedSetObj.parallelOffGridMode"
               />
-            </el-descriptions-item>
-            <el-descriptions-item label="系统模式设置">
+            </el-descriptions-item>ParallelOffGridMode
+            <el-descriptions-item :label="$t('parameterConfiguration.SystemModeSettings')">
               <el-switch v-model="systemSet.advancedSetObj.systemModeSet" />
             </el-descriptions-item>
-            <el-descriptions-item label="PV连接设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.PVConnectionSettings')">
               <el-switch v-model="systemSet.advancedSetObj.pvConnectionSet" />
             </el-descriptions-item>
-            <el-descriptions-item label="额定输出电压设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.RatedOutputVoltageSetting')">
               <el-switch
                 v-model="systemSet.advancedSetObj.ratedOutputVoltageSet"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="额定输出频率设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.RatedOutputFrequencySetting')">
               <el-switch
                 v-model="systemSet.advancedSetObj.ratedOutputFrequencySet"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池类型设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryTypeSettings')">
               <el-switch v-model="systemSet.advancedSetObj.batteryTypeSet" />
             </el-descriptions-item>
-            <el-descriptions-item label="电池充电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryChargingCurrent')">
               <el-switch
                 v-model="systemSet.advancedSetObj.batteryChargingCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池放电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryDischargeCurrent')">
               <el-switch
                 v-model="systemSet.advancedSetObj.batteryDischargeCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池均充电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryAverageChargingVoltage')">
               <el-switch
                 v-model="systemSet.advancedSetObj.batteryAverageChargingVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池浮充电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryFloatChargingVoltage')">
               <el-switch
                 v-model="systemSet.advancedSetObj.batteryFloatChargingVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池EOD">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryEOD')">
               <el-switch v-model="systemSet.advancedSetObj.batteryEod" />
             </el-descriptions-item>
-            <el-descriptions-item label="电池DOD">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryDOD')">
               <el-switch v-model="systemSet.advancedSetObj.batteryDod" />
             </el-descriptions-item>
-            <el-descriptions-item label="并网SOC下限">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitOfGridConnectedSOC')">
               <el-switch
                 v-model="systemSet.advancedSetObj.lowerLimitOfGridConnectedSoc"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="离网SOC下限">
+            <el-descriptions-item :label="$t('parameterConfiguration.OffGridSOCLowerLimit')">
               <el-switch
                 v-model="systemSet.advancedSetObj.offGridSocLowerLimit"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电表-CT">
+            <el-descriptions-item :label="$t('parameterConfiguration.ElectricityMeterCT')">
               <el-switch
                 v-model="systemSet.advancedSetObj.electricityMeterCt"
               />
@@ -1272,15 +1272,15 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>其他设置</span>
+            <span>{{$t('parameterConfiguration.OtherSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.otherSet"
               @change="changeSystemSetItem('otherSet')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="复位设备通讯设置至初始值">
+          <el-descriptions title="" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.ResetDeviceCommunicationSettingsToInitialValues')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1288,282 +1288,282 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="清空记录数据">
+            <el-descriptions-item :label="$t('parameterConfiguration.ClearRecordData')">
               <el-switch v-model="systemSet.otherSetObj.clearRecordData" />
             </el-descriptions-item>
-            <el-descriptions-item label="恢复出厂设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.RestoreFactorySettings')">
               <el-switch v-model="systemSet.otherSetObj.factoryReset" />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器重启">
+            <el-descriptions-item :label="$t('parameterConfiguration.InverterRestart')">
               <el-switch v-model="systemSet.otherSetObj.inverterRestart" />
             </el-descriptions-item>
-            <el-descriptions-item label="自检使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.SelfCheckEnable')">
               <el-switch v-model="systemSet.otherSetObj.selfCheckEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="手动清除故障">
+            <el-descriptions-item :label="$t('parameterConfiguration.ManuallyClearingFaults')">
               <el-switch
                 v-model="systemSet.otherSetObj.manuallyClearingFaults"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自动运行">
+            <el-descriptions-item :label="$t('parameterConfiguration.AutomaticOperation')">
               <el-switch v-model="systemSet.otherSetObj.automaticOperation" />
             </el-descriptions-item>
-            <el-descriptions-item label="手动解锁系统锁">
+            <el-descriptions-item :label="$t('parameterConfiguration.ManuallyUnlockingTheSystemLock')">
               <el-switch
                 v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLock"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯波特率">
+            <el-descriptions-item :label="$t('parameterConfiguration.DeviceCommunicationBaudRate')">
               <el-switch
                 v-model="systemSet.otherSetObj.deviceCommunicationBaud"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯校验位选择">
+            <el-descriptions-item :label="$t('parameterConfiguration.DeviceCommunicationCheckBitSelection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.deviceCommunicationCheckBitSelection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设备通讯停止位选择">
+            <el-descriptions-item :label="$t('parameterConfiguration.DeviceCommunicationStopBitSelection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.deviceCommunicationStopBitSelection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="倒计时关闭逆变器">
+            <el-descriptions-item :label="$t('parameterConfiguration.CountdownToTurnOffTheInverter')">
               <el-switch
                 v-model="systemSet.otherSetObj.countdownToTurnOffTheInverter"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="延时启动逆变器">
+            <el-descriptions-item :label="$t('parameterConfiguration.DelayedStartInverter')">
               <el-switch v-model="systemSet.otherSetObj.delayedStartInverter" />
             </el-descriptions-item>
-            <el-descriptions-item label="国家码">
+            <el-descriptions-item :label="$t('parameterConfiguration.CountryCode')">
               <el-switch v-model="systemSet.otherSetObj.countryCode" />
             </el-descriptions-item>
-            <el-descriptions-item label="系统时间设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.SystemTimeSetting')">
               <el-switch v-model="systemSet.otherSetObj.systemTimeSetting" />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变有功设定">
+            <el-descriptions-item :label="$t('parameterConfiguration.InverterActivePowerSetting')">
               <el-switch
                 v-model="systemSet.otherSetObj.inverterActivePowerSetting"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯协议类型">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourEightFiveCommunicationProtocolType')">
               <el-switch
                 v-model="systemSet.otherSetObj.communicationProtocolType485"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯地址">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourEightFiveCommunicationAddress')">
               <el-switch
                 v-model="systemSet.otherSetObj.communicationAddress485"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="485通讯波特率">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourEightFiveCommunicationBaudRate')">
               <el-switch v-model="systemSet.otherSetObj.communicationBaud485" />
             </el-descriptions-item>
-            <el-descriptions-item label="硬限制使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.HardLimitEnable')">
               <el-switch v-model="systemSet.otherSetObj.hardLimitEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="硬限制功率设定值">
+            <el-descriptions-item :label="$t('parameterConfiguration.HardLimitPowerSettingValue')">
               <el-switch
                 v-model="systemSet.otherSetObj.hardLimitPowerSettingValue"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="澳洲地区选择">
+            <el-descriptions-item :label="$t('parameterConfiguration.AustralianRegionSelection')">
               <el-switch
                 v-model="systemSet.otherSetObj.australianRegionSelection"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="蓝牙连接标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.BluetoothConnectionFlag')">
               <el-switch
                 v-model="systemSet.otherSetObj.bluetoothConnectionFlag"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PV有功设定">
+            <el-descriptions-item :label="$t('parameterConfiguration.PVActivePowerSetting')">
               <el-switch v-model="systemSet.otherSetObj.pvActivePowerSetting" />
             </el-descriptions-item>
-            <el-descriptions-item label="有功变化率限制">
+            <el-descriptions-item :label="$t('parameterConfiguration.LimitOfActivePowerChangeRate')">
               <el-switch
                 v-model="systemSet.otherSetObj.limitOfActivePowerChangeRate"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="孤岛检测使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.IslandDetectionEnable')">
               <el-switch
                 v-model="systemSet.otherSetObj.islandDetectionEnable"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="认证模式">
+            <el-descriptions-item :label="$t('parameterConfiguration.AuthenticationMode')">
               <el-switch v-model="systemSet.otherSetObj.authenticationMode" />
             </el-descriptions-item>
-            <el-descriptions-item label="当前系统运行模式控制源">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentSystemOperationModeControlSource')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.currentSystemOperationModeControlSource
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="系统当前运行模式">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentOperatingModeOfTheSystem')">
               <el-switch
                 v-model="systemSet.otherSetObj.currentOperatingModeOfTheSystem"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="APP启动标志">
+            <el-descriptions-item :label="$t('parameterConfiguration.APPStartupFlag')">
               <el-switch v-model="systemSet.otherSetObj.appStartupFlag" />
             </el-descriptions-item>
-            <el-descriptions-item label="蜂鸣器响应时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.BuzzerResponseTime')">
               <el-switch v-model="systemSet.otherSetObj.buzzerResponseTime" />
             </el-descriptions-item>
-            <el-descriptions-item label="交流类型">
+            <el-descriptions-item :label="$t('parameterConfiguration.CommunicationType')">
               <el-switch v-model="systemSet.otherSetObj.communicationType" />
             </el-descriptions-item>
-            <el-descriptions-item label="系统模式设置">
+            <el-descriptions-item :label="$t('parameterConfiguration.SystemModeSettings')">
               <el-switch v-model="systemSet.otherSetObj.systemModeSettings" />
             </el-descriptions-item>
-            <el-descriptions-item label="USB操作">
+            <el-descriptions-item :label="$t('parameterConfiguration.USBOperation')">
               <el-switch v-model="systemSet.otherSetObj.usbOperation" />
             </el-descriptions-item>
-            <el-descriptions-item label="功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerFactor')">
               <el-switch v-model="systemSet.otherSetObj.powerFactor" />
             </el-descriptions-item>
-            <el-descriptions-item label="防逆流功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.AntiBackflowPowerPercentage')">
               <el-switch
                 v-model="systemSet.otherSetObj.antiBackflowPowerPercentage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最大输出功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumOutputPowerPercentage')">
               <el-switch
                 v-model="systemSet.otherSetObj.maximumOutputPowerPercentage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="功率设置调节速率">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerSettingAdjustmentRate')">
               <el-switch
                 v-model="systemSet.otherSetObj.powerSettingAdjustmentRate"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="并网功率软起速率">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridConnectedPowerSoftStartRate')">
               <el-switch
                 v-model="systemSet.otherSetObj.gridConnectedPowerSoftStartRate"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率控制模式">
+            <el-descriptions-item :label="$t('parameterConfiguration.ReactivePowerControlMode')">
               <el-switch
                 v-model="systemSet.otherSetObj.reactivePowerControlMode"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率调节速率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ReactivePowerRegulationRate')">
               <el-switch
                 v-model="systemSet.otherSetObj.reactivePowerRegulationRate"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值1">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridVoltageProtectionOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值2">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridVoltageProtectionTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限值3">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridVoltageProtectionThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitValueOfGridVoltageProtection3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值1">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridVoltageProtection1')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值2">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridVoltageProtection2')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限值3">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridVoltageProtection3')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitValueOfGridVoltageProtection3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压重连上限值">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridVoltageReconnection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitValueOfGridVoltageReconnection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压重连下限值">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLmitOfGridVoltageReconnection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitValueOfGridVoltageReconnection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间1">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionUpperLimitTimeOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间2">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionUpperLimitTimeTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护上限时间3">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionUpperLimitTimeThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.upperLimitTimeOfGridVoltageProtection3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间1">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionLowerLimitTimeOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间2">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionLowerLimitTimeTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护下限时间3">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridVoltageProtectionLowerLimitTimeThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.lowerLimitTimeOfGridVoltageProtection3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网电压保护恢复时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.RecoveryTimeOfGridFrequencyProtection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.recoveryTimeOfGridVoltageProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值1">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridFrequencyProtectionOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1571,7 +1571,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值2">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridFrequencyProtectionTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1579,7 +1579,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限值3">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridFrequencyProtectionThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1587,7 +1587,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值1">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridFrequencyProtectionOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1595,7 +1595,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值2">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridFrequencyProtectionTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1603,7 +1603,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限值3">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitValueOfGridFrequencyProtectionThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1611,7 +1611,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率重连上限值">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpperLimitValueOfGridFrequencyReconnection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1619,7 +1619,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率重连下限值">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowerLimitOfGridFrequencyReconnection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1627,56 +1627,56 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间1">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionUpperLimitTimeOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间2">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionUpperLimitTimeTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护上限时间3">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionUpperLimitTimeThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionUpperLimitTime3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间1">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionLowerLimitTimeOne')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间2">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionLowerLimitTimeTwo')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护下限时间3">
+            <el-descriptions-item :label="$t('parameterConfiguration.GridFrequencyProtectionLowerLimitTimeThree')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gridFrequencyProtectionLowerLimitTime3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网频率保护恢复时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.RecoveryTimeOfGridFrequencyProtection')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.recoveryTimeOfGridFrequencyProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电网10Min过压保护值">
+            <el-descriptions-item :label="$t('parameterConfiguration.TenMinOvervoltageProtectionValueOfThePowerGrid')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1684,83 +1684,83 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="连网等待时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.NetworkingWaitingTime')">
               <el-switch
                 v-model="systemSet.otherSetObj.networkingWaitingTime"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="重连等待时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.ReconnectWaitingTime')">
               <el-switch v-model="systemSet.otherSetObj.reconnectWaitingTime" />
             </el-descriptions-item>
-            <el-descriptions-item label="寒冷模式">
+            <el-descriptions-item :label="$t('parameterConfiguration.ColdMode')">
               <el-switch v-model="systemSet.otherSetObj.coldMode" />
             </el-descriptions-item>
-            <el-descriptions-item label="无功功率百分比">
+            <el-descriptions-item :label="$t('parameterConfiguration.ReactivePowerPercentage')">
               <el-switch
                 v-model="systemSet.otherSetObj.reactivePowerPercentage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="Freq-Watt(曲线)使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.FreqWattCurveEnable')">
               <el-switch v-model="systemSet.otherSetObj.freqWattCurveEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="Volt-Watt(曲线)使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.VoltWattCurveEnable')">
               <el-switch v-model="systemSet.otherSetObj.voltWattCurveEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="Volt-Var(曲线)使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.VoltVarCurveEnable')">
               <el-switch v-model="systemSet.otherSetObj.voltVarCurveEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="PF-Watt(曲线)使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.PFWattCurveEnable')">
               <el-switch v-model="systemSet.otherSetObj.pfWattCurveEnable" />
             </el-descriptions-item>
-            <el-descriptions-item label="定时模式类型">
+            <el-descriptions-item :label="$t('parameterConfiguration.TimingModeType')">
               <el-switch v-model="systemSet.otherSetObj.timingModeType" />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器1">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterOne')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器2">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterTwo')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器3">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterThree')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister3"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器4">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterFour')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister4"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器5">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterFive')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister5"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器6">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterSix')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister6"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器7">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterSeven')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister7"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="设置量变更寄存器8">
+            <el-descriptions-item :label="$t('parameterConfiguration.SetQuantityChangeRegisterEight')">
               <el-switch
                 v-model="systemSet.otherSetObj.setQuantityChangeRegister8"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池参数显示方式">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryParameterDisplayMethod')">
               <el-switch
                 v-model="systemSet.otherSetObj.batteryParameterDisplayMethod"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前显示参数的电池ID">
+            <el-descriptions-item :label="$t('parameterConfiguration.TheBatteryIDOfTheCurrentDisplayedParameter')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj
@@ -1768,17 +1768,17 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS控制">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSCntrol')">
               <el-switch v-model="systemSet.otherSetObj.mosControl" />
             </el-descriptions-item>
-            <el-descriptions-item label="GPS通讯模块电源控制">
+            <el-descriptions-item :label="$t('parameterConfiguration.GPSCommunicationModulePowerControl')">
               <el-switch
                 v-model="
                   systemSet.otherSetObj.gpsCommunicationModulePowerControl
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="实时时钟">
+            <el-descriptions-item :label="$t('parameterConfiguration.RealTimeClock')">
               <el-switch v-model="systemSet.otherSetObj.realTimeClock" />
             </el-descriptions-item>
           </el-descriptions>
@@ -1787,7 +1787,7 @@
 
       <el-card style="margin-top: 10px">
         <div slot="header">
-          <span>电池参数</span>
+          <span>{{$t('parameterConfiguration.BatteryParameters')}}</span>
           <el-switch
             style="margin-left: 10px"
             v-model="batteryParameter.isShow"
@@ -1797,195 +1797,195 @@
 
         <el-card>
           <div slot="header">
-            <span>常用设置</span>
+            <span>{{$t('common.CommonSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="batteryParameter.batterySet"
               @change="changeBatteryParameterItem('batterySet')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="电池组ID">
+          <el-descriptions title="" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryPackID')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.batteryPackId"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前升级电池ID">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentUpgradedBatteryID')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.currentUpgradedBatteryId
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="升级失败电池ID">
+            <el-descriptions-item :label="$t('parameterConfiguration.UpgradeFailedBatteryID')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.upgradeFailedBatteryId"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池包电芯串数 N">
+            <el-descriptions-item :label="$t('parameterConfiguration.NumberOfBatteryPackCellStringsN')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.numberOfBatteryPackCellStringsN
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="温度探头的总数 X">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalNumberOfTemperatureProbesX')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.totalNumberOfTemperatureProbesX
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="漏电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.LeakageCurrent')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.leakageCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="中间母线电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.IntermediateBusbarVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.intermediateBusbarVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="BuckBoost电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.BuckBoostCurrent')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.buckBoostCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="PVIso电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.PVIsoVoltage')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.pvIsoVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="零地电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.ZeroGroundVoltage')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.zeroGroundVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变电流直流分量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DCComponentOfInverterCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dcComponentOfInverterCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="负载电压直流分量">
+            <el-descriptions-item :label="$t('parameterConfiguration.DCComponentOfLoadVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dcComponentOfLoadVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="继电器中间电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.RelayIntermediateVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.relayIntermediateVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压1">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageOne')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压2">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageTwo')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压3">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageThree')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage3"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压4">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageFour')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage4"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压5">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageFive')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage5"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压6">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageSix')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage6"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压7">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageSeven')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage7"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压8">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageEight')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage8"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压9">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageNine')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage9"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压10">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageTen')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage10"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压11">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageEleven')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage11"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压12">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageTwelve')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage12"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压13">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageThirteen')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage13"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压14">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageFourteen')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage14"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压15">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageFifteen')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage15"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯电压16">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellVoltageSixteen')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellVoltage16"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentCurrent')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.currentCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="State1">
+            <el-descriptions-item :label="$t('parameterConfiguration.State1')">
               <el-switch v-model="batteryParameter.batterySetObj.state1" />
             </el-descriptions-item>
-            <el-descriptions-item label="State2">
+            <el-descriptions-item :label="$t('parameterConfiguration.State2')">
               <el-switch v-model="batteryParameter.batterySetObj.state2" />
             </el-descriptions-item>
-            <el-descriptions-item label="State3">
+            <el-descriptions-item :label="$t('parameterConfiguration.State3')">
               <el-switch v-model="batteryParameter.batterySetObj.state3" />
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingOvercurrentProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.chargingOvercurrentProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingOvercurrentProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -1993,28 +1993,28 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过压保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOvervoltageProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOvervoltageProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过压保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOvervoltageProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOvervoltageProtectionDelay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过放保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOverDischargeProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOverDischargeProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过放保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOverDischargeProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2022,35 +2022,35 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="过压滞后电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.OvervoltageHysteresisVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.overvoltageHysteresisVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="过放滞后电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.OverdischargeHysteresisVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.overdischargeHysteresisVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过压恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOvervoltageRecoveryDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOvervoltageRecoveryDelay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过放恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOverDischargeRecoveryDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOverDischargeRecoveryDelay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电高温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.HighTemperatureProtectionDuringDischarge')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2058,7 +2058,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电高温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.HighTemperatureProtectionRecoveryDuringDischarge')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2066,7 +2066,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电低温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowTemperatureProtectionDuringDischarge')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2074,7 +2074,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电低温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeLowtemperatureProtectionRecovery')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2082,7 +2082,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电高温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.HighTemperatureProtectionDuringCharging')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2090,7 +2090,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电高温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.HighTemperatureProtectionRecoveryDuringCharging')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2098,7 +2098,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电低温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowTemperatureProtectionDuringCharging')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2106,7 +2106,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电低温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.LowTemperatureProtectionRecoveryCuringCharging')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2114,14 +2114,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="均衡开启电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.EqualizingOpeningVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.equalizingOpeningVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="均衡开启压差">
+            <el-descriptions-item :label="$t('parameterConfiguration.EquilibriumOpeningPressureDifference')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2129,60 +2129,60 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯温度1">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellTemperatureOne')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellTemperature1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯温度2">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellTemperatureTwo')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellTemperature2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯温度3">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellTemperatureThree')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellTemperature3"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯温度4">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellTemperatureFour')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cellTemperature4"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS 温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSTemperature')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.mosTemperature"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.AmbientTemperature')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.ambientTemperature"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="均衡状态1">
+            <el-descriptions-item :label="$t('parameterConfiguration.EquilibriumState1')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.equilibriumState1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="均衡状态2">
+            <el-descriptions-item :label="$t('parameterConfiguration.EquilibriumState2')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.equilibriumState2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="软件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.SoftwareVersion')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.softwareVersion"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="硬件版本">
+            <el-descriptions-item :label="$t('parameterConfiguration.HardwareVrsion')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.hardwareVersion"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="状态">
+            <el-descriptions-item :label="$t('parameterConfiguration.State')">
               <el-switch v-model="batteryParameter.batterySetObj.state" />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-电芯过放告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusCellOverDischargeAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2190,7 +2190,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-总过放告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusTotalOverDischargeAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2198,14 +2198,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-电芯过压告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusCellOvervoltageAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarm
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-总过压告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusTotalOvervoltageAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2213,7 +2213,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-放电过流告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusDischargeOvercurrentAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2221,7 +2221,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-放电过温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusDischargeOverTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2229,7 +2229,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-充电过温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusChargingOverTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2237,7 +2237,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-环境高温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusEnvironmentalHighTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2245,7 +2245,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-环境低温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmtatusEnvironmentalLowTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2253,12 +2253,12 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-SOC低告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusSOCLowAlarm')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.alarmStatusSocLowAlarm"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="告警状态-MOS高温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusMOSHighTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2266,57 +2266,57 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池SOC">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatterySOC')">
               <el-switch v-model="batteryParameter.batterySetObj.batterySoc" />
             </el-descriptions-item>
-            <el-descriptions-item label="电池SOH">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatterySOH')">
               <el-switch v-model="batteryParameter.batterySetObj.batterySoh" />
             </el-descriptions-item>
-            <el-descriptions-item label="循环次数">
+            <el-descriptions-item :label="$t('parameterConfiguration.NumberOfCycles')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.numberOfCycles"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电剩余时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeRemainingTime')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.dischargeRemainingTime"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电剩余时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingRemainingTime')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.chargingRemainingTime"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前充电间隔">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentChargingInterval')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.currentChargingInterval"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最长充电间隔">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumChargingInterval')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.maximumChargingInterval"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池总电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalBatteryVoltage')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.totalBatteryVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池包最高电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumVoltageOfBatteryPack')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.maximumVoltageOfBatteryPack
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池包最低电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.MinimumVoltageOfBatteryPack')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.minimumVoltageOfBatteryPack
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许放电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumAllowableDischargeCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2324,59 +2324,59 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最大允许充电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumAllowableChargingCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.maximumAllowableChargingCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="标准充电电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.StandardChargingVoltage')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.standardChargingVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前湿度">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentHumidity')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.currentHumidity"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="出厂编码">
+            <el-descriptions-item :label="$t('parameterConfiguration.FactoryCode')">
               <el-switch v-model="batteryParameter.batterySetObj.factoryCode" />
             </el-descriptions-item>
-            <el-descriptions-item label="产品编号">
+            <el-descriptions-item :label="$t('parameterConfiguration.ProductNumber')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.productNumber"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="出厂日期">
+            <el-descriptions-item :label="$t('parameterConfiguration.DateOfProduction')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.dateOfProduction"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池检测电阻阻值">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryDetectionResistanceValue')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.batteryDetectionResistanceValue
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最高电芯温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.MaximumCellTemperature')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.maximumCellTemperature"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="最低电芯温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.MinimumCellTemperature')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.minimumCellTemperature"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="温差">
+            <el-descriptions-item :label="$t('parameterConfiguration.TemperatureDifference')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.temperatureDifference"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="温差保护值">
+            <el-descriptions-item :label="$t('parameterConfiguration.TemperatureDifferenceProtectionValue')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2384,14 +2384,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="温差告警值">
+            <el-descriptions-item :label="$t('parameterConfiguration.TemperatureDifferenceAlarmValue')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.temperatureDifferenceAlarmValue
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="压差保护值">
+            <el-descriptions-item :label="$t('parameterConfiguration.DifferentialPressureProtectionValue')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2399,19 +2399,19 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="压差告警值">
+            <el-descriptions-item :label="$t('parameterConfiguration.DifferentialPressureAlarmValue')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.differentialPressureAlarmValue
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="静置均衡时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.StaticEquilibriumTime')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.staticEquilibriumTime"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流后自动恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.AutomaticRecoveryDelayAfterChargingOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2419,7 +2419,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流后自动恢复锁定">
+            <el-descriptions-item :label="$t('parameterConfiguration.AutomaticallyResumeLockingAfterOvercharging')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2427,7 +2427,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电过流后自动恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.AutomaticRecoveryDelayAfterDischargeOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2435,7 +2435,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电过流后自动恢复锁定">
+            <el-descriptions-item :label="$t('parameterConfiguration.AutomaticRecoveryLockingAfterDischargeOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2443,7 +2443,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="逆变器电流超过限制电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TheInverterCurrentExceedsTheLimitCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2451,14 +2451,14 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池参数显示方式">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryParameterDisplayMethod')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.batteryParameterDisplayMethod
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前显示参数的电池ID">
+            <el-descriptions-item :label="$t('parameterConfiguration.TheBatteryIDOfTheCurrentDisplayedParameter')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2466,31 +2466,31 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池包设计容量">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryPackDesignCapacity')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.batteryPackDesignCapacity
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="当前电池满容量">
+            <el-descriptions-item :label="$t('parameterConfiguration.CurrentBatteryFullCapacity')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.currentBatteryFullCapacity
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电池剩余容量">
+            <el-descriptions-item :label="$t('parameterConfiguration.RemainingBatteryCapacity')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.remainingBatteryCapacity
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS控制">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSControl')">
               <el-switch v-model="batteryParameter.batterySetObj.mosControl" />
             </el-descriptions-item>
-            <el-descriptions-item label="充/放电加热使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingDischargingHeatingEnable')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2498,7 +2498,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="GPS通讯模块电源控制">
+            <el-descriptions-item :label="$t('parameterConfiguration.GPSCommunicationModulePowerControl')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2506,26 +2506,26 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="实时时钟">
+            <el-descriptions-item :label="$t('parameterConfiguration.RealTimeClock')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.realTimeClock"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电过流1保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeOvercurrent1Protection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dischargeOvercurrent1Protection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电过流1延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeOvercurrent1Delay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dischargeOvercurrent1Delay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境高温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalHighTemperatureProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2533,7 +2533,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境高温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalHighTemperatureProtectionRecovery')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2541,7 +2541,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境低温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalLowTemperatureProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2549,7 +2549,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境低温保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalLowTemperatureProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2557,7 +2557,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过压保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOvervoltageProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2565,7 +2565,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过压保护恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPressureOverDischargeRecovery')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2573,7 +2573,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过放保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOvervoltageProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2581,7 +2581,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过放恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPressureOverDischargeRecovery')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2589,7 +2589,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过压保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOvervoltageProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2597,7 +2597,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过放保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOverDischargeProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2605,35 +2605,35 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总过压恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalOvervoltageRecoveryDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.totalOvervoltageRecoveryDelay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总过放恢复延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalOverdischargeRecoveryDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.totalOverdischargeRecoveryDelay
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS高温保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSHighTemperatureProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.mosHighTemperatureProtection
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS高温恢复">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSHighTemperatureRecovery')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.mosHighTemperatureRecovery
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS高温保护延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSHighTemperatureProtectionDelay')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2641,7 +2641,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充满保护_总压高于">
+            <el-descriptions-item :label="$t('parameterConfiguration.FullOfProtectionTotalPressureAbove')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2649,7 +2649,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充满保护_充电电流低于">
+            <el-descriptions-item :label="$t('parameterConfiguration.FullOfProtectionChargingCurrentBelow')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2657,40 +2657,40 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充满保护_延时时间">
+            <el-descriptions-item :label="$t('parameterConfiguration.FullOfProtectionDelayTime')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.fullOfProtectionDelayTime
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="加热/风扇开启温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.HeatingFanOnTemperature')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.heatingFanOnTemperature"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="加热/风扇恢复温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.HeatingFanRecoveryTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.heatingFanRecoveryTemperature
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-电压告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsVoltageAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.enableSettingsVoltageAlarm
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-过流告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsOvercurrentAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.enableSettingsOvercurrentAlarm
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-过温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsOverTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2698,7 +2698,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-MOS过温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingMOSOverTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2706,7 +2706,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-电芯不均衡告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsCellImbalanceAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2714,7 +2714,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-环境温度告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsAmbientTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2722,21 +2722,21 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-SOC低告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingMOSOverTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.enableSettingSocLowAlarm
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-充电加热使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsChargingAndHeatingEnable')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.enableSettingsUnlockSystemLocks
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-总电压保护">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsTotalVoltageProtection')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2744,7 +2744,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-充电过流后放电恢复功能">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsDischargeRecoveryFunctionAfterChargingOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2752,7 +2752,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-放电过流后延时自动恢复功能">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsDelayAutomaticRecoveryFunctionAfterDischargeOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2760,7 +2760,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-放电过流后充电恢复功能">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsChargingRecoveryFunctionAfterDischargeOvercurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2768,21 +2768,21 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="使能设置-静置均衡功能">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsStaticEqualizationFunction')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.enableSettingsStaticEquilibrium
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="系统锁状态序号">
+            <el-descriptions-item :label="$t('parameterConfiguration.SystemLockStatusSerialNumber')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.systemLockStatusSerialNumber
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过压告警电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOvervoltageAlarmVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2790,7 +2790,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="总压过放告警电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalVoltageOverDischargeAlarmVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2798,28 +2798,28 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过压告警电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOvervoltageAlarmVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOvervoltageAlarmVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯过放告警电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOverDischargeAlarmVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.cellOverDischargeAlarmVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电过流告警电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingOvercurrentAlarmCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.chargingOvercurrentAlarmCurrent
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电过流告警电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeOvercurrentAlarmCurrent')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2827,7 +2827,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电高温告警温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingHighTemperatureAlarmTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2835,7 +2835,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="充电低温告警温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingLowTemperatureAlarmTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2843,7 +2843,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电高温告警温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeHighTemperatureAlarmTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2851,7 +2851,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电低温告警温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeLowTemperatureAlarmTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2859,7 +2859,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS过温告警温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSOverTemperatureAlarmTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2867,7 +2867,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="MOS过温告警恢复温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.MOSOverTemperatureAlarmRecoveryTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2875,7 +2875,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="电芯不均衡告警压差">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryImbalanceAlarmPressureDifference')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2883,7 +2883,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="不均衡告警恢复压差">
+            <el-descriptions-item :label="$t('parameterConfiguration.BatteryImbalanceAlarmPressureDifference')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2891,7 +2891,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境高温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalHighTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2899,7 +2899,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="环境低温告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.EnvironmentalLowTemperatureAlarm')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2907,51 +2907,51 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="SOC低告警">
+            <el-descriptions-item :label="$t('parameterConfiguration.SOCLowAlarm')">
               <el-switch v-model="batteryParameter.batterySetObj.socLowAlarm" />
             </el-descriptions-item>
-            <el-descriptions-item label="充电限流功能">
+            <el-descriptions-item :label="$t('parameterConfiguration.ChargingCurrentLimitingFunction')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.chargingCurrentLimitingFunction
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="掉电电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerDownVoltage')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.powerDownVoltage"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="掉电电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerDownCurrent')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.powerDownCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="掉电延时">
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerDownDelay')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.powerDownDelay"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="每月自放电率">
+            <el-descriptions-item :label="$t('parameterConfiguration.MonthlySelfDischargeRate')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.monthlySelfDischargeRate
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="循环1次容量比">
+            <el-descriptions-item :label="$t('parameterConfiguration.Cycle1CapacityRatio')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.cycle1CapacityRatio"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="SOC 0%单体电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.SOC0MonomerVoltage')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.soc0PercentMonomerVoltage
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="每循1次满容量衰减">
+            <el-descriptions-item :label="$t('parameterConfiguration.FullCapacityAttenuationOncePerCycle')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
@@ -2959,81 +2959,81 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="通讯地址">
+            <el-descriptions-item :label="$t('parameterConfiguration.MailAddress')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.communicateAddress"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数1">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter2')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数2">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter1')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数3">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter3')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters3"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数4">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter4')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters4"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数5">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter5')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters5"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数6">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter6')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters6"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数7">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter7')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters7"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义参数8">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomParameter8')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customParameters8"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义状态1">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomStatus1')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customStatus1"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="自定义状态2">
+            <el-descriptions-item :label="$t('parameterConfiguration.CustomStatus2')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.customStatus2"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电/静置加热使能">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeStaticHeatingEnable')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dischargeStaticHeatingEnable
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="解锁系统锁">
+            <el-descriptions-item :label="$t('parameterConfiguration.UnlockSystemLock')">
               <el-switch
                 v-model="batteryParameter.batterySetObj.unlockSystemLock"
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电开启加热温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeOnHeatingTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dischargeOnHeatingTemperature
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="放电关闭加热温度">
+            <el-descriptions-item :label="$t('parameterConfiguration.DischargeOffHeatingTemperature')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj.dischargeOffHeatingTemperature
@@ -3046,7 +3046,7 @@
 
       <el-card style="margin-top: 10px">
         <div slot="header">
-          <span>三相电表</span>
+          <span>{{$t('parameterConfiguration.ThreePhaseElectricityMeter')}}</span>
           <el-switch
             style="margin-left: 10px"
             v-model="threePhaseMeterParameter.isShow"
@@ -3055,15 +3055,15 @@
         </div>
         <el-card>
           <div slot="header">
-            <span>基本设置</span>
+            <span>{{$t('parameterConfiguration.BasicSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="threePhaseMeterParameter.threePhaseMeterBasic"
               @change="changeThreePhaseParameterItem('threePhaseMeterBasic')"
             />
           </div>
-          <el-descriptions title="" :column="4">
-            <el-descriptions-item label="1 路组合有功总电能">
+          <el-descriptions title="" :column="3">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCombinedActiveTotalElectricalEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3071,7 +3071,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路组合有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCombinedActiveTotalElectricalEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3079,7 +3079,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路组合有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCombinedActiveTotalElectricalEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3087,7 +3087,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路组合有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCombinedActiveTotalElectricalEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3095,7 +3095,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路当前正向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCurrentPositiveActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3103,7 +3103,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路当前正向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCurrentPositiveActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3111,7 +3111,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路当前正向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCurrentPositiveActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3119,7 +3119,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路当前正向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCurrentPositiveActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3127,7 +3127,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路当前反向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCurrentReverseActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3135,7 +3135,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路当前反向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCurrentReverseActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3143,7 +3143,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路当前反向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCurrentReverseActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3151,7 +3151,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路当前反向有功总电能">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCurrentReverseActiveTotalElectricEnergy')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3159,168 +3159,168 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 A 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 B 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 C 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 A 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitAphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 B 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitBphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 C 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 A 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitAphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 B 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitBphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 C 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 A 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitAphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 B 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitBphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 C 相电压">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCphaseVoltage')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 A 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 B 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 C 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 A 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitAphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 B 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitBphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 C 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 A 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitAphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 B 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitBphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 C 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 A 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitAphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 B 相电流">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitBphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOfOneChannel')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3328,7 +3328,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路A相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3336,7 +3336,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路B相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3344,7 +3344,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路C相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3352,7 +3352,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf2wayActivePower')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3360,7 +3360,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路A相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3368,7 +3368,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 B 相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3376,7 +3376,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 C 相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3384,7 +3384,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf3wayActivePower')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3392,7 +3392,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路A相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseA')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3400,7 +3400,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 B 相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseB')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3408,7 +3408,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 C 相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseC')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3416,7 +3416,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf4wayActivePower')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3424,7 +3424,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路A相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseA')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3432,7 +3432,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路B相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseB')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3440,7 +3440,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路C相有功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseC')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3448,7 +3448,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路总功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneChannelTotalPowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3456,28 +3456,28 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 A 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 B 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 C 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路总功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayTotalPowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3485,28 +3485,28 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 A 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayAphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 B 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayBphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 C 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayCphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路总功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayTotalPowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3514,7 +3514,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 A 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayAphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3522,7 +3522,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 B 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayBphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3530,7 +3530,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 C 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayCphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3538,7 +3538,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路总功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayCphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3546,56 +3546,56 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 A 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayTotalPowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorA
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 B 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayBphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorB
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 C 相功率因数">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayCphasePowerFactor')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorC
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneChannelFrequency')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.oneFrequency
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoChannelFrequency')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.twoFrequency
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeChannelFrequency')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.threeFrequency
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路频率">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourChannelFrequency')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourFrequency
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfOneChannel')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3603,7 +3603,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 A 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3611,7 +3611,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 B 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3619,7 +3619,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="1 路 C 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3627,7 +3627,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfTwoChannel')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3635,7 +3635,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 A 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3643,7 +3643,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 B 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3651,7 +3651,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="2 路 C 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3659,7 +3659,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfThreeChannel')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3667,7 +3667,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 A 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3675,7 +3675,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 B 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3683,7 +3683,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="3 路 C 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3691,7 +3691,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfFourChannel')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3699,7 +3699,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 A 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitAphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3707,7 +3707,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 B 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitBphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -3715,7 +3715,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item label="4 路 C 相无功总功率">
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitCphase')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj
