@@ -3302,18 +3302,25 @@
             <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCphaseCurrent')">
               <el-switch
                 v-model="
-                  threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentA
+                  threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentC
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitAphaseCurrent')">
               <el-switch
                 v-model="
-                  threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentB
+                  threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentA
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitBphaseCurrent')">
+              <el-switch
+                v-model="
+                  threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentB
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCphaseCurrent')">
               <el-switch
                 v-model="
                   threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentC

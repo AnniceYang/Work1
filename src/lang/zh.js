@@ -1463,7 +1463,7 @@ export default {
     ThreeCircuitCphaseCurrent:'3路C相电流',
     FourCircuitAphaseCurrent:'4路A相电流',
     FourCircuitBphaseCurrent:'4路B相电流',
-  
+    FourCircuitCphaseCurrent:'4路C相电流',
 
     TotalActivePowerOfOneChannel:'1 路有功总功率',
 

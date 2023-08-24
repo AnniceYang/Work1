@@ -7,7 +7,7 @@
         <el-menu-item index="7">{{$t('deviceManage.operationInformation')}}</el-menu-item>
         <el-menu-item index="8">{{$t('deviceManage.systemSettings')}}</el-menu-item>
         <el-menu-item index="9">{{$t('deviceManage.batteryParameters')}}</el-menu-item>
-        <el-menu-item index="10">三相电表</el-menu-item>
+        <el-menu-item index="13">{{$t('parameterConfiguration.ThreePhaseElectricityMeter')}}</el-menu-item>
         <el-menu-item index="0">{{$t('deviceManage.selfTest')}}</el-menu-item>
         
       </el-menu>
@@ -1608,8 +1608,324 @@
         </el-card>
       </template>
 
-      <template v-else-if="activeIndex === '10'">
-        1234555
+      <template v-else-if="activeIndex === '13'">
+        <el-card style="margin-top: 10px;" v-if="threePhaseMeterParameter.threePhaseMeterBasic">
+        <el-descriptions :title="$t('parameterConfiguration.ThreePhaseElectricityMeter')" :column="2">
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneCombinedActiveTotalElectricEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCombinedActiveTotalElectricEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoCombinedActiveTotalElectricEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCombinedActiveTotalElectricEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeCombinedActiveTotalElectricEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCombinedActiveTotalElectricEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourCombinedActiveTotalElectricEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCombinedActiveTotalElectricEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCurrentPositiveActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneCurrentTotalPositiveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentTotalPositiveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCurrentPositiveActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoCurrentTotalPositiveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentTotalPositiveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCurrentPositiveActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeCurrentTotalPositiveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentTotalPositiveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCurrentPositiveActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourCurrentTotalPositiveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentTotalPositiveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCurrentReverseActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneCurrentTotalReserveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentTotalReserveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCurrentReverseActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoCurrentTotalReserveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentTotalReserveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCurrentReverseActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeCurrentTotalReserveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentTotalReserveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCurrentReverseActiveTotalElectricEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourCurrentTotalReserveActiveEnergy">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentTotalReserveActiveEnergyVal }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageAVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageBVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneVoltageCVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitAphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageAVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitBphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageBVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoVoltageCVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitAphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageAVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitBphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageBVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeVoltageCVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitAphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageAVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitBphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageBVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCphaseVoltage')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourVoltageCVal }}V
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentAVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentBVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneCurrentCVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitAphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentAVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitBphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentBVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoCircuitCphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoCurrentCVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitAphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentAVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitBphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentBVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeCircuitCphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeCurrentCVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitAphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentAVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitBphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentBVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourCircuitCphaseCurrent')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourCurrentCVal }}A
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOfOneChannel')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePowerVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePowerAVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalActivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePowerBVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf1circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalActivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalActivePowerCVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf2wayActivePower')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalActivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalActivePowerVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalActivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalActivePowerAVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalActivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalActivePowerBVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf2circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalActivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalActivePowerCVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf3wayActivePower')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalActivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalActivePowerVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseA')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalActivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalActivePowerAVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseB')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalActivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalActivePowerBVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf3phaseC')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalActivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalActivePowerCVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalPowerOf4wayActivePower')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalActivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalActivePowerVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseA')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalActivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalActivePowerAVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseB')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalActivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalActivePowerBVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalActivePowerOf4phaseC')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalActivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalActivePowerCVal }}kW
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneChannelTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .onePowerFactorTotal">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorTotalVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitAphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorAVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitBphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorBVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.onePowerFactorCVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoPowerFactorTotal">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorTotalVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayAphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorAVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayBphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorBVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoWayCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoPowerFactorCVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threePowerFactorTotal">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threePowerFactorTotalVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayAphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threePowerFactorA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threePowerFactorAVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayBphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threePowerFactorB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threePowerFactorBVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threePowerFactorC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threePowerFactorCVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourPowerFactorTotal">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorTotalVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorAVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayBphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorBVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorCVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.OneChannelFrequency')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.oneFrequency">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneFrequencyVal }}Hz
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TwoChannelFrequency')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.twoFrequency">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoFrequencyVal }}Hz
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.ThreeChannelFrequency')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.threeFrequency">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeFrequencyVal }}Hz
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.FourChannelFrequency')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourFrequency">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourFrequencyVal }}Hz
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfOneChannel')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalReactivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalReactivePowerVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalReactivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalReactivePowerAVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalReactivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalReactivePowerBVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf1circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .oneTotalReactivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.oneTotalReactivePowerCVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfTwoChannel')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalReactivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalReactivePowerVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalReactivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalReactivePowerAVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalReactivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalReactivePowerBVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf2circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .twoTotalReactivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.twoTotalReactivePowerCVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfThreeChannel')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalReactivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalReactivePowerVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalReactivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalReactivePowerAVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalReactivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalReactivePowerBVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf3circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .threeTotalReactivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threeTotalReactivePowerCVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOfFourChannel')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalReactivePower">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalReactivePowerVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitAphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalReactivePowerA">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalReactivePowerAVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitBphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalReactivePowerB">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalReactivePowerBVal }}Kvar
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.TotalReactivePowerOf4circuitCphase')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+                    .fourTotalReactivePowerC">
+              {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourTotalReactivePowerCVal }}Kvar
+            </el-descriptions-item>
+        </el-descriptions>
+        </el-card>
       </template>
 
       <template v-else-if="activeIndex === '0'">
@@ -2314,6 +2630,100 @@ export default {
           dischargeOffHeatingTemperature: false
         }
       },
+      threePhaseMeterParameter: {
+        isShow: false,
+        threePhaseMeterBasic: false,
+        threePhaseMeterBasicObj: {
+          oneCombinedActiveTotalElectricEnergy: false,
+          twoCombinedActiveTotalElectricEnergy: false,
+          threeCombinedActiveTotalElectricEnergy: false,
+          fourCombinedActiveTotalElectricEnergy: false,
+          oneCurrentTotalPositiveActiveEnergy: false,
+          twoCurrentTotalPositiveActiveEnergy: false,
+          threeCurrentTotalPositiveActiveEnergy: false,
+          fourCurrentTotalPositiveActiveEnergy: false,
+          oneCurrentTotalReserveActiveEnergy: false,
+          twoCurrentTotalReserveActiveEnergy: false,
+          threeCurrentTotalReserveActiveEnergy: false,
+          fourCurrentTotalReserveActiveEnergy: false,
+          oneVoltageA: false,
+          oneVoltageB: false,
+          oneVoltageC: false,
+          twoVoltageA: false,
+          twoVoltageB: false,
+          twoVoltageC: false,
+          threeVoltageA: false,
+          threeVoltageB: false,
+          threeVoltageC: false,
+          fourVoltageA: false,
+          fourVoltageB: false,
+          fourVoltageC: false,
+          oneCurrentA: false,
+          oneCurrentB: false,
+          oneCurrentC: false,
+          twoCurrentA: false,
+          twoCurrentB: false,
+          twoCurrentC: false,
+          threeCurrentA: false,
+          threeCurrentB: false,
+          threeCurrentC: false,
+          fourCurrentA: false,
+          fourCurrentB: false,
+          fourCurrentC: false,
+          oneTotalActivePower: false,
+          oneTotalActivePowerA: false,
+          oneTotalActivePowerB: false,
+          oneTotalActivePowerC: false,
+          twoTotalActivePower: false,
+          twoTotalActivePowerA: false,
+          twoTotalActivePowerB: false,
+          twoTotalActivePowerC: false,
+          threeTotalActivePower: false,
+          threeTotalActivePowerA: false,
+          threeTotalActivePowerB: false,
+          threeTotalActivePowerC: false,
+          fourTotalActivePower: false,
+          fourTotalActivePowerA: false,
+          fourTotalActivePowerB: false,
+          fourTotalActivePowerC: false,
+          onePowerFactorTotal: false,
+          onePowerFactorA: false,
+          onePowerFactorB: false,
+          onePowerFactorC: false,
+          twoPowerFactorTotal: false,
+          twoPowerFactorA: false,
+          twoPowerFactorB: false,
+          twoPowerFactorC: false,
+          threePowerFactorTotal: false,
+          threePowerFactorA: false,
+          threePowerFactorB: false,
+          threePowerFactorC: false,
+          fourPowerFactorTotal: false,
+          fourPowerFactorA: false,
+          fourPowerFactorB: false,
+          fourPowerFactorC: false,
+          oneFrequency: false,
+          twoFrequency: false,
+          threeFrequency: false,
+          fourFrequency: false,
+          oneTotalReactivePower: false,
+          oneTotalReactivePowerA: false,
+          oneTotalReactivePowerB: false,
+          oneTotalReactivePowerC: false,
+          twoTotalReactivePower: false,
+          twoTotalReactivePowerA: false,
+          twoTotalReactivePowerB: false,
+          twoTotalReactivePowerC: false,
+          threeTotalReactivePower: false,
+          threeTotalReactivePowerA: false,
+          threeTotalReactivePowerB: false,
+          threeTotalReactivePowerC: false,
+          fourTotalReactivePower: false,
+          fourTotalReactivePowerA: false,
+          fourTotalReactivePowerB: false,
+          fourTotalReactivePowerC: false,
+        },
+      },
     }
   },
   
@@ -2367,7 +2777,7 @@ export default {
         this.subscribeInfo();
         console.log("mqtt连接成功", res);
       }).on("message", (topic, message) => {
-        console.log('topic', topic)
+        // console.log('topic', topic)
         const messageInfo = JSON.parse(message.toString());
         console.log('设备信息',  messageInfo)
         if (this.activeIndex === '0') {
@@ -2407,27 +2817,43 @@ export default {
               this.operationInformation[`${i.key}Obj`][`${j.key}Val`] = j.val
             })
           })
-          console.log('this.operationInformation', this.operationInformation)
+          // console.log('this.operationInformation', this.operationInformation)
         } else if (item.key === 'systemSet' && this.activeIndex === '8') {
           this.systemSet.isShow = item.isShow === 1
           item.dataList && item.dataList.forEach(i => {
             this.systemSet[`${i.key}`] = i.isShow === 1
             i.dataList.forEach(j => {
-              this.systemSet[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
-              this.systemSet[`${i.key}Obj`][`${j.key}Val`] = j.val
+              this.$set(this.systemSet[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
+              this.$set(this.systemSet[`${i.key}Obj`], `${j.key}Val`, j.val)
+              // this.systemSet[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
+              // this.systemSet[`${i.key}Obj`][`${j.key}Val`] = j.val
             })
           })
-          console.log('this.systemSet', this.systemSet)
+          // console.log('this.systemSet', this.systemSet)
         } else if (item.key === 'batteryParameter' && this.activeIndex === '9') {
           this.batteryParameter.isShow = item.isShow === 1
           item.dataList && item.dataList.forEach(i => {
             this.batteryParameter[`${i.key}`] = i.isShow === 1
             i.dataList.forEach(j => {
-              this.batteryParameter[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
-              this.batteryParameter[`${i.key}Obj`][`${j.key}Val`] = j.val
+              this.$set(this.batteryParameter[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
+              this.$set(this.batteryParameter[`${i.key}Obj`], `${j.key}Val`, j.val)
+              // this.batteryParameter[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
+              // this.batteryParameter[`${i.key}Obj`][`${j.key}Val`] = j.val
             })
           })
-          console.log('this.batteryParameter', this.batteryParameter)
+          // console.log('this.batteryParameter', this.batteryParameter)
+        } else if (item.key === 'threePhaseMeterParameter' && this.activeIndex === '13') {
+          this.threePhaseMeterParameter.isShow = item.isShow === 1
+          item.dataList && item.dataList.forEach(i => {
+            this.threePhaseMeterParameter[`${i.key}`] = i.isShow === 1
+            i.dataList.forEach(j => {
+              this.$set(this.threePhaseMeterParameter[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
+              this.$set(this.threePhaseMeterParameter[`${i.key}Obj`], `${j.key}Val`, j.val)
+              // this.threePhaseMeterParameter[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
+              // this.threePhaseMeterParameter[`${i.key}Obj`][`${j.key}Val`] = j.val
+            })
+          })
+          console.log('this.threePhaseMeterParameter', this.threePhaseMeterParameter)
         }
       })
     },

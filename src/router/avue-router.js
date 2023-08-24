@@ -4,6 +4,8 @@ const RouterPlugin = function() {
   this.$store = null
 }
 RouterPlugin.install = function(router, store) {
+  console.log('3-------------')
+  console.log(this)
   this.$router = router
   this.$store = store
   function isURL(s) {
@@ -24,7 +26,8 @@ RouterPlugin.install = function(router, store) {
     safe: this,
     // 设置标题
     setTitle: function(title) {
-      title = title ? `${title}——${this.$website.title}` : this.$website.title
+      // title = title ? `${title}——${this.$website.title}` : this.$website.title
+      // title = title ? `${title}——${this.$t('common.websiteName')}` : this.$t('common.websiteName')
       document.title = title
     },
     closeTag: (value) => {
