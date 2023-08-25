@@ -1835,11 +1835,11 @@
                     .threePowerFactorC">
               {{ threePhaseMeterParameter.threePhaseMeterBasicObj.threePowerFactorCVal }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.ThreeWayCphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
                     .fourPowerFactorTotal">
               {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorTotalVal }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.FourWayTotalPowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorA">
+            <el-descriptions-item :label="$t('parameterConfiguration.FourWayAphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorA">
               {{ threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorAVal }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.FourWayBphasePowerFactor')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj.fourPowerFactorB">
@@ -1932,8 +1932,6 @@
         <SelfTest ref="selfTest" />
       </template>
       </div>
-      
-
     </basic-container>
   </div>
 </template>
