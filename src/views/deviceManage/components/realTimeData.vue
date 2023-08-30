@@ -584,13 +584,21 @@
           <el-descriptions :title="$t('deviceManage.otherSettings')" :column="3" border>
             <el-descriptions-item :label="$t('deviceManage.resetDeviceInitialValues')" v-if="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValues">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" />
+                <el-select v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
+                <!-- <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" /> -->
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('resetDeviceCommunicationSettingsToInitialValues', systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.clearRecordData')" v-if="systemSet.otherSetObj.clearRecordData">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.inputPrompt')" />
+                <el-select v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
+                <!-- <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.inputPrompt')" /> -->
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearRecordData', systemSet.otherSetObj.clearRecordDataVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
@@ -605,11 +613,11 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.inverterRestart')" v-if="systemSet.otherSetObj.inverterRestart">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" />
-                <!-- <el-select v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" style="width: 100%;">
-                  <el-option :label="0" value="0" />
-                  <el-option :label="65535" value="65535" />
-                </el-select> -->
+                <!-- <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" /> -->
+                <el-select v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterRestart', systemSet.otherSetObj.inverterRestartVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
@@ -631,7 +639,11 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.manuallyClearingFaults')" v-if="systemSet.otherSetObj.manuallyClearingFaults">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" />
+                <!-- <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" /> -->
+                <el-select v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyClearingFaults', systemSet.otherSetObj.manuallyClearingFaultsVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
@@ -646,7 +658,11 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.manuallyLock')" v-if="systemSet.otherSetObj.manuallyUnlockingTheSystemLock">
               <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.inputPrompt')" />
+                <!-- <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.inputPrompt')" /> -->
+                <el-select v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('manuallyUnlockingTheSystemLock', systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
