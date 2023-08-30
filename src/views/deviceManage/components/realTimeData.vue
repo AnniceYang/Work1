@@ -606,6 +606,10 @@
             <el-descriptions-item :label="$t('deviceManage.inverterRestart')" v-if="systemSet.otherSetObj.inverterRestart">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" />
+                <!-- <el-select v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" style="width: 100%;">
+                  <el-option :label="0" value="0" />
+                  <el-option :label="65535" value="65535" />
+                </el-select> -->
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('inverterRestart', systemSet.otherSetObj.inverterRestartVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
@@ -1474,7 +1478,7 @@
             <el-descriptions-item :label="$t('deviceManage.differentialProtectionValue')" v-if="batteryParameter.batterySetObj.differentialPressureProtectionValue">{{ batteryParameter.batterySetObj.differentialPressureProtectionValueVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.differentialAlarmValue')" v-if="batteryParameter.batterySetObj.differentialPressureAlarmValue">{{ batteryParameter.batterySetObj.differentialPressureAlarmValueVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.staticEquilibriumTime')" v-if="batteryParameter.batterySetObj.staticEquilibriumTime">{{ batteryParameter.batterySetObj.staticEquilibriumTimeVal }}min</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelay')" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrentVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelayC')" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrentVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.automaticallyResumeLocking')" v-if="batteryParameter.batterySetObj.automaticallyResumeLockingAfterOvercharging">{{ batteryParameter.batterySetObj.automaticallyResumeLockingAfterOverchargingVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelay')" v-if="batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrentVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.automaticRecoveryLocking')" v-if="batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}min</el-descriptions-item>
@@ -2724,9 +2728,15 @@ export default {
       },
     }
   },
+  mounted(){
   
+  },
   methods: {
     handleSave(key, val) {
+      if(this.deviceInfo.countryCode === '6'){
+        this.$message.info(this.$t('common.cannotBeChanged'))
+        return
+      }
       saveConfigData({
         deviceId: this.deviceInfo.id,
         paramSetList: [{ dataVal: val, key: key }],

@@ -20,7 +20,7 @@
                 <el-option :label="$t('deviceManage.updating')" :value="2"></el-option>
               </el-select>
             </el-form-item>
-            <el-form-item :label="$t('deviceManage.installer')">
+            <el-form-item :label="$t('deviceManage.installer')" v-if="permissions.admin_lsydevice_installer">
               <el-select v-model="listQuery.installUserId" :placeholder="$t('common.selectPrompt')">
                 <el-option :label="item.username" :value="item.userId" v-for="item in installUserList" :key="item.userId"></el-option>
               </el-select>
@@ -78,7 +78,7 @@
               <el-button type="text" @click="handleCellSet(scope.row)" v-if="permissions.admin_lsydevice_edit">{{$t('deviceManage.batterySettings')}}</el-button>
               <el-button type="text" @click="handleUpgrade(scope.row)" v-if="permissions.admin_dogappversioninfo_ota">{{$t('deviceManage.OTAupgrade')}}</el-button>
               <el-button type="text" @click="handleRecord(scope.row)" v-if="permissions.admin_lsydeviceupgrade_view">{{$t('deviceManage.upgradeRecord')}}</el-button>
-              <el-button type="text" @click="handleRealTime(scope.row)" v-if="permissions.operation_info">{{$t('deviceManage.operationInformation')}}</el-button>
+              <el-button type="text" @click="handleRealTime(scope.row)" v-if="permissions.operation_info">{{$t('deviceManage.operationParameters')}}</el-button>
               <el-button type="text" @click="handleForm(scope.row)" v-if="permissions.admin_lsydevice_edit">{{$t('common.edit')}}</el-button>
               <el-button type="text" style="color: red;" @click="handleDel(scope.row.id)" v-if="permissions.admin_lsydevice_del">{{$t('common.delete')}}</el-button>
             </template>
@@ -136,7 +136,7 @@ import RealTimeData from "./components/realTimeData.vue";
 import UpdateRecord from "./components/updateRecord.vue";
 import DeviceUpgrade from "./components/deviceUpgrade.vue";
 import SelfTest from "./components/selfTest.vue";
-import { mapGetters } from "vuex"
+import { mapGetters, mapState } from "vuex"
 import { getUrlParams } from '@/util/util'
 export default {
   components: { DeviceForm, CellSet, DeviceStatistics, RealTimeData, DeviceUpgrade, QrCode, UpdateRecord, SelfTest },
@@ -157,6 +157,12 @@ export default {
   },
   computed: {
     ...mapGetters(["permissions"]),
+    ...mapState({
+      userInfo: (state) => state.user.userInfo,
+    }),
+  },
+  mounted(){
+    console.log(this.permissions)
   },
   created() {
     // 查询安装商用户

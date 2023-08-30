@@ -1027,7 +1027,7 @@
 
         <el-card>
           <div slot="header">
-            <span>{{$t('common.CommonSettings')}}</span>
+            <span>{{$t('deviceManage.commonSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.commonSet"
@@ -1797,7 +1797,7 @@
 
         <el-card>
           <div slot="header">
-            <span>{{$t('common.CommonSettings')}}</span>
+            <span>{{$t('deviceManage.commonSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="batteryParameter.batterySet"
