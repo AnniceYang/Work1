@@ -1011,6 +1011,38 @@
                 "
               />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.modbusDecodingVersion')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .modbusDecodeVersion
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier1')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .deviceTypeSignOne
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier2')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .deviceTypeSignTwo
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier3')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .deviceTypeSignThree
+                "
+              />
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-card>
@@ -1781,6 +1813,12 @@
             <el-descriptions-item :label="$t('parameterConfiguration.RealTimeClock')">
               <el-switch v-model="systemSet.otherSetObj.realTimeClock" />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ACCoupling')">
+              <el-switch v-model="systemSet.otherSetObj.acCoupling" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.emptyElectricityMeterEnergy')">
+              <el-switch v-model="systemSet.otherSetObj.emptyElectricityMeterEnergy" />
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-card>
@@ -1969,7 +2007,7 @@
                 v-model="batteryParameter.batterySetObj.currentCurrent"
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.State1')">
+            <!-- <el-descriptions-item :label="$t('parameterConfiguration.State1')">
               <el-switch v-model="batteryParameter.batterySetObj.state1" />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.State2')">
@@ -1977,7 +2015,7 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.State3')">
               <el-switch v-model="batteryParameter.batterySetObj.state3" />
-            </el-descriptions-item>
+            </el-descriptions-item> -->
             <el-descriptions-item :label="$t('parameterConfiguration.ChargingOvercurrentProtection')">
               <el-switch
                 v-model="
@@ -2179,90 +2217,98 @@
                 v-model="batteryParameter.batterySetObj.hardwareVersion"
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.State')">
+            <!-- <el-descriptions-item :label="$t('parameterConfiguration.State')">
               <el-switch v-model="batteryParameter.batterySetObj.state" />
-            </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusCellOverDischargeAlarm')">
+            </el-descriptions-item> -->
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit0')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusCellOverDischargeAlarm
+                    .alarmStateBit0
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusTotalOverDischargeAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit1')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusTotalOverDischargeAlarm
+                    .alarmStateBit1
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusCellOvervoltageAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit2')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarm
+                  batteryParameter.batterySetObj.alarmStateBit2
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusTotalOvervoltageAlarm')">
-              <el-switch
-                v-model="
-                  batteryParameter.batterySetObj
-                    .alarmStatusTotalOvervoltageAlarm
-                "
-              />
-            </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusDischargeOvercurrentAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit3')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusDischargeOvercurrentAlarm
+                    .alarmStateBit3
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusDischargeOverTemperatureAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit4')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusDischargeOverTemperatureAlarm
+                    .alarmStateBit4
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusChargingOverTemperatureAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit5')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusChargingOverTemperatureAlarm
+                    .alarmStateBit5
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusEnvironmentalHighTemperatureAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit6')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusEnvironmentalHighTemperatureAlarm
+                    .alarmStateBit6
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmtatusEnvironmentalLowTemperatureAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit7')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusEnvironmentalLowTemperatureAlarm
+                    .alarmStateBit7
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusSOCLowAlarm')">
-              <el-switch
-                v-model="batteryParameter.batterySetObj.alarmStatusSocLowAlarm"
-              />
-            </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AlarmStatusMOSHighTemperatureAlarm')">
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit8')">
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .alarmStatusMosHighTemperatureAlarm
+                    .alarmStateBit8
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit9')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj
+                    .alarmStateBit9
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit10')">
+              <el-switch
+                v-model="batteryParameter.batterySetObj.alarmStateBit10"
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit11')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj
+                    .alarmStateBit11
                 "
               />
             </el-descriptions-item>
@@ -2679,14 +2725,14 @@
             <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsVoltageAlarm')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.enableSettingsVoltageAlarm
+                  batteryParameter.batterySetObj.enableSettingBit0
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsOvercurrentAlarm')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.enableSettingsOvercurrentAlarm
+                  batteryParameter.batterySetObj.enableSettingBit1
                 "
               />
             </el-descriptions-item>
@@ -2694,7 +2740,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsCellTemperatureAlarm
+                    .enableSettingBit2
                 "
               />
             </el-descriptions-item>
@@ -2702,7 +2748,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingMosOverTemperatureAlarm
+                    .enableSettingBit3
                 "
               />
             </el-descriptions-item>
@@ -2710,7 +2756,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsCellImbalanceAlarm
+                    .enableSettingBit4
                 "
               />
             </el-descriptions-item>
@@ -2718,21 +2764,21 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsAmbientTemperatureAlarm
+                    .enableSettingBit5
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingMOSOverTemperatureAlarm')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.enableSettingSocLowAlarm
+                  batteryParameter.batterySetObj.enableSettingBit6
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsChargingAndHeatingEnable')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.enableSettingsUnlockSystemLocks
+                  batteryParameter.batterySetObj.enableSettingBit7
                 "
               />
             </el-descriptions-item>
@@ -2740,7 +2786,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsTotalVoltageProtection
+                    .enableSettingBit8
                 "
               />
             </el-descriptions-item>
@@ -2748,7 +2794,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsDischargeRecoveryAfterChargingOvercurrent
+                    .enableSettingBit9
                 "
               />
             </el-descriptions-item>
@@ -2756,7 +2802,7 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent
+                    .enableSettingBit10
                 "
               />
             </el-descriptions-item>
@@ -2764,14 +2810,14 @@
               <el-switch
                 v-model="
                   batteryParameter.batterySetObj
-                    .enableSettingsChargingAfterDischargeOvercurrent
+                    .enableSettingBit11
                 "
               />
             </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.EnableSettingsStaticEqualizationFunction')">
               <el-switch
                 v-model="
-                  batteryParameter.batterySetObj.enableSettingsStaticEquilibrium
+                  batteryParameter.batterySetObj.enableSettingBit12
                 "
               />
             </el-descriptions-item>
@@ -3040,6 +3086,273 @@
                 "
               />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeState1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit0
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingState1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit1
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargerState1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit2
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateMOSTemperature1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit4
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateAmbientTemperature1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit5
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellOvervoltage1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit8
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateTotalPressureOvervoltage1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit9
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateFullProtection1')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateOneBit12
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellUndervoltage2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit0
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateTotalVoltageUndervoltage2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit1
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateHighTemperatureProtectionDuringCharging2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit8
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateLowTemperatureProtectionDuringCharging2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit9
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateMOSHighTemperatureProtection2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit10
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateHighTemperatureProtectionDuringDischarge2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit12
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateLowTemperatureProtectionDuringDischarge2')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateTwoBit13
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeShortCircuitProtection3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit0
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOvercurrentProtection3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit1
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOvercurrentProtection3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit2
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateEnvironmentalHighTemperatureProtection3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit4
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateEnvironmentalLowTemperatureProtection3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit5
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellOvervoltageSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit8
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateBatteryUndervoltageSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit9
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOvercurrentSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit10
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOvercurrentSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit11
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOverTemperatureSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit12
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOverTemperatureSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit13
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingUndervoltageSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit14
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeUndervoltageSystemLock3')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateThreeBit15
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusHeatingStatus')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit0
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeMOSSwitch')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit1
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingMOSSwitch')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit2
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusTemperatureAcquisitionFailure')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit8
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusVoltageAcquisitionFailure')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit9
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeMOSFailure')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit10
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingMOSFailure')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit11
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusBatteryImbalanceAlarm')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit12
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeLowTemperatureAlarm')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit14
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingLowTemperatureAlarm')">
+              <el-switch
+                v-model="
+                  batteryParameter.batterySetObj.stateBit15
+                "
+              />
+            </el-descriptions-item>
+
           </el-descriptions>
         </el-card>
       </el-card>
@@ -3918,6 +4231,10 @@ export default {
           maximumAllowableDischargeCurrent: false,
           maximumChargingCurrentAllowedByTheInverterForTheBattery: false,
           maximumDischargeCurrentAllowedByTheInverterForTheBattery: false,
+          modbusDecodeVersion: false,
+          deviceTypeSignOne: false,
+          deviceTypeSignTwo: false,
+          deviceTypeSignThree: false,
         },
       },
       systemSet: {
@@ -4078,6 +4395,8 @@ export default {
           mosControl: false,
           gpsCommunicationModulePowerControl: false,
           realTimeClock: false,
+          acCoupling: false,
+          emptyElectricityMeterEnergy: false,
         },
       },
       batteryParameter: {
@@ -4114,9 +4433,9 @@ export default {
           cellVoltage15: false,
           cellVoltage16: false,
           currentCurrent: false,
-          state1: false,
-          state2: false,
-          state3: false,
+          // state1: false,
+          // state2: false,
+          // state3: false,
           chargingOvercurrentProtection: false,
           chargingOvercurrentProtectionDelay: false,
           cellOvervoltageProtection: false,
@@ -4147,18 +4466,21 @@ export default {
           equilibriumState2: false,
           softwareVersion: false,
           hardwareVersion: false,
-          state: false,
-          alarmStatusCellOverDischargeAlarm: false,
-          alarmStatusTotalOverDischargeAlarm: false,
-          alarmStatusCellOvervoltageAlarm: false,
-          alarmStatusTotalOvervoltageAlarm: false,
-          alarmStatusDischargeOvercurrentAlarm: false,
-          alarmStatusDischargeOverTemperatureAlarm: false,
-          alarmStatusChargingOverTemperatureAlarm: false,
-          alarmStatusEnvironmentalHighTemperatureAlarm: false,
-          alarmStatusEnvironmentalLowTemperatureAlarm: false,
-          alarmStatusSocLowAlarm: false,
-          alarmStatusMosHighTemperatureAlarm: false,
+          // state: false,
+
+          alarmStateBit0: false,
+          alarmStateBit1: false,
+          alarmStateBit2: false,
+          alarmStateBit3: false,
+          alarmStateBit4: false,
+          alarmStateBit5: false,
+          alarmStateBit6: false,
+          alarmStateBit7: false,
+          alarmStateBit8: false,
+          alarmStateBit9: false,
+          alarmStateBit10: false,
+          alarmStateBit11: false,
+          
           batterySoc: false,
           batterySoh: false,
           numberOfCycles: false,
@@ -4241,19 +4563,19 @@ export default {
           fullOfProtectionDelayTime: false,
           heatingFanOnTemperature: false,
           heatingFanRecoveryTemperature: false,
-          enableSettingsVoltageAlarm: false,
-          enableSettingsOvercurrentAlarm: false,
-          enableSettingsCellTemperatureAlarm: false,
-          enableSettingMosOverTemperatureAlarm: false,
-          enableSettingsCellImbalanceAlarm: false,
-          enableSettingsAmbientTemperatureAlarm: false,
-          enableSettingSocLowAlarm: false,
-          enableSettingsUnlockSystemLocks: false,
-          enableSettingsTotalVoltageProtection: false,
-          enableSettingsDischargeRecoveryAfterChargingOvercurrent: false,
-          enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent: false,
-          enableSettingsChargingAfterDischargeOvercurrent: false,
-          enableSettingsStaticEquilibrium: false,
+          enableSettingBit0: false,
+          enableSettingBit1: false,
+          enableSettingBit2: false,
+          enableSettingBit3: false,
+          enableSettingBit4: false,
+          enableSettingBit5: false,
+          enableSettingBit6: false,
+          enableSettingBit7: false,
+          enableSettingBit8: false,
+          enableSettingBit9: false,
+          enableSettingBit10: false,
+          enableSettingBit11: false,
+          enableSettingBit12: false,
           systemLockStatusSerialNumber: false,
           totalVoltageOvervoltageAlarmVoltage: false,
           totalVoltageOverDischargeAlarmVoltage: false,
@@ -4295,6 +4617,44 @@ export default {
           unlockSystemLock: false,
           dischargeOnHeatingTemperature: false,
           dischargeOffHeatingTemperature: false,
+          stateOneBit0: false,
+          stateOneBit1: false,
+          stateOneBit2: false,
+          stateOneBit4: false,
+          stateOneBit5: false,
+          stateOneBit8: false,
+          stateOneBit9: false,
+          stateOneBit12: false,
+          stateTwoBit0: false,
+          stateTwoBit1: false,
+          stateTwoBit8: false,
+          stateTwoBit9: false,
+          stateTwoBit10: false,
+          stateTwoBit12: false,
+          stateTwoBit13: false,
+          stateThreeBit0: false,
+          stateThreeBit1: false,
+          stateThreeBit2: false,
+          stateThreeBit4: false,
+          stateThreeBit5: false,
+          stateThreeBit8: false,
+          stateThreeBit9: false,
+          stateThreeBit10: false,
+          stateThreeBit11: false,
+          stateThreeBit12: false,
+          stateThreeBit13: false,
+          stateThreeBit14: false,
+          stateThreeBit15: false,
+          stateBit0: false,
+          stateBit1: false,
+          stateBit2: false,
+          stateBit8: false,
+          stateBit9: false,
+          stateBit10: false,
+          stateBit11: false,
+          stateBit12: false,
+          stateBit14: false,
+          stateBit15: false,
         },
       },
       threePhaseMeterParameter: {

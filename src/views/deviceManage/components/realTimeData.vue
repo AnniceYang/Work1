@@ -293,6 +293,18 @@
             <el-descriptions-item :label="$t('deviceManage.dischargeByBattery')" v-if="operationInformation.otherInformationObj.maximumDischargeCurrentAllowedByTheInverterForTheBattery">
               {{ operationInformation.otherInformationObj.maximumDischargeCurrentAllowedByTheInverterForTheBatteryVal }}A
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.modbusDecodingVersion')" v-if="operationInformation.otherInformationObj.modbusDecodeVersion">
+              {{ operationInformation.otherInformationObj.modbusDecodeVersionVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier1')" v-if="operationInformation.otherInformationObj.deviceTypeSignOne">
+              {{ operationInformation.otherInformationObj.deviceTypeSignOneVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier2')" v-if="operationInformation.otherInformationObj.deviceTypeSignTwo">
+              {{ operationInformation.otherInformationObj.deviceTypeSignTwoVal }}
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.deviceTypeIdentifier3')" v-if="operationInformation.otherInformationObj.deviceTypeSignThree">
+              {{ operationInformation.otherInformationObj.deviceTypeSignThreeVal }}
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </template>
@@ -1354,6 +1366,24 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('gpsCommunicationModulePowerControl', systemSet.otherSetObj.gpsCommunicationModulePowerControlVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.ACCoupling')" v-if="systemSet.otherSetObj.acCoupling">
+              <div style="display: flex;">
+                <el-select v-model="systemSet.otherSetObj.acCouplingVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option :label="$t('deviceManage.prohibit')" value="1" />
+                  <el-option :label="$t('deviceManage.enable')" value="2" />
+                </el-select>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('acCoupling', systemSet.otherSetObj.acCouplingVal)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.emptyElectricityMeterEnergy')" v-if="systemSet.otherSetObj.emptyElectricityMeterEnergy">
+              <div style="display: flex;">
+                <el-select v-model="systemSet.otherSetObj.emptyElectricityMeterEnergyVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('emptyElectricityMeterEnergy', systemSet.otherSetObj.emptyElectricityMeterEnergyVal)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="systemSet.otherSetObj.realTimeClock">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.realTimeClockVal" :placeholder="$t('common.inputPrompt')" />
@@ -1397,9 +1427,9 @@
             <el-descriptions-item :label="$t('deviceManage.cellVoltage15')" v-if="batteryParameter.batterySetObj.cellVoltage15">{{ batteryParameter.batterySetObj.cellVoltage15Val }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.cellVoltage16')" v-if="batteryParameter.batterySetObj.cellVoltage16">{{ batteryParameter.batterySetObj.cellVoltage16Val }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.electricCurrent')" v-if="batteryParameter.batterySetObj.currentCurrent">{{ batteryParameter.batterySetObj.currentCurrentVal }}mA</el-descriptions-item>
-            <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
+            <!-- <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
             <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
-            <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item>
+            <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item> -->
             <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtection')" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtection">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtectionDelay')" v-if="batteryParameter.batterySetObj.chargingOvercurrentProtectionDelay">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtection')" v-if="batteryParameter.batterySetObj.cellOvervoltageProtection">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionVal }}</el-descriptions-item>
@@ -1434,40 +1464,45 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.softwareVersion')" v-if="batteryParameter.batterySetObj.softwareVersion">{{ batteryParameter.batterySetObj.softwareVersionVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.hardwareVersion')" v-if="batteryParameter.batterySetObj.hardwareVersion">{{ batteryParameter.batterySetObj.hardwareVersionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.state')" v-if="batteryParameter.batterySetObj.state">{{ batteryParameter.batterySetObj.stateVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusCellOverDischargeAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <!-- <el-descriptions-item :label="$t('deviceManage.state')" v-if="batteryParameter.batterySetObj.state">{{ batteryParameter.batterySetObj.stateVal }}</el-descriptions-item> -->
+            
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit0')" v-if="batteryParameter.batterySetObj.alarmStateBit0">
+              {{ batteryParameter.batterySetObj.alarmStateBit0Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOverDischargeAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusTotalOverDischargeAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit1')" v-if="batteryParameter.batterySetObj.alarmStateBit1">
+              {{ batteryParameter.batterySetObj.alarmStateBit1Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusCellOvervoltageAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit2')" v-if="batteryParameter.batterySetObj.alarmStateBit2">
+              {{ batteryParameter.batterySetObj.alarmStateBit2Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusTotalOvervoltageAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit3')" v-if="batteryParameter.batterySetObj.alarmStateBit3">
+              {{ batteryParameter.batterySetObj.alarmStateBit3Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusDischargeOvercurrentAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit4')" v-if="batteryParameter.batterySetObj.alarmStateBit4">
+              {{ batteryParameter.batterySetObj.alarmStateBit4Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusDischargeOverTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit5')" v-if="batteryParameter.batterySetObj.alarmStateBit5">
+              {{ batteryParameter.batterySetObj.alarmStateBit5Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.chargingOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusChargingOverTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit6')" v-if="batteryParameter.batterySetObj.alarmStateBit6">
+              {{ batteryParameter.batterySetObj.alarmStateBit6Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalHighTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalHighTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit7')" v-if="batteryParameter.batterySetObj.alarmStateBit7">
+              {{ batteryParameter.batterySetObj.alarmStateBit7Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusEnvironmentalLowTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit8')" v-if="batteryParameter.batterySetObj.alarmStateBit8">
+              {{ batteryParameter.batterySetObj.alarmStateBit8Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusSocLowAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusSocLowAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit9')" v-if="batteryParameter.batterySetObj.alarmStateBit9">
+              {{ batteryParameter.batterySetObj.alarmStateBit9Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.MOSHighTemperatureAlarm')" v-if="batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.alarmStatusMosHighTemperatureAlarmVal == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit10')" v-if="batteryParameter.batterySetObj.alarmStateBit10">
+              {{ batteryParameter.batterySetObj.alarmStateBit10Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.alarmStateBit11')" v-if="batteryParameter.batterySetObj.alarmStateBit11">
+              {{ batteryParameter.batterySetObj.alarmStateBit11Val == 0 ? $t('deviceManage.nothing') : $t('deviceManage.alarm') }}
+            </el-descriptions-item>
+
             <el-descriptions-item :label="$t('deviceManage.batterySOC')" v-if="batteryParameter.batterySetObj.batterySoc">{{ batteryParameter.batterySetObj.batterySocVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batterySOH')" v-if="batteryParameter.batterySetObj.batterySoh">{{ batteryParameter.batterySetObj.batterySohVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.numberOfCycles')" v-if="batteryParameter.batterySetObj.numberOfCycles">{{ batteryParameter.batterySetObj.numberOfCyclesVal }}</el-descriptions-item>
@@ -1534,44 +1569,44 @@
             <el-descriptions-item :label="$t('deviceManage.fullDelayTime')" v-if="batteryParameter.batterySetObj.fullOfProtectionDelayTime">{{ batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.heatingOnTemperature')" v-if="batteryParameter.batterySetObj.heatingFanOnTemperature">{{ batteryParameter.batterySetObj.heatingFanOnTemperatureVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.heatingRecoveryTemperature')" v-if="batteryParameter.batterySetObj.heatingFanRecoveryTemperature">{{ batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.voltageAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsVoltageAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsVoltageAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.voltageAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit0">
+              {{ batteryParameter.batterySetObj.enableSettingBit0Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.overcurrentAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsOvercurrentAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsOvercurrentAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.overcurrentAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit1">
+              {{ batteryParameter.batterySetObj.enableSettingBit1Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.overTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsCellTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.overTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit2">
+              {{ batteryParameter.batterySetObj.enableSettingBit2Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.MOSOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingMosOverTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.MOSOverTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit3">
+              {{ batteryParameter.batterySetObj.enableSettingBit3Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellImbalanceAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsCellImbalanceAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.cellImbalanceAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit4">
+              {{ batteryParameter.batterySetObj.enableSettingBit4Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.ambientTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingsAmbientTemperatureAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.ambientTemperatureAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit5">
+              {{ batteryParameter.batterySetObj.enableSettingBit5Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.enableSettingSocLowAlarm">
-              {{ batteryParameter.batterySetObj.enableSettingSocLowAlarmVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.SOCLowAlarm')" v-if="batteryParameter.batterySetObj.enableSettingBit6">
+              {{ batteryParameter.batterySetObj.enableSettingBit6Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.chargingAndHeatingEnable')" v-if="batteryParameter.batterySetObj.enableSettingsUnlockSystemLocks">
-              {{ batteryParameter.batterySetObj.enableSettingsUnlockSystemLocksVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.chargingAndHeatingEnable')" v-if="batteryParameter.batterySetObj.enableSettingBit7">
+              {{ batteryParameter.batterySetObj.enableSettingBit7Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalVoltageProtection')" v-if="batteryParameter.batterySetObj.enableSettingsTotalVoltageProtection">
-              {{ batteryParameter.batterySetObj.enableSettingsTotalVoltageProtectionVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.totalVoltageProtection')" v-if="batteryParameter.batterySetObj.enableSettingBit8">
+              {{ batteryParameter.batterySetObj.enableSettingBit8Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsDischargeRecoveryAfterChargingOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.dischargeRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingBit9">
+              {{ batteryParameter.batterySetObj.enableSettingBit9Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.delayAutomaticRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.delayAutomaticRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingBit10">
+              {{ batteryParameter.batterySetObj.enableSettingBit10Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.chargingRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrent">
-              {{ batteryParameter.batterySetObj.enableSettingsChargingAfterDischargeOvercurrentVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.chargingRecoveryFunction')" v-if="batteryParameter.batterySetObj.enableSettingBit11">
+              {{ batteryParameter.batterySetObj.enableSettingBit11Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.staticEqualizationFunction')" v-if="batteryParameter.batterySetObj.enableSettingsStaticEquilibrium">
-              {{ batteryParameter.batterySetObj.enableSettingsStaticEquilibriumVal == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
+            <el-descriptions-item :label="$t('deviceManage.staticEqualizationFunction')" v-if="batteryParameter.batterySetObj.enableSettingBit12">
+              {{ batteryParameter.batterySetObj.enableSettingBit12Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.systemLockNumber')" v-if="batteryParameter.batterySetObj.systemLockStatusSerialNumber">
               {{ batteryParameter.batterySetObj.systemLockStatusSerialNumberVal | systemLockStatusSerialNumberValFilter }}
@@ -1624,6 +1659,46 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.onHeating')" v-if="batteryParameter.batterySetObj.dischargeOnHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOnHeatingTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.offHeating')" v-if="batteryParameter.batterySetObj.dischargeOffHeatingTemperature">{{ batteryParameter.batterySetObj.dischargeOffHeatingTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeState1')" v-if="batteryParameter.batterySetObj.stateOneBit0">{{ + batteryParameter.batterySetObj.stateOneBit0Val ? $t('deviceManage.discharging') : $t('deviceManage.noDischarge')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingState1')" v-if="batteryParameter.batterySetObj.stateOneBit1">{{ + batteryParameter.batterySetObj.stateOneBit1Val ? $t('deviceManage.charging') : $t('deviceManage.noCharging')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargerState1')" v-if="batteryParameter.batterySetObj.stateOneBit2">{{ + batteryParameter.batterySetObj.stateOneBit2Val ? $t('deviceManage.connected') : $t('deviceManage.notConnected')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateMOSTemperature1')" v-if="batteryParameter.batterySetObj.stateOneBit4">{{ + batteryParameter.batterySetObj.stateOneBit4Val ? $t('deviceManage.withMOStemperature') : $t('deviceManage.noMOStemperature')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateAmbientTemperature1')" v-if="batteryParameter.batterySetObj.stateOneBit5">{{ + batteryParameter.batterySetObj.stateOneBit5Val ? $t('deviceManage.withAmbientTemperature') : $t('deviceManage.noAmbientTemperature')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellOvervoltage1')" v-if="batteryParameter.batterySetObj.stateOneBit8">{{ + batteryParameter.batterySetObj.stateOneBit8Val ? $t('deviceManage.overvoltage') : $t('deviceManage.noOvervoltage')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateTotalPressureOvervoltage1')" v-if="batteryParameter.batterySetObj.stateOneBit9">{{ + batteryParameter.batterySetObj.stateOneBit9Val ? $t('deviceManage.overvoltage') : $t('deviceManage.noOvervoltage')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateFullProtection1')" v-if="batteryParameter.batterySetObj.stateOneBit12">{{ + batteryParameter.batterySetObj.stateOneBit12Val ? $t('deviceManage.fullOfProtection') : $t('deviceManage.noFullProtection') }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellUndervoltage2')" v-if="batteryParameter.batterySetObj.stateTwoBit0">{{ + batteryParameter.batterySetObj.stateTwoBit0Val ? $t('deviceManage.undervoltage') : $t('deviceManage.noUndervoltage')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateTotalVoltageUndervoltage2')" v-if="batteryParameter.batterySetObj.stateTwoBit1">{{ + batteryParameter.batterySetObj.stateTwoBit1Val ? $t('deviceManage.undervoltage') : $t('deviceManage.noUndervoltage')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateHighTemperatureProtectionDuringCharging2')" v-if="batteryParameter.batterySetObj.stateTwoBit8">{{ + batteryParameter.batterySetObj.stateTwoBit8Val ? $t('deviceManage.highDuringCharging') : $t('deviceManage.highWithoutCharging')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateLowTemperatureProtectionDuringCharging2')" v-if="batteryParameter.batterySetObj.stateTwoBit9">{{ + batteryParameter.batterySetObj.stateTwoBit9Val ? $t('deviceManage.lowDuringCharging') : $t('deviceManage.lowWithoutCharging')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateMOSHighTemperatureProtection2')" v-if="batteryParameter.batterySetObj.stateTwoBit10">{{ + batteryParameter.batterySetObj.stateTwoBit10Val ? $t('deviceManage.MOShigh') : $t('deviceManage.NoMOShigh')}}</el-descriptions-item>
+
+            <el-descriptions-item :label="$t('deviceManage.stateHighTemperatureProtectionDuringDischarge2')" v-if="batteryParameter.batterySetObj.stateTwoBit12">{{ + batteryParameter.batterySetObj.stateTwoBit12Val ? $t('deviceManage.highDuringDischarge') : $t('deviceManage.highWithoutDischarge')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateLowTemperatureProtectionDuringDischarge2')" v-if="batteryParameter.batterySetObj.stateTwoBit13">{{ + batteryParameter.batterySetObj.stateTwoBit13Val ? $t('deviceManage.lowDuringDischarge') : $t('deviceManage.lowWithoutDischarge')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeShortCircuitProtection3')" v-if="batteryParameter.batterySetObj.stateThreeBit0">{{ + batteryParameter.batterySetObj.stateThreeBit0Val ? $t('deviceManage.dischargeShortCircuit') : $t('deviceManage.noDischargeShortCircuit')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOvercurrentProtection3')" v-if="batteryParameter.batterySetObj.stateThreeBit1">{{ + batteryParameter.batterySetObj.stateThreeBit1Val ? $t('deviceManage.dischargeOvercurrent') : $t('deviceManage.noDischargeOvercurrent')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOvercurrentProtection3')" v-if="batteryParameter.batterySetObj.stateThreeBit2">{{ + batteryParameter.batterySetObj.stateThreeBit2Val ? $t('deviceManage.chargingOvercurrent') : $t('deviceManage.noChargingOvercurrent')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateEnvironmentalHighTemperatureProtection3')" v-if="batteryParameter.batterySetObj.stateThreeBit4">{{ + batteryParameter.batterySetObj.stateThreeBit4Val ? $t('deviceManage.environmentalHighTemperature') : $t('deviceManage.noEnvironmentalHighTemperature')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateEnvironmentalLowTemperatureProtection3')" v-if="batteryParameter.batterySetObj.stateThreeBit5">{{ + batteryParameter.batterySetObj.stateThreeBit5Val ? $t('deviceManage.environmentalLowTemperature') : $t('deviceManage.noEnvironmentalLowTemperature')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateCellOvervoltageSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit8">{{ + batteryParameter.batterySetObj.stateThreeBit8Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateBatteryUndervoltageSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit9">{{ + batteryParameter.batterySetObj.stateThreeBit9Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOvercurrentSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit10">{{ + batteryParameter.batterySetObj.stateThreeBit10Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing') }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOvercurrentSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit11">{{ + batteryParameter.batterySetObj.stateThreeBit11Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing') }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingOverTemperatureSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit12">{{ + batteryParameter.batterySetObj.stateThreeBit12Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeOverTemperatureSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit13">{{ + batteryParameter.batterySetObj.stateThreeBit13Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateChargingUndervoltageSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit14">{{ + batteryParameter.batterySetObj.stateThreeBit14Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.stateDischargeUndervoltageSystemLock3')" v-if="batteryParameter.batterySetObj.stateThreeBit15">{{ + batteryParameter.batterySetObj.stateThreeBit15Val ? $t('deviceManage.trigger') : $t('deviceManage.nothing')}}</el-descriptions-item>
+
+            <el-descriptions-item :label="$t('deviceManage.statusHeatingStatus')" v-if="batteryParameter.batterySetObj.stateBit0">{{ + batteryParameter.batterySetObj.stateBit0Val ? $t('deviceManage.heatingState') : $t('deviceManage.nonHeatingState')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeMOSSwitch')" v-if="batteryParameter.batterySetObj.stateBit1">{{ + batteryParameter.batterySetObj.stateBit1Val ? $t('menuManage.open') : $t('menuManage.close')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingMOSSwitch')" v-if="batteryParameter.batterySetObj.stateBit2">{{ + batteryParameter.batterySetObj.stateBit2Val ? $t('menuManage.open') : $t('menuManage.close')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusTemperatureAcquisitionFailure')" v-if="batteryParameter.batterySetObj.stateBit8">{{ + batteryParameter.batterySetObj.stateBit8Val ? $t('deviceManage.loseEfficacy') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusVoltageAcquisitionFailure')" v-if="batteryParameter.batterySetObj.stateBit9">{{ + batteryParameter.batterySetObj.stateBit9Val ? $t('deviceManage.loseEfficacy') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeMOSFailure')" v-if="batteryParameter.batterySetObj.stateBit10">{{ + batteryParameter.batterySetObj.stateBit10Val ? $t('deviceManage.loseEfficacy') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingMOSFailure')" v-if="batteryParameter.batterySetObj.stateBit11">{{ + batteryParameter.batterySetObj.stateBit11Val ? $t('deviceManage.loseEfficacy') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusBatteryImbalanceAlarm')" v-if="batteryParameter.batterySetObj.stateBit12">{{ + batteryParameter.batterySetObj.stateBit12Val ? $t('deviceManage.giveAnAlarm') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusDischargeLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.stateBit14">{{ + batteryParameter.batterySetObj.stateBit14Val ? $t('deviceManage.giveAnAlarm') : $t('deviceManage.nothing')}}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.statusChargingLowTemperatureAlarm')" v-if="batteryParameter.batterySetObj.stateBit15">{{ + batteryParameter.batterySetObj.stateBit15Val ? $t('deviceManage.giveAnAlarm') : $t('deviceManage.nothing')}}</el-descriptions-item>
           </el-descriptions>
         </el-card>
       </template>
@@ -2126,7 +2201,11 @@ export default {
           inverterSerialNumber: false,
           maximumAllowableDischargeCurrent: false,
           maximumChargingCurrentAllowedByTheInverterForTheBattery: false,
-          maximumDischargeCurrentAllowedByTheInverterForTheBattery: false
+          maximumDischargeCurrentAllowedByTheInverterForTheBattery: false,
+          modbusDecodeVersion: false,
+          deviceTypeSignOne: false,
+          deviceTypeSignTwo: false,
+          deviceTypeSignThree: false,
         }
       },
       systemSet: {
@@ -2428,7 +2507,9 @@ export default {
           theBatteryIdOfTheCurrentDisplayedParameterVal: '',
           mosControlVal: '',
           gpsCommunicationModulePowerControlVal: '',
-          realTimeClockVal: ''
+          realTimeClockVal: '',
+          acCouplingVal: '',
+          emptyElectricityMeterEnergyVal:''
         },
       },
       batteryParameter: {
@@ -2465,9 +2546,9 @@ export default {
           cellVoltage15: false,
           cellVoltage16: false,
           currentCurrent: false,
-          state1: false,
-          state2: false,
-          state3: false,
+          // state1: false,
+          // state2: false,
+          // state3: false,
           chargingOvercurrentProtection: false,
           chargingOvercurrentProtectionDelay: false,
           cellOvervoltageProtection: false,
@@ -2498,18 +2579,21 @@ export default {
           equilibriumState2: false,
           softwareVersion: false,
           hardwareVersion: false,
-          state: false,
-          alarmStatusCellOverDischargeAlarm: false,
-          alarmStatusTotalOverDischargeAlarm: false,
-          alarmStatusCellOvervoltageAlarm: false,
-          alarmStatusTotalOvervoltageAlarm: false,
-          alarmStatusDischargeOvercurrentAlarm: false,
-          alarmStatusDischargeOverTemperatureAlarm: false,
-          alarmStatusChargingOverTemperatureAlarm: false,
-          alarmStatusEnvironmentalHighTemperatureAlarm: false,
-          alarmStatusEnvironmentalLowTemperatureAlarm: false,
-          alarmStatusSocLowAlarm: false,
-          alarmStatusMosHighTemperatureAlarm: false,
+          // state: false,
+
+          alarmStateBit0: false,
+          alarmStateBit1: false,
+          alarmStateBit2: false,
+          alarmStateBit3: false,
+          alarmStateBit4: false,
+          alarmStateBit5: false,
+          alarmStateBit6: false,
+          alarmStateBit7: false,
+          alarmStateBit8: false,
+          alarmStateBit9: false,
+          alarmStateBit10: false,
+          alarmStateBit11: false,
+
           batterySoc: false,
           batterySoh: false,
           numberOfCycles: false,
@@ -2592,19 +2676,19 @@ export default {
           fullOfProtectionDelayTime: false,
           heatingFanOnTemperature: false,
           heatingFanRecoveryTemperature: false,
-          enableSettingsVoltageAlarm: false,
-          enableSettingsOvercurrentAlarm: false,
-          enableSettingsCellTemperatureAlarm: false,
-          enableSettingMosOverTemperatureAlarm: false,
-          enableSettingsCellImbalanceAlarm: false,
-          enableSettingsAmbientTemperatureAlarm: false,
-          enableSettingSocLowAlarm: false,
-          enableSettingsUnlockSystemLocks: false,
-          enableSettingsTotalVoltageProtection: false,
-          enableSettingsDischargeRecoveryAfterChargingOvercurrent: false,
-          enableSettingsDelayAutomaticRecoveryAfterDischargeOvercurrent: false,
-          enableSettingsChargingAfterDischargeOvercurrent: false,
-          enableSettingsStaticEquilibrium: false,
+          enableSettingBit0: false,
+          enableSettingBit1: false,
+          enableSettingBit2: false,
+          enableSettingBit3: false,
+          enableSettingBit4: false,
+          enableSettingBit5: false,
+          enableSettingBit6: false,
+          enableSettingBit7: false,
+          enableSettingBit8: false,
+          enableSettingBit9: false,
+          enableSettingBit10: false,
+          enableSettingBit11: false,
+          enableSettingBit12: false,
           systemLockStatusSerialNumber: false,
           totalVoltageOvervoltageAlarmVoltage: false,
           totalVoltageOverDischargeAlarmVoltage: false,
@@ -2645,7 +2729,45 @@ export default {
           dischargeStaticHeatingEnable: false,
           unlockSystemLock: false,
           dischargeOnHeatingTemperature: false,
-          dischargeOffHeatingTemperature: false
+          dischargeOffHeatingTemperature: false,
+          stateOneBit0: false,
+          stateOneBit1: false,
+          stateOneBit2: false,
+          stateOneBit4: false,
+          stateOneBit5: false,
+          stateOneBit8: false,
+          stateOneBit9: false,
+          stateOneBit12: false,
+          stateTwoBit0: false,
+          stateTwoBit1: false,
+          stateTwoBit8: false,
+          stateTwoBit9: false,
+          stateTwoBit10: false,
+          stateTwoBit12: false,
+          stateTwoBit13: false,
+          stateThreeBit0: false,
+          stateThreeBit1: false,
+          stateThreeBit2: false,
+          stateThreeBit4: false,
+          stateThreeBit5: false,
+          stateThreeBit8: false,
+          stateThreeBit9: false,
+          stateThreeBit10: false,
+          stateThreeBit11: false,
+          stateThreeBit12: false,
+          stateThreeBit13: false,
+          stateThreeBit14: false,
+          stateThreeBit15: false,
+          stateBit0: false,
+          stateBit1: false,
+          stateBit2: false,
+          stateBit8: false,
+          stateBit9: false,
+          stateBit10: false,
+          stateBit11: false,
+          stateBit12: false,
+          stateBit14: false,
+          stateBit15: false,
         }
       },
       threePhaseMeterParameter: {
@@ -2837,8 +2959,10 @@ export default {
           item.dataList && item.dataList.forEach(i => {
             this.operationInformation[`${i.key}`] = i.isShow === 1
             i.dataList.forEach(j => {
-              this.operationInformation[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
-              this.operationInformation[`${i.key}Obj`][`${j.key}Val`] = j.val
+              // this.operationInformation[`${i.key}Obj`][`${j.key}`] = j.isShow === 1
+              // this.operationInformation[`${i.key}Obj`][`${j.key}Val`] = j.val
+              this.$set(this.operationInformation[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
+              this.$set(this.operationInformation[`${i.key}Obj`], `${j.key}Val`, j.val)
             })
           })
           // console.log('this.operationInformation', this.operationInformation)
