@@ -28,13 +28,13 @@
             </template>
           </el-table-column> -->
           <el-table-column align="center" :label="$t('opinionManage.userAccount')" prop="username" />
-          <el-table-column align="center" :label="$t('opinionManage.contactInformation')" prop="telephone" />
-          <el-table-column align="center" :label="$t('opinionManage.processingStatus')">
+          <el-table-column align="center" :label="$t('opinionManage.contactInformation')" prop="telephone" min-width="130"/>
+          <el-table-column align="center" :label="$t('opinionManage.processingStatus')" min-width="130">
             <template slot-scope="scope">
               {{ scope.row.feedbackState | feedbackStateFilter }}
             </template>
           </el-table-column>
-          <el-table-column align="center" :label="$t('opinionManage.opinionContent')" prop="contentInfo" show-overflow-tooltip />
+          <el-table-column align="center" :label="$t('opinionManage.opinionContent')" prop="contentInfo" show-overflow-tooltip  min-width="130"/>
           <el-table-column align="center" :label="$t('opinionManage.picture')">
             <template slot-scope="scope" v-if="scope.row.adminComFileInfosVo.length > 0">
               <div style="display: flex; flex-direction: column; align-items: center;">
@@ -47,7 +47,7 @@
               </div>
             </template>
           </el-table-column>
-          <el-table-column align="center" :label="$t('common.createTime')" width="200">
+          <el-table-column align="center" :label="$t('common.createTime')" width="190">
             <template slot-scope="scope">
               {{ scope.row.createTime | parseTime }}
             </template>

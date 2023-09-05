@@ -31,15 +31,15 @@
 
       <div class="avue-crud">
         <el-table :data="dataList" fit v-loading="listLoading">
-          <el-table-column align="center" prop="versionCode" :label="$t('upgradeInfo.versionNumber')" />
-          <el-table-column align="center" prop="versionUpgrade" :label="$t('upgradeInfo.upgradeableVersion')" />
+          <el-table-column align="center" prop="versionCode" :label="$t('upgradeInfo.versionNumber')" min-width="150" />
+          <el-table-column align="center" prop="versionUpgrade" :label="$t('upgradeInfo.upgradeableVersion')" min-width="150"/>
           <el-table-column align="center" :label="$t('upgradeInfo.state')">
             <template slot-scope="scope">
               <el-tag v-if="scope.row.status === 1">{{$t('upgradeInfo.distributed')}}</el-tag>
               <el-tag v-else-if="scope.row.status === 0" type="info">{{$t('upgradeInfo.toBeIssued')}}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column align="center" :label="$t('upgradeInfo.upgradeType')">
+          <el-table-column align="center" :label="$t('upgradeInfo.upgradeType')" min-width="150">
             <template slot-scope="scope">
               {{ scope.row.type | updateType }}
             </template>

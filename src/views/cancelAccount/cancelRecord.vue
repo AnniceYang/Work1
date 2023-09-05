@@ -30,19 +30,19 @@
 
       <div class="avue-crud">
         <el-table :data="dataList" fit v-loading="listLoading">
-          <el-table-column align="center" :label="$t('common.userType')">
+          <el-table-column align="center" :label="$t('common.userType')" min-width="70">
             <template slot-scope="scope">
               {{ scope.row.userType | userTypeFilter }}
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="mail" :label="$t('cancelRecord.cancelEmail')" />
-          <el-table-column align="center" :label="$t('cancelRecord.cancellationType')">
+          <el-table-column align="center" prop="mail" :label="$t('cancelRecord.cancelEmail')" min-width="120"/>
+          <el-table-column align="center" :label="$t('cancelRecord.cancellationType')" min-width="150">
             <template slot-scope="scope">
               {{ scope.row.type | logoutTypeFilter }}
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="remarks" :label="$t('cancelRecord.reason')" show-overflow-tooltip />
-          <el-table-column align="center" :label="$t('cancelRecord.processingStatus')">
+          <el-table-column align="center" prop="remarks" :label="$t('cancelRecord.reason')" show-overflow-tooltip min-width="150"/>
+          <el-table-column align="center" :label="$t('cancelRecord.processingStatus')" min-width="">
             <template slot-scope="scope">
               <el-tag v-if="scope.row.status === 0">{{$t('cancelRecord.toBeProcessed')}}</el-tag>
               <el-tag type="success" v-else-if="scope.row.status === 1">{{$t('cancelRecord.pass')}}</el-tag>

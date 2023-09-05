@@ -20,8 +20,8 @@
 
       <div class="avue-crud">
         <el-table :data="dataList" border fit v-loading="listLoading">
-          <el-table-column align="center" :label="$t('problemManage.problemClassify')" prop="problemClassName" width="120px" />
-          <el-table-column align="center" :label="$t('problemManage.titleC')" prop="title" width="200px" />
+          <el-table-column align="center" :label="$t('problemManage.problemClassify')" prop="problemClassName" width="180px" />
+          <el-table-column align="center" :label="$t('problemManage.titleC')" prop="title" width="180px" />
           <el-table-column align="center" :label="$t('problemManage.titleE')" prop="titleEn" width="200px" />
           <el-table-column align="center" :label="$t('problemManage.contentC')" prop="contentInfo" show-overflow-tooltip />
           <el-table-column align="center" :label="$t('problemManage.contentE')" prop="contentInfoEn" show-overflow-tooltip />

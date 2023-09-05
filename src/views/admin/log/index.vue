@@ -67,6 +67,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.userOperation')"
+          min-width="80"
         >
         </el-table-column>
         <el-table-column
@@ -74,6 +75,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.requestMethod')"
+          min-width="100"
         >
         </el-table-column>
         <el-table-column
@@ -81,6 +83,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.requestParameters')"
+          min-width="110"
         >
           <template slot-scope="scope">
             <el-popover
@@ -107,6 +110,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.executionTime')"
+          min-width="60"
         >
         </el-table-column>
         <el-table-column

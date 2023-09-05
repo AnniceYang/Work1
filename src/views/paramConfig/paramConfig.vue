@@ -425,7 +425,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.AhaseInverterApparentPower')">
+            <el-descriptions-item :label="$t('parameterConfiguration.AphaseInverterApparentPower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -433,7 +433,7 @@
                 "
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.BhaseInverterApparentPower')">
+            <el-descriptions-item :label="$t('parameterConfiguration.BphaseInverterApparentPower')">
               <el-switch
                 v-model="
                   operationInformation.inverterInformationObj
@@ -1116,7 +1116,7 @@
 
         <el-card style="margin-top: 10px">
           <div slot="header">
-            <span>{{$t('parameterConfiguration.communication')}}</span>
+            <span>{{$t('deviceManage.communicationSettings')}}</span>
             <el-switch
               style="margin-left: 10px"
               v-model="systemSet.communicationSet"

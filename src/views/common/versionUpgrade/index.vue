@@ -38,7 +38,7 @@
               <span v-if="scope.row.appType < 2">-{{ scope.row.appItem === 1 ? $t('common.user') : $t('common.distributor') }}</span>
             </template>
           </el-table-column>
-          <el-table-column :label="$t('versionManage.download')" align="center" prop="adminComFileInfosVo.filePath" />
+          <el-table-column :label="$t('versionManage.download')" align="center" prop="adminComFileInfosVo.filePath" min-width="150" />
           <el-table-column :label="$t('versionManage.version')" align="center" prop="versionCode"  width="200" />
           <el-table-column :label="$t('versionManage.versionName')" align="center" prop="versionName" width="200"  />
           <el-table-column :label="$t('versionManage.notes')" align="center" prop="remarks" width="200"  />

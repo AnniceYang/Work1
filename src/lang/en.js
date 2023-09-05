@@ -1239,7 +1239,7 @@ export default {
     CollectorCommunicationProtocolType:'Collector communication protocol type',
     CollectorCommunicationBaudRate:'Collector communication baud rate',
     DeviceCommunicationAddress:'Device communication address',
-    AdvancedSetting:'advanced setting',
+    AdvancedSetting:'Settings',
     ParallelOffGridMode:'Parallel off grid mode',
     SystemModeSettings:'System Mode Settings',
     PVConnectionSettings:'PV Connection Settings',
