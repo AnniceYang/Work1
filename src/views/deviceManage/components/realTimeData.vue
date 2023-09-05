@@ -339,7 +339,16 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('totalPowerGenerationCalibration', systemSet.commonSetObj.totalPowerGenerationCalibrationVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.clearConsumptionData')" v-if="systemSet.commonSetObj.clearElectricityConsumptionData">
+            <el-descriptions-item :label="$t('deviceManage.clearBatteryData')" v-if="systemSet.commonSetObj.clearBatteryData">
+              <div style="display: flex;">
+                <el-select v-model="systemSet.commonSetObj.clearBatteryDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearBatteryData', systemSet.commonSetObj.clearBatteryDataVal)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
+            <!-- <el-descriptions-item :label="$t('deviceManage.clearConsumptionData')" v-if="systemSet.commonSetObj.clearElectricityConsumptionData">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearElectricityConsumptionDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -347,8 +356,8 @@
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearElectricityConsumptionData', systemSet.commonSetObj.clearElectricityConsumptionDataVal)">{{$t('common.save')}}</el-button>
               </div>
-            </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.clearGenerationData')" v-if="systemSet.commonSetObj.clearPowerGenerationData">
+            </el-descriptions-item> -->
+            <!-- <el-descriptions-item :label="$t('deviceManage.clearGenerationData')" v-if="systemSet.commonSetObj.clearPowerGenerationData">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.clearPowerGenerationDataVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option label="0" value="0" />
@@ -356,7 +365,7 @@
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('clearPowerGenerationData', systemSet.commonSetObj.clearPowerGenerationDataVal)">{{$t('common.save')}}</el-button>
               </div>
-            </el-descriptions-item>
+            </el-descriptions-item> -->
             <el-descriptions-item :label="$t('deviceManage.bootCommand')" v-if="systemSet.commonSetObj.bootCommand">
               <div style="display: flex;">
                 <el-select v-model="systemSet.commonSetObj.bootCommandVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
@@ -729,6 +738,8 @@
                   <el-option :label="$t('deviceManage.Australia')" value="3" />
                   <el-option :label="$t('deviceManage.Belgium')" value="4" />
                   <el-option :label="$t('deviceManage.SouthAfrica')" value="5" />
+                  <el-option :label="$t('deviceManage.England')" value="6" />
+                  <el-option :label="$t('deviceManage.Spain')" value="7" />
                 </el-select>
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('countryCode', systemSet.otherSetObj.countryCodeVal)">{{$t('common.save')}}</el-button>
               </div>
@@ -2216,8 +2227,9 @@ export default {
           communicationProtocolType: false,
           dailyPowerGenerationCalibration: false,
           totalPowerGenerationCalibration: false,
-          clearElectricityConsumptionData: false,
-          clearPowerGenerationData: false,
+          clearBatteryData: false,
+          // clearElectricityConsumptionData: false,
+          // clearPowerGenerationData: false,
           bootCommand: false,
           shutdownCommand: false,
           cancelShutdownCommand: false,
@@ -2225,8 +2237,9 @@ export default {
           communicationProtocolTypeVal: '',
           dailyPowerGenerationCalibrationVal: '',
           totalPowerGenerationCalibrationVal: '',
-          clearElectricityConsumptionDataVal: '',
-          clearPowerGenerationDataVal: '',
+          clearBatteryDataVal: false,
+          // clearElectricityConsumptionDataVal: '',
+          // clearPowerGenerationDataVal: '',
           bootCommandVal: '',
           shutdownCommandVal: '',
           cancelShutdownCommandVal: '',
@@ -2871,7 +2884,7 @@ export default {
   },
   methods: {
     handleSave(key, val) {
-      if(this.deviceInfo.countryCode === '6'){
+      if(this.systemSet.otherSetObj.countryCodeVal === '6' && key !== 'countryCode'){
         this.$message.info(this.$t('common.cannotBeChanged'))
         return
       }

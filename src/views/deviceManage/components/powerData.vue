@@ -83,10 +83,10 @@ export default {
         legend: {
           data: [this.$t('deviceManage.battery'), this.$t('deviceManage.photovoltaic'), this.$t('deviceManage.load'), this.$t('deviceManage.sellingElectricity'), this.$t('deviceManage.buyingElectricity')]
         },
-        // tooltip: {
-        //   trigger: 'axis',
-        //   formatter: '{b0}<br />电池：{c0}w<br />光伏：{c1}w<br />负载：{c2}w<br />卖电：{c3}w<br />买电：{c4}w'
-        // },
+        tooltip: {
+          trigger: 'axis',
+          // formatter: '{b0}<br />电池：{c0}w<br />光伏：{c1}w<br />负载：{c2}w<br />卖电：{c3}w<br />买电：{c4}w'
+        },
         grid: {
           top: 20,
           bottom: 35,

@@ -83,10 +83,10 @@ export default {
         legend: {
           data: [this.$t('deviceManage.capacity'), this.$t('deviceManage.photovoltaicPowerGeneration'), this.$t('deviceManage.sellingElectricity'), this.$t('deviceManage.buyingElectricity')]
         },
-        // tooltip: {
-        //   trigger: 'axis',
-        //   formatter: '{b0}<br />负载量：{c0}kWh<br />光伏发电量：{c1}kWh<br />卖电量：{c2}kWh<br />买电量：{c3}kWh'
-        // },
+        tooltip: {
+          trigger: 'axis',
+          // formatter: '{b0}<br />负载量：{c0}kWh<br />光伏发电量：{c1}kWh<br />卖电量：{c2}kWh<br />买电量：{c3}kWh'
+        },
         grid: {
           top: 30,
           bottom: 35,

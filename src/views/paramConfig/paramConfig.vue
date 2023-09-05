@@ -1085,16 +1085,21 @@
                 v-model="systemSet.commonSetObj.totalPowerGenerationCalibration"
               />
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.ClearElectricityConsumptionData')">
+            <el-descriptions-item :label="$t('deviceManage.clearBatteryData')">
+              <el-switch
+                v-model="systemSet.commonSetObj.clearBatteryData"
+              />
+            </el-descriptions-item>
+            <!-- <el-descriptions-item :label="$t('parameterConfiguration.ClearElectricityConsumptionData')">
               <el-switch
                 v-model="systemSet.commonSetObj.clearElectricityConsumptionData"
               />
-            </el-descriptions-item>
-            <el-descriptions-item :label="$t('parameterConfiguration.ClearPowerGenerationData')">
+            </el-descriptions-item> -->
+            <!-- <el-descriptions-item :label="$t('parameterConfiguration.ClearPowerGenerationData')">
               <el-switch
                 v-model="systemSet.commonSetObj.clearPowerGenerationData"
               />
-            </el-descriptions-item>
+            </el-descriptions-item> -->
             <el-descriptions-item :label="$t('parameterConfiguration.BootCommand')">
               <el-switch v-model="systemSet.commonSetObj.bootCommand" />
             </el-descriptions-item>
@@ -4245,8 +4250,9 @@ export default {
           communicationProtocolType: false,
           dailyPowerGenerationCalibration: false,
           totalPowerGenerationCalibration: false,
-          clearElectricityConsumptionData: false,
-          clearPowerGenerationData: false,
+          // clearElectricityConsumptionData: false,
+          // clearPowerGenerationData: false,
+          clearBatteryData: false,
           bootCommand: false,
           shutdownCommand: false,
           cancelShutdownCommand: false,
