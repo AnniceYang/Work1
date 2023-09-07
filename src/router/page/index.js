@@ -10,7 +10,8 @@ export default [{
     isTab: false,
     isAuth: false
   }
-}, {
+}, 
+{
   path: '/wel',
   component: Layout,
   redirect: '/wel/index',

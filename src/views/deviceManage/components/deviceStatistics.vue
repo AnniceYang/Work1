@@ -16,10 +16,10 @@
           deviceInfo.type === 0 ? "NB" : "涂鸦"
         }}</el-descriptions-item> -->
         <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{
-          deviceInfo.status | devStatusFilter
+          devStatusFilter[deviceInfo.status]
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
-          deviceInfo.onlineStatus | onlineStatusFilter
+          onlineStatusFilter[deviceInfo.onlineStatus]
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
@@ -203,6 +203,8 @@ export default {
   data() {
     return {
       deviceInfo: {},
+      devStatusFilter:[this.$t('userManage.normal'),this.$t('deviceManage.maintenance'),this.$t('deviceManage.offline'),this.$t('deviceManage.error')],
+      onlineStatusFilter: [this.$t('deviceManage.offline'), this.$t('deviceManage.online'), this.$t('deviceManage.updating')],
       chartData1: {
         xData: [],
         yDataTotalElec: [],

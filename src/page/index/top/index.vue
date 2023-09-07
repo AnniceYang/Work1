@@ -24,7 +24,8 @@
     <div class="top-bar__right">
       <el-dropdown>
         <div class="user" style="color: #ffffff; font-size: 18px;">
-          {{ userInfo.objName || userInfo.name }}
+          <!-- {{ userInfo.objName || userInfo.name }} -->
+          {{ userInfo.username || userInfo.name }}
           <i class="el-icon-arrow-down el-icon--right" />
         </div>
         <el-dropdown-menu slot="dropdown">

@@ -16,7 +16,7 @@
         <el-descriptions :title="$t('deviceManage.deviceInformation')" :column="3">
           <el-descriptions-item :label="$t('deviceManage.deviceName')">{{ deviceInfo.name }}</el-descriptions-item>
           <el-descriptions-item :label="$t('deviceManage.snCode')">{{ deviceInfo.sn }}</el-descriptions-item>
-          <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{ deviceInfo.status | devStatusFilter }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{ devStatusFilter[deviceInfo.status] }}</el-descriptions-item>
           <el-descriptions-item :label="$t('common.createTime')">{{ deviceInfo.createTime | parseTime }}</el-descriptions-item>
         </el-descriptions>
       </el-card>
@@ -32,10 +32,11 @@
             <el-descriptions-item :label="$t('deviceManage.MCUHardwareVersion')" v-if="operationInformation.runInformationObj.mcuHardwareVersion">{{ operationInformation.runInformationObj.mcuHardwareVersionVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.DSPHardwareVersion')" v-if="operationInformation.runInformationObj.dspHardwareVersion">{{ operationInformation.runInformationObj.dspHardwareVersionVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.currentModeOfTheSystem')" v-if="operationInformation.runInformationObj.currentModeOfTheSystem">
-              {{ operationInformation.runInformationObj.currentModeOfTheSystemVal | systemModeFilter }}
+              <!-- {{ operationInformation.runInformationObj.currentModeOfTheSystemVal | systemModeFilter }} -->
+              {{ systemModeFilter[operationInformation.runInformationObj.currentModeOfTheSystemVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.systemOperationStatus')" v-if="operationInformation.runInformationObj.systemRunStatus">
-              {{ operationInformation.runInformationObj.systemRunStatusVal | systemStateFilter }}
+              {{ systemStateFilter[operationInformation.runInformationObj.systemRunStatusVal] }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
@@ -44,7 +45,7 @@
           <el-descriptions :title="$t('deviceManage.basicInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.dcdcTemperature')" v-if="operationInformation.basicInformationObj.dcdcTemperature">{{ operationInformation.basicInformationObj.dcdcTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.countryCode')" v-if="operationInformation.basicInformationObj.countryCode">
-              {{ operationInformation.basicInformationObj.countryCodeVal | countryCodeValFilter }}
+              {{ countryCodeValFilter[operationInformation.basicInformationObj.countryCodeVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.busbarVoltage')" v-if="operationInformation.basicInformationObj.busVoltage">{{ operationInformation.basicInformationObj.busVoltageVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.dailyPowerGeneration')" v-if="operationInformation.basicInformationObj.dailyPowerGeneration">{{ operationInformation.basicInformationObj.dailyPowerGenerationVal }}kWh</el-descriptions-item>
@@ -68,14 +69,14 @@
         <el-card style="margin-top: 10px;" v-if="operationInformation.batteryInformation">
           <el-descriptions :title="$t('deviceManage.batteryInfo')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.batteryStatus')" v-if="operationInformation.batteryInformationObj.batteryStatus">
-              {{ operationInformation.batteryInformationObj.batteryStatusVal | batteryStatusFilter }}
+              {{ batteryStatusFilter[operationInformation.batteryInformationObj.batteryStatusVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryVoltage')" v-if="operationInformation.batteryInformationObj.batteryVoltage">{{ operationInformation.batteryInformationObj.batteryVoltageVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryCurrent')" v-if="operationInformation.batteryInformationObj.batteryCurrent">{{ operationInformation.batteryInformationObj.batteryCurrentVal }}A</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryPower')" v-if="operationInformation.batteryInformationObj.batteryPower">{{ operationInformation.batteryInformationObj.batteryPowerVal }}W</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryTotalSoc')" v-if="operationInformation.batteryInformationObj.batteryTotalSoc">{{ operationInformation.batteryInformationObj.batteryTotalSocVal }}%</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.BMSlogo')" v-if="operationInformation.batteryInformationObj.bmsSign">
-              {{ operationInformation.batteryInformationObj.bmsSignVal | BMSFilter }}
+              {{ BMSFilter[operationInformation.batteryInformationObj.bmsSignVal] }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
@@ -84,7 +85,7 @@
         <el-card style="margin-top: 10px;" v-if="operationInformation.powerGridInformation">
           <el-descriptions :title="$t('deviceManage.powerGridInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.powerGridStatus')" v-if="operationInformation.powerGridInformationObj.powerGridStatus">
-              {{ operationInformation.powerGridInformationObj.powerGridStatusVal | GridStateFilter }}
+              {{ GridStateFilter[operationInformation.powerGridInformationObj.powerGridStatusVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseAGridFrequency')" v-if="operationInformation.powerGridInformationObj.gridFrequencyA">{{ operationInformation.powerGridInformationObj.gridFrequencyAVal }}Hz</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseBGridFrequency')" v-if="operationInformation.powerGridInformationObj.gridFrequencyB">{{ operationInformation.powerGridInformationObj.gridFrequencyBVal }}Hz</el-descriptions-item>
@@ -98,7 +99,7 @@
             <el-descriptions-item :label="$t('deviceManage.ctCurrent')" v-if="operationInformation.powerGridInformationObj.ctCurrent">{{ operationInformation.powerGridInformationObj.ctCurrentVal }}A</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.ctPower')" v-if="operationInformation.powerGridInformationObj.ctPower">{{ operationInformation.powerGridInformationObj.ctPowerVal }}W</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.CTDirection')" v-if="operationInformation.powerGridInformationObj.ctDirection">
-              {{ operationInformation.powerGridInformationObj.ctDirectionVal | CTFilter }}
+              {{ CTFilter[operationInformation.powerGridInformationObj.ctDirectionVal] }}
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
@@ -107,7 +108,7 @@
           <el-descriptions :title="$t('deviceManage.inverterInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.inverterSideTemperature')" v-if="operationInformation.inverterInformationObj.inverterTemperature">{{ operationInformation.inverterInformationObj.inverterTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.inversionState')" v-if="operationInformation.inverterInformationObj.inversionState">
-              {{ operationInformation.inverterInformationObj.inversionStateVal | invertingStateFilter }}
+              {{ invertingStateFilter[operationInformation.inverterInformationObj.inversionStateVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseAInverterOutputFrequency')" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyA">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyAVal }}Hz</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.phaseBInverterOutputFrequency')" v-if="operationInformation.inverterInformationObj.inverterOutputFrequencyB">{{ operationInformation.inverterInformationObj.inverterOutputFrequencyBVal }}Hz</el-descriptions-item>
@@ -155,7 +156,7 @@
         <el-card style="margin-top: 10px;" v-if="operationInformation.electricityMeterInformation">
           <el-descriptions :title="$t('deviceManage.electricityMeterInformation')" :column="3">
             <el-descriptions-item :label="$t('deviceManage.normalIndicatorOfElectricityMeter')" v-if="operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeter">
-              {{ operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeterVal | meterNormalFilter }}
+              {{ meterNormalFilter[operationInformation.electricityMeterInformationObj.normalIndicatorOfElectricityMeterVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.meterVoltage')" v-if="operationInformation.electricityMeterInformationObj.meterVoltage">{{ operationInformation.electricityMeterInformationObj.meterVoltageVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.currentCombinedActiveEnergy')" v-if="operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergy">{{ operationInformation.electricityMeterInformationObj.currentCombinedActiveEnergyVal }}kWh</el-descriptions-item>
@@ -2088,6 +2089,23 @@ export default {
   data() {
     return {
       deviceInfo: {},
+      devStatusFilter:[this.$t('userManage.normal'),this.$t('deviceManage.maintenance'),this.$t('deviceManage.offline'),this.$t('deviceManage.error')],
+      systemModeFilter: [this.$t('deviceManage.batteryPriorityMode'),this.$t('deviceManage.homeLoadPriorityMode'),this.$t('deviceManage.gridPriorityMode'),
+      this.$t('deviceManage.fullPowerFeedMode'),this.$t('deviceManage.emergencyBackupMode'),this.$t('deviceManage.acBackupMode'),
+      this.$t('deviceManage.purePVMode'),this.$t('deviceManage.forcedOffGridMode')],
+      systemStateFilter: [this.$t('deviceManage.nothing'), this.$t('deviceManage.systemState1'), this.$t('deviceManage.systemState2'), this.$t('deviceManage.systemState3'),
+      this.$t('deviceManage.systemState4'),this.$t('deviceManage.systemState5'),this.$t('deviceManage.systemState6'),
+      this.$t('deviceManage.systemState7'),this.$t('deviceManage.systemState8'),this.$t('deviceManage.systemState9'), this.$t('deviceManage.systemState10')],
+      countryCodeValFilter: [this.$t('deviceManage.China'),this.$t('deviceManage.Italy'),this.$t('deviceManage.Germany'),this.$t('deviceManage.Australia'),
+      this.$t('deviceManage.Belgium'),this.$t('deviceManage.SouthAfrica'),this.$t('deviceManage.England'),this.$t('deviceManage.Spain')],
+      batteryStatusFilter: [this.$t('deviceManage.nothing'),this.$t('deviceManage.batteryStatus1'),this.$t('deviceManage.batteryStatus2'),
+      this.$t('deviceManage.batteryStatus3'),this.$t('deviceManage.batteryStatus4'),this.$t('deviceManage.batteryStatus5'),
+      this.$t('deviceManage.batteryStatus6'),this.$t('deviceManage.batteryStatus7')],
+      BMSFilter: [this.$t('deviceManage.BMS1'),this.$t('deviceManage.BMS2')],
+      GridStateFilter: ['N/A',this.$t('deviceManage.GridState1'),this.$t('deviceManage.GridState2'),this.$t('deviceManage.GridState3')],
+      CTFilter: [this.$t('deviceManage.CT1'),this.$t('deviceManage.CT2'),this.$t('deviceManage.CT3')],
+      invertingStateFilter: ['N/A',this.$t('deviceManage.invertingState1'),this.$t('deviceManage.invertingState2')],
+      meterNormalFilter: [this.$t('deviceManage.meterNormal1'), this.$t('deviceManage.meterNormal2')],
       activeIndex: '7',
       loading: false,
       // mqtt

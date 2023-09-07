@@ -52,26 +52,29 @@
           </el-table-column> -->
           <el-table-column align="center" :label="$t('deviceManage.deviceStatus')">
             <template slot-scope="scope">
-              {{ scope.row.status | devStatusFilter }}
+              <!-- {{ scope.row.status | devStatusFilter }} -->
+              {{ devStatusFilter[scope.row.status] }}
             </template>
           </el-table-column>
           <el-table-column align="center" :label="$t('deviceManage.onlineStatus')">
             <template slot-scope="scope">
-              {{ scope.row.onlineStatus | onlineStatusFilter }}
+              <!-- {{ scope.row.onlineStatus | onlineStatusFilter }} -->
+              {{ onlineStatusFilter[scope.row.onlineStatus] }}
             </template>
           </el-table-column>
           <el-table-column align="center" :label="$t('deviceManage.timeZone')">
             <template slot-scope="scope">
-              {{ scope.row.timeZone | timeZoneFilter }}
+              <!-- {{ scope.row.timeZone | timeZoneFilter }} -->
+              {{ timeZoneFilter[scope.row.timeZone] }}
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="bindUserName" :label="$t('deviceManage.userName')" show-overflow-tooltip />
+          <!-- <el-table-column align="center" prop="bindUserName" :label="$t('deviceManage.userName')" show-overflow-tooltip /> -->
           <el-table-column align="center" prop="installUserName" :label="$t('deviceManage.installer')" show-overflow-tooltip />
-          <el-table-column align="center" :label="$t('common.createTime')" width="150">
+          <!-- <el-table-column align="center" :label="$t('common.createTime')" width="150">
             <template slot-scope="scope">
               {{ scope.row.createTime | parseTime }}
             </template>
-          </el-table-column>
+          </el-table-column> -->
           <el-table-column :label="$t('common.operate')" align="center" width="250" fixed="right">
             <template slot-scope="scope">
               <el-button type="text" @click="handleStatistics(scope.row)">{{$t('deviceManage.details')}}</el-button>
@@ -144,6 +147,16 @@ export default {
     return {
       pageState: 1,
       installUserList: [],
+      devStatusFilter:[this.$t('userManage.normal'),this.$t('deviceManage.maintenance'),this.$t('deviceManage.offline'),this.$t('deviceManage.error')],
+      onlineStatusFilter: [this.$t('deviceManage.offline'), this.$t('deviceManage.online'), this.$t('deviceManage.updating')],
+      timeZoneFilter: [this.$t('deviceManage.zeroZone'), this.$t('deviceManage.eastFirstDistrict'),this.$t('deviceManage.eastSecondDistrict'),
+      this.$t('deviceManage.eastThirdDistrict'),this.$t('deviceManage.eastFourthDistrict'),this.$t('deviceManage.eastFifthDistrict'),
+      this.$t('deviceManage.eastSixthDistrict'),this.$t('deviceManage.eastSeventhDistrict'),this.$t('deviceManage.eastEighthDistrict'),
+      this.$t('deviceManage.eastNinthDistrict'),this.$t('deviceManage.eastTenthDistrict'),this.$t('deviceManage.eastEleventhDistrict'),
+      this.$t('deviceManage.eastTwelfthDistrict'),this.$t('deviceManage.westFirstDistrict'),this.$t('deviceManage.westSecondDistrict'),
+      this.$t('deviceManage.westThirdDistrict'),this.$t('deviceManage.westFourthDistrict'),this.$t('deviceManage.westFifthDistrict'),
+      this.$t('deviceManage.westSixthDistrict'),this.$t('deviceManage.westSeventhDistrict'),this.$t('deviceManage.westEighthDistrict'),
+      this.$t('deviceManage.westNinthDistrict'),this.$t('deviceManage.westTenthDistrict'),this.$t('deviceManage.westEleventhDistrict')],
       // 列表信息
       listLoading: false,
       dataList: [],

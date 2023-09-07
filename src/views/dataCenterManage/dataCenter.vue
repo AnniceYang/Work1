@@ -43,7 +43,8 @@
           </el-table-column>
           <el-table-column align="center" :label="$t('dataCenter.type')">
             <template slot-scope="scope">
-              {{ scope.row.type | dataTypeList }}
+              <!-- {{ scope.row.type | dataTypeList }} -->
+              {{ dataTypeList[scope.row.type - 1] }}
             </template>
           </el-table-column>
           <el-table-column align="center" :label="$t('common.createTime')" width="150">
@@ -88,6 +89,7 @@ export default {
       // 列表信息
       listLoading: false,
       dataList: [],
+      dataTypeList: [this.$t('dataCenter.newsCenter'), this.$t('dataCenter.installationInstructions'), this.$t('dataCenter.installationVideo'), this.$t('dataCenter.userManual'), this.$t('dataCenter.troubleShooting'), 'Q&A'],
       total: 0,
       listQuery: {
         current: 1,

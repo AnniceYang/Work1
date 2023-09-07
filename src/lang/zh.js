@@ -251,6 +251,8 @@ export default {
     onlineStatus: '在线状态',
     offline: '离线',
     online: '在线',
+    maintenance: '维护',
+    error: '报错',
     updating: '升级中',
     installer: '安装商',
     deviceStatus: '设备状态',
@@ -1018,6 +1020,43 @@ export default {
     nonHeatingState: '非加热状态',
     loseEfficacy: '失效',
     giveAnAlarm: '告警',
+
+    systemState1: 'PV离网',
+    systemState2: '电网运行',
+    systemState3: '电池离网',
+    systemState4: 'PV电池离网',
+    systemState5: '电池并网',
+    systemState6: 'PV并网',
+    systemState7: 'PV电池并网',
+    systemState8: '系统待机',
+    systemState9: '系统启动中',
+    systemState10: '系统停机',
+
+    batteryStatus1: '恒流充电',
+    batteryStatus2: '恒压充电',
+    batteryStatus3: '浮充',
+    batteryStatus4: '充满',
+    batteryStatus5: '放电',
+    batteryStatus6: '强制充电',
+    batteryStatus7: '检测电池状态',
+
+    BMS1:'无BMS',
+    BMS2:'BMS通讯正常',
+
+    GridState1: '单独供电',
+    GridState2: '并网卖电',
+    GridState3: '并网买电',
+
+    CT1:'CT买电',
+    CT2:'CT馈电',
+    CT3:'无CT',
+
+    invertingState1: '逆变放电',
+    invertingState2: '整流充电',
+
+    meterNormal1: '通讯异常',
+    meterNormal2: '通讯正常',
+
   },
   modelManage: {
     modeName: '模式名称',
