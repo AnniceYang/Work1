@@ -1043,6 +1043,102 @@
                 "
               />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress144')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress144
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress146')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress146
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress148')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress148
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress150')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress150
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress152')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress152
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress153')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress153
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress154')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress154
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress155')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress155
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress156')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress156
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress157')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress157
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress158')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress158
+                "
+              />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress159')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress159
+                "
+              />
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-card>
@@ -4240,6 +4336,18 @@ export default {
           deviceTypeSignOne: false,
           deviceTypeSignTwo: false,
           deviceTypeSignThree: false,
+          protocolAddress144: false,
+          protocolAddress146: false,
+          protocolAddress148: false,
+          protocolAddress150: false,
+          protocolAddress152: false,
+          protocolAddress153: false,
+          protocolAddress154: false,
+          protocolAddress155: false,
+          protocolAddress156: false,
+          protocolAddress157: false,
+          protocolAddress158: false,
+          protocolAddress159: false,
         },
       },
       systemSet: {
