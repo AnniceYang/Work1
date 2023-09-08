@@ -172,7 +172,7 @@
         <el-card style="margin-top: 10px;" v-if="operationInformation.otherInformation">
           <el-descriptions :title="$t('deviceManage.otherInformation')" :column="2">
             <el-descriptions-item :label="$t('deviceManage.selfInspectionStatus')" v-if="operationInformation.otherInformationObj.selfInspectionStatus">
-              {{ operationInformation.otherInformationObj.selfInspectionStatusVal | selfCheckFilter }}
+              {{ selfCheckFilter[operationInformation.otherInformationObj.selfInspectionStatusVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.protectionThreshold')" v-if="operationInformation.otherInformationObj.selfCheckActualProtectionThreshold">
               {{ operationInformation.otherInformationObj.selfCheckActualProtectionThresholdVal }}V/Hz
@@ -184,13 +184,13 @@
               {{ operationInformation.otherInformationObj.selfCheckRealTimeProtectionThresholdVal }}V/Hz
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.USBStatus')" v-if="operationInformation.otherInformationObj.usbStatus">
-              {{ operationInformation.otherInformationObj.usbStatusVal | USBFilter }}
+              {{ USBFilter[operationInformation.otherInformationObj.usbStatusVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.lineNumber1')" v-if="operationInformation.otherInformationObj.energyFlowOne">
               {{ operationInformation.otherInformationObj.energyFlowOneVal }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.lineNumber2')" v-if="operationInformation.otherInformationObj.energyFlowTwo">
-              {{ operationInformation.otherInformationObj.energyFlowTwoVal | energyFlowFilter }}
+              {{ energyFlowFilter[operationInformation.otherInformationObj.energyFlowTwoVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.switchNumber')" v-if="operationInformation.otherInformationObj.energyFlowThree">
               {{ operationInformation.otherInformationObj.energyFlowThreeVal }}
@@ -265,7 +265,7 @@
               {{ operationInformation.otherInformationObj.numberOfHistoryRecordsVal }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.enableState')" v-if="operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableState">
-              {{ operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableStateVal | batteryChargingAndDischargingHeatingEnableStateValFilter }}
+              {{ heatingEnableFilter[operationInformation.otherInformationObj.batteryChargingAndDischargingHeatingEnableStateVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.factoryCode')" v-if="operationInformation.otherInformationObj.batteryFactoryCode">
               {{ operationInformation.otherInformationObj.batteryFactoryCodeVal }}
@@ -1583,7 +1583,7 @@
             <el-descriptions-item :label="$t('deviceManage.automaticRecoveryLocking')" v-if="batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrent">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.inverterCurrentLimit')" v-if="batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrent">{{ batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrentVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryParameterDisplayMethod')" v-if="batteryParameter.batterySetObj.batteryParameterDisplayMethod">
-              {{ batteryParameter.batterySetObj.batteryParameterDisplayMethodVal == 0 ? '自动轮询' : '自动轮询' }}
+              {{ batteryParameter.batterySetObj.batteryParameterDisplayMethodVal == 0 ? $t('deviceManage.automaticPolling') : $t('deviceManage.manualSwitching') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryIDParameter')" v-if="batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameter">{{ batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameterVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryPackDesignCapacity')" v-if="batteryParameter.batterySetObj.batteryPackDesignCapacity">{{ batteryParameter.batterySetObj.batteryPackDesignCapacityVal }}</el-descriptions-item>
@@ -1657,7 +1657,7 @@
               {{ batteryParameter.batterySetObj.enableSettingBit12Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.systemLockNumber')" v-if="batteryParameter.batterySetObj.systemLockStatusSerialNumber">
-              {{ batteryParameter.batterySetObj.systemLockStatusSerialNumberVal | systemLockStatusSerialNumberValFilter }}
+              {{ systemLockStatusSerialNumberValFilter[batteryParameter.batterySetObj.systemLockStatusSerialNumberVal] }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.totalOvervoltageVoltage')" v-if="batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageAlarmVoltageVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.totalOverdischargeVoltage')" v-if="batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltage">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltageVal }}mV</el-descriptions-item>
@@ -2106,6 +2106,18 @@ export default {
       CTFilter: [this.$t('deviceManage.CT1'),this.$t('deviceManage.CT2'),this.$t('deviceManage.CT3')],
       invertingStateFilter: ['N/A',this.$t('deviceManage.invertingState1'),this.$t('deviceManage.invertingState2')],
       meterNormalFilter: [this.$t('deviceManage.meterNormal1'), this.$t('deviceManage.meterNormal2')],
+      selfCheckFilter:['NULL', this.$t('deviceManage.selfCheck1'), this.$t('deviceManage.selfCheck2'),this.$t('deviceManage.selfCheck3')],
+      USBFilter: [this.$t('deviceManage.nothing'), this.$t('deviceManage.USB1'), this.$t('deviceManage.USB2'), this.$t('deviceManage.USB3'),
+      this.$t('deviceManage.USB4'),this.$t('deviceManage.USB5'),this.$t('deviceManage.USB6')],
+      energyFlowFilter: [this.$t('deviceManage.energyFlow1'),this.$t('deviceManage.energyFlow2'),this.$t('deviceManage.energyFlow3'),
+      this.$t('deviceManage.energyFlow4')],
+      heatingEnableFilter: [this.$t('deviceManage.heatingEnableState1'),this.$t('deviceManage.heatingEnableState2'),this.$t('deviceManage.heatingEnableState3'),
+      this.$t('deviceManage.heatingEnableState4'),this.$t('deviceManage.heatingEnableState5')],
+      systemLockStatusSerialNumberValFilter: [this.$t('deviceManage.systemLockStatus1'),this.$t('deviceManage.systemLockStatus2'),this.$t('deviceManage.systemLockStatus3'),
+      this.$t('deviceManage.systemLockStatus4'),this.$t('deviceManage.systemLockStatus5'),this.$t('deviceManage.systemLockStatus6'),
+      this.$t('deviceManage.systemLockStatus7'),this.$t('deviceManage.systemLockStatus8'),this.$t('deviceManage.systemLockStatus9'),
+      this.$t('deviceManage.systemLockStatus10'),this.$t('deviceManage.systemLockStatus11'),this.$t('deviceManage.systemLockStatus12'),
+      this.$t('deviceManage.systemLockStatus13')],
       activeIndex: '7',
       loading: false,
       // mqtt

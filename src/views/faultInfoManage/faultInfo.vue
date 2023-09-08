@@ -36,21 +36,21 @@
         </div>
         <div class="avue-crud">
           <el-table :data="dataList" border fit v-loading="listLoading">
-            <el-table-column align="center" :label="$t('faultInfo.faultLevel')" prop="level">
+            <el-table-column align="center" :label="$t('faultInfo.faultLevel')" prop="level" width="110">
               <template slot-scope="scope">
-                {{ scope.row.level | faultLevelFilter }}
+                {{ faultLevelFilter[scope.row.level - 1] }}
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('faultInfo.displayOrNot')" prop="level">
+            <el-table-column align="center" :label="$t('faultInfo.displayOrNot')" prop="level" width="120">
               <template slot-scope="scope">
                 <el-tag type="success" v-if="scope.row.installerDisplay === 1">{{$t('faultInfo.display')}}</el-tag>
                 <el-tag type="info" v-else-if="scope.row.installerDisplay === 0">{{$t('faultInfo.hide')}}</el-tag>
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('faultInfo.faultCode')" prop="code" />
+            <el-table-column align="center" :label="$t('faultInfo.faultCode')" prop="code" width="110"/>
             <el-table-column align="center" :label="$t('faultInfo.faultInformation')" prop="content" />
             <el-table-column align="center" :label="$t('faultInfo.possibleCauses')" prop="possibleCauses" />
-            <el-table-column align="center" :label="$t('faultInfo.solutionMeasures')">
+            <el-table-column align="center" :label="$t('faultInfo.solutionMeasures')" width="150">
               <template slot-scope="scope">
                 <el-popover placement="top" width="375" trigger="hover">
                   <div>
@@ -60,12 +60,12 @@
                 </el-popover>
               </template>
             </el-table-column>
-            <el-table-column align="center" :label="$t('common.createTime')" width="200">
+            <el-table-column align="center" :label="$t('common.createTime')" width="160">
               <template slot-scope="scope">
                 {{ scope.row.createTime | parseTime }}
               </template>
             </el-table-column>
-            <el-table-column :label="$t('common.operate')" align="center" width="200">
+            <el-table-column :label="$t('common.operate')" align="center" width="100">
               <template slot-scope="scope">
                 <el-button type="text" @click="handleAddorEdit(scope.row)" v-if="permissions.admin_lsyfault_edit">{{$t('common.edit')}}</el-button>
                 <el-button type="text" style="color: red;" @click="handleDel(scope.row.id)" v-if="permissions.admin_lsyfault_del">{{$t('common.delete')}}</el-button>
@@ -114,7 +114,8 @@ export default {
       listQuery: {
         current: 1,
         size: 10
-      }
+      },
+      faultLevelFilter: [this.$t('faultInfo.oneLevel'),this.$t('faultInfo.twoLevel'),this.$t('faultInfo.threeLevel')]
     }
   },
   computed: {

@@ -25,13 +25,13 @@
       </div>
 
       <div class="avue-crud">
-        <el-table :data="dataList" fit v-loading="listLoading">
+        <el-table :data="dataList" border fit v-loading="listLoading">
           <el-table-column align="center" prop="sn" :label="$t('faultInfo.equipmentCode')" show-overflow-tooltip />
           <el-table-column align="center" prop="content" :label="$t('faultInfo.faultInformation')" show-overflow-tooltip />
           <el-table-column align="center" prop="faultCode" :label="$t('faultInfo.faultCode')" show-overflow-tooltip />
           <el-table-column align="center" :label="$t('faultInfo.faultLevel')">
             <template slot-scope="scope">
-              {{ scope.row.level | faultLevelFilter }}
+              {{ faultLevelFilter[scope.row.level - 1] }}
             </template>
           </el-table-column>
           <el-table-column align="center" prop="possibleCauses" :label="$t('faultInfo.possibleCauses')" show-overflow-tooltip />
@@ -42,7 +42,7 @@
               <span v-else-if="scope.row.handleStatus === 1">{{$t('faultInfo.disappear')}}</span>
             </template>
           </el-table-column>
-          <el-table-column align="center" :label="$t('faultInfo.alarmTime')" width="250">
+          <el-table-column align="center" :label="$t('faultInfo.alarmTime')" width="160">
             <template slot-scope="scope">
               {{ scope.row.alarmTime | parseTime }}
             </template>
@@ -76,7 +76,8 @@ export default {
       listQuery: {
         current: 1,
         size: 10
-      }
+      },
+      faultLevelFilter: [this.$t('faultInfo.oneLevel'),this.$t('faultInfo.twoLevel'),this.$t('faultInfo.threeLevel')]
     };
   },
   computed: {

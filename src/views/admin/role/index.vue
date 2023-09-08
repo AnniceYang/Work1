@@ -4,8 +4,13 @@
   <div class="app-container calendar-list-container">
     <basic-container>
       <div class="avue-crud">
-        <el-table :data="dataList" fit v-loading="listLoading">
-          <el-table-column align="center" prop="roleName" :label="$t('roleManage.roleName')" />
+        <el-table :data="dataList" border fit v-loading="listLoading">
+          <!-- <el-table-column align="center" prop="roleName" :label="$t('roleManage.roleName')" /> -->
+          <el-table-column :label="$t('roleManage.roleName')" align="center">
+            <template slot-scope="scope">
+              {{roleList[scope.row.roleId - 1]}}
+            </template>
+          </el-table-column>
           <el-table-column align="center" prop="roleCode" :label="$t('roleManage.roleIdentification')" />
           <el-table-column align="center" prop="roleDesc" :label="$t('roleManage.roleDescription')" />
           <el-table-column :label="$t('common.operate')" align="center">
@@ -85,6 +90,7 @@ export default {
         label: 'name',
         value: 'id'
       },
+      roleList: [this.$t('common.admin'), this.$t('deviceManage.installer'), this.$t('deviceManage.user')],
     }
   },
   created() {

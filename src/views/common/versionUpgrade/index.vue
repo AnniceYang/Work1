@@ -34,7 +34,7 @@
         <el-table :data="dataList" border fit v-loading="listLoading">
           <el-table-column :label="$t('versionManage.type')" align="center" width="200">
             <template slot-scope="scope">
-              <span>{{ scope.row.appType | appTypeFilter }}</span>
+              <span>{{ appTypeFilter[scope.row.appType] }}</span>
               <span v-if="scope.row.appType < 2">-{{ scope.row.appItem === 1 ? $t('common.user') : $t('common.distributor') }}</span>
             </template>
           </el-table-column>
@@ -146,6 +146,9 @@ export default {
         versionName: [{ required: true, message: this.$t('versionManage.validateName'), trigger: 'blur' }]
       },
       cabinetId:null,
+      appTypeFilter: [this.$t('versionManage.android'),this.$t('versionManage.ios'),this.$t('versionManage.networkConnectingBoard'),
+      this.$t('versionManage.inverterMCU'),this.$t('versionManage.inverterDSP'),this.$t('versionManage.battery'),
+      this.$t('versionManage.IIcb'), this.$t('versionManage.IIdb'), this.$t('versionManage.IIbattery')],
     }
   },
   created () {

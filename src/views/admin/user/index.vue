@@ -32,7 +32,7 @@
           <el-table-column align="center" :label="$t('userManage.role')">
             <template slot-scope="scope">
               <div v-if="scope.row.roleList.length > 0">
-                {{ scope.row.roleList[0].roleName }}
+                {{ roleList[scope.row.roleList[0].roleId - 1] }}
               </div>
             </template>
           </el-table-column>
@@ -93,7 +93,8 @@ export default {
       listQuery: {
         current: 1,
         size: 10
-      }
+      },
+      roleList: [this.$t('common.admin'), this.$t('deviceManage.installer'), this.$t('deviceManage.user')],
     };
   },
   created () {

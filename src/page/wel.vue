@@ -3,7 +3,8 @@
     <basic-container>
       <div class="banner-text">
         <span>
-          <h5>欢迎进入管理系统后台服务</h5>
+          <!-- <h5>欢迎进入管理系统后台服务</h5> -->
+          <h5>{{$t('common.wel')}}</h5>
         </span>
       </div>
     </basic-container>

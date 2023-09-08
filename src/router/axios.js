@@ -21,17 +21,23 @@ NProgress.configure({
   showSpinner: false
 })
 
+console.log('1------------')
+console.log(store.getters.language)
 // HTTPrequest拦截
 axios.interceptors.request.use(config => {
   NProgress.start() // start progress bar
   const TENANT_ID = getStore({ name: 'tenantId' })
   const isToken = (config.headers || {}).isToken === false
   const token = store.getters.access_token
+  const language = store.getters.language
   if (token && !isToken) {
     config.headers['Authorization'] = 'Bearer ' + token// token
   }
   if (TENANT_ID) {
     config.headers['TENANT-ID'] = TENANT_ID // 租户ID
+  }
+  if(language == 'en-US'){
+    config.headers['Accept-Language'] = language
   }
 
   // headers中配置serialize为true开启序列化

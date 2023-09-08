@@ -60,6 +60,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.userName')"
+          min-width="50"
         >
         </el-table-column>
         <el-table-column
@@ -67,7 +68,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.userOperation')"
-          min-width="80"
+          min-width="70"
         >
         </el-table-column>
         <el-table-column
@@ -83,7 +84,7 @@
           header-align="center"
           align="center"
           :label="$t('logManage.requestParameters')"
-          min-width="110"
+          min-width="80"
         >
           <template slot-scope="scope">
             <el-popover
@@ -118,9 +119,10 @@
           header-align="center"
           align="center"
           :label="$t('logManage.ipAddress')"
+          width="110"
         >
         </el-table-column>
-        <el-table-column align="center" :label="$t('common.createTime')" width="200">
+        <el-table-column align="center" :label="$t('common.createTime')" width="160">
           <template slot-scope="scope">
             {{ scope.row.createDate | parseTime }}
           </template>
@@ -130,6 +132,7 @@
           header-align="center"
           align="center"
           :label="$t('common.operate')"
+          width="80"
         >
           <template slot-scope="scope">
             <el-button

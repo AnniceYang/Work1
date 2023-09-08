@@ -816,7 +816,7 @@ export function USBFilter(val) {
       str = '逆变监控板升级中'
       break;
     case 5:
-      str = '逆变监控板升级中'
+      str = '逆变主控板升级中'
       break;
     case 6:
       str = '固件导入中'
