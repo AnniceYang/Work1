@@ -13,7 +13,7 @@
         :data="menuList"
         row-key="id"
         :tree-props="{children: 'children', hasChildren: 'hasChildrens'}">
-        <el-table-column prop="name" :label="$t('menuManage.menuName')" :show-overflow-tooltip="true" width="180"></el-table-column>
+        <el-table-column :prop="$store.getters.language === 'en-US' ? 'nameEn' : 'name'" :label="$t('menuManage.menuName')" :show-overflow-tooltip="true" width="180"></el-table-column>
         <el-table-column prop="icon" :label="$t('menuManage.icon')" align="center" width="100">
           <template slot-scope="scope">
             <i :class="scope.row.icon"/>
@@ -87,6 +87,8 @@
     },
     created() {
       this.getList();
+      console.log('111111')
+      console.log(this.$store.getters.language === 'en-US' ? 'nameEn' : 'label');
     },
     computed: {
       ...mapGetters(['permissions']),

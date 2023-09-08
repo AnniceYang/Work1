@@ -1,6 +1,6 @@
 <template>
   <!-- 添加或修改菜单对话框 -->
-  <el-dialog :title="!form.menuId ? $t('common.add') : $t('common.edit')" :visible.sync="visible" :close-on-click-modal="false" width="750px">
+  <el-dialog :title="!form.menuId ? $t('common.add') : $t('common.edit')" :visible.sync="visible" :close-on-click-modal="false" width="950px">
     <el-form ref="dataForm" :model="form" :rules="rules" label-width="130px">
       <el-row>
         <el-col :span="13">
@@ -153,7 +153,8 @@
       getTreeselect() {
         fetchMenuTree().then(response => {
           this.menuOptions = [];
-          const menu = {id: 0, name: '根菜单', children: []};
+          // const menu = {id: 0, name: '根菜单', children: []};
+          const menu = {id: 0, name: ' ', children: []};
           menu.children = response;
           this.menuOptions.push(menu);
         });
@@ -165,7 +166,8 @@
         }
         return {
           id: node.id,
-          label: node.name,
+          // label: node.name,
+          label: this.$store.getters.language === 'en-US' ? node.nameEn : node.name,
           children: node.children
         };
       }
