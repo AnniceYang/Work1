@@ -523,6 +523,7 @@ export default {
     protocolAddress157: '累积购买电量比例',
     protocolAddress158: '累积自发自用比例',
     protocolAddress159: '累积上网电量比例',
+    protocolAddress194: '澳洲IEEE标准',
 
     commonSettings: '常用设置',
     setSystemTime: '设置系统时间(年，月)',

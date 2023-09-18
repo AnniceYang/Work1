@@ -1139,6 +1139,14 @@
                 "
               />
             </el-descriptions-item>
+            <!-- <el-descriptions-item :label="$t('deviceManage.protocolAddress194')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .protocolAddress194
+                "
+              />
+            </el-descriptions-item> -->
           </el-descriptions>
         </el-card>
       </el-card>
@@ -1919,6 +1927,9 @@
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.emptyElectricityMeterEnergy')">
               <el-switch v-model="systemSet.otherSetObj.emptyElectricityMeterEnergy" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress194')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress194" />
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
@@ -4348,6 +4359,7 @@ export default {
           protocolAddress157: false,
           protocolAddress158: false,
           protocolAddress159: false,
+          // protocolAddress194: false,
         },
       },
       systemSet: {
@@ -4511,6 +4523,7 @@ export default {
           realTimeClock: false,
           acCoupling: false,
           emptyElectricityMeterEnergy: false,
+          protocolAddress194: false,
         },
       },
       batteryParameter: {

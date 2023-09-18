@@ -524,6 +524,7 @@ export default {
     protocolAddress157: 'Accumulated purchasing power ratio',
     protocolAddress158: 'Cumulative spontaneous self use ratio',
     protocolAddress159: 'Accumulated on-grid power ratio',
+    protocolAddress194: 'Australian IEEE standard',
 
     commonSettings: 'Common Settings',
     setSystemTime: 'Set system time (year, month)',

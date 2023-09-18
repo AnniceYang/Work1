@@ -1432,6 +1432,15 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('emptyElectricityMeterEnergy', systemSet.otherSetObj.emptyElectricityMeterEnergyVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress194')" v-if="systemSet.otherSetObj.protocolAddress194">
+              <div style="display: flex;">
+                <el-select v-model="systemSet.otherSetObj.protocolAddress194Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option :label="$t('deviceManage.prohibit')" value="1" />
+                  <el-option :label="$t('deviceManage.enable')" value="2" />
+                </el-select>
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress194', systemSet.otherSetObj.protocolAddress194Val)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="systemSet.otherSetObj.realTimeClock">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.realTimeClockVal" :placeholder="$t('common.inputPrompt')" />
@@ -2295,6 +2304,7 @@ export default {
           protocolAddress157: false,
           protocolAddress158: false,
           protocolAddress159: false,
+          // protocolAddress194: false,
         }
       },
       systemSet: {
@@ -2600,7 +2610,8 @@ export default {
           gpsCommunicationModulePowerControlVal: '',
           realTimeClockVal: '',
           acCouplingVal: '',
-          emptyElectricityMeterEnergyVal:''
+          emptyElectricityMeterEnergyVal:'',
+          protocolAddress194Val:'',
         },
       },
       batteryParameter: {
