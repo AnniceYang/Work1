@@ -24,10 +24,8 @@ if (env.NODE_ENV === 'development') {
   // baseMqtt = 'tcp://pubtcp.esysunhome.com:8083/mqtt'
   // baseUrl = 'http://pubtest.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtest.esysunhome.com:8083/mqtt'
-  // baseUrl = 'https://esybackend.esysunhome.com:7072'
-  // baseMqtt = 'tcp://abroadtcp.esysunhome.com:8083/mqtt'
   baseUrl = 'https://esybackend.esysunhome.com:7072'
-  baseMqtt = 'tcp://18.138.70.68:8083/mqtt'
+  baseMqtt = 'tcp://abroadtcp.esysunhome.com:8083/mqtt'
 }
 export {
   isResetPasswords,
