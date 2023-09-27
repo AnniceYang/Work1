@@ -242,6 +242,9 @@ export default {
     validateI: '故障信息不能为空',
     validateP: '可能原因不能为空',
     validateS: '解决措施不能为空',
+    currentAlarm: '当前报警',
+    historicalAlarm: '历史报警',
+    alarmStatus: '报警状态',
   },
   deviceManage: {
     deviceName: '设备名称',
@@ -1095,6 +1098,7 @@ export default {
     systemLockStatus11: '总压采集和计算值不符',
     systemLockStatus12: '从板采集放电电流和主板不符',
     systemLockStatus13: '从板采集充电电流和主板不符',
+    energyFlowSwitch: '能流图优化开关',
   },
   modelManage: {
     modeName: '模式名称',

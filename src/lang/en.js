@@ -242,6 +242,9 @@ export default {
     validateI: 'Fault information cannot be empty',
     validateP: 'Possible causes cannot be empty',
     validateS: 'Solution measures cannot be empty',
+    currentAlarm: 'Current Alarm',
+    historicalAlarm: 'Historical alarm',
+    alarmStatus: 'Alarm status',
   },
   deviceManage: {
     deviceName: 'Device name',
@@ -1107,6 +1110,7 @@ export default {
     systemLockStatus11: 'The total pressure collection and calculation values do not match',
     systemLockStatus12: 'The discharge current collected from the board does not match the motherboard',
     systemLockStatus13: 'The charging current collected from the board does not match the motherboard',
+    energyFlowSwitch: 'Energy flow chart switch',
   },
   modelManage: {
     modeName: 'Mode name',

@@ -39,6 +39,9 @@
         <el-descriptions-item :label="$t('deviceManage.equipmentRemarks')">{{
           deviceInfo.remarks
         }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.energyFlowSwitch')">{{
+          deviceInfo.energyFlowSwitch == 0 ? $t('menuManage.close') : $t('menuManage.open')
+        }}</el-descriptions-item>
       </el-descriptions>
 
       <el-descriptions :title="$t('deviceManage.userInformation')" style="margin-top: 20px">

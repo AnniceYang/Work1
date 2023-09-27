@@ -16,12 +16,12 @@
                 <el-option :label="$t('faultInfo.threeLevel')" :value="3"></el-option>
               </el-select>
             </el-form-item>
-            <!-- <el-form-item :label="$t('faultInfo.faultLevel')">
+            <el-form-item :label="$t('faultInfo.alarmStatus')">
               <el-select v-model="listQuery.handleStatus" :placeholder="$t('common.selectPrompt')">
-                <el-option :label="$t('faultInfo.oneLevel')" :value="0"></el-option>
-                <el-option :label="$t('faultInfo.twoLevel')" :value="1"></el-option>
+                <el-option :label="$t('faultInfo.currentAlarm')" :value="0"></el-option>
+                <el-option :label="$t('faultInfo.historicalAlarm')" :value="1"></el-option>
               </el-select>
-            </el-form-item> -->
+            </el-form-item>
             <el-form-item>
               <el-button type="primary" class="btn-search" @click="getData(true)">{{$t('common.search')}}</el-button>
               <el-button type="primary" @click="handleReset()">{{$t('common.reset')}}</el-button>

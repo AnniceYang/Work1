@@ -6,7 +6,7 @@
     :destroy-on-close="true"
     width="600px"
   >
-    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="110px">
+    <el-form :model="dataForm" :rules="dataRule" ref="dataForm" label-width="180px">
       <el-form-item :label="$t('deviceManage.deviceName')" prop="name">
         <el-input v-model="dataForm.name" :placeholder="$t('common.inputPrompt')" />
       </el-form-item>
@@ -19,6 +19,12 @@
           <el-radio :label="1" disabled>涂鸦</el-radio>
         </el-radio-group>
       </el-form-item> -->
+      <el-form-item :label="$t('deviceManage.energyFlowSwitch')" prop="energyFlowSwitch">
+        <el-radio-group v-model="dataForm.energyFlowSwitch">
+          <el-radio :label="0">{{$t('menuManage.close')}}</el-radio>
+          <el-radio :label="1">{{$t('menuManage.open')}}</el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item :label="$t('deviceManage.timeZone')" prop="timeZone">
         <el-select v-model="dataForm.timeZone" filterable :placeholder="$t('common.selectPrompt')" style="width: 100%;">
           <el-option :label="$t('deviceManage.zeroZone')" :value="0" />
@@ -69,7 +75,7 @@ export default {
       dataRule: {
         sn: [{ required: true, message: this.$t('deviceManage.validateS'), trigger: "blur" }],
         name: [{ required: true, message: this.$t('deviceManage.validateD'), trigger: "blur" }],
-        type: [{ required: true, message: "", trigger: "blur" }],
+        energyFlowSwitch: [{ required: true, message: "", trigger: "blur" }],
         timeZone: [{ required: true, message: "", trigger: "blur" }]
       },
       modelList: [],
@@ -92,7 +98,8 @@ export default {
         name: null,
         timeZone: null,
         sn: null,
-        type: 0
+        type: 0,
+        energyFlowSwitch: 1
       };
       if (info) {
         for (const key in this.dataForm) {

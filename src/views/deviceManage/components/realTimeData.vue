@@ -1760,7 +1760,7 @@
         </el-card>
       </template>
 
-      <template v-else-if="activeIndex === '13'">
+      <template v-else-if="activeIndex === '13' && deviceInfo.threePhase">
         <el-card style="margin-top: 10px;" v-if="threePhaseMeterParameter.threePhaseMeterBasic">
         <el-descriptions :title="$t('parameterConfiguration.ThreePhaseElectricityMeter')" :column="2">
             <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -2080,7 +2080,7 @@
         </el-card>
       </template>
 
-      <template v-else-if="activeIndex === '0'">
+      <template v-else-if="activeIndex === '0' && systemSet.otherSetObj.countryCodeVal == '1'">
         <SelfTest ref="selfTest" />
       </template>
       </div>
@@ -2987,6 +2987,7 @@ export default {
     init(info) {
       console.log('init', info)
       this.deviceInfo = { ...info }
+      console.log(this.deviceInfo)
       if (this.deviceInfo.onlineStatus === 1) {
         this.handleMqttInit()
       } else {
