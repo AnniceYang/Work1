@@ -7,8 +7,8 @@
         <el-menu-item index="7">{{$t('deviceManage.operationInformation')}}</el-menu-item>
         <el-menu-item index="8">{{$t('deviceManage.systemSettings')}}</el-menu-item>
         <el-menu-item index="9">{{$t('deviceManage.batteryParameters')}}</el-menu-item>
-        <el-menu-item index="13">{{$t('parameterConfiguration.ThreePhaseElectricityMeter')}}</el-menu-item>
-        <el-menu-item index="0">{{$t('deviceManage.selfTest')}}</el-menu-item>
+        <el-menu-item index="13" v-if="deviceInfo.threePhase">{{$t('parameterConfiguration.ThreePhaseElectricityMeter')}}</el-menu-item>
+        <el-menu-item index="0" v-if="systemSet.otherSetObj.countryCodeVal == '1'">{{$t('deviceManage.selfTest')}}</el-menu-item>
         
       </el-menu>
       <div v-loading="loading">
@@ -1760,7 +1760,7 @@
         </el-card>
       </template>
 
-      <template v-else-if="activeIndex === '13' && deviceInfo.threePhase">
+      <template v-else-if="activeIndex === '13'">
         <el-card style="margin-top: 10px;" v-if="threePhaseMeterParameter.threePhaseMeterBasic">
         <el-descriptions :title="$t('parameterConfiguration.ThreePhaseElectricityMeter')" :column="2">
             <el-descriptions-item :label="$t('parameterConfiguration.OneCircuitCombinedActiveTotalElectricalEnergy')" v-if="threePhaseMeterParameter.threePhaseMeterBasicObj
@@ -2080,7 +2080,7 @@
         </el-card>
       </template>
 
-      <template v-else-if="activeIndex === '0' && systemSet.otherSetObj.countryCodeVal == '1'">
+      <template v-else-if="activeIndex === '0'">
         <SelfTest ref="selfTest" />
       </template>
       </div>

@@ -18,14 +18,14 @@ if (env.NODE_ENV === 'development') {
   baseUrl = 'http://120.79.138.205:7072'
   baseMqtt = 'tcp://120.79.138.205:8083/mqtt'
 } else if (env.NODE_ENV === 'production') {
-  // baseUrl = 'http://120.79.138.205:7072'
-  // baseMqtt = 'tcp://120.79.138.205:8083/mqtt'
+  baseUrl = 'http://120.79.138.205:7072'
+  baseMqtt = 'tcp://120.79.138.205:8083/mqtt'
   // baseUrl = 'http://pubbackend.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtcp.esysunhome.com:8083/mqtt'
   // baseUrl = 'http://pubtest.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtest.esysunhome.com:8083/mqtt'
-  baseUrl = 'https://esybackend.esysunhome.com:7072'
-  baseMqtt = 'tcp://abroadtcp.esysunhome.com:8083/mqtt'
+  // baseUrl = 'https://esybackend.esysunhome.com:7072'
+  // baseMqtt = 'tcp://abroadtcp.esysunhome.com:8083/mqtt'
 }
 export {
   isResetPasswords,
