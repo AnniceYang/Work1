@@ -1441,6 +1441,28 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress194', systemSet.otherSetObj.protocolAddress194Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtection')" v-if="systemSet.otherSetObj.protocolAddress313">
+              <div style="display: flex;">
+                <el-input v-model="systemSet.otherSetObj.protocolAddress313Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress313', systemSet.otherSetObj.protocolAddress313Val)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.powerDownVoltage')" v-if="systemSet.otherSetObj.protocolAddress358">
+              <div style="display: flex;">
+                <el-input v-model="systemSet.otherSetObj.protocolAddress358Val" :placeholder="$t('common.inputPrompt')" />
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress358', systemSet.otherSetObj.protocolAddress358Val)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.activationInAustralia')" v-if="systemSet.otherSetObj.protocolAddress195">
+              <div style="display: flex;">
+                <el-select v-model="systemSet.otherSetObj.protocolAddress195Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
+                  <el-option :label="$t('deviceManage.inactive')" value="0" />
+                  <el-option :label="$t('deviceManage.activate')" value="1" />
+                </el-select>
+                <!-- <el-input v-model="systemSet.otherSetObj.protocolAddress195Val" :placeholder="$t('common.inputPrompt')" /> -->
+                <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress195', systemSet.otherSetObj.protocolAddress195Val)">{{$t('common.save')}}</el-button>
+              </div>
+            </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="systemSet.otherSetObj.realTimeClock">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.realTimeClockVal" :placeholder="$t('common.inputPrompt')" />
@@ -2515,6 +2537,9 @@ export default {
           mosControl: false,
           gpsCommunicationModulePowerControl: false,
           realTimeClock: false,
+          protocolAddress313: false,
+          protocolAddress358: false,
+          protocolAddress195: false,
           resetDeviceCommunicationSettingsToInitialValuesVal: '',
           clearRecordDataVal: '',
           factoryResetVal: '',
@@ -2609,6 +2634,9 @@ export default {
           mosControlVal: '',
           gpsCommunicationModulePowerControlVal: '',
           realTimeClockVal: '',
+          protocolAddress313Val: '',
+          protocolAddress358Val: '',
+          protocolAddress195Val: '',
           acCouplingVal: '',
           emptyElectricityMeterEnergyVal:'',
           protocolAddress194Val:'',

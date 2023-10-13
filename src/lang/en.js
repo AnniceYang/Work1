@@ -735,6 +735,9 @@ export default {
     MOSControl: 'MOS control',
     GPSPowerControl: 'GPS communication module power control',
     realTimeClock: 'Real Time Clock',
+    activationInAustralia: 'Activation in Australia',
+    inactive: 'Inactive',
+    activate: 'Activate',
     ACCoupling: 'AC Coupling',
     emptyElectricityMeterEnergy: 'Empty electricity meter energy',
 
@@ -865,6 +868,7 @@ export default {
     chargingDischargingHeating: 'Charging/discharging heating enable',
     GPSPowerControl: 'GPS communication module power control',
     realTimeClock: 'Real Time Clock',
+
     dischargeOvercurrentProtection: 'Discharge overcurrent 1 protection',
     dischargeOvercurrentDelay: 'Discharge overcurrent 1 delay',
     environmentalHighProtection: 'Environmental high temperature protection',
@@ -1553,6 +1557,7 @@ export default {
     ChargingDischargingHeatingEnable:'Charging/discharging heating enable',
     GPSCommunicationModulePowerControl:'GPS communication module power control',
     RealTimeClock:'Real Time Clock',
+    activationInAustralia: 'Activation in Australia',
     DischargeOvercurrent1Protection:'Discharge overcurrent 1 protection',
     DischargeOvercurrent1Delay:'Discharge overcurrent 1 delay',
     EnvironmentalHighTemperatureProtection:'Environmental high temperature protection',

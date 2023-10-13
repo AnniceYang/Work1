@@ -1919,6 +1919,15 @@
                 "
               />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.CellOverDischargeProtection')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress313" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.PowerDownVoltage')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress358" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('parameterConfiguration.activationInAustralia')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress195" />
+            </el-descriptions-item>
             <el-descriptions-item :label="$t('parameterConfiguration.RealTimeClock')">
               <el-switch v-model="systemSet.otherSetObj.realTimeClock" />
             </el-descriptions-item>
@@ -4521,6 +4530,9 @@ export default {
           mosControl: false,
           gpsCommunicationModulePowerControl: false,
           realTimeClock: false,
+          protocolAddress195: false,
+          protocolAddress313: false,
+          protocolAddress358: false,
           acCoupling: false,
           emptyElectricityMeterEnergy: false,
           protocolAddress194: false,

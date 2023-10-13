@@ -734,6 +734,9 @@ export default {
     MOSControl: 'MOS控制',
     GPSPowerControl: 'GPS通讯模块电源控制',
     realTimeClock: '实时时钟',
+    activationInAustralia: '澳洲地区激活',
+    inactive: '不激活',
+    activate: '激活',
     ACCoupling: '交流耦合',
     emptyElectricityMeterEnergy: '清空电表电能',
 
@@ -1538,6 +1541,7 @@ export default {
     ChargingDischargingHeatingEnable:'充/放电加热使能',
     GPSCommunicationModulePowerControl:'GPS通讯模块电源控制',
     RealTimeClock:'实时时钟',
+    activationInAustralia: '澳洲地区激活',
     DischargeOvercurrent1Protection:'放电过流1保护',
     DischargeOvercurrent1Delay:'放电过流1延时',
     EnvironmentalHighTemperatureProtection:'环境高温保护',
