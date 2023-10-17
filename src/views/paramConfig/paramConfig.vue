@@ -1139,6 +1139,15 @@
                 "
               />
             </el-descriptions-item>
+
+            <el-descriptions-item :label="$t('common.wifiStrength')">
+              <el-switch
+                v-model="
+                  operationInformation.otherInformationObj
+                    .wifiStrength
+                "
+              />
+            </el-descriptions-item>
             <!-- <el-descriptions-item :label="$t('deviceManage.protocolAddress194')">
               <el-switch
                 v-model="
@@ -4368,6 +4377,7 @@ export default {
           protocolAddress157: false,
           protocolAddress158: false,
           protocolAddress159: false,
+          wifiStrength:false,
           // protocolAddress194: false,
         },
       },

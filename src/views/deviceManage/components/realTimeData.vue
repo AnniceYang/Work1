@@ -18,6 +18,7 @@
           <el-descriptions-item :label="$t('deviceManage.snCode')">{{ deviceInfo.sn }}</el-descriptions-item>
           <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{ devStatusFilter[deviceInfo.status] }}</el-descriptions-item>
           <el-descriptions-item :label="$t('common.createTime')">{{ deviceInfo.createTime | parseTime }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('common.WiFistrength')">{{ getWifiStrengthLevel(operationInformation.wifiStrength) }}</el-descriptions-item>
         </el-descriptions>
       </el-card>
 
@@ -38,6 +39,7 @@
             <el-descriptions-item :label="$t('deviceManage.systemOperationStatus')" v-if="operationInformation.runInformationObj.systemRunStatus">
               {{ systemStateFilter[operationInformation.runInformationObj.systemRunStatusVal] }}
             </el-descriptions-item>
+
           </el-descriptions>
         </el-card>
 
@@ -836,7 +838,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('hardLimitPowerSettingValue', systemSet.otherSetObj.hardLimitPowerSettingValueVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.australianRegionSelection')" v-if="systemSet.otherSetObj.australianRegionSelection">
+            <el-descriptions-item :label="$t('deviceManage.australianRegionSelection')" v-if="systemSet.otherSetObj.australianRegionSelection && systemSet.otherSetObj.countryCodeVal == '3'">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.australianRegionSelectionVal" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option :label="$t('deviceManage.AustraliaZoneA')" value="0" />
@@ -1432,7 +1434,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('emptyElectricityMeterEnergy', systemSet.otherSetObj.emptyElectricityMeterEnergyVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.protocolAddress194')" v-if="systemSet.otherSetObj.protocolAddress194">
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress194')" v-if="systemSet.otherSetObj.protocolAddress194 && systemSet.otherSetObj.countryCodeVal == '3'">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.protocolAddress194Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option :label="$t('deviceManage.prohibit')" value="1" />
@@ -1453,7 +1455,7 @@
                 <el-button type="text" style="margin-left: 5px;" @click="handleSave('protocolAddress358', systemSet.otherSetObj.protocolAddress358Val)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.activationInAustralia')" v-if="systemSet.otherSetObj.protocolAddress195">
+            <el-descriptions-item :label="$t('deviceManage.activationInAustralia')" v-if="systemSet.otherSetObj.protocolAddress195 && systemSet.otherSetObj.countryCodeVal == '3'">
               <div style="display: flex;">
                 <el-select v-model="systemSet.otherSetObj.protocolAddress195Val" :placeholder="$t('common.selectPrompt')" style="width: 100%;">
                   <el-option :label="$t('deviceManage.inactive')" value="0" />
@@ -2995,6 +2997,26 @@ export default {
         },
       },
     }
+  },
+  computed: {
+    // 计算属性，根据 WiFi 强度值计算强度级别
+    getWifiStrengthLevel() {
+      return (wifiStrength) => {
+        console.log(wifiStrength);
+        console.log("----------");
+        if (wifiStrength >= -40 && wifiStrength <= -30) {
+        //   console.log(wifiStrength);
+        // console.log("222----------");
+          return '强';
+        } else if (wifiStrength >= -85 && wifiStrength < -40) {
+          return '中';
+        } else if (wifiStrength < -90) {
+          return '弱';
+        } else {
+          return '未知'; // 可以根据需要设置默认值
+        }
+      };
+    },
   },
   mounted(){
   

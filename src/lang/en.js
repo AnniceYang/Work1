@@ -1,5 +1,6 @@
 export default {
   common:{
+    WiFistrength:'WiFi Strength',
     websiteName: 'Energy storage integration system',
     subtitle: 'Energy storage',
     name: 'Name',

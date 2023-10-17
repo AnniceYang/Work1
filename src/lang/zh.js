@@ -1,5 +1,6 @@
 export default {
   common:{
+    WiFistrength:'WiFi强度',
     websiteName: '储能整合系统',
     subtitle: '储能',
     name: '名称',
