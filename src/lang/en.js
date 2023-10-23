@@ -529,6 +529,11 @@ export default {
     protocolAddress158: 'Cumulative spontaneous self use ratio',
     protocolAddress159: 'Accumulated on-grid power ratio',
     protocolAddress194: 'Australian IEEE standard',
+    protocolAddress341: 'Cell over discharge alarm voltage',
+    protocolAddress314: 'Overdischarge hysteresis voltage',
+    protocolAddress328: 'Total voltage overvoltage protection',
+    protocolAddress329: 'Total pressure over discharge recovery',
+    protocolAddress340: 'Total voltage over discharge alarm voltage',
 
     commonSettings: 'Common Settings',
     setSystemTime: 'Set system time (year, month)',

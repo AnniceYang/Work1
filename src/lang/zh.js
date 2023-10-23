@@ -528,6 +528,11 @@ export default {
     protocolAddress158: '累积自发自用比例',
     protocolAddress159: '累积上网电量比例',
     protocolAddress194: '澳洲IEEE标准',
+    protocolAddress341: '电芯过放告警电压',
+    protocolAddress314: '过放滞后电压',
+    protocolAddress328: '总压过放保护',
+    protocolAddress329: '总压过放恢复',
+    protocolAddress340: '总压过放告警电压',
 
     commonSettings: '常用设置',
     setSystemTime: '设置系统时间(年，月)',

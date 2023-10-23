@@ -20,7 +20,7 @@ if (env.NODE_ENV === 'development') {
 } else if (env.NODE_ENV === 'production') {
   // baseUrl = 'http://120.79.138.205:7072'
   // baseMqtt = 'tcp://120.79.138.205:8083/mqtt'  //测试
-  // baseUrl = 'http://pubbackend.esysunhome.com:7072'
+  // baseUrl = 'https://pubbackend.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtcp.esysunhome.com:8083/mqtt'  //公版
   // baseUrl = 'http://pubtest.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtest.esysunhome.com:8083/mqtt'

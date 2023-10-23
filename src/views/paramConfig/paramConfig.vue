@@ -1949,6 +1949,21 @@
             <el-descriptions-item :label="$t('deviceManage.protocolAddress194')">
               <el-switch v-model="systemSet.otherSetObj.protocolAddress194" />
             </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress341')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress341" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress314')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress314" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress328')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress328" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress329')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress329" />
+            </el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.protocolAddress340')">
+              <el-switch v-model="systemSet.otherSetObj.protocolAddress340" />
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
       </el-card>
@@ -4546,6 +4561,11 @@ export default {
           acCoupling: false,
           emptyElectricityMeterEnergy: false,
           protocolAddress194: false,
+          protocolAddress341: false,
+          protocolAddress314: false,
+          protocolAddress328: false,
+          protocolAddress329: false,
+          protocolAddress340: false,
         },
       },
       batteryParameter: {
