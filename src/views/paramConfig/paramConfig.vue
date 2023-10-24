@@ -1140,7 +1140,7 @@
               />
             </el-descriptions-item>
 
-            <el-descriptions-item :label="$t('common.wifiStrength')">
+            <el-descriptions-item :label="$t('common.WiFistrength')">
               <el-switch
                 v-model="
                   operationInformation.otherInformationObj

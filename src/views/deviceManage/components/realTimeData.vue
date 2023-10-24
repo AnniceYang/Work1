@@ -3052,13 +3052,14 @@ export default {
         if (wifiStrength >= -40 && wifiStrength <= -30) {
         //   console.log(wifiStrength);
         // console.log("222----------");
-          return '强';
+        return this.$t('common.strong'); 
+
         } else if (wifiStrength >= -85 && wifiStrength < -40) {
-          return '中';
+          return this.$t('common.medium'); 
         } else if (wifiStrength < -90) {
-          return '弱';
+          return this.$t('common.weak'); 
         } else {
-          return '未知'; // 可以根据需要设置默认值
+      return this.$t('common.unknown'); // 可以根据需要设置默认值
         }
       };
     },

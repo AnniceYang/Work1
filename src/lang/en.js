@@ -1,5 +1,9 @@
 export default {
   common:{
+    weak:'weak',
+    medium:'medium',
+    unknown:'Unknown',
+    strong:'Strong:',
     WiFistrength:'WiFi Strength',
     websiteName: 'Energy storage integration system',
     subtitle: 'Energy storage',

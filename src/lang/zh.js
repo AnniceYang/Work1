@@ -1,5 +1,9 @@
 export default {
   common:{
+    weak:'弱',
+    medium:'中',
+    unknown:'未知',
+    strong:'强',
     WiFistrength:'WiFi强度',
     websiteName: '储能整合系统',
     subtitle: '储能',
