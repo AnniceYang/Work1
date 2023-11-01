@@ -157,6 +157,7 @@ export default {
     },
     getData(state) {
       state && (this.listQuery.current = 1)
+      this.listQuery.deviceId = this.deviceInfo.id
       qrySelfCheckRecord(this.listQuery).then(res => {
         this.listData = res.records
         this.total = res.total
