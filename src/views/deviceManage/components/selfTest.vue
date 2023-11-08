@@ -15,7 +15,7 @@
           </el-select>
         </el-form-item>
         <el-form-item >
-          <el-button :loading="loadingState" @click="handleSubmit" type="primary">{{$t('deviceManage.selfTest')}}</el-button>
+          <el-button :loading="loadingState" @click="handleSubmit" type="primary" :disabled="checkVal === 0">{{$t('deviceManage.selfTest')}}</el-button>
         </el-form-item>
       </el-form>
 
@@ -101,7 +101,6 @@
           </el-card>
         </el-col>
       </el-row>
-  
   </el-card>
 </template>
 
@@ -117,6 +116,7 @@ export default {
       tableData1: [],
       tableData2: [],
       timeOutObj: null,
+      timeIntObj: null,
       listQuery: {
         current: 1,
         size: 5
@@ -139,7 +139,7 @@ export default {
       this.timeOutObj = setTimeout(() => {
         this.$message.error('通讯无响应')
         this.loadingState = false
-      }, 60000)
+      }, 120000)
       selfCheck({ checkVal: this.checkVal, deviceId: this.deviceInfo.id }).catch(() => {
         clearTimeout(this.timeOutObj)
         this.loadingState = false;
@@ -178,7 +178,7 @@ export default {
     },
     initMqttData(messageInfo) {
       if (messageInfo.msgOperation === 5 && messageInfo.valType === 12) { // 只渲染除最后三个外的
-        console.log('初始化数据', JSON.parse(messageInfo.val))
+        console.log('自检初始化数据', JSON.parse(messageInfo.val))
         const valInfo = JSON.parse(messageInfo.val)
         this.tableData1[0].value = valInfo.upperLimitValueOfGridVoltageProtection1
         this.tableData1[1].value = valInfo.gridVoltageProtectionUpperLimitTime1
@@ -260,13 +260,17 @@ export default {
         { type: this.$t('deviceManage.realTimeProtectionThreshold'), unit: 'V(/Hz)', value: '', range: '' },
       ]
 
-      getConfigData({ deviceId: this.deviceInfo.id, val: 12 })
+      
+      this.timeIntObj = setInterval(() => {
+        getConfigData({ deviceId: this.deviceInfo.id, val: 12 })
+      }, 10000);
       this.getNewData()
     },
   },
   beforeDestroy() {
     console.log("页面卸载了");
     this.timeOutObj && clearTimeout(this.timeOutObj)
+    this.timeIntObj && clearInterval(this.timeIntObj)
   },
 };
 </script>

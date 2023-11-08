@@ -90,7 +90,7 @@ export default {
         label: 'name',
         value: 'id'
       },
-      roleList: [this.$t('common.admin'), this.$t('deviceManage.installer'), this.$t('deviceManage.user')],
+      roleList: [this.$t('common.admin'), this.$t('deviceManage.installer'), this.$t('deviceManage.user'), this.$t('common.dealer')],
     }
   },
   created() {
