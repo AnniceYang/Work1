@@ -73,7 +73,7 @@
         &:hover {
             i,
             span {
-                color: #409eff ;
+                color: $theme ;
             }
         }
         &.is-active {
@@ -91,7 +91,7 @@
         &:hover {
             i,
             span {
-                color: #409eff ;
+                color: $theme ;
             }
             background-color:transparent ;
         }

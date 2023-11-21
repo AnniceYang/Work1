@@ -8,7 +8,8 @@
     </transition>
     <transition-group name="fade">
       <span v-if="!keyCollapse" key="1" class="avue-logo_title" @click="goIndex">
-        {{ $t('common.websiteName') }}
+        <!-- {{ $t('common.websiteName') }} -->
+        <img src="@/assets/img/header-logo.png" />
       </span>
     </transition-group>
   </div>
@@ -46,19 +47,22 @@ export default {
   left: 0;
   width: 240px;
   height: 64px;
-  line-height: 64px;
-  background-color: #20222a;
-  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // background-color: #20222a;
+  // background-color: red;
+  // font-size: 20px;
   overflow: hidden;
   box-sizing: border-box;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
-  color: rgba(255, 255, 255, 1);
+  // color: rgba(255, 255, 255, 1);
   z-index: 1024;
   &_title {
-    display: block;
-    text-align: center;
-    font-weight: 300;
-    font-size: 16px;
+    // display: block;
+    // text-align: center;
+    // font-weight: 300;
+    // font-size: 16px;
   }
   &_subtitle {
     display: block;

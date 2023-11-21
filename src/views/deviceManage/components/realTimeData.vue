@@ -765,12 +765,12 @@
                 <el-button v-if="systemSetBtnIsDisplay('otherSetObj', 'countryCode')" type="text" style="margin-left: 5px;" @click="handleSave('countryCode', systemSet.otherSetObj.countryCodeVal)">{{$t('common.save')}}</el-button>
               </div>
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.systemTimeSetting')" v-if="systemSetIsDisplay('otherSetObj', 'systemTimeSetting')">
+            <!-- <el-descriptions-item :label="$t('deviceManage.systemTimeSetting')" v-if="systemSetIsDisplay('otherSetObj', 'systemTimeSetting')">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
                 <el-button v-if="systemSetBtnIsDisplay('otherSetObj', 'systemTimeSetting')" type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
               </div>
-            </el-descriptions-item>
+            </el-descriptions-item> -->
             <el-descriptions-item :label="$t('deviceManage.inverterActivePowerSetting')" v-if="systemSetIsDisplay('otherSetObj', 'inverterActivePowerSetting')">
               <div style="display: flex;">
                 <el-input v-model="systemSet.otherSetObj.inverterActivePowerSettingVal" :placeholder="$t('common.inputPrompt')">
@@ -1533,26 +1533,26 @@
             <!-- <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
             <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
             <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item> -->
-            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtection')" v-if="batteryParameterIsDisplay('chargingOvercurrentProtection')">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtectionDelay')" v-if="batteryParameterIsDisplay('chargingOvercurrentProtectionDelay')">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtection')" v-if="batteryParameterIsDisplay('cellOvervoltageProtection')">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtectionDelay')" v-if="batteryParameterIsDisplay('cellOvervoltageProtectionDelay')">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtection')" v-if="batteryParameterIsDisplay('cellOverDischargeProtection')">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtectionDelay')" v-if="batteryParameterIsDisplay('cellOverDischargeProtectionDelay')">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.overvoltageHysteresisVoltage')" v-if="batteryParameterIsDisplay('overvoltageHysteresisVoltage')">{{ batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.overdischargeHysteresisVoltage')" v-if="batteryParameterIsDisplay('overdischargeHysteresisVoltage')">{{ batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageRecoveryDelay')" v-if="batteryParameterIsDisplay('cellOvervoltageRecoveryDelay')">{{ batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeRecoveryDelay')" v-if="batteryParameterIsDisplay('cellOverDischargeRecoveryDelay')">{{ batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.highProtectionDuringDischarge')" v-if="batteryParameterIsDisplay('highTemperatureProtectionDuringDischarge')">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeHighProtectionRecovery')" v-if="batteryParameterIsDisplay('highTemperatureProtectionRecoveryDuringDischarge')">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.lowProtectionDuringDischarge')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionDuringDischarge')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeLowProtectionRecovery')" v-if="batteryParameterIsDisplay('dischargeLowTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.highDuringCharging')" v-if="batteryParameterIsDisplay('highTemperatureProtectionDuringCharging')">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.highRecoveryDuringCharging')" v-if="batteryParameterIsDisplay('highTemperatureProtectionRecoveryDuringCharging')">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.lowDuringCharging')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionDuringCharging')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.lowRecoveryDuringCharging')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionRecoveryDuringCharging')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.equalizingOpeningVoltage')" v-if="batteryParameterIsDisplay('equalizingOpeningVoltage')">{{ batteryParameter.batterySetObj.equalizingOpeningVoltageVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.equilibriumOpeningPressureDifference')" v-if="batteryParameterIsDisplay('equilibriumOpeningPressureDifference')">{{ batteryParameter.batterySetObj.equilibriumOpeningPressureDifferenceVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtection')" v-if="batteryParameterIsDisplay('chargingOvercurrentProtection')">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.chargingOvercurrentProtectionDelay')" v-if="batteryParameterIsDisplay('chargingOvercurrentProtectionDelay')">{{ batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtection')" v-if="batteryParameterIsDisplay('cellOvervoltageProtection')">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageProtectionDelay')" v-if="batteryParameterIsDisplay('cellOvervoltageProtectionDelay')">{{ batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal }}ms</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtection')" v-if="batteryParameterIsDisplay('cellOverDischargeProtection')">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeProtectionDelay')" v-if="batteryParameterIsDisplay('cellOverDischargeProtectionDelay')">{{ batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal }}ms</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.overvoltageHysteresisVoltage')" v-if="batteryParameterIsDisplay('overvoltageHysteresisVoltage')">{{ batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.overdischargeHysteresisVoltage')" v-if="batteryParameterIsDisplay('overdischargeHysteresisVoltage')">{{ batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOvervoltageRecoveryDelay')" v-if="batteryParameterIsDisplay('cellOvervoltageRecoveryDelay')">{{ batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.cellOverDischargeRecoveryDelay')" v-if="batteryParameterIsDisplay('cellOverDischargeRecoveryDelay')">{{ batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highProtectionDuringDischarge')" v-if="batteryParameterIsDisplay('highTemperatureProtectionDuringDischarge')">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeHighProtectionRecovery')" v-if="batteryParameterIsDisplay('highTemperatureProtectionRecoveryDuringDischarge')">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowProtectionDuringDischarge')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionDuringDischarge')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeLowProtectionRecovery')" v-if="batteryParameterIsDisplay('dischargeLowTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highDuringCharging')" v-if="batteryParameterIsDisplay('highTemperatureProtectionDuringCharging')">{{ batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.highRecoveryDuringCharging')" v-if="batteryParameterIsDisplay('highTemperatureProtectionRecoveryDuringCharging')">{{ batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowDuringCharging')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionDuringCharging')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.lowRecoveryDuringCharging')" v-if="batteryParameterIsDisplay('lowTemperatureProtectionRecoveryDuringCharging')">{{ batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.equalizingOpeningVoltage')" v-if="batteryParameterIsDisplay('equalizingOpeningVoltage')">{{ batteryParameter.batterySetObj.equalizingOpeningVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.equilibriumOpeningPressureDifference')" v-if="batteryParameterIsDisplay('equilibriumOpeningPressureDifference')">{{ batteryParameter.batterySetObj.equilibriumOpeningPressureDifferenceVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.cellTemperature1')" v-if="batteryParameterIsDisplay('cellTemperature1')">{{ batteryParameter.batterySetObj.cellTemperature1Val }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.cellTemperature2')" v-if="batteryParameterIsDisplay('cellTemperature2')">{{ batteryParameter.batterySetObj.cellTemperature2Val }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.cellTemperature3')" v-if="batteryParameterIsDisplay('cellTemperature3')">{{ batteryParameter.batterySetObj.cellTemperature3Val }}℃</el-descriptions-item>
@@ -1633,45 +1633,45 @@
             <el-descriptions-item :label="$t('deviceManage.differentialAlarmValue')" v-if="batteryParameterIsDisplay('differentialPressureAlarmValue')">{{ batteryParameter.batterySetObj.differentialPressureAlarmValueVal }}mV</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.staticEquilibriumTime')" v-if="batteryParameterIsDisplay('staticEquilibriumTime')">{{ batteryParameter.batterySetObj.staticEquilibriumTimeVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelayC')" v-if="batteryParameterIsDisplay('automaticRecoveryDelayAfterChargingOvercurrent')">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterChargingOvercurrentVal }}min</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.automaticallyResumeLocking')" v-if="batteryParameterIsDisplay('automaticallyResumeLockingAfterOvercharging')">{{ batteryParameter.batterySetObj.automaticallyResumeLockingAfterOverchargingVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticallyResumeLocking')" v-if="batteryParameterIsDisplay('automaticallyResumeLockingAfterOvercharging')">{{ batteryParameter.batterySetObj.automaticallyResumeLockingAfterOverchargingVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.automaticRecoveryDelay')" v-if="batteryParameterIsDisplay('automaticRecoveryDelayAfterDischargeOvercurrent')">{{ batteryParameter.batterySetObj.automaticRecoveryDelayAfterDischargeOvercurrentVal }}min</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryLocking')" v-if="batteryParameterIsDisplay('automaticRecoveryLockingAfterDischargeOvercurrent')">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}min</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.automaticRecoveryLocking')" v-if="batteryParameterIsDisplay('automaticRecoveryLockingAfterDischargeOvercurrent')">{{ batteryParameter.batterySetObj.automaticRecoveryLockingAfterDischargeOvercurrentVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.inverterCurrentLimit')" v-if="batteryParameterIsDisplay('theInverterCurrentExceedsTheLimitCurrent')">{{ batteryParameter.batterySetObj.theInverterCurrentExceedsTheLimitCurrentVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryParameterDisplayMethod')" v-if="batteryParameterIsDisplay('batteryParameterDisplayMethod')">
               {{ batteryParameter.batterySetObj.batteryParameterDisplayMethodVal == 0 ? $t('deviceManage.automaticPolling') : $t('deviceManage.manualSwitching') }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.batteryIDParameter')" v-if="batteryParameterIsDisplay('theBatteryIdOfTheCurrentDisplayedParameter')">{{ batteryParameter.batterySetObj.theBatteryIdOfTheCurrentDisplayedParameterVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.batteryPackDesignCapacity')" v-if="batteryParameterIsDisplay('batteryPackDesignCapacity')">{{ batteryParameter.batterySetObj.batteryPackDesignCapacityVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.currentBatteryFullCapacity')" v-if="batteryParameterIsDisplay('currentBatteryFullCapacity')">{{ batteryParameter.batterySetObj.currentBatteryFullCapacityVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.remainingBatteryCapacity')" v-if="batteryParameterIsDisplay('remainingBatteryCapacity')">{{ batteryParameter.batterySetObj.remainingBatteryCapacityVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.batteryPackDesignCapacity')" v-if="batteryParameterIsDisplay('batteryPackDesignCapacity')">{{ batteryParameter.batterySetObj.batteryPackDesignCapacityVal }}mAH</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.currentBatteryFullCapacity')" v-if="batteryParameterIsDisplay('currentBatteryFullCapacity')">{{ batteryParameter.batterySetObj.currentBatteryFullCapacityVal }}mAH</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.remainingBatteryCapacity')" v-if="batteryParameterIsDisplay('remainingBatteryCapacity')">{{ batteryParameter.batterySetObj.remainingBatteryCapacityVal }}mAH</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.MOSControl')" v-if="batteryParameterIsDisplay('mosControl')">{{ batteryParameter.batterySetObj.mosControlVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.chargingDischargingHeating')" v-if="batteryParameterIsDisplay('chargingDischargingHeatingEnable')">
               {{ batteryParameter.batterySetObj.chargingDischargingHeatingEnableVal }}
             </el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.GPSPowerControl')" v-if="batteryParameterIsDisplay('gpsCommunicationModulePowerControl')">{{ batteryParameter.batterySetObj.gpsCommunicationModulePowerControlVal }}</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.realTimeClock')" v-if="batteryParameterIsDisplay('realTimeClock')">{{ batteryParameter.batterySetObj.realTimeClockVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentProtection')" v-if="batteryParameterIsDisplay('dischargeOvercurrent1Protection')">{{ batteryParameter.batterySetObj.dischargeOvercurrent1ProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentDelay')" v-if="batteryParameterIsDisplay('dischargeOvercurrent1Delay')">{{ batteryParameter.batterySetObj.dischargeOvercurrent1DelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtection')" v-if="batteryParameterIsDisplay('environmentalHighTemperatureProtection')">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtectionRecovery')" v-if="batteryParameterIsDisplay('environmentalHighTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtection')" v-if="batteryParameterIsDisplay('environmentalLowTemperatureProtection')">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtectionRecovery')" v-if="batteryParameterIsDisplay('environmentalLowTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtection')" v-if="batteryParameterIsDisplay('totalPressureOvervoltageProtection')">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtectionRecovery')" v-if="batteryParameterIsDisplay('totalPressureOvervoltageProtectionRecovery')">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalVoltageOvervoltageProtection')" v-if="batteryParameterIsDisplay('totalVoltageOvervoltageProtection')">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalPressureOverdischargeRecovery')" v-if="batteryParameterIsDisplay('totalPressureOverDischargeRecovery')">{{ batteryParameter.batterySetObj.totalPressureOverDischargeRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageProtectionDelay')" v-if="batteryParameterIsDisplay('totalVoltageOvervoltageProtectionDelay')">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeProtectionDelay')" v-if="batteryParameterIsDisplay('totalVoltageOverDischargeProtectionDelay')">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageRecoveryDelay')" v-if="batteryParameterIsDisplay('totalOvervoltageRecoveryDelay')">{{ batteryParameter.batterySetObj.totalOvervoltageRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeRecoveryDelay')" v-if="batteryParameterIsDisplay('totalOverdischargeRecoveryDelay')">{{ batteryParameter.batterySetObj.totalOverdischargeRecoveryDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.MOSHighProtection')" v-if="batteryParameterIsDisplay('mosHighTemperatureProtection')">{{ batteryParameter.batterySetObj.mosHighTemperatureProtectionVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.MOSHighRecovery')" v-if="batteryParameterIsDisplay('mosHighTemperatureRecovery')">{{ batteryParameter.batterySetObj.mosHighTemperatureRecoveryVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.MOSHighProtectionDelay')" v-if="batteryParameterIsDisplay('moshighTemperatureProtectionDelay')">{{ batteryParameter.batterySetObj.moshighTemperatureProtectionDelayVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.fullTotalPressureAbove')" v-if="batteryParameterIsDisplay('fullOfProtectionTotalPressureAbove')">{{ batteryParameter.batterySetObj.fullOfProtectionTotalPressureAboveVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.fullChargingCurrentBelow')" v-if="batteryParameterIsDisplay('fullOfProtectionChargingCurrentBelow')">{{ batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelowVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.fullDelayTime')" v-if="batteryParameterIsDisplay('fullOfProtectionDelayTime')">{{ batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.heatingOnTemperature')" v-if="batteryParameterIsDisplay('heatingFanOnTemperature')">{{ batteryParameter.batterySetObj.heatingFanOnTemperatureVal }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.heatingRecoveryTemperature')" v-if="batteryParameterIsDisplay('heatingFanRecoveryTemperature')">{{ batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal }}</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentProtection')" v-if="batteryParameterIsDisplay('dischargeOvercurrent1Protection')">{{ batteryParameter.batterySetObj.dischargeOvercurrent1ProtectionVal }}A</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.dischargeOvercurrentDelay')" v-if="batteryParameterIsDisplay('dischargeOvercurrent1Delay')">{{ batteryParameter.batterySetObj.dischargeOvercurrent1DelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtection')" v-if="batteryParameterIsDisplay('environmentalHighTemperatureProtection')">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalHighProtectionRecovery')" v-if="batteryParameterIsDisplay('environmentalHighTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.environmentalHighTemperatureProtectionRecoveryVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtection')" v-if="batteryParameterIsDisplay('environmentalLowTemperatureProtection')">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.environmentalLowProtectionRecovery')" v-if="batteryParameterIsDisplay('environmentalLowTemperatureProtectionRecovery')">{{ batteryParameter.batterySetObj.environmentalLowTemperatureProtectionRecoveryVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtection')" v-if="batteryParameterIsDisplay('totalPressureOvervoltageProtection')">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOvervoltageProtectionRecovery')" v-if="batteryParameterIsDisplay('totalPressureOvervoltageProtectionRecovery')">{{ batteryParameter.batterySetObj.totalPressureOvervoltageProtectionRecoveryVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalVoltageOvervoltageProtection')" v-if="batteryParameterIsDisplay('totalVoltageOvervoltageProtection')">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalPressureOverdischargeRecovery')" v-if="batteryParameterIsDisplay('totalPressureOverDischargeRecovery')">{{ batteryParameter.batterySetObj.totalPressureOverDischargeRecoveryVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageProtectionDelay')" v-if="batteryParameterIsDisplay('totalVoltageOvervoltageProtectionDelay')">{{ batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionDelayVal }}ms</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeProtectionDelay')" v-if="batteryParameterIsDisplay('totalVoltageOverDischargeProtectionDelay')">{{ batteryParameter.batterySetObj.totalVoltageOverDischargeProtectionDelayVal }}ms</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOvervoltageRecoveryDelay')" v-if="batteryParameterIsDisplay('totalOvervoltageRecoveryDelay')">{{ batteryParameter.batterySetObj.totalOvervoltageRecoveryDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.totalOverdischargeRecoveryDelay')" v-if="batteryParameterIsDisplay('totalOverdischargeRecoveryDelay')">{{ batteryParameter.batterySetObj.totalOverdischargeRecoveryDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighProtection')" v-if="batteryParameterIsDisplay('mosHighTemperatureProtection')">{{ batteryParameter.batterySetObj.mosHighTemperatureProtectionVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighRecovery')" v-if="batteryParameterIsDisplay('mosHighTemperatureRecovery')">{{ batteryParameter.batterySetObj.mosHighTemperatureRecoveryVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.MOSHighProtectionDelay')" v-if="batteryParameterIsDisplay('moshighTemperatureProtectionDelay')">{{ batteryParameter.batterySetObj.moshighTemperatureProtectionDelayVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullTotalPressureAbove')" v-if="batteryParameterIsDisplay('fullOfProtectionTotalPressureAbove')">{{ batteryParameter.batterySetObj.fullOfProtectionTotalPressureAboveVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullChargingCurrentBelow')" v-if="batteryParameterIsDisplay('fullOfProtectionChargingCurrentBelow')">{{ batteryParameter.batterySetObj.fullOfProtectionChargingCurrentBelowVal }}mA</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.fullDelayTime')" v-if="batteryParameterIsDisplay('fullOfProtectionDelayTime')">{{ batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal }}s</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.heatingOnTemperature')" v-if="batteryParameterIsDisplay('heatingFanOnTemperature')">{{ batteryParameter.batterySetObj.heatingFanOnTemperatureVal }}℃</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.heatingRecoveryTemperature')" v-if="batteryParameterIsDisplay('heatingFanRecoveryTemperature')">{{ batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal }}℃</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.voltageAlarm')" v-if="batteryParameterIsDisplay('enableSettingBit0')">
               {{ batteryParameter.batterySetObj.enableSettingBit0Val == 1 ? $t('menuManage.open') : $t('menuManage.close') }}
             </el-descriptions-item>
@@ -1738,7 +1738,7 @@
             <el-descriptions-item :label="$t('deviceManage.chargingCurrentLimiting')" v-if="batteryParameterIsDisplay('chargingCurrentLimitingFunction')">
               {{ batteryParameter.batterySetObj.chargingCurrentLimitingFunctionVal == 1 ? $t('common.enable') : $t('common.disable') }}
             </el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.powerDownVoltage')" v-if="batteryParameterIsDisplay('powerDownVoltage')">{{ batteryParameter.batterySetObj.powerDownVoltageVal }}mV</el-descriptions-item>
+            <el-descriptions-item :label="$t('deviceManage.powerDownVoltage')" v-if="batteryParameterIsDisplay('powerDownVoltage')">{{ batteryParameter.batterySetObj.powerDownVoltageVal }}V</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.powerDownCurrent')" v-if="batteryParameterIsDisplay('powerDownCurrent')">{{ batteryParameter.batterySetObj.powerDownCurrentVal }}A</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.powerDownDelay')" v-if="batteryParameterIsDisplay('powerDownDelay')">{{ batteryParameter.batterySetObj.powerDownDelayVal }}min</el-descriptions-item>
             <el-descriptions-item :label="$t('deviceManage.monthlySelfDischargeRate')" v-if="batteryParameterIsDisplay('monthlySelfDischargeRate')">{{ batteryParameter.batterySetObj.monthlySelfDischargeRateVal }}%</el-descriptions-item>
@@ -2273,11 +2273,10 @@ export default {
       this.mqttClient.on("connect", (res) => {
         this.connectState = "connect";
         this.subscribeInfo();
+        // this.loading = false
         console.log("mqtt连接成功", res);
       }).on("message", (topic, message) => {
-        // console.log('topic', topic)
         const messageInfo = JSON.parse(message.toString());
-        // console.log('设备信息',  messageInfo)
         if (this.activeIndex === '0') {
           this.$refs.selfTest.initMqttData(messageInfo)
         } else {
@@ -2328,6 +2327,7 @@ export default {
           return false
         }
       }
+      return true
     },
     // 系统设置
     systemSetIsDisplay(key1, key2){
@@ -2354,6 +2354,7 @@ export default {
           return false
         }
       }
+      return true
     },
     // 系统设置--保存
     systemSetBtnIsDisplay(key1, key2){
@@ -2380,6 +2381,7 @@ export default {
           return false
         }
       }
+      return true
     },
     // 电池参数
     batteryParameterIsDisplay(key2){
@@ -2406,6 +2408,7 @@ export default {
           return false
         }
       }
+      return true
     },
     // 三相
     threePhaseMeterParameterIsDisplay(key2){
@@ -2432,6 +2435,7 @@ export default {
           return false
         }
       }
+      return true
     },
     // 数据处理转换
     paramsChange(res) {
@@ -2503,6 +2507,9 @@ export default {
       getConfigData({ deviceId: this.deviceInfo.id, val: Number(this.activeIndex) }).catch(() => {
         this.loading = false
       })
+      setTimeout(() => {
+        this.loading = false
+      }, 3000)
     },
   },
   beforeDestroy() {

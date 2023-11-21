@@ -23,7 +23,7 @@
     </div>
     <div class="top-bar__right">
       <el-dropdown>
-        <div class="user" style="color: #ffffff; font-size: 18px;">
+        <div class="user" style="color: #333333; font-size: 18px;">
           <!-- {{ userInfo.objName || userInfo.name }} -->
           {{ userInfo.username || userInfo.name }}
           <i class="el-icon-arrow-down el-icon--right" />
@@ -135,8 +135,8 @@ export default {
 }
 
 .avue-top {
-  background: #333333;
-  color: #ffffff;
+  background: #ffffff;
+  // color: #333333;
   font-size: 18px;
 }
 

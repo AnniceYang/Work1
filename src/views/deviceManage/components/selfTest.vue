@@ -260,10 +260,11 @@ export default {
         { type: this.$t('deviceManage.realTimeProtectionThreshold'), unit: 'V(/Hz)', value: '', range: '' },
       ]
 
+      getConfigData({ deviceId: this.deviceInfo.id, val: 12 })
       
-      this.timeIntObj = setInterval(() => {
-        getConfigData({ deviceId: this.deviceInfo.id, val: 12 })
-      }, 10000);
+      // this.timeIntObj = setInterval(() => {
+      //   getConfigData({ deviceId: this.deviceInfo.id, val: 12 })
+      // }, 10000);
       this.getNewData()
     },
   },

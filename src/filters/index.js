@@ -975,10 +975,10 @@ export function displayTypeValFilter(val) {
       str = 'LCD'
       break;
     case 1:
-      str = 'LED-EAST'
+      str = 'D-6K'
       break;
     case 2:
-      str = 'LED-LESY'
+      str = 'LESY'
       break;
     default:
       break;

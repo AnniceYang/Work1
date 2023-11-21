@@ -3,7 +3,7 @@
     
     <basic-container>
       <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-        <el-menu-item index="1">{{$t('faultInfo.faultInformation')}}</el-menu-item>
+        <el-menu-item index="1" v-show="permissions.admin_lsyinfo_show">{{$t('faultInfo.faultInformation')}}</el-menu-item>
         <el-menu-item index="2">{{$t('faultInfo.faultAlarm')}}</el-menu-item>
       </el-menu>
 
@@ -88,7 +88,7 @@
         </div>
       </div>
 
-      <div v-if="activeIndex === '2'"  style="margin-top: 20px;">
+      <div v-show="activeIndex === '2'" style="margin-top: 20px;">
         <PoliceList ref="policeList" />
       </div>
 
@@ -123,6 +123,10 @@ export default {
   },
   created () {
     this.getData()
+  },
+  mounted(){
+    this.activeIndex = this.permissions.admin_lsyinfo_show ? '1' : '2'
+    // conosle.log(this.permissions.admin_lsyinfo_show)
   },
   methods: {
     handleSelect(index) {

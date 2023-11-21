@@ -1,8 +1,11 @@
 <template>
     <div class="login-container">
       <LangSelect class="lang-change"></LangSelect>
-      <div class="login-weaper  animated bounceInDown">
-        <p class="login-tip">{{$t('common.websiteName')}}</p>
+      <div class="login-weaper animated bounceInDown">
+        <div class="login-tip">
+          <img class="img" src="@/assets/img/logon-logo.png" />
+          <p>{{$t('common.websiteName')}}</p>
+        </div>
         <div class="login-border">
           <div class="login-main">
             <userLogin v-if="activeName==='user'" />

@@ -27,6 +27,7 @@
         v-model="dataForm.password"
         size="small"
         auto-complete="off"
+        show-password
         :placeholder="$t('common.passwordPrompt')"
         @keyup.enter.native="handleLogin"
       >
@@ -43,7 +44,6 @@
     </el-form-item>
     <el-form-item>
       <el-button
-        type="primary"
         size="small"
         class="login-submit"
         @click.native.prevent="handleLogin"
@@ -74,29 +74,6 @@
       >
       </VerificationCode>
     </el-popover>
-    <!-- <el-dialog
-      :visible.sync="showVarification"
-      width="325"
-      :show-close="false"
-      :modal="false"
-    >
-      <VerificationCode
-        ref="dialogopen"
-        :l="42"
-        :r="10"
-        :w="300"
-        :h="150"
-        :block_y="block_y"
-        :imgurl="imgurl"
-        :miniimgurl="miniimgurl"
-        :slider-text="text"
-        @success="onSuccess"
-        @fail="onFail"
-        @refresh="onRefresh"
-        @back="back"
-      >
-      </VerificationCode>
-    </el-dialog> -->
   </el-form>
 </template>
 
