@@ -1,0 +1,66 @@
+.theme-iview .avue-logo {
+  background: #001529;
+  box-shadow: none;
+  text-align: center;
+}
+.theme-iview .avue-logo .avue-logo_title div {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-left-radius: 3px;
+  border-bottom-right-radius: 3px;
+  font-size: 22px;
+  color: #fff;
+  font-weight: 500;
+  margin: 10px auto;
+  width: 180px;
+  height: 45px;
+  background-color: #409EFF;
+}
+.theme-iview .avue-tags {
+  padding: 3px 5px 5px 0;
+  background: #f0f0f0;
+  box-shadow: inset 0 0 3px 2px hsla(0, 0%, 39.2%, 0.1);
+}
+.theme-iview .avue-tags .is-active:before {
+  background: #409EFF !important;
+}
+.theme-iview .avue-tags .el-tabs__item {
+  padding: 0 15px !important;
+  position: relative;
+  height: 32px !important;
+  line-height: 32px !important;
+  border: 1px solid #e8eaec !important;
+  color: #515a6e !important;
+  background: #fff !important;
+  border-radius: 3px;
+}
+.theme-iview .avue-tags .el-tabs__item:before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 10px;
+  border-radius: 50%;
+  background: #e8eaec;
+}
+.theme-iview .avue-sidebar {
+  background: #001529;
+}
+.theme-iview .avue-sidebar .el-menu-item.is-active {
+  background-color: #000c17;
+}
+.theme-iview .avue-sidebar .el-menu-item.is-active:before {
+  display: none;
+}
+.theme-iview .avue-sidebar .el-menu-item.is-active i, .theme-iview .avue-sidebar .el-menu-item.is-active span {
+  color: #409EFF;
+}
+.theme-iview .avue-sidebar .el-submenu .el-menu-item.is-active {
+  background-color: #409EFF;
+}
+.theme-iview .avue-sidebar .el-submenu .el-menu-item.is-active:before {
+  display: none;
+}
+.theme-iview .avue-sidebar .el-submenu .el-menu-item.is-active i, .theme-iview .avue-sidebar .el-submenu .el-menu-item.is-active span {
+  color: #fff;
+}/*# sourceMappingURL=iview.css.map */

@@ -5,31 +5,34 @@
         v-if="validatenull(item[childrenKey]) && vaildRoles(item)"
         :index="item[pathKey]"
         :key="item[labelKey]"
-        :class="{'is-active':vaildAvtive(item)}"
-        @click="open(item)">
-        <i :class="item[iconKey]"/>
-        <span
-          slot="title"
-          :alt="item[pathKey]">{{ item[labelKey] }}</span>
+        :class="{ 'is-active': vaildAvtive(item) }"
+        @click="open(item)"
+      >
+        <i :class="item[iconKey]" />
+        <span slot="title" :alt="item[pathKey]">{{ item[labelKey] }}</span>
       </el-menu-item>
       <el-submenu
-        v-else-if="!validatenull(item[childrenKey])&&vaildRoles(item)"
+        v-else-if="!validatenull(item[childrenKey]) && vaildRoles(item)"
         :index="item[pathKey]"
-        :key="item[labelKey]">
+        :key="item[labelKey]"
+      >
         <template slot="title">
-          <i :class="item[iconKey]"/>
+          <i :class="item[iconKey]" />
           <span
             slot="title"
-            :class="{'el-menu--display':collapse && first}">{{ item[labelKey] }}</span>
+            :class="{ 'el-menu--display': collapse && first }"
+            >{{ item[labelKey] }}</span
+          >
         </template>
-        <template v-for="(child,cindex) in item[childrenKey]">
+        <template v-for="(child, cindex) in item[childrenKey]">
           <el-menu-item
             v-if="validatenull(child[childrenKey])"
-            :index="child[pathKey],cindex"
-            :class="{'is-active':vaildAvtive(child)}"
+            :index="(child[pathKey], cindex)"
+            :class="{ 'is-active': vaildAvtive(child) }"
             :key="child[labelKey]"
-            @click="open(child)">
-            <i :class="child[iconKey]"/>
+            @click="open(child)"
+          >
+            <i :class="child[iconKey]" />
             <span slot="title">{{ child[labelKey] }}</span>
           </el-menu-item>
           <sidebar-item
@@ -38,65 +41,65 @@
             :key="cindex"
             :props="props"
             :screen="screen"
-            :collapse="collapse"/>
+            :collapse="collapse"
+          />
         </template>
       </el-submenu>
     </template>
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
-import { validatenull } from '@/util/validate'
+import { mapGetters } from "vuex";
+import { validatenull } from "@/util/validate";
 // import config from './config.js'
 export default {
-  name: 'SidebarItem',
+  name: "SidebarItem",
   props: {
     menu: {
-      type: Array
+      type: Array,
     },
     screen: {
-      type: Number
+      type: Number,
     },
     first: {
       type: Boolean,
-      default: false
+      default: false,
     },
     props: {
       type: Object,
       default: () => {
-        return {}
-      }
+        return {};
+      },
     },
     collapse: {
-      type: Boolean
-    }
+      type: Boolean,
+    },
   },
   data() {
     return {
       // config: config
-    }
+    };
   },
   created() {},
-  mounted() {
-  },
+  mounted() {},
   computed: {
-    ...mapGetters(['roles', 'language']),
+    ...mapGetters(["roles", "language"]),
     labelKey() {
       //return this.props.label
-      return this.language === 'en-US' ? 'nameEn' : 'label'
+      return this.language === "en-US" ? "nameEn" : "label";
     },
     pathKey() {
-      return this.props.path
+      return this.props.path;
     },
     iconKey() {
-      return this.props.icon
+      return this.props.icon;
     },
     childrenKey() {
-      return this.props.children
+      return this.props.children;
     },
     nowTagValue() {
-      return this.$router.$avueRouter.getValue(this.$route)
-    }
+      return this.$router.$avueRouter.getValue(this.$route);
+    },
     // labelKey() {
     //   return this.props.label || this.config.propsDefault.label
     // },
@@ -115,30 +118,31 @@ export default {
   },
   methods: {
     vaildAvtive(item) {
-      const groupFlag = (item['group'] || []).some(ele =>
+      const groupFlag = (item["group"] || []).some((ele) =>
         this.$route.path.includes(ele)
-      )
-      return this.nowTagValue === item[this.pathKey] || groupFlag
+      );
+      return this.nowTagValue === item[this.pathKey] || groupFlag;
     },
     vaildRoles(item) {
-      item.meta = item.meta || {}
-      return item.meta.roles ? item.meta.roles.includes(this.roles) : true
+      item.meta = item.meta || {};
+      return item.meta.roles ? item.meta.roles.includes(this.roles) : true;
     },
     validatenull(val) {
-      return validatenull(val)
+      return validatenull(val);
     },
     open(item) {
-      if (this.screen <= 1) this.$store.commit('SET_COLLAPSE')
-      this.$router.$avueRouter.group = item.group
-      this.$router.push({
-        path: this.$router.$avueRouter.getPath({
-          name: item[this.labelKey],
-          src: item[this.pathKey]
-        }),
-        query: item.query
-      }).catch(() => {})
-    }
-  }
-}
+      if (this.screen <= 1) this.$store.commit("SET_COLLAPSE");
+      this.$router.$avueRouter.group = item.group;
+      this.$router
+        .push({
+          path: this.$router.$avueRouter.getPath({
+            name: item[this.labelKey],
+            src: item[this.pathKey],
+          }),
+          query: item.query,
+        })
+        .catch(() => {});
+    },
+  },
+};
 </script>
-

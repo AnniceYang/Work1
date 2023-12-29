@@ -5,7 +5,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-photovoltaic.png" />
-            <span class="text">{{$t('dataBoard.todayPPG')}}</span>
+            <span class="text">{{ $t("dataBoard.todayPPG") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.pvElec ? total.pvElec : 0 }}</span>
@@ -15,7 +15,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-electricity.png" />
-            <span class="text">{{$t('dataBoard.todayET')}}</span>
+            <span class="text">{{ $t("dataBoard.todayET") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.buyElec ? total.buyElec : 0 }}</span>
@@ -25,17 +25,19 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-electricity.png" />
-            <span class="text">{{$t('dataBoard.todaySE')}}</span>
+            <span class="text">{{ $t("dataBoard.todaySE") }}</span>
           </div>
           <div class="item-line">
-            <span class="val">{{ total.feedNetwork ? total.feedNetwork : 0 }}</span>
+            <span class="val">{{
+              total.feedNetwork ? total.feedNetwork : 0
+            }}</span>
             <span class="unit1">kWh</span>
           </div>
         </div>
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-consume.png" />
-            <span class="text">{{$t('dataBoard.todayCT')}}</span>
+            <span class="text">{{ $t("dataBoard.todayCT") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.dayElec ? total.dayElec : 0 }}</span>
@@ -45,7 +47,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-photovoltaic.png" />
-            <span class="text">{{$t('dataBoard.totalPPG')}}</span>
+            <span class="text">{{ $t("dataBoard.totalPPG") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.totalPv ? total.totalPv : 0 }}</span>
@@ -55,7 +57,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-electricity.png" />
-            <span class="text">{{$t('dataBoard.totalET')}}</span>
+            <span class="text">{{ $t("dataBoard.totalET") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.totalBuy ? total.totalBuy : 0 }}</span>
@@ -65,7 +67,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-electricity.png" />
-            <span class="text">{{$t('dataBoard.totalSE')}}</span>
+            <span class="text">{{ $t("dataBoard.totalSE") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.totalFeed ? total.totalFeed : 0 }}</span>
@@ -75,7 +77,7 @@
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-consume.png" />
-            <span class="text">{{$t('dataBoard.totalCT')}}</span>
+            <span class="text">{{ $t("dataBoard.totalCT") }}</span>
           </div>
           <div class="item-line">
             <span class="val">{{ total.totalElec ? total.totalElec : 0 }}</span>
@@ -87,7 +89,7 @@
         <div class="center-item">
           <div class="center-item-title">
             <img src="@/assets/img/home-photovoltaic.png" />
-            <span>{{$t('dataBoard.equipmentStatusStatistics')}}</span>
+            <span>{{ $t("dataBoard.equipmentStatusStatistics") }}</span>
           </div>
           <div class="center-content">
             <DeviceStatus :chartData="chartData" />
@@ -96,45 +98,49 @@
         <div class="center-item">
           <div class="center-item-title">
             <img src="@/assets/img/home-install.png" />
-            <span>{{$t('dataBoard.installationStatistics')}}</span>
+            <span>{{ $t("dataBoard.installationStatistics") }}</span>
           </div>
           <div class="center-content2">
             <div class="center-content-left">
               <div class="point1"></div>
               <div>
-                <span class="val">{{ total.installedPower ? total.installedPower : 0 }}</span
+                <span class="val">{{
+                  total.installedPower ? total.installedPower : 0
+                }}</span
                 >kWh
               </div>
-              <div>{{$t('dataBoard.installationPower')}}</div>
+              <div>{{ $t("dataBoard.installationPower") }}</div>
             </div>
             <div class="center-content-right">
               <div class="point2"></div>
               <div>
-                <span class="val">{{ total.installedCapacity ? total.installedCapacity : 0 }}</span
+                <span class="val">{{
+                  total.installedCapacity ? total.installedCapacity : 0
+                }}</span
                 >kWh
               </div>
-              <div>{{$t('dataBoard.installationCapacity')}}</div>
+              <div>{{ $t("dataBoard.installationCapacity") }}</div>
             </div>
           </div>
         </div>
         <div class="center-item">
           <div class="center-item-title">
             <img src="@/assets/img/home-deviceStatus.png" />
-            <span>{{$t('dataBoard.energyConsumptionStatistics')}}</span>
+            <span>{{ $t("dataBoard.energyConsumptionStatistics") }}</span>
           </div>
           <div class="center-content3">
             <div class="center-content3-line">
-              <div class="text">{{$t('dataBoard.CO2Reduction')}}</div>
+              <div class="text">{{ $t("dataBoard.CO2Reduction") }}</div>
               <div class="val">{{ total.co2Num ? total.co2Num : 0 }}</div>
               <div class="unit1">t</div>
             </div>
             <div class="center-content3-line">
-              <div class="text">{{$t('dataBoard.save')}}</div>
+              <div class="text">{{ $t("dataBoard.save") }}</div>
               <div class="val">{{ total.saveNum ? total.saveNum : 0 }}</div>
               <div class="unit2">t</div>
             </div>
             <div class="center-content3-line">
-              <div class="text">{{$t('dataBoard.plant')}}</div>
+              <div class="text">{{ $t("dataBoard.plant") }}</div>
               <div class="val">{{ total.plantNum ? total.plantNum : 0 }}</div>
               <div class="unit1">t</div>
             </div>
@@ -145,12 +151,24 @@
         <div class="data-title">
           <div class="data-title-left">
             <img src="@/assets/img/home-electricityInformation.png" />
-            <span>{{$t('deviceManage.electricityInformation')}}</span>
+            <span>{{ $t("deviceManage.electricityInformation") }}</span>
           </div>
           <div class="data-title-right">
-            <span :class="electricityInfo.type === 0 ? 'active-type' : ''" @click="changeElectricityType(0)">{{$t('deviceManage.day')}}</span>
-            <span :class="electricityInfo.type === 1 ? 'active-type' : ''" @click="changeElectricityType(1)">{{$t('deviceManage.month')}}</span>
-            <span :class="electricityInfo.type === 2 ? 'active-type' : ''" @click="changeElectricityType(2)">{{$t('deviceManage.year')}}</span>
+            <span
+              :class="electricityInfo.type === 0 ? 'active-type' : ''"
+              @click="changeElectricityType(0)"
+              >{{ $t("deviceManage.day") }}</span
+            >
+            <span
+              :class="electricityInfo.type === 1 ? 'active-type' : ''"
+              @click="changeElectricityType(1)"
+              >{{ $t("deviceManage.month") }}</span
+            >
+            <span
+              :class="electricityInfo.type === 2 ? 'active-type' : ''"
+              @click="changeElectricityType(2)"
+              >{{ $t("deviceManage.year") }}</span
+            >
             <el-date-picker
               width="150px"
               v-model="time1"
@@ -160,30 +178,53 @@
               style="width: 260px"
               :range-separator="$t('deviceManage.to')"
               :start-placeholder="$t('common.startingTime')"
-              :end-placeholder="$t('common.endTime')">
+              :end-placeholder="$t('common.endTime')"
+            >
             </el-date-picker>
           </div>
         </div>
         <div class="data-content">
-          <el-radio-group v-model="radio1" @change="getElectricityData" class="data-content-radio">
-            <el-radio :label="0">{{$t('deviceManage.capacity')}}</el-radio>
-            <el-radio :label="1">{{$t('deviceManage.photovoltaicPowerGeneration')}}</el-radio>
-            <el-radio :label="2">{{$t('deviceManage.sellingElectricity')}}</el-radio>
-            <el-radio :label="3">{{$t('deviceManage.buyingElectricity')}}</el-radio>
+          <el-radio-group
+            v-model="radio1"
+            @change="getElectricityData"
+            class="data-content-radio"
+          >
+            <el-radio :label="0">{{ $t("deviceManage.capacity") }}</el-radio>
+            <el-radio :label="1">{{
+              $t("deviceManage.photovoltaicPowerGeneration")
+            }}</el-radio>
+            <el-radio :label="2">{{
+              $t("deviceManage.sellingElectricity")
+            }}</el-radio>
+            <el-radio :label="3">{{
+              $t("deviceManage.buyingElectricity")
+            }}</el-radio>
           </el-radio-group>
-          <ElectricityData :chartData="chartData1"/>
+          <ElectricityData :chartData="chartData1" />
         </div>
       </div>
       <div class="electricity-data">
         <div class="data-title">
           <div class="data-title-left">
             <img src="@/assets/img/home-income.png" />
-            <span>{{$t('deviceManage.powerGenerationRevenue')}}</span>
+            <span>{{ $t("deviceManage.powerGenerationRevenue") }}</span>
           </div>
           <div class="data-title-right">
-            <span :class="incomeInfo.type === 0 ? 'active-type' : ''" @click="changeIncomeType(0)">{{$t('deviceManage.day')}}</span>
-            <span :class="incomeInfo.type === 1 ? 'active-type' : ''" @click="changeIncomeType(1)">{{$t('deviceManage.month')}}</span>
-            <span :class="incomeInfo.type === 2 ? 'active-type' : ''" @click="changeIncomeType(2)">{{$t('deviceManage.year')}}</span>
+            <span
+              :class="incomeInfo.type === 0 ? 'active-type' : ''"
+              @click="changeIncomeType(0)"
+              >{{ $t("deviceManage.day") }}</span
+            >
+            <span
+              :class="incomeInfo.type === 1 ? 'active-type' : ''"
+              @click="changeIncomeType(1)"
+              >{{ $t("deviceManage.month") }}</span
+            >
+            <span
+              :class="incomeInfo.type === 2 ? 'active-type' : ''"
+              @click="changeIncomeType(2)"
+              >{{ $t("deviceManage.year") }}</span
+            >
             <el-date-picker
               width="150px"
               v-model="time2"
@@ -193,27 +234,41 @@
               style="width: 260px"
               :range-separator="$t('deviceManage.to')"
               :start-placeholder="$t('common.startingTime')"
-              :end-placeholder="$t('common.endTime')">
+              :end-placeholder="$t('common.endTime')"
+            >
             </el-date-picker>
           </div>
         </div>
         <div class="data-content">
           <div class="data-content-line">
-            <div>{{$t('deviceManage.totalRevenue')}} <span class="val">{{totalIncome}}</span></div>
-            <el-radio-group v-model="radio2" @change="getElectricityIncome" class="data-content-radio">
-              <el-radio :label="0">{{$t('deviceManage.spontaneousRevenue')}}</el-radio>
-              <el-radio :label="1">{{$t('deviceManage.electricitySalesRevenue')}}</el-radio>
-              <el-radio :label="2">{{$t('deviceManage.totalRevenue')}}</el-radio>
+            <div>
+              {{ $t("deviceManage.totalRevenue") }}
+              <span class="val">{{ totalIncome }}</span>
+            </div>
+            <el-radio-group
+              v-model="radio2"
+              @change="getElectricityIncome"
+              class="data-content-radio"
+            >
+              <el-radio :label="0">{{
+                $t("deviceManage.spontaneousRevenue")
+              }}</el-radio>
+              <el-radio :label="1">{{
+                $t("deviceManage.electricitySalesRevenue")
+              }}</el-radio>
+              <el-radio :label="2">{{
+                $t("deviceManage.totalRevenue")
+              }}</el-radio>
             </el-radio-group>
           </div>
-          <IncomeData :chartData="chartData2"/>
+          <IncomeData :chartData="chartData2" />
         </div>
       </div>
       <div class="electricity-data">
         <div class="data-title">
           <div class="data-title-left">
             <img src="@/assets/img/home-power.png" />
-            <span>{{$t('deviceManage.realTimePower')}}</span>
+            <span>{{ $t("deviceManage.realTimePower") }}</span>
           </div>
           <div class="data-title-right">
             <el-date-picker
@@ -222,19 +277,30 @@
               type="date"
               @change="getPowerData"
               value-format="timestamp"
-              :placeholder="$t('common.selectPrompt')">
+              :placeholder="$t('common.selectPrompt')"
+            >
             </el-date-picker>
           </div>
         </div>
         <div class="data-content">
-          <el-radio-group v-model="radio3" @change="getPowerData" class="data-content-radio">
-            <el-radio :label="0">{{$t('deviceManage.battery')}}</el-radio>
-            <el-radio :label="1">{{$t('deviceManage.photovoltaic')}}</el-radio>
-            <el-radio :label="2">{{$t('deviceManage.load')}}</el-radio>
-            <el-radio :label="3">{{$t('deviceManage.sellingElectricity')}}</el-radio>
-            <el-radio :label="4">{{$t('deviceManage.buyingElectricity')}}</el-radio>
+          <el-radio-group
+            v-model="radio3"
+            @change="getPowerData"
+            class="data-content-radio"
+          >
+            <el-radio :label="0">{{ $t("deviceManage.battery") }}</el-radio>
+            <el-radio :label="1">{{
+              $t("deviceManage.photovoltaic")
+            }}</el-radio>
+            <el-radio :label="2">{{ $t("deviceManage.load") }}</el-radio>
+            <el-radio :label="3">{{
+              $t("deviceManage.sellingElectricity")
+            }}</el-radio>
+            <el-radio :label="4">{{
+              $t("deviceManage.buyingElectricity")
+            }}</el-radio>
           </el-radio-group>
-          <PowerData :chartData="chartData3"/>
+          <PowerData :chartData="chartData3" />
         </div>
       </div>
     </div>
@@ -295,20 +361,32 @@ export default {
         yData: [],
       },
       listLoading: false,
-      
     };
   },
   mounted() {
     getTotal().then((res) => {
       this.total = res;
       this.chartData.data = [
-        { value: res.normalNum ? res.normalNum : 0, name: this.$t('dataBoard.normal'), rate: res.normalPercentage },
-        { value: res.offlineNum ? res.offlineNum : 0, name: this.$t('dataBoard.offLine'), rate: res.offlinePercentage },
-        { value: res.wrongNum ? res.wrongNum : 0, name: this.$t('dataBoard.errorReporting'), rate: res.wrongPercentage },
+        {
+          value: res.normalNum ? res.normalNum : 0,
+          name: this.$t("dataBoard.normal"),
+          rate: res.normalPercentage,
+        },
+        {
+          value: res.offlineNum ? res.offlineNum : 0,
+          name: this.$t("dataBoard.offLine"),
+          rate: res.offlinePercentage,
+        },
+        {
+          value: res.wrongNum ? res.wrongNum : 0,
+          name: this.$t("dataBoard.errorReporting"),
+          rate: res.wrongPercentage,
+        },
       ];
     });
 
-    this.electricityInfo.endTime = this.incomeInfo.endTime = moment(moment().format("YYYY-MM-DD") + " 23:59:59").unix() + 1;
+    this.electricityInfo.endTime = this.incomeInfo.endTime =
+      moment(moment().format("YYYY-MM-DD") + " 23:59:59").unix() + 1;
     this.electricityInfo.startTime = this.incomeInfo.startTime = moment(
       moment().subtract(30, "days").format("YYYY-MM-DD") + " 00:00:00"
     ).unix();
@@ -316,14 +394,14 @@ export default {
       this.electricityInfo.startTime * 1000,
       this.electricityInfo.endTime * 1000 - 1000,
     ];
-    this.getElectricityData()
-    this.getElectricityIncome()
-    this.getPowerData()
+    this.getElectricityData();
+    this.getElectricityIncome();
+    this.getPowerData();
   },
   methods: {
-    changeElectricityType(type){
-      this.electricityInfo.type = type
-      this.getElectricityData()
+    changeElectricityType(type) {
+      this.electricityInfo.type = type;
+      this.getElectricityData();
     },
     changeTime(e) {
       if (e) {
@@ -332,32 +410,32 @@ export default {
       } else {
         this.electricityInfo.startTime = this.electricityInfo.endTime = "";
       }
-      this.getElectricityData()
+      this.getElectricityData();
     },
-    getElectricityData(){
-      electricityData(this.electricityInfo).then(res => {
-        this.chartData1.xData = res.map(item => {
-           return item.time
-        })
-        this.chartData1.yData = res.map(item => {
-          if(this.radio1 === 0){
-            return item.loadElec
+    getElectricityData() {
+      electricityData(this.electricityInfo).then((res) => {
+        this.chartData1.xData = res.map((item) => {
+          return item.time;
+        });
+        this.chartData1.yData = res.map((item) => {
+          if (this.radio1 === 0) {
+            return item.loadElec;
           }
-          if(this.radio1 === 1){
-            return item.pvElec
+          if (this.radio1 === 1) {
+            return item.pvElec;
           }
-          if(this.radio1 === 2){
-            return item.feedNetwork
+          if (this.radio1 === 2) {
+            return item.feedNetwork;
           }
-          if(this.radio1 === 3){
-            return item.buyElec
+          if (this.radio1 === 3) {
+            return item.buyElec;
           }
-        })
-      })
+        });
+      });
     },
-    changeIncomeType(type){
-      this.incomeInfo.type = type
-      this.getElectricityIncome()
+    changeIncomeType(type) {
+      this.incomeInfo.type = type;
+      this.getElectricityIncome();
     },
     changeTime2(e) {
       if (e) {
@@ -366,54 +444,54 @@ export default {
       } else {
         this.incomeInfo.startTime = this.incomeInfo.endTime = "";
       }
-      this.getElectricityIncome()
+      this.getElectricityIncome();
     },
-    getElectricityIncome(){
-      electricityIncome(this.incomeInfo).then(res => {
-        this.totalIncome = res.totalIncome
-        this.chartData2.xData = res.incomeDataList.map(item => {
-           return item.time
-        })
-        this.chartData2.yData = res.incomeDataList.map(item => {
-          if(this.radio2 === 0){
-            return item.spontaneousIncome
+    getElectricityIncome() {
+      electricityIncome(this.incomeInfo).then((res) => {
+        this.totalIncome = res.totalIncome;
+        this.chartData2.xData = res.incomeDataList.map((item) => {
+          return item.time;
+        });
+        this.chartData2.yData = res.incomeDataList.map((item) => {
+          if (this.radio2 === 0) {
+            return item.spontaneousIncome;
           }
-          if(this.radio2 === 1){
-            return item.sellIncome
+          if (this.radio2 === 1) {
+            return item.sellIncome;
           }
-          if(this.radio2 === 2){
-            return item.totalIncome
+          if (this.radio2 === 2) {
+            return item.totalIncome;
           }
-        })
-        console.log(this.chartData2)
-      })
+        });
+        console.log(this.chartData2);
+      });
     },
-    getPowerData(){
+    getPowerData() {
       electricityPower({
-        time: this.time3 / 1000
-      }).then(res => {
-        this.chartData3.xData = res.map(item => {
-           return item.time
-        })
-        this.chartData3.yData = res.map(item => {
-          if(this.radio3 === 0){
-            return item.battery
+        time: this.time3 / 1000,
+      }).then((res) => {
+        this.chartData3.xData = res.map((item) => {
+          return item.time;
+        });
+        this.chartData3.yData = res.map((item) => {
+          if (this.radio3 === 0) {
+            return item.battery;
           }
-          if(this.radio3 === 1){
-            return item.pvElec
+          if (this.radio3 === 1) {
+            return item.pvElec;
           }
-          if(this.radio3 === 2){
-            return item.loadElec
+          if (this.radio3 === 2) {
+            return item.loadElec;
           }
-          if(this.radio3 === 3){
-            return item.feedNetwork
+          if (this.radio3 === 3) {
+            return item.feedNetwork;
           }
-          if(this.radio3 === 4){
-            return item.buyElec
+          if (this.radio3 === 4) {
+            return item.buyElec;
           }
-        })
-      })
-    }
+        });
+      });
+    },
   },
 };
 </script>
@@ -567,7 +645,7 @@ export default {
 }
 
 .electricity-data {
-  background: #FFF;
+  background: #fff;
   border-radius: 20px;
   margin-top: 15px;
 }
@@ -584,22 +662,22 @@ export default {
   display: flex;
   align-items: center;
 }
-.data-title-left span{
+.data-title-left span {
   margin-left: 15px;
 }
-.data-title-right span{
+.data-title-right span {
   display: inline-block;
   width: 50px;
   height: 30px;
   line-height: 30px;
-  border: 1px solid #DDDDDD;
+  border: 1px solid #dddddd;
   border-radius: 6px;
   margin-right: 10px;
   text-align: center;
 }
 .active-type {
-  background: #208A42;
-  color: #FFFFFF;
+  background: #208a42;
+  color: #ffffff;
 }
 .data-content {
   height: 280px;
@@ -608,14 +686,14 @@ export default {
   display: flex;
   // margin-top: 10px;
 }
-.data-content-line div{
+.data-content-line div {
   width: 50%;
   // border: 1px solid red;
   margin-left: 30px;
   display: flex;
   align-items: center;
 }
-.data-content-line span{
+.data-content-line span {
   margin-left: 10px;
 }
 .data-content-radio {
@@ -624,7 +702,7 @@ export default {
   line-height: 20px;
   width: 100%;
   display: flex;
-  justify-content:flex-end;
+  justify-content: flex-end;
   padding-right: 20px;
 }
 </style>

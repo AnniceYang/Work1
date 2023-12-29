@@ -1,41 +1,39 @@
+import request from "@/router/axios";
 
-
-import request from '@/router/axios'
-
-export function fetchTree (query) {
+export function fetchTree(query) {
   return request({
-    url: '/sys/dept/tree',
-    method: 'get',
-    params: query
-  })
+    url: "/sys/dept/tree",
+    method: "get",
+    params: query,
+  });
 }
 
-export function addObj (obj) {
+export function addObj(obj) {
   return request({
-    url: '/admin/dept/',
-    method: 'post',
-    data: obj
-  })
+    url: "/admin/dept/",
+    method: "post",
+    data: obj,
+  });
 }
 
-export function getObj (id) {
+export function getObj(id) {
   return request({
-    url: '/admin/dept/' + id,
-    method: 'get'
-  })
+    url: "/admin/dept/" + id,
+    method: "get",
+  });
 }
 
-export function delObj (id) {
+export function delObj(id) {
   return request({
-    url: '/admin/dept/' + id,
-    method: 'delete'
-  })
+    url: "/admin/dept/" + id,
+    method: "delete",
+  });
 }
 
-export function putObj (obj) {
+export function putObj(obj) {
   return request({
-    url: '/admin/dept/',
-    method: 'put',
-    data: obj
-  })
+    url: "/admin/dept/",
+    method: "put",
+    data: obj,
+  });
 }

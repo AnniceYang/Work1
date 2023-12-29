@@ -1,13 +1,23 @@
 <template>
   <div class="avue-logo">
     <transition name="fade">
-      <span v-if="keyCollapse" key="0" class="avue-logo_subtitle" @click="goIndex">
+      <span
+        v-if="keyCollapse"
+        key="0"
+        class="avue-logo_subtitle"
+        @click="goIndex"
+      >
         <!-- {{website.subtitle}} -->
-        {{ $t('common.subtitle') }}
+        {{ $t("common.subtitle") }}
       </span>
     </transition>
     <transition-group name="fade">
-      <span v-if="!keyCollapse" key="1" class="avue-logo_title" @click="goIndex">
+      <span
+        v-if="!keyCollapse"
+        key="1"
+        class="avue-logo_title"
+        @click="goIndex"
+      >
         <!-- {{ $t('common.websiteName') }} -->
         <img src="@/assets/img/header-logo.png" />
       </span>
@@ -16,18 +26,18 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 export default {
-  name: 'Logo',
+  name: "Logo",
   computed: {
-    ...mapGetters(['website', 'keyCollapse'])
+    ...mapGetters(["website", "keyCollapse"]),
   },
   methods: {
     goIndex: function () {
-      window.location.href = '/'
-    }
-  }
-}
+      window.location.href = "/";
+    },
+  },
+};
 </script>
 
 <style lang="scss">

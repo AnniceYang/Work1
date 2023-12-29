@@ -1,0 +1,41 @@
+.theme-hey .avue-sidebar {
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+.theme-hey .avue-sidebar .el-menu-item i, .theme-hey .avue-sidebar .el-menu-item span, .theme-hey .avue-sidebar .el-submenu__title i, .theme-hey .avue-sidebar .el-submenu__title span {
+  color: rgba(49, 58, 70, 0.8);
+}
+.theme-hey .avue-sidebar .el-menu-item:hover, .theme-hey .avue-sidebar .el-submenu__title:hover {
+  background: transparent;
+}
+.theme-hey .avue-sidebar .el-menu-item:hover i, .theme-hey .avue-sidebar .el-menu-item:hover span, .theme-hey .avue-sidebar .el-submenu__title:hover i, .theme-hey .avue-sidebar .el-submenu__title:hover span {
+  color: #409eff;
+}
+.theme-hey .avue-sidebar .el-menu-item.is-active, .theme-hey .avue-sidebar .el-submenu__title.is-active {
+  background-color: #f0f6ff;
+}
+.theme-hey .avue-sidebar .el-menu-item.is-active:before, .theme-hey .avue-sidebar .el-submenu__title.is-active:before {
+  left: auto;
+  right: 0;
+}
+.theme-hey .avue-sidebar .el-menu-item.is-active i, .theme-hey .avue-sidebar .el-menu-item.is-active span, .theme-hey .avue-sidebar .el-submenu__title.is-active i, .theme-hey .avue-sidebar .el-submenu__title.is-active span {
+  color: #409eff;
+}
+.theme-hey .avue-logo {
+  background-color: #fff;
+  box-shadow: none;
+}
+.theme-hey .avue-logo .avue-logo_title {
+  color: #409eff;
+  font-size: 24px;
+}
+.theme-hey .avue-tags {
+  background: #f3f6f8;
+}
+.theme-hey .avue-tags .el-tabs__item {
+  color: rgba(0, 0, 0, 0.65) !important;
+}
+.theme-hey .avue-tags .is-active {
+  background-color: #fff;
+  border-bottom: none !important;
+}/*# sourceMappingURL=hey.css.map */
