@@ -1,0 +1,107 @@
+.theme-white .avue-header,
+.theme-white .avue-logo,
+.theme-white .tags-container {
+  background-color: #409EFF;
+}
+.theme-white .avue-sidebar--tip {
+  background-color: transparent;
+  color: #333;
+}
+.theme-white .el-dropdown {
+  color: #fff;
+}
+.theme-white .avue-logo_title {
+  font-weight: 400;
+  color: #fff;
+}
+.theme-white .logo_title,
+.theme-white .avue-breadcrumb {
+  color: #fff;
+}
+.theme-white .logo_title i,
+.theme-white .avue-breadcrumb i {
+  color: #fff;
+}
+.theme-white .avue-top .el-menu-item i,
+.theme-white .avue-top .el-menu-item span {
+  color: #fff;
+}
+.theme-white .avue-top .el-menu-item:hover i,
+.theme-white .avue-top .el-menu-item:hover span {
+  color: #fff;
+}
+.theme-white .el-menu--popup {
+  background-color: #fff;
+}
+.theme-white .el-menu--popup .el-menu-item {
+  background-color: #fff;
+}
+.theme-white .el-menu--popup .el-menu-item span, .theme-white .el-menu--popup .el-menu-item i {
+  color: #666;
+}
+.theme-white .el-menu--popup .el-menu-item.is-active {
+  background-color: #409EFF;
+}
+.theme-white .el-menu--popup .el-menu-item.is-active span, .theme-white .el-menu--popup .el-menu-item.is-active i {
+  color: #fff;
+}
+.theme-white .avue-sidebar {
+  box-shadow: 2px 0 6px rgba(0, 21, 41, 0.15);
+  background-color: #fff;
+}
+.theme-white .avue-sidebar .el-menu {
+  background-color: #fff;
+}
+.theme-white .avue-sidebar .el-menu-item, .theme-white .avue-sidebar .el-submenu__title {
+  background-color: #fff;
+}
+.theme-white .avue-sidebar .el-menu-item i, .theme-white .avue-sidebar .el-menu-item span, .theme-white .avue-sidebar .el-submenu__title i, .theme-white .avue-sidebar .el-submenu__title span {
+  color: #666;
+}
+.theme-white .avue-sidebar .el-menu-item:hover, .theme-white .avue-sidebar .el-submenu__title:hover {
+  background-color: transparent;
+}
+.theme-white .avue-sidebar .el-menu-item:hover i, .theme-white .avue-sidebar .el-menu-item:hover span, .theme-white .avue-sidebar .el-submenu__title:hover i, .theme-white .avue-sidebar .el-submenu__title:hover span {
+  color: #666;
+}
+.theme-white .avue-sidebar .el-menu-item.is-active, .theme-white .avue-sidebar .el-submenu__title.is-active {
+  background-color: #409EFF;
+}
+.theme-white .avue-sidebar .el-menu-item.is-active i, .theme-white .avue-sidebar .el-menu-item.is-active span, .theme-white .avue-sidebar .el-submenu__title.is-active i, .theme-white .avue-sidebar .el-submenu__title.is-active span {
+  color: #fff;
+}
+.theme-white .avue-sidebar .el-menu-item.is-active::before, .theme-white .avue-sidebar .el-submenu__title.is-active::before {
+  display: none;
+}
+.theme-white .avue-sidebar .el-menu-item.is-active:hover, .theme-white .avue-sidebar .el-submenu__title.is-active:hover {
+  background-color: #409EFF;
+}
+.theme-white .avue-sidebar .el-menu-item.is-active:hover i, .theme-white .avue-sidebar .el-menu-item.is-active:hover span, .theme-white .avue-sidebar .el-submenu__title.is-active:hover i, .theme-white .avue-sidebar .el-submenu__title.is-active:hover span {
+  color: #fff;
+}
+.theme-white .top-search .el-input__inner {
+  color: #fff;
+}
+.theme-white .top-search input::-webkit-input-placeholder,
+.theme-white .top-search textarea::-webkit-input-placeholder {
+  /* WebKit browsers */
+  color: #fff;
+}
+.theme-white .top-search input:-moz-placeholder,
+.theme-white .top-search textarea:-moz-placeholder {
+  /* Mozilla Firefox 4 to 18 */
+  color: #fff;
+}
+.theme-white .top-search input::-moz-placeholder,
+.theme-white .top-search textarea::-moz-placeholder {
+  /* Mozilla Firefox 19+ */
+  color: #fff;
+}
+.theme-white .top-search input:-ms-input-placeholder,
+.theme-white .top-search textarea:-ms-input-placeholder {
+  /* Internet Explorer 10+ */
+  color: #fff;
+}
+.theme-white .top-bar__item i {
+  color: #fff;
+}/*# sourceMappingURL=white.css.map */
