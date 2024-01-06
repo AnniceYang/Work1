@@ -10095,7 +10095,7 @@ export default {
   methods: {
     handleSave(key, val) {
       if (
-        this.systemSet.otherSetObj.countryCodeVal === "6" &&
+        this.systemSet.otherSetObj.countryCodeVal === "7" &&
         key !== "countryCode"
       ) {
         this.$message.info(this.$t("common.cannotBeChanged"));

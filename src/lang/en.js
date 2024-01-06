@@ -94,6 +94,11 @@ export default {
     ratioStatistics: "Ratio statistics",
     realTimeStatus: "Real-time status",
     discharging: "Discharging",
+    onlineDevices: "Online devices",
+    totalInstalledDevices: "Total installed devices",
+    offlineDevices: "Off-line devices",
+    errorDevices: "Error devices",
+    installationStatistics: "Installation statistics",
   },
   userManage: {
     role: "Role",

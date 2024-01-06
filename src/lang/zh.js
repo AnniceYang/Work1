@@ -93,6 +93,11 @@ export default {
     ratioStatistics: "比例统计",
     realTimeStatus: "实时状态",
     discharging: "放电中",
+    onlineDevices: "在线设备总数",
+    totalInstalledDevices: "安装设备总数",
+    offlineDevices: "离线设备总数",
+    errorDevices: "报错设备总数",
+    installationStatistics: "安装数据",
   },
   userManage: {
     role: "角色",

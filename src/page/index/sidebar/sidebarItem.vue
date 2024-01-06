@@ -11,11 +11,7 @@
         <i :class="item[iconKey]" />
         <span slot="title" :alt="item[pathKey]">{{ item[labelKey] }}</span>
       </el-menu-item>
-      <el-submenu
-        v-else-if="!validatenull(item[childrenKey]) && vaildRoles(item)"
-        :index="item[pathKey]"
-        :key="item[labelKey]"
-      >
+      <el-submenu v-else :index="item[pathKey]" :key="item[labelKey]">
         <template slot="title">
           <i :class="item[iconKey]" />
           <span
@@ -26,7 +22,7 @@
         </template>
         <template v-for="(child, cindex) in item[childrenKey]">
           <el-menu-item
-            v-if="validatenull(child[childrenKey])"
+            v-if="validatenull(child[childrenKey]) && vaildRoles(child)"
             :index="(child[pathKey], cindex)"
             :class="{ 'is-active': vaildAvtive(child) }"
             :key="child[labelKey]"
@@ -86,7 +82,10 @@ export default {
     ...mapGetters(["roles", "language"]),
     labelKey() {
       //return this.props.label
-      return this.language === "en-US" ? "nameEn" : "label";
+
+      const key = this.language === "en-US" ? "nameEn" : "label";
+      console.log("Label key:", key);
+      return key;
     },
     pathKey() {
       return this.props.path;
