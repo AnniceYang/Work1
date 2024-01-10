@@ -342,6 +342,7 @@ import ElectricityData from "../electricityData.vue";
 import IncomeData from "../incomeData.vue";
 import DeviceStatus from "./deviceStatus.vue";
 import PowerData from "../powerData.vue";
+import { getTotal } from "@/api/home/installer";
 import { mapGetters } from "vuex";
 import moment from "moment";
 export default {

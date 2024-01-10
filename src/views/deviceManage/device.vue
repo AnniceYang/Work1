@@ -163,12 +163,14 @@
                 v-if="permissions.admin_dogappversioninfo_ota"
                 >{{ $t("deviceManage.OTAupgrade") }}</el-button
               >
+
               <el-button
                 type="text"
                 @click="handleRecord(scope.row)"
                 v-if="permissions.admin_lsydeviceupgrade_view"
                 >{{ $t("deviceManage.upgradeRecord") }}</el-button
               >
+
               <el-button
                 type="text"
                 @click="handleRealTime(scope.row)"
@@ -408,76 +410,76 @@ export default {
       let str = "";
       switch (Number(val)) {
         case 0:
-          str = this.$t('deviceManage.zeroZone');
+          str = this.$t("deviceManage.zeroZone");
           break;
         case 1:
-          str = this.$t('deviceManage.eastFirstDistrict');
+          str = this.$t("deviceManage.eastFirstDistrict");
           break;
         case 2:
-          str = this.$t('deviceManage.eastSecondDistrict');
+          str = this.$t("deviceManage.eastSecondDistrict");
           break;
         case 3:
-          str = this.$t('deviceManage.eastThirdDistrict');
+          str = this.$t("deviceManage.eastThirdDistrict");
           break;
         case 4:
-          str = this.$t('deviceManage.eastFourthDistrict');
+          str = this.$t("deviceManage.eastFourthDistrict");
           break;
         case 5:
-          str = this.$t('deviceManage.eastFifthDistrict');
+          str = this.$t("deviceManage.eastFifthDistrict");
           break;
         case 6:
-          str = this.$t('deviceManage.eastSixthDistrict');
+          str = this.$t("deviceManage.eastSixthDistrict");
           break;
         case 7:
-          str = this.$t('deviceManage.eastSeventhDistrict');
+          str = this.$t("deviceManage.eastSeventhDistrict");
           break;
         case 8:
-          str = this.$t('deviceManage.eastEighthDistrict');
+          str = this.$t("deviceManage.eastEighthDistrict");
           break;
         case 9:
-          str = this.$t('deviceManage.eastNinthDistrict');
+          str = this.$t("deviceManage.eastNinthDistrict");
           break;
         case 10:
-          str = this.$t('deviceManage.eastTenthDistrict');
+          str = this.$t("deviceManage.eastTenthDistrict");
           break;
         case 11:
-          str = this.$t('deviceManage.eastEleventhDistrict');
+          str = this.$t("deviceManage.eastEleventhDistrict");
           break;
         case 12:
-          str = this.$t('deviceManage.eastTwelfthDistrict');
+          str = this.$t("deviceManage.eastTwelfthDistrict");
           break;
         case -1:
-          str = this.$t('deviceManage.westFirstDistrict');
+          str = this.$t("deviceManage.westFirstDistrict");
           break;
         case -2:
-          str = this.$t('deviceManage.westSecondDistrict');
+          str = this.$t("deviceManage.westSecondDistrict");
           break;
         case -3:
-          str = this.$t('deviceManage.westThirdDistrict');
+          str = this.$t("deviceManage.westThirdDistrict");
           break;
         case -4:
-          str = this.$t('deviceManage.westFourthDistrict');
+          str = this.$t("deviceManage.westFourthDistrict");
           break;
         case -5:
-          str = this.$t('deviceManage.westFifthDistrict');
+          str = this.$t("deviceManage.westFifthDistrict");
           break;
         case -6:
-          str = this.$t('deviceManage.westSixthDistrict');
+          str = this.$t("deviceManage.westSixthDistrict");
           break;
         case -7:
-          str = this.$t('deviceManage.westSeventhDistrict');
+          str = this.$t("deviceManage.westSeventhDistrict");
           break;
         case -8:
-          str = this.$t('deviceManage.westEighthDistrict');
+          str = this.$t("deviceManage.westEighthDistrict");
           break;
         case -9:
-          str = this.$t('deviceManage.westNinthDistrict');
+          str = this.$t("deviceManage.westNinthDistrict");
           break;
         case -10:
-          str = this.$t('deviceManage.westTenthDistrict');
+          str = this.$t("deviceManage.westTenthDistrict");
           break;
         case -11:
-          str = this.$t('deviceManage.westEleventhDistrict');
+          str = this.$t("deviceManage.westEleventhDistrict");
           break;
         default:
           break;

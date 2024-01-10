@@ -29,6 +29,7 @@
           >{{ $t("deviceManage.selfTest") }}</el-menu-item
         >
       </el-menu>
+
       <div v-loading="loading">
         <el-card style="margin-top: 20px">
           <el-descriptions
@@ -851,7 +852,7 @@
                 }}VAR</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterReactivePower')"
+                :label="$t('deviceManage.phaseBInverterReactivePower')"
                 v-if="
                   operationInformationIsDisplay(
                     'inverterInformationObj',
@@ -864,7 +865,7 @@
                 }}VAR</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterReactivePower')"
+                :label="$t('deviceManage.phaseCInverterReactivePower')"
                 v-if="
                   operationInformationIsDisplay(
                     'inverterInformationObj',

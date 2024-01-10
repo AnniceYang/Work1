@@ -1,5 +1,12 @@
 export default {
   common: {
+    page: "page",
+    export: "export",
+    selectDataPage: "Select DataPage",
+    selectPrompt: "Select Prompt",
+    selectDate: "Select Date",
+    onoffline: "OnOffline record",
+    upgradeResult: "Inverter Upgrade result",
     weak: "weak",
     medium: "medium",
     unknown: "Unknown",
@@ -282,9 +289,11 @@ export default {
     currentAlarm: "Current Alarm",
     historicalAlarm: "Historical alarm",
     alarmStatus: "Alarm status",
+    alarmInfo: "Alarm Info",
     snCode: "SN code",
   },
   deviceManage: {
+    energyFlowChart: "Energy flow chart",
     deviceName: "Device name",
     deviceDetails: "Device details",
     systemSettings: "System settings",
@@ -1286,6 +1295,8 @@ export default {
     validateNumber: "Please add the upgrade version number",
   },
   parameterConfiguration: {
+    selfTestReport: "Self Test Report",
+
     runInformation: "Operation information",
     webView: "Web view",
     webSet: "Web set",

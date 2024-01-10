@@ -1,8 +1,112 @@
 <template>
   <div class="app-container calendar-list-container">
     <basic-container>
-      <el-page-header @back="goBack" :content="$t('deviceManage.equipmentDataStatistics')"></el-page-header>
-      <el-descriptions :title="$t('deviceManage.deviceInformation')" style="margin-top: 20px">
+      <el-page-header
+        @back="goBack"
+        :content="$t('deviceManage.equipmentDataStatistics')"
+      >
+      </el-page-header>
+      <div class="export-container">
+        <el-button
+          v-if="isAdmin"
+          class="export"
+          type="primary"
+          icon="el-icon-download"
+          @click="showExportModal"
+          >{{ $t("common.export") }}</el-button
+        >
+
+        <!-- Export Modal -->
+        <el-dialog
+          :title="$t('common.export')"
+          :visible.sync="exportModalVisible"
+          width="400px"
+        >
+          <el-form label-width="80px" :model="exportOptions">
+            <el-form-item :label="$t('common.selectDataPage')">
+              <el-select
+                v-model="exportOptions.selectedPage"
+                :placeholder="$t('common.selectPrompt')"
+              >
+                <el-option
+                  :label="`${$t('deviceManage.energyFlowChart')}(${$t(
+                    'common.page'
+                  )}3)`"
+                  value="page3"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.electricityInformation')}(${$t(
+                    'common.page'
+                  )}4)`"
+                  value="page4"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.realTimePower')}(${$t(
+                    'common.page'
+                  )}5)`"
+                  value="page5"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.operationInformation')}(${$t(
+                    'common.page'
+                  )}7)`"
+                  value="page7"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.systemSettings')}(${$t(
+                    'common.page'
+                  )}8)`"
+                  value="page8"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.batteryParameters')}(${$t(
+                    'common.page'
+                  )}9)`"
+                  value="page9"
+                ></el-option>
+                <el-option
+                  :label="`${$t('parameterConfiguration.selfTestReport')}(${$t(
+                    'common.page'
+                  )}12)`"
+                  value="page12"
+                ></el-option>
+                <el-option
+                  :label="`${$t(
+                    'parameterConfiguration.threePhaseMeterBasic'
+                  )}(${$t('common.page')}13)`"
+                  value="page13"
+                ></el-option>
+                <el-option
+                  :label="$t('faultInfo.alarmInfo')"
+                  value="alarm"
+                ></el-option>
+                <el-option
+                  :label="$t('common.onoffline')"
+                  value="onoffline"
+                ></el-option>
+                <el-option
+                  :label="$t('common.upgradeResult')"
+                  value="upgradeResult"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+
+          <div style="text-align: center; margin-top: 20px">
+            <el-button type="primary" @click="exportData">{{
+              $t("common.export")
+            }}</el-button>
+            <el-button @click="hideExportModal">{{
+              $t("common.cancel")
+            }}</el-button>
+          </div>
+        </el-dialog>
+      </div>
+
+      <el-descriptions
+        :title="$t('deviceManage.deviceInformation')"
+        style="margin-top: 20px"
+      >
         <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.name
         }}</el-descriptions-item>
@@ -24,27 +128,44 @@
         <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
         }}</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.communicationStickSoftwareVersion')">{{
-          deviceInfo.versionNet
-        }}</el-descriptions-item>
+        <el-descriptions-item
+          :label="$t('deviceManage.communicationStickSoftwareVersion')"
+          >{{ deviceInfo.versionNet }}</el-descriptions-item
+        >
 
-        <el-descriptions-item :label="$t('deviceManage.buyingElectricity')">{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.sellingElectricity')">{{ deviceInfo.sellElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.photovoltaicPowerGeneration')">{{ deviceInfo.cumulativeElectricity }}kWh</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.totalConsumption')">{{ deviceInfo.totalConsume }}kWh</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.buyingElectricity')"
+          >{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item
+        >
+        <el-descriptions-item :label="$t('deviceManage.sellingElectricity')"
+          >{{ deviceInfo.sellElectricity }}kWh</el-descriptions-item
+        >
+        <el-descriptions-item
+          :label="$t('deviceManage.photovoltaicPowerGeneration')"
+          >{{ deviceInfo.cumulativeElectricity }}kWh</el-descriptions-item
+        >
+        <el-descriptions-item :label="$t('deviceManage.totalConsumption')"
+          >{{ deviceInfo.totalConsume }}kWh</el-descriptions-item
+        >
         <el-descriptions-item :label="$t('deviceManage.cumulativeGain')">{{
           deviceInfo.cumulativeIncome
         }}</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.pvPower')">{{ deviceInfo.pvPower }}W</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.pvPower')"
+          >{{ deviceInfo.pvPower }}W</el-descriptions-item
+        >
         <el-descriptions-item :label="$t('deviceManage.equipmentRemarks')">{{
           deviceInfo.remarks
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('deviceManage.energyFlowSwitch')">{{
-          deviceInfo.energyFlowSwitch == 0 ? $t('menuManage.close') : $t('menuManage.open')
+          deviceInfo.energyFlowSwitch == 0
+            ? $t("menuManage.close")
+            : $t("menuManage.open")
         }}</el-descriptions-item>
       </el-descriptions>
 
-      <el-descriptions :title="$t('deviceManage.userInformation')" style="margin-top: 20px">
+      <el-descriptions
+        :title="$t('deviceManage.userInformation')"
+        style="margin-top: 20px"
+      >
         <el-descriptions-item :label="$t('deviceManage.userName')">{{
           deviceInfo.bindUserName
         }}</el-descriptions-item>
@@ -56,7 +177,10 @@
         }}</el-descriptions-item>
       </el-descriptions>
 
-      <el-descriptions :title="$t('deviceManage.installerInformation')" style="margin-top: 20px">
+      <el-descriptions
+        :title="$t('deviceManage.installerInformation')"
+        style="margin-top: 20px"
+      >
         <el-descriptions-item :label="$t('deviceManage.installerName')">{{
           deviceInfo.installerName
         }}</el-descriptions-item>
@@ -71,20 +195,40 @@
       <div style="margin-top: 20px">
         <el-form :inline="true">
           <el-form-item :label="$t('deviceManage.type')">
-            <el-select v-model="listQuery.type" :placeholder="$t('common.selectPrompt')">
+            <el-select
+              v-model="listQuery.type"
+              :placeholder="$t('common.selectPrompt')"
+            >
               <el-option :label="$t('deviceManage.day')" :value="0"></el-option>
-              <el-option :label="$t('deviceManage.month')" :value="1"></el-option>
-              <el-option :label="$t('deviceManage.year')" :value="2"></el-option>
+              <el-option
+                :label="$t('deviceManage.month')"
+                :value="1"
+              ></el-option>
+              <el-option
+                :label="$t('deviceManage.year')"
+                :value="2"
+              ></el-option>
             </el-select>
           </el-form-item>
           <el-form-item :label="$t('deviceManage.timeFrame')">
-            <el-date-picker v-model="timeList" type="daterange" value-format="timestamp" :range-separator="$t('deviceManage.to')"
-              :start-placeholder="$t('common.startingTime')" :end-placeholder="$t('common.endTime')" @change="changeTime">
+            <el-date-picker
+              v-model="timeList"
+              type="daterange"
+              value-format="timestamp"
+              :range-separator="$t('deviceManage.to')"
+              :start-placeholder="$t('common.startingTime')"
+              :end-placeholder="$t('common.endTime')"
+              @change="changeTime"
+            >
             </el-date-picker>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="getData()">{{$t('common.search')}}</el-button>
-            <el-button type="primary" @click="handleReset()">{{$t('common.reset')}}</el-button>
+            <el-button type="primary" @click="getData()">{{
+              $t("common.search")
+            }}</el-button>
+            <el-button type="primary" @click="handleReset()">{{
+              $t("common.reset")
+            }}</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -93,7 +237,7 @@
         <el-col :span="12">
           <el-card style="margin-top: 0px">
             <div slot="header">
-              <span>{{$t('deviceManage.electricityInformation')}}</span>
+              <span>{{ $t("deviceManage.electricityInformation") }}</span>
             </div>
             <div class="card-content">
               <ElectricityData :chartData="chartData1" />
@@ -104,21 +248,31 @@
         <el-col :span="12">
           <el-card style="margin-top: 0px">
             <div slot="header" class="card-header">
-              <span>{{$t('deviceManage.powerGenerationRevenue')}}</span>
-              <span style="margin-left: 10px; font-weight: bold">({{$t('deviceManage.totalRevenue')}}：￥{{ money || 0 }})</span>
+              <span>{{ $t("deviceManage.powerGenerationRevenue") }}</span>
+              <span style="margin-left: 10px; font-weight: bold"
+                >({{ $t("deviceManage.totalRevenue") }}：￥{{
+                  money || 0
+                }})</span
+              >
             </div>
             <div class="card-content">
               <IncomeData :chartData="chartData2" />
             </div>
-          </el-card>                                                                              
+          </el-card>
         </el-col>
       </el-row>
 
       <el-card style="margin-top: 20px">
         <div slot="header">
-          <span>{{$t('deviceManage.realTimePower')}}</span>
-          <el-date-picker style="margin-left: 10px" @change="getDevicePowerData" v-model="time" type="date"
-            value-format="timestamp" :placeholder="$t('common.selectPrompt')">
+          <span>{{ $t("deviceManage.realTimePower") }}</span>
+          <el-date-picker
+            style="margin-left: 10px"
+            @change="getDevicePowerData"
+            v-model="time"
+            type="date"
+            value-format="timestamp"
+            :placeholder="$t('common.selectPrompt')"
+          >
           </el-date-picker>
         </div>
         <div class="card-content">
@@ -128,32 +282,64 @@
 
       <el-card style="margin-top: 20px">
         <div slot="header">
-          <span>{{$t('deviceManage.realTime')}}</span>
-          <el-date-picker style="margin-left: 10px" @change="getDeviceRecordData" v-model="time2" type="date"
-            value-format="timestamp" :placeholder="$t('common.selectPrompt')">
+          <span>{{ $t("deviceManage.realTime") }}</span>
+          <el-date-picker
+            style="margin-left: 10px"
+            @change="getDeviceRecordData"
+            v-model="time2"
+            type="date"
+            value-format="timestamp"
+            :placeholder="$t('common.selectPrompt')"
+          >
           </el-date-picker>
         </div>
         <div class="card2-content">
           <div>
-            <el-tag class="tag" v-for="(item, index) in paramsList" :key="item.value"
-              :type="paramsIndex === index ? '' : 'info'" @click="handleRecordData(index)" effect="plain">
+            <el-tag
+              class="tag"
+              v-for="(item, index) in paramsList"
+              :key="item.value"
+              :type="paramsIndex === index ? '' : 'info'"
+              @click="handleRecordData(index)"
+              effect="plain"
+            >
               {{ item.name }}
             </el-tag>
           </div>
           <div class="menu">
-            <el-menu :default-active="activeIndex" mode="horizontal" @select="handleSelect">
-              <el-menu-item index="0">{{$t('deviceManage.table')}}</el-menu-item>
-              <el-menu-item index="1">{{$t('deviceManage.curve')}}</el-menu-item>
+            <el-menu
+              :default-active="activeIndex"
+              mode="horizontal"
+              @select="handleSelect"
+            >
+              <el-menu-item index="0">{{
+                $t("deviceManage.table")
+              }}</el-menu-item>
+              <el-menu-item index="1">{{
+                $t("deviceManage.curve")
+              }}</el-menu-item>
             </el-menu>
           </div>
-          <div v-if="activeIndex === '0'" style="margin-top: 20px;height: 560px">
-            <el-table border stripe :data="recordData.slice((pageNum - 1) * pageSize, pageNum * pageSize)">
+          <div
+            v-if="activeIndex === '0'"
+            style="margin-top: 20px; height: 560px"
+          >
+            <el-table
+              border
+              stripe
+              :data="
+                recordData.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+              "
+            >
               <el-table-column align="center" :label="$t('deviceManage.time')">
                 <template slot-scope="scope">
                   {{ scope.row.time }}
                 </template>
               </el-table-column>
-              <el-table-column align="center" :label="$t('deviceManage.dataContent')">
+              <el-table-column
+                align="center"
+                :label="$t('deviceManage.dataContent')"
+              >
                 <template slot-scope="scope">
                   {{ paramsList[paramsIndex].name }}
                 </template>
@@ -181,7 +367,10 @@
               </el-pagination>
             </div>
           </div>
-          <div v-if="activeIndex === '1'" style="margin-top: 20px; height: 560px">
+          <div
+            v-if="activeIndex === '1'"
+            style="margin-top: 20px; height: 560px"
+          >
             <RecordData :chartData="chartData4" />
           </div>
         </div>
@@ -201,13 +390,43 @@ import IncomeData from "./incomeData.vue";
 import PowerData from "./powerData.vue";
 import RecordData from "./recordData.vue";
 import moment from "moment";
+import axios from "axios";
+import { mapState, mapActions } from "vuex";
 export default {
   components: { ElectricityData, IncomeData, PowerData, RecordData },
+
+  computed: {
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
+
+    requireDateSelection() {
+      const selectedPage = this.exportOptions.selectedPage;
+      const pagesWithDateSelection = ["page3", "page7", "page9", "page13"];
+      return pagesWithDateSelection.includes(selectedPage);
+    },
+  },
+
   data() {
     return {
+      exportModalVisible: false,
+      exportOptions: {
+        selectedPage: null,
+      },
+      exportDate: [],
+
       deviceInfo: {},
-      devStatusFilter:[this.$t('userManage.normal'),this.$t('deviceManage.maintenance'),this.$t('deviceManage.offline'),this.$t('deviceManage.error')],
-      onlineStatusFilter: [this.$t('deviceManage.offline'), this.$t('deviceManage.online'), this.$t('deviceManage.updating')],
+      devStatusFilter: [
+        this.$t("userManage.normal"),
+        this.$t("deviceManage.maintenance"),
+        this.$t("deviceManage.offline"),
+        this.$t("deviceManage.error"),
+      ],
+      onlineStatusFilter: [
+        this.$t("deviceManage.offline"),
+        this.$t("deviceManage.online"),
+        this.$t("deviceManage.updating"),
+      ],
       chartData1: {
         xData: [],
         yDataTotalElec: [],
@@ -243,81 +462,181 @@ export default {
       time2: "",
       timeList: [],
       paramsList: [
-        { name: this.$t('deviceManage.dcdcTemperature'), value: "dcdcTemperature", color: "#25C5D9", unit: "℃" },
-        { name: this.$t('deviceManage.busbarVoltage'), value: "busbarVoltage", color: "#FD9F15", unit: "V" },
-        { name: this.$t('deviceManage.pv1Voltage'), value: "pv1Voltage", color: "#FDCB01", unit: "V" },
-        { name: this.$t('deviceManage.pv1Current'), value: "pv1Current", color: "#89BD77", unit: "A" },
-        { name: this.$t('deviceManage.pv1Power'), value: "pv1Power", color: "#25C5D9", unit: "W" },
-        { name: this.$t('deviceManage.pv2Voltage'), value: "pv2Voltage", color: "#D17DFD", unit: "V" },
-        { name: this.$t('deviceManage.pv2Current'), value: "pv2Current", color: "#409DFF", unit: "A" },
-        { name: this.$t('deviceManage.pv2Power'), value: "pv2Power", color: "#25C5D9", unit: "W" },
-        { name: this.$t('deviceManage.batteryVoltage'), value: "batteryVoltage", color: "#FD9F15", unit: "V" },
-        { name: this.$t('deviceManage.batteryCurrent'), value: "batteryCurrent", color: "#FDCB01", unit: "A" },
-
-        { name: this.$t('deviceManage.batteryPower'), value: "batteryPower", color: "#D17DFD", unit: "W" },
-        { name: this.$t('deviceManage.batteryTotalSoc'), value: "batteryTotalSoc", color: "#3F9DFF", unit: "%" },
         {
-          name: this.$t('deviceManage.phaseAGridFrequency'),
+          name: this.$t("deviceManage.dcdcTemperature"),
+          value: "dcdcTemperature",
+          color: "#25C5D9",
+          unit: "℃",
+        },
+        {
+          name: this.$t("deviceManage.busbarVoltage"),
+          value: "busbarVoltage",
+          color: "#FD9F15",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.pv1Voltage"),
+          value: "pv1Voltage",
+          color: "#FDCB01",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.pv1Current"),
+          value: "pv1Current",
+          color: "#89BD77",
+          unit: "A",
+        },
+        {
+          name: this.$t("deviceManage.pv1Power"),
+          value: "pv1Power",
+          color: "#25C5D9",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.pv2Voltage"),
+          value: "pv2Voltage",
+          color: "#D17DFD",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.pv2Current"),
+          value: "pv2Current",
+          color: "#409DFF",
+          unit: "A",
+        },
+        {
+          name: this.$t("deviceManage.pv2Power"),
+          value: "pv2Power",
+          color: "#25C5D9",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.batteryVoltage"),
+          value: "batteryVoltage",
+          color: "#FD9F15",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.batteryCurrent"),
+          value: "batteryCurrent",
+          color: "#FDCB01",
+          unit: "A",
+        },
+
+        {
+          name: this.$t("deviceManage.batteryPower"),
+          value: "batteryPower",
+          color: "#D17DFD",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.batteryTotalSoc"),
+          value: "batteryTotalSoc",
+          color: "#3F9DFF",
+          unit: "%",
+        },
+        {
+          name: this.$t("deviceManage.phaseAGridFrequency"),
           value: "phaseAGridFrequency",
           color: "#89BD77",
-          unit: "Hz"
+          unit: "Hz",
         },
-        { name: this.$t('deviceManage.phaseAGridVoltage'), value: "phaseAGridVoltage", color: "#FD9F15", unit: "V" },
-        { name: this.$t('deviceManage.gridActivePower'), value: "gridActivePower", color: "#25C5D9", unit: "W" },
-        { name: this.$t('deviceManage.ctCurrent'), value: "ctCurrent", color: "#3F9DFF", unit: "A" },
-        { name: this.$t('deviceManage.ctPower'), value: "ctPower", color: "#FDCB01", unit: "W" },
         {
-          name: this.$t('deviceManage.inverterSideTemperature'),
+          name: this.$t("deviceManage.phaseAGridVoltage"),
+          value: "phaseAGridVoltage",
+          color: "#FD9F15",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.gridActivePower"),
+          value: "gridActivePower",
+          color: "#25C5D9",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.ctCurrent"),
+          value: "ctCurrent",
+          color: "#3F9DFF",
+          unit: "A",
+        },
+        {
+          name: this.$t("deviceManage.ctPower"),
+          value: "ctPower",
+          color: "#FDCB01",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.inverterSideTemperature"),
           value: "inverterSideTemperature",
           color: "#3F9DFF",
-          unit: "℃"
+          unit: "℃",
         },
         {
-          name: this.$t('deviceManage.phaseAInverterOutputFrequency'),
+          name: this.$t("deviceManage.phaseAInverterOutputFrequency"),
           value: "phaseAInverterOutputFrequency",
           color: "#25C5D9",
-          unit: "Hz"
+          unit: "Hz",
         },
         {
-          name: this.$t('deviceManage.phaseAInverterOutputVoltage'),
+          name: this.$t("deviceManage.phaseAInverterOutputVoltage"),
           value: "phaseAInverterOutputVoltage",
           color: "#FD9F15",
-          unit: "V"
+          unit: "V",
         },
 
         {
-          name: this.$t('deviceManage.phaseAInverterOutputCurrent'),
+          name: this.$t("deviceManage.phaseAInverterOutputCurrent"),
           value: "phaseAInverterOutputCurrent",
           color: "#3F9DFF",
-          unit: "A"
+          unit: "A",
         },
         {
-          name: this.$t('deviceManage.phaseAInverterActivePower'),
+          name: this.$t("deviceManage.phaseAInverterActivePower"),
           value: "phaseAInverterActivePower",
           color: "#89BD77",
-          unit: "W"
+          unit: "W",
         },
-        { name: this.$t('deviceManage.phaseALoadVoltage'), value: "phaseALoadVoltage", color: "#FDCB01", unit: "V" },
-        { name: this.$t('deviceManage.phaseALoadCurrent'), value: "phaseALoadCurrent", color: "#D17DFD", unit: "A" },
         {
-          name: this.$t('deviceManage.phaseALoadActivePower'),
+          name: this.$t("deviceManage.phaseALoadVoltage"),
+          value: "phaseALoadVoltage",
+          color: "#FDCB01",
+          unit: "V",
+        },
+        {
+          name: this.$t("deviceManage.phaseALoadCurrent"),
+          value: "phaseALoadCurrent",
+          color: "#D17DFD",
+          unit: "A",
+        },
+        {
+          name: this.$t("deviceManage.phaseALoadActivePower"),
           value: "phaseAActivePower",
           color: "#89BD77",
-          unit: "W"
+          unit: "W",
         },
-        { name: this.$t('deviceManage.loadRealTimePower'), value: "loadRealTimePower", color: "#25C5D9", unit: "W" },
         {
-          name: this.$t('deviceManage.middleBusbarVoltage'),
+          name: this.$t("deviceManage.loadRealTimePower"),
+          value: "loadRealTimePower",
+          color: "#25C5D9",
+          unit: "W",
+        },
+        {
+          name: this.$t("deviceManage.middleBusbarVoltage"),
           value: "middleBusbarVoltage",
           color: "#3F9DFF",
-          unit: "V"
+          unit: "V",
         },
-        { name: this.$t('deviceManage.buckBoostCurrent'), value: "buckBoostCurrent", color: "#FDCB01", unit: "A" },
         {
-          name: this.$t('deviceManage.electricRelayMiddleVoltage'),
+          name: this.$t("deviceManage.buckBoostCurrent"),
+          value: "buckBoostCurrent",
+          color: "#FDCB01",
+          unit: "A",
+        },
+        {
+          name: this.$t("deviceManage.electricRelayMiddleVoltage"),
           value: "electricRelayMiddleVoltage",
           color: "#D17DFD",
-          unit: "V"
+          unit: "V",
         },
       ],
       recordData: [],
@@ -328,6 +647,37 @@ export default {
     };
   },
   methods: {
+    showExportModal() {
+      this.exportModalVisible = true;
+    },
+    hideExportModal() {
+      this.exportModalVisible = false;
+    },
+
+    exportData() {
+      const exportBaseUrl = "http://120.79.138.205:7072/excel"; // 测试服版
+      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072/excel"; // 力胜源版
+      // const exportBaseUrl = "http://3.126.27.80:7072/excel"; // ODM版
+      const page = this.exportOptions.selectedPage;
+      const deviceId = this.deviceInfo.sn;
+
+      let exportUrl = `${exportBaseUrl}/${page}/${deviceId}`;
+      if (
+        this.requireDateSelection &&
+        this.exportDate &&
+        this.exportDate.length > 0
+      ) {
+        const formattedStartDate = moment(
+          this.exportDate[0].format("yyyy-MM-dd")
+        );
+        exportUrl = `${exportBaseUrl}/${page}/${deviceId}/${formattedStartDate}`;
+      }
+
+      window.open(exportUrl, "_blank");
+
+      this.hideExportModal();
+    },
+
     init(info) {
       this.time = this.time2 = moment().unix() * 1000;
       this.listQuery.endTime =
@@ -476,16 +826,26 @@ export default {
       this.activeIndex = e;
     },
     handleSizeChange(val) {
-      this.pageSize=val;
+      this.pageSize = val;
     },
     handleCurrentChange(val) {
       this.pageNum = val;
-    }
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.export-container {
+  position: relative;
+  margin-top: 20px;
+}
+.export {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
 .card-content {
   height: 300px;
 }
@@ -496,10 +856,11 @@ export default {
   cursor: pointer;
 }
 
-.card2-content {}
+.card2-content {
+}
 
 .menu {
-  /deep/ .el-menu--horizontal>.el-menu-item {
+  /deep/ .el-menu--horizontal > .el-menu-item {
     height: 30px;
     line-height: 30px;
   }

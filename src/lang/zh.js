@@ -1,5 +1,12 @@
 export default {
   common: {
+    page: "page",
+    export: "导出",
+    selectDataPage: "选择Page",
+    selectPrompt: "选择表名",
+    onoffline: "上下线日志",
+    upgradeResult: "逆变器升级返回讯息",
+    selectDate: "选择日期",
     weak: "弱",
     medium: "中",
     unknown: "未知",
@@ -281,8 +288,10 @@ export default {
     currentAlarm: "当前报警",
     historicalAlarm: "历史报警",
     alarmStatus: "报警状态",
+    alarmInfo: "报警信息",
   },
   deviceManage: {
+    energyFlowChart: "能流图页面数据",
     deviceName: "设备名称",
     deviceDetails: "设备详细信息",
     systemSettings: "系统设置",
@@ -1210,6 +1219,7 @@ export default {
     validateNumber: "请添加升级版本号",
   },
   parameterConfiguration: {
+    selfTestReport: "自检上报数据",
     runInformation: "运行信息",
     webView: "后台查看",
     webSet: "后台设置",
