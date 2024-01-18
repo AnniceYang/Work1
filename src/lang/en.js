@@ -75,6 +75,7 @@ export default {
     save: "Save",
     cannotBeChanged: "Cannot be changed",
     savesuccessfully: "Saved successfully",
+    savefailed: "Save failed",
     // validatePass: 'Please enter a password containing 6-12 letters and numbers',
     // validatePhone: 'Please enter the correct phone number'
   },

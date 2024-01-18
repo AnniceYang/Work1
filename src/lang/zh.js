@@ -76,6 +76,7 @@ export default {
     // validatePass: '请输入6-12位包含字母和数字的密码',
     // validatePhone: '请输入正确的手机号'
     savesuccessfully: "保存成功",
+    savefailed: "保存失败",
   },
   dataBoard: {
     todayPPG: "今日光伏发电量",

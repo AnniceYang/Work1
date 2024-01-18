@@ -8,7 +8,7 @@ export default [
     children: [
       {
         path: "index",
-        name: "Personal information",
+        name: "personal Information",
         component: () =>
           import(/* webpackChunkName: "page" */ "@/views/admin/user/info"),
       },

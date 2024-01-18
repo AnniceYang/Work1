@@ -29,7 +29,6 @@
           >{{ $t("deviceManage.selfTest") }}</el-menu-item
         >
       </el-menu>
-
       <div v-loading="loading">
         <el-card style="margin-top: 20px">
           <el-descriptions
@@ -852,7 +851,7 @@
                 }}VAR</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterReactivePower')"
+                :label="$t('deviceManage.phaseAInverterReactivePower')"
                 v-if="
                   operationInformationIsDisplay(
                     'inverterInformationObj',
@@ -865,7 +864,7 @@
                 }}VAR</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterReactivePower')"
+                :label="$t('deviceManage.phaseAInverterReactivePower')"
                 v-if="
                   operationInformationIsDisplay(
                     'inverterInformationObj',
@@ -7241,11 +7240,30 @@
                     'lowTemperatureProtectionDuringCharging'
                   )
                 "
-                >{{
+              >
+                <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="lowTempCharging"
+                    v-model.number="
+                      formData.lowTemperatureProtectionDuringCharging
+                    "
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button @click="saveLowTemperature" class="save-button">{{
+                    $t("common.save")
+                  }}</el-button>
+                </div>
+              </el-descriptions-item>
+
+              <!-- {{
                   batteryParameter.batterySetObj
                     .lowTemperatureProtectionDuringChargingVal
-                }}℃</el-descriptions-item
-              >
+                }}℃</el-descriptions-item> -->
+
               <el-descriptions-item
                 :label="$t('deviceManage.lowRecoveryDuringCharging')"
                 v-if="
@@ -7253,10 +7271,24 @@
                     'lowTemperatureProtectionRecoveryDuringCharging'
                   )
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .lowTemperatureProtectionRecoveryDuringChargingVal
-                }}℃</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="lowTempRecoveryCharging"
+                    v-model.number="
+                      formData.lowTemperatureProtectionRecoveryDuringCharging
+                    "
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="saveLowRecoveryTemperature"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.equalizingOpeningVoltage')"
@@ -8034,19 +8066,44 @@
               <el-descriptions-item
                 :label="$t('deviceManage.heatingOnTemperature')"
                 v-if="batteryParameterIsDisplay('heatingFanOnTemperature')"
-                >{{
-                  batteryParameter.batterySetObj.heatingFanOnTemperatureVal
-                }}℃</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="heatingFanOnTemperature"
+                    v-model.number="formData.heatingFanOnTemperature"
+                    :min="0"
+                    :max="160"
+                    class="custom-input"
+                  ></el-input
+                  ><span>℃</span>
+                  <el-button
+                    @click="saveHeatingOnTemperature"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.heatingRecoveryTemperature')"
                 v-if="
                   batteryParameterIsDisplay('heatingFanRecoveryTemperature')
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .heatingFanRecoveryTemperatureVal
-                }}℃</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="heatingFanRecoveryTemperature"
+                    v-model.number="formData.heatingFanRecoveryTemperature"
+                    :min="0"
+                    :max="160"
+                    class="custom-input"
+                  ></el-input
+                  ><span>℃</span>
+                  <el-button
+                    @click="saveHeatingFanRecoveryTemperature"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.voltageAlarm')"
@@ -9892,15 +9949,56 @@
 </template>
 
 <script>
-import { getConfigData, saveConfigData } from "@/api/device";
+import {
+  getConfigData,
+  saveConfigData,
+  batteryUpgrade,
+  getBatteryData,
+} from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
 import { mapState } from "vuex";
 const mqtt = require("mqtt/dist/mqtt.js");
 export default {
+  watch: {
+    "batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal"(
+      newValue
+    ) {
+      this.formData.lowTemperatureProtectionDuringCharging = newValue;
+    },
+    "batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal"(
+      newValue
+    ) {
+      this.formData.lowTemperatureProtectionRecoveryDuringCharging = newValue;
+    },
+    "batteryParameter.batterySetObj.heatingFanOnTemperatureVal"(newValue) {
+      this.formData.heatingFanOnTemperature = newValue;
+    },
+    "batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal"(
+      newValue
+    ) {
+      this.formData.heatingFanRecoveryTemperature = newValue;
+    },
+  },
   components: { SelfTest },
   data() {
     return {
+      formData: {
+        lowTemperatureProtectionDuringCharging: null,
+        lowTemperatureProtectionRecoveryDuringCharging: null,
+
+        heatingFanOnTemperature: null,
+        heatingFanRecoveryTemperature: null,
+
+        // //新增属性，用于存储每次设置的值
+        // lastSavedValues: {
+        //   lowTemperatureProtectionDuringCharging: 0,
+        //   lowTemperatureProtectionRecoveryDuringCharging: 0,
+
+        //   heatingFanOnTemperature: 0,
+        //   heatingFanRecoveryTemperature: 0,
+        // },
+      },
       deviceInfo: {},
       devStatusFilter: [
         this.$t("userManage.normal"),
@@ -10094,6 +10192,94 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    saveLowTemperature() {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        lowTemperatureProtectionDuringCharging:
+          this.formData.lowTemperatureProtectionDuringCharging,
+        lowTemperatureProtectionRecoveryDuringCharging:
+          this.formData.lowTemperatureProtectionRecoveryDuringCharging,
+      };
+      this.saveSettings(sendData, "lowTemperatureProtectionDuringCharging");
+    },
+    saveLowRecoveryTemperature() {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        lowTemperatureProtectionDuringCharging:
+          this.formData.lowTemperatureProtectionDuringCharging,
+        lowTemperatureProtectionRecoveryDuringCharging:
+          this.formData.lowTemperatureProtectionRecoveryDuringCharging,
+      };
+      this.saveSettings(
+        sendData,
+        "lowTemperatureProtectionRecoveryDuringCharging"
+      );
+    },
+
+    saveHeatingOnTemperature() {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
+        heatingFanRecoveryTemperature:
+          this.formData.heatingFanRecoveryTemperature,
+      };
+      this.saveSettings(sendData, "heatingFanOnTemperature");
+    },
+
+    saveHeatingFanRecoveryTemperature() {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
+        heatingFanRecoveryTemperature:
+          this.formData.heatingFanRecoveryTemperature,
+      };
+      this.saveSettings(sendData, "heatingFanRecoveryTemperature");
+    },
+
+    saveSettings(sendData, keyToUpdate) {
+      console.log("Sending data to backend: ", sendData);
+
+      // getBetteryData({ deviceId: this.deviceInfo.id }).then((response) => {
+      //   console.log("Received latest data: ", response);
+      //   this.formData[keyToUpdate] = response.data[keyToUpdate];
+
+      //   localStorage.setItem(keyToUpdate, this.formData);
+      // });
+
+      //使用batteryUpgrade函数发送数据到后端
+      batteryUpgrade(sendData)
+        .then((response) => {
+          //处理后端接收到的响应
+          console.log("Settings saved: ", response);
+
+          const keyToUpdate = sendData.paramSetList[0].key;
+
+          //更新前端页面上的输入框数值
+          if (keyToUpdate && keyToUpdate in this.formData) {
+            this.formData[keyToUpdate] = sendData.paramSetList[0].dataVal;
+          }
+
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving settings: ", error);
+          this.$message.success(this.$t("common.savesuccessfully"));
+        });
+    },
+    // saveSettings() {
+    //   const sendData = {
+    //     deviceId: this.deviceInfo.id,
+
+    //     lowTemperatureProtectionDuringCharging:
+    //       this.formData.lowTemperatureProtectionDuringCharging,
+    //     lowTemperatureProtectionRecoveryDuringCharging:
+    //       this.formData.lowTemperatureProtectionRecoveryDuringCharging,
+
+    //     heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
+    //     heatingFanRecoveryTemperature:
+    //       this.formData.heatingFanRecoveryTemperature,
+    //   };
+
     handleSave(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&
@@ -10102,13 +10288,21 @@ export default {
         this.$message.info(this.$t("common.cannotBeChanged"));
         return;
       }
-      saveConfigData({
+
+      const sendData = {
         deviceId: this.deviceInfo.id,
         paramSetList: [{ dataVal: val, key: key }],
-      }).then((res) => {
+      };
+
+      this.saveSettings(sendData, key);
+    },
+
+    saveConfigData(sendData) {
+      saveConfigData(sendData).then((res) => {
         this.$message.success(this.$t("common.savesuccessfully"));
       });
     },
+
     init(info) {
       console.log("init", info);
       this.deviceInfo = { ...info };
@@ -10510,5 +10704,21 @@ export default {
   .el-descriptions-item__container {
     align-items: center !important;
   }
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+}
+
+.input-container span {
+  margin-right: 10px;
+}
+.custom-input {
+  width: 100px;
+  margin-right: 10px;
+}
+.save-button {
+  width: auto;
 }
 </style>
