@@ -7253,9 +7253,11 @@
                     class="custom-input"
                   ></el-input>
                   <span>℃</span>
-                  <el-button @click="saveLowTemperature" class="save-button">{{
-                    $t("common.save")
-                  }}</el-button>
+                  <el-button
+                    @click="saveLowTemperatureProtectionDuringCharging"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
                 </div>
               </el-descriptions-item>
 
@@ -7284,7 +7286,7 @@
                   ></el-input>
                   <span>℃</span>
                   <el-button
-                    @click="saveLowRecoveryTemperature"
+                    @click="saveLowTemperatureProtectionRecoveryDuringCharging"
                     class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
@@ -8077,7 +8079,7 @@
                   ></el-input
                   ><span>℃</span>
                   <el-button
-                    @click="saveHeatingOnTemperature"
+                    @click="saveHeatingFanOnTemperature"
                     class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
@@ -10192,95 +10194,128 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
-    saveLowTemperature() {
-      const sendData = {
-        deviceId: this.deviceInfo.id,
-        lowTemperatureProtectionDuringCharging:
-          this.formData.lowTemperatureProtectionDuringCharging,
-        lowTemperatureProtectionRecoveryDuringCharging:
-          this.formData.lowTemperatureProtectionRecoveryDuringCharging,
-      };
-      this.saveSettings(sendData, "lowTemperatureProtectionDuringCharging");
+    saveLowTemperatureProtectionDuringCharging() {
+      this.saveTemperatureSetting("lowTemperatureProtectionDuringCharging");
     },
-    saveLowRecoveryTemperature() {
-      const sendData = {
-        deviceId: this.deviceInfo.id,
-        lowTemperatureProtectionDuringCharging:
-          this.formData.lowTemperatureProtectionDuringCharging,
-        lowTemperatureProtectionRecoveryDuringCharging:
-          this.formData.lowTemperatureProtectionRecoveryDuringCharging,
-      };
-      this.saveSettings(
-        sendData,
+
+    saveLowTemperatureProtectionRecoveryDuringCharging() {
+      this.saveTemperatureSetting(
         "lowTemperatureProtectionRecoveryDuringCharging"
       );
     },
 
-    saveHeatingOnTemperature() {
-      const sendData = {
-        deviceId: this.deviceInfo.id,
-        heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
-        heatingFanRecoveryTemperature:
-          this.formData.heatingFanRecoveryTemperature,
-      };
-      this.saveSettings(sendData, "heatingFanOnTemperature");
+    saveHeatingFanOnTemperature() {
+      this.saveTemperatureSetting("heatingFanOnTemperature");
     },
 
     saveHeatingFanRecoveryTemperature() {
-      const sendData = {
-        deviceId: this.deviceInfo.id,
-        heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
-        heatingFanRecoveryTemperature:
-          this.formData.heatingFanRecoveryTemperature,
-      };
-      this.saveSettings(sendData, "heatingFanRecoveryTemperature");
+      this.saveTemperatureSetting("heatingFanRecoveryTemperature");
     },
 
-    saveSettings(sendData, keyToUpdate) {
-      console.log("Sending data to backend: ", sendData);
+    saveTemperatureSetting(key) {
+      const value = this.formData[key];
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        lowTemperature: {
+          lowTemperatureProtectionDuringCharging:
+            this.formData.lowTemperatureProtectionDuringCharging,
+          lowTemperatureProtectionRecoveryDuringCharging:
+            this.formData.lowTemperatureProtectionRecoveryDuringCharging,
+        },
+        heatingFan: {
+          heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
+          heatingFanRecoveryTemperature:
+            this.formData.heatingFanRecoveryTemperature,
+        },
+        [key]: value,
+      };
+      this.batteryUpgrade(sendData, key);
+    },
 
-      // getBetteryData({ deviceId: this.deviceInfo.id }).then((response) => {
-      //   console.log("Received latest data: ", response);
-      //   this.formData[keyToUpdate] = response.data[keyToUpdate];
+    batteryUpgrade(data, key) {
+      const { deviceId, lowTemperature, heatingFan } = data;
 
-      //   localStorage.setItem(keyToUpdate, this.formData);
-      // });
+      const requestData = {
+        deviceId,
+        ...(key.includes("lowTemperature") ? lowTemperature : {}),
+        ...(key.includes("heatingFan") ? heatingFan : {}),
+        [key]: data[key],
+      };
 
-      //使用batteryUpgrade函数发送数据到后端
-      batteryUpgrade(sendData)
+      batteryUpgrade(requestData)
         .then((response) => {
-          //处理后端接收到的响应
-          console.log("Settings saved: ", response);
+          console.log("Sending to backend: ", data);
+          console.log("Response from backend: ", response);
 
-          const keyToUpdate = sendData.paramSetList[0].key;
+          if (response && response.deviceId === deviceId) {
+            // Update the formData based on the key
+            if (key.includes("lowTemperature")) {
+              this.formData.lowTemperatureProtectionDuringCharging =
+                response[key];
+              this.formData.lowTemperatureProtectionRecoveryDuringCharging =
+                response[key];
+            } else if (key.includes("heatingFan")) {
+              this.formData.heatingFanOnTemperature = response[key];
+              this.formData.heatingFanRecoveryTemperature = response[key];
+            }
 
-          //更新前端页面上的输入框数值
-          if (keyToUpdate && keyToUpdate in this.formData) {
-            this.formData[keyToUpdate] = sendData.paramSetList[0].dataVal;
+            this.$message.success(this.$t("common.savesuccessfully"));
+          } else {
+            console.log("response format from the backend");
+            this.$message.success(this.$t("common.savesuccessfully"));
           }
+        })
+        .catch((error) => {
+          console.error("Error saving settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
+    saveConfigSettings(sendData) {
+      console.log("Sending config data to backend: ", sendData);
+
+      saveConfigData(sendData)
+        .then((response) => {
+          console.log("Config settings saved: ", response);
+
+          // Update the front-end input values if needed
+          // ...
 
           this.$message.success(this.$t("common.savesuccessfully"));
         })
         .catch((error) => {
-          console.error("Error saving settings: ", error);
-          this.$message.success(this.$t("common.savesuccessfully"));
+          console.error("Error saving config settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
         });
     },
-    // saveSettings() {
-    //   const sendData = {
-    //     deviceId: this.deviceInfo.id,
-
-    //     lowTemperatureProtectionDuringCharging:
-    //       this.formData.lowTemperatureProtectionDuringCharging,
-    //     lowTemperatureProtectionRecoveryDuringCharging:
-    //       this.formData.lowTemperatureProtectionRecoveryDuringCharging,
-
-    //     heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
-    //     heatingFanRecoveryTemperature:
-    //       this.formData.heatingFanRecoveryTemperature,
-    //   };
 
     handleSave(key, val) {
+      if (
+        this.systemSet.otherSetObj.countryCodeVal === "7" &&
+        key !== "countryCode"
+      ) {
+        this.$message.info(this.$t("common.cannotBeChanged"));
+        return;
+      }
+
+      if (key.includes("lowTemperature") || key.includes("heatingFan")) {
+        // For temperature-related settings
+        this.saveTemperatureSettings(
+          "lowTemperatureProtectionDuringCharging",
+          val,
+          "lowTemperatureProtectionRecoveryDuringCharging"
+        );
+      } else {
+        // For other settings
+        const sendData = {
+          deviceId: this.deviceInfo.id,
+          paramSetList: [{ dataVal: val, key: key }],
+        };
+        this.saveConfigSettings(sendData);
+      }
+    },
+
+    handleConfigSave(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&
         key !== "countryCode"
@@ -10293,14 +10328,7 @@ export default {
         deviceId: this.deviceInfo.id,
         paramSetList: [{ dataVal: val, key: key }],
       };
-
-      this.saveSettings(sendData, key);
-    },
-
-    saveConfigData(sendData) {
-      saveConfigData(sendData).then((res) => {
-        this.$message.success(this.$t("common.savesuccessfully"));
-      });
+      this.saveConfigSettings(sendData);
     },
 
     init(info) {
