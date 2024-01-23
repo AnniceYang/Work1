@@ -48,7 +48,7 @@
             <span class="text">{{ $t("dataBoard.errorDevices") }}</span>
           </div>
           <div class="item-line">
-            <span class="val">{{ total.errorNum ? total.errorNum : 0 }}</span>
+            <span class="val">{{ total.wrongNum ? total.wrongNum : 0 }}</span>
           </div>
         </div>
       </div>
@@ -117,7 +117,7 @@ export default {
         onlineNum: 0,
         installedNum: 0,
         offlineNum: 0,
-        errorNum: 0,
+        wrongNum: 0,
         installedPower: 0,
         installedCapacity: 0,
       },
@@ -165,7 +165,7 @@ export default {
       this.total.onlineNum = res.onlineNum;
       this.total.installedNum = res.installedNum;
       this.total.offlineNum = res.offlineNum;
-      this.total.errorNum = res.errorNum;
+      this.total.wrongNum = res.wrongNum;
       this.total.installedPower = res.installedPower;
       this.total.installedCapacity = res.installedCapacity;
       this.chartData.data = [
@@ -185,6 +185,7 @@ export default {
           rate: res.wrongPercentage,
         },
       ];
+      console.log("Error Devices: ", this.total.wrongNum);
     });
   },
   methods: {

@@ -292,6 +292,9 @@ export default {
     alarmInfo: "报警信息",
   },
   deviceManage: {
+    none: "无",
+    forceDischarging: "强制放电",
+    forceCharging: "强制充电",
     energyFlowChart: "能流图页面数据",
     deviceName: "设备名称",
     deviceDetails: "设备详细信息",
@@ -572,6 +575,7 @@ export default {
     protocolAddress157: "累积购买电量比例",
     protocolAddress158: "累积自发自用比例",
     protocolAddress159: "累积上网电量比例",
+    PROTOCOL_ADDR_250: "电池充电电压",
     protocolAddress194: "澳洲IEEE标准",
     protocolAddress341: "电芯过放告警电压",
     protocolAddress314: "过放滞后电压",
@@ -622,6 +626,8 @@ export default {
     lowerLimitOfGridConnectedSOC: "并网SOC下限",
     offGridSOCLowerLimit: "离网SOC下限",
     electricityMeterCT: "电表-CT",
+    PROTOCOL_ADDR_405: "电池额定容量",
+    PROTOCOL_ADDR_406: "电池维护",
     electricityMeter: "电表",
 
     otherSettings: "其他设置",
@@ -1380,6 +1386,8 @@ export default {
     protocolAddress157: "累积购买电量比例",
     protocolAddress158: "累积自发自用比例",
     protocolAddress159: "累积上网电量比例",
+    PROTOCOL_ADDR_250: "电池充电电压",
+
     wifiStrength: "WiFi强度",
     protocolAddress194: "澳洲IEEE标准",
 
@@ -1423,6 +1431,8 @@ export default {
     lowerLimitOfGridConnectedSoc: "并网SOC下限",
     offGridSocLowerLimit: "离网SOC下限",
     electricityMeterCt: "电表-CT",
+    PROTOCOL_ADDR_405: "电池额定容量",
+    PROTOCOL_ADDR_406: "电池维护",
     otherSet: "其他设置",
     resetDeviceCommunicationSettingsToInitialValues: "复位设备通讯设置至初始值",
     clearRecordData: "清空记录数据",

@@ -294,6 +294,9 @@ export default {
     snCode: "SN code",
   },
   deviceManage: {
+    none: "None",
+    forceDischarging: "Force discharge",
+    forceCharging: "Force charge",
     energyFlowChart: "Energy flow chart",
     deviceName: "Device name",
     deviceDetails: "Device details",
@@ -578,6 +581,7 @@ export default {
     protocolAddress157: "Accumulated purchasing power ratio",
     protocolAddress158: "Cumulative spontaneous self use ratio",
     protocolAddress159: "Accumulated on-grid power ratio",
+    PROTOCOL_ADDR_250: "Battery charging voltage",
     protocolAddress194: "Australian IEEE standard",
 
     protocolAddress313: "Cell over discharge protection",
@@ -632,6 +636,8 @@ export default {
     lowerLimitOfGridConnectedSOC: "Lower limit of grid connected SOC",
     offGridSOCLowerLimit: "Off grid SOC lower limit",
     electricityMeterCT: "Electricity meter CT",
+    PROTOCOL_ADDR_405: "Battery rated capacity",
+    PROTOCOL_ADDR_406: "Battery maintenance",
     electricityMeter: "electricity meter",
 
     otherSettings: "Other settings",
@@ -1460,6 +1466,7 @@ export default {
     protocolAddress157: "Accumulated purchasing power ratio",
     protocolAddress158: "Cumulative spontaneous self use ratio",
     protocolAddress159: "Accumulated on-grid power ratio",
+    PROTOCOL_ADDR_250: "Battery charging voltage",
     wifiStrength: "WiFi Strength",
     protocolAddress194: "Australian IEEE standard",
 
@@ -1500,6 +1507,8 @@ export default {
     lowerLimitOfGridConnectedSoc: "Lower limit of grid connected SOC",
     offGridSocLowerLimit: "Off grid SOC lower limit",
     electricityMeterCt: "Electricity meter CT",
+    PROTOCOL_ADDR_405: "Battery rated capacity",
+    PROTOCOL_ADDR_406: "Battery maintenance",
     otherSet: "Other Settings",
     resetDeviceCommunicationSettingsToInitialValues:
       "Reset device communication settings to initial values",

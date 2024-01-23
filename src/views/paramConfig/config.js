@@ -312,6 +312,17 @@ export const info2 = {
               val: "",
               unit: "",
             },
+            {
+              key: "PROTOCOL_ADDR_250",
+              isShow: 1,
+              canSet: 1,
+              installerIsShow: 1,
+              installerCanSet: 1,
+              consumerIsShow: 1,
+              consumerCanSet: 1,
+              val: "",
+              unit: "",
+            },
           ],
         },
         {
@@ -1618,6 +1629,7 @@ export const info2 = {
               val: "",
               unit: "",
             },
+
             {
               key: "wifiStrength",
               isShow: 1,
@@ -1739,7 +1751,7 @@ export const info2 = {
               consumerCanSet: 0,
               val: "",
               unit: "",
-            }
+            },
           ],
         },
         {
@@ -1996,6 +2008,28 @@ export const info2 = {
             },
             {
               key: "electricityMeterCt",
+              isShow: 1,
+              canSet: 0,
+              installerIsShow: 0,
+              installerCanSet: 0,
+              consumerIsShow: 0,
+              consumerCanSet: 0,
+              val: "",
+              unit: "",
+            },
+            {
+              key: "PROTOCOL_ADDR_405",
+              isShow: 1,
+              canSet: 0,
+              installerIsShow: 0,
+              installerCanSet: 0,
+              consumerIsShow: 0,
+              consumerCanSet: 0,
+              val: "",
+              unit: "",
+            },
+            {
+              key: "PROTOCOL_ADDR_406",
               isShow: 1,
               canSet: 0,
               installerIsShow: 0,

@@ -422,6 +422,19 @@
                   ]
                 }}
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_250')"
+                v-if="
+                  operationInformationIsDisplay(
+                    'batteryInformationObj',
+                    'PROTOCOL_ADDR_250'
+                  )
+                "
+                >{{
+                  operationInformation.batteryInformationObj
+                    .PROTOCOL_ADDR_250Val
+                }}
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
@@ -3074,6 +3087,79 @@
                       handleSave(
                         'electricityMeterCt',
                         systemSet.advancedSetObj.electricityMeterCtVal
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_405')"
+                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_405')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_405Val"
+                    :placeholder="$t('common.inputPrompt')"
+                    :type="'number'"
+                    :min="0"
+                    :max="20000"
+                    :step="1"
+                  >
+                    <template slot="append">Ah</template>
+                  </el-input>
+                  <el-button
+                    v-if="
+                      systemSetBtnIsDisplay(
+                        'advancedSetObj',
+                        'PROTOCOL_ADDR_405'
+                      )
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave(
+                        'PROTOCOL_ADDR_405',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_405Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_406')"
+                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_406')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_406Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.none')" value="0" />
+                    <el-option
+                      :label="'1:' + $t('deviceManage.forceDischarging')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="'2:' + $t('deviceManage.forceCharging')"
+                      value="2"
+                    />
+                  </el-select>
+                  <el-button
+                    v-if="
+                      systemSetBtnIsDisplay(
+                        'advancedSetObj',
+                        'PROTOCOL_ADDR_406'
+                      )
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave(
+                        'PROTOCOL_ADDR_406',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_406Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10312,6 +10398,10 @@ export default {
           paramSetList: [{ dataVal: val, key: key }],
         };
         this.saveConfigSettings(sendData);
+      }
+
+      if (key === "PROTOCOL_ADDR_406") {
+        this.systemSet.advancedSetObj.PROTOCOL_ADDR_406Val = "";
       }
     },
 
