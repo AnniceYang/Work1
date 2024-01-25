@@ -143,13 +143,6 @@ export function getConfigData(data) {
   });
 }
 
-export function getBetteryData(data) {
-  return request({
-    url: "/admin/param/set/updateBattery",
-    method: "get",
-    params: data,
-  });
-}
 //电池温度设置
 export function batteryUpgrade(data) {
   return request({

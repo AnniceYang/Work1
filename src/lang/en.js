@@ -308,6 +308,7 @@ export default {
     offline: "Offline",
     online: "Online",
     maintenance: "Maintenance",
+    normal: "Normal",
     error: "Error",
     updating: "Updating",
     installer: "Installer",

@@ -433,7 +433,7 @@
                 >{{
                   operationInformation.batteryInformationObj
                     .PROTOCOL_ADDR_250Val
-                }}
+                }}V
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
@@ -3099,12 +3099,8 @@
               >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_405Val"
+                    v-model="formData.PROTOCOL_ADDR_405"
                     :placeholder="$t('common.inputPrompt')"
-                    :type="'number'"
-                    :min="0"
-                    :max="20000"
-                    :step="1"
                   >
                     <template slot="append">Ah</template>
                   </el-input>
@@ -3120,7 +3116,7 @@
                     @click="
                       handleSave(
                         'PROTOCOL_ADDR_405',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_405Val
+                        formData.PROTOCOL_ADDR_405
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -3133,7 +3129,7 @@
               >
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_406Val"
+                    v-model="formData.PROTOCOL_ADDR_406"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -3159,7 +3155,7 @@
                     @click="
                       handleSave(
                         'PROTOCOL_ADDR_406',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_406Val
+                        formData.PROTOCOL_ADDR_406
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10037,12 +10033,7 @@
 </template>
 
 <script>
-import {
-  getConfigData,
-  saveConfigData,
-  batteryUpgrade,
-  getBatteryData,
-} from "@/api/device";
+import { getConfigData, saveConfigData, batteryUpgrade } from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
 import { mapState } from "vuex";
@@ -10067,6 +10058,12 @@ export default {
     ) {
       this.formData.heatingFanRecoveryTemperature = newValue;
     },
+    "formData.PROTOCOL_ADDR_405"(newValue) {
+      this.formData.PROTOCOL_ADDR_405 = newValue;
+    },
+    "formData.PROTOCOL_ADDR_406"(newValue) {
+      this.formData.PROTOCOL_ADDR_406 = newValue;
+    },
   },
   components: { SelfTest },
   data() {
@@ -10077,15 +10074,8 @@ export default {
 
         heatingFanOnTemperature: null,
         heatingFanRecoveryTemperature: null,
-
-        // //新增属性，用于存储每次设置的值
-        // lastSavedValues: {
-        //   lowTemperatureProtectionDuringCharging: 0,
-        //   lowTemperatureProtectionRecoveryDuringCharging: 0,
-
-        //   heatingFanOnTemperature: 0,
-        //   heatingFanRecoveryTemperature: 0,
-        // },
+        PROTOCOL_ADDR_405: null,
+        PROTOCOL_ADDR_406: null,
       },
       deviceInfo: {},
       devStatusFilter: [
@@ -10398,10 +10388,6 @@ export default {
           paramSetList: [{ dataVal: val, key: key }],
         };
         this.saveConfigSettings(sendData);
-      }
-
-      if (key === "PROTOCOL_ADDR_406") {
-        this.systemSet.advancedSetObj.PROTOCOL_ADDR_406Val = "";
       }
     },
 

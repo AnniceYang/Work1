@@ -57,6 +57,23 @@
                 ></el-option>
               </el-select>
             </el-form-item>
+
+            <el-form-item :label="$t('deviceManage.deviceStatus')">
+              <el-select
+                v-model="listQuery.deviceStatus"
+                :placeholder="$t('common.selectPrompt')"
+              >
+                <el-option
+                  :label="$t('deviceManage.normal')"
+                  :value="0"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.error')"
+                  :value="3"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+
             <el-form-item>
               <el-button type="primary" @click="getData(true)">{{
                 $t("common.search")
@@ -322,7 +339,11 @@ export default {
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);
-      qryDevice(this.listQuery)
+      const query = {
+        ...this.listQuery,
+        status: this.listQuery.deviceStatus,
+      };
+      qryDevice(query)
         .then((res) => {
           this.dataList = res.records;
           this.total = res.total;

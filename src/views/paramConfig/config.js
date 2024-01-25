@@ -2031,7 +2031,7 @@ export const info2 = {
             {
               key: "PROTOCOL_ADDR_406",
               isShow: 1,
-              canSet: 0,
+              canSet: 1,
               installerIsShow: 0,
               installerCanSet: 0,
               consumerIsShow: 0,

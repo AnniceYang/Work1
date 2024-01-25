@@ -306,6 +306,7 @@ export default {
     offline: "离线",
     online: "在线",
     maintenance: "维护",
+    normal: "正常",
     error: "报错",
     updating: "升级中",
     installer: "安装商",
