@@ -6,6 +6,7 @@ export default {
     selectPrompt: "选择表名",
     onoffline: "上下线日志",
     upgradeResult: "逆变器升级返回讯息",
+    // userLoginLogs: "用户登录日志",
     selectDate: "选择日期",
     weak: "弱",
     medium: "中",
@@ -293,6 +294,8 @@ export default {
   },
   deviceManage: {
     none: "无",
+    normalregulation: "常规",
+    lesy: "力胜源",
     forceDischarging: "强制放电",
     forceCharging: "强制充电",
     energyFlowChart: "能流图页面数据",
@@ -629,6 +632,7 @@ export default {
     electricityMeterCT: "电表-CT",
     PROTOCOL_ADDR_405: "电池额定容量",
     PROTOCOL_ADDR_406: "电池维护",
+    PROTOCOL_ADDR_407: "升级配置",
     electricityMeter: "电表",
 
     otherSettings: "其他设置",
@@ -1434,6 +1438,7 @@ export default {
     electricityMeterCt: "电表-CT",
     PROTOCOL_ADDR_405: "电池额定容量",
     PROTOCOL_ADDR_406: "电池维护",
+    PROTOCOL_ADDR_407: "升级配置",
     otherSet: "其他设置",
     resetDeviceCommunicationSettingsToInitialValues: "复位设备通讯设置至初始值",
     clearRecordData: "清空记录数据",

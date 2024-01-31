@@ -7,6 +7,7 @@ export default {
     selectDate: "Select Date",
     onoffline: "OnOffline record",
     upgradeResult: "Inverter Upgrade result",
+    // userLoginLogs: "User Login logs",
     weak: "weak",
     medium: "medium",
     unknown: "Unknown",
@@ -295,6 +296,8 @@ export default {
   },
   deviceManage: {
     none: "None",
+    normalregulation: "Normal regulation",
+    lesy: "Lesy",
     forceDischarging: "Force discharge",
     forceCharging: "Force charge",
     energyFlowChart: "Energy flow chart",
@@ -639,6 +642,7 @@ export default {
     electricityMeterCT: "Electricity meter CT",
     PROTOCOL_ADDR_405: "Battery rated capacity",
     PROTOCOL_ADDR_406: "Battery maintenance",
+    PROTOCOL_ADDR_407: "Upgrade configuration",
     electricityMeter: "electricity meter",
 
     otherSettings: "Other settings",
@@ -1510,6 +1514,7 @@ export default {
     electricityMeterCt: "Electricity meter CT",
     PROTOCOL_ADDR_405: "Battery rated capacity",
     PROTOCOL_ADDR_406: "Battery maintenance",
+    PROTOCOL_ADDR_407: "Upgrade configuration",
     otherSet: "Other Settings",
     resetDeviceCommunicationSettingsToInitialValues:
       "Reset device communication settings to initial values",

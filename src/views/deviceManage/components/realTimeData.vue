@@ -3162,6 +3162,44 @@
                   >
                 </div>
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_407')"
+                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_407')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="formData.PROTOCOL_ADDR_407"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="'0:' + $t('deviceManage.normalregulation')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="'1:' + $t('deviceManage.lesy')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    v-if="
+                      systemSetBtnIsDisplay(
+                        'advancedSetObj',
+                        'PROTOCOL_ADDR_407'
+                      )
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave(
+                        'PROTOCOL_ADDR_407',
+                        formData.PROTOCOL_ADDR_407
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
@@ -10064,6 +10102,9 @@ export default {
     "formData.PROTOCOL_ADDR_406"(newValue) {
       this.formData.PROTOCOL_ADDR_406 = newValue;
     },
+    "formData.PROTOCOL_ADDR_407"(newValue) {
+      this.formData.PROTOCOL_ADDR_407 = newValue;
+    },
   },
   components: { SelfTest },
   data() {
@@ -10076,6 +10117,7 @@ export default {
         heatingFanRecoveryTemperature: null,
         PROTOCOL_ADDR_405: null,
         PROTOCOL_ADDR_406: null,
+        PROTOCOL_ADDR_407: null,
       },
       deviceInfo: {},
       devStatusFilter: [
