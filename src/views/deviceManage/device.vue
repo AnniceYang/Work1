@@ -81,6 +81,14 @@
               <el-button type="primary" @click="handleReset()">{{
                 $t("common.reset")
               }}</el-button>
+              <template v-if="isAdmin">
+                <el-button
+                  type="primary"
+                  @click="exportData"
+                  :disabled="!listQuery.installUserId"
+                  >{{ $t("common.export") }}</el-button
+                ></template
+              >
             </el-form-item>
           </el-form>
         </div>
@@ -312,6 +320,10 @@ export default {
     ...mapState({
       userInfo: (state) => state.user.userInfo,
     }),
+
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
   },
   mounted() {
     console.log(this.permissions);
@@ -336,6 +348,22 @@ export default {
     this.getData();
   },
   methods: {
+    //Method to export data
+    exportData() {
+      if (!this.listQuery.installUserId) {
+        this.$message.error(this.$t(common.selectedInstaller));
+        return;
+      }
+
+      const exportBaseUrl = "http://120.79.138.205:7072/excel"; // 测试服版
+      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072/excel"; // 力胜源版
+      // const exportBaseUrl = "http://3.126.27.80:7072/excel"; // ODM版
+      const installerId = this.listQuery.installUserId;
+      const exportUrl = `${exportBaseUrl}/deviceInfo/${installerId}`;
+
+      window.open(exportUrl, "_blank");
+    },
+
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);

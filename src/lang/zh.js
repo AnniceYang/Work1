@@ -2,6 +2,8 @@ export default {
   common: {
     page: "page",
     export: "导出",
+    exportNecessaryInfo: "导出必要信息",
+    selectInstaller: "选择安装商",
     selectDataPage: "选择Page",
     selectPrompt: "选择表名",
     onoffline: "上下线日志",

@@ -2,6 +2,8 @@ export default {
   common: {
     page: "page",
     export: "export",
+    exportNecessaryInfo: "Export Necessary Info",
+    selectInstaller: "Select Installer",
     selectDataPage: "Select DataPage",
     selectPrompt: "Select Prompt",
     selectDate: "Select Date",

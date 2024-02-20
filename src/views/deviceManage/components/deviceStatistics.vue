@@ -28,6 +28,10 @@
                 v-model="exportOptions.selectedPage"
                 :placeholder="$t('common.selectPrompt')"
               >
+                <!-- <el-option
+                  :label="$t('common.exportNecessaryInfo')"
+                  value="necessaryInfo"
+                ></el-option> -->
                 <el-option
                   :label="`${$t('deviceManage.energyFlowChart')}(${$t(
                     'common.page'
@@ -665,6 +669,18 @@ export default {
       const page = this.exportOptions.selectedPage;
       const deviceId = this.deviceInfo.sn;
 
+      // let exportUrl = "";
+
+      // switch (page) {
+      //   case "necessaryInfo":
+      //     //如果选择导出必要信息，则根据选定的安装商ID构建URL
+      //     const installerId = this.exportOptions.installerId; //从选项中获取安装商ID
+      //     exportUrl = `${exportBaseUrl}/deviceInfo/${installerId}`;
+      //     break;
+      //   default:
+      //     exportUrl = `${exportBaseUrl}/${page}/${deviceId}`;
+      // }
+
       let exportUrl = `${exportBaseUrl}/${page}/${deviceId}`;
       if (
         this.requireDateSelection &&
@@ -674,7 +690,7 @@ export default {
         const formattedStartDate = moment(
           this.exportDate[0].format("yyyy-MM-dd")
         );
-        exportUrl = `${exportBaseUrl}/${page}/${deviceId}/${formattedStartDate}`;
+        exportUrl += `/${formattedStartDate}`;
       }
 
       window.open(exportUrl, "_blank");
