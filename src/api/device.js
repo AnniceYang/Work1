@@ -152,6 +152,15 @@ export function batteryUpgrade(data) {
   });
 }
 
+//电池设置自定义值
+export function batterySetCustom(data) {
+  return request({
+    url: "/admin/param/set/updatePage9",
+    method: "post",
+    data,
+  });
+}
+
 // 保存参数设置（系统设置）
 export function saveConfigData(data) {
   return request({

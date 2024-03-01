@@ -7197,8 +7197,24 @@
                 >{{
                   batteryParameter.batterySetObj
                     .chargingOvercurrentProtectionVal
-                }}A</el-descriptions-item
-              >
+                }}A
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="chargingOvercurrentProtection"
+                    v-model="formData.chargingOvercurrentProtection"
+                    :min="1"
+                    :max="250"
+                    class="custom-input"
+                  ></el-input>
+                  <span>A</span>
+                  <el-button
+                    @click="savechargingOvercurrentProtection"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.chargingOvercurrentProtectionDelay')"
                 v-if="
@@ -7209,15 +7225,45 @@
                 >{{
                   batteryParameter.batterySetObj
                     .chargingOvercurrentProtectionDelayVal
-                }}s</el-descriptions-item
-              >
+                }}s
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="chargingOvercurrentProtectionDelay"
+                    v-model="formData.chargingOvercurrentProtectionDelay"
+                    :min="1"
+                    :max="50"
+                    class="custom-input"
+                  ></el-input>
+                  <span>s</span>
+                  <el-button
+                    @click="savechargingOvercurrentProtectionDelay"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageProtection')"
                 v-if="batteryParameterIsDisplay('cellOvervoltageProtection')"
                 >{{
                   batteryParameter.batterySetObj.cellOvervoltageProtectionVal
-                }}mV</el-descriptions-item
-              >
+                }}V
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOvervoltageProtection"
+                    v-model="formData.cellOvervoltageProtection"
+                    class="custom-input"
+                  ></el-input>
+                  <span>mV</span>
+                  <el-button
+                    @click="savecellOvervoltageProtection"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageProtectionDelay')"
                 v-if="
@@ -7226,15 +7272,45 @@
                 >{{
                   batteryParameter.batterySetObj
                     .cellOvervoltageProtectionDelayVal
-                }}ms</el-descriptions-item
-              >
+                }}ms
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOvervoltageProtectionDelay"
+                    v-model="formData.cellOvervoltageProtectionDelay"
+                    :min="100"
+                    :max="10000"
+                    class="custom-input"
+                  ></el-input>
+                  <span>ms</span>
+                  <el-button
+                    @click="savecellOvervoltageProtectionDelay"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeProtection')"
                 v-if="batteryParameterIsDisplay('cellOverDischargeProtection')"
                 >{{
                   batteryParameter.batterySetObj.cellOverDischargeProtectionVal
-                }}mV</el-descriptions-item
-              >
+                }}V
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOverDischargeProtection"
+                    v-model="formData.cellOverDischargeProtection"
+                    class="custom-input"
+                  ></el-input>
+                  <span>V</span>
+                  <el-button
+                    @click="savecellOverDischargeProtection"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeProtectionDelay')"
                 v-if="
@@ -7243,16 +7319,46 @@
                 >{{
                   batteryParameter.batterySetObj
                     .cellOverDischargeProtectionDelayVal
-                }}ms</el-descriptions-item
-              >
+                }}ms
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOverDischargeProtectionDelay"
+                    v-model="formData.cellOverDischargeProtectionDelay"
+                    :min="100"
+                    :max="10000"
+                    class="custom-input"
+                  ></el-input>
+                  <span>ms</span>
+                  <el-button
+                    @click="savecellOverDischargeProtectionDelay"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.overvoltageHysteresisVoltage')"
                 v-if="batteryParameterIsDisplay('overvoltageHysteresisVoltage')"
                 >{{
                   batteryParameter.batterySetObj
                     .overvoltageHysteresisVoltageVal
-                }}mV</el-descriptions-item
-              >
+                }}V
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="overvoltageHysteresisVoltage"
+                    v-model="formData.overvoltageHysteresisVoltage"
+                    class="custom-input"
+                  ></el-input>
+                  <span>V</span>
+                  <el-button
+                    @click="saveovervoltageHysteresisVoltage"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.overdischargeHysteresisVoltage')"
                 v-if="
@@ -7261,16 +7367,46 @@
                 >{{
                   batteryParameter.batterySetObj
                     .overdischargeHysteresisVoltageVal
-                }}mV</el-descriptions-item
-              >
+                }}V
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="overdischargeHysteresisVoltage"
+                    v-model="formData.overdischargeHysteresisVoltage"
+                    class="custom-input"
+                  ></el-input>
+                  <span>V</span>
+                  <el-button
+                    @click="saveoverdischargeHysteresisVoltage"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageRecoveryDelay')"
                 v-if="batteryParameterIsDisplay('cellOvervoltageRecoveryDelay')"
                 >{{
                   batteryParameter.batterySetObj
                     .cellOvervoltageRecoveryDelayVal
-                }}s</el-descriptions-item
-              >
+                }}s
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOvervoltageRecoveryDelay"
+                    v-model="formData.cellOvervoltageRecoveryDelay"
+                    :min="1"
+                    :max="50"
+                    class="custom-input"
+                  ></el-input>
+                  <span>s</span>
+                  <el-button
+                    @click="savecellOvervoltageRecoveryDelay"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeRecoveryDelay')"
                 v-if="
@@ -7279,10 +7415,28 @@
                 >{{
                   batteryParameter.batterySetObj
                     .cellOverDischargeRecoveryDelayVal
-                }}s</el-descriptions-item
-              >
+                }}s
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="cellOverDischargeRecoveryDelay"
+                    v-model="formData.cellOverDischargeRecoveryDelay"
+                    :min="1"
+                    :max="50"
+                    class="custom-input"
+                  ></el-input>
+                  <span>s</span>
+                  <el-button
+                    @click="savecellOverDischargeRecoveryDelay"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.highProtectionDuringDischarge')"
+                :label="
+                  $t('deviceManage.highTemperatureProtectionDuringDischarge')
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'highTemperatureProtectionDuringDischarge'
@@ -7291,10 +7445,30 @@
                 >{{
                   batteryParameter.batterySetObj
                     .highTemperatureProtectionDuringDischargeVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="highTemperatureProtectionDuringDischarge"
+                    v-model="formData.highTemperatureProtectionDuringDischarge"
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savehighTemperatureProtectionDuringDischarge"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.dischargeHighProtectionRecovery')"
+                :label="
+                  $t(
+                    'deviceManage.highTemperatureProtectionRecoveryDuringDischarge'
+                  )
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'highTemperatureProtectionRecoveryDuringDischarge'
@@ -7303,10 +7477,32 @@
                 >{{
                   batteryParameter.batterySetObj
                     .highTemperatureProtectionRecoveryDuringDischargeVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="highTemperatureProtectionRecoveryDuringDischarge"
+                    v-model="
+                      formData.highTemperatureProtectionRecoveryDuringDischarge
+                    "
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="
+                      savehighTemperatureProtectionRecoveryDuringDischarge
+                    "
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.lowProtectionDuringDischarge')"
+                :label="
+                  $t('deviceManage.lowTemperatureProtectionDuringDischarge')
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'lowTemperatureProtectionDuringDischarge'
@@ -7315,10 +7511,28 @@
                 >{{
                   batteryParameter.batterySetObj
                     .lowTemperatureProtectionDuringDischargeVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="lowTemperatureProtectionDuringDischarge"
+                    v-model="formData.lowTemperatureProtectionDuringDischarge"
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savelowTemperatureProtectionDuringDischarge"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.dischargeLowProtectionRecovery')"
+                :label="
+                  $t('deviceManage.dischargeLowTemperatureProtectionRecovery')
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'dischargeLowTemperatureProtectionRecovery'
@@ -7327,10 +7541,28 @@
                 >{{
                   batteryParameter.batterySetObj
                     .dischargeLowTemperatureProtectionRecoveryVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="dischargeLowTemperatureProtectionRecovery"
+                    v-model="formData.dischargeLowTemperatureProtectionRecovery"
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savedischargeLowTemperatureProtectionRecovery"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.highDuringCharging')"
+                :label="
+                  $t('deviceManage.highTemperatureProtectionDuringCharging')
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'highTemperatureProtectionDuringCharging'
@@ -7339,10 +7571,30 @@
                 >{{
                   batteryParameter.batterySetObj
                     .highTemperatureProtectionDuringChargingVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="highTemperatureProtectionDuringCharging"
+                    v-model="formData.highTemperatureProtectionDuringCharging"
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savehighTemperatureProtectionDuringCharging"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.highRecoveryDuringCharging')"
+                :label="
+                  $t(
+                    'deviceManage.highTemperatureProtectionRecoveryDuringCharging'
+                  )
+                "
                 v-if="
                   batteryParameterIsDisplay(
                     'highTemperatureProtectionRecoveryDuringCharging'
@@ -7351,8 +7603,26 @@
                 >{{
                   batteryParameter.batterySetObj
                     .highTemperatureProtectionRecoveryDuringChargingVal
-                }}℃</el-descriptions-item
-              >
+                }}℃
+                <!-- <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="highTemperatureProtectionRecoveryDuringCharging"
+                    v-model="
+                      formData.highTemperatureProtectionRecoveryDuringCharging
+                    "
+                    :min="0"
+                    :max="70"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savehighTemperatureProtectionRecoveryDuringCharging"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div> -->
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.lowDuringCharging')"
                 v-if="
@@ -7417,7 +7687,7 @@
                 v-if="batteryParameterIsDisplay('equalizingOpeningVoltage')"
                 >{{
                   batteryParameter.batterySetObj.equalizingOpeningVoltageVal
-                }}mV</el-descriptions-item
+                }}V</el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.equilibriumOpeningPressureDifference')"
@@ -8631,10 +8901,26 @@
               <el-descriptions-item
                 :label="$t('deviceManage.customParameter1')"
                 v-if="batteryParameterIsDisplay('customParameters1')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters1Val
-                }}</el-descriptions-item
               >
+                <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="customParameters1"
+                    v-model.number="formData.customParameters1"
+                    :min="0"
+                    :step="0.01"
+                    class="custom-input"
+                    :formatter="formatCustomParameters"
+                    :parser="parseCustomParameters"
+                  ></el-input>
+                  <span></span>
+                  <el-button
+                    @click="saveCustomParameters(1)"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.customParameter2')"
                 v-if="batteryParameterIsDisplay('customParameters2')"
@@ -8659,9 +8945,24 @@
               <el-descriptions-item
                 :label="$t('deviceManage.customParameter5')"
                 v-if="batteryParameterIsDisplay('customParameters5')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters5Val
-                }}</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="customParameters5"
+                    v-model.number="formData.customParameters5"
+                    :min="0"
+                    :step="0.01"
+                    class="custom-input"
+                    :formatter="formatCustomParameters"
+                    :parser="parseCustomParameters"
+                  ></el-input>
+                  <span></span>
+                  <el-button
+                    @click="saveCustomParameters(5)"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.customParameter6')"
@@ -8680,9 +8981,24 @@
               <el-descriptions-item
                 :label="$t('deviceManage.customParameter8')"
                 v-if="batteryParameterIsDisplay('customParameters8')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters8Val
-                }}</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="customParameters8"
+                    v-model.number="formData.customParameters8"
+                    :min="0"
+                    :step="0.01"
+                    class="custom-input"
+                    :formatter="formatCustomParameters"
+                    :parser="parseCustomParameters"
+                  ></el-input>
+                  <span></span>
+                  <el-button
+                    @click="saveCustomParameters(8)"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.customStatus1')"
@@ -10071,7 +10387,12 @@
 </template>
 
 <script>
-import { getConfigData, saveConfigData, batteryUpgrade } from "@/api/device";
+import {
+  getConfigData,
+  saveConfigData,
+  batteryUpgrade,
+  batterySetCustom,
+} from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
 import { mapState } from "vuex";
@@ -10105,11 +10426,96 @@ export default {
     "formData.PROTOCOL_ADDR_407"(newValue) {
       this.formData.PROTOCOL_ADDR_407 = newValue;
     },
+
+    "batteryParameter.batterySetObj.chargingOvercurrentProtectionVal"(
+      newValue
+    ) {
+      this.formData.chargingOvercurrentProtection = newValue;
+    },
+    "batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal"(
+      newValue
+    ) {
+      this.formData.chargingOvercurrentProtectionDelay = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOvervoltageProtectionVal"(newValue) {
+      this.formData.cellOvervoltageProtection = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal"(
+      newValue
+    ) {
+      this.formData.cellOvervoltageProtectionDelay = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOverDischargeProtectionVal"(newValue) {
+      this.formData.cellOverDischargeProtection = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal"(
+      newValue
+    ) {
+      this.formData.cellOverDischargeProtectionDelay = newValue;
+    },
+    "batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal"(newValue) {
+      this.formData.overvoltageHysteresisVoltage = newValue;
+    },
+    "batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal"(
+      newValue
+    ) {
+      this.formData.overdischargeHysteresisVoltage = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal"(newValue) {
+      this.formData.cellOvervoltageRecoveryDelay = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal"(
+      newValue
+    ) {
+      this.formData.cellOverDischargeRecoveryDelay = newValue;
+    },
+    "batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal"(
+      newValue
+    ) {
+      this.formData.highTemperatureProtectionDuringDischarge = newValue;
+    },
+    "batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal"(
+      newValue
+    ) {
+      this.formData.highTemperatureProtectionRecoveryDuringDischarge = newValue;
+    },
+    "batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal"(
+      newValue
+    ) {
+      this.formData.lowTemperatureProtectionDuringDischarge = newValue;
+    },
+    "batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal"(
+      newValue
+    ) {
+      this.formData.dischargeLowTemperatureProtectionRecovery = newValue;
+    },
+    "batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal"(
+      newValue
+    ) {
+      this.formData.highTemperatureProtectionDuringCharging = newValue;
+    },
+    "batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal"(
+      newValue
+    ) {
+      this.formData.highTemperatureProtectionRecoveryDuringCharging = newValue;
+    },
+    "batteryParameter.batterySetObj.customParameters1Val"(newValue) {
+      this.formData.customParameters1 = newValue;
+    },
+    "batteryParameter.batterySetObj.customParameters5Val"(newValue) {
+      this.formData.customParameters5 = newValue;
+    },
+    "batteryParameter.batterySetObj.customParameters8Val"(newValue) {
+      this.formData.customParameters8 = newValue;
+    },
   },
   components: { SelfTest },
   data() {
     return {
       formData: {
+        customParameters1: null,
+        customParameters5: null,
+        customParameters8: null,
         lowTemperatureProtectionDuringCharging: null,
         lowTemperatureProtectionRecoveryDuringCharging: null,
 
@@ -10118,6 +10524,29 @@ export default {
         PROTOCOL_ADDR_405: null,
         PROTOCOL_ADDR_406: null,
         PROTOCOL_ADDR_407: null,
+
+        chargingOvercurrentProtection: null,
+        chargingOvercurrentProtectionDelay: null,
+
+        cellOvervoltageProtection: null,
+        cellOvervoltageProtectionDelay: null,
+
+        cellOverDischargeProtection: null,
+        cellOverDischargeProtectionDelay: null,
+
+        overvoltageHysteresisVoltage: null,
+        overdischargeHysteresisVoltage: null,
+
+        cellOvervoltageRecoveryDelay: null,
+        cellOverDischargeRecoveryDelay: null,
+
+        highTemperatureProtectionDuringDischarge: null,
+        highTemperatureProtectionRecoveryDuringDischarge: null,
+        lowTemperatureProtectionDuringDischarge: null,
+        dischargeLowTemperatureProtectionRecovery: null,
+
+        highTemperatureProtectionDuringCharging: null,
+        highTemperatureProtectionRecoveryDuringCharging: null,
       },
       deviceInfo: {},
       devStatusFilter: [
@@ -10312,6 +10741,46 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    saveCustomParameters(parameterNumber) {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        paramSetList: [
+          {
+            key: `customParameters${parameterNumber}`,
+            dataVal: this.formData[`customParameters${parameterNumber}`],
+          },
+        ],
+      };
+
+      batterySetCustom(sendData)
+        .then((response) => {
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
+    formatCustomParameters(value) {
+      //将输入值格式化为最多两位小数的字符串
+      const parsedValue = parseFloat(value);
+      if (isNaN(parsedValue)) {
+        return "";
+      }
+      //保留两位小数
+      return parseFloat(parsedValue.toFixed(2)).toString();
+    },
+    parseCustomParameters(value) {
+      //将输入的数字解析为数字
+      const parsedValue = parseFloat(value);
+      if (isNaN(parsedValue)) {
+        return 0;
+      }
+      //确保不为负数
+      return parsedValue >= 0 ? parsedValue : 0;
+    },
+
     saveLowTemperatureProtectionDuringCharging() {
       this.saveTemperatureSetting("lowTemperatureProtectionDuringCharging");
     },
@@ -10865,6 +11334,8 @@ export default {
   margin-right: 10px;
 }
 .save-button {
+  border: none;
   width: auto;
+  color: green;
 }
 </style>
