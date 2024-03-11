@@ -27,6 +27,15 @@ export function addDevice(data) {
   });
 }
 
+//批量导入
+export function importExcel(data) {
+  return request({
+    url: "/admin/lsydevice/importExcel",
+    method: "post",
+    data,
+  });
+}
+
 // 通过id删除
 export function delDevice(data) {
   return request({
@@ -156,6 +165,15 @@ export function batteryUpgrade(data) {
 export function batterySetCustom(data) {
   return request({
     url: "/admin/param/set/updatePage9",
+    method: "post",
+    data,
+  });
+}
+
+//电池使能设置项
+export function updateEnable(data) {
+  return request({
+    url: "/admin/param/set/updateEnableSetting ",
     method: "post",
     data,
   });

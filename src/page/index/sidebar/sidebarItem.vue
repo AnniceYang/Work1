@@ -83,7 +83,12 @@ export default {
     labelKey() {
       //return this.props.label
 
-      const key = this.language === "en-US" ? "nameEn" : "label";
+      const key =
+        this.language === "en-US"
+          ? "nameEn"
+          : this.language === "it"
+          ? "nameItaly"
+          : "label";
       console.log("Label key:", key);
       return key;
     },

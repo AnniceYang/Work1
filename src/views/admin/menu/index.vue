@@ -21,7 +21,13 @@
         :tree-props="{ children: 'children', hasChildren: 'hasChildrens' }"
       >
         <el-table-column
-          :prop="$store.getters.language === 'en-US' ? 'nameEn' : 'name'"
+          :prop="
+            $store.getters.language === 'en-US'
+              ? 'nameEn'
+              : $StorageEvent.getters.language === 'it'
+              ? 'nameItaly'
+              : 'name'
+          "
           :label="$t('menuManage.menuName')"
           :show-overflow-tooltip="true"
           width="180"
@@ -151,9 +157,14 @@ export default {
 
     console.log(
       "Language property: ",
-      this.$store.getters.language === "en-US" ? "nameEn" : "label"
+      this.$store.getters.language === "en-US"
+        ? "nameEn"
+        : this.$store.getters.language === "it"
+        ? "nameItaly"
+        : "label"
     );
   },
+
   computed: {
     ...mapGetters(["permissions"]),
   },

@@ -18,17 +18,14 @@
       <i class="icon-yuyan"></i>
     </div>
     <el-dropdown-menu slot="dropdown">
-      <el-dropdown-item
-        :disabled="language==='zh-CN'"
-        command="zh-CN"
-      >
+      <el-dropdown-item :disabled="language === 'zh-CN'" command="zh-CN">
         中文
       </el-dropdown-item>
-      <el-dropdown-item
-        :disabled="language==='en-US'"
-        command="en-US"
-      >
+      <el-dropdown-item :disabled="language === 'en-US'" command="en-US">
         English
+      </el-dropdown-item>
+      <el-dropdown-item :disabled="language === 'it'" command="it">
+        Italiano
       </el-dropdown-item>
       <!-- <el-dropdown-item :disabled="language==='es'" command="es">
         Español
@@ -43,21 +40,21 @@
 <script>
 export default {
   computed: {
-    language () {
-      return this.$store.getters.language
-    }
+    language() {
+      return this.$store.getters.language;
+    },
   },
   methods: {
-    handleSetLanguage (lang) {
-      this.$i18n.locale = lang
-      this.$store.commit('SET_LANGUAGE', lang)
+    handleSetLanguage(lang) {
+      this.$i18n.locale = lang;
+      this.$store.commit("SET_LANGUAGE", lang);
       // this.$store.dispatch('common/setLanguage', lang)
       this.$message({
-        message: 'Switch Language Success',
-        type: 'success'
-      })
-      window.location.reload()
-    }
+        message: "Switch Language Success",
+        type: "success",
+      });
+      window.location.reload();
+    },
     // handleSetLanguage(lang) {
     //   this.$i18n.locale = lang
     //   this.$store.dispatch('app/setLanguage', lang)
@@ -66,6 +63,6 @@ export default {
     //     type: 'success'
     //   })
     // }
-  }
-}
+  },
+};
 </script>

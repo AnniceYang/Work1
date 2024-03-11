@@ -8541,12 +8541,20 @@
                 :label="$t('deviceManage.cellImbalanceAlarm')"
                 v-if="batteryParameterIsDisplay('enableSettingBit4')"
               >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit4Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
+                <div class="input-container">
+                  <el-select
+                    v-model="formData.enableSettingBit4"
+                    style="width: 100px"
+                  >
+                    <el-option label="关闭" value="0"></el-option>
+                    <el-option label="开启" value="1"></el-option>
+                  </el-select>
+                  <el-button @click="saveEnableSettings" class="save-button">{{
+                    $t("common.save")
+                  }}</el-button>
+                </div>
               </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('deviceManage.ambientTemperatureAlarm')"
                 v-if="batteryParameterIsDisplay('enableSettingBit5')"
@@ -8780,10 +8788,27 @@
                     'batteryImbalanceAlarmPressureDifference'
                   )
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .batteryImbalanceAlarmPressureDifferenceVal
-                }}mV</el-descriptions-item
+              >
+                <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="batteryImbalanceAlarmPressureDifference"
+                    v-model.number="
+                      formData.batteryImbalanceAlarmPressureDifference
+                    "
+                    class="custom-input"
+                  ></el-input>
+                  <span>mV</span>
+                  <el-button
+                    @click="
+                      saveBatteryParameter(
+                        'batteryImbalanceAlarmPressureDifference'
+                      )
+                    "
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.imbalancePressureDifference')"
@@ -8792,10 +8817,26 @@
                     'imbalanceAlarmRecoveryPressureDifference'
                   )
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .imbalanceAlarmRecoveryPressureDifferenceVal
-                }}mV</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="imbalanceAlarmRecoveryPressureDifference"
+                    v-model.number="
+                      formData.imbalanceAlarmRecoveryPressureDifference
+                    "
+                    class="custom-input"
+                  ></el-input>
+                  <span>mV</span>
+                  <el-button
+                    @click="
+                      saveBatteryParameter(
+                        'imbalanceAlarmRecoveryPressureDifference'
+                      )
+                    "
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.environmentalHighTemperatureAlarm')"
@@ -10392,6 +10433,7 @@ import {
   saveConfigData,
   batteryUpgrade,
   batterySetCustom,
+  updateEnable,
 } from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
@@ -10508,14 +10550,34 @@ export default {
     "batteryParameter.batterySetObj.customParameters8Val"(newValue) {
       this.formData.customParameters8 = newValue;
     },
+    "batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifferenceVal"(
+      newValue
+    ) {
+      this.formData.batteryImbalanceAlarmPressureDifference = newValue;
+    },
+    "batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifferenceVal"(
+      newValue
+    ) {
+      this.formData.imbalanceAlarmRecoveryPressureDifference = newValue;
+    },
+
+    "batteryParameter.batterySetObj.enableSettingBit4Val"(newValue) {
+      this.formData.enableSettingBit4 = newValue;
+    },
   },
   components: { SelfTest },
   data() {
     return {
       formData: {
+        enableSettingBit4: null,
+
         customParameters1: null,
         customParameters5: null,
         customParameters8: null,
+
+        batteryImbalanceAlarmPressureDifference: null,
+        imbalanceAlarmRecoveryPressureDifference: null,
+
         lowTemperatureProtectionDuringCharging: null,
         lowTemperatureProtectionRecoveryDuringCharging: null,
 
@@ -10549,6 +10611,7 @@ export default {
         highTemperatureProtectionRecoveryDuringCharging: null,
       },
       deviceInfo: {},
+
       devStatusFilter: [
         this.$t("userManage.normal"),
         this.$t("deviceManage.maintenance"),
@@ -10741,6 +10804,49 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    saveEnableSettings() {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        paramSetList: [
+          {
+            key: "enableSettingBit4",
+            dataVal: this.formData.enableSettingBit4 === "1" ? 1 : 0,
+          },
+        ],
+      };
+
+      updateEnable(sendData)
+        .then((response) => {
+          console.log("使能设置已更新");
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("更新使能设置时出错： ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
+    saveBatteryParameter(parameterKey) {
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        paramSetList: [
+          {
+            key: parameterKey,
+            dataVal: this.formData[parameterKey],
+          },
+        ],
+      };
+
+      batterySetCustom(sendData)
+        .then((response) => {
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
     saveCustomParameters(parameterNumber) {
       const sendData = {
         deviceId: this.deviceInfo.id,

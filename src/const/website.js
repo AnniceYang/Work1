@@ -19,8 +19,14 @@ export default {
   // 配置菜单的属性
   menu: {
     props: {
-      // label: store.state.commonlanguage === "en-US" ? "nameEn" : "label",
-      label: "label",
+      // label:
+      //   store.state.commonlanguage === "en-US"
+      //     ? "nameEn"
+      //     : store.state.commonlanguage === "it"
+      //     ? "nameItaly"
+      //     : "label",
+      label: "label", //根据当前语言选择正确的菜单名称字段
+      // label: store.state.commonlanguage === "it" ? "nameItaly" : "label",
       path: "path",
       icon: "icon",
       children: "children",

@@ -167,7 +167,7 @@ export function appTypeFilter(value) {
       str = "IOS";
       break;
     case 2:
-      str = "联网板子";
+      str = "通讯棒";
       break;
     case 3:
       str = "逆变器监控";
@@ -471,7 +471,7 @@ export function updateType(val) {
   let str = "";
   switch (val) {
     case 1:
-      str = "联网板子";
+      str = "通讯棒";
       break;
     case 2:
       str = "逆变器监控";

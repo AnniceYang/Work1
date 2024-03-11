@@ -1242,6 +1242,9 @@ export default {
     systemLockStatus13:
       "The charging current collected from the board does not match the motherboard",
     energyFlowSwitch: "Energy flow chart switch",
+    batchImport: "Batch Import",
+    batchImportSuccess: "Batch Import Succeed",
+    batchImportFailed: "Batch Import Failed",
   },
   modelManage: {
     modeName: "Mode name",
