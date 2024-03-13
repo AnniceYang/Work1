@@ -76,7 +76,7 @@
                 <el-switch
                   :active-value="1"
                   :inactive-value="0"
-                  @change="adminChange(index,index2)"
+                  @change="adminChange(index, index2)"
                   v-model="
                     info.dataList[1].dataList[index].dataList[index2].isShow
                   "
@@ -95,7 +95,7 @@
                 <el-switch
                   :active-value="1"
                   :inactive-value="0"
-                  @change="installerChange(index,index2)"
+                  @change="installerChange(index, index2)"
                   v-model="
                     info.dataList[1].dataList[index].dataList[index2]
                       .installerIsShow
@@ -116,7 +116,7 @@
                 <el-switch
                   :active-value="1"
                   :inactive-value="0"
-                  @change="consumerChange(index,index2)"
+                  @change="consumerChange(index, index2)"
                   v-model="
                     info.dataList[1].dataList[index].dataList[index2]
                       .consumerIsShow
@@ -142,9 +142,9 @@
 </template>
 <script>
 import { qryConfigDataShow, saveConfigDataShow } from "@/api/device";
-import { info2 } from './config.js'
+import { info2 } from "./config.js";
 // import FileSaver from "file-saver";
-import fs from 'fs'
+import fs from "fs";
 // const fs = require('fs')
 export default {
   name: "",
@@ -158,16 +158,16 @@ export default {
     qryConfigDataShow().then((res) => {
       this.info = res;
       console.log("查询", res);
-    //   let content = {a:'wangyue'}
-    //   let blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-    //   FileSaver.saveAs(blob, "./open.js");
-        console.log('fs-----',fs)
-    //   fs.writeFile("./1.js",res,function(err){
-    //       if(err){
-    //           return console.log('文件写入失败！'+err.message)
-    //       }
-    //       console.log('文件写入成功！')
-    //   })
+      //   let content = {a:'wangyue'}
+      //   let blob = new Blob([content], { type: "text/plain;charset=utf-8" });
+      //   FileSaver.saveAs(blob, "./open.js");
+      console.log("fs-----", fs);
+      //   fs.writeFile("./1.js",res,function(err){
+      //       if(err){
+      //           return console.log('文件写入失败！'+err.message)
+      //       }
+      //       console.log('文件写入成功！')
+      //   })
     });
   },
   methods: {
@@ -202,15 +202,18 @@ export default {
         }
       });
     },
-    adminChange(index,index2){
-      this.info.dataList[1].dataList[index].dataList[index2].canSet = this.info.dataList[1].dataList[index].dataList[index2].isShow
+    adminChange(index, index2) {
+      this.info.dataList[1].dataList[index].dataList[index2].canSet =
+        this.info.dataList[1].dataList[index].dataList[index2].isShow;
     },
-    installerChange(index,index2){
-      this.info.dataList[1].dataList[index].dataList[index2].installerCanSet = this.info.dataList[1].dataList[index].dataList[index2].installerIsShow
+    installerChange(index, index2) {
+      this.info.dataList[1].dataList[index].dataList[index2].installerCanSet =
+        this.info.dataList[1].dataList[index].dataList[index2].installerIsShow;
     },
-    consumerChange(index,index2){
-      this.info.dataList[1].dataList[index].dataList[index2].consumerCanSet = this.info.dataList[1].dataList[index].dataList[index2].consumerIsShow
-    }
+    consumerChange(index, index2) {
+      this.info.dataList[1].dataList[index].dataList[index2].consumerCanSet =
+        this.info.dataList[1].dataList[index].dataList[index2].consumerIsShow;
+    },
   },
 };
 </script>

@@ -488,14 +488,23 @@ export default {
         case 9:
           str = this.$t("deviceManage.eastNinthDistrict");
           break;
+        case 9.5:
+          str = this.$t("deviceManage.eastNinthandHalfDistrict");
+          break;
         case 10:
           str = this.$t("deviceManage.eastTenthDistrict");
+          break;
+        case 10.5:
+          str = this.$t("deviceManage.eastTenthandHalfDistrict");
           break;
         case 11:
           str = this.$t("deviceManage.eastEleventhDistrict");
           break;
         case 12:
           str = this.$t("deviceManage.eastTwelfthDistrict");
+          break;
+        case 13:
+          str = this.$t("deviceManage.eastThirteenthDistrict");
           break;
         case -1:
           str = this.$t("deviceManage.westFirstDistrict");

@@ -69,8 +69,16 @@
           />
           <el-option :label="$t('deviceManage.eastNinthDistrict')" :value="9" />
           <el-option
+            :label="$t('deviceManage.eastNinthandHalfDistrict')"
+            :value="9.5"
+          />
+          <el-option
             :label="$t('deviceManage.eastTenthDistrict')"
             :value="10"
+          />
+          <el-option
+            :label="$t('deviceManage.eastTenthandHalfDistrict')"
+            :value="10.5"
           />
           <el-option
             :label="$t('deviceManage.eastEleventhDistrict')"
@@ -79,6 +87,10 @@
           <el-option
             :label="$t('deviceManage.eastTwelfthDistrict')"
             :value="12"
+          />
+          <el-option
+            :label="$t('deviceManage.eastThirteenthDistrict')"
+            :value="13"
           />
           <el-option
             :label="$t('deviceManage.westFirstDistrict')"

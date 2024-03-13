@@ -70,6 +70,10 @@ export default {
     collapse: {
       type: Boolean,
     },
+    language: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -81,8 +85,6 @@ export default {
   computed: {
     ...mapGetters(["roles", "language"]),
     labelKey() {
-      //return this.props.label
-
       const key =
         this.language === "en-US"
           ? "nameEn"

@@ -59,6 +59,11 @@
             <el-button type="primary" @click="handleReset()">{{
               $t("common.reset")
             }}</el-button>
+            <template v-if="isAdmin"
+              ><el-button type="primary" @click="handleExport()">{{
+                $t("common.export")
+              }}</el-button></template
+            >
           </el-form-item>
         </el-form>
       </div>
@@ -157,6 +162,10 @@ export default {
   },
   computed: {
     ...mapGetters(["permissions"]),
+
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
   },
   created() {
     this.getData();

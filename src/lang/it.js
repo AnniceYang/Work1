@@ -95,7 +95,7 @@ export default {
     offLine: "Offline",
     errorReporting: "Segnalazione di errore",
     installationPower: "Potenza di installazione",
-    installationCapacity: "Capacità di installazione",
+    installationCapacity: "Capacità installata",
     CO2Reduction: "Riduzione delle emissioni di CO2",
     save: "Salva",
     plant: "Impianto",
@@ -204,6 +204,9 @@ export default {
     inverterMCU: "Monitoraggio Inverter MCU",
     inverterDSP: "Controllo Principale Inverter",
     battery: "Batteria",
+    HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
+    HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+
     IIcb: "Scheda di Comunicazione Fase II",
     IIdb: "Scheda di Controllo Fase II",
     IIbattery: "Batteria Fase II",
@@ -332,9 +335,12 @@ export default {
     eastSeventhDistrict: "Settimo distretto est",
     eastEighthDistrict: "Ottavo distretto est",
     eastNinthDistrict: "Nono distretto est",
+    eastNinthandHalfDistrict: "Nono distretto est nove e mezza",
     eastTenthDistrict: "Decimo distretto est",
+    eastTenthandHalfDistrict: "Nono distretto est dieci e mezza",
     eastEleventhDistrict: "Undicesimo distretto est",
     eastTwelfthDistrict: "Dodicesimo distretto est",
+    eastThirteenthDistrict: "Est Tredicesimo Quartiere",
     westFirstDistrict: "Primo distretto ovest",
     westSecondDistrict: "Secondo distretto ovest",
     westThirdDistrict: "Terzo distretto ovest",
@@ -354,6 +360,9 @@ export default {
     inverterMCU: "MCU dell'inverter",
     inverterDSP: "DSP dell'inverter",
     battery: "Batteria",
+    HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
+    HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+
     IIcb: "Scheda di comunicazione della seconda fase",
     IIdb: "Scheda di guida della seconda fase",
     IIbattery: "Batteria della seconda fase",
@@ -646,7 +655,7 @@ export default {
     otherSettings: "Altre impostazioni",
     resetDeviceInitialValues:
       "Reimposta i valori iniziali delle impostazioni di comunicazione del dispositivo",
-    clearRecordData: "Cancella i dati dei record",
+    clearRecordData: "Cancellare i dati registrati",
     restoreFactorySettings: "Ripristina le impostazioni di fabbrica",
     inverterRestart: "Riavvio dell'inverter",
     selfCheckEnable: "Abilita autocheck",
@@ -709,11 +718,10 @@ export default {
     islandDetectionEnable: "Abilita il rilevamento dell'isola",
     notEnable: "Non abilitare",
     authenticationMode: "Modalità di autenticazione",
-    controlSource:
-      "Fonte di controllo della modalità di esecuzione attuale del sistema",
+    controlSource: "Sorgente di controllo della modalità operativa",
     MCUIssuedControl: "Controllo emesso dall'MCU",
     DSPIssuedControl: "Controllo emesso dal DSP",
-    modeSystem: "Modalità di esecuzione attuale del sistema",
+    modeSystem: "Modalità operativa corrente del sistema",
     batteryPriorityMode: "Modalità di priorità della batteria",
     homeLoadPriorityMode: "Modalità di priorità del carico domestico",
     gridPriorityMode: "Modalità di priorità della rete",
@@ -740,8 +748,7 @@ export default {
     powerFactor: "Fattore di Potenza",
     antiBackflowPowerPercentage: "Percentuale di Potenza Antiritorno",
     maximumOutputPowerPercentage: "Percentuale di Potenza Massima in Uscita",
-    powerSettingAdjustmentRate:
-      "Tasso di Regolazione dell'Impostazione di Potenza",
+    powerSettingAdjustmentRate: "Velocità di regolazione della potenza",
     softStartRate: "Tasso di Avvio Dolce",
     reactivePowerControlMode: "Modalità di Controllo della Potenza Reattiva",
     zeroReactivePower: "Potenza Reattiva a Zero",
@@ -750,46 +757,27 @@ export default {
     fixedReactiveMode: "Modalità Reattiva Fissa",
     cosMode: "Modalità Cos(P)",
     reactivePowerRegulationRate: "Tasso di Regolazione della Potenza Reattiva",
-    upperLimitValueOfVoltage1:
-      "Valore Limite Superiore della Tensione di Rete 1",
-    upperLimitValueOfVoltage2:
-      "Valore Limite Superiore della Tensione di Rete 2",
-    upperLimitValueOfVoltage3:
-      "Valore Limite Superiore della Tensione di Rete 3",
-    lowerLimitValueOfProtection1:
-      "Valore Limite Inferiore della Protezione della Tensione di Rete 1",
-    lowerLimitValueOfProtection2:
-      "Valore Limite Inferiore della Protezione della Tensione di Rete 2",
-    lowerLimitValueOfProtection3:
-      "Valore Limite Inferiore della Protezione della Tensione di Rete 3",
+    upperLimitValueOfVoltage1: "Valore Limite Superiore Rete 1",
+    upperLimitValueOfVoltage2: "Valore Limite Superiore Rete 2",
+    upperLimitValueOfVoltage3: "Valore Limite Superiore Rete 3",
+    lowerLimitValueOfProtection1: "Valore Limite Inferiore Rete 1",
+    lowerLimitValueOfProtection2: "Valore Limite Inferiore Rete 2",
+    lowerLimitValueOfProtection3: "Valore Limite Inferiore Rete 3",
     upperLimitValueVoltage: "Valore Limite Superiore della Tensione di Rete",
     lowerLimitValueVoltage: "Valore Limite Inferiore della Tensione di Rete",
-    voltageUpperLimitTime1:
-      "Tempo Limite Superiore della Protezione della Tensione di Rete 1",
-    voltageUpperLimitTime2:
-      "Tempo Limite Superiore della Protezione della Tensione di Rete 2",
-    voltageUpperLimitTime3:
-      "Tempo Limite Superiore della Protezione della Tensione di Rete 3",
-    voltageLowerLimitTime1:
-      "Tempo Limite Inferiore della Protezione della Tensione di Rete 1",
-    voltageLowerLimitTime2:
-      "Tempo Limite Inferiore della Protezione della Tensione di Rete 2",
-    voltageLowerLimitTime3:
-      "Tempo Limite Inferiore della Protezione della Tensione di Rete 3",
-    recoveryTimeVoltageProtection:
-      "Tempo di Recupero della Protezione della Tensione di Rete",
-    upperLimitValue1:
-      "Valore Limite Superiore della Protezione della Frequenza di Rete 1",
-    upperLimitValue2:
-      "Valore Limite Superiore della Protezione della Frequenza di Rete 2",
-    upperLimitValue3:
-      "Valore Limite Superiore della Protezione della Frequenza di Rete 3",
-    lowerLimitValue1:
-      "Valore Limite Inferiore della Protezione della Frequenza di Rete 1",
-    lowerLimitValue2:
-      "Valore Limite Inferiore della Protezione della Frequenza di Rete 2",
-    lowerLimitValue3:
-      "Valore Limite Inferiore della Protezione della Frequenza di Rete 3",
+    voltageUpperLimitTime1: "Tempo Limite Superiore Rete 1",
+    voltageUpperLimitTime2: "Tempo Limite Superiore Rete 2",
+    voltageUpperLimitTime3: "Tempo Limite Superiore Rete 3",
+    voltageLowerLimitTime1: "Tempo Limite Inferiore Rete 1",
+    voltageLowerLimitTime2: "Tempo Limite Inferiore Rete 2",
+    voltageLowerLimitTime3: "Tempo Limite Inferiore Rete 3",
+    recoveryTimeVoltageProtection: "Tempo di Recupero Rete",
+    upperLimitValue1: "Valore Limite Superiore Rete 1",
+    upperLimitValue2: "Valore Limite Superiore Rete 2",
+    upperLimitValue3: "Valore Limite Superiore Rete 3",
+    lowerLimitValue1: "Valore Limite Inferiore Rete 1",
+    lowerLimitValue2: "Valore Limite Inferiore Rete 2",
+    lowerLimitValue3: "Valore Limite Inferiore Rete 3",
     upperLimitValueFrequency: "Valore Limite Superiore della Frequenza di Rete",
     lowerLimitOfGridFrequency:
       "Valore Limite Inferiore della Frequenza di Rete",
@@ -837,7 +825,7 @@ export default {
     manualSwitching: "Cambio Manuale",
     theBatteryID: "ID della Batteria per i Parametri Visualizzati Attualmente",
     MOSControl: "Controllo MOS",
-    GPSPowerControl: "Controllo Alimentazione Modulo di Comunicazione GPS",
+    GPSPowerControl: "Controllo Alimentazione GPS",
     realTimeClock: "Orologio in Tempo Reale",
     activationInAustralia: "Attivazione in Australia",
     inactive: "Inattivo",
@@ -980,8 +968,7 @@ export default {
     remainingBatteryCapacity: "Capacità Residua della Batteria",
     MOSControl: "Controllo MOS",
     chargingDischargingHeating: "Riscaldamento durante Carica/Scarica",
-    GPSPowerControl:
-      "Controllo di Alimentazione del Modulo di Comunicazione GPS",
+    GPSPowerControl: "Controllo Alimentazione GPS",
     realTimeClock: "Orologio in Tempo Reale",
 
     dischargeOvercurrentProtection: "Protezione Sovracorrente di Scarica",
@@ -1321,6 +1308,9 @@ export default {
     inverterMCU: "MCU dell'inverter",
     inverterDSP: "DSP dell'inverter",
     battery: "Batteria",
+    HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
+    HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+
     IIcb: "Scheda di comunicazione di rete di II fase",
     IIdb: "Scheda di guida di II fase",
     IIbattery: "Batteria di II fase",
@@ -1334,10 +1324,10 @@ export default {
     runInformation: "Informazioni di esecuzione",
     webView: "Visualizzazione Web",
     webSet: "Impostazioni Web",
-    installerView: "Visualizzazione dell'installatore",
-    installerSet: "Impostazioni dell'installatore",
-    consumerView: "Visualizzazione del consumatore",
-    consumerSet: "Impostazioni del consumatore",
+    installerView: "Vista installatore",
+    installerSet: "Impostazioni installatore",
+    consumerView: "Vista cliente",
+    consumerSet: "Impostazioni del client",
     displayType: "Tipo di visualizzazione",
     mcuSoftwareVersion: "Versione del software MCU",
     dspSoftwareVersion: "Versione del software DSP",
@@ -1548,8 +1538,8 @@ export default {
     otherSet: "Altre impostazioni",
 
     resetDeviceCommunicationSettingsToInitialValues:
-      "Ripristina le impostazioni di comunicazione del dispositivo ai valori iniziali",
-    clearRecordData: "Cancella i dati di registrazione",
+      "Ripristina le impostazioni di comunicazione",
+    clearRecordData: "Cancellare i dati registrati",
     factoryReset: "Ripristino alle impostazioni di fabbrica",
     inverterRestart: "Riavvio dell'inverter",
     selfCheckEnable: "Abilita autocontrollo",
@@ -1557,10 +1547,8 @@ export default {
     automaticOperation: "Funzionamento automatico",
     manuallyUnlockingTheSystemLock: "Sblocco manuale del sistema",
     deviceCommunicationBaud: "Baud rate di comunicazione del dispositivo",
-    deviceCommunicationCheckBitSelection:
-      "Selezione del bit di controllo di comunicazione del dispositivo",
-    deviceCommunicationStopBitSelection:
-      "Selezione del bit di arresto di comunicazione del dispositivo",
+    deviceCommunicationCheckBitSelection: "Selezione del bit di controllo",
+    deviceCommunicationStopBitSelection: "Selezione del bit di arresto",
     countdownToTurnOffTheInverter:
       "Conto alla rovescia per spegnere l'inverter",
     delayedStartInverter: "Avvio ritardato dell'inverter",
@@ -1581,7 +1569,7 @@ export default {
     islandDetectionEnable: "Abilita il rilevamento dell'isola",
     authenticationMode: "Modalità di autenticazione",
     currentSystemOperationModeControlSource:
-      "Fonte di controllo della modalità di funzionamento attuale del sistema",
+      "Sorgente di controllo della modalità operativa",
     currentOperatingModeOfTheSystem:
       "Modalità di funzionamento attuale del sistema",
     appStartupFlag: "Flag di avvio dell'app",
@@ -1599,68 +1587,51 @@ export default {
     reactivePowerControlMode: "Modalità di controllo della potenza reattiva",
     reactivePowerRegulationRate: "Tasso di regolazione della potenza reattiva",
 
-    upperLimitValueOfGridVoltageProtection1:
-      "Valore limite superiore della protezione della tensione di rete 1",
-    upperLimitValueOfGridVoltageProtection2:
-      "Valore limite superiore della protezione della tensione di rete 2",
-    upperLimitValueOfGridVoltageProtection3:
-      "Valore limite superiore della protezione della tensione di rete 3",
+    upperLimitValueOfGridVoltageProtection1: "Valore limite superiore rete 1",
+    upperLimitValueOfGridVoltageProtection2: "Valore limite superiore rete 2",
+    upperLimitValueOfGridVoltageProtection3: "Valore limite superiore rete 3",
     lowerLimitValueOfGridVoltageProtection1:
-      "Valore limite inferiore della protezione della tensione di rete 1",
-    lowerLimitValueOfGridVoltageProtection2:
-      "Valore limite inferiore della protezione della tensione di rete 2",
-    lowerLimitValueOfGridVoltageProtection3:
-      "Valore limite inferiore della protezione della tensione di rete 3",
+      "Valore limite inferiore di rete 1",
+    lowerLimitValueOfGridVoltageProtection2: "Valore limite inferiore rete 2",
+    lowerLimitValueOfGridVoltageProtection3: "Valore limite inferiore rete 3",
     upperLimitValueOfGridVoltageReconnection:
-      "Valore limite superiore della riattivazione della tensione di rete",
+      "Valore limite superiore della riattivazione rete",
     lowerLimitValueOfGridVoltageReconnection:
-      "Valore limite inferiore della riattivazione della tensione di rete",
-    upperLimitTimeOfGridVoltageProtection1:
-      "Tempo limite superiore della protezione della tensione di rete 1",
-    upperLimitTimeOfGridVoltageProtection2:
-      "Tempo limite superiore della protezione della tensione di rete 2",
-    upperLimitTimeOfGridVoltageProtection3:
-      "Tempo limite superiore della protezione della tensione di rete 3",
-    lowerLimitTimeOfGridVoltageProtection1:
-      "Tempo limite inferiore della protezione della tensione di rete 1",
-    lowerLimitTimeOfGridVoltageProtection2:
-      "Tempo limite inferiore della protezione della tensione di rete 2",
-    lowerLimitTimeOfGridVoltageProtection3:
-      "Tempo limite inferiore della protezione della tensione di rete 3",
+      "Valore limite inferiore della riattivazione rete",
+    upperLimitTimeOfGridVoltageProtection1: "Tempo limite superiore rete 1",
+    upperLimitTimeOfGridVoltageProtection2: "Tempo limite superiore rete 2",
+    upperLimitTimeOfGridVoltageProtection3: "Tempo limite superiore rete 3",
+    lowerLimitTimeOfGridVoltageProtection1: "Tempo limite inferiore rete 1",
+    lowerLimitTimeOfGridVoltageProtection2: "Tempo limite inferiore rete 2",
+    lowerLimitTimeOfGridVoltageProtection3: "Tempo limite inferiore rete 3",
     recoveryTimeOfGridVoltageProtection:
       "Tempo di ripristino della protezione della tensione di rete",
-    upperLimitValueOfGridFrequencyProtection1:
-      "Valore limite superiore della protezione della frequenza di rete 1",
-    upperLimitValueOfGridFrequencyProtection2:
-      "Valore limite superiore della protezione della frequenza di rete 2",
-    upperLimitValueOfGridFrequencyProtection3:
-      "Valore limite superiore della protezione della frequenza di rete 3",
-    lowerLimitValueOfGridFrequencyProtection1:
-      "Valore limite inferiore della protezione della frequenza di rete 1",
-    lowerLimitValueOfGridFrequencyProtection2:
-      "Valore limite inferiore della protezione della frequenza di rete 2",
-    lowerLimitValueOfGridFrequencyProtection3:
-      "Valore limite inferiore della protezione della frequenza di rete 3",
+    upperLimitValueOfGridFrequencyProtection1: "Valore limite superiore rete 1",
+    upperLimitValueOfGridFrequencyProtection2: "Valore limite superiore rete 2",
+    upperLimitValueOfGridFrequencyProtection3: "Valore limite superiore rete 3",
+    lowerLimitValueOfGridFrequencyProtection1: "Valore limite inferiore rete 1",
+    lowerLimitValueOfGridFrequencyProtection2: "Valore limite inferiore rete 2",
+    lowerLimitValueOfGridFrequencyProtection3: "Valore limite inferiore rete 3",
     upperLimitValueOfGridFrequencyReconnection:
-      "Valore limite superiore della riattivazione della frequenza di rete",
+      "Valore limite superiore frequenza di rete",
     lowerLimitValueOfGridFrequencyReconnection:
-      "Valore limite inferiore della riattivazione della frequenza di rete",
+      "Valore limite inferiore frequenza di rete",
     gridFrequencyProtectionUpperLimitTime1:
-      "Tempo limite superiore della protezione della frequenza di rete 1",
+      "Tempo limite superiore frequenza di rete 1",
     gridFrequencyProtectionUpperLimitTime2:
-      "Tempo limite superiore della protezione della frequenza di rete 2",
+      "Tempo limite superiore frequenza di rete 2",
     gridFrequencyProtectionUpperLimitTime3:
-      "Tempo limite superiore della protezione della frequenza di rete 3",
+      "Tempo limite superiore frequenza di rete 3",
     gridFrequencyProtectionLowerLimitTime1:
-      "Tempo limite inferiore della protezione della frequenza di rete 1",
+      "Tempo limite inferiore della protezione rete 1",
     gridFrequencyProtectionLowerLimitTime2:
-      "Tempo limite inferiore della protezione della frequenza di rete 2",
+      "Tempo limite inferiore della protezione rete 2",
     gridFrequencyProtectionLowerLimitTime3:
-      "Tempo limite inferiore della protezione della frequenza di rete 3",
+      "Tempo limite inferiore della protezione rete 3",
     recoveryTimeOfGridFrequencyProtection:
-      "Tempo di ripristino della protezione della frequenza di rete",
+      "Tempo di recupero della protezione rete",
     tenMinOvervoltageProtectionValueOfThePowerGrid:
-      "Valore della protezione dalla sovratensione di 10 minuti della rete elettrica",
+      "Valore di protezione da sovratensione della rete 10Min",
     networkingWaitingTime: "Tempo di attesa per la connessione in rete",
     reconnectWaitingTime: "Tempo di attesa per la riconnessione",
     coldMode: "Modalità fredda",
@@ -1692,8 +1663,7 @@ export default {
     theBatteryIdOfTheCurrentDisplayedParameter:
       "ID della batteria del parametro attualmente visualizzato",
     mosControl: "Controllo MOS",
-    gpsCommunicationModulePowerControl:
-      "Controllo di alimentazione del modulo di comunicazione GPS",
+    gpsCommunicationModulePowerControl: "Controllo di alimentazione GPS",
     realTimeClock: "Orologio in tempo reale",
     acCoupling: "Accoppiamento CA",
     emptyElectricityMeterEnergy: "Svuota l'energia del contatore elettrico",

@@ -770,14 +770,23 @@ export function timeZoneFilter(val) {
     case 9:
       str = "东九区";
       break;
+    case 9.5:
+      str = "东九点五区";
+      break;
     case 10:
       str = "东十区";
+      break;
+    case 10.5:
+      str = "东十点五区";
       break;
     case 11:
       str = "东十一区";
       break;
     case 12:
       str = "东十二区";
+      break;
+    case 13:
+      str = "东十三区";
       break;
     case -1:
       str = "西一区";

@@ -69,8 +69,13 @@ RouterPlugin.install = function (router, store) {
       const propsConfig = this.$website.menu.props;
       const propsDefault = {
         // label: propsConfig.label || 'label',
-        label: store.getters.language === "en-US" ? "nameEn" : "label",
-        nameItaly: store.getters.language === "it" ? "nameItaly" : undefined,
+        label:
+          store.getters.language === "en-US"
+            ? "nameEn"
+            : store.getters.language === "it"
+            ? "nameItaly"
+            : "label",
+
         path: propsConfig.path || "path",
         icon: propsConfig.icon || "icon",
         children: propsConfig.children || "children",
