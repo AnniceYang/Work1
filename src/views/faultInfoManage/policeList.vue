@@ -140,7 +140,7 @@
   </div>
 </template>
 <script>
-import { qryDeviceAlarm } from "@/api/faultInfo";
+import { qryDeviceAlarm, exportCurrentAlarm } from "@/api/faultInfo";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -171,6 +171,16 @@ export default {
     this.getData();
   },
   methods: {
+    handleExport() {
+      // const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
+      const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
+      // const exportBaseUrl = "http://3.126.27.80:7072"; // ODM版
+
+      const exportUrl = `${exportBaseUrl}/excel/currentAlarm`;
+
+      window.open(exportUrl, "_blank");
+    },
+
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);

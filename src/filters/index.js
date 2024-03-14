@@ -187,6 +187,12 @@ export function appTypeFilter(value) {
     case 8:
       str = "二期电池";
       break;
+    case 9:
+      str = "高压电池BCU模块（固件类型：8）";
+      break;
+    case 10:
+      str = "高压电池BMS模块（固件类型：5）";
+      break;
   }
   return str;
 }
@@ -490,6 +496,12 @@ export function updateType(val) {
       break;
     case 8:
       str = "二期电池";
+      break;
+    case 9:
+      str = "高压电池BCU模块（固件类型：8）";
+      break;
+    case 10:
+      str = "高压电池BMS模块（固件类型：5）";
       break;
     default:
       break;

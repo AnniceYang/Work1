@@ -28,11 +28,11 @@
           <el-option :label="$t('upgradeInfo.battery')" :value="4" />
           <el-option
             :label="$t('upgradeInfo.HighVoltageBatteryBCUModule')"
-            :value="5"
+            :value="9"
           />
           <el-option
             :label="$t('upgradeInfo.HighVoltageBatteryBMSModule')"
-            :value="6"
+            :value="10"
           />
         </el-select>
       </el-form-item>

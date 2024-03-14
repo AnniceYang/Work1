@@ -24,7 +24,7 @@
           :prop="
             $store.getters.language === 'en-US'
               ? 'nameEn'
-              : $StorageEvent.getters.language === 'it'
+              : $store.getters.language === 'it'
               ? 'nameItaly'
               : 'name'
           "
@@ -32,6 +32,7 @@
           :show-overflow-tooltip="true"
           width="180"
         ></el-table-column>
+
         <el-table-column
           prop="icon"
           :label="$t('menuManage.icon')"

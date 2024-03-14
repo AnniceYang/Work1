@@ -99,8 +99,8 @@ export default {
           { name: this.$t("deviceManage.inverterMCU"), id: 3 },
           { name: this.$t("deviceManage.inverterDSP"), id: 4 },
           { name: this.$t("deviceManage.battery"), id: 5 },
-          { name: this.$t("deviceManage.HighVoltageBatteryBCUModule"), id: 6 },
-          { name: this.$t("deviceManage.HighVoltageBatteryBMSModule"), id: 7 },
+          { name: this.$t("deviceManage.HighVoltageBatteryBCUModule"), id: 9 },
+          { name: this.$t("deviceManage.HighVoltageBatteryBMSModule"), id: 10 },
         ];
       }
       this.appType = null;
