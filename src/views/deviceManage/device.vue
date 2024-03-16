@@ -176,12 +176,12 @@
               <el-button type="text" @click="handleStatistics(scope.row)">{{
                 $t("deviceManage.details")
               }}</el-button>
-              <el-button
+              <!-- <el-button
                 type="text"
                 @click="handleCellSet(scope.row)"
                 v-if="permissions.admin_lsydevice_edit"
                 >{{ $t("deviceManage.batterySettings") }}</el-button
-              >
+              > -->
               <el-button
                 type="text"
                 @click="handleUpgrade(scope.row)"

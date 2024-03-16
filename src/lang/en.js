@@ -654,6 +654,7 @@ export default {
     PROTOCOL_ADDR_405: "Battery rated capacity",
     PROTOCOL_ADDR_406: "Battery maintenance",
     PROTOCOL_ADDR_407: "Upgrade configuration",
+    PROTOCOL_ADDR_408: "CT Reverse connection detection power (3p meter)",
     electricityMeter: "electricity meter",
 
     otherSettings: "Other settings",
@@ -1251,6 +1252,7 @@ export default {
     systemLockStatus13:
       "The charging current collected from the board does not match the motherboard",
     energyFlowSwitch: "Energy flow chart switch",
+    batteryConditionSwitch: "Conditons for battery upgrade",
     batchImport: "Batch Import",
     batchImportSuccess: "Batch Import Succeed",
     batchImportFailed: "Batch Import Failed",
@@ -1532,6 +1534,7 @@ export default {
     PROTOCOL_ADDR_405: "Battery rated capacity",
     PROTOCOL_ADDR_406: "Battery maintenance",
     PROTOCOL_ADDR_407: "Upgrade configuration",
+    PROTOCOL_ADDR_408: "CT Reverse connection detection power (3p meter)",
     otherSet: "Other Settings",
     resetDeviceCommunicationSettingsToInitialValues:
       "Reset device communication settings to initial values",

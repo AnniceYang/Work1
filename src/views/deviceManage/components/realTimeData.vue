@@ -3099,7 +3099,7 @@
               >
                 <div style="display: flex">
                   <el-input
-                    v-model="formData.PROTOCOL_ADDR_405"
+                    v-model="PROTOCOL_ADDR_405Val"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">Ah</template>
@@ -3114,10 +3114,7 @@
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_405',
-                        formData.PROTOCOL_ADDR_405
-                      )
+                      handleSave('PROTOCOL_ADDR_405', PROTOCOL_ADDR_405Val)
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -3129,7 +3126,7 @@
               >
                 <div style="display: flex">
                   <el-select
-                    v-model="formData.PROTOCOL_ADDR_406"
+                    v-model="PROTOCOL_ADDR_406Val"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -3153,10 +3150,7 @@
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_406',
-                        formData.PROTOCOL_ADDR_406
-                      )
+                      handleSave('PROTOCOL_ADDR_406', PROTOCOL_ADDR_406Val)
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -3194,6 +3188,36 @@
                       handleSave(
                         'PROTOCOL_ADDR_407',
                         formData.PROTOCOL_ADDR_407
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_408')"
+                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_408')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_408Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">W</template>
+                  </el-input>
+                  <el-button
+                    v-if="
+                      systemSetBtnIsDisplay(
+                        'advancedSetObj',
+                        'PROTOCOL_ADDR_408'
+                      )
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave(
+                        'PROTOCOL_ADDR_408',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_408Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10459,12 +10483,7 @@ export default {
     ) {
       this.formData.heatingFanRecoveryTemperature = newValue;
     },
-    "formData.PROTOCOL_ADDR_405"(newValue) {
-      this.formData.PROTOCOL_ADDR_405 = newValue;
-    },
-    "formData.PROTOCOL_ADDR_406"(newValue) {
-      this.formData.PROTOCOL_ADDR_406 = newValue;
-    },
+
     "formData.PROTOCOL_ADDR_407"(newValue) {
       this.formData.PROTOCOL_ADDR_407 = newValue;
     },
@@ -10568,6 +10587,8 @@ export default {
   components: { SelfTest },
   data() {
     return {
+      PROTOCOL_ADDR_405Val: "",
+      PROTOCOL_ADDR_406Val: "",
       formData: {
         enableSettingBit4: null,
 
@@ -10583,8 +10604,7 @@ export default {
 
         heatingFanOnTemperature: null,
         heatingFanRecoveryTemperature: null,
-        PROTOCOL_ADDR_405: null,
-        PROTOCOL_ADDR_406: null,
+
         PROTOCOL_ADDR_407: null,
 
         chargingOvercurrentProtection: null,

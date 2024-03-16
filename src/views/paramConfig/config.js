@@ -2050,6 +2050,17 @@ export const info2 = {
               val: "",
               unit: "",
             },
+            {
+              key: "PROTOCOL_ADDR_408",
+              isShow: 1,
+              canSet: 1,
+              installerIsShow: 0,
+              installerCanSet: 0,
+              consumerIsShow: 0,
+              consumerCanSet: 0,
+              val: "",
+              unit: "",
+            },
           ],
         },
         {

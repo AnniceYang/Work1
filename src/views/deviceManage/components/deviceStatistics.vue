@@ -168,6 +168,14 @@
             ? $t("menuManage.close")
             : $t("menuManage.open")
         }}</el-descriptions-item>
+        <el-descriptions-item
+          :label="$t('deviceManage.batteryConditionSwitch')"
+          >{{
+            deviceInfo.batteryConditionSwitch == 0
+              ? $t("menuManage.close")
+              : $t("menuManage.open")
+          }}</el-descriptions-item
+        >
       </el-descriptions>
 
       <el-descriptions

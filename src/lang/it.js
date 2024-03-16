@@ -650,6 +650,7 @@ export default {
     PROTOCOL_ADDR_405: "Capacità nominale della batteria",
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
+    PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
     electricityMeter: "Contatore elettrico",
 
     otherSettings: "Altre impostazioni",
@@ -1248,6 +1249,7 @@ export default {
     systemLockStatus13:
       "Discrepanza tra la raccolta della corrente di carica e la scheda principale",
     energyFlowSwitch: "Interruttore ottimizzazione del flusso energetico",
+    batteryConditionSwitch: "Le condizioni per l'aggiornamento della batteria",
     batchImport: "Importazione di Batch",
   },
   modelManage: {
@@ -1535,6 +1537,7 @@ export default {
     PROTOCOL_ADDR_405: "Capacità nominale della batteria",
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
+    PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
     otherSet: "Altre impostazioni",
 
     resetDeviceCommunicationSettingsToInitialValues:

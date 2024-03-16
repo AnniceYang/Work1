@@ -39,6 +39,17 @@
           <el-radio :label="1">{{ $t("menuManage.open") }}</el-radio>
         </el-radio-group>
       </el-form-item>
+
+      <el-form-item
+        :label="$t('deviceManage.batteryConditionSwitch')"
+        prop="batteryConditionSwitch"
+      >
+        <el-radio-group v-model="dataForm.batteryConditionSwitch">
+          <el-radio :label="0">{{ $t("menuManage.close") }}</el-radio>
+          <el-radio :label="1">{{ $t("menuManage.open") }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
       <el-form-item :label="$t('deviceManage.timeZone')" prop="timeZone">
         <el-select
           v-model="dataForm.timeZone"
@@ -188,6 +199,9 @@ export default {
           },
         ],
         energyFlowSwitch: [{ required: true, message: "", trigger: "blur" }],
+        batteryConditionSwitch: [
+          { required: true, message: "", trigger: "blur" },
+        ],
         timeZone: [{ required: true, message: "", trigger: "blur" }],
       },
       modelList: [],
@@ -211,6 +225,7 @@ export default {
         sn: null,
         type: 0,
         energyFlowSwitch: 1,
+        batteryConditionSwitch: 1,
       };
       if (info) {
         for (const key in this.dataForm) {
