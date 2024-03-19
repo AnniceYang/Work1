@@ -17,7 +17,7 @@
         <el-menu-item index="8">{{
           $t("deviceManage.systemSettings")
         }}</el-menu-item>
-        <el-menu-item index="9">{{
+        <el-menu-item index="9" v-if="isAdmin">{{
           $t("deviceManage.batteryParameters")
         }}</el-menu-item>
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
@@ -8570,8 +8570,14 @@
                     v-model="formData.enableSettingBit4"
                     style="width: 100px"
                   >
-                    <el-option label="关闭" value="0"></el-option>
-                    <el-option label="开启" value="1"></el-option>
+                    <el-option
+                      :label="$t('menuManage.close')"
+                      value="0"
+                    ></el-option>
+                    <el-option
+                      :label="$t('menuManage.open')"
+                      value="1"
+                    ></el-option>
                   </el-select>
                   <el-button @click="saveEnableSettings" class="save-button">{{
                     $t("common.save")
@@ -10799,6 +10805,10 @@ export default {
     };
   },
   computed: {
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
+
     // 计算属性，根据 WiFi 强度值计算强度级别
     getWifiStrengthLevel() {
       return (wifiStrength) => {

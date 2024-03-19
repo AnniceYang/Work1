@@ -278,7 +278,7 @@
         </el-col>
       </el-row>
 
-      <el-card style="margin-top: 20px">
+      <el-card class="card3-content" style="margin-top: 20px">
         <div slot="header">
           <span>{{ $t("deviceManage.realTimePower") }}</span>
           <el-date-picker
@@ -296,7 +296,7 @@
         </div>
       </el-card>
 
-      <el-card style="margin-top: 20px">
+      <el-card v-if="isAdmin" style="margin-top: 20px">
         <div slot="header">
           <span>{{ $t("deviceManage.realTime") }}</span>
           <el-date-picker
@@ -464,6 +464,7 @@ export default {
         yDataLoadElec: [],
         yDataFeedNetwork: [],
         yDataBuyElec: [],
+        yDataBatteryTotalSoc: [],
       },
       chartData4: {
         xData: [],
@@ -798,29 +799,31 @@ export default {
         });
     },
     getDevicePowerData() {
-      (this.chartData3 = {
+      this.chartData3 = {
         xData: [],
         yDataBattery: [],
         yDataPvElec: [],
         yDataLoadElec: [],
         yDataFeedNetwork: [],
         yDataBuyElec: [],
-      }),
-        qryDevicePowerData({
-          time: this.time / 1000,
-          deviceId: this.deviceInfo.id,
-        }).then((res) => {
-          if (res) {
-            res.forEach((item) => {
-              this.chartData3.xData.push(item.time);
-              this.chartData3.yDataBattery.push(item.battery);
-              this.chartData3.yDataPvElec.push(item.pvElec);
-              this.chartData3.yDataLoadElec.push(item.loadElec);
-              this.chartData3.yDataFeedNetwork.push(item.feedNetwork);
-              this.chartData3.yDataBuyElec.push(item.buyElec);
-            });
-          }
-        });
+        yDataBatteryTotalSoc: [],
+      };
+      qryDevicePowerData({
+        time: this.time / 1000,
+        deviceId: this.deviceInfo.id,
+      }).then((res) => {
+        if (res) {
+          res.forEach((item) => {
+            this.chartData3.xData.push(item.time);
+            this.chartData3.yDataBattery.push(item.battery);
+            this.chartData3.yDataPvElec.push(item.pvElec);
+            this.chartData3.yDataLoadElec.push(item.loadElec);
+            this.chartData3.yDataFeedNetwork.push(item.feedNetwork);
+            this.chartData3.yDataBuyElec.push(item.buyElec);
+            this.chartData3.yDataBatteryTotalSoc.push(item.batteryTotalSoc);
+          });
+        }
+      });
     },
     getDeviceRecordData() {
       qryDevicePowerData({
@@ -885,6 +888,10 @@ export default {
 }
 
 .card2-content {
+}
+
+.card3-content {
+  margin-top: 20px;
 }
 
 .menu {
