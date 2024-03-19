@@ -115,12 +115,12 @@ export default {
         yAxis: [
           {
             type: "value",
-            name: "W",
+            name: "P (W)",
             position: "left",
           },
           {
             type: "value",
-            name: "%",
+            name: "SOC (%)",
             min: 0,
             max: 100,
             position: "right",
