@@ -189,12 +189,12 @@
                 >{{ $t("deviceManage.OTAupgrade") }}</el-button
               >
 
-              <el-button
+              <!-- <el-button
                 type="text"
                 @click="handleRecord(scope.row)"
                 v-if="permissions.admin_lsydeviceupgrade_view"
                 >{{ $t("deviceManage.upgradeRecord") }}</el-button
-              >
+              > -->
 
               <el-button
                 type="text"
