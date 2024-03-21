@@ -159,7 +159,8 @@
                     operationInformation.runInformationObj.wifiStrengthVal
                   )
                 }}
-                <span>
+                <span
+                  >&nbsp;
                   {{
                     operationInformation.runInformationObj.wifiStrengthVal
                   }}</span
