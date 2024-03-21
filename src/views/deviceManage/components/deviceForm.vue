@@ -24,6 +24,15 @@
           :placeholder="$t('common.inputPrompt')"
         />
       </el-form-item>
+
+      <!-- 通讯棒类型 -->
+      <el-form-item :label="$t('deviceManage.wifiFourRod')" prop="wifiFourRod">
+        <el-radio-group v-model="dataForm.wifiFourRod">
+          <el-radio :label="1">{{ $t("deviceManage.wifi") }}</el-radio>
+          <el-radio :label="4">{{ $t("deviceManage.fourGmodel") }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
       <!-- <el-form-item label="设备类型" prop="type">
         <el-radio-group v-model="dataForm.type">
           <el-radio :label="0">NB</el-radio>
@@ -198,6 +207,9 @@ export default {
             trigger: "blur",
           },
         ],
+
+        wifiFourRod: [{ required: true, message: "", trigger: "blur" }],
+
         energyFlowSwitch: [{ required: true, message: "", trigger: "blur" }],
         batteryConditionSwitch: [
           { required: true, message: "", trigger: "blur" },
@@ -224,6 +236,7 @@ export default {
         timeZone: null,
         sn: null,
         type: 0,
+        wifiFourRod: 1,
         energyFlowSwitch: 1,
         batteryConditionSwitch: 1,
       };

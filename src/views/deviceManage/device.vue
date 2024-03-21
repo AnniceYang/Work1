@@ -173,21 +173,30 @@
             fixed="right"
           >
             <template slot-scope="scope">
-              <el-button type="text" @click="handleStatistics(scope.row)">{{
-                $t("deviceManage.details")
-              }}</el-button>
-              <!-- <el-button
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                "
+              >
+                <el-button type="text" @click="handleStatistics(scope.row)">{{
+                  $t("deviceManage.details")
+                }}</el-button>
+                <!-- <el-button
                 type="text"
                 @click="handleCellSet(scope.row)"
                 v-if="permissions.admin_lsydevice_edit"
                 >{{ $t("deviceManage.batterySettings") }}</el-button
               > -->
-              <el-button
-                type="text"
-                @click="handleUpgrade(scope.row)"
-                v-if="permissions.admin_dogappversioninfo_ota"
-                >{{ $t("deviceManage.OTAupgrade") }}</el-button
-              >
+                <el-button
+                  type="text"
+                  @click="handleUpgrade(scope.row)"
+                  v-if="permissions.admin_dogappversioninfo_ota"
+                  >{{ $t("deviceManage.OTAupgrade") }}</el-button
+                >
+              </div>
 
               <!-- <el-button
                 type="text"
@@ -195,26 +204,34 @@
                 v-if="permissions.admin_lsydeviceupgrade_view"
                 >{{ $t("deviceManage.upgradeRecord") }}</el-button
               > -->
-
-              <el-button
-                type="text"
-                @click="handleRealTime(scope.row)"
-                v-if="permissions.operation_info"
-                >{{ $t("deviceManage.operationParameters") }}</el-button
+              <div
+                style="
+                  display: flex;
+                  flex-direction: row;
+                  align-items: center;
+                  justify-content: center;
+                "
               >
-              <el-button
-                type="text"
-                @click="handleForm(scope.row)"
-                v-if="permissions.admin_lsydevice_edit"
-                >{{ $t("common.edit") }}</el-button
-              >
-              <el-button
-                type="text"
-                style="color: red"
-                @click="handleDel(scope.row.id)"
-                v-if="permissions.admin_lsydevice_del"
-                >{{ $t("common.delete") }}</el-button
-              >
+                <el-button
+                  type="text"
+                  @click="handleRealTime(scope.row)"
+                  v-if="permissions.operation_info"
+                  >{{ $t("deviceManage.operationParameters") }}</el-button
+                >
+                <el-button
+                  type="text"
+                  @click="handleForm(scope.row)"
+                  v-if="permissions.admin_lsydevice_edit"
+                  >{{ $t("common.edit") }}</el-button
+                >
+                <el-button
+                  type="text"
+                  style="color: red"
+                  @click="handleDel(scope.row.id)"
+                  v-if="permissions.admin_lsydevice_del"
+                  >{{ $t("common.delete") }}</el-button
+                >
+              </div>
             </template>
           </el-table-column>
         </el-table>

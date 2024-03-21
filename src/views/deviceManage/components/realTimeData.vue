@@ -47,9 +47,6 @@
             <el-descriptions-item :label="$t('common.createTime')">{{
               deviceInfo.createTime | parseTime
             }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('common.WiFistrength')">{{
-              getWifiStrengthLevel(operationInformation.wifiStrength)
-            }}</el-descriptions-item>
           </el-descriptions>
         </el-card>
 
@@ -156,6 +153,18 @@
                   ]
                 }}
               </el-descriptions-item>
+              <el-descriptions-item :label="$t('common.wifiStrength')"
+                >{{
+                  getWifiStrengthLevel(
+                    operationInformation.runInformationObj.wifiStrengthVal
+                  )
+                }}
+                <span>
+                  {{
+                    operationInformation.runInformationObj.wifiStrengthVal
+                  }}</span
+                ></el-descriptions-item
+              >
             </el-descriptions>
           </el-card>
 
@@ -3099,7 +3108,7 @@
               >
                 <div style="display: flex">
                   <el-input
-                    v-model="PROTOCOL_ADDR_405Val"
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_405Val"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">Ah</template>
@@ -3114,7 +3123,10 @@
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave('PROTOCOL_ADDR_405', PROTOCOL_ADDR_405Val)
+                      handleSave(
+                        'PROTOCOL_ADDR_405',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_405Val
+                      )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -3126,7 +3138,7 @@
               >
                 <div style="display: flex">
                   <el-select
-                    v-model="PROTOCOL_ADDR_406Val"
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_406Val"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -3150,7 +3162,10 @@
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave('PROTOCOL_ADDR_406', PROTOCOL_ADDR_406Val)
+                      handleSave(
+                        'PROTOCOL_ADDR_406',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_406Val
+                      )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -3162,7 +3177,7 @@
               >
                 <div style="display: flex">
                   <el-select
-                    v-model="formData.PROTOCOL_ADDR_407"
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_407Val"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -3187,7 +3202,7 @@
                     @click="
                       handleSave(
                         'PROTOCOL_ADDR_407',
-                        formData.PROTOCOL_ADDR_407
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_407Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10490,10 +10505,6 @@ export default {
       this.formData.heatingFanRecoveryTemperature = newValue;
     },
 
-    "formData.PROTOCOL_ADDR_407"(newValue) {
-      this.formData.PROTOCOL_ADDR_407 = newValue;
-    },
-
     "batteryParameter.batterySetObj.chargingOvercurrentProtectionVal"(
       newValue
     ) {
@@ -10593,8 +10604,6 @@ export default {
   components: { SelfTest },
   data() {
     return {
-      PROTOCOL_ADDR_405Val: "",
-      PROTOCOL_ADDR_406Val: "",
       formData: {
         enableSettingBit4: null,
 
@@ -10610,8 +10619,6 @@ export default {
 
         heatingFanOnTemperature: null,
         heatingFanRecoveryTemperature: null,
-
-        PROTOCOL_ADDR_407: null,
 
         chargingOvercurrentProtection: null,
         chargingOvercurrentProtectionDelay: null,
@@ -10812,6 +10819,7 @@ export default {
     // 计算属性，根据 WiFi 强度值计算强度级别
     getWifiStrengthLevel() {
       return (wifiStrength) => {
+        console.log("WifiStrength is:" + wifiStrength);
         if (wifiStrength >= -40 && wifiStrength <= -30) {
           //   console.log(wifiStrength);
           // console.log("222----------");

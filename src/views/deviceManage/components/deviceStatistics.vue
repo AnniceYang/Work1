@@ -163,6 +163,13 @@
         <el-descriptions-item :label="$t('deviceManage.equipmentRemarks')">{{
           deviceInfo.remarks
         }}</el-descriptions-item>
+
+        <el-descriptions-item :label="$t('deviceManage.wifiFourRod')">{{
+          deviceInfo.wifiFourRod == 1
+            ? $t("deviceManage.wifi")
+            : $t("deviceManage.fourGmodel")
+        }}</el-descriptions-item>
+
         <el-descriptions-item :label="$t('deviceManage.energyFlowSwitch')">{{
           deviceInfo.energyFlowSwitch == 0
             ? $t("menuManage.close")

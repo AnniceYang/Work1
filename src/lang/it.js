@@ -13,7 +13,7 @@ export default {
     medium: "Medio",
     unknown: "Sconosciuto",
     strong: "Forte",
-    WiFistrength: "Forza del Segnale WiFi",
+    wifiStrength: "Forza del Segnale WiFi",
     websiteName: "Sistema di Integrazione di Accumulo Energetico",
     subtitle: "Energia Accumulata",
     name: "Nome",
@@ -1249,6 +1249,9 @@ export default {
     systemLockStatus13:
       "Discrepanza tra la raccolta della corrente di carica e la scheda principale",
     energyFlowSwitch: "Interruttore ottimizzazione del flusso energetico",
+    wifiFourRod: "Tipo dongle di comunicazione",
+    wifi: "Versione WiFi",
+    fourGmodel: "Versione 4G",
     batteryConditionSwitch: "Le condizioni per l'aggiornamento della batteria",
     batchImport: "Importazione di Batch",
   },
