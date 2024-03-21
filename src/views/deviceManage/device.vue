@@ -173,14 +173,7 @@
             fixed="right"
           >
             <template slot-scope="scope">
-              <div
-                style="
-                  display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
+              <div class="operate-buttons">
                 <el-button type="text" @click="handleStatistics(scope.row)">{{
                   $t("deviceManage.details")
                 }}</el-button>
@@ -204,14 +197,7 @@
                 v-if="permissions.admin_lsydeviceupgrade_view"
                 >{{ $t("deviceManage.upgradeRecord") }}</el-button
               > -->
-              <div
-                style="
-                  display: flex;
-                  flex-direction: row;
-                  align-items: center;
-                  justify-content: center;
-                "
-              >
+              <div class="operate-buttons">
                 <el-button
                   type="text"
                   @click="handleRealTime(scope.row)"
@@ -565,4 +551,13 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.operate-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.operate-buttons > .el-button {
+  margin: 5px;
+}
+</style>
