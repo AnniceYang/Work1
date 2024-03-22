@@ -160,10 +160,9 @@
                   )
                 }}
                 <span
-                  >&nbsp;
-                  {{
+                  >&nbsp; ({{
                     operationInformation.runInformationObj.wifiStrengthVal
-                  }}</span
+                  }})</span
                 ></el-descriptions-item
               >
             </el-descriptions>
