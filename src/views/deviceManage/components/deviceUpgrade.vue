@@ -10,12 +10,12 @@
       :model="dataForm"
       :rules="dataRule"
       ref="dataForm"
-      label-width="140px"
+      label-width="200px"
     >
-      <el-form-item :label="$t('deviceManage.deviceName')">
+      <el-form-item :label="$t('deviceManage.deviceName')" class="wrap-text">
         <el-input v-model="deviceInfo.name" disabled />
       </el-form-item>
-      <el-form-item :label="$t('deviceManage.upgradeType')">
+      <el-form-item :label="$t('deviceManage.upgradeType')" class="wrap-text">
         <el-select
           v-model="appType"
           :placeholder="$t('common.selectPrompt')"
@@ -30,7 +30,11 @@
           />
         </el-select>
       </el-form-item>
-      <el-form-item :label="$t('deviceManage.upgradePackage')" prop="id">
+      <el-form-item
+        :label="$t('deviceManage.upgradePackage')"
+        prop="id"
+        class="wrap-text"
+      >
         <el-select
           v-model="dataForm.id"
           :placeholder="$t('common.selectPrompt')"
@@ -136,6 +140,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.wrap-text {
+  white-space: normal;
+}
 .btn {
   display: flex;
   justify-content: center;

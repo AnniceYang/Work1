@@ -152,3 +152,8 @@ export default {
   },
 };
 </script>
+<style lang="scss" scoped>
+.menu-wrapper {
+  width: 250px;
+}
+</style>
