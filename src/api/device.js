@@ -45,6 +45,24 @@ export function delDevice(data) {
   });
 }
 
+//解除安装商绑定
+export function unbindAgent(data) {
+  return request({
+    url: "/admin/lsydevice/unbindAgent",
+    method: "post",
+    data,
+  });
+}
+
+//解除用户绑定
+export function unbindUser(data) {
+  return request({
+    url: "/admin/lsydevice/unbindUser",
+    method: "post",
+    data,
+  });
+}
+
 // 电池充放电设置详情
 export function qryCellInfo(query) {
   return request({

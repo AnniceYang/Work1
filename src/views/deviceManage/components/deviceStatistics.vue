@@ -189,9 +189,20 @@
         :title="$t('deviceManage.userInformation')"
         style="margin-top: 20px"
       >
-        <el-descriptions-item :label="$t('deviceManage.userName')">{{
-          deviceInfo.bindUserName
-        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.userName')"
+          >{{ deviceInfo.bindUserName }}
+
+          <span style="margin-left: 15px"></span>
+          <el-button
+            v-if="isAdmin"
+            class="unbind"
+            type="danger"
+            icon="el-icon-delete"
+            @click="showUnbindModal('user')"
+            >{{ $t("common.unbind") }}</el-button
+          >
+        </el-descriptions-item>
+
         <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.bindName
         }}</el-descriptions-item>
@@ -200,20 +211,35 @@
         }}</el-descriptions-item>
       </el-descriptions>
 
-      <el-descriptions
-        :title="$t('deviceManage.installerInformation')"
-        style="margin-top: 20px"
+      <div
+        class="installer-container"
+        style="display: flex; align-items: center"
       >
-        <el-descriptions-item :label="$t('deviceManage.installerName')">{{
-          deviceInfo.installerName
-        }}</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
-          deviceInfo.installName
-        }}</el-descriptions-item>
-        <el-descriptions-item :label="$t('deviceManage.installationTime')">{{
-          deviceInfo.installTime | parseTime
-        }}</el-descriptions-item>
-      </el-descriptions>
+        <el-descriptions
+          :title="$t('deviceManage.installerInformation')"
+          style="margin-top: 20px"
+        >
+          <el-descriptions-item :label="$t('deviceManage.installerName')"
+            >{{ deviceInfo.installerName }}
+            <span style="margin-left: 15px"></span>
+            <el-button
+              v-if="isAdmin"
+              class="unbind"
+              type="danger"
+              icon="el-icon-delete"
+              @click="showUnbindModal('agent')"
+              >{{ $t("common.unbind") }}</el-button
+            ></el-descriptions-item
+          >
+
+          <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
+            deviceInfo.installName
+          }}</el-descriptions-item>
+          <el-descriptions-item :label="$t('deviceManage.installationTime')">{{
+            deviceInfo.installTime | parseTime
+          }}</el-descriptions-item>
+        </el-descriptions>
+      </div>
 
       <div style="margin-top: 20px">
         <el-form :inline="true">
@@ -407,6 +433,8 @@ import {
   qryDeviceElectricityData,
   qryDeviceIncomeData,
   qryDevicePowerData,
+  unbindAgent,
+  unbindUser,
 } from "@/api/device";
 import ElectricityData from "./electricityData.vue";
 import IncomeData from "./incomeData.vue";
@@ -437,6 +465,7 @@ export default {
         selectedPage: null,
       },
       exportDate: [],
+      type: "",
 
       deviceInfo: {},
       devStatusFilter: [
@@ -671,6 +700,41 @@ export default {
     };
   },
   methods: {
+    //点击显示解绑确认弹窗的逻辑
+
+    showUnbindModal(type) {
+      let confirmText = "";
+      let unbindFunction = null;
+      const id = this.deviceInfo.id;
+
+      if (type === "agent") {
+        confirmText = this.$t("common.sureUnbindAgent");
+        unbindFunction = unbindAgent;
+      } else if (type === "user") {
+        confirmText = this.$t("common.sureUnbindUser");
+        unbindFunction = unbindUser;
+      }
+
+      this.$confirm(confirmText, this.$t("common.confirm"), {
+        confirmButtonText: this.$t("common.confirm"),
+        cancelButtonText: this.$t("common.cancel"),
+        type: "warning",
+      })
+        .then(() => {
+          unbindFunction({ id }).then((response) => {
+            console.log(response);
+            if (response) {
+              this.$message.success(this.$t("common.successfullyUnbind"));
+            } else {
+              this.$message.error(this.$t("common.failedUnbind"));
+            }
+          }); //调用对应的解绑接口
+        })
+        .catch(() => {
+          this.$message.error("An error occurred.");
+        });
+    },
+
     showExportModal() {
       this.exportModalVisible = true;
     },

@@ -13,7 +13,7 @@ export function getTotal(query) {
   return request({
     url: "/admin/customer/board/total",
     method: "get",
-    params: query
+    params: query,
   });
 }
 
@@ -22,7 +22,7 @@ export function electricityData(query) {
   return request({
     url: "/admin/customer/board/electricity/data",
     method: "get",
-    params: query
+    params: query,
   });
 }
 
@@ -31,7 +31,7 @@ export function electricityIncome(query) {
   return request({
     url: "/admin/customer/board/electricity/income",
     method: "get",
-    params: query
+    params: query,
   });
 }
 
@@ -40,6 +40,6 @@ export function electricityPower(query) {
   return request({
     url: "/admin/customer/board/electricity/power",
     method: "get",
-    params: query
+    params: query,
   });
 }

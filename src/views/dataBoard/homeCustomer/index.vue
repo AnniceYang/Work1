@@ -107,7 +107,9 @@
                   <span>{{ $t("dataBoard.discharging") }}</span>
                 </div>
                 <div class="item-line">
-                  <span class="val">{{ data2.batterySoc ? data2.batterySoc : 0 }}</span>
+                  <span class="val">{{
+                    data2.batterySoc ? data2.batterySoc : 0
+                  }}</span>
                   <span class="unit1">%</span>
                 </div>
               </div>
@@ -117,7 +119,9 @@
                   <span>{{ $t("deviceManage.pvPower") }}</span>
                 </div>
                 <div class="item-line">
-                  <span class="val">{{ data2.pvPower ? data2.pvPower : 0 }}</span>
+                  <span class="val">{{
+                    data2.pvPower ? data2.pvPower : 0
+                  }}</span>
                   <span class="unit1">w</span>
                 </div>
               </div>
@@ -126,21 +130,27 @@
           <div class="center-item1-bottom">
             <div class="item1-line2">
               <div>
-                <span class="val">{{ data2.gridPower ? data2.gridPower : 0 }}</span>
+                <span class="val">{{
+                  data2.gridPower ? data2.gridPower : 0
+                }}</span>
                 <span>w</span>
               </div>
               <div>{{ $t("deviceManage.powerGrid") }}</div>
             </div>
             <div class="item1-line2">
               <div>
-                <span class="val">{{ data2.batteryPower ? data2.batteryPower : 0 }}</span>
+                <span class="val">{{
+                  data2.batteryPower ? data2.batteryPower : 0
+                }}</span>
                 <span>w</span>
               </div>
               <div>{{ $t("deviceManage.battery") }}</div>
             </div>
             <div class="item1-line2">
               <div>
-                <span class="val">{{ data2.loadPower ? data2.loadPower : 0 }}</span>
+                <span class="val">{{
+                  data2.loadPower ? data2.loadPower : 0
+                }}</span>
                 <span>w</span>
               </div>
               <div>{{ $t("deviceManage.load") }}</div>
@@ -154,10 +164,10 @@
           </div>
           <div class="center-content2">
             <div class="center-content2-item">
-              <DeviceStatus :chartData="chartData4" color="#208A42"/>
+              <DeviceStatus :chartData="chartData4" color="#208A42" />
             </div>
             <div class="center-content2-item">
-              <DeviceStatus :chartData="chartData5" color="#FD9F15"/>
+              <DeviceStatus :chartData="chartData5" color="#FD9F15" />
             </div>
           </div>
         </div>
@@ -486,12 +496,12 @@ export default {
       getTotal({ deviceId: this.deviceId }).then((res) => {
         this.total = res;
         this.chartData4.data = [
-          { value: res.selfUseProportion, name: '自用比例' },
-          { value: 100 - res.selfUseProportion, name: '' }
+          { value: res.selfUseProportion, name: "自用比例" },
+          { value: 100 - res.selfUseProportion, name: "" },
         ];
         this.chartData5.data = [
-          { value: res.sellElecProportion, name: '卖电比例' },
-          { value: 100 - res.sellElecProportion, name: '' }
+          { value: res.sellElecProportion, name: "卖电比例" },
+          { value: 100 - res.sellElecProportion, name: "" },
         ];
       });
       this.getElectricityData();
