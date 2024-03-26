@@ -229,8 +229,8 @@
               icon="el-icon-delete"
               @click="showUnbindModal('agent')"
               >{{ $t("common.unbind") }}</el-button
-            ></el-descriptions-item
-          >
+            >
+          </el-descriptions-item>
 
           <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
             deviceInfo.installName
