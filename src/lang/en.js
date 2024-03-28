@@ -1,5 +1,18 @@
 export default {
   common: {
+    slideVerification: "Slide Verification",
+    passwordCheck: "Passwords entered twice do not match!",
+    phoneNumberCheck: "Please enter a valid phone number",
+    passwordEnter:
+      "Please enter a password containg 6-12 characters including letters and numbers",
+    nameMessage: "Please enter a username",
+    genderMessage: "Please slect a gender",
+    phoneNumberNotempty: "Phone number cannot be empty",
+    birthCheck: "Please select a date of birth",
+    enterOriginPassword: "Please enter the original password",
+    enterNewPassword: "Please enter a new password",
+    enterOnceNewPassword: "Please enter the new password again.",
+
     page: "page",
     export: "Export",
     unbind: "Unbind",
@@ -1257,8 +1270,8 @@ export default {
     systemLockStatus13:
       "The charging current collected from the board does not match the motherboard",
     energyFlowSwitch: "Energy flow chart switch",
-    batteryConditionSwitch: "Conditons for battery upgrade",
-    wifiFourRod: "Communication dongle type",
+    batteryConditionSwitch: "Battery Upgrade switch",
+    wifiFourRod: "Dongle type",
     wifi: "Wifi Version",
     fourGmodel: "4G Version",
     batchImport: "Batch Import",

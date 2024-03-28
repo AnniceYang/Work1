@@ -1,5 +1,18 @@
 export default {
   common: {
+    slideVerification: "Verifica tramite scorrimento",
+    passwordCheck: "Le password inserite due volte non corrispondono!",
+    phoneNumberCheck: "Si prega di inserire un numero di telefono valido",
+    passwordEnter:
+      "Si prega di inserire una password contenente da 6 a 12 caratteri, inclusi lettere e numeri",
+    nameMessage: "Si prega di inserire un nome utente",
+    genderMessage: "Si prega di selezionare un genere",
+    phoneNumberNotempty: "Il numero di telefono non può essere vuoto",
+    birthCheck: "Si prega di selezionare una data di nascita",
+    enterOriginPassword: "Si prega di inserire la password originale",
+    enterNewPassword: "Si prega di inserire una nuova password",
+    enterOnceNewPassword: "Si prega di inserire nuovamente la nuova password",
+
     page: "pagina",
     export: "Esporta",
     unbind: "Sciogliere",

@@ -1,5 +1,17 @@
 export default {
   common: {
+    slideVerification: "滑动解锁",
+    passwordCheck: "两次输入密码不一致！",
+    phoneNumberCheck: "请输入正确的手机号",
+    passwordEnter: "请输入6-2位包含字母和数字的密码",
+    nameMessage: "请输入用户名称",
+    genderMessage: "请选择性别",
+    phoneNumberNotempty: "手机号不能为空",
+    birthCheck: "请选择生日",
+    enterOriginPassword: "请输入原密码",
+    enterNewPassword: "请输入新密码",
+    enterOnceNewPassword: "请再次输入新密码",
+
     page: "page",
     export: "导出",
     unbind: "解绑",

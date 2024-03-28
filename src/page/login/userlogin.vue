@@ -91,7 +91,7 @@ export default {
       block_y: 0,
       imgurl: "",
       miniimgurl: "",
-      text: "Slide Verification",
+
       socialForm: {
         code: "",
         state: "",
@@ -133,7 +133,14 @@ export default {
   computed: {
     ...mapGetters(["tagWel"]),
   },
+  mounted() {
+    this.getTextTranslation();
+  },
   methods: {
+    getTextTranslation() {
+      this.text = this.$t("common.slideVerification");
+    },
+
     // 关闭验证码
     back() {
       this.imgurl = "";

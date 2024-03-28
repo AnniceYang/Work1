@@ -1,5 +1,3 @@
-
-
 <template>
   <div class="app-container calendar-list-container">
     <basic-container>
@@ -18,32 +16,62 @@
                   <el-input v-model="ruleForm.username" disabled />
                 </el-form-item>
                 <el-form-item :label="$t('common.phoneNumber')">
-                  <el-input v-model="ruleForm.phone"/>
+                  <el-input v-model="ruleForm.phone" />
                 </el-form-item>
                 <el-form-item :label="$t('common.userName')" prop="name">
                   <el-input v-model="ruleForm.name" />
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="primary" @click="submitForm()">{{ $t('common.modifyingUserName') }}</el-button>
+                  <el-button type="primary" @click="submitForm()">{{
+                    $t("common.modifyingUserName")
+                  }}</el-button>
                 </el-form-item>
               </div>
             </el-col>
           </el-form>
         </el-row>
         <el-row>
-          <el-form :model="dataForm" ref="dataForm" :rules="dataRule" label-width="140px">
+          <el-form
+            :model="dataForm"
+            ref="dataForm"
+            :rules="dataRule"
+            label-width="140px"
+          >
             <el-col :span="12">
-              <el-form-item :label="$t('common.originalPassword')" prop="password">
-                <el-input v-model="dataForm.password" show-password :placeholder="$t('common.inputPrompt')" />
+              <el-form-item
+                :label="$t('common.originalPassword')"
+                prop="password"
+              >
+                <el-input
+                  v-model="dataForm.password"
+                  show-password
+                  :placeholder="$t('common.inputPrompt')"
+                />
               </el-form-item>
-              <el-form-item :label="$t('common.newPassword')" prop="newPassword">
-                <el-input v-model="dataForm.newPassword" show-password :placeholder="$t('common.inputPrompt')" />
+              <el-form-item
+                :label="$t('common.newPassword')"
+                prop="newPassword"
+              >
+                <el-input
+                  v-model="dataForm.newPassword"
+                  show-password
+                  :placeholder="$t('common.inputPrompt')"
+                />
               </el-form-item>
-              <el-form-item :label="$t('common.confirmPassword')" prop="newPassword2">
-                <el-input v-model="dataForm.newPassword2" show-password :placeholder="$t('common.inputPrompt')" />
+              <el-form-item
+                :label="$t('common.confirmPassword')"
+                prop="newPassword2"
+              >
+                <el-input
+                  v-model="dataForm.newPassword2"
+                  show-password
+                  :placeholder="$t('common.inputPrompt')"
+                />
               </el-form-item>
               <el-form-item>
-                <el-button type="primary" @click="changePwd()">{{$t('common.changePassword')}}</el-button>
+                <el-button type="primary" @click="changePwd()">{{
+                  $t("common.changePassword")
+                }}</el-button>
               </el-form-item>
             </el-col>
           </el-form>
@@ -61,48 +89,88 @@ export default {
     const validatePass = (rule, value, callback) => {
       if (this.dataForm.password !== "") {
         if (value !== this.dataForm.newPassword) {
-          callback(new Error("两次输入密码不一致!"));
+          callback(new Error($t("common.passwordCheck")));
         } else {
           callback();
         }
       } else {
         callback();
       }
-    }
+    };
     const validatePhone = (rule, value, callback) => {
       if (!/^1(3|4|5|6|7|8|9)\d{9}$/.test(value)) {
-        callback(new Error("请输入正确的手机号"))
+        callback(new Error($t("common.phoneNumberCheck")));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     const validatePwd = (rule, value, callback) => {
       if (!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/.test(value)) {
-        callback(new Error("请输入6-12位包含字母和数字的密码"))
+        callback(new Error($t("common.passwordEnter")));
       } else {
-        callback()
+        callback();
       }
-    }
+    };
     return {
       ruleForm: {},
       rules: {
-        name: [{ required: true, trigger: "blur", message: "请输入用户名称" }],
-        sex: [{ required: true, message: "请选择性别", trigger: "blur" }],
-        phone: [
-          { required: true, message: "手机号不能为空", trigger: "blur" },
-          { validator: validatePhone, trigger: ["blur", 'change'] },
+        name: [
+          {
+            required: true,
+            trigger: "blur",
+            message: $t("common.nameMessage"),
+          },
         ],
-        birthDate: [{ required: true, message: "请选择生日", trigger: "blur" }],
+        sex: [
+          {
+            required: true,
+            message: $t("common.genderMessage"),
+            trigger: "blur",
+          },
+        ],
+        phone: [
+          {
+            required: true,
+            message: $t("common.phoneNumberNotempty"),
+            trigger: "blur",
+          },
+          { validator: validatePhone, trigger: ["blur", "change"] },
+        ],
+        birthDate: [
+          { required: true, message: $t("common.birthCheck"), trigger: "blur" },
+        ],
       },
 
       visible: false,
       dataForm: {},
       dataRule: {
-        password: [{ required: true, message: "请输入原密码", trigger: "blur" }],
-        newPassword: [{ required: true, message: "请输入新密码", trigger: "blur" }],
-        newPassword2: [{ required: true, message: "请再次输入新密码", trigger: "blur" },
-        { required: false, validator: validatePass, trigger: ["blur", 'change'] }]
-      }
+        password: [
+          {
+            required: true,
+            message: $t("common.enterOriginPassword"),
+            trigger: "blur",
+          },
+        ],
+        newPassword: [
+          {
+            required: true,
+            message: $t("common.enterNewPassword"),
+            trigger: "blur",
+          },
+        ],
+        newPassword2: [
+          {
+            required: true,
+            message: $t("common.enterOnceNewPassword"),
+            trigger: "blur",
+          },
+          {
+            required: false,
+            validator: validatePass,
+            trigger: ["blur", "change"],
+          },
+        ],
+      },
     };
   },
   created() {
@@ -120,7 +188,7 @@ export default {
       this.$store.dispatch("GetUserInfo");
     },
     resetForm() {
-      console.log('用户信息', this.userInfo)
+      console.log("用户信息", this.userInfo);
       this.ruleForm = {
         area: this.userInfo.area,
         birthDate: this.userInfo.birthDate,
@@ -134,36 +202,40 @@ export default {
         sex: this.userInfo.sex,
         userId: this.userInfo.userId,
         username: this.userInfo.username,
-      }
+      };
       if (this.userInfo.adminComFileInfosVo) {
         this.ruleForm.fileId = this.userInfo.adminComFileInfosVo.fileId;
         this.$nextTick(() => {
-          this.$refs.fileUpload.init(this.userInfo.adminComFileInfosVo ? this.userInfo.adminComFileInfosVo.filePath : '')
-        })
+          this.$refs.fileUpload.init(
+            this.userInfo.adminComFileInfosVo
+              ? this.userInfo.adminComFileInfosVo.filePath
+              : ""
+          );
+        });
       }
     },
     submitForm() {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
           editInfo(this.ruleForm).then((response) => {
-            this.$notify.success(this.$t('common.successfulModification'));
+            this.$notify.success(this.$t("common.successfulModification"));
             this.getUserInfo();
-          })
+          });
         }
-      })
+      });
     },
     changePwd() {
       this.$refs.dataForm.validate((valid) => {
         if (valid) {
-          editPassword(this.dataForm).then(res => {
-            this.$notify.success(this.$t('common.successfulModification'))
+          editPassword(this.dataForm).then((res) => {
+            this.$notify.success(this.$t("common.successfulModification"));
             this.$store.dispatch("LogOut").then(() => {
-              location.reload()
-            })
-          })
+              location.reload();
+            });
+          });
         }
-      })
-    }
+      });
+    },
   },
 };
 </script>
