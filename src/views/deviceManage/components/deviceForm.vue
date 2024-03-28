@@ -33,6 +33,16 @@
         </el-radio-group>
       </el-form-item>
 
+      <!-- 机器型号 -->
+      <el-form-item :label="$t('deviceManage.tpType')" prop="tpType">
+        <el-radio-group v-model="dataForm.tpType">
+          <el-radio :label="1">{{ $t("deviceManage.hm6Version") }}</el-radio>
+          <el-radio :label="3">{{
+            $t("deviceManage.threephaseVersion")
+          }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
       <!-- <el-form-item label="设备类型" prop="type">
         <el-radio-group v-model="dataForm.type">
           <el-radio :label="0">NB</el-radio>
@@ -210,6 +220,8 @@ export default {
 
         wifiFourRod: [{ required: true, message: "", trigger: "blur" }],
 
+        tpType: [{ required: true, message: "", trigger: "blur" }],
+
         energyFlowSwitch: [{ required: true, message: "", trigger: "blur" }],
         batteryConditionSwitch: [
           { required: true, message: "", trigger: "blur" },
@@ -237,6 +249,7 @@ export default {
         sn: null,
         type: 0,
         wifiFourRod: 1,
+        tpType: 1,
         energyFlowSwitch: 1,
         batteryConditionSwitch: 1,
       };

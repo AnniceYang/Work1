@@ -167,7 +167,17 @@
         <el-descriptions-item :label="$t('deviceManage.wifiFourRod')">{{
           deviceInfo.wifiFourRod == 1
             ? $t("deviceManage.wifi")
-            : $t("deviceManage.fourGmodel")
+            : deviceInfo.wifiFourRod === 4
+            ? $t("deviceManage.fourGmodel")
+            : ""
+        }}</el-descriptions-item>
+
+        <el-descriptions-item :label="$t('deviceManage.tpType')">{{
+          deviceInfo.tpType == 1
+            ? $t("deviceManage.hm6Version")
+            : deviceInfo.tpType === 3
+            ? $t("deviceManage.threephaseVersion")
+            : ""
         }}</el-descriptions-item>
 
         <el-descriptions-item :label="$t('deviceManage.energyFlowSwitch')">{{

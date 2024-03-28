@@ -1268,6 +1268,7 @@ export default {
       "Discrepanza tra la raccolta della corrente di carica e la scheda principale",
     energyFlowSwitch: "Interruttore ottimizzazione del flusso energetico",
     wifiFourRod: "Tipo dongle",
+    tpType: "Tipo macchina",
     wifi: "Versione WiFi",
     fourGmodel: "Versione 4G",
     batteryConditionSwitch: "Le condizioni per l'aggiornamento della batteria",
