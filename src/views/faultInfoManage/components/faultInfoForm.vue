@@ -19,6 +19,14 @@
           <el-radio :label="3">{{ $t("faultInfo.threeLevel") }}</el-radio>
         </el-radio-group>
       </el-form-item>
+
+      <el-form-item :label="$t('faultInfo.systemType')" prop="systemType">
+        <el-radio-group v-model="dataForm.systemType">
+          <el-radio :label="1">{{ $t("faultInfo.singlePhase") }}</el-radio>
+          <el-radio :label="3">{{ $t("faultInfo.threePhase") }}</el-radio>
+        </el-radio-group>
+      </el-form-item>
+
       <el-form-item :label="$t('faultInfo.faultCode')" prop="code">
         <el-input
           v-model="dataForm.code"
@@ -43,7 +51,7 @@
           <el-radio :label="0">{{ $t("faultInfo.hide") }}</el-radio>
         </el-radio-group>
       </el-form-item>
-      <el-form-item
+      <!-- <el-form-item
         :label="$t('faultInfo.possibleCauses')"
         prop="possibleCauses"
       >
@@ -54,7 +62,7 @@
           maxlength="500"
           :placeholder="$t('common.inputPrompt')"
         />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item :label="$t('faultInfo.solutionMeasures')" prop="solutions">
         <tinymce ref="tinymce" :height="200" v-model="dataForm.solutions" />
       </el-form-item>
@@ -87,6 +95,7 @@ export default {
           },
         ],
         level: [{ required: true, message: "", trigger: "blur" }],
+        systemType: [{ required: true, message: "", trigger: "blur" }],
         content: [
           {
             required: true,
@@ -118,6 +127,7 @@ export default {
         code: null,
         content: null,
         level: 1,
+        systemType: 1,
         installerDisplay: 0,
         possibleCauses: null,
         solutions: null,

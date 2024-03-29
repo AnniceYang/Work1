@@ -68,6 +68,14 @@
                   )}9)`"
                   value="page9"
                 ></el-option>
+
+                <el-option
+                  :label="`${$t('deviceManage.scheduledSettings')}(${$t(
+                    'common.page'
+                  )}11)`"
+                  value="page11"
+                ></el-option>
+
                 <el-option
                   :label="`${$t('parameterConfiguration.selfTestReport')}(${$t(
                     'common.page'

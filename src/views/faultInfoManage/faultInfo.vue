@@ -79,6 +79,7 @@
                 {{ faultLevelFilter[scope.row.level - 1] }}
               </template>
             </el-table-column>
+
             <el-table-column
               align="center"
               :label="$t('faultInfo.displayOrNot')"
@@ -100,6 +101,12 @@
             </el-table-column>
             <el-table-column
               align="center"
+              :label="$t('faultInfo.possibleCauses')"
+              prop="possibleCauses"
+              width="110"
+            />
+            <el-table-column
+              align="center"
               :label="$t('faultInfo.faultCode')"
               prop="code"
               width="110"
@@ -109,11 +116,7 @@
               :label="$t('faultInfo.faultInformation')"
               prop="content"
             />
-            <el-table-column
-              align="center"
-              :label="$t('faultInfo.possibleCauses')"
-              prop="possibleCauses"
-            />
+
             <el-table-column
               align="center"
               :label="$t('faultInfo.solutionMeasures')"

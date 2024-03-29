@@ -206,6 +206,15 @@ export function saveConfigData(data) {
   });
 }
 
+// 保存Page11参数设置（系统设置）
+export function savePage11ConfigData(data) {
+  return request({
+    url: "/admin/param/set/updatePage11",
+    method: "post",
+    data,
+  });
+}
+
 // 数据显示配置详情（电池）
 export function getConfigDataCell(data) {
   return request({

@@ -3786,11 +3786,11 @@
                 </div>
               </el-descriptions-item>
               <!-- <el-descriptions-item :label="$t('deviceManage.systemTimeSetting')" v-if="systemSetIsDisplay('otherSetObj', 'systemTimeSetting')">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
-                <el-button v-if="systemSetBtnIsDisplay('otherSetObj', 'systemTimeSetting')" type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
-              </div>
-            </el-descriptions-item> -->
+                <div style="display: flex;">
+                  <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
+                  <el-button v-if="systemSetBtnIsDisplay('otherSetObj', 'systemTimeSetting')" type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
+                </div>
+              </el-descriptions-item> -->
               <el-descriptions-item
                 :label="$t('deviceManage.inverterActivePowerSetting')"
                 v-if="
@@ -7231,8 +7231,8 @@
                 }}mA</el-descriptions-item
               >
               <!-- <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
-            <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
-            <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item> -->
+              <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
+              <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item> -->
               <el-descriptions-item
                 :label="$t('deviceManage.chargingOvercurrentProtection')"
                 v-if="
@@ -7243,21 +7243,21 @@
                     .chargingOvercurrentProtectionVal
                 }}A
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="chargingOvercurrentProtection"
-                    v-model="formData.chargingOvercurrentProtection"
-                    :min="1"
-                    :max="250"
-                    class="custom-input"
-                  ></el-input>
-                  <span>A</span>
-                  <el-button
-                    @click="savechargingOvercurrentProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="chargingOvercurrentProtection"
+                      v-model="formData.chargingOvercurrentProtection"
+                      :min="1"
+                      :max="250"
+                      class="custom-input"
+                    ></el-input>
+                    <span>A</span>
+                    <el-button
+                      @click="savechargingOvercurrentProtection"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.chargingOvercurrentProtectionDelay')"
@@ -7271,21 +7271,21 @@
                     .chargingOvercurrentProtectionDelayVal
                 }}s
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="chargingOvercurrentProtectionDelay"
-                    v-model="formData.chargingOvercurrentProtectionDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
-                  <el-button
-                    @click="savechargingOvercurrentProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="chargingOvercurrentProtectionDelay"
+                      v-model="formData.chargingOvercurrentProtectionDelay"
+                      :min="1"
+                      :max="50"
+                      class="custom-input"
+                    ></el-input>
+                    <span>s</span>
+                    <el-button
+                      @click="savechargingOvercurrentProtectionDelay"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageProtection')"
@@ -7294,19 +7294,19 @@
                   batteryParameter.batterySetObj.cellOvervoltageProtectionVal
                 }}V
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageProtection"
-                    v-model="formData.cellOvervoltageProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>mV</span>
-                  <el-button
-                    @click="savecellOvervoltageProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOvervoltageProtection"
+                      v-model="formData.cellOvervoltageProtection"
+                      class="custom-input"
+                    ></el-input>
+                    <span>mV</span>
+                    <el-button
+                      @click="savecellOvervoltageProtection"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageProtectionDelay')"
@@ -7318,21 +7318,21 @@
                     .cellOvervoltageProtectionDelayVal
                 }}ms
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageProtectionDelay"
-                    v-model="formData.cellOvervoltageProtectionDelay"
-                    :min="100"
-                    :max="10000"
-                    class="custom-input"
-                  ></el-input>
-                  <span>ms</span>
-                  <el-button
-                    @click="savecellOvervoltageProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOvervoltageProtectionDelay"
+                      v-model="formData.cellOvervoltageProtectionDelay"
+                      :min="100"
+                      :max="10000"
+                      class="custom-input"
+                    ></el-input>
+                    <span>ms</span>
+                    <el-button
+                      @click="savecellOvervoltageProtectionDelay"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeProtection')"
@@ -7341,19 +7341,19 @@
                   batteryParameter.batterySetObj.cellOverDischargeProtectionVal
                 }}V
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtection"
-                    v-model="formData.cellOverDischargeProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="savecellOverDischargeProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOverDischargeProtection"
+                      v-model="formData.cellOverDischargeProtection"
+                      class="custom-input"
+                    ></el-input>
+                    <span>V</span>
+                    <el-button
+                      @click="savecellOverDischargeProtection"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeProtectionDelay')"
@@ -7365,21 +7365,21 @@
                     .cellOverDischargeProtectionDelayVal
                 }}ms
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtectionDelay"
-                    v-model="formData.cellOverDischargeProtectionDelay"
-                    :min="100"
-                    :max="10000"
-                    class="custom-input"
-                  ></el-input>
-                  <span>ms</span>
-                  <el-button
-                    @click="savecellOverDischargeProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOverDischargeProtectionDelay"
+                      v-model="formData.cellOverDischargeProtectionDelay"
+                      :min="100"
+                      :max="10000"
+                      class="custom-input"
+                    ></el-input>
+                    <span>ms</span>
+                    <el-button
+                      @click="savecellOverDischargeProtectionDelay"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.overvoltageHysteresisVoltage')"
@@ -7389,19 +7389,19 @@
                     .overvoltageHysteresisVoltageVal
                 }}V
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="overvoltageHysteresisVoltage"
-                    v-model="formData.overvoltageHysteresisVoltage"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="saveovervoltageHysteresisVoltage"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="overvoltageHysteresisVoltage"
+                      v-model="formData.overvoltageHysteresisVoltage"
+                      class="custom-input"
+                    ></el-input>
+                    <span>V</span>
+                    <el-button
+                      @click="saveovervoltageHysteresisVoltage"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.overdischargeHysteresisVoltage')"
@@ -7413,19 +7413,19 @@
                     .overdischargeHysteresisVoltageVal
                 }}V
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="overdischargeHysteresisVoltage"
-                    v-model="formData.overdischargeHysteresisVoltage"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="saveoverdischargeHysteresisVoltage"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="overdischargeHysteresisVoltage"
+                      v-model="formData.overdischargeHysteresisVoltage"
+                      class="custom-input"
+                    ></el-input>
+                    <span>V</span>
+                    <el-button
+                      @click="saveoverdischargeHysteresisVoltage"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOvervoltageRecoveryDelay')"
@@ -7435,21 +7435,21 @@
                     .cellOvervoltageRecoveryDelayVal
                 }}s
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageRecoveryDelay"
-                    v-model="formData.cellOvervoltageRecoveryDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
-                  <el-button
-                    @click="savecellOvervoltageRecoveryDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOvervoltageRecoveryDelay"
+                      v-model="formData.cellOvervoltageRecoveryDelay"
+                      :min="1"
+                      :max="50"
+                      class="custom-input"
+                    ></el-input>
+                    <span>s</span>
+                    <el-button
+                      @click="savecellOvervoltageRecoveryDelay"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.cellOverDischargeRecoveryDelay')"
@@ -7461,21 +7461,21 @@
                     .cellOverDischargeRecoveryDelayVal
                 }}s
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeRecoveryDelay"
-                    v-model="formData.cellOverDischargeRecoveryDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
-                  <el-button
-                    @click="savecellOverDischargeRecoveryDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="cellOverDischargeRecoveryDelay"
+                      v-model="formData.cellOverDischargeRecoveryDelay"
+                      :min="1"
+                      :max="50"
+                      class="custom-input"
+                    ></el-input>
+                    <span>s</span>
+                    <el-button
+                      @click="savecellOverDischargeRecoveryDelay"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7491,21 +7491,21 @@
                     .highTemperatureProtectionDuringDischargeVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionDuringDischarge"
-                    v-model="formData.highTemperatureProtectionDuringDischarge"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionDuringDischarge"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="highTemperatureProtectionDuringDischarge"
+                      v-model="formData.highTemperatureProtectionDuringDischarge"
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="savehighTemperatureProtectionDuringDischarge"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7523,25 +7523,25 @@
                     .highTemperatureProtectionRecoveryDuringDischargeVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionRecoveryDuringDischarge"
-                    v-model="
-                      formData.highTemperatureProtectionRecoveryDuringDischarge
-                    "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="
-                      savehighTemperatureProtectionRecoveryDuringDischarge
-                    "
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="highTemperatureProtectionRecoveryDuringDischarge"
+                      v-model="
+                        formData.highTemperatureProtectionRecoveryDuringDischarge
+                      "
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="
+                        savehighTemperatureProtectionRecoveryDuringDischarge
+                      "
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7557,21 +7557,21 @@
                     .lowTemperatureProtectionDuringDischargeVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="lowTemperatureProtectionDuringDischarge"
-                    v-model="formData.lowTemperatureProtectionDuringDischarge"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savelowTemperatureProtectionDuringDischarge"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="lowTemperatureProtectionDuringDischarge"
+                      v-model="formData.lowTemperatureProtectionDuringDischarge"
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="savelowTemperatureProtectionDuringDischarge"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7587,21 +7587,21 @@
                     .dischargeLowTemperatureProtectionRecoveryVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="dischargeLowTemperatureProtectionRecovery"
-                    v-model="formData.dischargeLowTemperatureProtectionRecovery"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savedischargeLowTemperatureProtectionRecovery"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="dischargeLowTemperatureProtectionRecovery"
+                      v-model="formData.dischargeLowTemperatureProtectionRecovery"
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="savedischargeLowTemperatureProtectionRecovery"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7617,21 +7617,21 @@
                     .highTemperatureProtectionDuringChargingVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionDuringCharging"
-                    v-model="formData.highTemperatureProtectionDuringCharging"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionDuringCharging"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="highTemperatureProtectionDuringCharging"
+                      v-model="formData.highTemperatureProtectionDuringCharging"
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="savehighTemperatureProtectionDuringCharging"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="
@@ -7649,23 +7649,23 @@
                     .highTemperatureProtectionRecoveryDuringChargingVal
                 }}℃
                 <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionRecoveryDuringCharging"
-                    v-model="
-                      formData.highTemperatureProtectionRecoveryDuringCharging
-                    "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionRecoveryDuringCharging"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+                    <el-input
+                      type="number"
+                      id="highTemperatureProtectionRecoveryDuringCharging"
+                      v-model="
+                        formData.highTemperatureProtectionRecoveryDuringCharging
+                      "
+                      :min="0"
+                      :max="70"
+                      class="custom-input"
+                    ></el-input>
+                    <span>℃</span>
+                    <el-button
+                      @click="savehighTemperatureProtectionRecoveryDuringCharging"
+                      class="save-button"
+                      >{{ $t("common.save") }}</el-button
+                    >
+                  </div> -->
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.lowDuringCharging')"
@@ -7696,9 +7696,9 @@
               </el-descriptions-item>
 
               <!-- {{
-                  batteryParameter.batterySetObj
-                    .lowTemperatureProtectionDuringChargingVal
-                }}℃</el-descriptions-item> -->
+                    batteryParameter.batterySetObj
+                      .lowTemperatureProtectionDuringChargingVal
+                  }}℃</el-descriptions-item> -->
 
               <el-descriptions-item
                 :label="$t('deviceManage.lowRecoveryDuringCharging')"

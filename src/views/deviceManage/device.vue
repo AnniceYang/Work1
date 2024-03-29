@@ -265,6 +265,13 @@
       @back="pageState = 1"
     />
 
+    <!-- 三相运行信息 -->
+    <RealTimeData
+      v-if="pageState === 6"
+      ref="TPrealTimeData"
+      @back="pageState = 1"
+    />
+
     <!-- 自检 -->
     <SelfTest v-if="pageState === 5" ref="selfTest" @back="pageState = 1" />
   </div>
@@ -406,10 +413,15 @@ export default {
     },
     // 实时数据
     handleRealTime(info) {
-      if (info.ilk === 0) {
-        this.pageState = 3;
+      if (info.tpType === 1) {
+        this.pageState = 3; //Assuming pageState 3 is for sing-phase real-time data
         this.$nextTick(() => {
           this.$refs.realTimeData.init(info);
+        });
+      } else {
+        this.pageState = 6;
+        this.$nextTick(() => {
+          this.$refs.TPrealTimeData.init(info);
         });
       }
     },
