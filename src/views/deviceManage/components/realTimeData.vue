@@ -21,9 +21,9 @@
           $t("deviceManage.batteryParameters")
         }}</el-menu-item>
 
-        <el-menu-item index="11">{{
+        <!-- <el-menu-item index="11">{{
           $t("deviceManage.scheduledSettings")
-        }}</el-menu-item>
+        }}</el-menu-item> -->
 
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
           $t("parameterConfiguration.threePhaseMeterBasic")
@@ -9520,7 +9520,7 @@
           </el-card>
         </template>
 
-        <template v-else-if="activeIndex === '11'">
+        <!-- <template v-else-if="activeIndex === '11'">
           <el-card style="margin-top: 10px">
             <el-descriptions
               :title="$t('deviceManage.scheduledSettings')"
@@ -10425,7 +10425,7 @@
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
-        </template>
+        </template> -->
 
         <template v-else-if="activeIndex === '13'">
           <el-card

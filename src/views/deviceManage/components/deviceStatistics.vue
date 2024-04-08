@@ -484,6 +484,7 @@ export default {
       },
       exportDate: [],
       type: "",
+      date: "",
 
       deviceInfo: {},
       devStatusFilter: [
@@ -888,6 +889,8 @@ export default {
         });
     },
     getDevicePowerData() {
+      const selectedDate = moment(this.time).format("YYYY-MM-DD");
+
       this.chartData3 = {
         xData: [],
         yDataBattery: [],
@@ -898,7 +901,8 @@ export default {
         yDataBatteryTotalSoc: [],
       };
       qryDevicePowerData({
-        time: this.time / 1000,
+        date: selectedDate, //更新为所选择的日期
+        time: this.time / 1000, //传递时间戳
         deviceId: this.deviceInfo.id,
       }).then((res) => {
         if (res) {

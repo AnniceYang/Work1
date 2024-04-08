@@ -161,6 +161,27 @@ export function qryConfigDataShow() {
   });
 }
 
+//三相系统显示配置详情
+//page Type41监控数据 42主控数据 43电表数据
+//44EAST-BCU数据 45EAST-BMS数据 46设备信息
+//47监控设置 48主控用户 49日期设置量
+export function qryTpConfigDataShow(query) {
+  return request({
+    url: "/admin/tp/config/page",
+    method: "get",
+    params: query,
+  });
+}
+
+//三相-页面参数配置-新增或修改
+export function TpConfigModify(data) {
+  return request({
+    url: "/admin/tp/config/modify",
+    method: "post",
+    data,
+  });
+}
+
 // 主动获取参数（7、-运行信息，8、系统设置, 9-电池参数）
 export function getConfigData(data) {
   return request({

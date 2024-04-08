@@ -16,12 +16,23 @@
                 :placeholder="$t('common.inputPrompt')"
               ></el-input>
             </el-form-item>
-            <el-form-item :label="$t('deviceManage.serialNumber')">
-              <el-input
-                v-model="listQuery.serialNumber"
-                :placeholder="$t('common.inputPrompt')"
-              ></el-input>
-            </el-form-item>
+            <template v-if="isAdmin">
+              <el-form-item :label="$t('deviceManage.cellVoltage')">
+                <el-select
+                  v-model="listQuery.cellVoltage"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <el-option
+                    :label="$t('deviceManage.normal')"
+                    value="0"
+                  ></el-option>
+                  <el-option
+                    :label="$t('deviceManage.error')"
+                    value="1"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+            </template>
             <el-form-item :label="$t('deviceManage.onlineStatus')">
               <el-select
                 v-model="listQuery.onlineStatus"
@@ -266,7 +277,7 @@
     />
 
     <!-- 三相运行信息 -->
-    <RealTimeData
+    <TPrealTimeData
       v-if="pageState === 6"
       ref="TPrealTimeData"
       @back="pageState = 1"
@@ -284,17 +295,20 @@ import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
 import DeviceStatistics from "./components/deviceStatistics.vue";
 import RealTimeData from "./components/realTimeData.vue";
+
 import UpdateRecord from "./components/updateRecord.vue";
 import DeviceUpgrade from "./components/deviceUpgrade.vue";
 import SelfTest from "./components/selfTest.vue";
 import { mapGetters, mapState } from "vuex";
 import { getUrlParams } from "@/util/util";
+import TPrealTimeData from "./components/TPrealTimeData.vue";
 export default {
   components: {
     DeviceForm,
     CellSet,
     DeviceStatistics,
     RealTimeData,
+    TPrealTimeData,
     DeviceUpgrade,
     QrCode,
     UpdateRecord,
