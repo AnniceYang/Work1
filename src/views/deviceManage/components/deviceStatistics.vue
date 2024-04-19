@@ -138,6 +138,7 @@
         <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{
           devStatusFilter[deviceInfo.status]
         }}</el-descriptions-item>
+
         <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
           onlineStatusFilter[deviceInfo.onlineStatus]
         }}</el-descriptions-item>
@@ -840,6 +841,8 @@ export default {
       this.getData();
     },
     getElectricityData() {
+      const startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
+      const endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
       (this.chartData1 = {
         xData: [],
         yDataTotalElec: [],
@@ -851,6 +854,8 @@ export default {
         qryDeviceElectricityData({
           ...this.listQuery,
           deviceId: this.deviceInfo.id,
+          startDate: startDate,
+          endDate: endDate,
         }).then((res) => {
           if (res) {
             res.forEach((item) => {
@@ -865,6 +870,8 @@ export default {
         });
     },
     getIncomeData() {
+      const startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
+      const endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
       (this.chartData2 = {
         xData: [],
         yDataSpontaneousIncome: [],
@@ -874,6 +881,8 @@ export default {
         qryDeviceIncomeData({
           ...this.listQuery,
           deviceId: this.deviceInfo.id,
+          startDate: startDate,
+          endDate: endDate,
         }).then((res) => {
           if (res) {
             this.money = res.totalIncome;
@@ -919,7 +928,9 @@ export default {
       });
     },
     getDeviceRecordData() {
+      const selectedDate2 = moment(this.time2).format("YYYY-MM-DD");
       qryDevicePowerData({
+        date: selectedDate2,
         time: this.time2 / 1000,
         deviceId: this.deviceInfo.id,
       }).then((res) => {

@@ -41,6 +41,23 @@
                   ></el-option>
                 </el-select>
               </el-form-item>
+
+              <el-form-item :label="$t('faultInfo.tpType')">
+                <el-select
+                  v-model="listQuery.tpType"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <el-option
+                    :label="$t('faultInfo.singlePhase')"
+                    :value="1"
+                  ></el-option>
+                  <el-option
+                    :label="$t('faultInfo.threePhase')"
+                    :value="3"
+                  ></el-option>
+                </el-select>
+              </el-form-item>
+
               <el-form-item :label="$t('faultInfo.faultInformation')">
                 <el-input
                   v-model="listQuery.content"
@@ -99,12 +116,30 @@
                 >
               </template>
             </el-table-column>
+
+            <!-- 系统类型 -->
             <el-table-column
+              align="center"
+              :label="$t('faultInfo.tpType')"
+              prop="tpType"
+              width="110"
+            >
+              <template slot-scope="scope">
+                {{
+                  scope.row.tpType === 1
+                    ? $t("faultInfo.singlePhase")
+                    : $t("faultInfo.threePhase")
+                }}
+              </template>
+            </el-table-column>
+
+            <!-- 可能原因 -->
+            <!-- <el-table-column
               align="center"
               :label="$t('faultInfo.possibleCauses')"
               prop="possibleCauses"
               width="110"
-            />
+            /> -->
             <el-table-column
               align="center"
               :label="$t('faultInfo.faultCode')"
@@ -227,13 +262,26 @@ export default {
     handleSelect(index) {
       this.activeIndex = index;
     },
+    //处理数据
+    processData(data) {
+      this.dataList = data.records.map((item) => {
+        if (item.code.startsWith("Dec")) {
+          item.tpType = 1;
+        } else if (item.code.startsWith("TP")) {
+          item.tpType = 3;
+        }
+        return item;
+      });
+      this.total = data.total;
+    },
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);
       qryFaultInfo(this.listQuery)
         .then((res) => {
-          this.dataList = res.records;
-          this.total = res.total;
+          this.processData(res);
+          // this.dataList = res.records;
+          // this.total = res.total;
         })
         .finally(() => {
           this.listLoading = false;

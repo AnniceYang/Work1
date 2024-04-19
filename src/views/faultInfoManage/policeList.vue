@@ -34,6 +34,22 @@
               ></el-option>
             </el-select>
           </el-form-item>
+          <el-form-item :label="$t('faultInfo.tpType')">
+            <el-select
+              v-model="listQuery.tpType"
+              :placeholder="$t('common.selectPrompt')"
+            >
+              <el-option
+                :label="$t('faultInfo.singlePhase')"
+                :value="1"
+              ></el-option>
+
+              <el-option
+                :label="$t('faultInfo.threePhase')"
+                :value="3"
+              ></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item :label="$t('faultInfo.alarmStatus')">
             <el-select
               v-model="listQuery.handleStatus"
@@ -89,17 +105,31 @@
           :label="$t('faultInfo.faultCode')"
           show-overflow-tooltip
         />
+        <el-table-column
+          align="center"
+          :label="$t('faultInfo.tpType')"
+          prop="tpType"
+          width="110"
+        >
+          <template slot-scope="scope">
+            {{
+              scope.row.tpType === 1
+                ? $t("faultInfo.singlePhase")
+                : $t("faultInfo.threePhase")
+            }}
+          </template>
+        </el-table-column>
         <el-table-column align="center" :label="$t('faultInfo.faultLevel')">
           <template slot-scope="scope">
             {{ faultLevelFilter[scope.row.level - 1] }}
           </template>
         </el-table-column>
-        <el-table-column
+        <!-- <el-table-column
           align="center"
           prop="possibleCauses"
           :label="$t('faultInfo.possibleCauses')"
           show-overflow-tooltip
-        />
+        /> -->
 
         <el-table-column
           align="center"
@@ -181,13 +211,27 @@ export default {
       window.open(exportUrl, "_blank");
     },
 
+    //处理数据
+    processData(data) {
+      this.dataList = data.records.map((item) => {
+        if (item.faultCode.startsWith("Dec")) {
+          item.tpType = 1;
+        } else if (item.faultCode.startsWith("TP")) {
+          item.tpType = 3;
+        }
+        return item;
+      });
+      this.total = data.total;
+    },
+
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);
       qryDeviceAlarm(this.listQuery)
         .then((res) => {
-          this.dataList = res.records;
-          this.total = res.total;
+          this.processData(res);
+          // this.dataList = res.records;
+          // this.total = res.total;
         })
         .finally(() => {
           this.listLoading = false;

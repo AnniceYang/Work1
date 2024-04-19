@@ -12023,8 +12023,32 @@ export default {
           if (this.activeIndex === "0") {
             this.$refs.selfTest.initMqttData(messageInfo);
           } else {
-            if (messageInfo.msgOperation === 5) {
+            if (this.activeIndex === "7" && messageInfo.valType === 7) {
+              console.log("page7 messageInfo:", JSON.parse(messageInfo.val));
+              console.log("page7 messageInfo:", messageInfo);
+              this.loading = false;
+              this.paramsChange(JSON.parse(messageInfo.val));
+            } else if (this.activeIndex === "8" && messageInfo.valType === 8) {
+              console.log("page8 messageInfo:", JSON.parse(messageInfo.val));
+              console.log("page8 messageInfo:", messageInfo);
+              this.loading = false;
+              this.paramsChange(JSON.parse(messageInfo.val));
+            } else if (this.activeIndex === "9" && messageInfo.valType === 9) {
+              console.log("page9 messageInfo:", JSON.parse(messageInfo.val));
+              console.log("page9 messageInfo:", messageInfo);
+              this.loading = false;
+              this.paramsChange(JSON.parse(messageInfo.val));
+            } else if (
+              this.activeIndex === "13" &&
+              messageInfo.valType === 13
+            ) {
+              console.log("page13 messageInfo:", JSON.parse(messageInfo.val));
+              console.log("page13 messageInfo:", messageInfo);
+              this.loading = false;
+              this.paramsChange(JSON.parse(messageInfo.val));
+            } else if (messageInfo.msgOperation === 5) {
               console.log("dataList", JSON.parse(messageInfo.val));
+              console.log("MessageInfo:", messageInfo);
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             }
@@ -12051,7 +12075,9 @@ export default {
     // 运行信息
     operationInformationIsDisplay(key1, key2) {
       let role = this.userInfo.roles[0];
-      // console.log(this.operationInformation[key1][key2 + 'isShow'])
+      // console.log(
+      //   "运行信息参数配置" + this.operationInformation[key1][key2 + "isShow"]
+      // );
       if (role == "1") {
         if (this.operationInformation[key1][key2 + "isShow"]) {
           return true;
@@ -12198,6 +12224,7 @@ export default {
     // 数据处理转换
     paramsChange(res) {
       console.log(res, "res------");
+      console.log(Array.isArray(res), "res是数组吗");
       if (!Array.isArray(res)) {
         return;
       }

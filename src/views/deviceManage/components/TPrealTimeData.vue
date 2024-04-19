@@ -11,16 +11,6 @@
         mode="horizontal"
         @select="handleSelect"
       >
-        <el-menu-item index="7">{{
-          $t("deviceManage.operationInformation")
-        }}</el-menu-item>
-        <el-menu-item index="8">{{
-          $t("deviceManage.systemSettings")
-        }}</el-menu-item>
-        <el-menu-item index="9" v-if="isAdmin">{{
-          $t("deviceManage.batteryParameters")
-        }}</el-menu-item>
-
         <el-menu-item index="41">{{
           $t("deviceManage.monitorData")
         }}</el-menu-item>
@@ -29,9 +19,33 @@
           $t("deviceManage.primaryControlData")
         }}</el-menu-item>
 
-        <el-menu-item index="49">{{
-          $t("deviceManage.scheduledSettings")
+        <el-menu-item index="43">{{
+          $t("deviceManage.meterData")
         }}</el-menu-item>
+
+        <el-menu-item index="44">{{
+          $t("deviceManage.eastBCUData")
+        }}</el-menu-item>
+
+        <el-menu-item index="45">{{
+          $t("deviceManage.eastBMSData")
+        }}</el-menu-item>
+
+        <el-menu-item index="46">{{
+          $t("deviceManage.deviceInformation")
+        }}</el-menu-item>
+
+        <el-menu-item index="47">{{
+          $t("deviceManage.monitorSettings")
+        }}</el-menu-item>
+
+        <el-menu-item index="48">{{
+          $t("deviceManage.masterUser")
+        }}</el-menu-item>
+
+        <!-- <el-menu-item index="49" v-if="isAdmin">{{
+          $t("deviceManage.scheduledSettings")
+        }}</el-menu-item> -->
 
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
           $t("parameterConfiguration.threePhaseMeterBasic")
@@ -63,1348 +77,3288 @@
           </el-descriptions>
         </el-card>
 
-        <template v-if="activeIndex === '7'">
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.runInformation"
-          >
+        <!-- 三相系统的专属 -->
+        <template v-if="activeIndex === '41'">
+          <el-card style="margin-top: 10px">
             <el-descriptions
-              :title="$t('deviceManage.operationInformation')"
+              :title="$t('deviceManage.monitorData')"
               :column="3"
             >
-              <el-descriptions-item
-                :label="$t('deviceManage.displayType')"
-                v-if="threePhaseIsDisplay('runInformationObj', 'displayType')"
-              >
-                {{
-                  operationInformation.runInformationObj.displayTypeVal
-                    | displayTypeValFilter
-                }}
+              <el-descriptions-item :label="$t('threePhase.TP_0X04_0')">
+                {{ TP_0X04_0Filter[voListMap["41"]["TP_0X04_0"].val] }}
               </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X04_1')">{{
+                voListMap["41"]["TP_0X04_1"].val
+              }}</el-descriptions-item>
+
               <el-descriptions-item
-                :label="$t('deviceManage.MCUSoftwareVersion')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'mcuSoftwareVersion'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_2')"
+                v-if="CCIsDisplay('41', 'TP_0X04_2')"
+                >{{ voListMap["41"]["TP_0X04_2"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_8')"
+                v-if="CCIsDisplay('41', 'TP_0X04_8')"
                 >{{
-                  operationInformation.runInformationObj.mcuSoftwareVersionVal
+                  TP_0X04_8Filter[voListMap["41"]["TP_0X04_8"].val]
                 }}</el-descriptions-item
               >
-
               <el-descriptions-item
-                :label="$t('deviceManage.MCUHardwareVersion')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'mcuHardwareVersion'
-                  )
-                "
-                >{{
-                  operationInformation.runInformationObj.mcuHardwareVersionVal
-                }}</el-descriptions-item
+                :label="$t('threePhase.TP_0X04_9')"
+                v-if="CCIsDisplay('41', 'TP_0X04_9')"
               >
-
+                {{ voListMap["41"]["TP_0X04_9"].val }}
+              </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.currentModeOfTheSystem')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'currentModeOfTheSystem'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_14')"
+                v-if="CCIsDisplay('41', 'TP_0X04_14')"
               >
-                <!-- {{ operationInformation.runInformationObj.currentModeOfTheSystemVal | systemModeFilter }} -->
-                {{
-                  systemModeFilter[
-                    operationInformation.runInformationObj
-                      .currentModeOfTheSystemVal
-                  ]
-                }}
+                {{ TP_0X04_14Filter[voListMap["41"]["TP_0X04_14"].val] }}
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('common.wifiStrength')"
-                >{{
-                  getWifiStrengthLevel(
-                    operationInformation.runInformationObj.wifiStrengthVal
-                  )
-                }}
-                <span
-                  >&nbsp; ({{
-                    operationInformation.runInformationObj.wifiStrengthVal
-                  }})</span
-                ></el-descriptions-item
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_18')"
+                v-if="CCIsDisplay('41', 'TP_0X04_18')"
               >
+                {{ BMSFilter[voListMap["41"]["TP_0X04_18"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_19')"
+                v-if="CCIsDisplay('41', 'TP_0X04_19')"
+              >
+                {{ meterNormalFilter[voListMap["41"]["TP_0X04_19"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_24')"
+                v-if="CCIsDisplay('41', 'TP_0X04_24')"
+                >{{
+                  voListMap["41"]["TP_0X04_24"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_25')"
+                v-if="CCIsDisplay('41', 'TP_0X04_25')"
+                >{{ voListMap["41"]["TP_0X04_25"].val }}%</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_31_32')"
+                v-if="CCIsDisplay('41', 'TP_0X04_31_32')"
+                >{{
+                  voListMap["41"]["TP_0X04_31_32"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_33_34')"
+                v-if="CCIsDisplay('41', 'TP_0X04_33_34')"
+                >{{
+                  voListMap["41"]["TP_0X04_33_34"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_35_36')"
+                v-if="CCIsDisplay('41', 'TP_0X04_35_36')"
+              >
+                {{ voListMap["41"]["TP_0X04_35_36"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_37_38')"
+                v-if="CCIsDisplay('41', 'TP_0X04_37_38')"
+              >
+                {{ voListMap["41"]["TP_0X04_37_38"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_39_40')"
+                v-if="CCIsDisplay('41', 'TP_0X04_39_40')"
+              >
+                {{ voListMap["41"]["TP_0X04_39_40"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_41_42')"
+                v-if="CCIsDisplay('41', 'TP_0X04_41_42')"
+              >
+                {{ voListMap["41"]["TP_0X04_41_42"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_43_44')"
+                v-if="CCIsDisplay('41', 'TP_0X04_43_44')"
+              >
+                {{ voListMap["41"]["TP_0X04_43_44"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_45_46')"
+                v-if="CCIsDisplay('41', 'TP_0X04_45_46')"
+              >
+                {{ voListMap["41"]["TP_0X04_45_46"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_47_48')"
+                v-if="CCIsDisplay('41', 'TP_0X04_47_48')"
+              >
+                {{ voListMap["41"]["TP_0X04_47_48"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_49_50')"
+                v-if="CCIsDisplay('41', 'TP_0X04_49_50')"
+              >
+                {{ voListMap["41"]["TP_0X04_49_50"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_51_52')"
+                v-if="CCIsDisplay('41', 'TP_0X04_51_52')"
+              >
+                {{ voListMap["41"]["TP_0X04_51_52"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_53_54')"
+                v-if="CCIsDisplay('41', 'TP_0X04_53_54')"
+              >
+                {{ voListMap["41"]["TP_0X04_53_54"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_55_56')"
+                v-if="CCIsDisplay('41', 'TP_0X04_55_56')"
+              >
+                {{ voListMap["41"]["TP_0X04_55_56"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_57_58')"
+                v-if="CCIsDisplay('41', 'TP_0X04_57_58')"
+              >
+                {{ voListMap["41"]["TP_0X04_57_58"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_59_60')"
+                v-if="CCIsDisplay('41', 'TP_0X04_59_60')"
+              >
+                {{ voListMap["41"]["TP_0X04_59_60"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_61_62')"
+                v-if="CCIsDisplay('41', 'TP_0X04_61_62')"
+              >
+                {{ voListMap["41"]["TP_0X04_61_62"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_63')"
+                v-if="CCIsDisplay('41', 'TP_0X04_63')"
+              >
+                {{ voListMap["41"]["TP_0X04_63"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_64')"
+                v-if="CCIsDisplay('41', 'TP_0X04_64')"
+              >
+                {{ voListMap["41"]["TP_0X04_64"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_65')"
+                v-if="CCIsDisplay('41', 'TP_0X04_65')"
+              >
+                {{ voListMap["41"]["TP_0X04_65"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_66')"
+                v-if="CCIsDisplay('41', 'TP_0X04_66')"
+              >
+                {{ voListMap["41"]["TP_0X04_66"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_67')"
+                v-if="CCIsDisplay('41', 'TP_0X04_67')"
+              >
+                {{ voListMap["41"]["TP_0X04_67"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_68')"
+                v-if="CCIsDisplay('41', 'TP_0X04_68')"
+              >
+                {{ voListMap["41"]["TP_0X04_68"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_69')"
+                v-if="CCIsDisplay('41', 'TP_0X04_69')"
+              >
+                {{ voListMap["41"]["TP_0X04_69"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_70')"
+                v-if="CCIsDisplay('41', 'TP_0X04_70')"
+              >
+                {{ voListMap["41"]["TP_0X04_70"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_77')"
+                v-if="CCIsDisplay('41', 'TP_0X04_77')"
+              >
+                {{ voListMap["41"]["TP_0X04_77"].val }}d
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_78')"
+                v-if="CCIsDisplay('41', 'TP_0X04_78')"
+              >
+                {{ voListMap["41"]["TP_0X04_78"].val }}h
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_79')"
+                v-if="CCIsDisplay('41', 'TP_0X04_79')"
+              >
+                {{ voListMap["41"]["TP_0X04_79"].val }}min
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_80')"
+                v-if="CCIsDisplay('41', 'TP_0X04_80')"
+              >
+                {{ voListMap["41"]["TP_0X04_80"].val }}s
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
 
-        <template v-else-if="activeIndex === '8'">
-          <el-card style="margin-top: 10px" v-if="systemSet.commonSet">
+        <template v-if="activeIndex === '42'">
+          <el-card style="margin-top: 10px">
             <el-descriptions
-              :title="$t('deviceManage.commonSettings')"
+              :title="$t('deviceManage.primaryControlData')"
               :column="3"
-              border
             >
               <el-descriptions-item
-                :label="$t('deviceManage.setSystemTime')"
-                v-if="systemSetIsDisplay('commonSetObj', 'systemTime')"
+                :label="$t('threePhase.TP_0X04_1024')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1024')"
               >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.systemTimeVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('commonSetObj', 'systemTime')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'systemTime',
-                        systemSet.commonSetObj.systemTimeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                {{ voListMap["42"]["TP_0X04_1024"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.communicationType')"
-                v-if="
-                  systemSetIsDisplay(
-                    'commonSetObj',
-                    'communicationProtocolType'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_1025')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1025')"
+                >{{ voListMap["42"]["TP_0X04_1025"].val }}</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.commonSetObj.communicationProtocolTypeVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.user')" value="0" />
-                    <el-option :label="$t('deviceManage.engineer')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'commonSetObj',
-                        'communicationProtocolType'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'communicationProtocolType',
-                        systemSet.commonSetObj.communicationProtocolTypeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1026')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1026')"
+                >{{ voListMap["42"]["TP_0X04_1026"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1027')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1027')"
+                >{{ voListMap["42"]["TP_0X04_1027"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1028')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1028')"
+              >
+                {{ voListMap["42"]["TP_0X04_1028"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.dailyCalibration')"
-                v-if="
-                  systemSetIsDisplay(
-                    'commonSetObj',
-                    'dailyPowerGenerationCalibration'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_1029')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1029')"
               >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.commonSetObj.dailyPowerGenerationCalibrationVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'commonSetObj',
-                        'dailyPowerGenerationCalibration'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'dailyPowerGenerationCalibration',
-                        systemSet.commonSetObj
-                          .dailyPowerGenerationCalibrationVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                {{ voListMap["42"]["TP_0X04_1029"].val }}kVar
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1030')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1030')"
+              >
+                {{ voListMap["42"]["TP_0X04_1030"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.totalCalibration')"
-                v-if="
-                  systemSetIsDisplay(
-                    'commonSetObj',
-                    'totalPowerGenerationCalibration'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_1031')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1031')"
               >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.commonSetObj.totalPowerGenerationCalibrationVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'commonSetObj',
-                        'totalPowerGenerationCalibration'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'totalPowerGenerationCalibration',
-                        systemSet.commonSetObj
-                          .totalPowerGenerationCalibrationVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                {{ countryCodeFilter[voListMap["42"]["TP_0X04_1031"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1032')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1032')"
+              >
+                {{ voListMap["42"]["TP_0X04_1032"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1033')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1033')"
+              >
+                {{ voListMap["42"]["TP_0X04_1033"].val }}W
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1034')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1034')"
+              >
+                {{ systemModeFilter[voListMap["42"]["TP_0X04_1034"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1035')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1035')"
+              >
+                {{ controlSourceFilter[voListMap["42"]["TP_0X04_1035"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1036')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1036')"
+                >{{ voListMap["42"]["TP_0X04_1036"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1037')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1037')"
+                >{{
+                  voListMap["42"]["TP_0X04_1037"].val
+                }}kW</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1038')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1038')"
+                >{{ voListMap["42"]["TP_0X04_1038"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1039_1040')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1039_1040')"
+                >{{
+                  voListMap["42"]["TP_0X04_1039_1040"].val
+                }}Wh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1041_1042')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1041_1042')"
+                >{{
+                  voListMap["42"]["TP_0X04_1041_1042"].val
+                }}Wh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1043_1044')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1043_1044')"
+                >{{
+                  voListMap["42"]["TP_0X04_1043_1044"].val
+                }}Wh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1045_1046')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1045_1046')"
+                >{{
+                  voListMap["42"]["TP_0X04_1045_1046"].val
+                }}Wh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1050')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1050')"
+              >
+                {{ systemStateFilter[voListMap["42"]["TP_0X04_1050"].val] }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.clearBatteryData')"
-                v-if="systemSetIsDisplay('commonSetObj', 'clearBatteryData')"
+                :label="$t('threePhase.TP_0X04_1051')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1051')"
+                >{{ voListMap["42"]["TP_0X04_1051"].val }}</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.commonSetObj.clearBatteryDataVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('commonSetObj', 'clearBatteryData')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'clearBatteryData',
-                        systemSet.commonSetObj.clearBatteryDataVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1052')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1052')"
+              >
+                {{ batteryStatusFilter[voListMap["42"]["TP_0X04_1052"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1053')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1053')"
+              >
+                {{ GridStateFilter[voListMap["42"]["TP_0X04_1053"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1054')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1054')"
+              >
+                {{ invertingStateFilter[voListMap["42"]["TP_0X04_1054"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1055')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1055')"
+                >{{
+                  faultStatusFilter[voListMap["42"]["TP_0X04_1055"].val]
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1057')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1057')"
+                >{{
+                  voListMap["42"]["TP_0X04_1057"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1058')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1058')"
+                >{{
+                  voListMap["42"]["TP_0X04_1058"].val
+                }}A</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1059')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1059')"
+                >{{
+                  voListMap["42"]["TP_0X04_1059"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1060')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1060')"
+                >{{
+                  voListMap["42"]["TP_0X04_1060"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1061')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1061')"
+                >{{
+                  voListMap["42"]["TP_0X04_1061"].val
+                }}kW</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1062')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1062')"
+                >{{
+                  voListMap["42"]["TP_0X04_1062"].val
+                }}kW</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1063')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1063')"
+                >{{ voListMap["42"]["TP_0X04_1063"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1064')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1064')"
+                >{{
+                  voListMap["42"]["TP_0X04_1064"].val
+                }}kΩ</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1065')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1065')"
+                >{{
+                  voListMap["42"]["TP_0X04_1065"].val
+                }}kΩ</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1066')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1066')"
+                >{{
+                  voListMap["42"]["TP_0X04_1066"].val
+                }}V</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1067')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1067')"
+                >{{
+                  voListMap["42"]["TP_0X04_1067"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1068')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1068')"
+                >{{
+                  voListMap["42"]["TP_0X04_1068"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1070')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1070')"
+                >{{
+                  voListMap["42"]["TP_0X04_1070"].val
+                }}V</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1071')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1071')"
+                >{{
+                  voListMap["42"]["TP_0X04_1071"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1072')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1072')"
+                >{{
+                  voListMap["42"]["TP_0X04_1072"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1073')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1073')"
+                >{{
+                  voListMap["42"]["TP_0X04_1073"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1074')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1074')"
+                >{{
+                  voListMap["42"]["TP_0X04_1074"].val
+                }}%</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1075')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1075')"
+                >{{
+                  voListMap["42"]["TP_0X04_1075"].val
+                }}%</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1076')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1076')"
+                >{{
+                  voListMap["42"]["TP_0X04_1076"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1077')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1077')"
+                >{{
+                  voListMap["42"]["TP_0X04_1077"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1078')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1078')"
+                >{{
+                  voListMap["42"]["TP_0X04_1078"].val
+                }}Min</el-descriptions-item
+              >
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.powerGridInformation')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1082')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1082')"
+                >{{
+                  voListMap["42"]["TP_0X04_1082"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1083')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1083')"
+                >{{
+                  voListMap["42"]["TP_0X04_1083"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1084')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1084')"
+                >{{
+                  voListMap["42"]["TP_0X04_1084"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1085')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1085')"
+                >{{
+                  voListMap["42"]["TP_0X04_1085"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1086')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1086')"
+                >{{
+                  voListMap["42"]["TP_0X04_1086"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1087')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1087')"
+                >{{
+                  voListMap["42"]["TP_0X04_1087"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1088')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1088')"
+                >{{
+                  voListMap["42"]["TP_0X04_1088"].val
+                }}Hz</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1089')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1089')"
+                >{{
+                  voListMap["42"]["TP_0X04_1089"].val
+                }}Hz</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1090')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1090')"
+                >{{
+                  voListMap["42"]["TP_0X04_1090"].val
+                }}Hz</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1091_1092')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1091_1092')"
+                >{{
+                  voListMap["42"]["TP_0X04_1091_1092"].val
+                }}VA</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1093_1094')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1093_1094')"
+                >{{
+                  voListMap["42"]["TP_0X04_1093_1094"].val
+                }}VA</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1095_1096')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1095_1096')"
+                >{{
+                  voListMap["42"]["TP_0X04_1095_1096"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1097_1098')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1097_1098')"
+                >{{
+                  voListMap["42"]["TP_0X04_1097_1098"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1099_1100')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1099_1100')"
+                >{{
+                  voListMap["42"]["TP_0X04_1099_1100"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1101_1102')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1101_1102')"
+                >{{
+                  voListMap["42"]["TP_0X04_1101_1102"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1103_1104')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1103_1104')"
+                >{{
+                  voListMap["42"]["TP_0X04_1103_1104"].val
+                }}VAR</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1105_1106')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1105_1106')"
+                >{{
+                  voListMap["42"]["TP_0X04_1105_1106"].val
+                }}VAR</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1107_1108')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1107_1108')"
+                >{{
+                  voListMap["42"]["TP_0X04_1107_1108"].val
+                }}VAR</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1109_1110')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1109_1110')"
+                >{{
+                  voListMap["42"]["TP_0X04_1109_1110"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1111_1112')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1111_1112')"
+                >{{
+                  voListMap["42"]["TP_0X04_1111_1112"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1113_1114')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1113_1114')"
+                >{{
+                  voListMap["42"]["TP_0X04_1113_1114"].val
+                }}VAR</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1115')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1115')"
+                >{{ voListMap["42"]["TP_0X04_1115"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.bootCommand')"
-                v-if="systemSetIsDisplay('commonSetObj', 'bootCommand')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.commonSetObj.bootCommandVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('commonSetObj', 'bootCommand')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'bootCommand',
-                        systemSet.commonSetObj.bootCommandVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1116')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1116')"
+                >{{ voListMap["42"]["TP_0X04_1116"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.shutdownCommand')"
-                v-if="systemSetIsDisplay('commonSetObj', 'shutdownCommand')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.commonSetObj.shutdownCommandVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('commonSetObj', 'shutdownCommand')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'shutdownCommand',
-                        systemSet.commonSetObj.shutdownCommandVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1117')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1117')"
+                >{{ voListMap["42"]["TP_0X04_1117"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.cancelShutdownCommand')"
-                v-if="
-                  systemSetIsDisplay('commonSetObj', 'cancelShutdownCommand')
-                "
+                :label="$t('threePhase.TP_0X04_1118')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1118')"
+                >{{ voListMap["42"]["TP_0X04_1118"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1119')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1119')"
+                >{{ voListMap["42"]["TP_0X04_1119"].val }}A
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1120')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1120')"
+                >{{ voListMap["42"]["TP_0X04_1120"].val }}A
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1121')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1121')"
+                >{{ voListMap["42"]["TP_0X04_1121"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1122_1123')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1122_1123')"
+                >{{ voListMap["42"]["TP_0X04_1122_1123"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1124_1125')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1124_1125')"
+                >{{ voListMap["42"]["TP_0X04_1124_1125"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1126_1127')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1126_1127')"
+                >{{ voListMap["42"]["TP_0X04_1126_1127"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1128_1129')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1128_1129')"
+                >{{
+                  voListMap["42"]["TP_0X04_1128_1129"].val
+                }}W</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.commonSetObj.cancelShutdownCommandVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'commonSetObj',
-                        'cancelShutdownCommand'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'cancelShutdownCommand',
-                        systemSet.commonSetObj.cancelShutdownCommandVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1130')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1130')"
+                >{{ voListMap["42"]["TP_0X04_1130"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1131')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1131')"
+                >{{ voListMap["42"]["TP_0X04_1131"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1132')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1132')"
+                >{{ voListMap["42"]["TP_0X04_1132"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1133')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1133')"
+              >
+                {{ voListMap["42"]["TP_0X04_1133"].val }}mA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1134')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1134')"
+              >
+                {{ voListMap["42"]["TP_0X04_1134"].val }}V
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
-          <el-card style="margin-top: 10px" v-if="systemSet.communicationSet">
+          <el-card style="margin-top: 10px">
             <el-descriptions
-              :label="$t('deviceManage.communicationSettings')"
+              :title="$t('deviceManage.inverterInformation')"
               :column="3"
-              border
             >
               <el-descriptions-item
-                :label="$t('deviceManage.BMSModel')"
-                v-if="systemSetIsDisplay('communicationSetObj', 'bmsModel')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.communicationSetObj.bmsModelVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="None" value="0" />
-                    <el-option label="Pylontech" value="1" />
-                    <el-option label="XT" value="2" />
-                    <el-option label="Stealth" value="3" />
-                    <el-option label="Pace" value="4" />
-                    <el-option label="LeSY" value="5" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('communicationSetObj', 'bmsModel')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'bmsModel',
-                        systemSet.communicationSetObj.bmsModelVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1141')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1141')"
+                >{{ voListMap["42"]["TP_0X04_1141"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.BMSAddress')"
-                v-if="systemSetIsDisplay('communicationSetObj', 'bmsAddress')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.communicationSetObj.bmsAddressVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('communicationSetObj', 'bmsAddress')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'bmsAddress',
-                        systemSet.communicationSetObj.bmsAddressVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1142')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1142')"
+                >{{ voListMap["42"]["TP_0X04_1142"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.BMSBaudRate')"
-                v-if="systemSetIsDisplay('communicationSetObj', 'bmsBaud')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.communicationSetObj.bmsBaudVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="1200" value="1" />
-                    <el-option label="2400" value="2" />
-                    <el-option label="4800" value="3" />
-                    <el-option label="9600" value="4" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('communicationSetObj', 'bmsBaud')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'bmsBaud',
-                        systemSet.communicationSetObj.bmsBaudVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1143')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1143')"
+                >{{ voListMap["42"]["TP_0X04_1143"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.numberOfLithiumBattery')"
-                v-if="
-                  systemSetIsDisplay(
-                    'communicationSetObj',
-                    'numberOfLithiumBatteryBlocks'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.communicationSetObj
-                        .numberOfLithiumBatteryBlocksVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'communicationSetObj',
-                        'numberOfLithiumBatteryBlocks'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'numberOfLithiumBatteryBlocks',
-                        systemSet.communicationSetObj
-                          .numberOfLithiumBatteryBlocksVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1144')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1144')"
+                >{{ voListMap["42"]["TP_0X04_1144"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.collectorAddress')"
-                v-if="
-                  systemSetIsDisplay(
-                    'communicationSetObj',
-                    'collectorCommunicationAddress'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.communicationSetObj
-                        .collectorCommunicationAddressVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'communicationSetObj',
-                        'collectorCommunicationAddress'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'collectorCommunicationAddress',
-                        systemSet.communicationSetObj
-                          .collectorCommunicationAddressVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1145')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1145')"
+                >{{ voListMap["42"]["TP_0X04_1145"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.collectorType')"
-                v-if="
-                  systemSetIsDisplay(
-                    'communicationSetObj',
-                    'collectorCommunicationProtocolType'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.communicationSetObj
-                        .collectorCommunicationProtocolTypeVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.user')" value="0" />
-                    <el-option :label="$t('deviceManage.engineer')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'communicationSetObj',
-                        'collectorCommunicationProtocolType'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'collectorCommunicationProtocolType',
-                        systemSet.communicationSetObj
-                          .collectorCommunicationProtocolTypeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1146')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1146')"
+                >{{ voListMap["42"]["TP_0X04_1146"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.collectorBaudRate')"
-                v-if="
-                  systemSetIsDisplay(
-                    'communicationSetObj',
-                    'baudOfCollectorCommunication'
-                  )
-                "
+                :label="$t('threePhase.TP_0X04_1147')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1147')"
+                >{{
+                  voListMap["42"]["TP_0X04_1147"].val
+                }}Hz</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.communicationSetObj
-                        .baudOfCollectorCommunicationVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="1200" value="1" />
-                    <el-option label="2400" value="2" />
-                    <el-option label="4800" value="3" />
-                    <el-option label="9600" value="4" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'communicationSetObj',
-                        'baudOfCollectorCommunication'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'baudOfCollectorCommunication',
-                        systemSet.communicationSetObj
-                          .baudOfCollectorCommunicationVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1148')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1148')"
+                >{{
+                  voListMap["42"]["TP_0X04_1148"].val
+                }}Hz</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1149')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1149')"
+                >{{
+                  voListMap["42"]["TP_0X04_1149"].val
+                }}Hz</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1150_1151')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1150_1151')"
+                >{{
+                  voListMap["42"]["TP_0X04_1150_1151"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1152_1153')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1152_1153')"
+                >{{
+                  voListMap["42"]["TP_0X04_1152_1153"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1154_1155')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1154_1155')"
+                >{{
+                  voListMap["42"]["TP_0X04_1154_1155"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1156_1157')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1156_1157')"
+                >{{
+                  voListMap["42"]["TP_0X04_1156_1157"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1158_1159')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1158_1159')"
+                >{{
+                  voListMap["42"]["TP_0X04_1158_1159"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1160_1161')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1160_1161')"
+                >{{
+                  voListMap["42"]["TP_0X04_1160_1161"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1162_1163')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1162_1163')"
+                >{{
+                  voListMap["42"]["TP_0X04_1162_1163"].val
+                }}VAR</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1164_1165')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1164_1165')"
+                >{{
+                  voListMap["42"]["TP_0X04_1164_1165"].val
+                }}VAR</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1166_1167')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1166_1167')"
+                >{{
+                  voListMap["42"]["TP_0X04_1166_1167"].val
+                }}VAR</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1168_1169')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1168_1169')"
+                >{{ voListMap["42"]["TP_0X04_1168_1169"].val }}VA
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.deviceAddress')"
-                v-if="
-                  systemSetIsDisplay(
-                    'communicationSetObj',
-                    'deviceCommunicationAddress'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.communicationSetObj
-                        .deviceCommunicationAddressVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'communicationSetObj',
-                        'deviceCommunicationAddress'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'deviceCommunicationAddress',
-                        systemSet.communicationSetObj
-                          .deviceCommunicationAddressVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1170_1171')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1170_1171')"
+                >{{ voListMap["42"]["TP_0X04_1170_1171"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1172_1173')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1172_1173')"
+                >{{ voListMap["42"]["TP_0X04_1172_1173"].val }}VAR
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1174')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1174')"
+                >{{ voListMap["42"]["TP_0X04_1174"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1175')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1175')"
+                >{{ voListMap["42"]["TP_0X04_1175"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1176')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1176')"
+                >{{ voListMap["42"]["TP_0X04_1176"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1177')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1177')"
+                >{{ voListMap["42"]["TP_0X04_1177"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1178')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1178')"
+                >{{ voListMap["42"]["TP_0X04_1178"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1179')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1179')"
+                >{{ voListMap["42"]["TP_0X04_1179"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1180')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1180')"
+                >{{ voListMap["42"]["TP_0X04_1180"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1181')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1181')"
+                >{{ voListMap["42"]["TP_0X04_1181"].val }}mA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1182')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1182')"
+                >{{ voListMap["42"]["TP_0X04_1182"].val }}mA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1183')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1183')"
+                >{{ voListMap["42"]["TP_0X04_1183"].val }}mA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1184')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1184')"
+                >{{ voListMap["42"]["TP_0X04_1184"].val }}A
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
-          <el-card style="margin-top: 10px" v-if="systemSet.advancedSet">
+          <el-card
+            style="margin-top: 10px"
+            v-if="operationInformation.loadInformation"
+          >
             <el-descriptions
-              :title="$t('deviceManage.advancedSetting')"
+              :title="$t('deviceManage.loadInformation')"
               :column="3"
-              border
             >
               <el-descriptions-item
-                :label="$t('deviceManage.parallelOffMode')"
-                v-if="
-                  systemSetIsDisplay('advancedSetObj', 'parallelOffGridMode')
-                "
+                :label="$t('threePhase.TP_0X04_1191')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1191')"
+                >{{
+                  voListMap["42"]["TP_0X04_1191"].val
+                }}V</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.parallelOffGridModeVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.gridConnectionMode')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.antiBackflowMode')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'parallelOffGridMode'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'parallelOffGridMode',
-                        systemSet.advancedSetObj.parallelOffGridModeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1192')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1192')"
+                >{{
+                  voListMap["42"]["TP_0X04_1192"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1193')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1193')"
+                >{{
+                  voListMap["42"]["TP_0X04_1193"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1194')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1194')"
+                >{{
+                  voListMap["42"]["TP_0X04_1194"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1195')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1195')"
+                >{{
+                  voListMap["42"]["TP_0X04_1195"].val
+                }}A</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1196')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1196')"
+                >{{
+                  voListMap["42"]["TP_0X04_1196"].val
+                }}A</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1197')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1197')"
+                >{{ voListMap["42"]["TP_0X04_1197"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.systemModeSettings')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'systemModeSet')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.systemModeSetVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="UPS" value="0" />
-                    <el-option label="EPS" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('advancedSetObj', 'systemModeSet')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'systemModeSet',
-                        systemSet.advancedSetObj.systemModeSetVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1198')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1198')"
+                >{{ voListMap["42"]["TP_0X04_1198"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.PVConnectionSettings')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'pvConnectionSet')"
+                :label="$t('threePhase.TP_0X04_1199')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1199')"
+                >{{ voListMap["42"]["TP_0X04_1199"].val }}Hz
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1200_1201')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1200_1201')"
+                >{{
+                  voListMap["42"]["TP_0X04_1200_1201"].val
+                }}VA</el-descriptions-item
               >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.pvConnectionSetVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.independence')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.paralleling')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('advancedSetObj', 'pvConnectionSet')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'pvConnectionSet',
-                        systemSet.advancedSetObj.pvConnectionSetVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1202_1203')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1202_1203')"
+                >{{
+                  voListMap["42"]["TP_0X04_1202_1203"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1204_1205')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1204_1205')"
+                >{{
+                  voListMap["42"]["TP_0X04_1204_1205"].val
+                }}VA</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1206_1207')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1206_1207')"
+                >{{
+                  voListMap["42"]["TP_0X04_1206_1207"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1208_1209')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1208_1209')"
+                >{{
+                  voListMap["42"]["TP_0X04_1208_1209"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1210_1211')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1210_1211')"
+                >{{
+                  voListMap["42"]["TP_0X04_1210_1211"].val
+                }}W</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1212_1213')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1212_1213')"
+                >{{ voListMap["42"]["TP_0X04_1212_1213"].val }}VAR
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.ratedOutputVoltageSetting')"
-                v-if="
-                  systemSetIsDisplay('advancedSetObj', 'ratedOutputVoltageSet')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.ratedOutputVoltageSetVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'ratedOutputVoltageSet'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'ratedOutputVoltageSet',
-                        systemSet.advancedSetObj.ratedOutputVoltageSetVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1214_1215')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1214_1215')"
+                >{{ voListMap["42"]["TP_0X04_1214_1215"].val }}VAR
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.ratedOutputFrequencySetting')"
-                v-if="
-                  systemSetIsDisplay(
-                    'advancedSetObj',
-                    'ratedOutputFrequencySet'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.advancedSetObj.ratedOutputFrequencySetVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'ratedOutputFrequencySet'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'ratedOutputFrequencySet',
-                        systemSet.advancedSetObj.ratedOutputFrequencySetVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1216_1217')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1216_1217')"
+                >{{ voListMap["42"]["TP_0X04_1216_1217"].val }}VAR
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryTypeSettings')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'batteryTypeSet')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.batteryTypeSetVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.leadAcid')" value="0" />
-                    <el-option
-                      :label="$t('deviceManage.lithiumBattery')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('advancedSetObj', 'batteryTypeSet')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryTypeSet',
-                        systemSet.advancedSetObj.batteryTypeSetVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1218_1219')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1218_1219')"
+                >{{ voListMap["42"]["TP_0X04_1218_1219"].val }}VA
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryChargingCurrent')"
-                v-if="
-                  systemSetIsDisplay('advancedSetObj', 'batteryChargingCurrent')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.batteryChargingCurrentVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">A</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'batteryChargingCurrent'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryChargingCurrent',
-                        systemSet.advancedSetObj.batteryChargingCurrentVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1220_1221')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1220_1221')"
+                >{{ voListMap["42"]["TP_0X04_1220_1221"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryDischargeCurrent')"
-                v-if="
-                  systemSetIsDisplay(
-                    'advancedSetObj',
-                    'batteryDischargeCurrent'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.advancedSetObj.batteryDischargeCurrentVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">A</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'batteryDischargeCurrent'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryDischargeCurrent',
-                        systemSet.advancedSetObj.batteryDischargeCurrentVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1222_1223')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1222_1223')"
+                >{{ voListMap["42"]["TP_0X04_1222_1223"].val }}VAR
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryAverageChargingVoltage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'advancedSetObj',
-                    'batteryAverageChargingVoltage'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.advancedSetObj.batteryAverageChargingVoltageVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'batteryAverageChargingVoltage'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryAverageChargingVoltage',
-                        systemSet.advancedSetObj
-                          .batteryAverageChargingVoltageVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1224')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1224')"
+                >{{ voListMap["42"]["TP_0X04_1224"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryFloatChargingVoltage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'advancedSetObj',
-                    'batteryFloatChargingVoltage'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.advancedSetObj.batteryFloatChargingVoltageVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'batteryFloatChargingVoltage'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryFloatChargingVoltage',
-                        systemSet.advancedSetObj.batteryFloatChargingVoltageVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1225')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1225')"
+                >{{ voListMap["42"]["TP_0X04_1225"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryEOD')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'batteryEod')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.batteryEodVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('advancedSetObj', 'batteryEod')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryEod',
-                        systemSet.advancedSetObj.batteryEodVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1226')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1226')"
+                >{{ voListMap["42"]["TP_0X04_1226"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.batteryDOD')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'batteryDod')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.batteryDodVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('advancedSetObj', 'batteryDod')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'batteryDod',
-                        systemSet.advancedSetObj.batteryDodVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1227')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1227')"
+                >{{ voListMap["42"]["TP_0X04_1227"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitOfGridConnectedSOC')"
-                v-if="
-                  systemSetIsDisplay(
-                    'advancedSetObj',
-                    'lowerLimitOfGridConnectedSoc'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'lowerLimitOfGridConnectedSoc'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitOfGridConnectedSoc',
-                        systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1228_1229')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1228_1229')"
+                >{{ voListMap["42"]["TP_0X04_1228_1229"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.offGridSOCLowerLimit')"
-                v-if="
-                  systemSetIsDisplay('advancedSetObj', 'offGridSocLowerLimit')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.offGridSocLowerLimitVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'offGridSocLowerLimit'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'offGridSocLowerLimit',
-                        systemSet.advancedSetObj.offGridSocLowerLimitVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1230_1231')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1230_1231')"
+                >{{ voListMap["42"]["TP_0X04_1230_1231"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.electricityMeterCT')"
-                v-if="
-                  systemSetIsDisplay('advancedSetObj', 'electricityMeterCt')
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.electricityMeterCtVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="NULL" value="0" />
-                    <el-option
-                      :label="$t('deviceManage.electricityMeter')"
-                      value="1"
-                    />
-                    <el-option label="CT" value="2" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'electricityMeterCt'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'electricityMeterCt',
-                        systemSet.advancedSetObj.electricityMeterCtVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1232_1233')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1232_1233')"
+                >{{ voListMap["42"]["TP_0X04_1232_1233"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.PROTOCOL_ADDR_405')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_405')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_405Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Ah</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'PROTOCOL_ADDR_405'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_405',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_405Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1234_1235')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1234_1235')"
+                >{{ voListMap["42"]["TP_0X04_1234_1235"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('deviceManage.PROTOCOL_ADDR_406')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_406')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_406Val"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.none')" value="0" />
-                    <el-option
-                      :label="'1:' + $t('deviceManage.forceDischarging')"
-                      value="1"
-                    />
-                    <el-option
-                      :label="'2:' + $t('deviceManage.forceCharging')"
-                      value="2"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'PROTOCOL_ADDR_406'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_406',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_406Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.PROTOCOL_ADDR_407')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_407')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_407Val"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="'0:' + $t('deviceManage.normalregulation')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="'1:' + $t('deviceManage.lesy')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'PROTOCOL_ADDR_407'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_407',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_407Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.PROTOCOL_ADDR_408')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_408')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_408Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">W</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'advancedSetObj',
-                        'PROTOCOL_ADDR_408'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'PROTOCOL_ADDR_408',
-                        systemSet.advancedSetObj.PROTOCOL_ADDR_408Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
+                :label="$t('threePhase.TP_0X04_1236')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1236')"
+                >{{ voListMap["42"]["TP_0X04_1236"].val }}%
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
-          <el-card style="margin-top: 10px" v-if="systemSet.otherSet">
+          <el-card style="margin-top: 10px">
             <el-descriptions
-              :title="$t('deviceManage.otherSettings')"
+              :title="$t('deviceManage.GeneratorInformation')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1242')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1242')"
+                >{{ voListMap["42"]["TP_0X04_1242"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1243')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1243')"
+                >{{ voListMap["42"]["TP_0X04_1243"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1244')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1244')"
+                >{{ voListMap["42"]["TP_0X04_1244"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1245')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1245')"
+                >{{ voListMap["42"]["TP_0X04_1245"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1246')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1246')"
+                >{{ voListMap["42"]["TP_0X04_1246"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1247')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1247')"
+                >{{ voListMap["42"]["TP_0X04_1247"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1248')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1248')"
+                >{{ voListMap["42"]["TP_0X04_1248"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1249')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1249')"
+                >{{ voListMap["42"]["TP_0X04_1249"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1250')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1250')"
+                >{{ voListMap["42"]["TP_0X04_1250"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1251_1252')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1251_1252')"
+                >{{ voListMap["42"]["TP_0X04_1251_1252"].val }}VA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1253_1254')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1253_1254')"
+                >{{ voListMap["42"]["TP_0X04_1253_1254"].val }}VA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1255_1256')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1255_1256')"
+                >{{ voListMap["42"]["TP_0X04_1255_1256"].val }}VA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1257_1258')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1257_1258')"
+                >{{ voListMap["42"]["TP_0X04_1257_1258"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1259_1260')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1259_1260')"
+                >{{ voListMap["42"]["TP_0X04_1259_1260"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1261_1262')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1261_1262')"
+                >{{ voListMap["42"]["TP_0X04_1261_1262"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1263_1264')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1263_1264')"
+                >{{ voListMap["42"]["TP_0X04_1263_1264"].val }}VAR
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1265_1266')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1265_1266')"
+                >{{ voListMap["42"]["TP_0X04_1265_1266"].val }}VAR
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1267_1268')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1267_1268')"
+                >{{ voListMap["42"]["TP_0X04_1267_1268"].val }}VAR
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1269_1270')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1269_1270')"
+                >{{ voListMap["42"]["TP_0X04_1269_1270"].val }}VA
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1271_1272')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1271_1272')"
+                >{{ voListMap["42"]["TP_0X04_1271_1272"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1273_1274')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1273_1274')"
+                >{{ voListMap["42"]["TP_0X04_1273_1274"].val }}VAR
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1275')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1275')"
+                >{{ voListMap["42"]["TP_0X04_1275"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1276')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1276')"
+                >{{ voListMap["42"]["TP_0X04_1276"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1277')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1277')"
+                >{{ voListMap["42"]["TP_0X04_1277"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1278')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1278')"
+                >{{ voListMap["42"]["TP_0X04_1278"].val }}
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.otherInformation')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1279')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1279')"
+                >{{ voListMap["42"]["TP_0X04_1279"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1280')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1280')"
+                >{{ voListMap["42"]["TP_0X04_1280"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1281')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1281')"
+                >{{ voListMap["42"]["TP_0X04_1281"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1282')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1282')"
+                >{{ voListMap["42"]["TP_0X04_1282"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1283')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1283')"
+                >{{ voListMap["42"]["TP_0X04_1283"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1284')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1284')"
+                >{{ voListMap["42"]["TP_0X04_1284"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1285')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1285')"
+                >{{ voListMap["42"]["TP_0X04_1285"].val }}℃
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1286')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1286')"
+                >{{
+                  voListMap["42"]["TP_0X04_1286"].val
+                }}℃</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1287')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1287')"
+                >{{ voListMap["42"]["TP_0X04_1287"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1291')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1291')"
+                >{{ voListMap["42"]["TP_0X04_1291"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1294')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1294')"
+              >
+                {{ selfCheckFilter[voListMap["42"]["TP_0X04_1294"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1295')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1295')"
+              >
+                {{ voListMap["42"]["TP_0X04_1295"].val }}V/Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1296')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1296')"
+              >
+                {{ voListMap["42"]["TP_0X04_1296"].val }}ms
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1297')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1297')"
+              >
+                {{ voListMap["42"]["TP_0X04_1297"].val }}V/Hz
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-if="activeIndex === '43'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions :title="$t('deviceManage.meterData')" :column="3">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2048')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2048')"
+              >
+                {{ voListMap["43"]["TP_0X04_2048"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2049')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2049')"
+                >{{
+                  voListMap["43"]["TP_0X04_2049"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2050')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2050')"
+                >{{
+                  voListMap["43"]["TP_0X04_2050"].val
+                }}kWh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2051')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2051')"
+                >{{
+                  voListMap["43"]["TP_0X04_2051"].val
+                }}kWh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2052')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2052')"
+              >
+                {{ voListMap["43"]["TP_0X04_2052"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2053')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2053')"
+              >
+                {{ voListMap["43"]["TP_0X04_2053"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2054')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2054')"
+              >
+                {{ voListMap["43"]["TP_0X04_2054"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2055')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2055')"
+              >
+                {{ voListMap["43"]["TP_0X04_2055"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2056')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2056')"
+                >{{
+                  voListMap["43"]["TP_0X04_2056"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2057')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2057')"
+                >{{
+                  voListMap["43"]["TP_0X04_2057"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2058')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2058')"
+                >{{
+                  voListMap["43"]["TP_0X04_2058"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2059')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2059')"
+                >{{
+                  voListMap["43"]["TP_0X04_2059"].val
+                }}kWh</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2060')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2060')"
+              >
+                {{ voListMap["43"]["TP_0X04_2060"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2061')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2061')"
+              >
+                {{ voListMap["43"]["TP_0X04_2061"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2062')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2062')"
+              >
+                {{ voListMap["43"]["TP_0X04_2062"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2063')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2063')"
+              >
+                {{ voListMap["43"]["TP_0X04_2063"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2064')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2064')"
+              >
+                {{ voListMap["43"]["TP_0X04_2064"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2065')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2065')"
+              >
+                {{ voListMap["43"]["TP_0X04_2065"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2066')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2066')"
+              >
+                {{ voListMap["43"]["TP_0X04_2066"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2067')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2067')"
+              >
+                {{ voListMap["43"]["TP_0X04_2067"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2068')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2068')"
+              >
+                {{ voListMap["43"]["TP_0X04_2068"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2069')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2069')"
+              >
+                {{ voListMap["43"]["TP_0X04_2069"].val }}V
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2070')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2070')"
+              >
+                {{ voListMap["43"]["TP_0X04_2070"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2071')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2071')"
+              >
+                {{ voListMap["43"]["TP_0X04_2071"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2072')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2072')"
+              >
+                {{ voListMap["43"]["TP_0X04_2072"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2073')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2073')"
+              >
+                {{ voListMap["43"]["TP_0X04_2073"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2074')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2074')"
+              >
+                {{ voListMap["43"]["TP_0X04_2074"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2075')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2075')"
+              >
+                {{ voListMap["43"]["TP_0X04_2075"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2076')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2076')"
+              >
+                {{ voListMap["43"]["TP_0X04_2076"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2077')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2077')"
+              >
+                {{ voListMap["43"]["TP_0X04_2077"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2078')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2078')"
+              >
+                {{ voListMap["43"]["TP_0X04_2078"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2079')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2079')"
+              >
+                {{ voListMap["43"]["TP_0X04_2079"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2080')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2080')"
+              >
+                {{ voListMap["43"]["TP_0X04_2080"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2081')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2081')"
+              >
+                {{ voListMap["43"]["TP_0X04_2081"].val }}A
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2082')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2082')"
+              >
+                {{ voListMap["43"]["TP_0X04_2082"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2083')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2083')"
+              >
+                {{ voListMap["43"]["TP_0X04_2083"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2084')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2084')"
+              >
+                {{ voListMap["43"]["TP_0X04_2084"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2085')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2085')"
+              >
+                {{ voListMap["43"]["TP_0X04_2085"].val }}kW
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2086')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2086')"
+              >
+                {{ voListMap["43"]["TP_0X04_2086"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2087')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2087')"
+              >
+                {{ voListMap["43"]["TP_0X04_2087"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2088')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2088')"
+              >
+                {{ voListMap["43"]["TP_0X04_2088"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2089')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2089')"
+              >
+                {{ voListMap["43"]["TP_0X04_2089"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2090')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2090')"
+              >
+                {{ voListMap["43"]["TP_0X04_2090"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2091')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2091')"
+              >
+                {{ voListMap["43"]["TP_0X04_2091"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2092')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2092')"
+              >
+                {{ voListMap["43"]["TP_0X04_2092"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2093')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2093')"
+              >
+                {{ voListMap["43"]["TP_0X04_2093"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2094')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2094')"
+              >
+                {{ voListMap["43"]["TP_0X04_2094"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2095')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2095')"
+              >
+                {{ voListMap["43"]["TP_0X04_2095"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2096')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2096')"
+              >
+                {{ voListMap["43"]["TP_0X04_2096"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2097')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2097')"
+              >
+                {{ voListMap["43"]["TP_0X04_2097"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2098')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2098')"
+              >
+                {{ voListMap["43"]["TP_0X04_2098"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2099')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2099')"
+              >
+                {{ voListMap["43"]["TP_0X04_2099"].val }}kW
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2100')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2100')"
+              >
+                {{ voListMap["43"]["TP_0X04_2100"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2101')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2101')"
+              >
+                {{ voListMap["43"]["TP_0X04_2101"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2102')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2102')"
+              >
+                {{ voListMap["43"]["TP_0X04_2102"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2103')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2103')"
+              >
+                {{ voListMap["43"]["TP_0X04_2103"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2104')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2104')"
+              >
+                {{ voListMap["43"]["TP_0X04_2104"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2105')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2105')"
+              >
+                {{ voListMap["43"]["TP_0X04_2105"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2106')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2106')"
+              >
+                {{ voListMap["43"]["TP_0X04_2106"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2107')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2107')"
+              >
+                {{ voListMap["43"]["TP_0X04_2107"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2108')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2108')"
+              >
+                {{ voListMap["43"]["TP_0X04_2108"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2109')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2109')"
+              >
+                {{ voListMap["43"]["TP_0X04_2109"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2110')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2110')"
+              >
+                {{ voListMap["43"]["TP_0X04_2110"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2111')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2111')"
+              >
+                {{ voListMap["43"]["TP_0X04_2111"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2112')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2112')"
+              >
+                {{ voListMap["43"]["TP_0X04_2112"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2113')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2113')"
+              >
+                {{ voListMap["43"]["TP_0X04_2113"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2114')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2114')"
+              >
+                {{ voListMap["43"]["TP_0X04_2114"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2115')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2115')"
+              >
+                {{ voListMap["43"]["TP_0X04_2115"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2116')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2116')"
+              >
+                {{ voListMap["43"]["TP_0X04_2116"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2117')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2117')"
+              >
+                {{ voListMap["43"]["TP_0X04_2117"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2118')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2118')"
+              >
+                {{ voListMap["43"]["TP_0X04_2118"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2119')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2119')"
+              >
+                {{ voListMap["43"]["TP_0X04_2119"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2120')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2120')"
+              >
+                {{ voListMap["43"]["TP_0X04_2120"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2121')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2121')"
+              >
+                {{ voListMap["43"]["TP_0X04_2121"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2122')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2122')"
+              >
+                {{ voListMap["43"]["TP_0X04_2122"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2123')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2123')"
+              >
+                {{ voListMap["43"]["TP_0X04_2123"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2124')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2124')"
+              >
+                {{ voListMap["43"]["TP_0X04_2124"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2125')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2125')"
+              >
+                {{ voListMap["43"]["TP_0X04_2125"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2126')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2126')"
+              >
+                {{ voListMap["43"]["TP_0X04_2126"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2127')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2127')"
+              >
+                {{ voListMap["43"]["TP_0X04_2127"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2128')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2128')"
+              >
+                {{ voListMap["43"]["TP_0X04_2128"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2129')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2129')"
+              >
+                {{ voListMap["43"]["TP_0X04_2129"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2130')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2130')"
+              >
+                {{ voListMap["43"]["TP_0X04_2130"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2131')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2131')"
+              >
+                {{ voListMap["43"]["TP_0X04_2131"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2132')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2132')"
+              >
+                {{ voListMap["43"]["TP_0X04_2132"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2133')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2133')"
+              >
+                {{ voListMap["43"]["TP_0X04_2133"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2134')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2134')"
+              >
+                {{ voListMap["43"]["TP_0X04_2134"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2135')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2135')"
+              >
+                {{ voListMap["43"]["TP_0X04_2135"].val }}kvar
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-if="activeIndex === '44'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.eastBCUData')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4096')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4096')"
+              >
+                {{ voListMap["44"]["TP_0X04_4096"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4097')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4097')"
+                >{{
+                  displayFilter[voListMap["44"]["TP_0X04_4097"].val]
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4098')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4098')"
+                >{{ voListMap["44"]["TP_0X04_4098"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4106')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4106')"
+                >{{ voListMap["44"]["TP_0X04_4106"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4107')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4107')"
+              >
+                {{ voListMap["44"]["TP_0X04_4107"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4108')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4108')"
+              >
+                {{ voListMap["44"]["TP_0X04_4108"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4109')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4109')"
+              >
+                {{ voListMap["44"]["TP_0X04_4109"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4110')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4110')"
+              >
+                {{ voListMap["44"]["TP_0X04_4110"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4111')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4111')"
+                >{{ voListMap["44"]["TP_0X04_4111"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4112')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4112')"
+                >{{ voListMap["44"]["TP_0X04_4112"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4113')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4113')"
+                >{{ voListMap["44"]["TP_0X04_4113"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4114')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4114')"
+                >{{ voListMap["44"]["TP_0X04_4114"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4115')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4115')"
+              >
+                {{ voListMap["44"]["TP_0X04_4115"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4116')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4116')"
+              >
+                {{ powerOnStageFilter[voListMap["44"]["TP_0X04_4116"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4117')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4117')"
+              >
+                {{ systemWorkFilter[voListMap["44"]["TP_0X04_4117"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4118')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4118')"
+              >
+                {{ voListMap["44"]["TP_0X04_4118"].val }}%
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4119')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4119')"
+              >
+                {{ voListMap["44"]["TP_0X04_4119"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4120')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4120')"
+              >
+                {{ voListMap["44"]["TP_0X04_4120"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4121')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4121')"
+              >
+                {{ voListMap["44"]["TP_0X04_4121"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4122')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4122')"
+              >
+                {{ voListMap["44"]["TP_0X04_4122"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4123')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4123')"
+              >
+                {{ voListMap["44"]["TP_0X04_4123"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4124')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4124')"
+              >
+                {{ voListMap["44"]["TP_0X04_4124"].val }}℃
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4125')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4125')"
+              >
+                {{ voListMap["44"]["TP_0X04_4125"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4126')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4126')"
+              >
+                {{ voListMap["44"]["TP_0X04_4126"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4127')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4127')"
+              >
+                {{ voListMap["44"]["TP_0X04_4127"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4128')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4128')"
+              >
+                {{ reasonFilter[voListMap["44"]["TP_0X04_4128"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4129')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4129')"
+              >
+                {{ connectFilter[voListMap["44"]["TP_0X04_4129"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4130')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4130')"
+              >
+                {{ connectFilter[voListMap["44"]["TP_0X04_4130"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4131')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4131')"
+              >
+                {{ voListMap["44"]["TP_0X04_4131"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4132')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4132')"
+              >
+                {{ voListMap["44"]["TP_0X04_4132"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4133')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4133')"
+              >
+                {{ voListMap["44"]["TP_0X04_4133"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4134')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4134')"
+              >
+                {{ voListMap["44"]["TP_0X04_4134"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4135')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4135')"
+              >
+                {{ voListMap["44"]["TP_0X04_4135"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4136')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4136')"
+              >
+                {{ voListMap["44"]["TP_0X04_4136"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4137')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4137')"
+              >
+                {{ voListMap["44"]["TP_0X04_4137"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4138')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4138')"
+              >
+                {{ voListMap["44"]["TP_0X04_4138"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4139')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4139')"
+              >
+                {{ voListMap["44"]["TP_0X04_4139"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4140')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4140')"
+              >
+                {{ voListMap["44"]["TP_0X04_4140"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4141')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4141')"
+              >
+                {{ voListMap["44"]["TP_0X04_4141"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4142')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4142')"
+              >
+                {{ voListMap["44"]["TP_0X04_4142"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4143')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4143')"
+              >
+                {{ voListMap["44"]["TP_0X04_4143"].val }}W
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-if="activeIndex === '45'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.eastBMSData')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4608')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4608')"
+              >
+                {{ voListMap["45"]["TP_0X04_4608"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4609')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4609')"
+                >{{
+                  BMSdisplayFilter[voListMap["45"]["TP_0X04_4609"].val]
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4618')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4618')"
+                >{{
+                  voListMap["45"]["TP_0X04_4618"].val
+                }}V</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4619')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4619')"
+                >{{
+                  chargeFilter[voListMap["45"]["TP_0X04_4619"].val]
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4620')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4620')"
+              >
+                {{ voListMap["45"]["TP_0X04_4620"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4621')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4621')"
+              >
+                {{ voListMap["45"]["TP_0X04_4621"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4622')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4622')"
+              >
+                {{ voListMap["45"]["TP_0X04_4622"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4623')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4623')"
+              >
+                {{ voListMap["45"]["TP_0X04_4623"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4624')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4624')"
+                >{{
+                  voListMap["45"]["TP_0X04_4624"].val
+                }}A</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4625')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4625')"
+                >{{
+                  voListMap["45"]["TP_0X04_4625"].val
+                }}%</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4626')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4626')"
+                >{{
+                  voListMap["45"]["TP_0X04_4626"].val
+                }}%</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4627')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4627')"
+                >{{
+                  voListMap["45"]["TP_0X04_4627"].val
+                }}℃</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4628')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4628')"
+              >
+                {{ voListMap["45"]["TP_0X04_4628"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4629')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4629')"
+              >
+                {{ voListMap["45"]["TP_0X04_4629"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4630')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4630')"
+              >
+                {{ voListMap["45"]["TP_0X04_4630"].val }}℃
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4631')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4631')"
+              >
+                {{ voListMap["45"]["TP_0X04_4631"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4632')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4632')"
+              >
+                {{ voListMap["45"]["TP_0X04_4632"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4633')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4633')"
+              >
+                {{ voListMap["45"]["TP_0X04_4633"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4634')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4634')"
+              >
+                {{ voListMap["45"]["TP_0X04_4634"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4635')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4635')"
+              >
+                {{ voListMap["45"]["TP_0X04_4635"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4636')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4636')"
+              >
+                {{ voListMap["45"]["TP_0X04_4636"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4637')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4637')"
+              >
+                {{ voListMap["45"]["TP_0X04_4637"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4638')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4638')"
+              >
+                {{ voListMap["45"]["TP_0X04_4638"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4639')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4639')"
+              >
+                {{ voListMap["45"]["TP_0X04_4639"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4640')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4640')"
+              >
+                {{ voListMap["45"]["TP_0X04_4640"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4641')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4641')"
+              >
+                {{ voListMap["45"]["TP_0X04_4641"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4642')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4642')"
+              >
+                {{ voListMap["45"]["TP_0X04_4642"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4643')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4643')"
+              >
+                {{ voListMap["45"]["TP_0X04_4643"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4644')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4644')"
+              >
+                {{ voListMap["45"]["TP_0X04_4644"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4645')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4645')"
+              >
+                {{ voListMap["45"]["TP_0X04_4645"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4646')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4646')"
+              >
+                {{ voListMap["45"]["TP_0X04_4646"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4647')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4647')"
+              >
+                {{ voListMap["45"]["TP_0X04_4647"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4648')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4648')"
+              >
+                {{ voListMap["45"]["TP_0X04_4648"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4649')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4649')"
+              >
+                {{ voListMap["45"]["TP_0X04_4649"].val }}A
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5120')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5120')"
+              >
+                {{ voListMap["45"]["TP_0X04_5120"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5121')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5121')"
+              >
+                {{ voListMap["45"]["TP_0X04_5121"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5122')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5122')"
+              >
+                {{ voListMap["45"]["TP_0X04_5122"].val }} </el-descriptions-item
+              >V
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5123')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5123')"
+              >
+                {{ voListMap["45"]["TP_0X04_5123"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5124')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5124')"
+              >
+                {{ voListMap["45"]["TP_0X04_5124"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5125')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5125')"
+              >
+                {{ voListMap["45"]["TP_0X04_5125"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5126')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5126')"
+              >
+                {{ voListMap["45"]["TP_0X04_5126"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5127')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5127')"
+              >
+                {{ voListMap["45"]["TP_0X04_5127"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5128')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5128')"
+              >
+                {{ voListMap["45"]["TP_0X04_5128"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5129')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5129')"
+              >
+                {{ voListMap["45"]["TP_0X04_5129"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5130')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5130')"
+              >
+                {{ voListMap["45"]["TP_0X04_5130"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5131')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5131')"
+              >
+                {{ voListMap["45"]["TP_0X04_5131"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5132')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5132')"
+              >
+                {{ voListMap["45"]["TP_0X04_5132"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5133')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5133')"
+              >
+                {{ voListMap["45"]["TP_0X04_5133"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5134')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5134')"
+              >
+                {{ voListMap["45"]["TP_0X04_5134"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5135')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5135')"
+              >
+                {{ voListMap["45"]["TP_0X04_5135"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5136')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5136')"
+              >
+                {{ voListMap["45"]["TP_0X04_5136"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5137')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5137')"
+              >
+                {{ voListMap["45"]["TP_0X04_5137"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5138')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5138')"
+              >
+                {{ voListMap["45"]["TP_0X04_5138"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5139')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5139')"
+              >
+                {{ voListMap["45"]["TP_0X04_5139"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5140')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5140')"
+              >
+                {{ voListMap["45"]["TP_0X04_5140"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5141')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5141')"
+              >
+                {{ voListMap["45"]["TP_0X04_5141"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5142')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5142')"
+              >
+                {{ voListMap["45"]["TP_0X04_5142"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5143')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5143')"
+              >
+                {{ voListMap["45"]["TP_0X04_5143"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5144')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5144')"
+              >
+                {{ voListMap["45"]["TP_0X04_5144"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5145')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5145')"
+              >
+                {{ voListMap["45"]["TP_0X04_5145"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5146')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5146')"
+              >
+                {{ voListMap["45"]["TP_0X04_5146"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5147')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5147')"
+              >
+                {{ voListMap["45"]["TP_0X04_5147"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5148')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5148')"
+              >
+                {{ voListMap["45"]["TP_0X04_5148"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5149')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5149')"
+              >
+                {{ voListMap["45"]["TP_0X04_5149"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5150')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5150')"
+              >
+                {{ voListMap["45"]["TP_0X04_5150"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5151')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5151')"
+              >
+                {{ voListMap["45"]["TP_0X04_5151"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5152')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5152')"
+              >
+                {{ voListMap["45"]["TP_0X04_5152"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5153')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5153')"
+              >
+                {{ voListMap["45"]["TP_0X04_5153"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5154')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5154')"
+              >
+                {{ voListMap["45"]["TP_0X04_5154"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5155')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5155')"
+              >
+                {{ voListMap["45"]["TP_0X04_5155"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5156')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5156')"
+              >
+                {{ voListMap["45"]["TP_0X04_5156"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5157')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5157')"
+              >
+                {{ voListMap["45"]["TP_0X04_5157"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5158')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5158')"
+              >
+                {{ voListMap["45"]["TP_0X04_5158"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5159')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5159')"
+              >
+                {{ voListMap["45"]["TP_0X04_5159"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5160')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5160')"
+              >
+                {{ voListMap["45"]["TP_0X04_5160"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5161')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5161')"
+              >
+                {{ errorFilter[voListMap["45"]["TP_0X04_5161"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5162')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5162')"
+              >
+                {{ alarmFilter[voListMap["45"]["TP_0X04_5162"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5632')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5632')"
+              >
+                {{ voListMap["45"]["TP_0X04_5632"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5633')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5633')"
+              >
+                {{ voListMap["45"]["TP_0X04_5633"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5634')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5634')"
+              >
+                {{ voListMap["45"]["TP_0X04_5634"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5635')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5635')"
+              >
+                {{ voListMap["45"]["TP_0X04_5635"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5636')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5636')"
+              >
+                {{ voListMap["45"]["TP_0X04_5636"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5637')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5637')"
+              >
+                {{ voListMap["45"]["TP_0X04_5637"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5638')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5638')"
+              >
+                {{ voListMap["45"]["TP_0X04_5638"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5639')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5639')"
+              >
+                {{ voListMap["45"]["TP_0X04_5639"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5640')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5640')"
+              >
+                {{ voListMap["45"]["TP_0X04_5640"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5641')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5641')"
+              >
+                {{ voListMap["45"]["TP_0X04_5641"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5642')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5642')"
+              >
+                {{ voListMap["45"]["TP_0X04_5642"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5643')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5643')"
+              >
+                {{ voListMap["45"]["TP_0X04_5643"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5644')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5644')"
+              >
+                {{ voListMap["45"]["TP_0X04_5644"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5645')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5645')"
+              >
+                {{ voListMap["45"]["TP_0X04_5645"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5646')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5646')"
+              >
+                {{ voListMap["45"]["TP_0X04_5646"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5647')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5647')"
+              >
+                {{ voListMap["45"]["TP_0X04_5647"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5648')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5648')"
+              >
+                {{ voListMap["45"]["TP_0X04_5648"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5649')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5649')"
+              >
+                {{ voListMap["45"]["TP_0X04_5649"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5650')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5650')"
+              >
+                {{ voListMap["45"]["TP_0X04_5650"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5651')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5651')"
+              >
+                {{ voListMap["45"]["TP_0X04_5651"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5652')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5652')"
+              >
+                {{ voListMap["45"]["TP_0X04_5652"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5653')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5653')"
+              >
+                {{ voListMap["45"]["TP_0X04_5653"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5654')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5654')"
+              >
+                {{ voListMap["45"]["TP_0X04_5654"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5655')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5655')"
+              >
+                {{ voListMap["45"]["TP_0X04_5655"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5656')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5656')"
+              >
+                {{ voListMap["45"]["TP_0X04_5656"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5657')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5657')"
+              >
+                {{ voListMap["45"]["TP_0X04_5657"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5658')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5658')"
+              >
+                {{ voListMap["45"]["TP_0X04_5658"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5659')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5659')"
+              >
+                {{ voListMap["45"]["TP_0X04_5659"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5660')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5660')"
+              >
+                {{ voListMap["45"]["TP_0X04_5660"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5662')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5662')"
+              >
+                {{ voListMap["45"]["TP_0X04_5662"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5663')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5663')"
+              >
+                {{ voListMap["45"]["TP_0X04_5663"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5664')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5664')"
+              >
+                {{ voListMap["45"]["TP_0X04_5664"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5665')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5665')"
+              >
+                {{ voListMap["45"]["TP_0X04_5665"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5666')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5666')"
+              >
+                {{ voListMap["45"]["TP_0X04_5666"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5667')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5667')"
+              >
+                {{ MOSFilter[voListMap["45"]["TP_0X04_5667"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5668')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5668')"
+              >
+                {{ voListMap["45"]["TP_0X04_5668"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5669')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5669')"
+              >
+                {{ voListMap["45"]["TP_0X04_5669"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5670')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5670')"
+              >
+                {{ voListMap["45"]["TP_0X04_5670"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5671')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5671')"
+              >
+                {{ voListMap["45"]["TP_0X04_5671"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5672')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5672')"
+              >
+                {{ MOSFilter[voListMap["45"]["TP_0X04_5672"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5673')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5673')"
+              >
+                {{ MOSFilter[voListMap["45"]["TP_0X04_5673"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5674')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5674')"
+              >
+                {{ MOSFilter[voListMap["45"]["TP_0X04_5674"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5692')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5692')"
+              >
+                {{ voListMap["45"]["TP_0X04_5692"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5693')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5693')"
+              >
+                {{ voListMap["45"]["TP_0X04_5693"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5694')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5694')"
+              >
+                {{ voListMap["45"]["TP_0X04_5694"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5695')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5695')"
+              >
+                {{ voListMap["45"]["TP_0X04_5695"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5696')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5696')"
+              >
+                {{ voListMap["45"]["TP_0X04_5696"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5697')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5697')"
+              >
+                {{ voListMap["45"]["TP_0X04_5697"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5698')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5698')"
+              >
+                {{ voListMap["45"]["TP_0X04_5698"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5699')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5699')"
+              >
+                {{ voListMap["45"]["TP_0X04_5699"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5700')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5700')"
+              >
+                {{ MOSFilter[voListMap["45"]["TP_0X04_5700"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5701')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5701')"
+              >
+                {{ fuseFilter[voListMap["45"]["TP_0X04_5701"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5702')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5702')"
+              >
+                {{ voListMap["45"]["TP_0X04_5702"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5703')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5703')"
+              >
+                {{ voListMap["45"]["TP_0X04_5703"].val }}℃
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5704')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5704')"
+              >
+                {{ voListMap["45"]["TP_0X04_5704"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5705')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5705')"
+              >
+                {{ voListMap["45"]["TP_0X04_5705"].val }}A
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5719')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5719')"
+              >
+                {{ totalStatusFilter[voListMap["45"]["TP_0X04_5719"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5720')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5720')"
+              >
+                {{ voListMap["45"]["TP_0X04_5720"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5721')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5721')"
+              >
+                {{ voListMap["45"]["TP_0X04_5721"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5722')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5722')"
+              >
+                {{ voListMap["45"]["TP_0X04_5722"].val }}W
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-if="activeIndex === '46'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.deviceInformation')"
+              :column="3"
+            >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32768')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32768')"
+              >
+                {{ voListMap["46"]["TP_0X04_32768"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32769')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32769')"
+                >{{
+                  voListMap["46"]["TP_0X04_32769"].val
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32770')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32770')"
+                >{{
+                  voListMap["46"]["TP_0X04_32770"].val
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32771')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32771')"
+                >{{
+                  voListMap["46"]["TP_0X04_32771"].val
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32772_32779')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32772_32779')"
+              >
+                {{ voListMap["46"]["TP_0X04_32772_32779"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32780_32787')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32780_32787')"
+              >
+                {{ voListMap["46"]["TP_0X04_32780_32787"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32788_32795')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32788_32795')"
+              >
+                {{ voListMap["46"]["TP_0X04_32788_32795"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32796')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32796')"
+              >
+                {{ voListMap["46"]["TP_0X04_32796"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32797')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32797')"
+                >{{
+                  voListMap["46"]["TP_0X04_32797"].val
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32798')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32798')"
+                >{{
+                  voListMap["46"]["TP_0X04_32798"].val
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32799')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32799')"
+                >{{
+                  voListMap["46"]["TP_0X04_32799"].val
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32800')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32800')"
+                >{{
+                  voListMap["46"]["TP_0X04_32800"].val
+                }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32801')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32801')"
+              >
+                {{ voListMap["46"]["TP_0X04_32801"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32802')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32802')"
+              >
+                {{ voListMap["46"]["TP_0X04_32802"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32803')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32803')"
+              >
+                {{ voListMap["46"]["TP_0X04_32803"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32804')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32804')"
+              >
+                {{ voListMap["46"]["TP_0X04_32804"].val }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_32805_32812')"
+                v-if="CCIsDisplay('46', 'TP_0X04_32805_32812')"
+              >
+                {{ voListMap["46"]["TP_0X04_32805_32812"].val }}
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-else-if="activeIndex === '47'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.monitorSettings')"
               :column="3"
               border
             >
-              <el-descriptions-item
-                :label="$t('deviceManage.resetDeviceInitialValues')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'resetDeviceCommunicationSettingsToInitialValues'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_0')">
                 <div style="display: flex">
                   <el-select
-                    v-model="
-                      systemSet.otherSetObj
-                        .resetDeviceCommunicationSettingsToInitialValuesVal
-                    "
+                    v-model="settingList['TP_0X03_0Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_0')"
                     style="width: 100%"
                   >
                     <el-option label="0" value="0" />
                     <el-option :label="$t('common.confirm')" value="65535" />
                   </el-select>
-                  <!-- <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" /> -->
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'resetDeviceCommunicationSettingsToInitialValues'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_0')"
                     @click="
-                      handleSave(
-                        'resetDeviceCommunicationSettingsToInitialValues',
-                        systemSet.otherSetObj
-                          .resetDeviceCommunicationSettingsToInitialValuesVal
-                      )
+                      handleSave1('TP_0X03_0', settingList['TP_0X03_0Val'])
+                    "
+                  >
+                    {{ $t("common.save") }}
+                  </el-button>
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_1')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_1')"
+                    @click="
+                      handleSave1('TP_0X03_1', settingList['TP_0X03_1Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.clearRecordData')"
-                v-if="systemSetIsDisplay('otherSetObj', 'clearRecordData')"
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_3')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.clearRecordDataVal"
+                    v-model="settingList['TP_0X03_3Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_3')"
                     style="width: 100%"
                   >
                     <el-option label="0" value="0" />
@@ -1412,85 +3366,595 @@
                   </el-select>
                   <!-- <el-input v-model="systemSet.otherSetObj.clearRecordDataVal" :placeholder="$t('common.inputPrompt')" /> -->
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'clearRecordData')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_3')"
                     @click="
-                      handleSave(
-                        'clearRecordData',
-                        systemSet.otherSetObj.clearRecordDataVal
-                      )
+                      handleSave1('TP_0X03_3', settingList['TP_0X03_3Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.restoreFactorySettings')"
-                v-if="systemSetIsDisplay('otherSetObj', 'factoryReset')"
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_4')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.factoryResetVal"
+                    v-model="settingList['TP_0X03_4Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_4')"
                     style="width: 100%"
                   >
-                    <el-option :label="$t('common.cancel')" value="0" />
+                    <el-option label="0" value="0" />
                     <el-option :label="$t('common.confirm')" value="1" />
                   </el-select>
+                  <!-- <el-input v-model="systemSet.otherSetObj.resetDeviceCommunicationSettingsToInitialValuesVal" :placeholder="$t('common.inputPrompt')" /> -->
                   <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'factoryReset')"
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_4')"
                     @click="
-                      handleSave(
-                        'factoryReset',
-                        systemSet.otherSetObj.factoryResetVal
-                      )
+                      handleSave1('TP_0X03_4', settingList['TP_0X03_4Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterRestart')"
-                v-if="systemSetIsDisplay('otherSetObj', 'inverterRestart')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_5')">
                 <div style="display: flex">
                   <!-- <el-input v-model="systemSet.otherSetObj.inverterRestartVal" :placeholder="$t('common.inputPrompt')" /> -->
                   <el-select
-                    v-model="systemSet.otherSetObj.inverterRestartVal"
+                    v-model="settingList['TP_0X03_5Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_5')"
                     style="width: 100%"
                   >
                     <el-option label="0" value="0" />
                     <el-option :label="$t('common.confirm')" value="65535" />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'inverterRestart')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_5')"
                     @click="
-                      handleSave(
-                        'inverterRestart',
-                        systemSet.otherSetObj.inverterRestartVal
+                      handleSave1('TP_0X03_5', settingList['TP_0X03_5Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_6')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_6Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_6')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_6')"
+                    @click="
+                      handleSave1('TP_0X03_6', settingList['TP_0X03_6Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_7')">
+                <div style="display: flex">
+                  <!-- <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" /> -->
+                  <el-select
+                    v-model="settingList['TP_0X03_7Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_7')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_7')"
+                    @click="
+                      handleSave1('TP_0X03_7', settingList['TP_0X03_7Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_8')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_8Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_8')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">Min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_8')"
+                    @click="
+                      handleSave1('TP_0X03_8', settingList['TP_0X03_8Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_9')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_9Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_9')"
+                  >
+                    <template slot="append">Min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_9')"
+                    @click="
+                      handleSave1('TP_0X03_9', settingList['TP_0X03_9Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_10')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_10Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_10')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_10')"
+                    @click="
+                      handleSave1('TP_0X03_10', settingList['TP_0X03_10Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_11')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_11Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_11')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_11')"
+                    @click="
+                      handleSave1('TP_0X03_11', settingList['TP_0X03_11Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_20_21_22')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_20_21_22Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_20_21_22')"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_20_21_22')"
+                    @click="
+                      handleSave1(
+                        'TP_0X03_20_21_22',
+                        settingList['TP_0X03_20_21_22Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.selfCheckEnable')"
-                v-if="systemSetIsDisplay('otherSetObj', 'selfCheckEnable')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_26')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.selfCheckEnableVal"
+                    v-model="settingList['TP_0X03_26Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_26')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.user')" value="0" />
+                    <el-option :label="$t('deviceManage.engineer')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_26')"
+                    @click="
+                      handleSave1('TP_0X03_26', settingList['TP_0X03_26Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_27')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_27Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_27')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_27')"
+                    @click="
+                      handleSave1('TP_0X03_27', settingList['TP_0X03_27Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_28')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_28Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_28')"
+                    style="width: 100%"
+                  >
+                    <el-option label="1200" value="1" />
+                    <el-option label="2400" value="2" />
+                    <el-option label="4800" value="3" />
+                    <el-option label="9600" value="4" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_28')"
+                    @click="
+                      handleSave1('TP_0X03_28', settingList['TP_0X03_28Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_31')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_31Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_31')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.user')" value="0" />
+                    <el-option :label="$t('deviceManage.engineer')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_31')"
+                    @click="
+                      handleSave1('TP_0X03_31', settingList['TP_0X03_31Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_32')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_32Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_32')"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_32')"
+                    @click="
+                      handleSave1('TP_0X03_32', settingList['TP_0X03_32Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_33')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_33Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_33')"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option label="1200" value="1" />
+                    <el-option label="2400" value="2" />
+                    <el-option label="4800" value="3" />
+                    <el-option label="9600" value="4" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_33')"
+                    @click="
+                      handleSave1('TP_0X03_33', settingList['TP_0X03_33Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_41')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_41Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_41')"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option label="None" value="0" />
+                    <el-option label="East" value="6" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_41')"
+                    @click="
+                      handleSave1('TP_0X03_41', settingList['TP_0X03_41Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_44')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_44Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_44')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append"></template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_44')"
+                    @click="
+                      handleSave1('TP_0X03_44', settingList['TP_0X03_44Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_45')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_45Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_45')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('threePhase.auto')" value="0" />
+                    <el-option
+                      :label="$t('deviceManage.handMovement')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_45')"
+                    @click="
+                      handleSave1('TP_0X03_45', settingList['TP_0X03_45Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_46')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_46Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_46')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append"></template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_46')"
+                    @click="
+                      handleSave1('TP_0X03_46', settingList['TP_0X03_46Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_47')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_47Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_47')"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('threePhase.auto')" value="0" />
+                    <el-option
+                      :label="$t('deviceManage.handMovement')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_47')"
+                    @click="
+                      handleSave1('TP_0X03_47', settingList['TP_0X03_47Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_53')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_53Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_53')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_53')"
+                    @click="
+                      handleSave1('TP_0X03_53', settingList['TP_0X03_53Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_54')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_54Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_54')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_54')"
+                    @click="
+                      handleSave1('TP_0X03_54', settingList['TP_0X03_54Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_55')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_55Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_55')"
+                  >
+                    <template slot="append">Min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_55')"
+                    @click="
+                      handleSave1('TP_0X03_55', settingList['TP_0X03_55Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_56')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_56Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_56')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.nothing')" value="0" />
+                    <el-option
+                      :label="$t('deviceManage.exportHistory')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.exportConfigurationParameters')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.importConfigurationParameters')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.masterUpgrade')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.monitoringUpgrade')"
+                      value="5"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_56')"
+                    @click="
+                      handleSave1('TP_0X03_56', settingList['TP_0X03_56Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_57')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_57Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_57')"
+                    style="width: 100%"
+                  >
+                    <el-option label="0" value="0" />
+                    <el-option :label="$t('common.confirm')" value="65535" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_57')"
+                    @click="
+                      handleSave1('TP_0X03_57', settingList['TP_0X03_57Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_58')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_58Val']"
+                    v-if="CCIsDisplay('47', 'TP_0X03_58')"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -1529,848 +3993,54 @@
                     />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'selfCheckEnable')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_58')"
                     @click="
-                      handleSave(
-                        'selfCheckEnable',
-                        systemSet.otherSetObj.selfCheckEnableVal
-                      )
+                      handleSave1('TP_0X03_58', settingList['TP_0X03_58Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.manuallyClearingFaults')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'manuallyClearingFaults')
-                "
-              >
-                <div style="display: flex">
-                  <!-- <el-input v-model="systemSet.otherSetObj.manuallyClearingFaultsVal" :placeholder="$t('common.inputPrompt')" /> -->
-                  <el-select
-                    v-model="systemSet.otherSetObj.manuallyClearingFaultsVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'manuallyClearingFaults'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'manuallyClearingFaults',
-                        systemSet.otherSetObj.manuallyClearingFaultsVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.automaticOperation')"
-                v-if="systemSetIsDisplay('otherSetObj', 'automaticOperation')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_71')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.automaticOperationVal"
+                    v-model="settingList['TP_0X03_71Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_71')"
                     style="width: 100%"
                   >
                     <el-option
-                      :label="$t('deviceManage.handMovement')"
+                      :label="$t('deviceManage.setByDate')"
                       value="0"
                     />
                     <el-option
-                      :label="$t('deviceManage.automatic')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'automaticOperation')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'automaticOperation',
-                        systemSet.otherSetObj.automaticOperationVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.manuallyLock')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'manuallyUnlockingTheSystemLock'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <!-- <el-input v-model="systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal" :placeholder="$t('common.inputPrompt')" /> -->
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'manuallyUnlockingTheSystemLock'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'manuallyUnlockingTheSystemLock',
-                        systemSet.otherSetObj.manuallyUnlockingTheSystemLockVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.deviceCommunicationBaudRate')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'deviceCommunicationBaud')
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.deviceCommunicationBaudVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="1200" value="1" />
-                    <el-option label="2400" value="2" />
-                    <el-option label="4800" value="3" />
-                    <el-option label="9600" value="4" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'deviceCommunicationBaud'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'deviceCommunicationBaud',
-                        systemSet.otherSetObj.deviceCommunicationBaudVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.deviceCheckBitSelection')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'deviceCommunicationCheckBitSelection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj
-                        .deviceCommunicationCheckBitSelectionVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.noCheckDigit')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.evenParityCheck')"
-                      value="1"
-                    />
-                    <el-option :label="$t('deviceManage.oddCheck')" value="2" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'deviceCommunicationCheckBitSelection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'deviceCommunicationCheckBitSelection',
-                        systemSet.otherSetObj
-                          .deviceCommunicationCheckBitSelectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.deviceStopBitSelection')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'deviceCommunicationStopBitSelection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj
-                        .deviceCommunicationStopBitSelectionVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.bitStopBit1')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.bitStopBit2')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'deviceCommunicationStopBitSelection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'deviceCommunicationStopBitSelection',
-                        systemSet.otherSetObj
-                          .deviceCommunicationStopBitSelectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.countdownInverter')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'countdownToTurnOffTheInverter'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.countdownToTurnOffTheInverterVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'countdownToTurnOffTheInverter'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'countdownToTurnOffTheInverter',
-                        systemSet.otherSetObj.countdownToTurnOffTheInverterVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.delayedStartInverter')"
-                v-if="systemSetIsDisplay('otherSetObj', 'delayedStartInverter')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.delayedStartInverterVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'delayedStartInverter'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'delayedStartInverter',
-                        systemSet.otherSetObj.delayedStartInverterVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.countryCode')"
-                v-if="systemSetIsDisplay('otherSetObj', 'countryCode')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.countryCodeVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.China')" value="0" />
-                    <el-option :label="$t('deviceManage.Italy')" value="1" />
-                    <el-option :label="$t('deviceManage.Germany')" value="2" />
-                    <el-option
-                      :label="$t('deviceManage.Australia')"
-                      value="3"
-                    />
-                    <el-option :label="$t('deviceManage.Belgium')" value="4" />
-                    <el-option
-                      :label="$t('deviceManage.SouthAfrica')"
-                      value="5"
-                    />
-                    <el-option :label="$t('deviceManage.England')" value="6" />
-                    <el-option :label="$t('deviceManage.Spain')" value="7" />
-                  </el-select>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'countryCode')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'countryCode',
-                        systemSet.otherSetObj.countryCodeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <!-- <el-descriptions-item :label="$t('deviceManage.systemTimeSetting')" v-if="systemSetIsDisplay('otherSetObj', 'systemTimeSetting')">
-              <div style="display: flex;">
-                <el-input v-model="systemSet.otherSetObj.systemTimeSettingVal" :placeholder="$t('common.inputPrompt')" />
-                <el-button v-if="systemSetBtnIsDisplay('otherSetObj', 'systemTimeSetting')" type="text" style="margin-left: 5px;" @click="handleSave('systemTimeSetting', systemSet.otherSetObj.systemTimeSettingVal)">{{$t('common.save')}}</el-button>
-              </div>
-            </el-descriptions-item> -->
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterActivePowerSetting')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'inverterActivePowerSetting'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.inverterActivePowerSettingVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'inverterActivePowerSetting'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'inverterActivePowerSetting',
-                        systemSet.otherSetObj.inverterActivePowerSettingVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.communicationProtocolType485')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'communicationProtocolType485'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj.communicationProtocolType485Val
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.user')" value="0" />
-                    <el-option :label="$t('deviceManage.engineer')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'communicationProtocolType485'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'communicationProtocolType485',
-                        systemSet.otherSetObj.communicationProtocolType485Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.communicationAddress485')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'communicationAddress485')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.communicationAddress485Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'communicationAddress485'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'communicationAddress485',
-                        systemSet.otherSetObj.communicationAddress485Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.communicationBaudRate485')"
-                v-if="systemSetIsDisplay('otherSetObj', 'communicationBaud485')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.communicationBaud485Val"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="1200" value="1" />
-                    <el-option label="2400" value="2" />
-                    <el-option label="4800" value="3" />
-                    <el-option label="9600" value="4" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'communicationBaud485'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'communicationBaud485',
-                        systemSet.otherSetObj.communicationBaud485Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.hardLimitEnable')"
-                v-if="systemSetIsDisplay('otherSetObj', 'hardLimitEnable')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.hardLimitEnableVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                    <el-option :label="$t('deviceManage.shield')" value="0" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'hardLimitEnable')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hardLimitEnable',
-                        systemSet.otherSetObj.hardLimitEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.hardLimitPower')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'hardLimitPowerSettingValue'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.hardLimitPowerSettingValueVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'hardLimitPowerSettingValue'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hardLimitPowerSettingValue',
-                        systemSet.otherSetObj.hardLimitPowerSettingValueVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.australianRegionSelection')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'australianRegionSelection'
-                  ) && systemSet.otherSetObj.countryCodeVal == '3'
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.australianRegionSelectionVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.AustraliaZoneA')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.AustralianZoneB')"
+                      :label="$t('deviceManage.setByTime')"
                       value="1"
                     />
                     <el-option
-                      :label="$t('deviceManage.AustralianZoneC')"
+                      :label="$t('deviceManage.realTimeSwitchingOfMode')"
                       value="2"
                     />
-                    <el-option
-                      :label="$t('deviceManage.NewZealand')"
-                      value="3"
-                    />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'australianRegionSelection'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_71')"
                     @click="
-                      handleSave(
-                        'australianRegionSelection',
-                        systemSet.otherSetObj.australianRegionSelectionVal
-                      )
+                      handleSave1('TP_0X03_71', settingList['TP_0X03_71Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.bluetoothConnectionFlag')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'bluetoothConnectionFlag')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.bluetoothConnectionFlagVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'bluetoothConnectionFlag'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'bluetoothConnectionFlag',
-                        systemSet.otherSetObj.bluetoothConnectionFlagVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.PVActivePowerSetting')"
-                v-if="systemSetIsDisplay('otherSetObj', 'pvActivePowerSetting')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.pvActivePowerSettingVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'pvActivePowerSetting'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'pvActivePowerSetting',
-                        systemSet.otherSetObj.pvActivePowerSettingVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.limitChangeRate')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'limitOfActivePowerChangeRate'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.limitOfActivePowerChangeRateVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'limitOfActivePowerChangeRate'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'limitOfActivePowerChangeRate',
-                        systemSet.otherSetObj.limitOfActivePowerChangeRateVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.islandDetectionEnable')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'islandDetectionEnable')
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_72')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.islandDetectionEnableVal"
+                    v-model="settingList['TP_0X03_72Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.notEnable')"
-                      value="0"
-                    />
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'islandDetectionEnable'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'islandDetectionEnable',
-                        systemSet.otherSetObj.islandDetectionEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.authenticationMode')"
-                v-if="systemSetIsDisplay('otherSetObj', 'authenticationMode')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.authenticationModeVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('menuManage.close')" value="0" />
-                    <el-option :label="$t('menuManage.open')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'authenticationMode')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'authenticationMode',
-                        systemSet.otherSetObj.authenticationModeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.controlSource')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'currentSystemOperationModeControlSource'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj
-                        .currentSystemOperationModeControlSourceVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.MCUIssuedControl')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.DSPIssuedControl')"
-                      value="1"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'currentSystemOperationModeControlSource'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'currentSystemOperationModeControlSource',
-                        systemSet.otherSetObj
-                          .currentSystemOperationModeControlSourceVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.modeSystem')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'currentOperatingModeOfTheSystem'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj.currentOperatingModeOfTheSystemVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_72')"
                     style="width: 100%"
                   >
                     <el-option
@@ -2407,367 +4077,244 @@
                     />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'currentOperatingModeOfTheSystem'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_72')"
                     @click="
-                      handleSave(
-                        'currentOperatingModeOfTheSystem',
-                        systemSet.otherSetObj.currentOperatingModeOfTheSystemVal
-                      )
+                      handleSave1('TP_0X03_72', settingList['TP_0X03_72Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.APPStartupFlag')"
-                v-if="systemSetIsDisplay('otherSetObj', 'appStartupFlag')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.appStartupFlagVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'appStartupFlag')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'appStartupFlag',
-                        systemSet.otherSetObj.appStartupFlagVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.buzzerResponseTime')"
-                v-if="systemSetIsDisplay('otherSetObj', 'buzzerResponseTime')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.buzzerResponseTimeVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">min</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'buzzerResponseTime')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'buzzerResponseTime',
-                        systemSet.otherSetObj.buzzerResponseTimeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.communicationType')"
-                v-if="systemSetIsDisplay('otherSetObj', 'communicationType')"
-              >
+            </el-descriptions>
+          </el-card>
+        </template>
+
+        <template v-else-if="activeIndex === '48'">
+          <el-card style="margin-top: 10px">
+            <el-descriptions
+              :title="$t('deviceManage.masterUser')"
+              :column="3"
+              border
+            >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1024')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.communicationTypeVal"
+                    v-model="settingList['TP_0X03_1024Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1024')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.China')" value="0" />
+                    <el-option :label="$t('deviceManage.Italy')" value="1" />
+                    <el-option :label="$t('deviceManage.Germany')" value="2" />
+                    <el-option
+                      :label="$t('deviceManage.Australia')"
+                      value="3"
+                    />
+                    <el-option :label="$t('deviceManage.Belgium')" value="4" />
+                    <el-option
+                      :label="$t('deviceManage.SouthAfrica')"
+                      value="5"
+                    />
+                    <el-option :label="$t('deviceManage.England')" value="6" />
+                    <el-option :label="$t('deviceManage.Spain')" value="7" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1024')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1024',
+                        settingList['TP_0X03_1024Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1025')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1025Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1025')"
                     style="width: 100%"
                   >
                     <el-option
-                      :label="$t('deviceManage.powerGrid')"
+                      :label="$t('deviceManage.handMovement')"
                       value="0"
                     />
                     <el-option
-                      :label="$t('deviceManage.alternator')"
+                      :label="$t('deviceManage.automatic')"
                       value="1"
                     />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'communicationType')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1025')"
                     @click="
-                      handleSave(
-                        'communicationType',
-                        systemSet.otherSetObj.communicationTypeVal
+                      handleSave2(
+                        'TP_0X03_1025',
+                        settingList['TP_0X03_1025Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.systemModeSettings')"
-                v-if="systemSetIsDisplay('otherSetObj', 'systemModeSettings')"
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1026')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.systemModeSettingsVal"
+                    v-model="settingList['TP_0X03_1026Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1026')"
                     style="width: 100%"
                   >
-                    <el-option label="UPS" value="0" />
-                    <el-option label="EPS" value="1" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                    <el-option :label="$t('deviceManage.shield')" value="0" />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'systemModeSettings')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1026')"
                     @click="
-                      handleSave(
-                        'systemModeSettings',
-                        systemSet.otherSetObj.systemModeSettingsVal
+                      handleSave2(
+                        'TP_0X03_1026',
+                        settingList['TP_0X03_1026Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.USBOperation')"
-                v-if="systemSetIsDisplay('otherSetObj', 'usbOperation')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.usbOperationVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.nothing')" value="0" />
-                    <el-option
-                      :label="$t('deviceManage.exportHistory')"
-                      value="1"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.exportConfigurationParameters')"
-                      value="2"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.importConfigurationParameters')"
-                      value="3"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.masterUpgrade')"
-                      value="4"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.monitoringUpgrade')"
-                      value="5"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'usbOperation')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'usbOperation',
-                        systemSet.otherSetObj.usbOperationVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactor')"
-                v-if="systemSetIsDisplay('otherSetObj', 'powerFactor')"
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1027')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.powerFactorVal"
+                    v-model="settingList['TP_0X03_1027Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1027')"
                   />
                   <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'powerFactor')"
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1027')"
                     @click="
-                      handleSave(
-                        'powerFactor',
-                        systemSet.otherSetObj.powerFactorVal
+                      handleSave2(
+                        'TP_0X03_1027',
+                        settingList['TP_0X03_1027Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.antiBackflowPowerPercentage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'antiBackflowPowerPercentage'
-                  )
-                "
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1028')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj.antiBackflowPowerPercentageVal
-                    "
+                    v-model="settingList['TP_0X03_1028Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1028')"
                   >
                     <template slot="append">%</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'antiBackflowPowerPercentage'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1028')"
                     @click="
-                      handleSave(
-                        'antiBackflowPowerPercentage',
-                        systemSet.otherSetObj.antiBackflowPowerPercentageVal
+                      handleSave2(
+                        'TP_0X03_1028',
+                        settingList['TP_0X03_1028Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumOutputPowerPercentage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'maximumOutputPowerPercentage'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1029')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj.maximumOutputPowerPercentageVal
-                    "
+                    v-model="settingList['TP_0X03_1029Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1029')"
                   >
                     <template slot="append">%</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'maximumOutputPowerPercentage'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1029')"
                     @click="
-                      handleSave(
-                        'maximumOutputPowerPercentage',
-                        systemSet.otherSetObj.maximumOutputPowerPercentageVal
+                      handleSave2(
+                        'TP_0X03_1029',
+                        settingList['TP_0X03_1029Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerSettingAdjustmentRate')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'powerSettingAdjustmentRate'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1030')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj.powerSettingAdjustmentRateVal
-                    "
+                    v-model="settingList['TP_0X03_1030Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1030')"
                   >
                     <template slot="append">%Wmax/s</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'powerSettingAdjustmentRate'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1030')"
                     @click="
-                      handleSave(
-                        'powerSettingAdjustmentRate',
-                        systemSet.otherSetObj.powerSettingAdjustmentRateVal
+                      handleSave2(
+                        'TP_0X03_1030',
+                        settingList['TP_0X03_1030Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.softStartRate')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridConnectedPowerSoftStartRate'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1031')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal
-                    "
+                    v-model="settingList['TP_0X03_1031Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1031')"
                   >
                     <template slot="append">%Wmax/Min</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridConnectedPowerSoftStartRate'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1031')"
                     @click="
-                      handleSave(
-                        'gridConnectedPowerSoftStartRate',
-                        systemSet.otherSetObj.gridConnectedPowerSoftStartRateVal
+                      handleSave2(
+                        'TP_0X03_1031',
+                        settingList['TP_0X03_1031Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerControlMode')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'reactivePowerControlMode')
-                "
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1032')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.reactivePowerControlModeVal"
+                    v-model="settingList['TP_0X03_1032Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1032')"
                     style="width: 100%"
                   >
                     <el-option
@@ -2789,7150 +4336,1667 @@
                     <el-option :label="$t('deviceManage.cosMode')" value="4" />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'reactivePowerControlMode'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1032')"
                     @click="
-                      handleSave(
-                        'reactivePowerControlMode',
-                        systemSet.otherSetObj.reactivePowerControlModeVal
+                      handleSave2(
+                        'TP_0X03_1032',
+                        settingList['TP_0X03_1032Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerRegulationRate')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'reactivePowerRegulationRate'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1033')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj.reactivePowerRegulationRateVal
-                    "
+                    v-model="settingList['TP_0X03_1033Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1033')"
                   >
                     <template slot="append">%VAmax/s</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'reactivePowerRegulationRate'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1033')"
                     @click="
-                      handleSave(
-                        'reactivePowerRegulationRate',
-                        systemSet.otherSetObj.reactivePowerRegulationRateVal
+                      handleSave2(
+                        'TP_0X03_1033',
+                        settingList['TP_0X03_1033Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValueOfVoltage1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridVoltageProtection1'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1034')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridVoltageProtection1Val
-                    "
+                    v-model="settingList['TP_0X03_1034Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1034')"
                   >
-                    <template slot="append">V</template>
+                    <template slot="append">%</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridVoltageProtection1'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1034')"
                     @click="
-                      handleSave(
-                        'upperLimitValueOfGridVoltageProtection1',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridVoltageProtection1Val
+                      handleSave2(
+                        'TP_0X03_1034',
+                        settingList['TP_0X03_1034Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValueOfVoltage2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridVoltageProtection2'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1035')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridVoltageProtection2Val
-                    "
+                    v-model="settingList['TP_0X03_1035Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1035')"
                   >
-                    <template slot="append">V</template>
+                    <template slot="append">%</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridVoltageProtection2'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1035')"
                     @click="
-                      handleSave(
-                        'upperLimitValueOfGridVoltageProtection2',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridVoltageProtection2Val
+                      handleSave2(
+                        'TP_0X03_1035',
+                        settingList['TP_0X03_1035Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValueOfVoltage3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridVoltageProtection3'
-                  )
-                "
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1036')">
                 <div style="display: flex">
                   <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridVoltageProtection3Val
-                    "
+                    v-model="settingList['TP_0X03_1036Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1036')"
                     :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
+                  />
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridVoltageProtection3'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1036')"
                     @click="
-                      handleSave(
-                        'upperLimitValueOfGridVoltageProtection3',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridVoltageProtection3Val
+                      handleSave2(
+                        'TP_0X03_1036',
+                        settingList['TP_0X03_1036Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValueOfProtection1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridVoltageProtection1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridVoltageProtection1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridVoltageProtection1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridVoltageProtection1',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridVoltageProtection1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValueOfProtection2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridVoltageProtection2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridVoltageProtection2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridVoltageProtection2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridVoltageProtection2',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridVoltageProtection2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValueOfProtection3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridVoltageProtection3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridVoltageProtection3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridVoltageProtection3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridVoltageProtection3',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridVoltageProtection3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValueVoltage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridVoltageReconnection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridVoltageReconnectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridVoltageReconnection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitValueOfGridVoltageReconnection',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridVoltageReconnectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValueVoltage')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridVoltageReconnection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridVoltageReconnectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridVoltageReconnection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridVoltageReconnection',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridVoltageReconnectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageUpperLimitTime1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitTimeOfGridVoltageProtection1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitTimeOfGridVoltageProtection1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitTimeOfGridVoltageProtection1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitTimeOfGridVoltageProtection1',
-                        systemSet.otherSetObj
-                          .upperLimitTimeOfGridVoltageProtection1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageUpperLimitTime2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitTimeOfGridVoltageProtection2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitTimeOfGridVoltageProtection2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitTimeOfGridVoltageProtection2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitTimeOfGridVoltageProtection2',
-                        systemSet.otherSetObj
-                          .upperLimitTimeOfGridVoltageProtection2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageUpperLimitTime3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitTimeOfGridVoltageProtection3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitTimeOfGridVoltageProtection3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitTimeOfGridVoltageProtection3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitTimeOfGridVoltageProtection3',
-                        systemSet.otherSetObj
-                          .upperLimitTimeOfGridVoltageProtection3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageLowerLimitTime1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitTimeOfGridVoltageProtection1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitTimeOfGridVoltageProtection1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitTimeOfGridVoltageProtection1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitTimeOfGridVoltageProtection1',
-                        systemSet.otherSetObj
-                          .lowerLimitTimeOfGridVoltageProtection1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageLowerLimitTime2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitTimeOfGridVoltageProtection2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitTimeOfGridVoltageProtection2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitTimeOfGridVoltageProtection2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitTimeOfGridVoltageProtection2',
-                        systemSet.otherSetObj
-                          .lowerLimitTimeOfGridVoltageProtection2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageLowerLimitTime3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitTimeOfGridVoltageProtection3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitTimeOfGridVoltageProtection3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitTimeOfGridVoltageProtection3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitTimeOfGridVoltageProtection3',
-                        systemSet.otherSetObj
-                          .lowerLimitTimeOfGridVoltageProtection3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.recoveryTimeVoltageProtection')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'recoveryTimeOfGridVoltageProtection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .recoveryTimeOfGridVoltageProtectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'recoveryTimeOfGridVoltageProtection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'recoveryTimeOfGridVoltageProtection',
-                        systemSet.otherSetObj
-                          .recoveryTimeOfGridVoltageProtectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValue1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridFrequencyProtection1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridFrequencyProtection1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridFrequencyProtection1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitValueOfGridFrequencyProtection1',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridFrequencyProtection1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValue2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridFrequencyProtection2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridFrequencyProtection2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridFrequencyProtection2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitValueOfGridFrequencyProtection2',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridFrequencyProtection2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValue3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridFrequencyProtection3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridFrequencyProtection3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridFrequencyProtection3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitValueOfGridFrequencyProtection3',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridFrequencyProtection3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValue1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridFrequencyProtection1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridFrequencyProtection1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridFrequencyProtection1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridFrequencyProtection1',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridFrequencyProtection1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValue2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridFrequencyProtection2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridFrequencyProtection2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridFrequencyProtection2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridFrequencyProtection2',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridFrequencyProtection2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitValue3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridFrequencyProtection3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridFrequencyProtection3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridFrequencyProtection3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridFrequencyProtection3',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridFrequencyProtection3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitValueFrequency')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'upperLimitValueOfGridFrequencyReconnection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .upperLimitValueOfGridFrequencyReconnectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'upperLimitValueOfGridFrequencyReconnection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'upperLimitValueOfGridFrequencyReconnection',
-                        systemSet.otherSetObj
-                          .upperLimitValueOfGridFrequencyReconnectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitOfGridFrequency')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'lowerLimitValueOfGridFrequencyReconnection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .lowerLimitValueOfGridFrequencyReconnectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">Hz</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'lowerLimitValueOfGridFrequencyReconnection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'lowerLimitValueOfGridFrequencyReconnection',
-                        systemSet.otherSetObj
-                          .lowerLimitValueOfGridFrequencyReconnectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitTime1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionUpperLimitTime1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionUpperLimitTime1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionUpperLimitTime1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionUpperLimitTime1',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionUpperLimitTime1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitTime2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionUpperLimitTime2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionUpperLimitTime2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionUpperLimitTime2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionUpperLimitTime2',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionUpperLimitTime2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.upperLimitTime3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionUpperLimitTime3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionUpperLimitTime3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionUpperLimitTime3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionUpperLimitTime3',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionUpperLimitTime3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitTime1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionLowerLimitTime1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionLowerLimitTime1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionLowerLimitTime1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionLowerLimitTime1',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionLowerLimitTime1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitTime2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionLowerLimitTime2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionLowerLimitTime2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionLowerLimitTime2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionLowerLimitTime2',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionLowerLimitTime2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowerLimitTime3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gridFrequencyProtectionLowerLimitTime3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gridFrequencyProtectionLowerLimitTime3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gridFrequencyProtectionLowerLimitTime3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gridFrequencyProtectionLowerLimitTime3',
-                        systemSet.otherSetObj
-                          .gridFrequencyProtectionLowerLimitTime3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.recoveryTimeOfGrid')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'recoveryTimeOfGridFrequencyProtection'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .recoveryTimeOfGridFrequencyProtectionVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">ms</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'recoveryTimeOfGridFrequencyProtection'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'recoveryTimeOfGridFrequencyProtection',
-                        systemSet.otherSetObj
-                          .recoveryTimeOfGridFrequencyProtectionVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.minOvervoltage10')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'tenMinOvervoltageProtectionValueOfThePowerGrid'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .tenMinOvervoltageProtectionValueOfThePowerGridVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'tenMinOvervoltageProtectionValueOfThePowerGrid'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'tenMinOvervoltageProtectionValueOfThePowerGrid',
-                        systemSet.otherSetObj
-                          .tenMinOvervoltageProtectionValueOfThePowerGridVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.networkingWaitingTime')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'networkingWaitingTime')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.networkingWaitingTimeVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">s</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'networkingWaitingTime'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'networkingWaitingTime',
-                        systemSet.otherSetObj.networkingWaitingTimeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reconnectWaitingTime')"
-                v-if="systemSetIsDisplay('otherSetObj', 'reconnectWaitingTime')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.reconnectWaitingTimeVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">s</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'reconnectWaitingTime'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'reconnectWaitingTime',
-                        systemSet.otherSetObj.reconnectWaitingTimeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.coldMode')"
-                v-if="systemSetIsDisplay('otherSetObj', 'coldMode')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1037')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.coldModeVal"
+                    v-model="settingList['TP_0X03_1037Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1037')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.notEnable')"
+                      value="0"
+                    />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1037')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1037',
+                        settingList['TP_0X03_1037Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1038')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1038Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1038')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('menuManage.close')" value="0" />
                     <el-option :label="$t('menuManage.open')" value="1" />
                   </el-select>
                   <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'coldMode')"
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1038')"
                     @click="
-                      handleSave('coldMode', systemSet.otherSetObj.coldModeVal)
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerPercentage')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'reactivePowerPercentage')
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.reactivePowerPercentageVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'reactivePowerPercentage'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'reactivePowerPercentage',
-                        systemSet.otherSetObj.reactivePowerPercentageVal
+                      handleSave2(
+                        'TP_0X03_1038',
+                        settingList['TP_0X03_1038Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.freqWatt')"
-                v-if="systemSetIsDisplay('otherSetObj', 'freqWattCurveEnable')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1039')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.freqWattCurveEnableVal"
+                    v-model="settingList['TP_0X03_1039Val']"
                     :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1039')"
                     style="width: 100%"
                   >
                     <el-option
-                      :label="$t('deviceManage.notEnable')"
-                      value="0"
-                    />
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'freqWattCurveEnable'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'freqWattCurveEnable',
-                        systemSet.otherSetObj.freqWattCurveEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltWatt')"
-                v-if="systemSetIsDisplay('otherSetObj', 'voltWattCurveEnable')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.voltWattCurveEnableVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.notEnable')"
-                      value="0"
-                    />
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'voltWattCurveEnable'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'voltWattCurveEnable',
-                        systemSet.otherSetObj.voltWattCurveEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.voltVar')"
-                v-if="systemSetIsDisplay('otherSetObj', 'voltVarCurveEnable')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.voltVarCurveEnableVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.notEnable')"
-                      value="0"
-                    />
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'voltVarCurveEnable')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'voltVarCurveEnable',
-                        systemSet.otherSetObj.voltVarCurveEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.pFWatt')"
-                v-if="systemSetIsDisplay('otherSetObj', 'pfWattCurveEnable')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.pfWattCurveEnableVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.notEnable')"
-                      value="0"
-                    />
-                    <el-option :label="$t('deviceManage.enable')" value="1" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'pfWattCurveEnable')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'pfWattCurveEnable',
-                        systemSet.otherSetObj.pfWattCurveEnableVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.timingModeType')"
-                v-if="systemSetIsDisplay('otherSetObj', 'timingModeType')"
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.timingModeTypeVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.setByDate')"
+                      :label="$t('deviceManage.gridConnectionMode')"
                       value="0"
                     />
                     <el-option
-                      :label="$t('deviceManage.setByTime')"
-                      value="1"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.realTimeSwitchingOfMode')"
-                      value="2"
-                    />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'timingModeType')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'timingModeType',
-                        systemSet.otherSetObj.timingModeTypeVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister1')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister1'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister1Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister1'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister1',
-                        systemSet.otherSetObj.setQuantityChangeRegister1Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister2')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister2'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister2Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister2'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister2',
-                        systemSet.otherSetObj.setQuantityChangeRegister2Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister3')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister3'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister3Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister3'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister3',
-                        systemSet.otherSetObj.setQuantityChangeRegister3Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister4')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister4'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister4Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister4'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister4',
-                        systemSet.otherSetObj.setQuantityChangeRegister4Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister5')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister5'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister5Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister5'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister5',
-                        systemSet.otherSetObj.setQuantityChangeRegister5Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister6')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister6'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister6Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister6'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister6',
-                        systemSet.otherSetObj.setQuantityChangeRegister6Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister7')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister7'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister7Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister7'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister7',
-                        systemSet.otherSetObj.setQuantityChangeRegister7Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.changeRegister8')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'setQuantityChangeRegister8'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj.setQuantityChangeRegister8Val
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'setQuantityChangeRegister8'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'setQuantityChangeRegister8',
-                        systemSet.otherSetObj.setQuantityChangeRegister8Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryDisplayMethod')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'batteryParameterDisplayMethod'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj.batteryParameterDisplayMethodVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option
-                      :label="$t('deviceManage.automaticPolling')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.manualSwitching')"
+                      :label="$t('deviceManage.antiBackflowMode')"
                       value="1"
                     />
                   </el-select>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'batteryParameterDisplayMethod'
-                      )
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1039')"
                     @click="
-                      handleSave(
-                        'batteryParameterDisplayMethod',
-                        systemSet.otherSetObj.batteryParameterDisplayMethodVal
+                      handleSave2(
+                        'TP_0X03_1039',
+                        settingList['TP_0X03_1039Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.theBatteryID')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'theBatteryIdOfTheCurrentDisplayedParameter'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .theBatteryIdOfTheCurrentDisplayedParameterVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'theBatteryIdOfTheCurrentDisplayedParameter'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'theBatteryIdOfTheCurrentDisplayedParameter',
-                        systemSet.otherSetObj
-                          .theBatteryIdOfTheCurrentDisplayedParameterVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSControl')"
-                v-if="systemSetIsDisplay('otherSetObj', 'mosControl')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.mosControlVal"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'mosControl')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'mosControl',
-                        systemSet.otherSetObj.mosControlVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.GPSPowerControl')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'gpsCommunicationModulePowerControl'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="
-                      systemSet.otherSetObj
-                        .gpsCommunicationModulePowerControlVal
-                    "
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'gpsCommunicationModulePowerControl'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'gpsCommunicationModulePowerControl',
-                        systemSet.otherSetObj
-                          .gpsCommunicationModulePowerControlVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.ACCoupling')"
-                v-if="systemSetIsDisplay('otherSetObj', 'acCoupling')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1040')">
                 <div style="display: flex">
                   <el-select
-                    v-model="systemSet.otherSetObj.acCouplingVal"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.prohibit')" value="1" />
-                    <el-option :label="$t('deviceManage.enable')" value="2" />
-                  </el-select>
-                  <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'acCoupling')"
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'acCoupling',
-                        systemSet.otherSetObj.acCouplingVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.emptyElectricityMeterEnergy')"
-                v-if="
-                  systemSetIsDisplay(
-                    'otherSetObj',
-                    'emptyElectricityMeterEnergy'
-                  )
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="
-                      systemSet.otherSetObj.emptyElectricityMeterEnergyVal
-                    "
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option label="0" value="0" />
-                    <el-option :label="$t('common.confirm')" value="65535" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay(
-                        'otherSetObj',
-                        'emptyElectricityMeterEnergy'
-                      )
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'emptyElectricityMeterEnergy',
-                        systemSet.otherSetObj.emptyElectricityMeterEnergyVal
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress194')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'protocolAddress194') &&
-                  systemSet.otherSetObj.countryCodeVal == '3'
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.protocolAddress194Val"
-                    :placeholder="$t('common.selectPrompt')"
-                    style="width: 100%"
-                  >
-                    <el-option :label="$t('deviceManage.prohibit')" value="1" />
-                    <el-option :label="$t('deviceManage.enable')" value="2" />
-                  </el-select>
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress194')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'protocolAddress194',
-                        systemSet.otherSetObj.protocolAddress194Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOverDischargeProtection')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress313')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress313Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress313')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'protocolAddress313',
-                        systemSet.otherSetObj.protocolAddress313Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerDownVoltage')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress358')"
-              >
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress358Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress358')
-                    "
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'protocolAddress358',
-                        systemSet.otherSetObj.protocolAddress358Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.activationInAustralia')"
-                v-if="
-                  systemSetIsDisplay('otherSetObj', 'protocolAddress195') &&
-                  systemSet.otherSetObj.countryCodeVal == '3'
-                "
-              >
-                <div style="display: flex">
-                  <el-select
-                    v-model="systemSet.otherSetObj.protocolAddress195Val"
+                    v-model="settingList['TP_0X03_1040Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1040')"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('deviceManage.inactive')" value="0" />
                     <el-option :label="$t('deviceManage.activate')" value="1" />
                   </el-select>
-                  <!-- <el-input v-model="systemSet.otherSetObj.protocolAddress195Val" :placeholder="$t('common.inputPrompt')" /> -->
+
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress195')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1040')"
                     @click="
-                      handleSave(
-                        'protocolAddress195',
-                        systemSet.otherSetObj.protocolAddress195Val
+                      handleSave2(
+                        'TP_0X03_1040',
+                        settingList['TP_0X03_1040Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress341')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress341')"
-              >
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1041')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1041Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1041')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.AustraliaZoneA')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.AustralianZoneB')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.AustralianZoneC')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.NewZealand')"
+                      value="3"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1041')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1041',
+                        settingList['TP_0X03_1041Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1042')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1042Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1042')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.powerGrid')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.alternator')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1042')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1042',
+                        settingList['TP_0X03_1042Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1043')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1043Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1043')"
+                    style="width: 100%"
+                  >
+                    <el-option label="UPS" value="0" />
+                    <el-option label="EPS" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1043')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1043',
+                        settingList['TP_0X03_1043Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1044')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1044Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1044')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.independence')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.paralleling')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1044')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1044',
+                        settingList['TP_0X03_1044Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1045')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress341Val"
+                    v-model="settingList['TP_0X03_1045Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1045')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">V</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress341')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1045')"
                     @click="
-                      handleSave(
-                        'protocolAddress341',
-                        systemSet.otherSetObj.protocolAddress341Val
+                      handleSave2(
+                        'TP_0X03_1045',
+                        settingList['TP_0X03_1045Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress314')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress314')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1046')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress314Val"
+                    v-model="settingList['TP_0X03_1046Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1046')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1046')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1046',
+                        settingList['TP_0X03_1046Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1047')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1047Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1047')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.leadAcid')" value="0" />
+                    <el-option
+                      :label="$t('deviceManage.lithiumBattery')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1047')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1047',
+                        settingList['TP_0X03_1047Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1048')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1048Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1048')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">A</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1048')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1048',
+                        settingList['TP_0X03_1048Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1049')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1049Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1049')"
+                  >
+                    <template slot="append">A</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1049')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1049',
+                        settingList['TP_0X03_1049Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1050')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1050Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1050')"
                   >
                     <template slot="append">V</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress314')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1050')"
                     @click="
-                      handleSave(
-                        'protocolAddress314',
-                        systemSet.otherSetObj.protocolAddress314Val
+                      handleSave2(
+                        'TP_0X03_1050',
+                        settingList['TP_0X03_1050Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress328')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress328')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1051')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress328Val"
+                    v-model="settingList['TP_0X03_1051Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1051')"
                   >
                     <template slot="append">V</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress328')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1051')"
                     @click="
-                      handleSave(
-                        'protocolAddress328',
-                        systemSet.otherSetObj.protocolAddress328Val
+                      handleSave2(
+                        'TP_0X03_1051',
+                        settingList['TP_0X03_1051Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress329')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress329')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1052')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress329Val"
+                    v-model="settingList['TP_0X03_1052Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1052')"
                   >
                     <template slot="append">V</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress329')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1052')"
                     @click="
-                      handleSave(
-                        'protocolAddress329',
-                        systemSet.otherSetObj.protocolAddress329Val
+                      handleSave2(
+                        'TP_0X03_1052',
+                        settingList['TP_0X03_1052Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress340')"
-                v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress340')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1053')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.protocolAddress340Val"
+                    v-model="settingList['TP_0X03_1053Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1053')"
                   >
                     <template slot="append">V</template>
                   </el-input>
                   <el-button
-                    v-if="
-                      systemSetBtnIsDisplay('otherSetObj', 'protocolAddress340')
-                    "
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1053')"
                     @click="
-                      handleSave(
-                        'protocolAddress340',
-                        systemSet.otherSetObj.protocolAddress340Val
+                      handleSave2(
+                        'TP_0X03_1053',
+                        settingList['TP_0X03_1053Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.realTimeClock')"
-                v-if="systemSetIsDisplay('otherSetObj', 'realTimeClock')"
-              >
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1054')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.otherSetObj.realTimeClockVal"
+                    v-model="settingList['TP_0X03_1054Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1054')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1054')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1054',
+                        settingList['TP_0X03_1054Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1055')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1055Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1055')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1055')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1055',
+                        settingList['TP_0X03_1055Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1056')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1056Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1056')"
+                    style="width: 100%"
+                  >
+                    <el-option label="NULL" value="0" />
+                    <el-option
+                      :label="$t('deviceManage.electricityMeter')"
+                      value="1"
+                    />
+                    <el-option label="CT" value="2" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1056')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1056',
+                        settingList['TP_0X03_1056Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1057')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1057Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1057')"
                   />
                   <el-button
-                    v-if="systemSetBtnIsDisplay('otherSetObj', 'realTimeClock')"
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1057')"
                     @click="
-                      handleSave(
-                        'realTimeClock',
-                        systemSet.otherSetObj.realTimeClockVal
+                      handleSave2(
+                        'TP_0X03_1057',
+                        settingList['TP_0X03_1057Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-        </template>
 
-        <template v-else-if="activeIndex === '9'">
-          <el-card style="margin-top: 10px" v-if="batteryParameter.batterySet">
-            <el-descriptions
-              :title="$t('deviceManage.batterySettings')"
-              :column="2"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryPackID')"
-                v-if="batteryParameterIsDisplay('batteryPackId')"
-                >{{
-                  batteryParameter.batterySetObj.batteryPackIdVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.currentUpgradedBatteryID')"
-                v-if="batteryParameterIsDisplay('currentUpgradedBatteryId')"
-                >{{
-                  batteryParameter.batterySetObj.currentUpgradedBatteryIdVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.upgradeFailedBatteryID')"
-                v-if="batteryParameterIsDisplay('upgradeFailedBatteryId')"
-                >{{
-                  batteryParameter.batterySetObj.upgradeFailedBatteryIdVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.numberCellStringsN')"
-                v-if="
-                  batteryParameterIsDisplay('numberOfBatteryPackCellStringsN')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .numberOfBatteryPackCellStringsNVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.numberProbesX')"
-                v-if="
-                  batteryParameterIsDisplay('totalNumberOfTemperatureProbesX')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalNumberOfTemperatureProbesXVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.leakageCurrent')"
-                v-if="batteryParameterIsDisplay('leakageCurrent')"
-                >{{
-                  batteryParameter.batterySetObj.leakageCurrentVal
-                }}mA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.zeroGroundVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'zeroGroundVoltage'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.zeroGroundVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.intermediateBusbarVoltage')"
-                v-if="batteryParameterIsDisplay('intermediateBusbarVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.intermediateBusbarVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.buckBoostCurrent')"
-                v-if="batteryParameterIsDisplay('buckBoostCurrent')"
-                >{{
-                  batteryParameter.batterySetObj.buckBoostCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.PVIsoVoltage')"
-                v-if="batteryParameterIsDisplay('pvIsoVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.pvIsoVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.zeroGroundVoltage')"
-                v-if="batteryParameterIsDisplay('zeroGroundVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.zeroGroundVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentOfInverterCurrent')"
-                v-if="batteryParameterIsDisplay('dcComponentOfInverterCurrent')"
-                >{{
-                  batteryParameter.batterySetObj
-                    .dcComponentOfInverterCurrentVal
-                }}mA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentOfLoadVoltage')"
-                v-if="batteryParameterIsDisplay('dcComponentOfLoadVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.dcComponentOfLoadVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.relayIntermediateVoltage')"
-                v-if="batteryParameterIsDisplay('relayIntermediateVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.relayIntermediateVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage1')"
-                v-if="batteryParameterIsDisplay('cellVoltage1')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage1Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage2')"
-                v-if="batteryParameterIsDisplay('cellVoltage2')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage2Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage3')"
-                v-if="batteryParameterIsDisplay('cellVoltage3')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage3Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage4')"
-                v-if="batteryParameterIsDisplay('cellVoltage4')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage4Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage5')"
-                v-if="batteryParameterIsDisplay('cellVoltage5')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage5Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage6')"
-                v-if="batteryParameterIsDisplay('cellVoltage6')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage6Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage7')"
-                v-if="batteryParameterIsDisplay('cellVoltage7')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage7Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage8')"
-                v-if="batteryParameterIsDisplay('cellVoltage8')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage8Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage9')"
-                v-if="batteryParameterIsDisplay('cellVoltage9')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage9Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage10')"
-                v-if="batteryParameterIsDisplay('cellVoltage10')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage10Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage11')"
-                v-if="batteryParameterIsDisplay('cellVoltage11')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage11Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage12')"
-                v-if="batteryParameterIsDisplay('cellVoltage12')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage12Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage13')"
-                v-if="batteryParameterIsDisplay('cellVoltage13')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage13Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage14')"
-                v-if="batteryParameterIsDisplay('cellVoltage14')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage14Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage15')"
-                v-if="batteryParameterIsDisplay('cellVoltage15')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage15Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellVoltage16')"
-                v-if="batteryParameterIsDisplay('cellVoltage16')"
-                >{{
-                  batteryParameter.batterySetObj.cellVoltage16Val
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.electricCurrent')"
-                v-if="batteryParameterIsDisplay('currentCurrent')"
-                >{{
-                  batteryParameter.batterySetObj.currentCurrentVal
-                }}mA</el-descriptions-item
-              >
-              <!-- <el-descriptions-item label="State1" v-if="batteryParameter.batterySetObj.state1">{{ batteryParameter.batterySetObj.state1Val }}</el-descriptions-item>
-            <el-descriptions-item label="State2" v-if="batteryParameter.batterySetObj.state2">{{ batteryParameter.batterySetObj.state2Val }}</el-descriptions-item>
-            <el-descriptions-item label="State3" v-if="batteryParameter.batterySetObj.state3">{{ batteryParameter.batterySetObj.state3Val }}</el-descriptions-item> -->
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingOvercurrentProtection')"
-                v-if="
-                  batteryParameterIsDisplay('chargingOvercurrentProtection')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .chargingOvercurrentProtectionVal
-                }}A
-                <!-- <div class="input-container">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1058')">
+                <div style="display: flex">
                   <el-input
-                    type="number"
-                    id="chargingOvercurrentProtection"
-                    v-model="formData.chargingOvercurrentProtection"
-                    :min="1"
-                    :max="250"
-                    class="custom-input"
-                  ></el-input>
-                  <span>A</span>
-                  <el-button
-                    @click="savechargingOvercurrentProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
+                    v-model="settingList['TP_0X03_1058Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1058')"
+                    :placeholder="$t('common.inputPrompt')"
                   >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingOvercurrentProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'chargingOvercurrentProtectionDelay'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .chargingOvercurrentProtectionDelayVal
-                }}s
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="chargingOvercurrentProtectionDelay"
-                    v-model="formData.chargingOvercurrentProtectionDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
+                    <template slot="append">V</template>
+                  </el-input>
                   <el-button
-                    @click="savechargingOvercurrentProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOvervoltageProtection')"
-                v-if="batteryParameterIsDisplay('cellOvervoltageProtection')"
-                >{{
-                  batteryParameter.batterySetObj.cellOvervoltageProtectionVal
-                }}V
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageProtection"
-                    v-model="formData.cellOvervoltageProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>mV</span>
-                  <el-button
-                    @click="savecellOvervoltageProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOvervoltageProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay('cellOvervoltageProtectionDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .cellOvervoltageProtectionDelayVal
-                }}ms
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageProtectionDelay"
-                    v-model="formData.cellOvervoltageProtectionDelay"
-                    :min="100"
-                    :max="10000"
-                    class="custom-input"
-                  ></el-input>
-                  <span>ms</span>
-                  <el-button
-                    @click="savecellOvervoltageProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOverDischargeProtection')"
-                v-if="batteryParameterIsDisplay('cellOverDischargeProtection')"
-                >{{
-                  batteryParameter.batterySetObj.cellOverDischargeProtectionVal
-                }}V
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtection"
-                    v-model="formData.cellOverDischargeProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="savecellOverDischargeProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOverDischargeProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay('cellOverDischargeProtectionDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .cellOverDischargeProtectionDelayVal
-                }}ms
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtectionDelay"
-                    v-model="formData.cellOverDischargeProtectionDelay"
-                    :min="100"
-                    :max="10000"
-                    class="custom-input"
-                  ></el-input>
-                  <span>ms</span>
-                  <el-button
-                    @click="savecellOverDischargeProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.overvoltageHysteresisVoltage')"
-                v-if="batteryParameterIsDisplay('overvoltageHysteresisVoltage')"
-                >{{
-                  batteryParameter.batterySetObj
-                    .overvoltageHysteresisVoltageVal
-                }}V
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="overvoltageHysteresisVoltage"
-                    v-model="formData.overvoltageHysteresisVoltage"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="saveovervoltageHysteresisVoltage"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.overdischargeHysteresisVoltage')"
-                v-if="
-                  batteryParameterIsDisplay('overdischargeHysteresisVoltage')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .overdischargeHysteresisVoltageVal
-                }}V
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="overdischargeHysteresisVoltage"
-                    v-model="formData.overdischargeHysteresisVoltage"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="saveoverdischargeHysteresisVoltage"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOvervoltageRecoveryDelay')"
-                v-if="batteryParameterIsDisplay('cellOvervoltageRecoveryDelay')"
-                >{{
-                  batteryParameter.batterySetObj
-                    .cellOvervoltageRecoveryDelayVal
-                }}s
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageRecoveryDelay"
-                    v-model="formData.cellOvervoltageRecoveryDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
-                  <el-button
-                    @click="savecellOvervoltageRecoveryDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOverDischargeRecoveryDelay')"
-                v-if="
-                  batteryParameterIsDisplay('cellOverDischargeRecoveryDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .cellOverDischargeRecoveryDelayVal
-                }}s
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeRecoveryDelay"
-                    v-model="formData.cellOverDischargeRecoveryDelay"
-                    :min="1"
-                    :max="50"
-                    class="custom-input"
-                  ></el-input>
-                  <span>s</span>
-                  <el-button
-                    @click="savecellOverDischargeRecoveryDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.highTemperatureProtectionDuringDischarge')
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'highTemperatureProtectionDuringDischarge'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .highTemperatureProtectionDuringDischargeVal
-                }}℃
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionDuringDischarge"
-                    v-model="formData.highTemperatureProtectionDuringDischarge"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionDuringDischarge"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.highTemperatureProtectionRecoveryDuringDischarge'
-                  )
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'highTemperatureProtectionRecoveryDuringDischarge'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .highTemperatureProtectionRecoveryDuringDischargeVal
-                }}℃
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionRecoveryDuringDischarge"
-                    v-model="
-                      formData.highTemperatureProtectionRecoveryDuringDischarge
-                    "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1058')"
                     @click="
-                      savehighTemperatureProtectionRecoveryDuringDischarge
+                      handleSave2(
+                        'TP_0X03_1058',
+                        settingList['TP_0X03_1058Val']
+                      )
                     "
-                    class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
-                </div> -->
+                </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.lowTemperatureProtectionDuringDischarge')
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'lowTemperatureProtectionDuringDischarge'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .lowTemperatureProtectionDuringDischargeVal
-                }}℃
-                <!-- <div class="input-container">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1059')">
+                <div style="display: flex">
                   <el-input
-                    type="number"
-                    id="lowTemperatureProtectionDuringDischarge"
-                    v-model="formData.lowTemperatureProtectionDuringDischarge"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
+                    v-model="settingList['TP_0X03_1059Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1059')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
                   <el-button
-                    @click="savelowTemperatureProtectionDuringDischarge"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.dischargeLowTemperatureProtectionRecovery')
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'dischargeLowTemperatureProtectionRecovery'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeLowTemperatureProtectionRecoveryVal
-                }}℃
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="dischargeLowTemperatureProtectionRecovery"
-                    v-model="formData.dischargeLowTemperatureProtectionRecovery"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savedischargeLowTemperatureProtectionRecovery"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.highTemperatureProtectionDuringCharging')
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'highTemperatureProtectionDuringCharging'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .highTemperatureProtectionDuringChargingVal
-                }}℃
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionDuringCharging"
-                    v-model="formData.highTemperatureProtectionDuringCharging"
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionDuringCharging"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.highTemperatureProtectionRecoveryDuringCharging'
-                  )
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'highTemperatureProtectionRecoveryDuringCharging'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .highTemperatureProtectionRecoveryDuringChargingVal
-                }}℃
-                <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="highTemperatureProtectionRecoveryDuringCharging"
-                    v-model="
-                      formData.highTemperatureProtectionRecoveryDuringCharging
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1059')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1059',
+                        settingList['TP_0X03_1059Val']
+                      )
                     "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="savehighTemperatureProtectionRecoveryDuringCharging"
-                    class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
-                </div> -->
+                </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.lowDuringCharging')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'lowTemperatureProtectionDuringCharging'
-                  )
-                "
-              >
-                <div class="input-container">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1060')">
+                <div style="display: flex">
                   <el-input
-                    type="number"
-                    id="lowTempCharging"
-                    v-model.number="
-                      formData.lowTemperatureProtectionDuringCharging
-                    "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
+                    v-model="settingList['TP_0X03_1060Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1060')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
                   <el-button
-                    @click="saveLowTemperatureProtectionDuringCharging"
-                    class="save-button"
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1060')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1060',
+                        settingList['TP_0X03_1060Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1061')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1061Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1061')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1061')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1061',
+                        settingList['TP_0X03_1061Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1062')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1062Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1062')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1062')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1062',
+                        settingList['TP_0X03_1062Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1063')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1063Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1063')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1063')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1063',
+                        settingList['TP_0X03_1063Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1064')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1064Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1064')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1064')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1064',
+                        settingList['TP_0X03_1064Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1065')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1065Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1065')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1065')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1065',
+                        settingList['TP_0X03_1065Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1066')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1066Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1066')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1066')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1066',
+                        settingList['TP_0X03_1066Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1067')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1067Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1067')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1067')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1067',
+                        settingList['TP_0X03_1067Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1068')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1068Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1068')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1068')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1068',
+                        settingList['TP_0X03_1068Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1069')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1069Val']"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1069')"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1069')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1069',
+                        settingList['TP_0X03_1069Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1070')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1070Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1070')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1070')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1070',
+                        settingList['TP_0X03_1070Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1071')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1071Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1071')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1071')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1071',
+                        settingList['TP_0X03_1071Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1072')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1072Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1072')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1072')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1072',
+                        settingList['TP_0X03_1072Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1073')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1073Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1073')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1073')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1073',
+                        settingList['TP_0X03_1073Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1074')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1074Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1074')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1074')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1074',
+                        settingList['TP_0X03_1074Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1075')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1075Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1075')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1075')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1075',
+                        settingList['TP_0X03_1075Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1076')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1076Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1076')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1076')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1076',
+                        settingList['TP_0X03_1076Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1077')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1077Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1077')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1077')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1077',
+                        settingList['TP_0X03_1077Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1078')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1078Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1078')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1078')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1078',
+                        settingList['TP_0X03_1078Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1079')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1079Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1079')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1079')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1079',
+                        settingList['TP_0X03_1079Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1080')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1080Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1080')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1080')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1080',
+                        settingList['TP_0X03_1080Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1081')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1081Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1081')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1081')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1081',
+                        settingList['TP_0X03_1081Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1082')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1082Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1082')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1082')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1082',
+                        settingList['TP_0X03_1082Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1083')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1083Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1083')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1083')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1083',
+                        settingList['TP_0X03_1083Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1084')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1084Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1084')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1084')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1084',
+                        settingList['TP_0X03_1084Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1085')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1085Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1085')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1085')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1085',
+                        settingList['TP_0X03_1085Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1086')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1086Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1086')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1086')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1086',
+                        settingList['TP_0X03_1086Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1087')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1087Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1087')"
+                  >
+                    <template slot="append">ms</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1087')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1087',
+                        settingList['TP_0X03_1087Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1088')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1088Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1088')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1088')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1088',
+                        settingList['TP_0X03_1088Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1089')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1089Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1089')"
+                  >
+                    <template slot="append">s</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1089')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1089',
+                        settingList['TP_0X03_1089Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1090')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1090Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1090')"
+                  >
+                    <template slot="append">s</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1090')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1090',
+                        settingList['TP_0X03_1090Val']
+                      )
+                    "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <!-- {{
-                  batteryParameter.batterySetObj
-                    .lowTemperatureProtectionDuringChargingVal
-                }}℃</el-descriptions-item> -->
-
-              <el-descriptions-item
-                :label="$t('deviceManage.lowRecoveryDuringCharging')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'lowTemperatureProtectionRecoveryDuringCharging'
-                  )
-                "
-                ><div class="input-container">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1091')">
+                <div style="display: flex">
                   <el-input
-                    type="number"
-                    id="lowTempRecoveryCharging"
-                    v-model.number="
-                      formData.lowTemperatureProtectionRecoveryDuringCharging
+                    v-model="settingList['TP_0X03_1091Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1091')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1091')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1091',
+                        settingList['TP_0X03_1091Val']
+                      )
                     "
-                    :min="0"
-                    :max="70"
-                    class="custom-input"
-                  ></el-input>
-                  <span>℃</span>
-                  <el-button
-                    @click="saveLowTemperatureProtectionRecoveryDuringCharging"
-                    class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.equalizingOpeningVoltage')"
-                v-if="batteryParameterIsDisplay('equalizingOpeningVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.equalizingOpeningVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.equilibriumOpeningPressureDifference')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'equilibriumOpeningPressureDifference'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .equilibriumOpeningPressureDifferenceVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellTemperature1')"
-                v-if="batteryParameterIsDisplay('cellTemperature1')"
-                >{{
-                  batteryParameter.batterySetObj.cellTemperature1Val
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellTemperature2')"
-                v-if="batteryParameterIsDisplay('cellTemperature2')"
-                >{{
-                  batteryParameter.batterySetObj.cellTemperature2Val
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellTemperature3')"
-                v-if="batteryParameterIsDisplay('cellTemperature3')"
-                >{{
-                  batteryParameter.batterySetObj.cellTemperature3Val
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellTemperature4')"
-                v-if="batteryParameterIsDisplay('cellTemperature4')"
-                >{{
-                  batteryParameter.batterySetObj.cellTemperature4Val
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSTemperature')"
-                v-if="batteryParameterIsDisplay('mosTemperature')"
-                >{{
-                  batteryParameter.batterySetObj.mosTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.ambientTemperature')"
-                v-if="batteryParameterIsDisplay('ambientTemperature')"
-                >{{
-                  batteryParameter.batterySetObj.ambientTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.equilibriumState1')"
-                v-if="batteryParameterIsDisplay('equilibriumState1')"
-              >
-                {{ batteryParameter.batterySetObj.equilibriumState1Val }}
+                </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.equilibriumState2')"
-                v-if="batteryParameterIsDisplay('equilibriumState2')"
-              >
-                {{ batteryParameter.batterySetObj.equilibriumState2Val }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.softwareVersion')"
-                v-if="batteryParameterIsDisplay('softwareVersion')"
-                >{{
-                  batteryParameter.batterySetObj.softwareVersionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.hardwareVersion')"
-                v-if="batteryParameterIsDisplay('hardwareVersion')"
-                >{{
-                  batteryParameter.batterySetObj.hardwareVersionVal
-                }}</el-descriptions-item
-              >
-              <!-- <el-descriptions-item :label="$t('deviceManage.state')" v-if="batteryParameter.batterySetObj.state">{{ batteryParameter.batterySetObj.stateVal }}</el-descriptions-item> -->
-
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit0')"
-                v-if="batteryParameterIsDisplay('alarmStateBit0')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit0Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit1')"
-                v-if="batteryParameterIsDisplay('alarmStateBit1')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit1Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit2')"
-                v-if="batteryParameterIsDisplay('alarmStateBit2')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit2Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit3')"
-                v-if="batteryParameterIsDisplay('alarmStateBit3')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit3Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit4')"
-                v-if="batteryParameterIsDisplay('alarmStateBit4')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit4Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit5')"
-                v-if="batteryParameterIsDisplay('alarmStateBit5')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit5Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit6')"
-                v-if="batteryParameterIsDisplay('alarmStateBit6')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit6Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit7')"
-                v-if="batteryParameterIsDisplay('alarmStateBit7')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit7Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit8')"
-                v-if="batteryParameterIsDisplay('alarmStateBit8')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit8Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit9')"
-                v-if="batteryParameterIsDisplay('alarmStateBit9')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit9Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit10')"
-                v-if="batteryParameterIsDisplay('alarmStateBit10')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit10Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.alarmStateBit11')"
-                v-if="batteryParameterIsDisplay('alarmStateBit11')"
-              >
-                {{
-                  batteryParameter.batterySetObj.alarmStateBit11Val == 0
-                    ? $t("deviceManage.nothing")
-                    : $t("deviceManage.alarm")
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.numberOfCycles')"
-                v-if="batteryParameterIsDisplay('numberOfCycles')"
-                >{{
-                  batteryParameter.batterySetObj.numberOfCyclesVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeRemainingTime')"
-                v-if="batteryParameterIsDisplay('dischargeRemainingTime')"
-                >{{
-                  batteryParameter.batterySetObj.dischargeRemainingTimeVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingRemainingTime')"
-                v-if="batteryParameterIsDisplay('chargingRemainingTime')"
-                >{{
-                  batteryParameter.batterySetObj.chargingRemainingTimeVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.currentChargingInterval')"
-                v-if="batteryParameterIsDisplay('currentChargingInterval')"
-                >{{
-                  batteryParameter.batterySetObj.currentChargingIntervalVal
-                }}h</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumChargingInterval')"
-                v-if="batteryParameterIsDisplay('maximumChargingInterval')"
-                >{{
-                  batteryParameter.batterySetObj.maximumChargingIntervalVal
-                }}h</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalBatteryVoltage')"
-                v-if="batteryParameterIsDisplay('totalBatteryVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.totalBatteryVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumVoltageOfPack')"
-                v-if="batteryParameterIsDisplay('maximumVoltageOfBatteryPack')"
-                >{{
-                  batteryParameter.batterySetObj.maximumVoltageOfBatteryPackVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.minimumVoltageOfPack')"
-                v-if="batteryParameterIsDisplay('minimumVoltageOfBatteryPack')"
-                >{{
-                  batteryParameter.batterySetObj.minimumVoltageOfBatteryPackVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumAllowableDischargeCurrent')"
-                v-if="
-                  batteryParameterIsDisplay('maximumAllowableDischargeCurrent')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .maximumAllowableDischargeCurrentVal
-                }}mA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumAllowableChargingCurrent')"
-                v-if="
-                  batteryParameterIsDisplay('maximumAllowableChargingCurrent')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .maximumAllowableChargingCurrentVal
-                }}mA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.standardChargingVoltage')"
-                v-if="batteryParameterIsDisplay('standardChargingVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.standardChargingVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.currentHumidity')"
-                v-if="batteryParameterIsDisplay('currentHumidity')"
-                >{{
-                  batteryParameter.batterySetObj.currentHumidityVal
-                }}RH%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.factoryCode')"
-                v-if="batteryParameterIsDisplay('factoryCode')"
-                >{{
-                  batteryParameter.batterySetObj.factoryCodeVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.productNumber')"
-                v-if="batteryParameterIsDisplay('productNumber')"
-                >{{
-                  batteryParameter.batterySetObj.productNumberVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dateOfProduction')"
-                v-if="batteryParameterIsDisplay('dateOfProduction')"
-                >{{
-                  batteryParameter.batterySetObj.dateOfProductionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryDetectionResistanceValue')"
-                v-if="
-                  batteryParameterIsDisplay('batteryDetectionResistanceValue')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .batteryDetectionResistanceValueVal
-                }}mΩ</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.maximumCellTemperature')"
-                v-if="batteryParameterIsDisplay('maximumCellTemperature')"
-                >{{
-                  batteryParameter.batterySetObj.maximumCellTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.minimumCellTemperature')"
-                v-if="batteryParameterIsDisplay('minimumCellTemperature')"
-                >{{
-                  batteryParameter.batterySetObj.minimumCellTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.temperatureDifference')"
-                v-if="batteryParameterIsDisplay('temperatureDifference')"
-                >{{
-                  batteryParameter.batterySetObj.temperatureDifferenceVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.temperatureProtectionValue')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'temperatureDifferenceProtectionValue'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .temperatureDifferenceProtectionValueVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.temperatureAlarmValue')"
-                v-if="
-                  batteryParameterIsDisplay('temperatureDifferenceAlarmValue')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .temperatureDifferenceAlarmValueVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.differentialProtectionValue')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'differentialPressureProtectionValue'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .differentialPressureProtectionValueVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.differentialAlarmValue')"
-                v-if="
-                  batteryParameterIsDisplay('differentialPressureAlarmValue')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .differentialPressureAlarmValueVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.staticEquilibriumTime')"
-                v-if="batteryParameterIsDisplay('staticEquilibriumTime')"
-                >{{
-                  batteryParameter.batterySetObj.staticEquilibriumTimeVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.automaticRecoveryDelayC')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'automaticRecoveryDelayAfterChargingOvercurrent'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .automaticRecoveryDelayAfterChargingOvercurrentVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.automaticallyResumeLocking')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'automaticallyResumeLockingAfterOvercharging'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .automaticallyResumeLockingAfterOverchargingVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.automaticRecoveryDelay')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'automaticRecoveryDelayAfterDischargeOvercurrent'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .automaticRecoveryDelayAfterDischargeOvercurrentVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.automaticRecoveryLocking')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'automaticRecoveryLockingAfterDischargeOvercurrent'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .automaticRecoveryLockingAfterDischargeOvercurrentVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterCurrentLimit')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'theInverterCurrentExceedsTheLimitCurrent'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .theInverterCurrentExceedsTheLimitCurrentVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryParameterDisplayMethod')"
-                v-if="
-                  batteryParameterIsDisplay('batteryParameterDisplayMethod')
-                "
-              >
-                {{
-                  batteryParameter.batterySetObj
-                    .batteryParameterDisplayMethodVal == 0
-                    ? $t("deviceManage.automaticPolling")
-                    : $t("deviceManage.manualSwitching")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryIDParameter')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'theBatteryIdOfTheCurrentDisplayedParameter'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .theBatteryIdOfTheCurrentDisplayedParameterVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryPackDesignCapacity')"
-                v-if="batteryParameterIsDisplay('batteryPackDesignCapacity')"
-                >{{
-                  batteryParameter.batterySetObj.batteryPackDesignCapacityVal
-                }}mAH</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.currentBatteryFullCapacity')"
-                v-if="batteryParameterIsDisplay('currentBatteryFullCapacity')"
-                >{{
-                  batteryParameter.batterySetObj.currentBatteryFullCapacityVal
-                }}mAH</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.remainingBatteryCapacity')"
-                v-if="batteryParameterIsDisplay('remainingBatteryCapacity')"
-                >{{
-                  batteryParameter.batterySetObj.remainingBatteryCapacityVal
-                }}mAH</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSControl')"
-                v-if="batteryParameterIsDisplay('mosControl')"
-                >{{
-                  batteryParameter.batterySetObj.mosControlVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingDischargingHeating')"
-                v-if="
-                  batteryParameterIsDisplay('chargingDischargingHeatingEnable')
-                "
-              >
-                {{
-                  batteryParameter.batterySetObj
-                    .chargingDischargingHeatingEnableVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.GPSPowerControl')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'gpsCommunicationModulePowerControl'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .gpsCommunicationModulePowerControlVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.realTimeClock')"
-                v-if="batteryParameterIsDisplay('realTimeClock')"
-                >{{
-                  batteryParameter.batterySetObj.realTimeClockVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeOvercurrentProtection')"
-                v-if="
-                  batteryParameterIsDisplay('dischargeOvercurrent1Protection')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOvercurrent1ProtectionVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeOvercurrentDelay')"
-                v-if="batteryParameterIsDisplay('dischargeOvercurrent1Delay')"
-                >{{
-                  batteryParameter.batterySetObj.dischargeOvercurrent1DelayVal
-                }}s</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalHighProtection')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'environmentalHighTemperatureProtection'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalHighTemperatureProtectionVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalHighProtectionRecovery')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'environmentalHighTemperatureProtectionRecovery'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalHighTemperatureProtectionRecoveryVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalLowProtection')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'environmentalLowTemperatureProtection'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalLowTemperatureProtectionVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalLowProtectionRecovery')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'environmentalLowTemperatureProtectionRecovery'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalLowTemperatureProtectionRecoveryVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalPressureOvervoltageProtection')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalPressureOvervoltageProtection'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalPressureOvervoltageProtectionVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.totalPressureOvervoltageProtectionRecovery')
-                "
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalPressureOvervoltageProtectionRecovery'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalPressureOvervoltageProtectionRecoveryVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalVoltageOvervoltageProtection')"
-                v-if="
-                  batteryParameterIsDisplay('totalVoltageOvervoltageProtection')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalVoltageOvervoltageProtectionVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalPressureOverdischargeRecovery')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalPressureOverDischargeRecovery'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalPressureOverDischargeRecoveryVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOvervoltageProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalVoltageOvervoltageProtectionDelay'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalVoltageOvervoltageProtectionDelayVal
-                }}ms</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOverdischargeProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalVoltageOverDischargeProtectionDelay'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalVoltageOverDischargeProtectionDelayVal
-                }}ms</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOvervoltageRecoveryDelay')"
-                v-if="
-                  batteryParameterIsDisplay('totalOvervoltageRecoveryDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalOvervoltageRecoveryDelayVal
-                }}s</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOverdischargeRecoveryDelay')"
-                v-if="
-                  batteryParameterIsDisplay('totalOverdischargeRecoveryDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalOverdischargeRecoveryDelayVal
-                }}s</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSHighProtection')"
-                v-if="batteryParameterIsDisplay('mosHighTemperatureProtection')"
-                >{{
-                  batteryParameter.batterySetObj
-                    .mosHighTemperatureProtectionVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSHighRecovery')"
-                v-if="batteryParameterIsDisplay('mosHighTemperatureRecovery')"
-                >{{
-                  batteryParameter.batterySetObj.mosHighTemperatureRecoveryVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSHighProtectionDelay')"
-                v-if="
-                  batteryParameterIsDisplay('moshighTemperatureProtectionDelay')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .moshighTemperatureProtectionDelayVal
-                }}s</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.fullTotalPressureAbove')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'fullOfProtectionTotalPressureAbove'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .fullOfProtectionTotalPressureAboveVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.fullChargingCurrentBelow')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'fullOfProtectionChargingCurrentBelow'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .fullOfProtectionChargingCurrentBelowVal
-                }}mA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.fullDelayTime')"
-                v-if="batteryParameterIsDisplay('fullOfProtectionDelayTime')"
-                >{{
-                  batteryParameter.batterySetObj.fullOfProtectionDelayTimeVal
-                }}s</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.heatingOnTemperature')"
-                v-if="batteryParameterIsDisplay('heatingFanOnTemperature')"
-                ><div class="input-container">
-                  <el-input
-                    type="number"
-                    id="heatingFanOnTemperature"
-                    v-model.number="formData.heatingFanOnTemperature"
-                    :min="0"
-                    :max="160"
-                    class="custom-input"
-                  ></el-input
-                  ><span>℃</span>
-                  <el-button
-                    @click="saveHeatingFanOnTemperature"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.heatingRecoveryTemperature')"
-                v-if="
-                  batteryParameterIsDisplay('heatingFanRecoveryTemperature')
-                "
-                ><div class="input-container">
-                  <el-input
-                    type="number"
-                    id="heatingFanRecoveryTemperature"
-                    v-model.number="formData.heatingFanRecoveryTemperature"
-                    :min="0"
-                    :max="160"
-                    class="custom-input"
-                  ></el-input
-                  ><span>℃</span>
-                  <el-button
-                    @click="saveHeatingFanRecoveryTemperature"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.voltageAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit0')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit0Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.overcurrentAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit1')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit1Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.overTemperatureAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit2')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit2Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSOverTemperatureAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit3')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit3Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellImbalanceAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit4')"
-              >
-                <div class="input-container">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1092')">
+                <div style="display: flex">
                   <el-select
-                    v-model="formData.enableSettingBit4"
-                    style="width: 100px"
+                    v-model="settingList['TP_0X03_1092Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1092')"
+                    style="width: 100%"
                   >
                     <el-option
-                      :label="$t('menuManage.close')"
+                      :label="$t('deviceManage.notEnable')"
                       value="0"
-                    ></el-option>
-                    <el-option
-                      :label="$t('menuManage.open')"
-                      value="1"
-                    ></el-option>
+                    />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
                   </el-select>
-                  <el-button @click="saveEnableSettings" class="save-button">{{
-                    $t("common.save")
-                  }}</el-button>
-                </div>
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.ambientTemperatureAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit5')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit5Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.SOCLowAlarm')"
-                v-if="batteryParameterIsDisplay('enableSettingBit6')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit6Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingAndHeatingEnable')"
-                v-if="batteryParameterIsDisplay('enableSettingBit7')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit7Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalVoltageProtection')"
-                v-if="batteryParameterIsDisplay('enableSettingBit8')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit8Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeRecoveryFunction')"
-                v-if="batteryParameterIsDisplay('enableSettingBit9')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit9Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.delayAutomaticRecoveryFunction')"
-                v-if="batteryParameterIsDisplay('enableSettingBit10')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit10Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingRecoveryFunction')"
-                v-if="batteryParameterIsDisplay('enableSettingBit11')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit11Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.staticEqualizationFunction')"
-                v-if="batteryParameterIsDisplay('enableSettingBit12')"
-              >
-                {{
-                  batteryParameter.batterySetObj.enableSettingBit12Val == 1
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.systemLockNumber')"
-                v-if="batteryParameterIsDisplay('systemLockStatusSerialNumber')"
-              >
-                {{
-                  systemLockStatusSerialNumberValFilter[
-                    batteryParameter.batterySetObj
-                      .systemLockStatusSerialNumberVal
-                  ]
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOvervoltageVoltage')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalVoltageOvervoltageAlarmVoltage'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalVoltageOvervoltageAlarmVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalOverdischargeVoltage')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'totalVoltageOverDischargeAlarmVoltage'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .totalVoltageOverDischargeAlarmVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOvervoltageVoltage')"
-                v-if="batteryParameterIsDisplay('cellOvervoltageAlarmVoltage')"
-              >
-                {{
-                  batteryParameter.batterySetObj.cellOvervoltageAlarmVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.cellOverdischargeVoltage')"
-                v-if="
-                  batteryParameterIsDisplay('cellOverDischargeAlarmVoltage')
-                "
-              >
-                {{
-                  batteryParameter.batterySetObj
-                    .cellOverDischargeAlarmVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingOvercurrentAlarm')"
-                v-if="
-                  batteryParameterIsDisplay('chargingOvercurrentAlarmCurrent')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .chargingOvercurrentAlarmCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeOvercurrentAlarm')"
-                v-if="
-                  batteryParameterIsDisplay('dischargeOvercurrentAlarmCurrent')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOvercurrentAlarmCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingHighAlarm')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'chargingHighTemperatureAlarmTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .chargingHighTemperatureAlarmTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingLowAlarm')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'chargingLowTemperatureAlarmTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .chargingLowTemperatureAlarmTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeHighAlarm')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'dischargeHighTemperatureAlarmTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeHighTemperatureAlarmTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeLowAlarm')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'dischargeLowTemperatureAlarmTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeLowTemperatureAlarmTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSAlarmTemperature')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'mosOverTemperatureAlarmTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .mosOverTemperatureAlarmTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.MOSRecoveryTemperature')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'mosOverTemperatureAlarmRecoveryTemperature'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .mosOverTemperatureAlarmRecoveryTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryImbalanceAlarmPressure')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'batteryImbalanceAlarmPressureDifference'
-                  )
-                "
-              >
-                <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="batteryImbalanceAlarmPressureDifference"
-                    v-model.number="
-                      formData.batteryImbalanceAlarmPressureDifference
-                    "
-                    class="custom-input"
-                  ></el-input>
-                  <span>mV</span>
                   <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1092')"
                     @click="
-                      saveBatteryParameter(
-                        'batteryImbalanceAlarmPressureDifference'
+                      handleSave2(
+                        'TP_0X03_1092',
+                        settingList['TP_0X03_1092Val']
                       )
                     "
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.imbalancePressureDifference')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'imbalanceAlarmRecoveryPressureDifference'
-                  )
-                "
-                ><div class="input-container">
-                  <el-input
-                    type="number"
-                    id="imbalanceAlarmRecoveryPressureDifference"
-                    v-model.number="
-                      formData.imbalanceAlarmRecoveryPressureDifference
-                    "
-                    class="custom-input"
-                  ></el-input>
-                  <span>mV</span>
-                  <el-button
-                    @click="
-                      saveBatteryParameter(
-                        'imbalanceAlarmRecoveryPressureDifference'
-                      )
-                    "
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalHighTemperatureAlarm')"
-                v-if="
-                  batteryParameterIsDisplay('environmentalHighTemperatureAlarm')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalHighTemperatureAlarmVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.environmentalLowTemperatureAlarm')"
-                v-if="
-                  batteryParameterIsDisplay('environmentalLowTemperatureAlarm')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .environmentalLowTemperatureAlarmVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.SOCLowAlarm')"
-                v-if="batteryParameterIsDisplay('socLowAlarm')"
-                >{{
-                  batteryParameter.batterySetObj.socLowAlarmVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingCurrentLimiting')"
-                v-if="
-                  batteryParameterIsDisplay('chargingCurrentLimitingFunction')
-                "
-              >
-                {{
-                  batteryParameter.batterySetObj
-                    .chargingCurrentLimitingFunctionVal == 1
-                    ? $t("common.enable")
-                    : $t("common.disable")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerDownVoltage')"
-                v-if="batteryParameterIsDisplay('powerDownVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.powerDownVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.powerDownCurrent')"
-                v-if="batteryParameterIsDisplay('powerDownCurrent')"
-                >{{
-                  batteryParameter.batterySetObj.powerDownCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.powerDownDelay')"
-                v-if="batteryParameterIsDisplay('powerDownDelay')"
-                >{{
-                  batteryParameter.batterySetObj.powerDownDelayVal
-                }}min</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.monthlySelfDischargeRate')"
-                v-if="batteryParameterIsDisplay('monthlySelfDischargeRate')"
-                >{{
-                  batteryParameter.batterySetObj.monthlySelfDischargeRateVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.capacityRatio')"
-                v-if="batteryParameterIsDisplay('cycle1CapacityRatio')"
-                >{{
-                  batteryParameter.batterySetObj.cycle1CapacityRatioVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.SOCMonomerVoltage')"
-                v-if="batteryParameterIsDisplay('soc0PercentMonomerVoltage')"
-                >{{
-                  batteryParameter.batterySetObj.soc0PercentMonomerVoltageVal
-                }}mV</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.fullCapacityOnce')"
-                v-if="
-                  batteryParameterIsDisplay(
-                    'fullCapacityAttenuationOncePerCycle'
-                  )
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .fullCapacityAttenuationOncePerCycleVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.mailAddress')"
-                v-if="batteryParameterIsDisplay('communicateAddress')"
-                >{{
-                  batteryParameter.batterySetObj.communicateAddressVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter1')"
-                v-if="batteryParameterIsDisplay('customParameters1')"
-              >
-                <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="customParameters1"
-                    v-model.number="formData.customParameters1"
-                    :min="0"
-                    :step="0.01"
-                    class="custom-input"
-                    :formatter="formatCustomParameters"
-                    :parser="parseCustomParameters"
-                  ></el-input>
-                  <span></span>
-                  <el-button
-                    @click="saveCustomParameters(1)"
-                    class="save-button"
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter2')"
-                v-if="batteryParameterIsDisplay('customParameters2')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters2Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter3')"
-                v-if="batteryParameterIsDisplay('customParameters3')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters3Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter4')"
-                v-if="batteryParameterIsDisplay('customParameters4')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters4Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter5')"
-                v-if="batteryParameterIsDisplay('customParameters5')"
-                ><div class="input-container">
-                  <el-input
-                    type="number"
-                    id="customParameters5"
-                    v-model.number="formData.customParameters5"
-                    :min="0"
-                    :step="0.01"
-                    class="custom-input"
-                    :formatter="formatCustomParameters"
-                    :parser="parseCustomParameters"
-                  ></el-input>
-                  <span></span>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1093')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1093Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1093')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.notEnable')"
+                      value="0"
+                    />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
                   <el-button
-                    @click="saveCustomParameters(5)"
-                    class="save-button"
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1093')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1093',
+                        settingList['TP_0X03_1093Val']
+                      )
+                    "
                     >{{ $t("common.save") }}</el-button
                   >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter6')"
-                v-if="batteryParameterIsDisplay('customParameters6')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters6Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter7')"
-                v-if="batteryParameterIsDisplay('customParameters7')"
-                >{{
-                  batteryParameter.batterySetObj.customParameters7Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customParameter8')"
-                v-if="batteryParameterIsDisplay('customParameters8')"
-                ><div class="input-container">
-                  <el-input
-                    type="number"
-                    id="customParameters8"
-                    v-model.number="formData.customParameters8"
-                    :min="0"
-                    :step="0.01"
-                    class="custom-input"
-                    :formatter="formatCustomParameters"
-                    :parser="parseCustomParameters"
-                  ></el-input>
-                  <span></span>
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1094')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1094Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1094')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.notEnable')"
+                      value="0"
+                    />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
                   <el-button
-                    @click="saveCustomParameters(8)"
-                    class="save-button"
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1094')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1094',
+                        settingList['TP_0X03_1094Val']
+                      )
+                    "
                     >{{ $t("common.save") }}</el-button
                   >
-                </div></el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customStatus1')"
-                v-if="batteryParameterIsDisplay('customStatus1')"
-                >{{
-                  batteryParameter.batterySetObj.customStatus1Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.customStatus2')"
-                v-if="batteryParameterIsDisplay('customStatus2')"
-                >{{
-                  batteryParameter.batterySetObj.customStatus2Val
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.heatingEnable')"
-                v-if="batteryParameterIsDisplay('dischargeStaticHeatingEnable')"
-                >{{
-                  batteryParameter.batterySetObj.dischargeStaticHeatingEnableVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.unlockSystemLock')"
-                v-if="batteryParameterIsDisplay('unlockSystemLock')"
-              >
-                {{
-                  batteryParameter.batterySetObj.unlockSystemLockVal == 1
-                    ? $t("deviceManage.unlock")
-                    : $t("deviceManage.invalid")
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.onHeating')"
-                v-if="
-                  batteryParameterIsDisplay('dischargeOnHeatingTemperature')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOnHeatingTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.offHeating')"
-                v-if="
-                  batteryParameterIsDisplay('dischargeOffHeatingTemperature')
-                "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOffHeatingTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateDischargeState1')"
-                v-if="batteryParameterIsDisplay('stateOneBit0')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit0Val
-                    ? $t("deviceManage.discharging")
-                    : $t("deviceManage.noDischarge")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateChargingState1')"
-                v-if="batteryParameterIsDisplay('stateOneBit1')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit1Val
-                    ? $t("deviceManage.charging")
-                    : $t("deviceManage.noCharging")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateChargerState1')"
-                v-if="batteryParameterIsDisplay('stateOneBit2')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit2Val
-                    ? $t("deviceManage.connected")
-                    : $t("deviceManage.notConnected")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateMOSTemperature1')"
-                v-if="batteryParameterIsDisplay('stateOneBit4')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit4Val
-                    ? $t("deviceManage.withMOStemperature")
-                    : $t("deviceManage.noMOStemperature")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateAmbientTemperature1')"
-                v-if="batteryParameterIsDisplay('stateOneBit5')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit5Val
-                    ? $t("deviceManage.withAmbientTemperature")
-                    : $t("deviceManage.noAmbientTemperature")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateCellOvervoltage1')"
-                v-if="batteryParameterIsDisplay('stateOneBit8')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit8Val
-                    ? $t("deviceManage.overvoltage")
-                    : $t("deviceManage.noOvervoltage")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateTotalPressureOvervoltage1')"
-                v-if="batteryParameterIsDisplay('stateOneBit9')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit9Val
-                    ? $t("deviceManage.overvoltage")
-                    : $t("deviceManage.noOvervoltage")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateFullProtection1')"
-                v-if="batteryParameterIsDisplay('stateOneBit12')"
-                >{{
-                  +batteryParameter.batterySetObj.stateOneBit12Val
-                    ? $t("deviceManage.fullOfProtection")
-                    : $t("deviceManage.noFullProtection")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateCellUndervoltage2')"
-                v-if="batteryParameterIsDisplay('stateTwoBit0')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit0Val
-                    ? $t("deviceManage.undervoltage")
-                    : $t("deviceManage.noUndervoltage")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateTotalVoltageUndervoltage2')"
-                v-if="batteryParameterIsDisplay('stateTwoBit1')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit1Val
-                    ? $t("deviceManage.undervoltage")
-                    : $t("deviceManage.noUndervoltage")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.stateHighTemperatureProtectionDuringCharging2'
-                  )
-                "
-                v-if="batteryParameterIsDisplay('stateTwoBit8')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit8Val
-                    ? $t("deviceManage.highDuringCharging")
-                    : $t("deviceManage.highWithoutCharging")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.stateLowTemperatureProtectionDuringCharging2'
-                  )
-                "
-                v-if="batteryParameterIsDisplay('stateTwoBit9')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit9Val
-                    ? $t("deviceManage.lowDuringCharging")
-                    : $t("deviceManage.lowWithoutCharging")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateMOSHighTemperatureProtection2')"
-                v-if="batteryParameterIsDisplay('stateTwoBit10')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit10Val
-                    ? $t("deviceManage.MOShigh")
-                    : $t("deviceManage.NoMOShigh")
-                }}</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.stateHighTemperatureProtectionDuringDischarge2'
-                  )
-                "
-                v-if="batteryParameterIsDisplay('stateTwoBit12')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit12Val
-                    ? $t("deviceManage.highDuringDischarge")
-                    : $t("deviceManage.highWithoutDischarge")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.stateLowTemperatureProtectionDuringDischarge2'
-                  )
-                "
-                v-if="batteryParameterIsDisplay('stateTwoBit13')"
-                >{{
-                  +batteryParameter.batterySetObj.stateTwoBit13Val
-                    ? $t("deviceManage.lowDuringDischarge")
-                    : $t("deviceManage.lowWithoutDischarge")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.stateDischargeShortCircuitProtection3')
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit0')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit0Val
-                    ? $t("deviceManage.dischargeShortCircuit")
-                    : $t("deviceManage.noDischargeShortCircuit")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateDischargeOvercurrentProtection3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit1')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit1Val
-                    ? $t("deviceManage.dischargeOvercurrent")
-                    : $t("deviceManage.noDischargeOvercurrent")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateChargingOvercurrentProtection3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit2')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit2Val
-                    ? $t("deviceManage.chargingOvercurrent")
-                    : $t("deviceManage.noChargingOvercurrent")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t(
-                    'deviceManage.stateEnvironmentalHighTemperatureProtection3'
-                  )
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit4')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit4Val
-                    ? $t("deviceManage.environmentalHighTemperature")
-                    : $t("deviceManage.noEnvironmentalHighTemperature")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.stateEnvironmentalLowTemperatureProtection3')
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit5')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit5Val
-                    ? $t("deviceManage.environmentalLowTemperature")
-                    : $t("deviceManage.noEnvironmentalLowTemperature")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateCellOvervoltageSystemLock3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit8')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit8Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateBatteryUndervoltageSystemLock3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit9')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit9Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateChargingOvercurrentSystemLock3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit10')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit10Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateDischargeOvercurrentSystemLock3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit11')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit11Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.stateChargingOverTemperatureSystemLock3')
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit12')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit12Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.stateDischargeOverTemperatureSystemLock3')
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit13')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit13Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.stateChargingUndervoltageSystemLock3')"
-                v-if="batteryParameterIsDisplay('stateThreeBit14')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit14Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="
-                  $t('deviceManage.stateDischargeUndervoltageSystemLock3')
-                "
-                v-if="batteryParameterIsDisplay('stateThreeBit15')"
-                >{{
-                  +batteryParameter.batterySetObj.stateThreeBit15Val
-                    ? $t("deviceManage.trigger")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.statusHeatingStatus')"
-                v-if="batteryParameterIsDisplay('stateBit0')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit0Val
-                    ? $t("deviceManage.heatingState")
-                    : $t("deviceManage.nonHeatingState")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusDischargeMOSSwitch')"
-                v-if="batteryParameterIsDisplay('stateBit1')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit1Val
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusChargingMOSSwitch')"
-                v-if="batteryParameterIsDisplay('stateBit2')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit2Val
-                    ? $t("menuManage.open")
-                    : $t("menuManage.close")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusTemperatureAcquisitionFailure')"
-                v-if="batteryParameterIsDisplay('stateBit8')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit8Val
-                    ? $t("deviceManage.loseEfficacy")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusVoltageAcquisitionFailure')"
-                v-if="batteryParameterIsDisplay('stateBit9')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit9Val
-                    ? $t("deviceManage.loseEfficacy")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusDischargeMOSFailure')"
-                v-if="batteryParameterIsDisplay('stateBit10')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit10Val
-                    ? $t("deviceManage.loseEfficacy")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusChargingMOSFailure')"
-                v-if="batteryParameterIsDisplay('stateBit11')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit11Val
-                    ? $t("deviceManage.loseEfficacy")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusBatteryImbalanceAlarm')"
-                v-if="batteryParameterIsDisplay('stateBit12')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit12Val
-                    ? $t("deviceManage.giveAnAlarm")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusDischargeLowTemperatureAlarm')"
-                v-if="batteryParameterIsDisplay('stateBit14')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit14Val
-                    ? $t("deviceManage.giveAnAlarm")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.statusChargingLowTemperatureAlarm')"
-                v-if="batteryParameterIsDisplay('stateBit15')"
-                >{{
-                  +batteryParameter.batterySetObj.stateBit15Val
-                    ? $t("deviceManage.giveAnAlarm")
-                    : $t("deviceManage.nothing")
-                }}</el-descriptions-item
-              >
-            </el-descriptions>
-          </el-card>
-        </template>
-
-        <!-- 三相的专属 -->
-        <template v-if="activeIndex === '41'">
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.runInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.monitorData')"
-              :column="3"
-            >
-              <el-descriptions-item :label="$t('deviceManage.displayType')">
-                {{
-                  operationInformation.runInformationObj.displayTypeVal
-                    | displayTypeValFilter
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.MCUSoftwareVersion')"
-                >{{
-                  operationInformation.runInformationObj.mcuSoftwareVersionVal
-                }}</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.MCUHardwareVersion')"
-                >{{
-                  operationInformation.runInformationObj.mcuHardwareVersionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item :label="$t('deviceManage.usbState')">{{
-                operationInformation.runInformationObj.usbStateVal
-              }}</el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.upgradeStatus')">
-                {{ operationInformation.runInformationObj.upgradeStatusVal }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.selfInspectionStatus')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'selfInspectionStatus'
-                  )
-                "
-              >
-                {{
-                  selfCheckFilter[
-                    operationInformation.otherInformationObj
-                      .selfInspectionStatusVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.normalIndicatorOfElectricityMeter')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'electricityMeterInformationObj',
-                    'normalIndicatorOfElectricityMeter'
-                  )
-                "
-              >
-                {{
-                  meterNormalFilter[
-                    operationInformation.electricityMeterInformationObj
-                      .normalIndicatorOfElectricityMeterVal
-                  ]
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.BMSlogo')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'bmsSign'
-                  )
-                "
-              >
-                {{
-                  BMSFilter[
-                    operationInformation.batteryInformationObj.bmsSignVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryEnergy')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'batteryEnergy'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj.batteryEnergyVal
-                }}kWh</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryTotalSoc')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'batteryTotalSoc'
-                  )
-                "
-                >{{
-                  operationInformation.batteryInformationObj.batteryTotalSocVal
-                }}%</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyPowerGeneration')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'dailyPowerGeneration'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj
-                    .dailyPowerGenerationVal
-                }}kWh</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.totalPowerGeneration')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'totalPowerGeneration'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj
-                    .totalPowerGenerationVal
-                }}kWh</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyElectricityConsumption')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'dailyElectricityConsumption'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .dailyElectricityConsumptionVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedElectricityConsumption')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedElectricityConsumption'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedElectricityConsumptionVal
-                }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyGridConnectionVolume')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'dailyGridConnectionVolume'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .dailyGridConnectionVolumeVal
-                }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedGridConnectionQuantity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedGridConnectionQuantity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedGridConnectionQuantityVal
-                }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyElectricityPurchase')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'dailyElectricityPurchase'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .dailyElectricityPurchaseVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedPurchasingPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedPurchasingPower'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedPurchasingPowerVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyChargingCapacity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'dailyChargingCapacity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .dailyChargingCapacityVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedChargingCapacity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedChargingCapacity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedChargingCapacityVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyDischargeCapacity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'dailyDischargeCapacity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .dailyDischargeCapacityVal
-                }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedDischargeCapacity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedDischargeCapacity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedDischargeCapacityVal
-                }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress144')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress144'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress144Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress146')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress146'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress146Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress148')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress148'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress148Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress150')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress150'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress150Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress152')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress152'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress152Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress153')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress153'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress153Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress154')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress154'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress154Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress155')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress155'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress155Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress156')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress156'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress156Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress157')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress157'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress157Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress158')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress158'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress158Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress159')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress159'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress159Val
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.runTimeD')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'runTimeDay'
-                  )
-                "
-              >
-                {{ operationInformation.otherInformationObj.runTimeDayVal }}d
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.runTimeH')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'runTimeHour'
-                  )
-                "
-              >
-                {{ operationInformation.otherInformationObj.runTimeHourVal }}h
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.runTimeM')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'runTimeMinute'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.runTimeMinuteVal
-                }}min
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.runTimeS')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'runTimeSecond'
-                  )
-                "
-              >
-                {{ operationInformation.otherInformationObj.runTimeSecondVal }}s
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-        </template>
-
-        <template v-if="activeIndex === '42'">
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.runInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.primaryControlData')"
-              :column="3"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.poweronoffCommand')"
-              >
-                {{
-                  operationInformation.runInformationObj.poweronoffCommandVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterActivePowerSetting')"
-                >{{
-                  operationInformation.runInformationObj
-                    .inverterActivePowerSettingVal
-                }}</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.PVActivePowerSetting')"
-                >{{
-                  operationInformation.runInformationObj.PVActivePowerSettingVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerRegulationRate')"
-                >{{
-                  operationInformation.runInformationObj
-                    .activePowerRegulationRateVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorSetting')"
-              >
-                {{
-                  operationInformation.runInformationObj.powerFactorSettingVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerSetting')"
-              >
-                {{
-                  operationInformation.runInformationObj
-                    .reactivePowerSettingVal
-                }}kVar
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.voltageSetting')">
-                {{ operationInformation.runInformationObj.voltageSettingVal }}
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.countryCode')">
-                {{
-                  countryCodeValFilter[
-                    operationInformation.basicInformationObj.countryCodeVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.busChargingDischargingVoltageSetting')"
-              >
-                {{
-                  operationInformation.runInformationObj
-                    .busChargingDischargingVoltageSettingVal
-                }}V
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.busChargingDischargingPowerSetting')"
-              >
-                {{
-                  operationInformation.runInformationObj
-                    .busChargingDischargingPowerSettingVal
-                }}W
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.modeSystem')">
-                {{ operationInformation.runInformationObj.modeSystemVal }}
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.controlSource')">
-                {{ operationInformation.runInformationObj.controlSourceVal }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.DSPSoftwareVersion')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'dspSoftwareVersion'
-                  )
-                "
-                >{{
-                  operationInformation.runInformationObj.dspSoftwareVersionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.ratedPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'ratedPower'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj.ratedPowerVal
-                }}KW</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.DSPHardwareVersion')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'dspHardwareVersion'
-                  )
-                "
-                >{{
-                  operationInformation.runInformationObj.dspHardwareVersionVal
-                }}</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyPowerGeneration')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'dailyPowerGeneration'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj
-                    .dailyPowerGenerationVal
-                }}Wh</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalPowerGeneration')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'totalPowerGeneration'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj
-                    .totalPowerGenerationVal
-                }}Wh</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.dailyPVGeneration')"
-                >{{
-                  operationInformation.basicInformationObj.dailyPVGenerationVal
-                }}kWh</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.totalPVGeneration')"
-                >{{
-                  operationInformation.basicInformationObj.totalPVGenerationVal
-                }}kWh</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.systemOperationStatus')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'runInformationObj',
-                    'systemRunStatus'
-                  )
-                "
-              >
-                {{
-                  systemStateFilter[
-                    operationInformation.runInformationObj.systemRunStatusVal
-                  ]
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.generatorStatus')"
-                >{{
-                  operationInformation.basicInformationObj.generatorStatusVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.accumulatedDischargeCapacity')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'accumulatedDischargeCapacity'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .accumulatedDischargeCapacityVal
-                }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryStatus')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'batteryStatus'
-                  )
-                "
-              >
-                {{
-                  batteryStatusFilter[
-                    operationInformation.batteryInformationObj.batteryStatusVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.powerGridStatus')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'powerGridStatus'
-                  )
-                "
-              >
-                {{
-                  GridStateFilter[
-                    operationInformation.powerGridInformationObj
-                      .powerGridStatusVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.inversionState')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'inversionState'
-                  )
-                "
-              >
-                {{
-                  invertingStateFilter[
-                    operationInformation.inverterInformationObj
-                      .inversionStateVal
-                  ]
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.faultStatus')">{{
-                operationInformation.basicInformationObj.faultStatusVal
-              }}</el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.pv1Voltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'pvInformationObj',
-                    'pv1Voltage'
-                  )
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv1VoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.pv1Current')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'pvInformationObj',
-                    'pv1Current'
-                  )
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv1CurrentVal
-                }}A</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.pv2Voltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'pvInformationObj',
-                    'pv2Voltage'
-                  )
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv2VoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.pv2Current')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'pvInformationObj',
-                    'pv2Current'
-                  )
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv2CurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.pv1Power')"
-                v-if="
-                  operationInformationIsDisplay('pvInformationObj', 'pv1Power')
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv1PowerVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.pv2Power')"
-                v-if="
-                  operationInformationIsDisplay('pvInformationObj', 'pv2Power')
-                "
-                >{{
-                  operationInformation.pvInformationObj.pv2PowerVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.PVIsoVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'pvIsoVoltage'
-                  )
-                "
-              >
-                {{ operationInformation.otherInformationObj.pvIsoVoltageVal }}V
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.ISODetectionResistanceRx')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .ISODetectionResistanceRxVal
-                }}kΩ</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.ISODetectionResistanceRy')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .ISODetectionResistanceRyVal
-                }}kΩ</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.busbarVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'basicInformationObj',
-                    'busVoltage'
-                  )
-                "
-                >{{
-                  operationInformation.basicInformationObj.busVoltageVal
-                }}V</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.busPositiveVoltage')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .busPositiveVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.busNegativeVoltage')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .busNegativeVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.middleBusbarVoltage')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .middleBusbarVoltageVal
-                }}V</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'batteryVoltage'
-                  )
-                "
-                >{{
-                  operationInformation.batteryInformationObj.batteryVoltageVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryCurrent')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'batteryCurrent'
-                  )
-                "
-                >{{
-                  operationInformation.batteryInformationObj.batteryCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'batteryInformationObj',
-                    'batteryPower'
-                  )
-                "
-                >{{
-                  operationInformation.batteryInformationObj.batteryPowerVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batterySOC')"
-                v-if="batteryParameterIsDisplay('batterySoc')"
-                >{{
-                  batteryParameter.batterySetObj.batterySocVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batterySOH')"
-                v-if="batteryParameterIsDisplay('batterySoh')"
-                >{{
-                  batteryParameter.batterySetObj.batterySohVal
-                }}%</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.chargingCurrentSentByBMS')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .chargingCurrentSentByBMSVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.dischargeCurrentSentByBMS')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .dischargeCurrentSentByBMSVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryRemainingDischargeTime')"
-                >{{
-                  operationInformation.basicInformationObj
-                    .batteryRemainingDischargeTimeVal
-                }}A</el-descriptions-item
-              >
-            </el-descriptions>
-          </el-card>
-
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.basicInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.powerGridInformation')"
-              :column="3"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGridVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridVoltageA'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj.gridVoltageAVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGridVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridVoltageB'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj.gridVoltageBVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGridVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridVoltageC'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj.gridVoltageCVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGridCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAGridCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGridCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBGridCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGridCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCGridCurrentVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGridFrequency')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridFrequencyA'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .gridFrequencyAVal
-                }}Hz</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGridFrequency')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridFrequencyB'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .gridFrequencyBVal
-                }}Hz</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGridFrequency')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'gridFrequencyC'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .gridFrequencyCVal
-                }}Hz</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseAGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerOfPhaseAGridVal
-                }}VA</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseBGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerOfPhaseBGridVal
-                }}VA</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseCGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerOfPhaseCGridVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseAGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseAGridVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseBGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseBGridVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseCGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseCGridVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseAGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseAGridVal
-                }}VAR</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseBGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseBGridVal
-                }}VAR</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseCGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseCGridVal
-                }}VAR</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfThePowerGrid')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'apparentPowerOfThePowerGrid'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerOfThePowerGridVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.gridActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'activePowerOfThePowerGrid'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfThePowerGridVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerOfThePowerGrid')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'reactivePowerOfThePowerGrid'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerOfThePowerGridVal
-                }}VAR</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseAGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseAGridVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseBGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseBGridVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseCGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseCGridVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.overallPowerFactoroftheGrid')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .overallPowerFactoroftheGridVal
-                }}
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAExternalCTCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAExternalCTCurrentVal
-                }}A
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBExternalCTCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBExternalCTCurrentVal
-                }}A
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCExternalCTCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCExternalCTCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAExternalCTPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAExternalCTPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBExternalCTPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBExternalCTPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCExternalCTPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCExternalCTPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.ctPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'powerGridInformationObj',
-                    'ctPower'
-                  )
-                "
-                >{{
-                  operationInformation.powerGridInformationObj.ctPowerVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseACTPowerDirection')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseACTPowerDirectionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBCTPowerDirection')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBCTPowerDirectionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCCTPowerDirection')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCCTPowerDirectionVal
-                }}</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.leakageCurrent')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'leakageCurrent'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.leakageCurrentVal
-                }}mA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.zeroGroundVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'zeroGroundVoltage'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.zeroGroundVoltageVal
-                }}V
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.inverterInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.inverterInformation')"
-              :column="3"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAInverterVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBInverterVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCInverterVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAInverterCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBInverterCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCInverterCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterFrequency')"
-                >{{
-                  operationInformation.inverterInformationObj
-                    .phaseAInverterFrequencyVal
-                }}Hz</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterFrequency')"
-                >{{
-                  operationInformation.inverterInformationObj
-                    .phaseBInverterFrequencyVal
-                }}Hz</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterFrequency')"
-                >{{
-                  operationInformation.inverterInformationObj
-                    .phaseCInverterFrequencyVal
-                }}Hz</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterApparentPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedApparentPowerA'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedApparentPowerAVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterApparentPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedApparentPowerB'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedApparentPowerBVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterApparentPower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedApparentPowerC'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedApparentPowerCVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedActivePowerA'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedActivePowerAVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBInverterActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedActivePowerB'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedActivePowerBVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCInverterActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedActivePowerC'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedActivePowerCVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterReactivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedReactivePowerA'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedReactivePowerAVal
-                }}VAR</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterReactivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedReactivePowerB'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedReactivePowerBVal
-                }}VAR</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAInverterReactivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'invertedReactivePowerC'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .invertedReactivePowerCVal
-                }}VAR</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('deviceManage.totalInverterApparentPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalInverterApparentPowerVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalInverterActivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalInverterActivePowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalInverterReactivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalInverterReactivePowerVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseAInverter')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseAInverterVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseBInverter')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseBInverterVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseCInverter')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseCInverterVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalInverterPowerFactor')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalInverterPowerFactorVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseAVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseAVoltageVal
-                }}mV
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseBVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseBVoltageVal
-                }}mV
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseCVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseCVoltageVal
-                }}mV
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseACurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseACurrentVal
-                }}mA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseBCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseBCurrentVal
-                }}mA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.DCComponentofPhaseCCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .DCComponentofPhaseCCurrentVal
-                }}mA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.NLineBalancedBridgeCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .NLineBalancedBridgeCurrentVal
-                }}A
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.loadInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.loadInformation')"
-              :column="3"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseALoadVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadVoltageA'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadVoltageAVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBLoadVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadVoltageB'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadVoltageBVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCLoadVoltage')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadVoltageC'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadVoltageCVal
-                }}V</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseALoadCurrent')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadCurrentA'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadCurrentAVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBLoadCurrent')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadCurrentB'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadCurrentBVal
-                }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCLoadCurrent')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadCurrentC'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadCurrentCVal
-                }}A</el-descriptions-item
-              >
-
-              <el-descriptions-item :label="$t('deviceManage.loadFrequencyA')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadFrequencyAVal
-                }}Hz
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.loadFrequencyB')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadFrequencyBVal
-                }}Hz
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.loadFrequencyC')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadFrequencyCVal
-                }}Hz
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseALoad')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'apparentPowerOfLoadA'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj
-                    .apparentPowerOfLoadAVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseBLoad')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'apparentPowerOfLoadB'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj
-                    .apparentPowerOfLoadBVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerOfPhaseCLoad')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'apparentPowerOfLoadC'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj
-                    .apparentPowerOfLoadCVal
-                }}VA</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseALoadActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadActivePowerA'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadActivePowerAVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBLoadActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadActivePowerB'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadActivePowerBVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCLoadActivePower')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'loadInformationObj',
-                    'loadActivePowerC'
-                  )
-                "
-                >{{
-                  operationInformation.loadInformationObj.loadActivePowerCVal
-                }}W</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseALoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseALoadVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseBLoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseBLoadVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseCLoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseCLoadVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalLoadApparentPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalLoadApparentPowerVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalLoadActivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalLoadActivePowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalLoadReactivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalLoadReactivePowerVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseALoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseALoadVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseBLoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseBLoadVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseCLoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseCLoadVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofTotalLoad')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofTotalLoadVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAHouseholdLoadPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAHouseholdLoadPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBHouseholdLoadPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBHouseholdLoadPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCHouseholdLoadPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCHouseholdLoadPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalHouseholdLoadPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalHouseholdLoadPowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.loadPowerPercentage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadPowerPercentageVal
-                }}%
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card style="margin-top: 10px">
-            <el-descriptions
-              :title="$t('deviceManage.GeneratorInformation')"
-              :column="3"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGeneratorVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAGeneratorVoltageVal
-                }}V
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGeneratorVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBGeneratorVoltageVal
-                }}V
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGeneratorVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCGeneratorVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGeneratorCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAGeneratorCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGeneratorCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBGeneratorCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGeneratorCurrent')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCGeneratorCurrentVal
-                }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseAGeneratorFrequency')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseAGeneratorFrequencyVal
-                }}Hz
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseBGeneratorFrequency')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseBGeneratorFrequencyVal
-                }}Hz
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.phaseCGeneratorFrequency')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .phaseCGeneratorFrequencyVal
-                }}Hz
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerofPhaseAGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerofPhaseAGeneratorVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerofPhaseBGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerofPhaseBGeneratorVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.apparentPowerofPhaseCGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .apparentPowerofPhaseCGeneratorVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseAGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseAGeneratorVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseBGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseBGeneratorVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.activePowerOfPhaseCGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .activePowerOfPhaseCGeneratorVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseAGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseAGeneratorVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseBGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseBGeneratorVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.reactivePowerofPhaseCGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .reactivePowerofPhaseCGeneratorVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalGeneratorApparentPower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalGeneratorApparentPowerVal
-                }}VA
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalGeneratorActivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalGeneratorActivePowerVal
-                }}W
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.totalGeneratorReactivePower')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .totalGeneratorReactivePowerVal
-                }}VAR
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseAGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseAGeneratorVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseBGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseBGeneratorVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofPhaseCGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofPhaseCGeneratorVal
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.powerFactorofTotalGenerator')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .powerFactorofTotalGeneratorVal
-                }}
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.otherInformation"
-          >
-            <el-descriptions
-              :title="$t('deviceManage.otherInformation')"
-              :column="2"
-            >
-              <el-descriptions-item
-                :label="$t('deviceManage.loadABPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadABPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.loadBCPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadBCPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.loadCAPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadCAPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterABPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .inverterABPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterBCPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .inverterBCPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterCAPhaseVoltage')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .inverterCAPhaseVoltageVal
-                }}V
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.PVTemperature')"
-                >{{
-                  operationInformation.powerGridInformationObj.PVTemperatureVal
-                }}℃
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.inverterSideTemperature')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'inverterInformationObj',
-                    'inverterTemperature'
-                  )
-                "
-                >{{
-                  operationInformation.inverterInformationObj
-                    .inverterTemperatureVal
-                }}℃</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('deviceManage.internalTemperature')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .internalTemperatureVal
-                }}℃
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.energyFlowMark1')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .energyFlowMark1Val
-                }}℃
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.selfInspectionStatus')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'selfInspectionStatus'
-                  )
-                "
-              >
-                {{
-                  selfCheckFilter[
-                    operationInformation.otherInformationObj
-                      .selfInspectionStatusVal
-                  ]
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protectionThreshold')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'selfCheckActualProtectionThreshold'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .selfCheckActualProtectionThresholdVal
-                }}V/Hz
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protectionTime')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'selfCheckActualProtectionTime'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .selfCheckActualProtectionTimeVal
-                }}ms
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.realTimeProtectionThreshold')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'selfCheckRealTimeProtectionThreshold'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .selfCheckRealTimeProtectionThresholdVal
-                }}V/Hz
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress146')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress146'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj
-                    .protocolAddress146Val
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.electricityPurchased')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .electricityPurchasedVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress150')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress150'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress150Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.gridConnectedElectricity')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .gridConnectedElectricityVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.PVGeneration')"
-                >{{
-                  operationInformation.powerGridInformationObj.PVGenerationVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.loadPowerConsumption')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .loadPowerConsumptionVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryDischargeCapacity')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .batteryDischargeCapacityVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.batteryChargeCapacity')"
-                >{{
-                  operationInformation.powerGridInformationObj
-                    .batteryChargeCapacityVal
-                }}Wh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress156')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress156'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress156Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress157')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress157'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress157Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress158')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress158'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress158Val
-                }}
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('deviceManage.protocolAddress159')"
-                v-if="
-                  operationInformationIsDisplay(
-                    'otherInformationObj',
-                    'protocolAddress159'
-                  )
-                "
-              >
-                {{
-                  operationInformation.otherInformationObj.protocolAddress159Val
-                }}
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1095')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1095Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1095')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.notEnable')"
+                      value="0"
+                    />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1095')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1095',
+                        settingList['TP_0X03_1095Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1096')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1096Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1096')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1096')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1096',
+                        settingList['TP_0X03_1096Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1097')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1097Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1097')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1097')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1097',
+                        settingList['TP_0X03_1097Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1098')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1098Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1098')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1098')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1098',
+                        settingList['TP_0X03_1098Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1099')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1099Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1099')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1099')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1099',
+                        settingList['TP_0X03_1099Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1100')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1100Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1100')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('threePhase.three')" value="0" />
+                    <el-option :label="$t('threePhase.four')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1100')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1100',
+                        settingList['TP_0X03_1100Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
@@ -11805,11 +7869,14 @@
 <script>
 import {
   getConfigData,
-  saveConfigData,
+  savePage47ConfigData,
+  savePage48ConfigData,
   batteryUpgrade,
   batterySetCustom,
   updateEnable,
+  qryTpConfigDataShow,
 } from "@/api/device";
+
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
 import { mapState } from "vuex";
@@ -11821,159 +7888,36 @@ export default {
     ) {
       this.formData.lowTemperatureProtectionDuringCharging = newValue;
     },
-    "batteryParameter.batterySetObj.lowTemperatureProtectionRecoveryDuringChargingVal"(
-      newValue
-    ) {
-      this.formData.lowTemperatureProtectionRecoveryDuringCharging = newValue;
-    },
-    "batteryParameter.batterySetObj.heatingFanOnTemperatureVal"(newValue) {
-      this.formData.heatingFanOnTemperature = newValue;
-    },
-    "batteryParameter.batterySetObj.heatingFanRecoveryTemperatureVal"(
-      newValue
-    ) {
-      this.formData.heatingFanRecoveryTemperature = newValue;
-    },
-
-    "batteryParameter.batterySetObj.chargingOvercurrentProtectionVal"(
-      newValue
-    ) {
-      this.formData.chargingOvercurrentProtection = newValue;
-    },
-    "batteryParameter.batterySetObj.chargingOvercurrentProtectionDelayVal"(
-      newValue
-    ) {
-      this.formData.chargingOvercurrentProtectionDelay = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOvervoltageProtectionVal"(newValue) {
-      this.formData.cellOvervoltageProtection = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOvervoltageProtectionDelayVal"(
-      newValue
-    ) {
-      this.formData.cellOvervoltageProtectionDelay = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOverDischargeProtectionVal"(newValue) {
-      this.formData.cellOverDischargeProtection = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOverDischargeProtectionDelayVal"(
-      newValue
-    ) {
-      this.formData.cellOverDischargeProtectionDelay = newValue;
-    },
-    "batteryParameter.batterySetObj.overvoltageHysteresisVoltageVal"(newValue) {
-      this.formData.overvoltageHysteresisVoltage = newValue;
-    },
-    "batteryParameter.batterySetObj.overdischargeHysteresisVoltageVal"(
-      newValue
-    ) {
-      this.formData.overdischargeHysteresisVoltage = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOvervoltageRecoveryDelayVal"(newValue) {
-      this.formData.cellOvervoltageRecoveryDelay = newValue;
-    },
-    "batteryParameter.batterySetObj.cellOverDischargeRecoveryDelayVal"(
-      newValue
-    ) {
-      this.formData.cellOverDischargeRecoveryDelay = newValue;
-    },
-    "batteryParameter.batterySetObj.highTemperatureProtectionDuringDischargeVal"(
-      newValue
-    ) {
-      this.formData.highTemperatureProtectionDuringDischarge = newValue;
-    },
-    "batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringDischargeVal"(
-      newValue
-    ) {
-      this.formData.highTemperatureProtectionRecoveryDuringDischarge = newValue;
-    },
-    "batteryParameter.batterySetObj.lowTemperatureProtectionDuringDischargeVal"(
-      newValue
-    ) {
-      this.formData.lowTemperatureProtectionDuringDischarge = newValue;
-    },
-    "batteryParameter.batterySetObj.dischargeLowTemperatureProtectionRecoveryVal"(
-      newValue
-    ) {
-      this.formData.dischargeLowTemperatureProtectionRecovery = newValue;
-    },
-    "batteryParameter.batterySetObj.highTemperatureProtectionDuringChargingVal"(
-      newValue
-    ) {
-      this.formData.highTemperatureProtectionDuringCharging = newValue;
-    },
-    "batteryParameter.batterySetObj.highTemperatureProtectionRecoveryDuringChargingVal"(
-      newValue
-    ) {
-      this.formData.highTemperatureProtectionRecoveryDuringCharging = newValue;
-    },
-    "batteryParameter.batterySetObj.customParameters1Val"(newValue) {
-      this.formData.customParameters1 = newValue;
-    },
-    "batteryParameter.batterySetObj.customParameters5Val"(newValue) {
-      this.formData.customParameters5 = newValue;
-    },
-    "batteryParameter.batterySetObj.customParameters8Val"(newValue) {
-      this.formData.customParameters8 = newValue;
-    },
-    "batteryParameter.batterySetObj.batteryImbalanceAlarmPressureDifferenceVal"(
-      newValue
-    ) {
-      this.formData.batteryImbalanceAlarmPressureDifference = newValue;
-    },
-    "batteryParameter.batterySetObj.imbalanceAlarmRecoveryPressureDifferenceVal"(
-      newValue
-    ) {
-      this.formData.imbalanceAlarmRecoveryPressureDifference = newValue;
-    },
-
-    "batteryParameter.batterySetObj.enableSettingBit4Val"(newValue) {
-      this.formData.enableSettingBit4 = newValue;
-    },
   },
   components: { SelfTest },
   data() {
     return {
-      formData: {
-        enableSettingBit4: null,
-
-        customParameters1: null,
-        customParameters5: null,
-        customParameters8: null,
-
-        batteryImbalanceAlarmPressureDifference: null,
-        imbalanceAlarmRecoveryPressureDifference: null,
-
-        lowTemperatureProtectionDuringCharging: null,
-        lowTemperatureProtectionRecoveryDuringCharging: null,
-
-        heatingFanOnTemperature: null,
-        heatingFanRecoveryTemperature: null,
-
-        chargingOvercurrentProtection: null,
-        chargingOvercurrentProtectionDelay: null,
-
-        cellOvervoltageProtection: null,
-        cellOvervoltageProtectionDelay: null,
-
-        cellOverDischargeProtection: null,
-        cellOverDischargeProtectionDelay: null,
-
-        overvoltageHysteresisVoltage: null,
-        overdischargeHysteresisVoltage: null,
-
-        cellOvervoltageRecoveryDelay: null,
-        cellOverDischargeRecoveryDelay: null,
-
-        highTemperatureProtectionDuringDischarge: null,
-        highTemperatureProtectionRecoveryDuringDischarge: null,
-        lowTemperatureProtectionDuringDischarge: null,
-        dischargeLowTemperatureProtectionRecovery: null,
-
-        highTemperatureProtectionDuringCharging: null,
-        highTemperatureProtectionRecoveryDuringCharging: null,
-      },
+      formData: {},
       deviceInfo: {},
+      TP_0X04_0Filter: {
+        1: this.$t("threePhase.EAST"), // 将 '1' 映射到 "EAST"
+        2: this.$t("threePhase.LESY"), // 将 '2' 映射到 "LESY"
+      },
+      TP_0X04_8Filter: {
+        0: this.$t("threePhase.none"),
+        1: this.$t("threePhase.exportHistoricalRecords"),
+        2: this.$t("threePhase.exportParamConfigurations"),
+        3: this.$t("threePhase.importParamConfigurations"),
+        4: this.$t("threePhase.upgradeInverterMonitor"),
+        5: this.$t("threePhase.upgradeInverterControl"),
+        6: this.$t("threePhase.importFirmware"),
+      },
+      TP_0X04_14Filter: {
+        0: this.$t("threePhase.none"),
+        1: this.$t("deviceManage.overvoltageForASection"),
+        2: this.$t("deviceManage.secondStageOvervoltage"),
+        3: this.$t("deviceManage.oneSectionUnderVoltage"),
+        4: this.$t("deviceManage.secondaryUndervoltage"),
+        5: this.$t("deviceManage.overfrequencyOfASegment"),
+        6: this.$t("deviceManage.secondStageOverfrequency"),
+        7: this.$t("deviceManage.oneUnderfrequency"),
+        8: this.$t("deviceManage.oneUnderfrequency"),
+      },
 
       devStatusFilter: [
         this.$t("userManage.normal"),
@@ -11981,16 +7925,16 @@ export default {
         this.$t("deviceManage.offline"),
         this.$t("deviceManage.error"),
       ],
-      systemModeFilter: [
-        this.$t("deviceManage.batteryPriorityMode"),
-        this.$t("deviceManage.homeLoadPriorityMode"),
-        this.$t("deviceManage.gridPriorityMode"),
-        this.$t("deviceManage.fullPowerFeedMode"),
-        this.$t("deviceManage.emergencyBackupMode"),
-        this.$t("deviceManage.acBackupMode"),
-        this.$t("deviceManage.purePVMode"),
-        this.$t("deviceManage.forcedOffGridMode"),
-      ],
+      systemModeFilter: {
+        0: this.$t("deviceManage.batteryPriorityMode"),
+        1: this.$t("deviceManage.homeLoadPriorityMode"),
+        2: this.$t("deviceManage.gridPriorityMode"),
+        3: this.$t("deviceManage.fullPowerFeedMode"),
+        4: this.$t("deviceManage.emergencyBackupMode"),
+        5: this.$t("deviceManage.acBackupMode"),
+        6: this.$t("deviceManage.purePVMode"),
+        7: this.$t("deviceManage.forcedOffGridMode"),
+      },
       systemStateFilter: [
         this.$t("deviceManage.nothing"),
         this.$t("deviceManage.systemState1"),
@@ -12004,16 +7948,21 @@ export default {
         this.$t("deviceManage.systemState9"),
         this.$t("deviceManage.systemState10"),
       ],
-      countryCodeValFilter: [
-        this.$t("deviceManage.China"),
-        this.$t("deviceManage.Italy"),
-        this.$t("deviceManage.Germany"),
-        this.$t("deviceManage.Australia"),
-        this.$t("deviceManage.Belgium"),
-        this.$t("deviceManage.SouthAfrica"),
-        this.$t("deviceManage.England"),
-        this.$t("deviceManage.Spain"),
-      ],
+
+      controlSourceFilter: {
+        0: this.$t("deviceManage.MCUIssuedControl"),
+        1: this.$t("deviceManage.DSPIssuedControl"),
+      },
+      countryCodeFilter: {
+        0: this.$t("deviceManage.China"),
+        1: this.$t("deviceManage.Italy"),
+        2: this.$t("deviceManage.Germany"),
+        3: this.$t("deviceManage.Australia"),
+        4: this.$t("deviceManage.Belgium"),
+        5: this.$t("deviceManage.SouthAfrica"),
+        // this.$t("deviceManage.England"),
+        // this.$t("deviceManage.Spain"),
+      },
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),
         this.$t("deviceManage.batteryStatus1"),
@@ -12024,7 +7973,73 @@ export default {
         this.$t("deviceManage.batteryStatus6"),
         this.$t("deviceManage.batteryStatus7"),
       ],
-      BMSFilter: [this.$t("deviceManage.BMS1"), this.$t("deviceManage.BMS2")],
+      BMSdisplayFilter: {
+        0: this.$t("threePhase.BMSdisplay1"),
+        1: this.$t("threePhase.BMSdisplay2"),
+      },
+      chargeFilter: {
+        0: this.$t("threePhase.chargeStatenone"),
+        1: this.$t("threePhase.chargeState1"),
+        2: this.$t("threePhase.chargeState2"),
+      },
+      errorFilter: {
+        0: this.$t("threePhase.normal"),
+        1: this.$t("threePhase.error"),
+      },
+      alarmFilter: {
+        0: this.$t("threePhase.normal"),
+        1: this.$t("threePhase.alarm"),
+      },
+      MOSFilter: {
+        0: this.$t("threePhase.close"),
+        1: this.$t("threePhase.open"),
+      },
+      fuseFilter: {
+        0: this.$t("threePhase.fuseStatus0"),
+        1: this.$t("threePhase.fuseStatus1"),
+      },
+      totalStatusFilter: {
+        0: this.$t("threePhase.totalStatus0"),
+        1: this.$t("threePhase.totalStatus1"),
+        2: this.$t("threePhase.totalStatus2"),
+        3: this.$t("threePhase.totalStatus3"),
+      },
+
+      BMSFilter: {
+        0: this.$t("deviceManage.BMS1"),
+        1: this.$t("deviceManage.BMS2"),
+      },
+      faultStatusFilter: {
+        0: this.$t("threePhase.noFault"),
+        1: this.$t("threePhase.faultStatus1"),
+        2: this.$t("threePhase.faultStatus2"),
+      },
+      displayFilter: {
+        0: this.$t("threePhase.BCUdisplay1"),
+        1: this.$t("threePhase.BCUdisplay2"),
+      },
+      powerOnStageFilter: {
+        0: this.$t("threePhase.noStage"),
+        1: this.$t("threePhase.powerOnStage1"),
+        2: this.$t("threePhase.powerOnStage2"),
+        3: this.$t("threePhase.powerOnStage3"),
+        4: this.$t("threePhase.powerOnStage4"),
+      },
+      systemWorkFilter: {
+        0: this.$t("threePhase.workState1"),
+        1: this.$t("threePhase.workState2"),
+        2: this.$t("threePhase.workState3"),
+      },
+      reasonFilter: {
+        0: this.$t("threePhase.noReason"),
+        1: this.$t("threePhase.reason1"),
+        2: this.$t("threePhase.reason2"),
+        3: this.$t("threePhase.reason3"),
+      },
+      connectFilter: {
+        0: this.$t("threePhase.connect1"),
+        1: this.$t("threePhase.connect2"),
+      },
       GridStateFilter: [
         "N/A",
         this.$t("deviceManage.GridState1"),
@@ -12041,10 +8056,10 @@ export default {
         this.$t("deviceManage.invertingState1"),
         this.$t("deviceManage.invertingState2"),
       ],
-      meterNormalFilter: [
-        this.$t("deviceManage.meterNormal1"),
-        this.$t("deviceManage.meterNormal2"),
-      ],
+      meterNormalFilter: {
+        0: this.$t("deviceManage.meterNormal1"),
+        1: this.$t("deviceManage.meterNormal2"),
+      },
       selfCheckFilter: [
         "NULL",
         this.$t("deviceManage.selfCheck1"),
@@ -12139,8 +8154,129 @@ export default {
         threePhaseMeterBasic: false,
         threePhaseMeterBasicObj: {},
       },
+      settingList: {
+        TP_0X03_0Val: "",
+        TP_0X03_1Val: "",
+        TP_0X03_3Val: "",
+        TP_0X03_4Val: "",
+        TP_0X03_5Val: "",
+        TP_0X03_6Val: "",
+        TP_0X03_7Val: "",
+        TP_0X03_8Val: "",
+        TP_0X03_9Val: "",
+        TP_0X03_10Val: "",
+        TP_0X03_11Val: "",
+
+        TP_0X03_20_21_22Val: "",
+        TP_0X03_26Val: "",
+        TP_0X03_27Val: "",
+        TP_0X03_28Val: "",
+        TP_0X03_31Val: "",
+        TP_0X03_32Val: "",
+        TP_0X03_33Val: "",
+        TP_0X03_41Val: "",
+        TP_0X03_44Val: "",
+        TP_0X03_45Val: "",
+        TP_0X03_46Val: "",
+        TP_0X03_47Val: "",
+
+        TP_0X03_53Val: "",
+        TP_0X03_54Val: "",
+        TP_0X03_55Val: "",
+        TP_0X03_56Val: "",
+        TP_0X03_57Val: "",
+        TP_0X03_58Val: "",
+
+        TP_0X03_71Val: "",
+        TP_0X03_72Val: "",
+
+        //page48 主控用户
+        TP_0X03_1024Val: "",
+        TP_0X03_1025Val: "",
+        TP_0X03_1026Val: "",
+        TP_0X03_1027Val: "",
+        TP_0X03_1028Val: "",
+        TP_0X03_1029Val: "",
+        TP_0X03_1030Val: "",
+        TP_0X03_1031Val: "",
+        TP_0X03_1032Val: "",
+        TP_0X03_1033Val: "",
+        TP_0X03_1034Val: "",
+        TP_0X03_1035Val: "",
+        TP_0X03_1036Val: "",
+        TP_0X03_1037Val: "",
+        TP_0X03_1038Val: "",
+        TP_0X03_1039Val: "",
+        TP_0X03_1040Val: "",
+        TP_0X03_1041Val: "",
+        TP_0X03_1042Val: "",
+        TP_0X03_1043Val: "",
+        TP_0X03_1044Val: "",
+        TP_0X03_1045Val: "",
+        TP_0X03_1046Val: "",
+        TP_0X03_1047Val: "",
+
+        TP_0X03_1048Val: "",
+        TP_0X03_1049Val: "",
+        TP_0X03_1050Val: "",
+        TP_0X03_1051Val: "",
+        TP_0X03_1052Val: "",
+        TP_0X03_1053Val: "",
+        TP_0X03_1054Val: "",
+        TP_0X03_1055Val: "",
+        TP_0X03_1056Val: "",
+        TP_0X03_1057Val: "",
+        TP_0X03_1058Val: "",
+        TP_0X03_1059Val: "",
+        TP_0X03_1060Val: "",
+
+        TP_0X03_1061Val: "",
+        TP_0X03_1062Val: "",
+        TP_0X03_1063Val: "",
+        TP_0X03_1064Val: "",
+        TP_0X03_1065Val: "",
+        TP_0X03_1066Val: "",
+        TP_0X03_1067Val: "",
+        TP_0X03_1068Val: "",
+        TP_0X03_1069Val: "",
+        TP_0X03_1070Val: "",
+        TP_0X03_1071Val: "",
+        TP_0X03_1072Val: "",
+        TP_0X03_1073Val: "",
+        TP_0X03_1074Val: "",
+        TP_0X03_1075Val: "",
+        TP_0X03_1076Val: "",
+        TP_0X03_1077Val: "",
+        TP_0X03_1078Val: "",
+        TP_0X03_1079Val: "",
+        TP_0X03_1080Val: "",
+
+        TP_0X03_1081Val: "",
+        TP_0X03_1082Val: "",
+        TP_0X03_1083Val: "",
+        TP_0X03_1084Val: "",
+        TP_0X03_1085Val: "",
+        TP_0X03_1086Val: "",
+        TP_0X03_1087Val: "",
+        TP_0X03_1088Val: "",
+        TP_0X03_1089Val: "",
+        TP_0X03_1090Val: "",
+
+        TP_0X03_1091Val: "",
+        TP_0X03_1092Val: "",
+        TP_0X03_1093Val: "",
+        TP_0X03_1094Val: "",
+        TP_0X03_1095Val: "",
+        TP_0X03_1096Val: "",
+        TP_0X03_1097Val: "",
+        TP_0X03_1098Val: "",
+        TP_0X03_1099Val: "",
+        TP_0X03_1100Val: "",
+      },
+      voListMap: {},
     };
   },
+
   computed: {
     isAdmin() {
       return this.$store.state.user.roles.includes("1");
@@ -12236,106 +8372,10 @@ export default {
         });
     },
 
-    formatCustomParameters(value) {
-      //将输入值格式化为最多两位小数的字符串
-      const parsedValue = parseFloat(value);
-      if (isNaN(parsedValue)) {
-        return "";
-      }
-      //保留两位小数
-      return parseFloat(parsedValue.toFixed(2)).toString();
-    },
-    parseCustomParameters(value) {
-      //将输入的数字解析为数字
-      const parsedValue = parseFloat(value);
-      if (isNaN(parsedValue)) {
-        return 0;
-      }
-      //确保不为负数
-      return parsedValue >= 0 ? parsedValue : 0;
-    },
-
-    saveLowTemperatureProtectionDuringCharging() {
-      this.saveTemperatureSetting("lowTemperatureProtectionDuringCharging");
-    },
-
-    saveLowTemperatureProtectionRecoveryDuringCharging() {
-      this.saveTemperatureSetting(
-        "lowTemperatureProtectionRecoveryDuringCharging"
-      );
-    },
-
-    saveHeatingFanOnTemperature() {
-      this.saveTemperatureSetting("heatingFanOnTemperature");
-    },
-
-    saveHeatingFanRecoveryTemperature() {
-      this.saveTemperatureSetting("heatingFanRecoveryTemperature");
-    },
-
-    saveTemperatureSetting(key) {
-      const value = this.formData[key];
-      const sendData = {
-        deviceId: this.deviceInfo.id,
-        lowTemperature: {
-          lowTemperatureProtectionDuringCharging:
-            this.formData.lowTemperatureProtectionDuringCharging,
-          lowTemperatureProtectionRecoveryDuringCharging:
-            this.formData.lowTemperatureProtectionRecoveryDuringCharging,
-        },
-        heatingFan: {
-          heatingFanOnTemperature: this.formData.heatingFanOnTemperature,
-          heatingFanRecoveryTemperature:
-            this.formData.heatingFanRecoveryTemperature,
-        },
-        [key]: value,
-      };
-      this.batteryUpgrade(sendData, key);
-    },
-
-    batteryUpgrade(data, key) {
-      const { deviceId, lowTemperature, heatingFan } = data;
-
-      const requestData = {
-        deviceId,
-        ...(key.includes("lowTemperature") ? lowTemperature : {}),
-        ...(key.includes("heatingFan") ? heatingFan : {}),
-        [key]: data[key],
-      };
-
-      batteryUpgrade(requestData)
-        .then((response) => {
-          console.log("Sending to backend: ", data);
-          console.log("Response from backend: ", response);
-
-          if (response && response.deviceId === deviceId) {
-            // Update the formData based on the key
-            if (key.includes("lowTemperature")) {
-              this.formData.lowTemperatureProtectionDuringCharging =
-                response[key];
-              this.formData.lowTemperatureProtectionRecoveryDuringCharging =
-                response[key];
-            } else if (key.includes("heatingFan")) {
-              this.formData.heatingFanOnTemperature = response[key];
-              this.formData.heatingFanRecoveryTemperature = response[key];
-            }
-
-            this.$message.success(this.$t("common.savesuccessfully"));
-          } else {
-            console.log("response format from the backend");
-            this.$message.success(this.$t("common.savesuccessfully"));
-          }
-        })
-        .catch((error) => {
-          console.error("Error saving settings: ", error);
-          this.$message.error(this.$t("common.savefailed"));
-        });
-    },
-
-    saveConfigSettings(sendData) {
+    saveConfigSettings1(sendData) {
       console.log("Sending config data to backend: ", sendData);
 
-      saveConfigData(sendData)
+      savePage47ConfigData(sendData)
         .then((response) => {
           console.log("Config settings saved: ", response);
 
@@ -12350,7 +8390,7 @@ export default {
         });
     },
 
-    handleSave(key, val) {
+    handleSave1(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&
         key !== "countryCode"
@@ -12372,10 +8412,51 @@ export default {
           deviceId: this.deviceInfo.id,
           paramSetList: [{ dataVal: val, key: key }],
         };
-        this.saveConfigSettings(sendData);
+        this.saveConfigSettings1(sendData);
       }
     },
+    handleSave2(key, val) {
+      if (
+        this.systemSet.otherSetObj.countryCodeVal === "7" &&
+        key !== "countryCode"
+      ) {
+        this.$message.info(this.$t("common.cannotBeChanged"));
+        return;
+      }
 
+      if (key.includes("lowTemperature") || key.includes("heatingFan")) {
+        // For temperature-related settings
+        this.saveTemperatureSettings(
+          "lowTemperatureProtectionDuringCharging",
+          val,
+          "lowTemperatureProtectionRecoveryDuringCharging"
+        );
+      } else {
+        // For other settings
+        const sendData = {
+          deviceId: this.deviceInfo.id,
+          paramSetList: [{ dataVal: val, key: key }],
+        };
+        this.saveConfigSettings2(sendData);
+      }
+    },
+    saveConfigSettings2(sendData) {
+      console.log("Sending config data to backend: ", sendData);
+
+      savePage48ConfigData(sendData)
+        .then((response) => {
+          console.log("Config settings saved: ", response);
+
+          // Update the front-end input values if needed
+          // ...
+
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving config settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
     handleConfigSave(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&
@@ -12443,6 +8524,7 @@ export default {
           } else {
             if (messageInfo.msgOperation === 5) {
               console.log("dataList", JSON.parse(messageInfo.val));
+              console.log("MessageInfo:", messageInfo);
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             }
@@ -12467,140 +8549,76 @@ export default {
       );
     },
 
-    //三相配置开关条件
-    threePhaseIsDisplay(key1, key2) {
+    //page41~49所有配置显示与否
+    CCIsDisplay(pageType, key) {
       let role = this.userInfo.roles[0];
+      const isShowValue = this.voListMap[pageType][key].isShow;
+      const installerIsShowValue =
+        this.voListMap[pageType][key].installerIsShow;
+      const consumerIsShowValue = this.voListMap[pageType][key].consumerIsShow;
+      // 根据角色不同，构造要检查的属性名
+
       if (role == "1") {
-        if (this.operationInformation[key1][key2 + "isShow"]) {
+        if (isShowValue) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "2") {
+        if (installerIsShowValue) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "3") {
+        if (consumerIsShowValue) {
           return true;
         } else {
           return false;
         }
       }
-      if (role == "2") {
-        if (this.operationInformation[key1][key2 + "installerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
+
+      // 如果无法确定要检查的属性名，则默认返回true
+      if (!isShowValue) {
+        return true;
       }
-      if (role == "3") {
-        if (this.operationInformation[key1][key2 + "consumerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
     },
-    // 运行信息
-    operationInformationIsDisplay(key1, key2) {
+
+    //设置量---v-if保存按钮专用
+
+    CCIsSetting(pageType, key) {
       let role = this.userInfo.roles[0];
-      // console.log(this.operationInformation[key1][key2 + 'isShow'])
+      const IsSet = this.voListMap[pageType][key].canSet;
+      const installerIsSet = this.voListMap[pageType][key].installerCanSet;
+      const consumerIsSet = this.voListMap[pageType][key].consumerCanSet;
+      // 根据角色不同，构造要检查的属性名
+
       if (role == "1") {
-        if (this.operationInformation[key1][key2 + "isShow"]) {
+        if (IsSet) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "2") {
+        if (installerIsSet) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "3") {
+        if (consumerIsSet) {
           return true;
         } else {
           return false;
         }
       }
-      if (role == "2") {
-        if (this.operationInformation[key1][key2 + "installerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
+
+      // 如果无法确定要检查的属性名，则默认返回true
+      if (!IsSet) {
+        return true;
       }
-      if (role == "3") {
-        if (this.operationInformation[key1][key2 + "consumerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
     },
-    // 系统设置
-    systemSetIsDisplay(key1, key2) {
-      let role = this.userInfo.roles[0];
-      // console.log(this.operationInformation[key1][key2 + 'isShow'])
-      if (role == "1") {
-        if (this.systemSet[key1][key2 + "isShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "2") {
-        if (this.systemSet[key1][key2 + "installerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "3") {
-        if (this.systemSet[key1][key2 + "consumerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
-    },
-    // 系统设置--保存
-    systemSetBtnIsDisplay(key1, key2) {
-      let role = this.userInfo.roles[0];
-      // console.log(this.operationInformation[key1][key2 + 'isShow'])
-      if (role == "1") {
-        if (this.systemSet[key1][key2 + "canSet"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "2") {
-        if (this.systemSet[key1][key2 + "installerCanSet"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "3") {
-        if (this.systemSet[key1][key2 + "consumerCanSet"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
-    },
-    // 电池参数
-    batteryParameterIsDisplay(key2) {
-      let role = this.userInfo.roles[0];
-      // console.log(this.batteryParameter[key1][key2 + 'isShow'])
-      if (role == "1") {
-        if (this.batteryParameter["batterySetObj"][key2 + "isShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "2") {
-        if (this.batteryParameter["batterySetObj"][key2 + "installerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "3") {
-        if (this.batteryParameter["batterySetObj"][key2 + "consumerIsShow"]) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
-    },
+
     // 三相
     threePhaseMeterParameterIsDisplay(key2) {
       let role = this.userInfo.roles[0];
@@ -12643,152 +8661,63 @@ export default {
     // 数据处理转换
     paramsChange(res) {
       console.log(res, "res------");
-      if (!Array.isArray(res)) {
-        return;
+      console.log(Array.isArray(res), "res是数组吗"); //false
+      console.log("res类型是：", typeof res); //object
+      console.log(res.pageType, "res.pageType值");
+
+      if (res.pageType && res.voList) {
+        //Clear voListMap for the current pageType
+        this.clearVoListMap(res.pageType);
+
+        this.voListMap[res.pageType] = {};
+
+        console.log("这个voList的类型是：", typeof this.voList);
+        console.log(`page ${res.pageType} 的 this.voList是`, this.voList);
+
+        res.voList.forEach((item) => {
+          const key = `${item.key}Val`;
+          if (this.settingList.hasOwnProperty(key)) {
+            this.$set(this.settingList, key, item.val);
+          }
+
+          this.$set(this.voListMap[res.pageType], item.key, {
+            val: item.val,
+            isShow: item.isShow,
+            installerIsShow: item.installerIsShow,
+            consumerIsShow: item.consumerIsShow,
+            canSet: item.canSet,
+            installerCanSet: item.installerCanSet,
+            consumerCanSet: item.consumerCanSet,
+            unit: item.unit,
+          });
+
+          // this.$set(this.voListMap, item.key, item.val);
+
+          // //添加其他属性到this.voListMap
+          // this.$set(this.voListMap, `${item.key}isShow`, item.isShow);
+          // this.$set(
+          //   this.voListMap,
+          //   `${item.key}installerIsShow`,
+          //   item.installerIsShow
+          // );
+          // this.$set(
+          //   this.voListMap,
+          //   `${item.key}consumerIsShow`,
+          //   item.consumerIsShow
+          // );
+          // this.$set(this.voListMap, `${item.key}unit`, item.unit);
+
+          // this.voListMap[res.pageType].push(item);
+        });
+        console.log("this.voListMap:里面是啥呢？", this.voListMap);
+        console.log("this.settingList:里面是什么？", this.settingList);
       }
-      res.forEach((item) => {
-        if (item.key === "operationInformation" && this.activeIndex === "7") {
-          this.operationInformation.isShow = item.isShow === 1;
-          item.dataList &&
-            item.dataList.forEach((i) => {
-              this.operationInformation[`${i.key}`] = i.isShow === 1;
-              i.dataList.forEach((j) => {
-                this.$set(
-                  this.operationInformation[`${i.key}Obj`],
-                  `${j.key}isShow`,
-                  j.isShow
-                );
-                this.$set(
-                  this.operationInformation[`${i.key}Obj`],
-                  `${j.key}installerIsShow`,
-                  j.installerIsShow
-                );
-                this.$set(
-                  this.operationInformation[`${i.key}Obj`],
-                  `${j.key}consumerIsShow`,
-                  j.consumerIsShow
-                );
-                this.$set(
-                  this.operationInformation[`${i.key}Obj`],
-                  `${j.key}Val`,
-                  j.val
-                );
-              });
-            });
-          console.log("this.operationInformation", this.operationInformation);
-        } else if (item.key === "systemSet" && this.activeIndex === "8") {
-          this.systemSet.isShow = item.isShow === 1;
-          item.dataList &&
-            item.dataList.forEach((i) => {
-              this.systemSet[`${i.key}`] = i.isShow === 1;
-              i.dataList.forEach((j) => {
-                // this.$set(this.systemSet[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
-                // this.$set(this.systemSet[`${i.key}Obj`], `${j.key}Val`, j.val)
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}isShow`,
-                  j.isShow
-                );
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}canSet`,
-                  j.canSet
-                );
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}installerIsShow`,
-                  j.installerIsShow
-                );
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}installerCanSet`,
-                  j.installerCanSet
-                );
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}consumerIsShow`,
-                  j.consumerIsShow
-                );
-                this.$set(
-                  this.systemSet[`${i.key}Obj`],
-                  `${j.key}consumerCanSet`,
-                  j.consumerCanSet
-                );
-                this.$set(this.systemSet[`${i.key}Obj`], `${j.key}Val`, j.val);
-              });
-            });
-          // console.log('this.systemSet', this.systemSet)
-        } else if (
-          item.key === "batteryParameter" &&
-          this.activeIndex === "9"
-        ) {
-          this.batteryParameter.isShow = item.isShow === 1;
-          item.dataList &&
-            item.dataList.forEach((i) => {
-              this.batteryParameter[`${i.key}`] = i.isShow === 1;
-              i.dataList.forEach((j) => {
-                // this.$set(this.batteryParameter[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
-                this.$set(
-                  this.batteryParameter[`${i.key}Obj`],
-                  `${j.key}isShow`,
-                  j.isShow
-                );
-                this.$set(
-                  this.batteryParameter[`${i.key}Obj`],
-                  `${j.key}installerIsShow`,
-                  j.installerIsShow
-                );
-                this.$set(
-                  this.batteryParameter[`${i.key}Obj`],
-                  `${j.key}consumerIsShow`,
-                  j.consumerIsShow
-                );
-                this.$set(
-                  this.batteryParameter[`${i.key}Obj`],
-                  `${j.key}Val`,
-                  j.val
-                );
-              });
-            });
-          // console.log('this.batteryParameter', this.batteryParameter)
-        } else if (
-          item.key === "threePhaseMeterParameter" &&
-          this.activeIndex === "13"
-        ) {
-          this.threePhaseMeterParameter.isShow = item.isShow === 1;
-          item.dataList &&
-            item.dataList.forEach((i) => {
-              this.threePhaseMeterParameter[`${i.key}`] = i.isShow === 1;
-              i.dataList.forEach((j) => {
-                // this.$set(this.threePhaseMeterParameter[`${i.key}Obj`], `${j.key}`, j.isShow === 1)
-                this.$set(
-                  this.threePhaseMeterParameter[`${i.key}Obj`],
-                  `${j.key}isShow`,
-                  j.isShow
-                );
-                this.$set(
-                  this.threePhaseMeterParameter[`${i.key}Obj`],
-                  `${j.key}installerIsShow`,
-                  j.installerIsShow
-                );
-                this.$set(
-                  this.threePhaseMeterParameter[`${i.key}Obj`],
-                  `${j.key}consumerIsShow`,
-                  j.consumerIsShow
-                );
-                this.$set(
-                  this.threePhaseMeterParameter[`${i.key}Obj`],
-                  `${j.key}Val`,
-                  j.val
-                );
-              });
-            });
-          console.log(
-            "this.threePhaseMeterParameter",
-            this.threePhaseMeterParameter
-          );
-        }
-      });
+    },
+
+    clearVoListMap(pageType) {
+      if (this.voListMap[pageType]) {
+        delete this.voListMap[pageType];
+      }
     },
     getData() {
       this.loading = true;

@@ -413,7 +413,14 @@ export default {
       this.getElectricityData();
     },
     getElectricityData() {
-      electricityData(this.electricityInfo).then((res) => {
+      const startDate = moment(this.time1[0]).format("YYYY-MM-DD");
+      const endDate = moment(this.time1[1]).format("YYYY-MM-DD");
+      electricityData({
+        ...this.electricityInfo,
+        deviceId: this.deviceId,
+        startDate: startDate,
+        endDate: endDate,
+      }).then((res) => {
         this.chartData1.xData = res.map((item) => {
           return item.time;
         });
@@ -447,7 +454,14 @@ export default {
       this.getElectricityIncome();
     },
     getElectricityIncome() {
-      electricityIncome(this.incomeInfo).then((res) => {
+      const startDate = moment(this.time2[0]).format("YYYY-MM-DD");
+      const endDate = moment(this.time2[1]).format("YYYY-MM-DD");
+      electricityIncome({
+        ...this.incomeInfo,
+        deviceId: this.deviceId,
+        startDate: startDate,
+        endDate: endDate,
+      }).then((res) => {
         this.totalIncome = res.totalIncome;
         this.chartData2.xData = res.incomeDataList.map((item) => {
           return item.time;
@@ -467,7 +481,9 @@ export default {
       });
     },
     getPowerData() {
+      const selectedDate = moment(this.time3).format("YYYY-MM-DD");
       electricityPower({
+        date: selectedDate, //更新为所选择的日期
         time: this.time3 / 1000,
       }).then((res) => {
         this.chartData3.xData = res.map((item) => {

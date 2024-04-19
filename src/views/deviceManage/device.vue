@@ -85,6 +85,22 @@
               </el-select>
             </el-form-item>
 
+            <el-form-item :label="$t('faultInfo.tpType')">
+              <el-select
+                v-model="listQuery.tpType"
+                :placeholder="$t('common.selectPrompt')"
+              >
+                <el-option
+                  :label="$t('faultInfo.singlePhase')"
+                  :value="1"
+                ></el-option>
+                <el-option
+                  :label="$t('faultInfo.threePhase')"
+                  :value="3"
+                ></el-option>
+              </el-select>
+            </el-form-item>
+
             <el-form-item>
               <el-button type="primary" @click="getData(true)">{{
                 $t("common.search")
@@ -144,10 +160,26 @@
           <el-table-column
             align="center"
             :label="$t('deviceManage.deviceStatus')"
+            prop="deviceStatus"
           >
             <template slot-scope="scope">
               <!-- {{ scope.row.status | devStatusFilter }} -->
               {{ devStatusFilter[scope.row.status] }}
+            </template>
+          </el-table-column>
+
+          <el-table-column
+            align="center"
+            :label="$t('faultInfo.tpType')"
+            prop="tpType"
+          >
+            <template slot-scope="scope">
+              <!-- {{ scope.row.status | devStatusFilter }} -->
+              {{
+                scope.row.tpType === 1
+                  ? $t("faultInfo.singlePhase")
+                  : $t("faultInfo.threePhase")
+              }}
             </template>
           </el-table-column>
           <el-table-column
@@ -324,6 +356,7 @@ export default {
         this.$t("deviceManage.offline"),
         this.$t("deviceManage.error"),
       ],
+
       onlineStatusFilter: [
         this.$t("deviceManage.offline"),
         this.$t("deviceManage.online"),
@@ -394,11 +427,13 @@ export default {
       const query = {
         ...this.listQuery,
         status: this.listQuery.deviceStatus,
+        // tpType: this.listQuery.tpType,
       };
       qryDevice(query)
         .then((res) => {
           this.dataList = res.records;
           this.total = res.total;
+          console.log("设备列表返回的是：", this.dataList);
         })
         .finally(() => {
           this.listLoading = false;

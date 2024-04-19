@@ -143,6 +143,7 @@
 <script>
 import { qryConfigDataShow, saveConfigDataShow } from "@/api/device";
 import { info2 } from "./config.js";
+import { info3 } from "./threePhaseConfig.js";
 // import FileSaver from "file-saver";
 import fs from "fs";
 // const fs = require('fs')
@@ -152,6 +153,7 @@ export default {
     return {
       info: {},
       info2,
+      info3,
     };
   },
   created() {
