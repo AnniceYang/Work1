@@ -62,6 +62,7 @@
         :imgurl="imgurl"
         :miniimgurl="miniimgurl"
         :slider-text="text"
+        :language="language"
         @success="onSuccess"
         @fail="onFail"
         @refresh="onRefresh"
@@ -85,8 +86,20 @@ export default {
     Verify,
     VerificationCode,
   },
+  props: {
+    language: {
+      type: String,
+      required: true,
+    },
+  },
+  watch: {
+    language(newLanguage, oldLanguage) {
+      this.getTextTranslation();
+    },
+  },
   data() {
     return {
+      sliderText: "",
       loading: false,
       block_y: 0,
       imgurl: "",
@@ -132,6 +145,9 @@ export default {
   },
   computed: {
     ...mapGetters(["tagWel"]),
+    language() {
+      return this.$store.getters.language;
+    },
   },
   mounted() {
     this.getTextTranslation();
