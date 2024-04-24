@@ -245,6 +245,15 @@ export function savePage48ConfigData(data) {
   });
 }
 
+// 保存三相系统的参数设置（系统设置）page 48
+export function savePage49ConfigData(data) {
+  return request({
+    url: "/admin/param/set/updatePage49",
+    method: "post",
+    data,
+  });
+}
+
 // 保存Page11参数设置（系统设置）
 export function savePage11ConfigData(data) {
   return request({

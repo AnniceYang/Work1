@@ -89,7 +89,7 @@ export default {
     const validatePass = (rule, value, callback) => {
       if (this.dataForm.password !== "") {
         if (value !== this.dataForm.newPassword) {
-          callback(new Error($t("common.passwordCheck")));
+          callback(new Error("两次输入密码不一致!"));
         } else {
           callback();
         }
@@ -99,14 +99,14 @@ export default {
     };
     const validatePhone = (rule, value, callback) => {
       if (!/^1(3|4|5|6|7|8|9)\d{9}$/.test(value)) {
-        callback(new Error($t("common.phoneNumberCheck")));
+        callback(new Error("请输入正确的手机号"));
       } else {
         callback();
       }
     };
     const validatePwd = (rule, value, callback) => {
       if (!/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,12}$/.test(value)) {
-        callback(new Error($t("common.passwordEnter")));
+        callback(new Error("请输入6-12位包含字母和数字的密码"));
       } else {
         callback();
       }
@@ -114,31 +114,13 @@ export default {
     return {
       ruleForm: {},
       rules: {
-        name: [
-          {
-            required: true,
-            trigger: "blur",
-            message: $t("common.nameMessage"),
-          },
-        ],
-        sex: [
-          {
-            required: true,
-            message: $t("common.genderMessage"),
-            trigger: "blur",
-          },
-        ],
+        name: [{ required: true, trigger: "blur", message: "请输入用户名称" }],
+        sex: [{ required: true, message: "请选择性别", trigger: "blur" }],
         phone: [
-          {
-            required: true,
-            message: $t("common.phoneNumberNotempty"),
-            trigger: "blur",
-          },
+          { required: true, message: "手机号不能为空", trigger: "blur" },
           { validator: validatePhone, trigger: ["blur", "change"] },
         ],
-        birthDate: [
-          { required: true, message: $t("common.birthCheck"), trigger: "blur" },
-        ],
+        birthDate: [{ required: true, message: "请选择生日", trigger: "blur" }],
       },
 
       visible: false,
@@ -147,21 +129,21 @@ export default {
         password: [
           {
             required: true,
-            message: $t("common.enterOriginPassword"),
+            message: this.$t("common.enterOriginPassword"),
             trigger: "blur",
           },
         ],
         newPassword: [
           {
             required: true,
-            message: $t("common.enterNewPassword"),
+            message: this.$t("common.enterNewPassword"),
             trigger: "blur",
           },
         ],
         newPassword2: [
           {
             required: true,
-            message: $t("common.enterOnceNewPassword"),
+            message: this.$t("common.enterOnceNewPassword"),
             trigger: "blur",
           },
           {

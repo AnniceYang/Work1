@@ -43,9 +43,9 @@
           $t("deviceManage.masterUser")
         }}</el-menu-item>
 
-        <!-- <el-menu-item index="49" v-if="isAdmin">{{
+        <el-menu-item index="49">{{
           $t("deviceManage.scheduledSettings")
-        }}</el-menu-item> -->
+        }}</el-menu-item>
 
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
           $t("parameterConfiguration.threePhaseMeterBasic")
@@ -1087,10 +1087,7 @@
             </el-descriptions>
           </el-card>
 
-          <el-card
-            style="margin-top: 10px"
-            v-if="operationInformation.loadInformation"
-          >
+          <el-card style="margin-top: 10px">
             <el-descriptions
               :title="$t('deviceManage.loadInformation')"
               :column="3"
@@ -6009,173 +6006,351 @@
               :column="3"
               border
             >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_80')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_76')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_80Val"
+                    v-model="settingList['TP_0X03_76Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_76')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_76')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_80',
-                        systemSet.commonSetObj.hm6_0X03_80Val
-                      )
+                      handleSave3('TP_0X03_76', settingList['TP_0X03_76Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_81')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_77')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_81Val"
+                    v-model="settingList['TP_0X03_77Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_77')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_77')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_81',
-                        systemSet.commonSetObj.hm6_0X03_81Val
-                      )
+                      handleSave3('TP_0X03_77', settingList['TP_0X03_77Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_82')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_78')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_82Val"
+                    v-model="settingList['TP_0X03_78Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_78')"
+                  >
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_78')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_82',
-                        systemSet.commonSetObj.hm6_0X03_82Val
-                      )
+                      handleSave3('TP_0X03_78', settingList['TP_0X03_78Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_83')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_79')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_83Val"
+                    v-model="settingList['TP_0X03_79Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_79')"
+                  >
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_79')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_83',
-                        systemSet.commonSetObj.hm6_0X03_83Val
-                      )
+                      handleSave3('TP_0X03_79', settingList['TP_0X03_79Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_84')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_80')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_84Val"
+                    v-model="settingList['TP_0X03_80Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_80')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_80')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_84',
-                        systemSet.commonSetObj.hm6_0X03_84Val
-                      )
+                      handleSave3('TP_0X03_80', settingList['TP_0X03_80Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_85')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_81')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_85Val"
+                    v-model="settingList['TP_0X03_81Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_81')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_81')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_85',
-                        systemSet.commonSetObj.hm6_0X03_85Val
-                      )
+                      handleSave3('TP_0X03_81', settingList['TP_0X03_81Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_86')">
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_82')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_86Val"
+                    v-model="settingList['TP_0X03_82Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_82')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_82')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_86',
-                        systemSet.commonSetObj.hm6_0X03_86Val
-                      )
+                      handleSave3('TP_0X03_82', settingList['TP_0X03_82Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_87')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_83')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_87Val"
+                    v-model="settingList['TP_0X03_83Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_83')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_83')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_87',
-                        systemSet.commonSetObj.hm6_0X03_87Val
-                      )
+                      handleSave3('TP_0X03_83', settingList['TP_0X03_83Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_88')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_84')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_88Val"
+                    v-model="settingList['TP_0X03_84Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_84')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_84')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_88',
-                        systemSet.commonSetObj.hm6_0X03_88Val
-                      )
+                      handleSave3('TP_0X03_84', settingList['TP_0X03_84Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_85')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_85Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_85')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_85')"
+                    @click="
+                      handleSave3('TP_0X03_85', settingList['TP_0X03_85Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_86')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_86Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_86')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_86')"
+                    @click="
+                      handleSave3('TP_0X03_86', settingList['TP_0X03_86Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_87')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_87Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_87')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_87')"
+                    @click="
+                      handleSave3('TP_0X03_87', settingList['TP_0X03_87Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_88')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_88Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_88')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_88')"
+                    @click="
+                      handleSave3('TP_0X03_88', settingList['TP_0X03_88Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_89')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_89Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_89')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_89')"
+                    @click="
+                      handleSave3('TP_0X03_89', settingList['TP_0X03_89Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_90')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_90Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_90')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_90')"
+                    @click="
+                      handleSave3('TP_0X03_90', settingList['TP_0X03_90Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_91')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_91Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_91')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_91')"
+                    @click="
+                      handleSave3('TP_0X03_91', settingList['TP_0X03_91Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -6185,178 +6360,350 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_89')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_92')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_89Val"
+                    v-model="settingList['TP_0X03_92Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_92')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_92')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_89',
-                        systemSet.commonSetObj.hm6_0X03_89Val
-                      )
+                      handleSave3('TP_0X03_92', settingList['TP_0X03_92Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_90')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_93')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_90Val"
+                    v-model="settingList['TP_0X03_93Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_93')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_93')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_90',
-                        systemSet.commonSetObj.hm6_0X03_90Val
-                      )
+                      handleSave3('TP_0X03_93', settingList['TP_0X03_93Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_91')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_94')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_91Val"
+                    v-model="settingList['TP_0X03_94Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_94')"
+                  >
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_94')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_91',
-                        systemSet.commonSetObj.hm6_0X03_91Val
-                      )
+                      handleSave3('TP_0X03_94', settingList['TP_0X03_94Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_95')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_95Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_95')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_95')"
+                    @click="
+                      handleSave3('TP_0X03_95', settingList['TP_0X03_95Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_92')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_96')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_92Val"
+                    v-model="settingList['TP_0X03_96Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_96')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_96')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_92',
-                        systemSet.commonSetObj.hm6_0X03_92Val
-                      )
+                      handleSave3('TP_0X03_96', settingList['TP_0X03_96Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_93')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_97')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_93Val"
+                    v-model="settingList['TP_0X03_97Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_97')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_97')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_93',
-                        systemSet.commonSetObj.hm6_0X03_93Val
-                      )
+                      handleSave3('TP_0X03_97', settingList['TP_0X03_97Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_94')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_98')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_94Val"
+                    v-model="settingList['TP_0X03_98Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_98')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_98')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_94',
-                        systemSet.commonSetObj.hm6_0X03_94Val
-                      )
+                      handleSave3('TP_0X03_98', settingList['TP_0X03_98Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_95')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_99')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_95Val"
+                    v-model="settingList['TP_0X03_99Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_99')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_99')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_95',
-                        systemSet.commonSetObj.hm6_0X03_95Val
-                      )
+                      handleSave3('TP_0X03_99', settingList['TP_0X03_99Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_96')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_100')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_96Val"
+                    v-model="settingList['TP_0X03_100Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_100')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_100')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_96',
-                        systemSet.commonSetObj.hm6_0X03_96Val
-                      )
+                      handleSave3('TP_0X03_100', settingList['TP_0X03_100Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_97')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_101')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_97Val"
+                    v-model="settingList['TP_0X03_101Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_101')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_101')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_97',
-                        systemSet.commonSetObj.hm6_0X03_97Val
-                      )
+                      handleSave3('TP_0X03_101', settingList['TP_0X03_101Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_102')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_102Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_102')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_102')"
+                    @click="
+                      handleSave3('TP_0X03_102', settingList['TP_0X03_102Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_103')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_103Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_103')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_103')"
+                    @click="
+                      handleSave3('TP_0X03_103', settingList['TP_0X03_103Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_104')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_104Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_104')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_104')"
+                    @click="
+                      handleSave3('TP_0X03_104', settingList['TP_0X03_104Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_105')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_105Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_105')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_105')"
+                    @click="
+                      handleSave3('TP_0X03_105', settingList['TP_0X03_105Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_106')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_106Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_106')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_106')"
+                    @click="
+                      handleSave3('TP_0X03_106', settingList['TP_0X03_106Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_107')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_107Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_107')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_107')"
+                    @click="
+                      handleSave3('TP_0X03_107', settingList['TP_0X03_107Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -6366,178 +6713,350 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_98')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_108')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_98Val"
+                    v-model="settingList['TP_0X03_108Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_108')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_108')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_98',
-                        systemSet.commonSetObj.hm6_0X03_98Val
-                      )
+                      handleSave3('TP_0X03_108', settingList['TP_0X03_108Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_99')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_109')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_99Val"
+                    v-model="settingList['TP_0X03_109Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_109')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_109')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_99',
-                        systemSet.commonSetObj.hm6_0X03_99Val
-                      )
+                      handleSave3('TP_0X03_109', settingList['TP_0X03_109Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_100')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_110')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_100Val"
+                    v-model="settingList['TP_0X03_110Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_110')"
+                  >
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_110')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_100',
-                        systemSet.commonSetObj.hm6_0X03_100Val
-                      )
+                      handleSave3('TP_0X03_110', settingList['TP_0X03_110Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_111')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_111Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_111')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_111')"
+                    @click="
+                      handleSave3('TP_0X03_111', settingList['TP_0X03_111Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_101')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_112')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_101Val"
+                    v-model="settingList['TP_0X03_112Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_112')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_112')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_101',
-                        systemSet.commonSetObj.hm6_0X03_101Val
-                      )
+                      handleSave3('TP_0X03_112', settingList['TP_0X03_112Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_102')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_113')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_102Val"
+                    v-model="settingList['TP_0X03_113Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_113')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_113')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_102',
-                        systemSet.commonSetObj.hm6_0X03_102Val
-                      )
+                      handleSave3('TP_0X03_113', settingList['TP_0X03_113Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_103')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_114')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_103Val"
+                    v-model="settingList['TP_0X03_114Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_114')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_114')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_103',
-                        systemSet.commonSetObj.hm6_0X03_103Val
-                      )
+                      handleSave3('TP_0X03_114', settingList['TP_0X03_114Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_104')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_115')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_104Val"
+                    v-model="settingList['TP_0X03_115Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_115')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_115')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_104',
-                        systemSet.commonSetObj.hm6_0X03_104Val
-                      )
+                      handleSave3('TP_0X03_115', settingList['TP_0X03_115Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_105')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_116')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_105Val"
+                    v-model="settingList['TP_0X03_116Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_116')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_116')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_105',
-                        systemSet.commonSetObj.hm6_0X03_105Val
-                      )
+                      handleSave3('TP_0X03_116', settingList['TP_0X03_116Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_106')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_117')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_106Val"
+                    v-model="settingList['TP_0X03_117Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_117')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_117')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_106',
-                        systemSet.commonSetObj.hm6_0X03_106Val
-                      )
+                      handleSave3('TP_0X03_117', settingList['TP_0X03_117Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_118')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_118Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_118')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_118')"
+                    @click="
+                      handleSave3('TP_0X03_118', settingList['TP_0X03_118Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_119')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_119Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_119')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_119')"
+                    @click="
+                      handleSave3('TP_0X03_119', settingList['TP_0X03_119Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_120')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_120Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_120')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_120')"
+                    @click="
+                      handleSave3('TP_0X03_120', settingList['TP_0X03_120Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_121')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_121Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_121')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_121')"
+                    @click="
+                      handleSave3('TP_0X03_121', settingList['TP_0X03_121Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_122')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_122Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_122')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_122')"
+                    @click="
+                      handleSave3('TP_0X03_122', settingList['TP_0X03_122Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_123')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_123Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_123')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_123')"
+                    @click="
+                      handleSave3('TP_0X03_123', settingList['TP_0X03_123Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -6547,178 +7066,350 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_107')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_124')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_107Val"
+                    v-model="settingList['TP_0X03_124Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_124')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_124')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_107',
-                        systemSet.commonSetObj.hm6_0X03_107Val
-                      )
+                      handleSave3('TP_0X03_124', settingList['TP_0X03_124Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_108')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_125')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_108Val"
+                    v-model="settingList['TP_0X03_125Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_125')"
+                  >
+                    <template slot="append">Month</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_125')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_108',
-                        systemSet.commonSetObj.hm6_0X03_108Val
-                      )
+                      handleSave3('TP_0X03_125', settingList['TP_0X03_125Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_109')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_126')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_109Val"
+                    v-model="settingList['TP_0X03_126Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_126')"
+                  >
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_126')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_109',
-                        systemSet.commonSetObj.hm6_0X03_109Val
-                      )
+                      handleSave3('TP_0X03_126', settingList['TP_0X03_126Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_127')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_127Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_127')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_127')"
+                    @click="
+                      handleSave3('TP_0X03_127', settingList['TP_0X03_127Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_110')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_128')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_110Val"
+                    v-model="settingList['TP_0X03_128Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_128')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_128')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_110',
-                        systemSet.commonSetObj.hm6_0X03_110Val
-                      )
+                      handleSave3('TP_0X03_128', settingList['TP_0X03_128Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_111')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_129')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_111Val"
+                    v-model="settingList['TP_0X03_129Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_129')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_129')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_111',
-                        systemSet.commonSetObj.hm6_0X03_111Val
-                      )
+                      handleSave3('TP_0X03_129', settingList['TP_0X03_129Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_112')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_130')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_112Val"
+                    v-model="settingList['TP_0X03_130Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_130')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_130')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_112',
-                        systemSet.commonSetObj.hm6_0X03_112Val
-                      )
+                      handleSave3('TP_0X03_130', settingList['TP_0X03_130Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_113')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_131')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_113Val"
+                    v-model="settingList['TP_0X03_131Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_131')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_131')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_113',
-                        systemSet.commonSetObj.hm6_0X03_113Val
-                      )
+                      handleSave3('TP_0X03_131', settingList['TP_0X03_131Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_114')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_132')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_114Val"
+                    v-model="settingList['TP_0X03_132Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_132')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_132')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_114',
-                        systemSet.commonSetObj.hm6_0X03_114Val
-                      )
+                      handleSave3('TP_0X03_132', settingList['TP_0X03_132Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_115')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_133')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_115Val"
+                    v-model="settingList['TP_0X03_133Val']"
                     :placeholder="$t('common.inputPrompt')"
-                  />
+                    v-if="CCIsDisplay('49', 'TP_0X03_133')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_133')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_115',
-                        systemSet.commonSetObj.hm6_0X03_115Val
-                      )
+                      handleSave3('TP_0X03_133', settingList['TP_0X03_133Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_134')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_134Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_134')"
+                  >
+                    <template slot="append">h</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_134')"
+                    @click="
+                      handleSave3('TP_0X03_134', settingList['TP_0X03_134Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_135')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_135Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_135')"
+                  >
+                    <template slot="append">min</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_135')"
+                    @click="
+                      handleSave3('TP_0X03_135', settingList['TP_0X03_135Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_136')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_136Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_136')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_136')"
+                    @click="
+                      handleSave3('TP_0X03_136', settingList['TP_0X03_136Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_137')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_137Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_137')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_137')"
+                    @click="
+                      handleSave3('TP_0X03_137', settingList['TP_0X03_137Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_138')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_138Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_138')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_138')"
+                    @click="
+                      handleSave3('TP_0X03_138', settingList['TP_0X03_138Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_139')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_139Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_139')"
+                  >
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_139')"
+                    @click="
+                      handleSave3('TP_0X03_139', settingList['TP_0X03_139Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -6728,178 +7419,1647 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_116')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_140')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_116Val"
+                    v-model="settingList['TP_0X03_140Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_140')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_140')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_116',
-                        systemSet.commonSetObj.hm6_0X03_116Val
-                      )
+                      handleSave3('TP_0X03_140', settingList['TP_0X03_140Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_117')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_141')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_117Val"
+                    v-model="settingList['TP_0X03_141Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_141')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_141')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_117',
-                        systemSet.commonSetObj.hm6_0X03_117Val
-                      )
+                      handleSave3('TP_0X03_141', settingList['TP_0X03_141Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_118')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_142')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_118Val"
+                    v-model="settingList['TP_0X03_142Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_142')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_142')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_118',
-                        systemSet.commonSetObj.hm6_0X03_118Val
-                      )
+                      handleSave3('TP_0X03_142', settingList['TP_0X03_142Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_119')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_143')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_119Val"
+                    v-model="settingList['TP_0X03_143Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_143')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_143')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_119',
-                        systemSet.commonSetObj.hm6_0X03_119Val
-                      )
+                      handleSave3('TP_0X03_143', settingList['TP_0X03_143Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_120')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_144')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_120Val"
+                    v-model="settingList['TP_0X03_144Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_144')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_144')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_120',
-                        systemSet.commonSetObj.hm6_0X03_120Val
-                      )
+                      handleSave3('TP_0X03_144', settingList['TP_0X03_144Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_121')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_145')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_121Val"
+                    v-model="settingList['TP_0X03_145Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_145')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_145')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_121',
-                        systemSet.commonSetObj.hm6_0X03_121Val
-                      )
+                      handleSave3('TP_0X03_145', settingList['TP_0X03_145Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_122')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_146')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_122Val"
+                    v-model="settingList['TP_0X03_146Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_146')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_146')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_122',
-                        systemSet.commonSetObj.hm6_0X03_122Val
-                      )
+                      handleSave3('TP_0X03_146', settingList['TP_0X03_146Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_123')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_147')">
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_123Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                  <el-select
+                    v-model="settingList['TP_0X03_147Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_147')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_147')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_123',
-                        systemSet.commonSetObj.hm6_0X03_123Val
-                      )
+                      handleSave3('TP_0X03_147', settingList['TP_0X03_147Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_124')">
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_148')">
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_124Val"
+                    v-model="settingList['TP_0X03_148Val']"
                     :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_148')"
                   />
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_148')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_124',
-                        systemSet.commonSetObj.hm6_0X03_124Val
-                      )
+                      handleSave3('TP_0X03_148', settingList['TP_0X03_148Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_140')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_140Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_140')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_140')"
+                    @click="
+                      handleSave3('TP_0X03_140', settingList['TP_0X03_140Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_141')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_141Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_141')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_141')"
+                    @click="
+                      handleSave3('TP_0X03_141', settingList['TP_0X03_141Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_142')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_142Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_142')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_142')"
+                    @click="
+                      handleSave3('TP_0X03_142', settingList['TP_0X03_142Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_143')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_143Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_143')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_143')"
+                    @click="
+                      handleSave3('TP_0X03_143', settingList['TP_0X03_143Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_144')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_144Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_144')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_144')"
+                    @click="
+                      handleSave3('TP_0X03_144', settingList['TP_0X03_144Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_145')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_145Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_145')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_145')"
+                    @click="
+                      handleSave3('TP_0X03_145', settingList['TP_0X03_145Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_146')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_146Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_146')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_146')"
+                    @click="
+                      handleSave3('TP_0X03_146', settingList['TP_0X03_146Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_147')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_147Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_147')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_147')"
+                    @click="
+                      handleSave3('TP_0X03_147', settingList['TP_0X03_147Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_148')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_148Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_148')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_148')"
+                    @click="
+                      handleSave3('TP_0X03_148', settingList['TP_0X03_148Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_149')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_149Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_149')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_149')"
+                    @click="
+                      handleSave3('TP_0X03_149', settingList['TP_0X03_149Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_150')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_150Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_150')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_150')"
+                    @click="
+                      handleSave3('TP_0X03_150', settingList['TP_0X03_150Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_151')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_151Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_151')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_151')"
+                    @click="
+                      handleSave3('TP_0X03_151', settingList['TP_0X03_151Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_152')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_152Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_152')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_152')"
+                    @click="
+                      handleSave3('TP_0X03_152', settingList['TP_0X03_152Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_153')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_153Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_153')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_153')"
+                    @click="
+                      handleSave3('TP_0X03_153', settingList['TP_0X03_153Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_154')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_154Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_154')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_154')"
+                    @click="
+                      handleSave3('TP_0X03_154', settingList['TP_0X03_154Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_155')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_155Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_155')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_155')"
+                    @click="
+                      handleSave3('TP_0X03_155', settingList['TP_0X03_155Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_156')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_156Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_156')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_156')"
+                    @click="
+                      handleSave3('TP_0X03_156', settingList['TP_0X03_156Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_157')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_157Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_157')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_157')"
+                    @click="
+                      handleSave3('TP_0X03_157', settingList['TP_0X03_157Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_158')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_158Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_158')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_158')"
+                    @click="
+                      handleSave3('TP_0X03_158', settingList['TP_0X03_158Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_159')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_159Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_159')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_159')"
+                    @click="
+                      handleSave3('TP_0X03_159', settingList['TP_0X03_159Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_160')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_160Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_160')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_160')"
+                    @click="
+                      handleSave3('TP_0X03_160', settingList['TP_0X03_160Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_161')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_161Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_161')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_161')"
+                    @click="
+                      handleSave3('TP_0X03_161', settingList['TP_0X03_161Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_162')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_162Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_162')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_162')"
+                    @click="
+                      handleSave3('TP_0X03_162', settingList['TP_0X03_162Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_163')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_163Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_163')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_163')"
+                    @click="
+                      handleSave3('TP_0X03_163', settingList['TP_0X03_163Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_164')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_164Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_164')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_164')"
+                    @click="
+                      handleSave3('TP_0X03_164', settingList['TP_0X03_164Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_165')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_165Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_165')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_165')"
+                    @click="
+                      handleSave3('TP_0X03_165', settingList['TP_0X03_165Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_166')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_166Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_166')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_166')"
+                    @click="
+                      handleSave3('TP_0X03_166', settingList['TP_0X03_166Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_167')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_167Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_167')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_167')"
+                    @click="
+                      handleSave3('TP_0X03_167', settingList['TP_0X03_167Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_168')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_168Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_168')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_168')"
+                    @click="
+                      handleSave3('TP_0X03_168', settingList['TP_0X03_168Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_169')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_169Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_169')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_169')"
+                    @click="
+                      handleSave3('TP_0X03_169', settingList['TP_0X03_169Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_170')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_170Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_170')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_170')"
+                    @click="
+                      handleSave3('TP_0X03_170', settingList['TP_0X03_170Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_171')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_171Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_171')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_171')"
+                    @click="
+                      handleSave3('TP_0X03_171', settingList['TP_0X03_171Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_172')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_172Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_172')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_172')"
+                    @click="
+                      handleSave3('TP_0X03_172', settingList['TP_0X03_172Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_173')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_173Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_173')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_173')"
+                    @click="
+                      handleSave3('TP_0X03_173', settingList['TP_0X03_173Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_174')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_174Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_174')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_174')"
+                    @click="
+                      handleSave3('TP_0X03_174', settingList['TP_0X03_174Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_175')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_175Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_175')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_175')"
+                    @click="
+                      handleSave3('TP_0X03_175', settingList['TP_0X03_175Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_176')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_176Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_176')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_176')"
+                    @click="
+                      handleSave3('TP_0X03_176', settingList['TP_0X03_176Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_177')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_177Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_177')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_177')"
+                    @click="
+                      handleSave3('TP_0X03_177', settingList['TP_0X03_177Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_178')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_178Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_178')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_178')"
+                    @click="
+                      handleSave3('TP_0X03_178', settingList['TP_0X03_178Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_179')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_179Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_179')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_179')"
+                    @click="
+                      handleSave3('TP_0X03_179', settingList['TP_0X03_179Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_180')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_180Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_180')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_180')"
+                    @click="
+                      handleSave3('TP_0X03_180', settingList['TP_0X03_180Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_181')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_181Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_181')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_181')"
+                    @click="
+                      handleSave3('TP_0X03_181', settingList['TP_0X03_181Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_182')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_182Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_182')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_182')"
+                    @click="
+                      handleSave3('TP_0X03_182', settingList['TP_0X03_182Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_183')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_183Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_183')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_183')"
+                    @click="
+                      handleSave3('TP_0X03_183', settingList['TP_0X03_183Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_184')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_184Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_184')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_184')"
+                    @click="
+                      handleSave3('TP_0X03_184', settingList['TP_0X03_184Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_185')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_185Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_185')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_185')"
+                    @click="
+                      handleSave3('TP_0X03_185', settingList['TP_0X03_185Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_186')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_186Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_186')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_186')"
+                    @click="
+                      handleSave3('TP_0X03_186', settingList['TP_0X03_186Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_187')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_187Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_187')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_187')"
+                    @click="
+                      handleSave3('TP_0X03_187', settingList['TP_0X03_187Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_188')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_188Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_188')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_188')"
+                    @click="
+                      handleSave3('TP_0X03_188', settingList['TP_0X03_188Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_189')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_189Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_189')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_189')"
+                    @click="
+                      handleSave3('TP_0X03_189', settingList['TP_0X03_189Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_190')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_190Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_190')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_190')"
+                    @click="
+                      handleSave3('TP_0X03_190', settingList['TP_0X03_190Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_191')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_191Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_191')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_191')"
+                    @click="
+                      handleSave3('TP_0X03_191', settingList['TP_0X03_191Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_192')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_192Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_192')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_192')"
+                    @click="
+                      handleSave3('TP_0X03_192', settingList['TP_0X03_192Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_193')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_193Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_193')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_193')"
+                    @click="
+                      handleSave3('TP_0X03_193', settingList['TP_0X03_193Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_194')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_194Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_194')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_194')"
+                    @click="
+                      handleSave3('TP_0X03_194', settingList['TP_0X03_194Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_195')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_195Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_195')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_195')"
+                    @click="
+                      handleSave3('TP_0X03_195', settingList['TP_0X03_195Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_196')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_196Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_196')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_196')"
+                    @click="
+                      handleSave3('TP_0X03_196', settingList['TP_0X03_196Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_197')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_197Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_197')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_197')"
+                    @click="
+                      handleSave3('TP_0X03_197', settingList['TP_0X03_197Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_198')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_198Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_198')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_198')"
+                    @click="
+                      handleSave3('TP_0X03_198', settingList['TP_0X03_198Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_199')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_199Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_199')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_199')"
+                    @click="
+                      handleSave3('TP_0X03_199', settingList['TP_0X03_199Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_200')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_200Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_200')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_200')"
+                    @click="
+                      handleSave3('TP_0X03_200', settingList['TP_0X03_200Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_201')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_201Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_201')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_201')"
+                    @click="
+                      handleSave3('TP_0X03_201', settingList['TP_0X03_201Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_202')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_202Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_202')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_202')"
+                    @click="
+                      handleSave3('TP_0X03_202', settingList['TP_0X03_202Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_203')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_203Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_203')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_203')"
+                    @click="
+                      handleSave3('TP_0X03_203', settingList['TP_0X03_203Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_204')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_204Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_204')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_204')"
+                    @click="
+                      handleSave3('TP_0X03_204', settingList['TP_0X03_204Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_205')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_205Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_205')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_205')"
+                    @click="
+                      handleSave3('TP_0X03_205', settingList['TP_0X03_205Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_206')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_206Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_206')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_206')"
+                    @click="
+                      handleSave3('TP_0X03_206', settingList['TP_0X03_206Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_207')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_207Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_207')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_207')"
+                    @click="
+                      handleSave3('TP_0X03_207', settingList['TP_0X03_207Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_208')">
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_208Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                    v-if="CCIsDisplay('49', 'TP_0X03_208')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_208')"
+                    @click="
+                      handleSave3('TP_0X03_208', settingList['TP_0X03_208Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -7871,6 +10031,7 @@ import {
   getConfigData,
   savePage47ConfigData,
   savePage48ConfigData,
+  savePage49ConfigData,
   batteryUpgrade,
   batterySetCustom,
   updateEnable,
@@ -8272,6 +10433,145 @@ export default {
         TP_0X03_1098Val: "",
         TP_0X03_1099Val: "",
         TP_0X03_1100Val: "",
+
+        TP_0X03_76Val: "",
+        TP_0X03_77Val: "",
+        TP_0X03_78Val: "",
+        TP_0X03_79Val: "",
+        TP_0X03_80Val: "",
+        TP_0X03_81Val: "",
+        TP_0X03_82Val: "",
+        TP_0X03_83Val: "",
+        TP_0X03_84Val: "",
+        TP_0X03_85Val: "",
+        TP_0X03_86Val: "",
+        TP_0X03_87Val: "",
+        TP_0X03_88Val: "",
+        TP_0X03_89Val: "",
+        TP_0X03_90Val: "",
+        TP_0X03_91Val: "",
+        TP_0X03_92Val: "",
+        TP_0X03_93Val: "",
+        TP_0X03_94Val: "",
+        TP_0X03_95Val: "",
+        TP_0X03_96Val: "",
+        TP_0X03_97Val: "",
+        TP_0X03_98Val: "",
+        TP_0X03_99Val: "",
+        TP_0X03_100Val: "",
+        TP_0X03_101Val: "",
+        TP_0X03_102Val: "",
+        TP_0X03_103Val: "",
+        TP_0X03_104Val: "",
+        TP_0X03_105Val: "",
+        TP_0X03_106Val: "",
+        TP_0X03_107Val: "",
+        TP_0X03_108Val: "",
+        TP_0X03_109Val: "",
+        TP_0X03_110Val: "",
+        TP_0X03_111Val: "",
+        TP_0X03_112Val: "",
+        TP_0X03_113Val: "",
+        TP_0X03_114Val: "",
+        TP_0X03_115Val: "",
+        TP_0X03_116Val: "",
+        TP_0X03_117Val: "",
+        TP_0X03_118Val: "",
+        TP_0X03_119Val: "",
+        TP_0X03_120Val: "",
+
+        TP_0X03_121Val: "",
+        TP_0X03_122Val: "",
+        TP_0X03_123Val: "",
+        TP_0X03_124Val: "",
+        TP_0X03_125Val: "",
+        TP_0X03_126Val: "",
+        TP_0X03_127Val: "",
+        TP_0X03_128Val: "",
+        TP_0X03_129Val: "",
+        TP_0X03_130Val: "",
+
+        TP_0X03_131Val: "",
+        TP_0X03_132Val: "",
+        TP_0X03_133Val: "",
+        TP_0X03_134Val: "",
+        TP_0X03_135Val: "",
+        TP_0X03_136Val: "",
+        TP_0X03_137Val: "",
+        TP_0X03_138Val: "",
+        TP_0X03_139Val: "",
+        TP_0X03_140Val: "",
+        TP_0X03_141Val: "",
+        TP_0X03_142Val: "",
+        TP_0X03_143Val: "",
+        TP_0X03_144Val: "",
+        TP_0X03_145Val: "",
+        TP_0X03_146Val: "",
+        TP_0X03_147Val: "",
+        TP_0X03_148Val: "",
+        TP_0X03_149Val: "",
+        TP_0X03_150Val: "",
+        TP_0X03_151Val: "",
+        TP_0X03_152Val: "",
+        TP_0X03_153Val: "",
+        TP_0X03_154Val: "",
+        TP_0X03_155Val: "",
+        TP_0X03_156Val: "",
+        TP_0X03_157Val: "",
+        TP_0X03_158Val: "",
+        TP_0X03_159Val: "",
+        TP_0X03_160Val: "",
+        TP_0X03_161Val: "",
+        TP_0X03_162Val: "",
+        TP_0X03_163Val: "",
+        TP_0X03_164Val: "",
+        TP_0X03_165Val: "",
+        TP_0X03_166Val: "",
+        TP_0X03_167Val: "",
+        TP_0X03_168Val: "",
+        TP_0X03_169Val: "",
+        TP_0X03_170Val: "",
+
+        TP_0X03_171Val: "",
+        TP_0X03_172Val: "",
+        TP_0X03_173Val: "",
+        TP_0X03_174Val: "",
+        TP_0X03_175Val: "",
+        TP_0X03_176Val: "",
+        TP_0X03_177Val: "",
+        TP_0X03_178Val: "",
+        TP_0X03_179Val: "",
+        TP_0X03_180Val: "",
+
+        TP_0X03_181Val: "",
+        TP_0X03_182Val: "",
+        TP_0X03_183Val: "",
+        TP_0X03_184Val: "",
+        TP_0X03_185Val: "",
+        TP_0X03_186Val: "",
+        TP_0X03_187Val: "",
+        TP_0X03_188Val: "",
+        TP_0X03_189Val: "",
+        TP_0X03_190Val: "",
+        TP_0X03_191Val: "",
+        TP_0X03_192Val: "",
+        TP_0X03_193Val: "",
+        TP_0X03_194Val: "",
+        TP_0X03_195Val: "",
+        TP_0X03_196Val: "",
+        TP_0X03_197Val: "",
+        TP_0X03_198Val: "",
+        TP_0X03_199Val: "",
+        TP_0X03_200Val: "",
+
+        TP_0X03_201Val: "",
+        TP_0X03_202Val: "",
+        TP_0X03_203Val: "",
+        TP_0X03_204Val: "",
+        TP_0X03_205Val: "",
+        TP_0X03_206Val: "",
+        TP_0X03_207Val: "",
+        TP_0X03_208Val: "",
       },
       voListMap: {},
     };
@@ -8457,6 +10757,50 @@ export default {
           this.$message.error(this.$t("common.savefailed"));
         });
     },
+
+    handleSave3(key, val) {
+      if (
+        this.systemSet.otherSetObj.countryCodeVal === "7" &&
+        key !== "countryCode"
+      ) {
+        this.$message.info(this.$t("common.cannotBeChanged"));
+        return;
+      }
+
+      if (key.includes("lowTemperature") || key.includes("heatingFan")) {
+        // For temperature-related settings
+        this.saveTemperatureSettings(
+          "lowTemperatureProtectionDuringCharging",
+          val,
+          "lowTemperatureProtectionRecoveryDuringCharging"
+        );
+      } else {
+        // For other settings
+        const sendData = {
+          deviceId: this.deviceInfo.id,
+          paramSetList: [{ dataVal: val, key: key }],
+        };
+        this.saveConfigSettings3(sendData);
+      }
+    },
+    saveConfigSettings3(sendData) {
+      console.log("Sending config data to backend: ", sendData);
+
+      savePage49ConfigData(sendData)
+        .then((response) => {
+          console.log("Config settings saved: ", response);
+
+          // Update the front-end input values if needed
+          // ...
+
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving config settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
     handleConfigSave(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&
