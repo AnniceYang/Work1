@@ -123,9 +123,19 @@
         :title="$t('deviceManage.deviceInformation')"
         style="margin-top: 20px"
       >
-        <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
-          deviceInfo.name
-        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.deviceName')"
+          >{{ deviceInfo.name }}
+
+          <span style="margin-left: 15px"></span>
+          <!-- <el-button
+            v-if="isAdmin"
+            class="unbind"
+            icon="el-icon-more"
+            @click="showDetailModal('deviceId')"
+            >{{ $t("deviceManage.deviceDetails") }}</el-button
+          > -->
+        </el-descriptions-item>
+
         <el-descriptions-item :label="$t('deviceManage.snCode')">{{
           deviceInfo.sn
         }}</el-descriptions-item>
@@ -454,6 +464,7 @@ import {
   qryDevicePowerData,
   unbindAgent,
   unbindUser,
+  qryDeviceDetail,
 } from "@/api/device";
 import ElectricityData from "./electricityData.vue";
 import IncomeData from "./incomeData.vue";

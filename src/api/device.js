@@ -9,6 +9,15 @@ export function qryDevice(query) {
   });
 }
 
+// 设备信息详情  查询
+export function qryDeviceDetail(query) {
+  return request({
+    url: "/admin/lsydevice/info",
+    method: "get",
+    params: query,
+  });
+}
+
 // 修改
 export function editDevice(data) {
   return request({
@@ -161,6 +170,24 @@ export function qryConfigDataShow() {
   });
 }
 
+// 单相定时设置显示配置
+export function qryPage11ConfigDataShow(query) {
+  return request({
+    url: "/admin/config/hm6/page",
+    method: "get",
+    params: query,
+  });
+}
+
+// 单相定时设置配置-新增或修改
+export function Page11ConfigModify(data) {
+  return request({
+    url: "/admin/config/hm6/modify",
+    method: "post",
+    data,
+  });
+}
+
 //三相系统显示配置详情
 //page Type41监控数据 42主控数据 43电表数据
 //44EAST-BCU数据 45EAST-BMS数据 46设备信息
@@ -245,7 +272,7 @@ export function savePage48ConfigData(data) {
   });
 }
 
-// 保存三相系统的参数设置（系统设置）page 48
+// 保存三相系统的定时设置（系统设置）page 49
 export function savePage49ConfigData(data) {
   return request({
     url: "/admin/param/set/updatePage49",
@@ -254,7 +281,7 @@ export function savePage49ConfigData(data) {
   });
 }
 
-// 保存Page11参数设置（系统设置）
+// 保存Page11定时设置参数设置
 export function savePage11ConfigData(data) {
   return request({
     url: "/admin/param/set/updatePage11",

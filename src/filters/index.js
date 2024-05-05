@@ -1052,6 +1052,15 @@ export function countryCodeValFilter(val) {
     case 6:
       str = "英国";
       break;
+    case 7:
+      str = "西班牙";
+      break;
+    case 8:
+      str = "欧洲50549";
+      break;
+    case 9:
+      str = "爱尔兰";
+      break;
     default:
       break;
   }

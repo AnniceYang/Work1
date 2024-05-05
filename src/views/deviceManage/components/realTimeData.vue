@@ -21,9 +21,9 @@
           $t("deviceManage.batteryParameters")
         }}</el-menu-item>
 
-        <!-- <el-menu-item index="11">{{
+        <el-menu-item index="11">{{
           $t("deviceManage.scheduledSettings")
-        }}</el-menu-item> -->
+        }}</el-menu-item>
 
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
           $t("parameterConfiguration.threePhaseMeterBasic")
@@ -3244,6 +3244,44 @@
                   >
                 </div>
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.PROTOCOL_ADDR_441')"
+                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_441')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_441Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="'0:' + $t('deviceManage.prohibit')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="'1:' + $t('deviceManage.enable')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    v-if="
+                      systemSetBtnIsDisplay(
+                        'advancedSetObj',
+                        'PROTOCOL_ADDR_441'
+                      )
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave(
+                        'PROTOCOL_ADDR_441',
+                        systemSet.advancedSetObj.PROTOCOL_ADDR_441Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
 
@@ -3770,6 +3808,11 @@
                     />
                     <el-option :label="$t('deviceManage.England')" value="6" />
                     <el-option :label="$t('deviceManage.Spain')" value="7" />
+                    <el-option
+                      :label="$t('deviceManage.Europe50549')"
+                      value="8"
+                    />
+                    <el-option :label="$t('deviceManage.Ireland')" value="9" />
                   </el-select>
                   <el-button
                     v-if="systemSetBtnIsDisplay('otherSetObj', 'countryCode')"
@@ -4470,6 +4513,10 @@
                       :label="$t('deviceManage.monitoringUpgrade')"
                       value="5"
                     />
+                    <el-option
+                      :label="$t('deviceManage.batteryUpgrade')"
+                      value="6"
+                    />
                   </el-select>
                   <el-button
                     v-if="systemSetBtnIsDisplay('otherSetObj', 'usbOperation')"
@@ -4598,7 +4645,7 @@
                     "
                     :placeholder="$t('common.inputPrompt')"
                   >
-                    <template slot="append">%Wmax/s</template>
+                    <template slot="append">%Wmax/Min</template>
                   </el-input>
                   <el-button
                     v-if="
@@ -9520,360 +9567,282 @@
           </el-card>
         </template>
 
-        <!-- <template v-else-if="activeIndex === '11'">
+        <template v-else-if="activeIndex === '11'">
           <el-card style="margin-top: 10px">
             <el-descriptions
               :title="$t('deviceManage.scheduledSettings')"
               :column="3"
               border
             >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_80')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_80')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_80')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_80Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_80Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_80')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_80',
-                        systemSet.commonSetObj.hm6_0X03_80Val
+                      handleSave11(
+                        'HM6_0X03_80',
+                        subList.specialDateOneObj.HM6_0X03_80Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_81')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_81')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_81')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_81Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_81Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_81')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_81',
-                        systemSet.commonSetObj.hm6_0X03_81Val
+                      handleSave11(
+                        'HM6_0X03_81',
+                        subList.specialDateOneObj.HM6_0X03_81Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_82')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_82')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_82')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_82Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_82Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_82')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_82',
-                        systemSet.commonSetObj.hm6_0X03_82Val
+                      handleSave11(
+                        'HM6_0X03_82',
+                        subList.specialDateOneObj.HM6_0X03_82Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_83')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_83')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_83')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_83Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_83Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_83')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_83',
-                        systemSet.commonSetObj.hm6_0X03_83Val
+                      handleSave11(
+                        'HM6_0X03_83',
+                        subList.specialDateOneObj.HM6_0X03_83Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_84')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_84')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_84')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_84Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_84Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_84')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_84',
-                        systemSet.commonSetObj.hm6_0X03_84Val
+                      handleSave11(
+                        'HM6_0X03_84',
+                        subList.specialDateOneObj.HM6_0X03_84Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_85')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_85')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_85')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_85Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_85Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_85')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_85',
-                        systemSet.commonSetObj.hm6_0X03_85Val
+                      handleSave11(
+                        'HM6_0X03_85',
+                        subList.specialDateOneObj.HM6_0X03_85Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_86')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_86')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_86')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_86Val"
+                    v-model="subList.specialDateOneObj.HM6_0X03_86Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_86')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_86',
-                        systemSet.commonSetObj.hm6_0X03_86Val
+                      handleSave11(
+                        'HM6_0X03_86',
+                        subList.specialDateOneObj.HM6_0X03_86Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_87')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_87')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_87')"
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_87Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                  <el-select
+                    v-model="subList.specialDateOneObj.HM6_0X03_87Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_87')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_87',
-                        systemSet.commonSetObj.hm6_0X03_87Val
+                      handleSave11(
+                        'HM6_0X03_87',
+                        subList.specialDateOneObj.HM6_0X03_87Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_88')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_88')"
+                v-if="timeSettingIsDisplay('specialDateOneObj', 'HM6_0X03_88')"
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_88Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_88',
-                        systemSet.commonSetObj.hm6_0X03_88Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
+                  <el-select
+                    v-model="subList.specialDateOneObj.HM6_0X03_88Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
                   >
-                </div>
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_89')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_89Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="timeSettingIsSet('specialDateOneObj', 'HM6_0X03_88')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_89',
-                        systemSet.commonSetObj.hm6_0X03_89Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_90')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_90Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_90',
-                        systemSet.commonSetObj.hm6_0X03_90Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_91')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_91Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_91',
-                        systemSet.commonSetObj.hm6_0X03_91Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_92')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_92Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_92',
-                        systemSet.commonSetObj.hm6_0X03_92Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_93')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_93Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_93',
-                        systemSet.commonSetObj.hm6_0X03_93Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_94')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_94Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_94',
-                        systemSet.commonSetObj.hm6_0X03_94Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_95')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_95Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_95',
-                        systemSet.commonSetObj.hm6_0X03_95Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_96')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_96Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_96',
-                        systemSet.commonSetObj.hm6_0X03_96Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_97')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_97Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_97',
-                        systemSet.commonSetObj.hm6_0X03_97Val
+                      handleSave11(
+                        'HM6_0X03_88',
+                        subList.specialDateOneObj.HM6_0X03_88Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -9884,358 +9853,276 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_98')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_89')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_89')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_98Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_89Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_89')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_98',
-                        systemSet.commonSetObj.hm6_0X03_98Val
+                      handleSave11(
+                        'HM6_0X03_89',
+                        subList.specialDateTwoObj.HM6_0X03_89Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_99')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_90')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_90')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_99Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_90Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_90')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_99',
-                        systemSet.commonSetObj.hm6_0X03_99Val
+                      handleSave11(
+                        'HM6_0X03_90',
+                        subList.specialDateTwoObj.HM6_0X03_90Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_100')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_91')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_91')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_100Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_91Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_91')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_100',
-                        systemSet.commonSetObj.hm6_0X03_100Val
+                      handleSave11(
+                        'HM6_0X03_91',
+                        subList.specialDateTwoObj.HM6_0X03_91Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_101')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_92')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_92')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_101Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_92Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_92')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_101',
-                        systemSet.commonSetObj.hm6_0X03_101Val
+                      handleSave11(
+                        'HM6_0X03_92',
+                        subList.specialDateTwoObj.HM6_0X03_92Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_102')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_93')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_93')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_102Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_93Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_93')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_102',
-                        systemSet.commonSetObj.hm6_0X03_102Val
+                      handleSave11(
+                        'HM6_0X03_93',
+                        subList.specialDateTwoObj.HM6_0X03_93Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_103')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_94')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_94')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_103Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_94Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_94')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_103',
-                        systemSet.commonSetObj.hm6_0X03_103Val
+                      handleSave11(
+                        'HM6_0X03_94',
+                        subList.specialDateTwoObj.HM6_0X03_94Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_104')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_95')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_95')"
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_104Val"
+                    v-model="subList.specialDateTwoObj.HM6_0X03_95Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_95')"
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_104',
-                        systemSet.commonSetObj.hm6_0X03_104Val
+                      handleSave11(
+                        'HM6_0X03_95',
+                        subList.specialDateTwoObj.HM6_0X03_95Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_105')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_96')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_96')"
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_105Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                  <el-select
+                    v-model="subList.specialDateTwoObj.HM6_0X03_96Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_96')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_105',
-                        systemSet.commonSetObj.hm6_0X03_105Val
+                      handleSave11(
+                        'HM6_0X03_96',
+                        subList.specialDateTwoObj.HM6_0X03_96Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_106')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_97')"
+                v-if="timeSettingIsDisplay('specialDateTwoObj', 'HM6_0X03_97')"
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_106Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_106',
-                        systemSet.commonSetObj.hm6_0X03_106Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
+                  <el-select
+                    v-model="subList.specialDateTwoObj.HM6_0X03_97Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
                   >
-                </div>
-              </el-descriptions-item>
-            </el-descriptions>
-          </el-card>
-
-          <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_107')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_107Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="timeSettingIsSet('specialDateTwoObj', 'HM6_0X03_97')"
                     @click="
-                      handleSave(
-                        'hm6_0X03_107',
-                        systemSet.commonSetObj.hm6_0X03_107Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_108')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_108Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_108',
-                        systemSet.commonSetObj.hm6_0X03_108Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_109')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_109Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_109',
-                        systemSet.commonSetObj.hm6_0X03_109Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_110')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_110Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_110',
-                        systemSet.commonSetObj.hm6_0X03_110Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_111')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_111Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_111',
-                        systemSet.commonSetObj.hm6_0X03_111Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_112')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_112Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_112',
-                        systemSet.commonSetObj.hm6_0X03_112Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_113')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_113Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_113',
-                        systemSet.commonSetObj.hm6_0X03_113Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_114')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_114Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_114',
-                        systemSet.commonSetObj.hm6_0X03_114Val
-                      )
-                    "
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div>
-              </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_115')">
-                <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_115Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
-                  <el-button
-                    type="text"
-                    style="margin-left: 5px"
-                    @click="
-                      handleSave(
-                        'hm6_0X03_115',
-                        systemSet.commonSetObj.hm6_0X03_115Val
+                      handleSave11(
+                        'HM6_0X03_97',
+                        subList.specialDateTwoObj.HM6_0X03_97Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10246,177 +10133,312 @@
           </el-card>
 
           <el-card style="margin-top: 10px">
-            <el-descriptions
-              :label="$t('deviceManage.secheduledSettings')"
-              :column="3"
-              border
-            >
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_116')">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_98')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_98')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_116Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_98Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_98')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_116',
-                        systemSet.commonSetObj.hm6_0X03_116Val
+                      handleSave11(
+                        'HM6_0X03_98',
+                        subList.specialDateThreeObj.HM6_0X03_98Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_117')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_99')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_99')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_117Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_99Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_99')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_117',
-                        systemSet.commonSetObj.hm6_0X03_117Val
+                      handleSave11(
+                        'HM6_0X03_99',
+                        subList.specialDateThreeObj.HM6_0X03_99Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_118')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_100')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_100')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_118Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_100Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_100')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_118',
-                        systemSet.commonSetObj.hm6_0X03_118Val
+                      handleSave11(
+                        'HM6_0X03_100',
+                        subList.specialDateThreeObj.HM6_0X03_100Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_119')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_101')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_101')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_119Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_101Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_101')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_119',
-                        systemSet.commonSetObj.hm6_0X03_119Val
+                      handleSave11(
+                        'HM6_0X03_101',
+                        subList.specialDateThreeObj.HM6_0X03_101Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_120')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_102')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_102')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_120Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_102Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_102')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_120',
-                        systemSet.commonSetObj.hm6_0X03_120Val
+                      handleSave11(
+                        'HM6_0X03_102',
+                        subList.specialDateThreeObj.HM6_0X03_102Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_121')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_103')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_103')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_121Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_103Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_103')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_121',
-                        systemSet.commonSetObj.hm6_0X03_121Val
+                      handleSave11(
+                        'HM6_0X03_103',
+                        subList.specialDateThreeObj.HM6_0X03_103Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_122')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_104')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_104')
+                "
+              >
                 <div style="display: flex">
                   <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_122Val"
+                    v-model="subList.specialDateThreeObj.HM6_0X03_104Val"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_104')
+                    "
                     type="text"
                     style="margin-left: 5px"
                     @click="
-                      handleSave(
-                        'hm6_0X03_122',
-                        systemSet.commonSetObj.hm6_0X03_122Val
+                      handleSave11(
+                        'HM6_0X03_104',
+                        subList.specialDateThreeObj.HM6_0X03_104Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_123')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_105')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_105')
+                "
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_123Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                  <el-select
+                    v-model="subList.specialDateThreeObj.HM6_0X03_105Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_105')
+                    "
                     @click="
-                      handleSave(
-                        'hm6_0X03_123',
-                        systemSet.commonSetObj.hm6_0X03_123Val
+                      handleSave11(
+                        'HM6_0X03_105',
+                        subList.specialDateThreeObj.HM6_0X03_105Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('deviceManage.hm6_0X03_124')">
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_106')"
+                v-if="
+                  timeSettingIsDisplay('specialDateThreeObj', 'HM6_0X03_106')
+                "
+              >
                 <div style="display: flex">
-                  <el-input
-                    v-model="systemSet.commonSetObj.hm6_0X03_124Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                  <el-select
+                    v-model="subList.specialDateThreeObj.HM6_0X03_106Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateThreeObj', 'HM6_0X03_106')
+                    "
                     @click="
-                      handleSave(
-                        'hm6_0X03_124',
-                        systemSet.commonSetObj.hm6_0X03_124Val
+                      handleSave11(
+                        'HM6_0X03_106',
+                        subList.specialDateThreeObj.HM6_0X03_106Val
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10425,7 +10447,3232 @@
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
-        </template> -->
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_107')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_107')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_107Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_107')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_107',
+                        subList.specialDateFourObj.HM6_0X03_107Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_108')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_108')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_108Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_108')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_108',
+                        subList.specialDateFourObj.HM6_0X03_108Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_109')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_109')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_109Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_109')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_109',
+                        subList.specialDateFourObj.HM6_0X03_109Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_110')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_110')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_110Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_110')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_110',
+                        subList.specialDateFourObj.HM6_0X03_110Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_111')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_111')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_111Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_111')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_111',
+                        subList.specialDateFourObj.HM6_0X03_111Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_112')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_112')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_112Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_112')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_112',
+                        subList.specialDateFourObj.HM6_0X03_112Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_113')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_113')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFourObj.HM6_0X03_113Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_113')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_113',
+                        subList.specialDateFourObj.HM6_0X03_113Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_114')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_114')
+                "
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.specialDateFourObj.HM6_0X03_114Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_114')
+                    "
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_114',
+                        subList.specialDateFourObj.HM6_0X03_114Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_115')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFourObj', 'HM6_0X03_115')
+                "
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.specialDateFourObj.HM6_0X03_115Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateFourObj', 'HM6_0X03_115')
+                    "
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_115',
+                        subList.specialDateFourObj.HM6_0X03_115Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_116')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_116')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_116Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_116')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_116',
+                        subList.specialDateFiveObj.HM6_0X03_116Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_117')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_117')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_117Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_117')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_117',
+                        subList.specialDateFiveObj.HM6_0X03_117Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_118')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_118')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_118Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_118')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_118',
+                        subList.specialDateFiveObj.HM6_0X03_118Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_119')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_119')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_119Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_119')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_119',
+                        subList.specialDateFiveObj.HM6_0X03_119Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_120')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_120')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_120Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_120')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_120',
+                        subList.specialDateFiveObj.HM6_0X03_120Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_121')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_121')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_121Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_121')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_121',
+                        subList.specialDateFiveObj.HM6_0X03_121Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_122')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_122')
+                "
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.specialDateFiveObj.HM6_0X03_122Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_122')
+                    "
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_122',
+                        subList.specialDateFiveObj.HM6_0X03_122Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_123')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_123')
+                "
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.specialDateFiveObj.HM6_0X03_123Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_123')
+                    "
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_123',
+                        subList.specialDateFiveObj.HM6_0X03_123Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_124')"
+                v-if="
+                  timeSettingIsDisplay('specialDateFiveObj', 'HM6_0X03_124')
+                "
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.specialDateFiveObj.HM6_0X03_124Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="
+                      timeSettingIsSet('specialDateFiveObj', 'HM6_0X03_124')
+                    "
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_124',
+                        subList.specialDateFiveObj.HM6_0X03_124Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_128')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_128')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_128Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_128')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_128',
+                        subList.quarterOneObj.HM6_0X03_128Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_129')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_129')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_129Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_129')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_129',
+                        subList.quarterOneObj.HM6_0X03_129Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_130')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_130')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_130Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_130')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_130',
+                        subList.quarterOneObj.HM6_0X03_130Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_131')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_131')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_131Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_131')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_131',
+                        subList.quarterOneObj.HM6_0X03_131Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_132')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_132')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_132Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_132')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_132',
+                        subList.quarterOneObj.HM6_0X03_132Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_133')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_133')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_133Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_133')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_133',
+                        subList.quarterOneObj.HM6_0X03_133Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_134')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_134')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_134Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_134')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_134',
+                        subList.quarterOneObj.HM6_0X03_134Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_135')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_135')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_135Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_135')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_135',
+                        subList.quarterOneObj.HM6_0X03_135Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_136')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_136')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_136Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_136')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_136',
+                        subList.quarterOneObj.HM6_0X03_136Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_137')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_137')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_137Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_137')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_137',
+                        subList.quarterOneObj.HM6_0X03_137Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_138')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_138')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_138Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_138')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_138',
+                        subList.quarterOneObj.HM6_0X03_138Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_139')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_139')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterOneObj.HM6_0X03_139Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_139')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_139',
+                        subList.quarterOneObj.HM6_0X03_139Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_140')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_140')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterOneObj.HM6_0X03_140Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_140')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_140',
+                        subList.quarterOneObj.HM6_0X03_140Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_141')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_141')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterOneObj.HM6_0X03_141Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_141')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_141',
+                        subList.quarterOneObj.HM6_0X03_141Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_142')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_142')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterOneObj.HM6_0X03_142Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_142')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_142',
+                        subList.quarterOneObj.HM6_0X03_142Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_143')"
+                v-if="timeSettingIsDisplay('quarterOneObj', 'HM6_0X03_143')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterOneObj.HM6_0X03_143Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterOneObj', 'HM6_0X03_143')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_143',
+                        subList.quarterOneObj.HM6_0X03_143Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_144')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_144')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_144Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_144')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_144',
+                        subList.quarterTwoObj.HM6_0X03_144Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_145')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_145')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_145Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_145')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_145',
+                        subList.quarterTwoObj.HM6_0X03_145Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_146')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_146')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_146Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_146')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_146',
+                        subList.quarterTwoObj.HM6_0X03_146Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_147')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_147')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_147Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_147')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_147',
+                        subList.quarterTwoObj.HM6_0X03_147Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_148')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_148')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_148Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_148')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_148',
+                        subList.quarterTwoObj.HM6_0X03_148Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_149')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_149')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_149Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_149')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_149',
+                        subList.quarterTwoObj.HM6_0X03_149Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_150')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_150')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_150Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_150')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_150',
+                        subList.quarterTwoObj.HM6_0X03_150Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_151')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_151')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_151Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_151')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_151',
+                        subList.quarterTwoObj.HM6_0X03_151Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_152')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_152')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_152Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_152')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_152',
+                        subList.quarterTwoObj.HM6_0X03_152Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_153')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_153')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_153Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_153')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_153',
+                        subList.quarterTwoObj.HM6_0X03_153Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_154')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_154')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_154Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_154')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_154',
+                        subList.quarterTwoObj.HM6_0X03_154Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_155')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_155')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterTwoObj.HM6_0X03_155Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_155')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_155',
+                        subList.quarterTwoObj.HM6_0X03_155Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_156')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_156')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterTwoObj.HM6_0X03_156Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_156')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_156',
+                        subList.quarterTwoObj.HM6_0X03_156Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_157')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_157')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterTwoObj.HM6_0X03_157Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_157')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_157',
+                        subList.quarterTwoObj.HM6_0X03_157Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_158')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_158')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterTwoObj.HM6_0X03_158Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_158')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_158',
+                        subList.quarterTwoObj.HM6_0X03_158Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_159')"
+                v-if="timeSettingIsDisplay('quarterTwoObj', 'HM6_0X03_159')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterTwoObj.HM6_0X03_159Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterTwoObj', 'HM6_0X03_159')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_159',
+                        subList.quarterTwoObj.HM6_0X03_159Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_160')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_160')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_160Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_160')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_160',
+                        subList.quarterThreeObj.HM6_0X03_160Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_161')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_161')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_161Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_161')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_161',
+                        subList.quarterThreeObj.HM6_0X03_161Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_162')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_162')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_162Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_162')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_162',
+                        subList.quarterThreeObj.HM6_0X03_162Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_163')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_163')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_163Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_163')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_163',
+                        subList.quarterThreeObj.HM6_0X03_163Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_164')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_164')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_164Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_164')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_164',
+                        subList.quarterThreeObj.HM6_0X03_164Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_165')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_165')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_165Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_165')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_165',
+                        subList.quarterThreeObj.HM6_0X03_165Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_166')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_166')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_166Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_166')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_166',
+                        subList.quarterThreeObj.HM6_0X03_166Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_167')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_167')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_167Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_167')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_167',
+                        subList.quarterThreeObj.HM6_0X03_167Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_168')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_168')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_168Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_168')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_168',
+                        subList.quarterThreeObj.HM6_0X03_168Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_169')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_169')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_169Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_169')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_169',
+                        subList.quarterThreeObj.HM6_0X03_169Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_170')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_170')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_170Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_170')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_170',
+                        subList.quarterThreeObj.HM6_0X03_170Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_171')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_171')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterThreeObj.HM6_0X03_171Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_171')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_171',
+                        subList.quarterThreeObj.HM6_0X03_171Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_172')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_172')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterThreeObj.HM6_0X03_172Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_172')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_172',
+                        subList.quarterThreeObj.HM6_0X03_172Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_173')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_173')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterThreeObj.HM6_0X03_173Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_173')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_173',
+                        subList.quarterThreeObj.HM6_0X03_173Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_174')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_174')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterThreeObj.HM6_0X03_174Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_174')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_174',
+                        subList.quarterThreeObj.HM6_0X03_174Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_175')"
+                v-if="timeSettingIsDisplay('quarterThreeObj', 'HM6_0X03_175')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterThreeObj.HM6_0X03_175Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterThreeObj', 'HM6_0X03_175')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_175',
+                        subList.quarterThreeObj.HM6_0X03_175Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_176')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_176')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_176Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_176')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_176',
+                        subList.quarterFourObj.HM6_0X03_176Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_177')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_177')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_177Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_177')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_177',
+                        subList.quarterFourObj.HM6_0X03_177Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_178')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_178')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_178Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_178')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_178',
+                        subList.quarterFourObj.HM6_0X03_178Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_179')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_179')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_179Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_179')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_179',
+                        subList.quarterFourObj.HM6_0X03_179Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_180')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_180')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_180Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_180')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_180',
+                        subList.quarterFourObj.HM6_0X03_180Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_181')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_181')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_181Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_181')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_181',
+                        subList.quarterFourObj.HM6_0X03_181Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_182')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_182')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_182Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_182')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_182',
+                        subList.quarterFourObj.HM6_0X03_182Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_183')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_183')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_183Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_183')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_183',
+                        subList.quarterFourObj.HM6_0X03_183Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_184')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_184')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_184Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_184')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_184',
+                        subList.quarterFourObj.HM6_0X03_184Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_185')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_185')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_185Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_185')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_185',
+                        subList.quarterFourObj.HM6_0X03_185Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_186')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_186')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_186Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_186')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_186',
+                        subList.quarterFourObj.HM6_0X03_186Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_187')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_187')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.quarterFourObj.HM6_0X03_187Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_187')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_187',
+                        subList.quarterFourObj.HM6_0X03_187Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_188')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_188')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterFourObj.HM6_0X03_188Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_188')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_188',
+                        subList.quarterFourObj.HM6_0X03_188Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_189')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_189')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterFourObj.HM6_0X03_189Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_189')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_189',
+                        subList.quarterFourObj.HM6_0X03_189Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_190')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_190')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterFourObj.HM6_0X03_190Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_190')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_190',
+                        subList.quarterFourObj.HM6_0X03_190Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_191')"
+                v-if="timeSettingIsDisplay('quarterFourObj', 'HM6_0X03_191')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="subList.quarterFourObj.HM6_0X03_191Val"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="timeSettingIsSet('quarterFourObj', 'HM6_0X03_191')"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_191',
+                        subList.quarterFourObj.HM6_0X03_191Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+
+          <el-card style="margin-top: 10px">
+            <el-descriptions :column="3" border>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_196')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_196')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_196Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_196')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_196',
+                        subList.hourSettingObj.HM6_0X03_196Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_197')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_197')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_197Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_197')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_197',
+                        subList.hourSettingObj.HM6_0X03_197Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_198')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_198')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_198Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_198')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_198',
+                        subList.hourSettingObj.HM6_0X03_198Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_199')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_199')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_199Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_199')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_199',
+                        subList.hourSettingObj.HM6_0X03_199Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_200')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_200')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_200Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_200')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_200',
+                        subList.hourSettingObj.HM6_0X03_200Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_201')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_201')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_201Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_201')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_201',
+                        subList.hourSettingObj.HM6_0X03_201Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_202')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_202')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_202Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_202')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_202',
+                        subList.hourSettingObj.HM6_0X03_202Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_203')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_203')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_203Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_203')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_203',
+                        subList.hourSettingObj.HM6_0X03_203Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_204')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_204')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_204Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_204')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_204',
+                        subList.hourSettingObj.HM6_0X03_204Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_205')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_205')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_205Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_205')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_205',
+                        subList.hourSettingObj.HM6_0X03_205Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_206')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_206')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_206Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_206')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_206',
+                        subList.hourSettingObj.HM6_0X03_206Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_207')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_207')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_207Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_207')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_207',
+                        subList.hourSettingObj.HM6_0X03_207Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_208')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_208')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_208Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_208')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_208',
+                        subList.hourSettingObj.HM6_0X03_208Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_209')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_209')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_209Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_209')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_209',
+                        subList.hourSettingObj.HM6_0X03_209Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_210')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_210')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_210Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_210')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_210',
+                        subList.hourSettingObj.HM6_0X03_210Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_211')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_211')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_211Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_211')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_211',
+                        subList.hourSettingObj.HM6_0X03_211Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_212')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_212')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_212Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_212')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_212',
+                        subList.hourSettingObj.HM6_0X03_212Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_213')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_213')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_213Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_213')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_213',
+                        subList.hourSettingObj.HM6_0X03_213Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_214')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_214')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_214Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_214')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_214',
+                        subList.hourSettingObj.HM6_0X03_214Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_215')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_215')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_215Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_215')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_215',
+                        subList.hourSettingObj.HM6_0X03_215Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_216')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_216')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_216Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_216')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_216',
+                        subList.hourSettingObj.HM6_0X03_216Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_217')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_217')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_217Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_217')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_217',
+                        subList.hourSettingObj.HM6_0X03_217Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_218')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_218')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_218Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_218')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_218',
+                        subList.hourSettingObj.HM6_0X03_218Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.HM6_0X03_219')"
+                v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_219')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="subList.hourSettingObj.HM6_0X03_219Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_219')"
+                    type="text"
+                    style="margin-left: 5px"
+                    @click="
+                      handleSave11(
+                        'HM6_0X03_219',
+                        subList.hourSettingObj.HM6_0X03_219Val
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </template>
 
         <template v-else-if="activeIndex === '13'">
           <el-card
@@ -11391,6 +14638,7 @@ import {
   batteryUpgrade,
   batterySetCustom,
   updateEnable,
+  savePage11ConfigData,
 } from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
@@ -11595,6 +14843,8 @@ export default {
         this.$t("deviceManage.SouthAfrica"),
         this.$t("deviceManage.England"),
         this.$t("deviceManage.Spain"),
+        this.$t("deviceManage.Europe50549"),
+        this.$t("deviceManage.Ireland"),
       ],
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),
@@ -11720,6 +14970,19 @@ export default {
         isShow: false,
         threePhaseMeterBasic: false,
         threePhaseMeterBasicObj: {},
+      },
+
+      subList: {
+        specialDateOneObj: {},
+        specialDateTwoObj: {},
+        specialDateThreeObj: {},
+        specialDateFourObj: {},
+        specialDateFiveObj: {},
+        quarterOneObj: {},
+        quarterTwoObj: {},
+        quarterThreeObj: {},
+        quarterFourObj: {},
+        hourSettingObj: {},
       },
     };
   },
@@ -11914,6 +15177,39 @@ export default {
         });
     },
 
+    handleSave11(key, val) {
+      if (
+        this.systemSet.otherSetObj.countryCodeVal === "7" &&
+        key !== "countryCode"
+      ) {
+        this.$message.info(this.$t("common.cannotBeChanged"));
+        return;
+      }
+      const sendData = {
+        deviceId: this.deviceInfo.id,
+        paramSetList: [{ dataVal: val, key: key }],
+      };
+      this.savePage11ConfigSettings(sendData);
+    },
+
+    savePage11ConfigSettings(sendData) {
+      console.log("Sending page11 config data to backend: ", sendData);
+
+      savePage11ConfigData(sendData)
+        .then((response) => {
+          console.log("Config Page11 settings saved: ", response);
+
+          // Update the front-end input values if needed
+          // ...
+
+          this.$message.success(this.$t("common.savesuccessfully"));
+        })
+        .catch((error) => {
+          console.error("Error saving config settings: ", error);
+          this.$message.error(this.$t("common.savefailed"));
+        });
+    },
+
     saveConfigSettings(sendData) {
       console.log("Sending config data to backend: ", sendData);
 
@@ -12023,19 +15319,9 @@ export default {
           if (this.activeIndex === "0") {
             this.$refs.selfTest.initMqttData(messageInfo);
           } else {
-            if (this.activeIndex === "7" && messageInfo.valType === 7) {
-              console.log("page7 messageInfo:", JSON.parse(messageInfo.val));
-              console.log("page7 messageInfo:", messageInfo);
-              this.loading = false;
-              this.paramsChange(JSON.parse(messageInfo.val));
-            } else if (this.activeIndex === "8" && messageInfo.valType === 8) {
-              console.log("page8 messageInfo:", JSON.parse(messageInfo.val));
-              console.log("page8 messageInfo:", messageInfo);
-              this.loading = false;
-              this.paramsChange(JSON.parse(messageInfo.val));
-            } else if (this.activeIndex === "9" && messageInfo.valType === 9) {
-              console.log("page9 messageInfo:", JSON.parse(messageInfo.val));
-              console.log("page9 messageInfo:", messageInfo);
+            if (this.activeIndex === "11" && messageInfo.valType === 11) {
+              console.log("page11 messageInfo:", JSON.parse(messageInfo.val));
+
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             } else if (
@@ -12043,12 +15329,12 @@ export default {
               messageInfo.valType === 13
             ) {
               console.log("page13 messageInfo:", JSON.parse(messageInfo.val));
-              console.log("page13 messageInfo:", messageInfo);
+
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             } else if (messageInfo.msgOperation === 5) {
               console.log("dataList", JSON.parse(messageInfo.val));
-              console.log("MessageInfo:", messageInfo);
+
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             }
@@ -12155,6 +15441,60 @@ export default {
       }
       return true;
     },
+
+    //单相定时设置配置
+    timeSettingIsDisplay(key1, key2) {
+      let role = this.userInfo.roles[0];
+      if (role == "1") {
+        if (this.subList[key1][key2 + "isShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "2") {
+        if (this.subList[key1][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "3") {
+        if (this.subList[key1][key2 + "consumerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    },
+
+    timeSettingIsSet(key1, key2) {
+      let role = this.userInfo.roles[0];
+      if (role == "1") {
+        if (this.subList[key1][key2 + "canSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "2") {
+        if (this.subList[key1][key2 + "installerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "3") {
+        if (this.subList[key1][key2 + "consumerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return true;
+    },
+
     // 电池参数
     batteryParameterIsDisplay(key2) {
       let role = this.userInfo.roles[0];
@@ -12225,6 +15565,44 @@ export default {
     paramsChange(res) {
       console.log(res, "res------");
       console.log(Array.isArray(res), "res是数组吗");
+
+      const subListKeys = Object.keys(this.subList);
+
+      if (res.pageType && res.subList) {
+        res.subList.forEach((item) => {
+          const ObjKey = `${item.subName}Obj`;
+          if (subListKeys.includes(ObjKey)) {
+            item.voList.forEach((vo) => {
+              this.$set(this.subList[ObjKey], vo.key + "Val", vo.val);
+              this.$set(this.subList[ObjKey], vo.key + "isShow", vo.isShow);
+              this.$set(this.subList[ObjKey], vo.key + "canSet", vo.canSet);
+              this.$set(
+                this.subList[ObjKey],
+                vo.key + "installerIsShow",
+                vo.installerIsShow
+              );
+              this.$set(
+                this.subList[ObjKey],
+                vo.key + "installerCanSet",
+                vo.installerCanSet
+              );
+              this.$set(
+                this.subList[ObjKey],
+                vo.key + "consumerIsShow",
+                vo.consumerIsShow
+              );
+              this.$set(
+                this.subList[ObjKey],
+                vo.key + "consumerCanSet",
+                vo.consumerCanSet
+              );
+              this.$set(this.subList[ObjKey], vo.key + "unit", vo.unit);
+            });
+          }
+        });
+        console.log("page11中的参数：", this.subList.specialDateOneObj);
+      }
+
       if (!Array.isArray(res)) {
         return;
       }

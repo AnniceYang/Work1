@@ -301,6 +301,13 @@
       @back="pageState = 1"
     />
 
+    <!-- 三相详情 -->
+    <TPdeviceStatistics
+      v-if="pageState === 4"
+      ref="TPdeviceStatistics"
+      @back="pageState = 1"
+    />
+
     <!-- 运行信息 -->
     <RealTimeData
       v-if="pageState === 3"
@@ -326,19 +333,22 @@ import QrCode from "@/components/QrCode/index.vue";
 import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
 import DeviceStatistics from "./components/deviceStatistics.vue";
+import TPdeviceStatistics from "./components/TPdeviceStatistics.vue";
 import RealTimeData from "./components/realTimeData.vue";
+import TPrealTimeData from "./components/TPrealTimeData.vue";
 
 import UpdateRecord from "./components/updateRecord.vue";
 import DeviceUpgrade from "./components/deviceUpgrade.vue";
 import SelfTest from "./components/selfTest.vue";
 import { mapGetters, mapState } from "vuex";
 import { getUrlParams } from "@/util/util";
-import TPrealTimeData from "./components/TPrealTimeData.vue";
+
 export default {
   components: {
     DeviceForm,
     CellSet,
     DeviceStatistics,
+    TPdeviceStatistics,
     RealTimeData,
     TPrealTimeData,
     DeviceUpgrade,
@@ -476,10 +486,17 @@ export default {
     },
     // 统计
     handleStatistics(info) {
-      this.pageState = 2;
-      this.$nextTick(() => {
-        this.$refs.deviceStatistics.init(info);
-      });
+      if (info.tpType === 1) {
+        this.pageState = 2;
+        this.$nextTick(() => {
+          this.$refs.deviceStatistics.init(info);
+        });
+      } else {
+        this.pageState = 4;
+        this.$nextTick(() => {
+          this.$refs.TPdeviceStatistics.init(info);
+        });
+      }
     },
     // 新增
     handleForm(info) {
