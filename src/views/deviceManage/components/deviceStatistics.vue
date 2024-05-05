@@ -127,13 +127,112 @@
           >{{ deviceInfo.name }}
 
           <span style="margin-left: 15px"></span>
-          <!-- <el-button
+          <el-button
             v-if="isAdmin"
             class="unbind"
             icon="el-icon-more"
-            @click="showDetailModal('deviceId')"
+            @click="showDetailModal()"
             >{{ $t("deviceManage.deviceDetails") }}</el-button
-          > -->
+          >
+
+          <!-- 弹窗组件 -->
+          <el-dialog
+            :visible.sync="detailModalVisible"
+            title="设备详情"
+            width="60%"
+          >
+            <el-descriptions>
+              <el-descriptions-item
+                :label="$t('deviceManage.modbusDecodeVer')"
+                >{{ detailedDeviceInfo.modbusDecodeVer }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.typeIdentifierOne')"
+                >{{
+                  detailedDeviceInfo.typeIdentifierOne
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.typeIdentifierTwo')"
+                >{{
+                  detailedDeviceInfo.typeIdentifierTwo
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.typeIdentifierThree')"
+                >{{
+                  detailedDeviceInfo.typeIdentifierThree
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item :label="$t('deviceManage.equipmentName')">{{
+                detailedDeviceInfo.equipmentName
+              }}</el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.equipmentModel')"
+                >{{ detailedDeviceInfo.equipmentModel }}</el-descriptions-item
+              >
+              <el-descriptions-item :label="$t('deviceManage.corporateName')">{{
+                detailedDeviceInfo.corporateName
+              }}</el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('deviceManage.firmwareVersionSystemVersion')"
+                >{{
+                  detailedDeviceInfo.firmwareVersionSystemVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.monitoringProgramVersion')"
+                >{{
+                  detailedDeviceInfo.monitoringProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipTwoProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipTwoProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipThreeProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipThreeProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipFourProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipFourProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipFiveProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipFiveProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipSixProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipSixProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipSevenProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipSevenProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('deviceManage.chipEightProgramVersion')"
+                >{{
+                  detailedDeviceInfo.chipEightProgramVersion
+                }}</el-descriptions-item
+              >
+              <el-descriptions-item :label="$t('deviceManage.serialNumber')">{{
+                detailedDeviceInfo.serialNumber
+              }}</el-descriptions-item>
+            </el-descriptions>
+          </el-dialog>
         </el-descriptions-item>
 
         <el-descriptions-item :label="$t('deviceManage.snCode')">{{
@@ -497,6 +596,8 @@ export default {
       exportDate: [],
       type: "",
       date: "",
+      detailModalVisible: false, //控制弹窗显示
+      detailedDeviceInfo: {}, //保存设备详细信息
 
       deviceInfo: {},
       devStatusFilter: [
@@ -731,6 +832,39 @@ export default {
     };
   },
   methods: {
+    //设备详情弹窗
+    showDetailModal() {
+      const id = this.deviceInfo.id;
+
+      qryDeviceDetail({ id })
+        .then((response) => {
+          this.detailedDeviceInfo = {
+            modbusDecodeVer: response.modbusDecodeVer,
+            typeIdentifierOne: response.typeIdentifierOne,
+            typeIdentifierTwo: response.typeIdentifierTwo,
+            typeIdentifierThree: response.typeIdentifierThree,
+            equipmentName: response.equipmentName,
+            equipmentModel: response.equipmentModel,
+            corporateName: response.corporateName,
+            firmwareVersionSystemVersion: response.firmwareVersionSystemVersion,
+            monitoringProgramVersion: response.monitoringProgramVersion,
+            chipTwoProgramVersion: response.chipTwoProgramVersion,
+            chipThreeProgramVersion: response.chipThreeProgramVersion,
+            chipFourProgramVersion: response.chipFourProgramVersion,
+            chipFiveProgramVersion: response.chipFiveProgramVersion,
+            chipSixProgramVersion: response.chipSixProgramVersion,
+            chipSevenProgramVersion: response.chipSevenProgramVersion,
+            chipEightProgramVersion: response.chipEightProgramVersion,
+            serialNumber: response.serialNumber,
+          };
+          this.detailModalVisible = true; //显示弹窗
+          console.log("这个detailedDeviceInfo是：", this.detailedDeviceInfo);
+        })
+        .catch((error) => {
+          console.error("Failed to fetch device details: ", error);
+        });
+    },
+
     //点击显示解绑确认弹窗的逻辑
 
     showUnbindModal(type) {

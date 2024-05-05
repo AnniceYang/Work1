@@ -1170,6 +1170,25 @@ export default {
 
   //单相系统配置中文
   deviceManage: {
+    //单相4.5协议新增设备详情详细信息
+    modbusDecodeVer: "ModbusDecode Ver.",
+    typeIdentifierOne: "设备标识符1",
+    typeIdentifierTwo: "设备标识符2",
+    typeIdentifierThree: "设备标识符3",
+    equipmentName: "设备名称",
+    equipmentModel: "设备型号",
+    corporateName: "公司名称（厂家信息）",
+    firmwareVersionSystemVersion: "固件版本/系统版本",
+    monitoringProgramVersion: "监控程序版本",
+    chipTwoProgramVersion: "芯片2程序版本",
+    chipThreeProgramVersion: "芯片3程序版本",
+    chipFourProgramVersion: "芯片4程序版本",
+    chipFiveProgramVersion: "芯片5程序版本",
+    chipSixProgramVersion: "芯片6程序版本",
+    chipSevenProgramVersion: "芯片7程序版本",
+    chipEightProgramVersion: "芯片8程序版本",
+    serialNumber: "序列号",
+
     //单相定时设置page11配置
     HM6_0X03_80: "特殊日期1_年",
     HM6_0X03_81: "特殊日期1_月",

@@ -3808,10 +3808,10 @@
                     />
                     <el-option :label="$t('deviceManage.England')" value="6" />
                     <el-option :label="$t('deviceManage.Spain')" value="7" />
-                    <el-option
+                    <!-- <el-option
                       :label="$t('deviceManage.Europe50549')"
                       value="8"
-                    />
+                    /> -->
                     <el-option :label="$t('deviceManage.Ireland')" value="9" />
                   </el-select>
                   <el-button
