@@ -21,7 +21,7 @@
           $t("deviceManage.batteryParameters")
         }}</el-menu-item>
 
-        <el-menu-item index="11">{{
+        <el-menu-item index="11" v-if="isAdmin">{{
           $t("deviceManage.scheduledSettings")
         }}</el-menu-item>
 
@@ -14891,6 +14891,7 @@ export default {
         this.$t("deviceManage.USB4"),
         this.$t("deviceManage.USB5"),
         this.$t("deviceManage.USB6"),
+        this.$t("deviceManage.USB7"),
       ],
       energyFlowFilter: [
         this.$t("deviceManage.energyFlow1"),

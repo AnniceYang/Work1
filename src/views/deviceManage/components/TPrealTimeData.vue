@@ -10235,6 +10235,7 @@ export default {
         this.$t("deviceManage.USB4"),
         this.$t("deviceManage.USB5"),
         this.$t("deviceManage.USB6"),
+        this.$t("deviceManage.USB7"),
       ],
       energyFlowFilter: [
         this.$t("deviceManage.energyFlow1"),

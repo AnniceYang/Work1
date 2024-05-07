@@ -1136,9 +1136,6 @@ export default {
   cursor: pointer;
 }
 
-.card2-content {
-}
-
 .card3-content {
   margin-top: 20px;
 }

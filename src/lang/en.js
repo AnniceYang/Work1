@@ -1165,6 +1165,25 @@ export default {
   },
 
   deviceManage: {
+    //单相4.5协议新增设备详情详细信息
+    modbusDecodeVer: "ModbusDecode Ver.",
+    typeIdentifierOne: "Device Identifier1",
+    typeIdentifierTwo: "Device Identifier2",
+    typeIdentifierThree: "Device Identifier3",
+    equipmentName: "Equipment Name",
+    equipmentModel: "Equipment Model",
+    corporateName: "Corporate Name (Manufacturer Information)",
+    firmwareVersionSystemVersion: "Firmware Version/System Version",
+    monitoringProgramVersion: "Monitoring Program Version",
+    chipTwoProgramVersion: "Chip2 Program Version",
+    chipThreeProgramVersion: "Chip3 Program Version",
+    chipFourProgramVersion: "Chip4 Program Version",
+    chipFiveProgramVersion: "Chip5 Program Version",
+    chipSixProgramVersion: "Chip6 Program Version",
+    chipSevenProgramVersion: "Chip7 Program Version",
+    chipEightProgramVersion: "Chip8 Program Version",
+    serialNumber: "Serial Number",
+
     //单相定时设置page11配置
     HM6_0X03_80: "Spec Date 1 Year",
     HM6_0X03_81: "Spec Date 1 Month",
@@ -2434,6 +2453,7 @@ export default {
     USB4: "Upgrading the inverter monitoring board",
     USB5: "Upgrading the inverter main control board",
     USB6: "Firmware import in progress",
+    USB7: "Battery upgrading",
 
     energyFlow1: "Hollow",
     energyFlow2: "Forward flow",

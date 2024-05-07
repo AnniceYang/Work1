@@ -1153,6 +1153,25 @@ export default {
   },
 
   deviceManage: {
+    //单相4.5协议新增设备详情详细信息
+    modbusDecodeVer: "Versione Decodifica Modbus",
+    typeIdentifierOne: "Identificatore Dispositivo1",
+    typeIdentifierTwo: "Identificatore Dispositivo2",
+    typeIdentifierThree: "Identificatore Dispositivo3",
+    equipmentName: "Nome Attrezzatura",
+    equipmentModel: "Modello Attrezzatura",
+    corporateName: "Nome Aziendale (Informazioni Produttore)",
+    firmwareVersionSystemVersion: "Versione Firmware/Versione Sistema",
+    monitoringProgramVersion: "Versione Programma di Monitoraggio",
+    chipTwoProgramVersion: "Versione Programma Chip2",
+    chipThreeProgramVersion: "Versione Programma Chip3",
+    chipFourProgramVersion: "Versione Programma Chip4",
+    chipFiveProgramVersion: "Versione Programma Chip5",
+    chipSixProgramVersion: "Versione Programma Chip6",
+    chipSevenProgramVersion: "Versione Programma Chip7",
+    chipEightProgramVersion: "Versione Programma Chip8",
+    serialNumber: "Numero Serie",
+
     //单相定时设置page11配置
     HM6_0X03_80: "Data Spec 1 Anno",
     HM6_0X03_81: "Data Spec 1 Mese",
@@ -2418,6 +2437,7 @@ export default {
     USB4: "Aggiornamento della scheda di monitoraggio dell'inverter in corso",
     USB5: "Aggiornamento della scheda di monitoraggio dell'inverter in corso",
     USB6: "Importazione del firmware in corso",
+    USB7: "Aggiornamento della batteria",
 
     energyFlow1: "Flusso vuoto",
     energyFlow2: "Flusso diretto",

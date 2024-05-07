@@ -2404,6 +2404,7 @@ export default {
     USB4: "逆变监控板升级中",
     USB5: "逆变监控板升级中",
     USB6: "固件导入中",
+    USB7: "电池升级中",
 
     energyFlow1: "空心",
     energyFlow2: "正向流动",
