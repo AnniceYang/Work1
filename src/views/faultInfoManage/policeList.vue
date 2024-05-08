@@ -202,8 +202,8 @@ export default {
   },
   methods: {
     handleExport() {
-      const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
-      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
+      // const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
+      const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
       // const exportBaseUrl = "http://3.126.27.80:7072"; // ODM版
 
       const exportUrl = `${exportBaseUrl}/excel/currentAlarm`;

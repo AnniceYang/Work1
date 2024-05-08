@@ -564,7 +564,7 @@ export default {
 
     TP_0X04_57_58: "自给自足电量",
     TP_0X04_61_62: "自发自用电量",
-    TP_0X04_1045_1046: "PV发电量",
+
     TP_0X04_67: "自给自足比例",
     TP_0X04_68: "购买电量比例",
     TP_0X04_69: "自发自用比例",
@@ -1851,7 +1851,7 @@ export default {
 
     electricityPurchased: "购买电量",
     gridConnectedElectricity: "并网电量",
-    PVGeneration: "PV发电量",
+    PVGeneration: "PV总发电量",
     loadPowerConsumption: "负载用电量",
     batteryDischargeCapacity: "电池放电量",
     batteryChargeCapacity: "电池充电量",
@@ -2377,7 +2377,7 @@ export default {
     batteryStatus6: "强制充电",
     batteryStatus7: "检测电池状态",
 
-    BMS1: "无BMS",
+    BMS1: "BMS通讯异常",
     BMS2: "BMS通讯正常",
 
     GridState1: "单独供电",
@@ -2391,8 +2391,8 @@ export default {
     invertingState1: "逆变放电",
     invertingState2: "整流充电",
 
-    meterNormal1: "通讯异常",
-    meterNormal2: "通讯正常",
+    meterNormal1: "电表通讯异常",
+    meterNormal2: "电表通讯正常",
 
     selfCheck1: "自检中",
     selfCheck2: "自检失败",
@@ -2903,7 +2903,7 @@ export default {
 
     TP_0X04_57_58: "自给自足电量",
     TP_0X04_61_62: "自发自用电量",
-    TP_0X04_1045_1046: "PV发电量",
+
     TP_0X04_67: "自给自足比例",
     TP_0X04_68: "购买电量比例",
     TP_0X04_69: "自发自用比例",

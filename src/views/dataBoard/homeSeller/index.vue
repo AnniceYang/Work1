@@ -8,15 +8,15 @@
       >
         <el-option
           v-for="installer in installers"
-          :key="installer.id"
-          :label="installer.name"
-          :value="installer.id"
+          :key="installer.installerUserId"
+          :label="installer.installerUsername"
+          :value="installer.installerUserId"
         />
       </el-select>
 
       <div class="top">
         <!-- Add dropdown menu to select dealer -->
-        <div v-if="selectedInstaller" class="top-item"></div>
+
         <div class="top-item">
           <div class="item-line">
             <img class="img" src="@/assets/img/home-photovoltaic.png" />
@@ -332,25 +332,19 @@ import {
   electricityPower,
 } from "@/api/home/dealer";
 
-// import {
-//   getTotal,
-//   electricityData,
-//   electricityIncome,
-//   electricityPower,
-// } from "@/api/home/installer";
 import ElectricityData from "../electricityData.vue";
 import IncomeData from "../incomeData.vue";
 import DeviceStatus from "./deviceStatus.vue";
 import PowerData from "../powerData.vue";
-import { getTotal } from "@/api/home/installer";
+
 import { mapGetters } from "vuex";
 import moment from "moment";
 export default {
   components: { DeviceStatus, ElectricityData, IncomeData, PowerData },
   data() {
     return {
-      selectedInstaller: null,
-      installers: [],
+      selectedInstaller: "",
+      installers: [{ installerUserId: "", installerUsername: "" }],
 
       total: {},
       chartData: {
@@ -391,11 +385,12 @@ export default {
       listLoading: false,
     };
   },
+
   mounted() {
     //Load distributor data on component mount
     this.loadInstallers();
 
-    getTotal().then((res) => {
+    getTotalByDistributor().then((res) => {
       this.total = res;
       this.chartData.data = [
         {
@@ -430,42 +425,50 @@ export default {
     this.getPowerData();
   },
   methods: {
-    loadDistributors() {
-      //Fetch distributors from your API and populate the 'distributor' array
-      //Example API call:
-      getDistributors().then((res) => (this.distributors = res));
-    },
-
     async loadInstallers() {
       //Fetch installer data based on the selected distributor
       try {
         const response = await getInstallers();
-        this.installers = response.data;
+        console.log("response里是： ", response);
+        this.installers = [
+          { installerUserId: "", installerUsername: "" },
+          ...response,
+        ];
       } catch (error) {
         console.error("Error fetching installers:", error);
       }
     },
 
     async loadInstallerData() {
-      if (this.selectedInstaller) {
-        try {
+      try {
+        if (this.selectedInstaller) {
+          // 如果选中了安装商，则发送请求时携带安装商的 installerUserId
           const response = await getTotalByDistributor({
-            installerId: this.selectedInstaller,
+            installerUserId: this.selectedInstaller,
           });
-
           this.total = response.data;
-          this.getElectricityData();
-          this.getElectricityIncome();
-          this.getPowerData();
-        } catch (error) {
-          console.error("Error fetching installer data:", error);
+        } else {
+          // 如果未选中安装商，则发送请求不携带 installerUserId，获取总数据状态
+          const response = await getTotalByDistributor();
+          this.total = response.data;
         }
+
+        // 更新其他相关数据
+        this.getElectricityData();
+        this.getElectricityIncome();
+        this.getPowerData();
+
+        //重新生成页面内容
+        this.$forceUpdate();
+      } catch (error) {
+        console.error("Error fetching installer data:", error);
       }
     },
 
     changeElectricityType(type) {
       this.electricityInfo.type = type;
       this.getElectricityData();
+      this.radio1 = type;
     },
     changeTime(e) {
       if (e) {
@@ -480,6 +483,7 @@ export default {
       const startDate = moment(this.time1[0]).format("YYYY-MM-DD");
       const endDate = moment(this.time1[1]).format("YYYY-MM-DD");
       electricityData({
+        installerUserId: this.selectedInstaller,
         ...this.electricityInfo,
         startDate: startDate,
         endDate: endDate,
@@ -506,6 +510,7 @@ export default {
     changeIncomeType(type) {
       this.incomeInfo.type = type;
       this.getElectricityIncome();
+      this.radio2 = type;
     },
     changeTime2(e) {
       if (e) {
@@ -520,6 +525,7 @@ export default {
       const startDate = moment(this.time2[0]).format("YYYY-MM-DD");
       const endDate = moment(this.time2[1]).format("YYYY-MM-DD");
       electricityIncome({
+        installerUserId: this.selectedInstaller,
         ...this.incomeInfo,
         deviceId: this.deviceId,
         startDate: startDate,
@@ -548,6 +554,7 @@ export default {
       electricityPower({
         date: selectedDate, //更新为所选择的日期
         time: this.time3 / 1000,
+        installerUserId: this.selectedInstaller,
       }).then((res) => {
         this.chartData3.xData = res.map((item) => {
           return item.time;

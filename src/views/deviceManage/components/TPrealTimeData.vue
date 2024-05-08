@@ -10870,6 +10870,7 @@ export default {
             if (messageInfo.msgOperation === 5) {
               console.log("dataList", JSON.parse(messageInfo.val));
               console.log("MessageInfo:", messageInfo);
+
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
             }
@@ -10888,6 +10889,7 @@ export default {
           // console.log('订阅主题', `/APP/${this.deviceInfo.id}/NEWS`, err, granted)
           if (!err) {
             console.log("===订阅主题 订阅成功===");
+            //在订阅成功后尝试获取数据
             this.getData();
           }
         }
@@ -11011,6 +11013,7 @@ export default {
       console.log(res.pageType, "res.pageType值");
 
       if (res.pageType && res.voList) {
+        //数据正常进行处理
         //Clear voListMap for the current pageType
         this.clearVoListMap(res.pageType);
 
@@ -11064,6 +11067,7 @@ export default {
         delete this.voListMap[pageType];
       }
     },
+
     getData() {
       this.loading = true;
       getConfigData({
