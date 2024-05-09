@@ -170,10 +170,10 @@ export function appTypeFilter(value) {
       str = "通讯棒";
       break;
     case 3:
-      str = "逆变器监控";
+      str = "MCU";
       break;
     case 4:
-      str = "逆变器主控";
+      str = "DSP1";
       break;
     case 5:
       str = "电池";
@@ -192,6 +192,9 @@ export function appTypeFilter(value) {
       break;
     case 10:
       str = "高压电池BMS模块（固件类型：5）";
+      break;
+    case 11:
+      str = "DSP1";
       break;
   }
   return str;
@@ -480,10 +483,10 @@ export function updateType(val) {
       str = "通讯棒";
       break;
     case 2:
-      str = "逆变器监控";
+      str = "MCU";
       break;
     case 3:
-      str = "逆变器主控";
+      str = "DSP1";
       break;
     case 4:
       str = "电池";
@@ -502,6 +505,9 @@ export function updateType(val) {
       break;
     case 10:
       str = "高压电池BMS模块（固件类型：5）";
+      break;
+    case 11:
+      str = "DSP1";
       break;
     default:
       break;
