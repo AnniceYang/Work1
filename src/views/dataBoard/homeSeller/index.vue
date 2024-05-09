@@ -425,48 +425,51 @@ export default {
     this.getPowerData();
   },
   methods: {
-    async loadInstallers() {
+    loadInstallers() {
       //Fetch installer data based on the selected distributor
-      try {
-        const response = await getInstallers();
-        console.log("response里是： ", response);
-        this.installers = [
-          { installerUserId: "", installerUsername: "" },
-          ...response,
-        ];
-      } catch (error) {
-        console.error("Error fetching installers:", error);
-      }
+      getInstallers()
+        .then((response) => {
+          console.log("response里是： ", response);
+          this.installers = [
+            { installerUserId: "", installerUsername: "" },
+            ...response,
+          ];
+        })
+        .catch((error) => {
+          console.error("Error fetching installers:", error);
+        });
     },
 
-    async loadInstallerData() {
-      try {
-        if (this.selectedInstaller) {
-          // 如果选中了安装商，则发送请求时携带安装商的 installerUserId
-          const response = await getTotalByDistributor({
-            installerUserId: this.selectedInstaller,
-          });
-          this.total = response.data;
-        } else {
-          // 如果未选中安装商，则发送请求不携带 installerUserId，获取总数据状态
-          const response = await getTotalByDistributor();
-          this.total = response.data;
-        }
-
-        await this.updateChartData();
-        // 更新其他相关数据
-        await this.getElectricityData();
-        await this.getElectricityIncome();
-        await this.getPowerData();
-
-        //重新生成页面内容
-        this.$forceUpdate();
-      } catch (error) {
-        console.error("Error fetching installer data:", error);
+    loadInstallerData() {
+      let promise;
+      if (this.selectedInstaller) {
+        promise = getTotalByDistributor({
+          installerUserId: this.selectedInstaller,
+        });
+      } else {
+        premise = getTotalByDistributor();
       }
+
+      promise
+        .then((response) => {
+          this.total = response;
+          return this.updateChartData();
+        })
+        .then(() => {
+          return this.getElectricityData();
+        })
+        .then(() => {
+          return this.getElectricityIncome();
+        })
+        .then(() => {
+          return this.getPowerData();
+        })
+        .catch((error) => {
+          console.error("Error fetching installer data: ", error);
+        });
     },
 
-    async updateChartData() {
+    updateChartData() {
       this.chartData = {
         data: [
           {
@@ -486,10 +489,24 @@ export default {
           },
         ],
       };
+
+      this.electricityInfo.endTime = this.incomeInfo.endTime =
+        moment(moment().format("YYYY-MM-DD") + " 23:59:59").unix() + 1;
+      this.electricityInfo.startTime = this.incomeInfo.startTime = moment(
+        moment().subtract(30, "days").format("YYYY-MM-DD") + " 00:00:00"
+      ).unix();
+      this.time1 = this.time2 = [
+        this.electricityInfo.startTime * 1000,
+        this.electricityInfo.endTime * 1000 - 1000,
+      ];
       // 更新其他相关数据
-      await this.getElectricityData();
-      await this.getElectricityIncome();
-      await this.getPowerData();
+      return this.getElectricityData()
+        .then(() => {
+          return this.getElectricityIncome();
+        })
+        .then(() => {
+          return this.getPowerData();
+        });
     },
 
     changeElectricityType(type) {

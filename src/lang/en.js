@@ -228,6 +228,7 @@ export default {
     battery: "Battery",
     HighVoltageBatteryBCUModule: "High Voltage Battery BCU Module",
     HighVoltageBatteryBMSModule: "High Voltage Battery BMS Module",
+    Dsp2: "DSP2",
 
     IIcb: "Phase II communication board",
     IIdb: "Phase II drive board",
@@ -337,6 +338,33 @@ export default {
     upgradeInverterMonitor: "Inverter Monitor Upgrade",
     upgradeInverterControl: "Inverter Control Upgrade",
     importFirmware: "Firmware Import",
+
+    usb24576: "Operation successful",
+    usb24577: "Record export successful",
+    usb24578: "Configuration export successful",
+    usb24579: "Configuration import successful",
+    usb24580: "Monitoring upgrade successful",
+    usb24581: "Main control upgrade successful",
+
+    usb32768: "U disk not detected",
+    usb32769: "Record export failed",
+    usb32770: "Configuration export failed",
+    usb32771: "Configuration import failed",
+    usb32772: "Monitoring upgrade failed",
+
+    usb36864: "Main control upgrade failed",
+    usb36865: "Main control communication abnormality",
+    usb36866: "Main control upgrade failed due to insufficient memory",
+    usb36867: "Main control upgrade failed - no upgrade needed",
+    usb36868: "Main control upgrade failed - firmware upgrade not supported",
+    usb36869:
+      "Main control upgrade failed - current status does not allow upgrade",
+    usb36870: "Main control upgrade failed - burning failed",
+    usb36871: "Main control upgrade failed - abnormal firmware length",
+    usb36872: "Main control upgrade failed - CRC check abnormality",
+    usb36873: "Main control upgrade failed - application cannot execute",
+    usb36874:
+      "Main control upgrade failed - upgrade failed version inconsistency",
 
     TP_0X04_9: "Upgrade Progress",
     TP_0X04_14: "Self-check Items",
@@ -1406,6 +1434,7 @@ export default {
     battery: "Battery",
     HighVoltageBatteryBCUModule: "High Voltage Battery BCU Module",
     HighVoltageBatteryBMSModule: "High Voltage Battery BMS Module",
+    Dsp2: "DSP2",
 
     IIcb: "Phase II communication board",
     IIdb: "Phase II drive board",
@@ -2555,6 +2584,7 @@ export default {
     battery: "Battery",
     HighVoltageBatteryBCUModule: "High Voltage Battery BCU Module",
     HighVoltageBatteryBMSModule: "High Voltage Battery BMS Module",
+    Dsp2: "DSP2",
 
     IIcb: "Phase II communication board",
     IIdb: "Phase II drive board",

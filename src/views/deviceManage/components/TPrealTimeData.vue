@@ -107,7 +107,7 @@
                 :label="$t('threePhase.TP_0X04_9')"
                 v-if="CCIsDisplay('41', 'TP_0X04_9')"
               >
-                {{ voListMap["41"]["TP_0X04_9"].val }}
+                {{ voListMap["41"]["TP_0X04_9"].val }}%
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_14')"
@@ -10072,6 +10072,30 @@ export default {
         4: this.$t("threePhase.upgradeInverterMonitor"),
         5: this.$t("threePhase.upgradeInverterControl"),
         6: this.$t("threePhase.importFirmware"),
+        24576: this.$t("threePhase.usb24576"),
+        24577: this.$t("threePhase.usb24577"),
+        24578: this.$t("threePhase.usb24578"),
+        24579: this.$t("threePhase.usb24579"),
+        24580: this.$t("threePhase.usb24580"),
+        24581: this.$t("threePhase.usb24581"),
+
+        32768: this.$t("threePhase.usb32768"),
+        32769: this.$t("threePhase.usb32769"),
+        32770: this.$t("threePhase.usb32770"),
+        32771: this.$t("threePhase.usb32771"),
+        32772: this.$t("threePhase.usb32772"),
+
+        32864: this.$t("threePhase.usb36864"),
+        32865: this.$t("threePhase.usb36865"),
+        32866: this.$t("threePhase.usb36866"),
+        32867: this.$t("threePhase.usb36867"),
+        32868: this.$t("threePhase.usb36868"),
+        32869: this.$t("threePhase.usb36869"),
+        32870: this.$t("threePhase.usb36870"),
+        32871: this.$t("threePhase.usb36871"),
+        32872: this.$t("threePhase.usb36872"),
+        32873: this.$t("threePhase.usb36873"),
+        32874: this.$t("threePhase.usb36874"),
       },
       TP_0X04_14Filter: {
         0: this.$t("threePhase.none"),

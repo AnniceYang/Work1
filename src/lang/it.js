@@ -225,6 +225,7 @@ export default {
     battery: "Batteria",
     HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
     HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+    Dsp2: "DSP2",
 
     IIcb: "Scheda di Comunicazione Fase II",
     IIdb: "Scheda di Controllo Fase II",
@@ -332,6 +333,36 @@ export default {
     upgradeInverterMonitor: "Aggiornamento Monitor",
     upgradeInverterControl: "Aggiornamento Controllo",
     importFirmware: "Importazione Firmware",
+
+    usb24576: "Operazione riuscita",
+    usb24577: "Esportazione record riuscita",
+    usb24578: "Esportazione configurazione riuscita",
+    usb24579: "Importazione configurazione riuscita",
+    usb24580: "Aggiornamento monitoraggio riuscito",
+    usb24581: "Aggiornamento controllo riuscito",
+
+    usb32768: "Pendrive non rilevata",
+    usb32769: "Esportazione record fallita",
+    usb32770: "Esportazione configurazione fallita",
+    usb32771: "Importazione configurazione fallita",
+    usb32772: "Aggiornamento monitoraggio fallito",
+
+    usb36864: "Aggiornamento controllo principale fallito",
+    usb36865: "Anomalia comunicazione controllo principale",
+    usb36866: "Aggiornamento controllo fallito per memoria insufficiente",
+    usb36867:
+      "Aggiornamento controllo fallito - nessun aggiornamento necessario",
+    usb36868:
+      "Aggiornamento controllo fallito - aggiornamento firmware non supportato",
+    usb36869:
+      "Aggiornamento controllo fallito - stato attuale non consente l'aggiornamento",
+    usb36870: "Aggiornamento controllo principale fallito - scrittura fallita",
+    usb36871: "Aggiornamento controllo fallito - lunghezza firmware anomala",
+    usb36872: "Aggiornamento controllo fallito - anomalia controllo CRC",
+    usb36873:
+      "Aggiornamento controllo fallito - impossibile eseguire l'applicazione",
+    usb36874:
+      "Aggiornamento controllo fallito - inconsistenza versione aggiornamento",
 
     TP_0X04_9: "Progresso Aggiornamento",
     TP_0X04_14: "Elementi Autocontrollo",
@@ -1394,6 +1425,7 @@ export default {
     battery: "Batteria",
     HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
     HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+    Dsp2: "DSP2",
 
     IIcb: "Scheda di comunicazione della seconda fase",
     IIdb: "Scheda di guida della seconda fase",
@@ -2539,6 +2571,7 @@ export default {
     battery: "Batteria",
     HighVoltageBatteryBCUModule: "Modulo BCU Batteria ad Alta Tensione",
     HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
+    Dsp2: "DSP2",
 
     IIcb: "Scheda di comunicazione di rete di II fase",
     IIdb: "Scheda di guida di II fase",

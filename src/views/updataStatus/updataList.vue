@@ -33,6 +33,7 @@
                   :label="$t('upgradeInfo.HighVoltageBatteryBMSModule')"
                   :value="10"
                 />
+                <el-option :label="$t('upgradeInfo.Dsp2')" :value="11" />
               </el-select>
             </el-form-item>
             <el-form-item>

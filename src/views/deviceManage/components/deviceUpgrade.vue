@@ -105,6 +105,7 @@ export default {
           { name: this.$t("deviceManage.battery"), id: 5 },
           { name: this.$t("deviceManage.HighVoltageBatteryBCUModule"), id: 9 },
           { name: this.$t("deviceManage.HighVoltageBatteryBMSModule"), id: 10 },
+          { name: this.$t("deviceManage.Dsp2"), id: 11 },
         ];
       }
       this.appType = null;

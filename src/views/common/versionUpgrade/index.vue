@@ -35,6 +35,7 @@
                   :label="$t('versionManage.HighVoltageBatteryBMSModule')"
                   :value="10"
                 />
+                <el-option :label="$t('versionManage.Dsp2')" :value="11" />
               </el-select>
             </el-form-item>
             <el-form-item :label="$t('versionManage.version')">
@@ -190,6 +191,9 @@
             <el-radio v-model="dataForm.appType" :label="10">{{
               $t("versionManage.HighVoltageBatteryBMSModule")
             }}</el-radio>
+            <el-radio v-model="dataForm.appType" :label="11">{{
+              $t("versionManage.Dsp2")
+            }}</el-radio>
           </el-form-item>
           <el-form-item
             :label="$t('versionManage.appType')"
@@ -313,6 +317,7 @@ export default {
         this.$t("versionManage.IIbattery"),
         this.$t("versionManage.HighVoltageBatteryBCUModule"),
         this.$t("versionManage.HighVoltageBatteryBMSModule"),
+        this.$t("versionManage.Dsp2"),
       ],
     };
   },
