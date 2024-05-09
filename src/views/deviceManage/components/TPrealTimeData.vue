@@ -120,13 +120,13 @@
                 :label="$t('threePhase.TP_0X04_18')"
                 v-if="CCIsDisplay('41', 'TP_0X04_18')"
               >
-                {{ BMSFilter[voListMap["41"]["TP_0X04_18"].val] }}
+                {{ meterNormalFilter[voListMap["41"]["TP_0X04_18"].val] }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_19')"
                 v-if="CCIsDisplay('41', 'TP_0X04_19')"
               >
-                {{ meterNormalFilter[voListMap["41"]["TP_0X04_19"].val] }}
+                {{ BMSFilter[voListMap["41"]["TP_0X04_19"].val] }}
               </el-descriptions-item>
 
               <el-descriptions-item
@@ -453,6 +453,11 @@
                 >{{
                   voListMap["42"]["TP_0X04_1045_1046"].val
                 }}Wh</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1047')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1047')"
+                >{{ voListMap["42"]["TP_0X04_1047"].val }}</el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_1050')"

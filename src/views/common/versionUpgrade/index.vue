@@ -9,8 +9,8 @@
                 v-model="listQuery.appType"
                 :placeholder="$t('common.selectPrompt')"
               >
-                <el-option :label="$t('versionManage.android')" :value="0" />
-                <el-option :label="$t('versionManage.ios')" :value="1" />
+                <!-- <el-option :label="$t('versionManage.android')" :value="0" />
+                <el-option :label="$t('versionManage.ios')" :value="1" /> -->
                 <el-option
                   :label="$t('versionManage.networkConnectingBoard')"
                   :value="2"
@@ -155,12 +155,12 @@
           label-width="130px"
         >
           <el-form-item :label="$t('versionManage.type')">
-            <el-radio v-model="dataForm.appType" :label="0">{{
+            <!-- <el-radio v-model="dataForm.appType" :label="0">{{
               $t("versionManage.android")
             }}</el-radio>
             <el-radio v-model="dataForm.appType" :label="1">{{
               $t("versionManage.ios")
-            }}</el-radio>
+            }}</el-radio> -->
             <el-radio v-model="dataForm.appType" :label="2">{{
               $t("versionManage.networkConnectingBoard")
             }}</el-radio>

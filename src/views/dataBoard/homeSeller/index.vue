@@ -453,16 +453,43 @@ export default {
           this.total = response.data;
         }
 
+        await this.updateChartData();
         // 更新其他相关数据
-        this.getElectricityData();
-        this.getElectricityIncome();
-        this.getPowerData();
+        await this.getElectricityData();
+        await this.getElectricityIncome();
+        await this.getPowerData();
 
         //重新生成页面内容
         this.$forceUpdate();
       } catch (error) {
         console.error("Error fetching installer data:", error);
       }
+    },
+
+    async updateChartData() {
+      this.chartData = {
+        data: [
+          {
+            value: res.normalNum ? res.normalNum : 0,
+            name: this.$t("dataBoard.normal"),
+            rate: res.normalPercentage,
+          },
+          {
+            value: res.offlineNum ? res.offlineNum : 0,
+            name: this.$t("dataBoard.offLine"),
+            rate: res.offlinePercentage,
+          },
+          {
+            value: res.wrongNum ? res.wrongNum : 0,
+            name: this.$t("dataBoard.errorReporting"),
+            rate: res.wrongPercentage,
+          },
+        ],
+      };
+      // 更新其他相关数据
+      await this.getElectricityData();
+      await this.getElectricityIncome();
+      await this.getPowerData();
     },
 
     changeElectricityType(type) {
