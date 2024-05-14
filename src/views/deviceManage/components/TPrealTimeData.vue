@@ -84,12 +84,17 @@
               :title="$t('deviceManage.monitorData')"
               :column="3"
             >
-              <el-descriptions-item :label="$t('threePhase.TP_0X04_0')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_0')"
+                v-if="CCIsDisplay('41', 'TP_0X04_0')"
+              >
                 {{ TP_0X04_0Filter[voListMap["41"]["TP_0X04_0"].val] }}
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X04_1')">{{
-                voListMap["41"]["TP_0X04_1"].val
-              }}</el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1')"
+                v-if="CCIsDisplay('41', 'TP_0X04_1')"
+                >{{ voListMap["41"]["TP_0X04_1"].val }}</el-descriptions-item
+              >
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_2')"
@@ -10054,6 +10059,9 @@ export default {
     ) {
       this.formData.lowTemperatureProtectionDuringCharging = newValue;
     },
+    "deviceInfo.onlineStatus"(newStatus) {
+      this.activeIndex = newStatus === 1 ? "41" : null;
+    },
   },
   components: { SelfTest },
   data() {
@@ -10294,7 +10302,7 @@ export default {
         this.$t("deviceManage.systemLockStatus12"),
         this.$t("deviceManage.systemLockStatus13"),
       ],
-      activeIndex: "41",
+      activeIndex: null,
       loading: false,
       // mqtt
       mqttClient: null,
@@ -10850,11 +10858,12 @@ export default {
     init(info) {
       console.log("init", info);
       this.deviceInfo = { ...info };
-      console.log(this.deviceInfo);
+      console.log("设备信息：", this.deviceInfo);
       if (this.deviceInfo.onlineStatus === 1) {
         this.handleMqttInit();
       } else {
         this.$message.info("设备不在线");
+        console.log("这个设备不在线");
       }
     },
     handleSelect(index) {
@@ -10869,6 +10878,7 @@ export default {
         }
       } else {
         this.$message.info("设备不在线");
+        console.log("AKB48你是大傻瓜");
       }
     },
     goBack() {

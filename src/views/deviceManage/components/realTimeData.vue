@@ -3246,7 +3246,10 @@
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('deviceManage.PROTOCOL_ADDR_441')"
-                v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_441')"
+                v-if="
+                  systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_441') &&
+                  systemSet.otherSetObj.countryCodeVal == '9'
+                "
               >
                 <div style="display: flex">
                   <el-select
@@ -15274,11 +15277,12 @@ export default {
     init(info) {
       console.log("init", info);
       this.deviceInfo = { ...info };
-      console.log(this.deviceInfo);
+      console.log("设备信息： ", this.deviceInfo);
       if (this.deviceInfo.onlineStatus === 1) {
         this.handleMqttInit();
       } else {
         this.$message.info("设备不在线");
+        console.log("这个设备不在线");
       }
     },
     handleSelect(index) {
