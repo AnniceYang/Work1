@@ -342,6 +342,7 @@ import DeviceUpgrade from "./components/deviceUpgrade.vue";
 import SelfTest from "./components/selfTest.vue";
 import { mapGetters, mapState } from "vuex";
 import { getUrlParams } from "@/util/util";
+import { Base64 } from "js-base64";
 
 export default {
   components: {
@@ -434,10 +435,18 @@ export default {
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);
+
+      //生成signature参数
+      const secretId = "esy27h4AKIDz8kr09bsJ5yKB5j913fly";
+      const timestamp = Math.floor(Date.now() / 1000); //获取当前时间戳（秒）
+      const rawString = `secretId=${secretId}&timestamp=${timestamp}`;
+      const signature = Base64.encode(rawString);
+
       const query = {
         ...this.listQuery,
         status: this.listQuery.deviceStatus,
         // tpType: this.listQuery.tpType,
+        signature: signature, //添加signature参数
       };
       qryDevice(query)
         .then((res) => {

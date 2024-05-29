@@ -8,6 +8,7 @@ import { Message } from "element-ui";
 import "nprogress/nprogress.css";
 import qs from "qs";
 import store from "@/store";
+import { Base64 } from "js-base64";
 import { baseUrl } from "../config/env"; // progress bar style
 axios.defaults.timeout = 30000;
 // 返回其他状态吗
@@ -55,6 +56,15 @@ axios.interceptors.request.use(
         return qs.stringify(params, { arrayFormat: "repeat" });
       };
     }
+
+    //生成signature参数
+    const secretId = "esy27h4AKIDz8kr09bsJ5yKB5j913fly";
+    const timestamp = Math.floor(Date.now() / 1000); //获取当前时间戳（秒）
+    const rawString = `secretId=${secretId}&timestamp=${timestamp}`;
+    const signature = Base64.encode(rawString);
+
+    config.headers["signature"] = signature;
+
     config.url = baseUrl + config.url;
     return config;
   },
