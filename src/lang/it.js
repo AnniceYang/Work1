@@ -1427,6 +1427,9 @@ export default {
     HighVoltageBatteryBMSModule: "Modulo BMS Batteria ad Alta Tensione",
     Dsp2: "DSP2",
 
+    bcuId: "EAST-BCU ID",
+    bmsId: "EAST-BMS ID",
+
     IIcb: "Scheda di comunicazione della seconda fase",
     IIdb: "Scheda di guida della seconda fase",
     IIbattery: "Batteria della seconda fase",

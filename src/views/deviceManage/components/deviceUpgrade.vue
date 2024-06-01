@@ -48,6 +48,44 @@
           />
         </el-select>
       </el-form-item>
+      <el-form-item
+        v-if="appType === 9 || appType === 10"
+        :label="$t('deviceManage.bmsId')"
+        prop="bmsId"
+        class="wrap-text"
+      >
+        <el-select
+          v-model="dataForm.bmsId"
+          :placeholder="$t('common.selectPrompt')"
+          style="width: 100%"
+        >
+          <el-option
+            v-for="bmsId in bmsIdList"
+            :key="bmsId"
+            :label="bmsId"
+            :value="bmsId"
+          ></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item
+        v-if="appType === 9 || appType === 10"
+        :label="$t('deviceManage.bcuId')"
+        prop="bcuId"
+        class="wrap-text"
+      >
+        <el-select
+          v-model="dataForm.bcuId"
+          :placeholder="$t('common.selectPrompt')"
+          style="width: 100%"
+        >
+          <el-option
+            v-for="bcuId in bcuIdList"
+            :key="bcuId"
+            :label="bcuId"
+            :value="bcuId"
+          ></el-option>
+        </el-select>
+      </el-form-item>
     </el-form>
 
     <span slot="footer" class="dialog-footer">
@@ -79,8 +117,24 @@ export default {
             trigger: "blur",
           },
         ],
+        // bmsId: [
+        //   {
+        //     required: true,
+        //     message: this.$t("deviceManage.validateP"),
+        //     trigger: "blur",
+        //   },
+        // ],
+        // bcuId: [
+        //   {
+        //     required: true,
+        //     message: this.$t("deviceManage.validateP"),
+        //     trigger: "blur",
+        //   },
+        // ],
       },
       versionList: [],
+      bmsIdList: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      bcuIdList: [101, 102, 103],
     };
   },
   methods: {
@@ -90,6 +144,8 @@ export default {
       this.dataForm = {
         deviceId: info.id,
         id: null,
+        bmsId: null,
+        bcuId: null,
       };
       if (info.ilk === 1) {
         this.appTypeList = [
@@ -124,6 +180,12 @@ export default {
     handleSubmit() {
       this.$refs.dataForm.validate((valid) => {
         if (valid) {
+          // if (this.dataForm.bmsId === null) {
+          //   this.dataForm.bmsId = 1;
+          // }
+          // if (this.dataForm.bcuId === null) {
+          //   this.dataForm.bcuId = 101;
+          // }
           this.loadingState = true;
           deviceUpgrade(this.dataForm)
             .then((res) => {

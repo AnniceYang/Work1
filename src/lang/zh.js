@@ -1458,6 +1458,9 @@ export default {
     HighVoltageBatteryBMSModule: "高压电池BMS模块 （固件类型5）",
     Dsp2: "DSP2",
 
+    bcuId: "EAST-BCU ID",
+    bmsId: "EAST-BMS ID",
+
     IIcb: "二期通讯板",
     IIdb: "二期驱动板",
     IIbattery: "二期电池",
