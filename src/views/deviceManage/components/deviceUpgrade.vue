@@ -49,7 +49,7 @@
         </el-select>
       </el-form-item>
       <el-form-item
-        v-if="appType === 9 || appType === 10"
+        v-if="appType === 10"
         :label="$t('deviceManage.bmsId')"
         prop="bmsId"
         class="wrap-text"
@@ -68,7 +68,7 @@
         </el-select>
       </el-form-item>
       <el-form-item
-        v-if="appType === 9 || appType === 10"
+        v-if="appType === 9"
         :label="$t('deviceManage.bcuId')"
         prop="bcuId"
         class="wrap-text"
@@ -117,23 +117,23 @@ export default {
             trigger: "blur",
           },
         ],
-        // bmsId: [
-        //   {
-        //     required: true,
-        //     message: this.$t("deviceManage.validateP"),
-        //     trigger: "blur",
-        //   },
-        // ],
-        // bcuId: [
-        //   {
-        //     required: true,
-        //     message: this.$t("deviceManage.validateP"),
-        //     trigger: "blur",
-        //   },
-        // ],
+        bmsId: [
+          {
+            required: true,
+            message: this.$t("deviceManage.validateP"),
+            trigger: "blur",
+          },
+        ],
+        bcuId: [
+          {
+            required: true,
+            message: this.$t("deviceManage.validateP"),
+            trigger: "blur",
+          },
+        ],
       },
       versionList: [],
-      bmsIdList: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+      bmsIdList: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
       bcuIdList: [101, 102, 103],
     };
   },
