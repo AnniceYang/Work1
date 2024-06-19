@@ -22,14 +22,14 @@ if (env.NODE_ENV === "development") {
   // baseUrl = "http://120.79.138.205:7072";
   // baseMqtt = "tcp://120.79.138.205:8083/mqtt"; //测试服
   baseUrl = "https://esybackend.esysunhome.com:7072";
-  baseMqtt = "ws://abroadtcp.esysunhome.com:8083/mqtt"; //力胜源
+  baseMqtt = "wss://abroadtcp.esysunhome.com:8084/mqtt"; //力胜源
   // baseUrl = "https://pubbackend.esysunhome.com:7072";
   // baseMqtt = "wss://pubtcp.esysunhome.com:8084/mqtt"; //公版
 } else if (env.NODE_ENV === "production") {
   // baseUrl = "http://120.79.138.205:7072";
   // baseMqtt = "tcp://120.79.138.205:8083/mqtt"; //测试
   // baseUrl = "https://pubbackend.esysunhome.com:7072";
-  // baseMqtt = "ws://pubtcp.esysunhome.com:8083/mqtt"; //公版
+  // baseMqtt = "wss://pubtcp.esysunhome.com:8084/mqtt"; //公版
   // baseUrl = 'http://pubtest.esysunhome.com:7072'
   // baseMqtt = 'tcp://pubtest.esysunhome.com:8083/mqtt'
   baseUrl = "https://esybackend.esysunhome.com:7072";

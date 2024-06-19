@@ -561,6 +561,7 @@ import {
   qryDeviceElectricityData,
   qryDeviceIncomeData,
   qryDevicePowerData,
+  qryDevicePowerDataTable,
   unbindAgent,
   unbindUser,
   qryDeviceDetail,
@@ -1060,6 +1061,7 @@ export default {
         deviceId: this.deviceInfo.id,
       }).then((res) => {
         if (res) {
+          // console.log("后端接口返回实时功率数据：", res);
           res.forEach((item) => {
             this.chartData3.xData.push(item.time);
             this.chartData3.yDataBattery.push(item.battery);
@@ -1074,7 +1076,7 @@ export default {
     },
     getDeviceRecordData() {
       const selectedDate2 = moment(this.time2).format("YYYY-MM-DD");
-      qryDevicePowerData({
+      qryDevicePowerDataTable({
         date: selectedDate2,
         time: this.time2 / 1000,
         deviceId: this.deviceInfo.id,

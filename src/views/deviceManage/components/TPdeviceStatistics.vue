@@ -452,6 +452,7 @@ import {
   qryDeviceElectricityData,
   qryDeviceIncomeData,
   qryDevicePowerData,
+  qryDevicePowerDataTable,
   unbindAgent,
   unbindUser,
 } from "@/api/device";
@@ -929,7 +930,7 @@ export default {
     },
     getDeviceRecordData() {
       const selectedDate2 = moment(this.time2).format("YYYY-MM-DD");
-      qryDevicePowerData({
+      qryDevicePowerDataTable({
         date: selectedDate2,
         time: this.time2 / 1000,
         deviceId: this.deviceInfo.id,

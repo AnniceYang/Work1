@@ -117,10 +117,18 @@ export function qryDeviceIncomeData(query) {
   });
 }
 
-// 实时功率
+// 实时功率曲线
 export function qryDevicePowerData(query) {
   return request({
-    url: "/admin/lsydevicepowerdata/list",
+    url: "/admin/lsydevicepowerdata/curve",
+    method: "get",
+    params: query,
+  });
+}
+// 实时功率表单
+export function qryDevicePowerDataTable(query) {
+  return request({
+    url: "/admin/lsydevicepowerdata/table",
     method: "get",
     params: query,
   });
