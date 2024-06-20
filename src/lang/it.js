@@ -282,6 +282,7 @@ export default {
     authorizationCode: "Codice di Autorizzazione",
     contactPerson: "Persona di Contatto",
     email: "Email",
+    installerUserName: "Account aziendale",
     validateA: "Il codice di autorizzazione non può essere vuoto",
     validateC: "Il nome del contatto non può essere vuoto",
     validateM: "L'email non può essere vuota",

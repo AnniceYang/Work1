@@ -233,7 +233,12 @@
             <span style="display: none">{{ dataForm.fileId }}</span>
           </el-form-item>
           <el-form-item :label="$t('versionManage.version')" prop="versionCode">
-            <el-input v-model="dataForm.versionCode" type="Number"></el-input>
+            <el-input
+              v-model="dataForm.versionCode"
+              type="Number"
+              @input="validateInput"
+              @blur="handleBlur"
+            ></el-input>
           </el-form-item>
           <el-form-item
             :label="$t('versionManage.versionName')"
@@ -325,6 +330,22 @@ export default {
     this.getData();
   },
   methods: {
+    validateInput(event) {
+      let value = event.target.value;
+      //只允许输入整数，并限制最长为八位数
+      if (value.length > 8) {
+        value = value.slice(0, 8);
+      }
+      this.dataForm.versionCode = value;
+    },
+
+    handleBlur() {
+      //确保输入为整数
+      if (this.dataForm.versionCode !== "") {
+        this.dataForm.versionCode = parseInt(this.dataForm.versionCode, 10);
+      }
+    },
+
     //获取柜子
     getData(state) {
       this.listLoading = true;

@@ -285,6 +285,7 @@ export default {
     authorizationCode: "Authorization code",
     contactPerson: "Contact person",
     email: "E-mail",
+    installerUserName: "Enterprise account",
     validateA: "Authorization code cannot be empty",
     validateC: "Contact person cannot be empty",
     validateM: "E-mail cannot be empty",

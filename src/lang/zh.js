@@ -282,6 +282,7 @@ export default {
     authorizationCode: "授权码",
     contactPerson: "联系人",
     email: "邮箱",
+    installerUserName: "企业账号",
     validateA: "授权码不能为空",
     validateC: "联系人不能为空",
     validateM: "邮箱不能为空",

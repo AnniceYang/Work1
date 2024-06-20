@@ -75,6 +75,11 @@
           />
           <el-table-column
             align="center"
+            prop="installerUserName"
+            :label="$t('installUser.installerUserName')"
+          />
+          <el-table-column
+            align="center"
             :label="$t('common.createTime')"
             width="160"
           >

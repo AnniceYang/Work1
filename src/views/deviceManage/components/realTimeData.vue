@@ -34,8 +34,8 @@
           >{{ $t("deviceManage.selfTest") }}</el-menu-item
         >
       </el-menu>
-      <div class="scrollable-content" v-loading="loading">
-        <el-card class="device-info-card" style="margin-top: 20px">
+      <div v-loading="loading">
+        <el-card style="margin-top: 20px; position: sticky; top: 20px">
           <el-descriptions
             :title="$t('deviceManage.deviceInformation')"
             :column="3"
@@ -15019,19 +15019,9 @@ export default {
   },
   mounted() {
     console.log("userInfo---------", userInfo);
-    this.setOriginalOffset();
-    window.addEventListener("scroll", this.handleScroll);
-  },
-
-  destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
   },
 
   methods: {
-    setOriginalOffset() {
-      this.originalOffset = this.$refs.deviceInfoCard.offsetTop;
-    },
-
     saveEnableSettings() {
       const sendData = {
         deviceId: this.deviceInfo.id,
@@ -15797,14 +15787,6 @@ export default {
     align-items: center !important;
   }
 }
-
-// .device-info-card {
-//   position: fixed;
-//   top: 0;
-
-//   z-index: 1000;
-//   background-color: white;
-// }
 
 .input-container {
   display: flex;
