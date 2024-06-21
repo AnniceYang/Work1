@@ -35,26 +35,27 @@
         >
       </el-menu>
       <div v-loading="loading">
-        <el-card style="margin-top: 20px; position: sticky; top: 20px">
-          <el-descriptions
-            :title="$t('deviceManage.deviceInformation')"
-            :column="3"
-          >
-            <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
-              deviceInfo.name
-            }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.snCode')">{{
-              deviceInfo.sn
-            }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{
-              devStatusFilter[deviceInfo.status]
-            }}</el-descriptions-item>
-            <el-descriptions-item :label="$t('common.createTime')">{{
-              deviceInfo.createTime | parseTime
-            }}</el-descriptions-item>
-          </el-descriptions>
-        </el-card>
-
+        <div class="stickycard">
+          <el-card style="margin-top: 20px">
+            <el-descriptions
+              :title="$t('deviceManage.deviceInformation')"
+              :column="3"
+            >
+              <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
+                deviceInfo.name
+              }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('deviceManage.snCode')">{{
+                deviceInfo.sn
+              }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('deviceManage.deviceStatus')">{{
+                devStatusFilter[deviceInfo.status]
+              }}</el-descriptions-item>
+              <el-descriptions-item :label="$t('common.createTime')">{{
+                deviceInfo.createTime | parseTime
+              }}</el-descriptions-item>
+            </el-descriptions>
+          </el-card>
+        </div>
         <template v-if="activeIndex === '7'">
           <el-card
             style="margin-top: 10px"
@@ -9177,20 +9178,45 @@
                 v-if="
                   batteryParameterIsDisplay('dischargeOnHeatingTemperature')
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOnHeatingTemperatureVal
-                }}℃</el-descriptions-item
+              >
+                <div class="input-container">
+                  <el-input
+                    type="number"
+                    id="dischargeOnHeatingTemperature"
+                    v-model.number="formData.dischargeOnHeatingTemperature"
+                    :min="0"
+                    :max="160"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savedischargeOnHeatingTemperature"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.offHeating')"
                 v-if="
                   batteryParameterIsDisplay('dischargeOffHeatingTemperature')
                 "
-                >{{
-                  batteryParameter.batterySetObj
-                    .dischargeOffHeatingTemperatureVal
-                }}℃</el-descriptions-item
+                ><div class="input-container">
+                  <el-input
+                    type="number"
+                    id="dischargeOffHeatingTemperature"
+                    v-model.number="formData.dischargeOffHeatingTemperature"
+                    :min="0"
+                    :max="160"
+                    class="custom-input"
+                  ></el-input>
+                  <span>℃</span>
+                  <el-button
+                    @click="savedischargeOffHeatingTemperature"
+                    class="save-button"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div></el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('deviceManage.stateDischargeState1')"
@@ -13126,10 +13152,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_196')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_196Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_196')"
                     type="text"
@@ -13149,10 +13209,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_197')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_197Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_197')"
                     type="text"
@@ -13172,10 +13266,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_198')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_198Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_198')"
                     type="text"
@@ -13195,10 +13323,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_199')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_199Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_199')"
                     type="text"
@@ -13218,10 +13380,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_200')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_200Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_200')"
                     type="text"
@@ -13241,10 +13437,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_201')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_201Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_201')"
                     type="text"
@@ -13264,10 +13494,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_202')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_202Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_202')"
                     type="text"
@@ -13287,10 +13551,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_203')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_203Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_203')"
                     type="text"
@@ -13310,10 +13608,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_204')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_204Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_204')"
                     type="text"
@@ -13333,10 +13665,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_205')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_205Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_205')"
                     type="text"
@@ -13356,10 +13722,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_206')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_206Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_206')"
                     type="text"
@@ -13379,10 +13779,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_207')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_207Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_207')"
                     type="text"
@@ -13402,10 +13836,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_208')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_208Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_208')"
                     type="text"
@@ -13425,10 +13893,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_209')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_209Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_209')"
                     type="text"
@@ -13448,10 +13950,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_210')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_210Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_210')"
                     type="text"
@@ -13471,10 +14007,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_211')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_211Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_211')"
                     type="text"
@@ -13494,10 +14064,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_212')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_212Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_212')"
                     type="text"
@@ -13517,10 +14121,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_213')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_213Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_213')"
                     type="text"
@@ -13540,10 +14178,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_214')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_214Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_214')"
                     type="text"
@@ -13563,10 +14235,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_215')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_215Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_215')"
                     type="text"
@@ -13586,10 +14292,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_216')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_216Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_216')"
                     type="text"
@@ -13609,10 +14349,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_217')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_217Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_217')"
                     type="text"
@@ -13632,10 +14406,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_218')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_218Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_218')"
                     type="text"
@@ -13655,10 +14463,44 @@
                 v-if="timeSettingIsDisplay('hourSettingObj', 'HM6_0X03_219')"
               >
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="subList.hourSettingObj.HM6_0X03_219Val"
-                    :placeholder="$t('common.inputPrompt')"
-                  />
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     v-if="timeSettingIsSet('hourSettingObj', 'HM6_0X03_219')"
                     type="text"
@@ -14649,6 +15491,16 @@ import { mapState } from "vuex";
 const mqtt = require("mqtt/dist/mqtt.js");
 export default {
   watch: {
+    "batteryParameter.batterySetObj.dischargeOnHeatingTemperatureVal"(
+      newValue
+    ) {
+      this.formData.dischargeOnHeatingTemperature = newValue;
+    },
+    "batteryParameter.batterySetObj.dischargeOffHeatingTemperatureVal"(
+      newValue
+    ) {
+      this.formData.dischargeOffHeatingTemperature = newValue;
+    },
     "batteryParameter.batterySetObj.lowTemperatureProtectionDuringChargingVal"(
       newValue
     ) {
@@ -14779,6 +15631,9 @@ export default {
 
         lowTemperatureProtectionDuringCharging: null,
         lowTemperatureProtectionRecoveryDuringCharging: null,
+
+        dischargeOnHeatingTemperature: null,
+        dischargeOffHeatingTemperature: null,
 
         heatingFanOnTemperature: null,
         heatingFanRecoveryTemperature: null,
@@ -15115,6 +15970,14 @@ export default {
       );
     },
 
+    savedischargeOnHeatingTemperature() {
+      this.saveTemperatureSetting("dischargeOnHeatingTemperature");
+    },
+
+    savedischargeOffHeatingTemperature() {
+      this.saveTemperatureSetting("dischargeOffHeatingTemperature");
+    },
+
     saveHeatingFanOnTemperature() {
       this.saveTemperatureSetting("heatingFanOnTemperature");
     },
@@ -15138,18 +16001,25 @@ export default {
           heatingFanRecoveryTemperature:
             this.formData.heatingFanRecoveryTemperature,
         },
+        discharge: {
+          dischargeOnHeatingTemperature:
+            this.formData.dischargeOnHeatingTemperature,
+          dischargeOffHeatingTemperature:
+            this.formData.dischargeOffHeatingTemperature,
+        },
         [key]: value,
       };
       this.batteryUpgrade(sendData, key);
     },
 
     batteryUpgrade(data, key) {
-      const { deviceId, lowTemperature, heatingFan } = data;
+      const { deviceId, lowTemperature, heatingFan, discharge } = data;
 
       const requestData = {
         deviceId,
         ...(key.includes("lowTemperature") ? lowTemperature : {}),
         ...(key.includes("heatingFan") ? heatingFan : {}),
+        ...(key.includes("discharge") ? discharge : {}),
         [key]: data[key],
       };
 
@@ -15165,8 +16035,12 @@ export default {
                 response[key];
               this.formData.lowTemperatureProtectionRecoveryDuringCharging =
                 response[key];
+            } else if (key.includes("discharge")) {
+              this.formData.dischargeOnHeatingTemperature = response[key];
+              this.formData.dischargeOffHeatingTemperature = response[key];
             } else if (key.includes("heatingFan")) {
               this.formData.heatingFanOnTemperature = response[key];
+
               this.formData.heatingFanRecoveryTemperature = response[key];
             }
 
@@ -15248,6 +16122,12 @@ export default {
           "lowTemperatureProtectionDuringCharging",
           val,
           "lowTemperatureProtectionRecoveryDuringCharging"
+        );
+      } else if (key.includes("discharge")) {
+        this.saveTemperatureSettings(
+          "dischargeOnHeatingTemperature",
+          val,
+          "dischargeOffHeatingTemperature"
         );
       } else {
         // For other settings
@@ -15786,6 +16666,14 @@ export default {
   .el-descriptions-item__container {
     align-items: center !important;
   }
+}
+
+.stickycard {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  background-color: white;
 }
 
 .input-container {
