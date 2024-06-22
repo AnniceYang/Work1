@@ -37,6 +37,8 @@ export default {
     forgotPrompt:
       "If you forgot the password, please contact the administrator",
     admin: "Admin",
+    installer: "Installer",
+    unknown: "Unknown",
     dealer: "Secondary Distributor",
     distributor: "Primary Distributor",
     personalInformation: "Personal information",

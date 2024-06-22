@@ -35,6 +35,8 @@ export default {
     wel: "欢迎进入管理系统后台服务",
     forgotPrompt: "忘记密码请联系管理员",
     admin: "管理员",
+    installer: "安装商",
+    unknown: "未知",
     dealer: "二级分销商",
     distributor: "一级分销商",
     personalInformation: "个人信息",

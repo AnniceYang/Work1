@@ -56,11 +56,7 @@
             width="100"
           >
             <template slot-scope="scope">
-              {{
-                scope.row.roleId === "2"
-                  ? $t("deviceManage.installer")
-                  : $t("common.dealer")
-              }}
+              {{ getRoleName(scope.row.roleId) }}
             </template>
           </el-table-column>
           <el-table-column
@@ -152,6 +148,22 @@ export default {
     this.getData();
   },
   methods: {
+    getRoleName(roleId) {
+      switch (roleId) {
+        case "1":
+          return this.$t("common.admin");
+        case "2":
+          return this.$t("common.installer");
+        case "3":
+          return this.$t("common.user");
+        case "4":
+          return this.$t("common.dealer");
+        case "5":
+          return this.$t("common.distributor");
+        default:
+          return this.$("common.unknown");
+      }
+    },
     getData(state) {
       this.listLoading = true;
       state && (this.listQuery.current = 1);
