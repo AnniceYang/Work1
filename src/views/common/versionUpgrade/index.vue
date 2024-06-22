@@ -74,7 +74,7 @@
                 >-{{
                   scope.row.appItem === 1
                     ? $t("common.user")
-                    : $t("common.distributor")
+                    : $t("common.distributor1")
                 }}</span
               >
             </template>
@@ -203,7 +203,7 @@
               $t("common.user")
             }}</el-radio>
             <el-radio v-model="dataForm.appItem" :label="0">{{
-              $t("common.distributor")
+              $t("common.distributor1")
             }}</el-radio>
           </el-form-item>
           <el-form-item

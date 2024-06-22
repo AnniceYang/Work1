@@ -37,7 +37,8 @@ export default {
     forgotPrompt:
       "If you forgot the password, please contact the administrator",
     admin: "Admin",
-    dealer: "Dealer",
+    dealer: "Secondary Distributor",
+    distributor: "Primary Distributor",
     personalInformation: "Personal information",
     logout: "Logout",
     more: "More",
@@ -87,7 +88,7 @@ export default {
     no: "No",
     userType: "User type",
     user: "User",
-    distributor: "Distributor",
+    distributor1: "Distributor",
     sureDelete: "Are you sure to delete this data item ?",
     sureUnbindAgent: "Confirm unbinding installer information？",
     sureUnbindUser: "Confirm unbinding User information?",

@@ -5,24 +5,43 @@
         <div class="lside">
           <el-form :inline="true">
             <el-form-item :label="$t('common.userType')">
-              <el-select v-model="listQuery.userType" :placeholder="$t('common.selectPrompt')">
+              <el-select
+                v-model="listQuery.userType"
+                :placeholder="$t('common.selectPrompt')"
+              >
                 <el-option :value="2" :label="$t('common.user')" />
-                <el-option :value="1" :label="$t('common.distributor')" />
+                <el-option :value="1" :label="$t('common.distributor1')" />
               </el-select>
             </el-form-item>
             <el-form-item :label="$t('cancelRecord.cancelEmail')">
-              <el-input v-model="listQuery.mail" :placeholder="$t('common.inputPrompt')"></el-input>
+              <el-input
+                v-model="listQuery.mail"
+                :placeholder="$t('common.inputPrompt')"
+              ></el-input>
             </el-form-item>
             <el-form-item :label="$t('cancelRecord.processingStatus')">
-              <el-select v-model="listQuery.status" :placeholder="$t('common.selectPrompt')">
-                <el-option :value="0" :label="$t('cancelRecord.toBeProcessed')" />
+              <el-select
+                v-model="listQuery.status"
+                :placeholder="$t('common.selectPrompt')"
+              >
+                <el-option
+                  :value="0"
+                  :label="$t('cancelRecord.toBeProcessed')"
+                />
                 <el-option :value="1" :label="$t('cancelRecord.pass')" />
                 <el-option :value="2" :label="$t('cancelRecord.refuse')" />
               </el-select>
             </el-form-item>
             <el-form-item>
-              <el-button type="primary" class="btn-search" @click="getData(true)">{{$t('common.search')}}</el-button>
-              <el-button type="primary" @click="handleReset()">{{ $t('common.reset') }}</el-button>
+              <el-button
+                type="primary"
+                class="btn-search"
+                @click="getData(true)"
+                >{{ $t("common.search") }}</el-button
+              >
+              <el-button type="primary" @click="handleReset()">{{
+                $t("common.reset")
+              }}</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -30,35 +49,87 @@
 
       <div class="avue-crud">
         <el-table :data="dataList" fit v-loading="listLoading">
-          <el-table-column align="center" :label="$t('common.userType')" min-width="70">
+          <el-table-column
+            align="center"
+            :label="$t('common.userType')"
+            min-width="70"
+          >
             <template slot-scope="scope">
               {{ scope.row.userType | userTypeFilter }}
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="mail" :label="$t('cancelRecord.cancelEmail')" min-width="120"/>
-          <el-table-column align="center" :label="$t('cancelRecord.cancellationType')" min-width="150">
+          <el-table-column
+            align="center"
+            prop="mail"
+            :label="$t('cancelRecord.cancelEmail')"
+            min-width="120"
+          />
+          <el-table-column
+            align="center"
+            :label="$t('cancelRecord.cancellationType')"
+            min-width="150"
+          >
             <template slot-scope="scope">
               {{ scope.row.type | logoutTypeFilter }}
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="remarks" :label="$t('cancelRecord.reason')" show-overflow-tooltip min-width="150"/>
-          <el-table-column align="center" :label="$t('cancelRecord.processingStatus')" min-width="">
+          <el-table-column
+            align="center"
+            prop="remarks"
+            :label="$t('cancelRecord.reason')"
+            show-overflow-tooltip
+            min-width="150"
+          />
+          <el-table-column
+            align="center"
+            :label="$t('cancelRecord.processingStatus')"
+            min-width=""
+          >
             <template slot-scope="scope">
-              <el-tag v-if="scope.row.status === 0">{{$t('cancelRecord.toBeProcessed')}}</el-tag>
-              <el-tag type="success" v-else-if="scope.row.status === 1">{{$t('cancelRecord.pass')}}</el-tag>
-              <el-tag type="danger" v-else-if="scope.row.status === 2">{{$t('cancelRecord.refuse')}}</el-tag>
+              <el-tag v-if="scope.row.status === 0">{{
+                $t("cancelRecord.toBeProcessed")
+              }}</el-tag>
+              <el-tag type="success" v-else-if="scope.row.status === 1">{{
+                $t("cancelRecord.pass")
+              }}</el-tag>
+              <el-tag type="danger" v-else-if="scope.row.status === 2">{{
+                $t("cancelRecord.refuse")
+              }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="reject" :label="$t('cancelRecord.remarks')" show-overflow-tooltip />
-          <el-table-column align="center" :label="$t('common.createTime')" width="250">
+          <el-table-column
+            align="center"
+            prop="reject"
+            :label="$t('cancelRecord.remarks')"
+            show-overflow-tooltip
+          />
+          <el-table-column
+            align="center"
+            :label="$t('common.createTime')"
+            width="250"
+          >
             <template slot-scope="scope">
               {{ scope.row.createTime | parseTime }}
             </template>
           </el-table-column>
           <el-table-column :label="$t('common.operate')" align="center">
             <template slot-scope="scope">
-              <el-button type="text" v-if="permissions.admin_comuserlogout_audit && scope.row.status === 0" @click="handleForm(scope.row.id)">{{$t('common.process')}}</el-button>
-              <el-button type="text" style="color: red;" @click="handleDel(scope.row.id)" v-if="permissions.admin_comuserlogout_del">{{$t('common.delete')}}</el-button>
+              <el-button
+                type="text"
+                v-if="
+                  permissions.admin_comuserlogout_audit &&
+                  scope.row.status === 0
+                "
+                @click="handleForm(scope.row.id)"
+                >{{ $t("common.process") }}</el-button
+              >
+              <el-button
+                type="text"
+                style="color: red"
+                @click="handleDel(scope.row.id)"
+                v-if="permissions.admin_comuserlogout_del"
+                >{{ $t("common.delete") }}</el-button
+              >
             </template>
           </el-table-column>
         </el-table>
@@ -79,14 +150,12 @@
       <!-- 审核 -->
       <CancelCheck ref="cancelCheck" @back="getData" />
     </basic-container>
-
-
   </div>
 </template>
 <script>
 import { qryCancelRecord, delCancelRecord } from "@/api/cancelAccount";
-import CancelCheck from './components/cancelRecordCheck.vue'
-import { mapGetters } from "vuex"
+import CancelCheck from "./components/cancelRecordCheck.vue";
+import { mapGetters } from "vuex";
 export default {
   components: { CancelCheck },
   data() {
@@ -97,8 +166,8 @@ export default {
       total: 0,
       listQuery: {
         current: 1,
-        size: 10
-      }
+        size: 10,
+      },
     };
   },
   computed: {
@@ -109,23 +178,25 @@ export default {
   },
   methods: {
     getData(state) {
-      this.listLoading = true
-      state && (this.listQuery.current = 1)
-      qryCancelRecord(this.listQuery).then(res => {
-        this.dataList = res.records
-        this.total = res.total
-      }).finally(() => {
-        this.listLoading = false
-      })
+      this.listLoading = true;
+      state && (this.listQuery.current = 1);
+      qryCancelRecord(this.listQuery)
+        .then((res) => {
+          this.dataList = res.records;
+          this.total = res.total;
+        })
+        .finally(() => {
+          this.listLoading = false;
+        });
     },
     // 审核
     handleForm(id) {
       const info = {
         id: id,
         reject: "",
-        status: 1
-      }
-      this.$refs.cancelCheck.init(info)
+        status: 1,
+      };
+      this.$refs.cancelCheck.init(info);
     },
     // 删除
     handleDel(id) {
@@ -142,13 +213,13 @@ export default {
     },
     // 每页数
     sizeChangeHandle(val) {
-      this.listQuery.size = val
-      this.getData(true)
+      this.listQuery.size = val;
+      this.getData(true);
     },
     // 当前页
     currentChangeHandle(val) {
-      this.listQuery.current = val
-      this.getData()
+      this.listQuery.current = val;
+      this.getData();
     },
     // 重置
     handleReset() {
@@ -156,13 +227,10 @@ export default {
         current: 1,
         size: 10,
       };
-      this.getData()
-    }
+      this.getData();
+    },
   },
 };
 </script>
 
-<style lang='scss' scoped>
-
-</style>
-
+<style lang="scss" scoped></style>

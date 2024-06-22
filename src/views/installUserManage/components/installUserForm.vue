@@ -40,8 +40,14 @@
         <el-radio
           v-model="dataForm.roleId"
           label="4"
-          v-if="userInfo.roles[0] === '1'"
+          v-if="userInfo.roles[0] === '1' || userInfo.roles[0] === '5'"
           >{{ $t("common.dealer") }}</el-radio
+        >
+        <el-radio
+          v-model="dataForm.roleId"
+          label="5"
+          v-if="userInfo.roles[0] === '1'"
+          >{{ $t("common.distributor") }}</el-radio
         >
       </el-form-item>
     </el-form>

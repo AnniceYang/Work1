@@ -5,13 +5,19 @@
         <div class="lside">
           <el-form :inline="true">
             <el-form-item :label="$t('common.userType')">
-              <el-select v-model="listQuery.type" :placeholder="$t('common.inputPrompt')">
-                <el-option :label="$t('common.distributor')" :value="0" />
+              <el-select
+                v-model="listQuery.type"
+                :placeholder="$t('common.inputPrompt')"
+              >
+                <el-option :label="$t('common.distributor1')" :value="0" />
                 <el-option :label="$t('common.user')" :value="1" />
               </el-select>
             </el-form-item>
             <el-form-item :label="$t('ordinaryUser.userName')">
-              <el-input v-model="listQuery.username" :placeholder="$t('common.inputPrompt')"></el-input>
+              <el-input
+                v-model="listQuery.username"
+                :placeholder="$t('common.inputPrompt')"
+              ></el-input>
             </el-form-item>
             <!-- <el-form-item label="状态">
               <el-select v-model="listQuery.lockFlag" placeholder="请选择">
@@ -20,30 +26,65 @@
               </el-select>
             </el-form-item> -->
             <el-form-item>
-              <el-button type="primary" class="btn-search" @click="getData(true)">{{$t('common.search')}}</el-button>
-              <el-button type="primary" @click="handleReset()">{{$t('common.reset')}}</el-button>
+              <el-button
+                type="primary"
+                class="btn-search"
+                @click="getData(true)"
+                >{{ $t("common.search") }}</el-button
+              >
+              <el-button type="primary" @click="handleReset()">{{
+                $t("common.reset")
+              }}</el-button>
             </el-form-item>
           </el-form>
         </div>
         <div class="rside">
-          <el-button type="primary" @click="handleDefaultSet()">{{$t('ordinaryUser.defaultElSettings')}}</el-button>
+          <el-button type="primary" @click="handleDefaultSet()">{{
+            $t("ordinaryUser.defaultElSettings")
+          }}</el-button>
         </div>
       </div>
 
       <div class="avue-crud">
         <el-table :data="dataList" fit v-loading="listLoading">
-          <el-table-column align="center" prop="username" :label="$t('ordinaryUser.userName')" />
-          <el-table-column align="center" prop="contacts" :label="$t('ordinaryUser.contacts')" />
-          <el-table-column align="center" prop="contactNumber" :label="$t('ordinaryUser.telephone')" />
-          <el-table-column align="center" :label="$t('ordinaryUser.address')" show-overflow-tooltip>
+          <el-table-column
+            align="center"
+            prop="username"
+            :label="$t('ordinaryUser.userName')"
+          />
+          <el-table-column
+            align="center"
+            prop="contacts"
+            :label="$t('ordinaryUser.contacts')"
+          />
+          <el-table-column
+            align="center"
+            prop="contactNumber"
+            :label="$t('ordinaryUser.telephone')"
+          />
+          <el-table-column
+            align="center"
+            :label="$t('ordinaryUser.address')"
+            show-overflow-tooltip
+          >
             <template slot-scope="scope">
-              <span>{{ `${scope.row.countryName}${scope.row.regionName}${scope.row.residenceName}${scope.row.address}` }}</span>
+              <span>{{
+                `${scope.row.countryName}${scope.row.regionName}${scope.row.residenceName}${scope.row.address}`
+              }}</span>
             </template>
           </el-table-column>
-          <el-table-column align="center" prop="timeZone" :label="$t('ordinaryUser.timeZone')" />
+          <el-table-column
+            align="center"
+            prop="timeZone"
+            :label="$t('ordinaryUser.timeZone')"
+          />
           <el-table-column align="center" :label="$t('common.userType')">
             <template slot-scope="scope">
-              {{ scope.row.type === 0 ? $t('common.distributor') : $t('common.user') }}
+              {{
+                scope.row.type === 0
+                  ? $t("common.distributor1")
+                  : $t("common.user")
+              }}
             </template>
           </el-table-column>
           <!-- <el-table-column align="center" label="状态">
@@ -59,7 +100,12 @@
           </el-table-column>
           <el-table-column :label="$t('common.operate')" align="center">
             <template slot-scope="scope">
-              <el-button type="text" @click="handleCellSet(scope.row.userId)" v-if="permissions.admin_lsyuserelecprice_info">{{$t('ordinaryUser.electricityPriceSetting')}}</el-button>
+              <el-button
+                type="text"
+                @click="handleCellSet(scope.row.userId)"
+                v-if="permissions.admin_lsyuserelecprice_info"
+                >{{ $t("ordinaryUser.electricityPriceSetting") }}</el-button
+              >
             </template>
           </el-table-column>
         </el-table>
@@ -86,7 +132,7 @@
 </template>
 <script>
 import { qryAppUser } from "@/api/appUser";
-import { mapGetters } from "vuex"
+import { mapGetters } from "vuex";
 import CellSet from "./components/cellSet.vue";
 import DefaultCellSet from "./components/defaultCellSet.vue";
 export default {
@@ -100,8 +146,8 @@ export default {
       listQuery: {
         current: 1,
         size: 10,
-        type: 1
-      }
+        type: 1,
+      },
     };
   },
   computed: {
@@ -112,47 +158,46 @@ export default {
   },
   methods: {
     getData(state) {
-      this.listLoading = true
-      state && (this.listQuery.current = 1)
-      qryAppUser(this.listQuery).then(res => {
-        this.dataList = res.records
-        this.total = res.total
-      }).finally(() => {
-        this.listLoading = false
-      })
+      this.listLoading = true;
+      state && (this.listQuery.current = 1);
+      qryAppUser(this.listQuery)
+        .then((res) => {
+          this.dataList = res.records;
+          this.total = res.total;
+        })
+        .finally(() => {
+          this.listLoading = false;
+        });
     },
     // 默认电价设置
     handleDefaultSet() {
-      this.$refs.defaultCellSet.init()
+      this.$refs.defaultCellSet.init();
     },
     // 电价设置
     handleCellSet(userId) {
-      this.$refs.cellSet.init(userId)
+      this.$refs.cellSet.init(userId);
     },
     // 每页数
     sizeChangeHandle(val) {
-      this.listQuery.size = val
-      this.getData(true)
+      this.listQuery.size = val;
+      this.getData(true);
     },
     // 当前页
     currentChangeHandle(val) {
-      this.listQuery.current = val
-      this.getData()
+      this.listQuery.current = val;
+      this.getData();
     },
     // 重置
     handleReset() {
       this.listQuery = {
         current: 1,
         size: 10,
-        type: 1
+        type: 1,
       };
-      this.getData()
-    }
+      this.getData();
+    },
   },
 };
 </script>
 
-<style lang='scss' scoped>
-
-</style>
-
+<style lang="scss" scoped></style>

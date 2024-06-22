@@ -35,7 +35,8 @@ export default {
     wel: "Benvenuto nel Servizio Backend del Sistema di Gestione",
     forgotPrompt: "Se hai dimenticato la password, contatta l'amministratore",
     admin: "Amministratore",
-    dealer: "Rivenditore",
+    dealer: "Distributore Secondario",
+    distributor: "Distributore Primario",
     personalInformation: "Informazioni Personali",
     logout: "Esci dal Sistema",
     more: "Altro",
@@ -85,7 +86,7 @@ export default {
     no: "No",
     userType: "Tipo di Utente",
     user: "Utente",
-    distributor: "Rivenditore",
+    distributor1: "Rivenditore",
     sureDelete: "Sei sicuro di voler eliminare questo elemento dati?",
 
     sureUnbindAgent: "Confermi lo scollegamento dell'installatore?",
