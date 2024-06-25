@@ -90,6 +90,17 @@ export const info3 = {
       unit: "",
     },
     {
+      key: "TP_0X04_20",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "",
+    },
+    {
       key: "TP_0X04_24",
       isShow: 1,
       canSet: 1,
@@ -2448,7 +2459,7 @@ export const info3 = {
 
     //page43 电表数据
     {
-      key: "TP_0X04_2048",
+      key: "TP_0X04_2048_2049",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2459,7 +2470,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2049",
+      key: "TP_0X04_2050_2051",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2470,7 +2481,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2050",
+      key: "TP_0X04_2052_2053",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2481,7 +2492,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2051",
+      key: "TP_0X04_2054_2055",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2492,7 +2503,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2052",
+      key: "TP_0X04_2056_2057",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2503,7 +2514,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2053",
+      key: "TP_0X04_2058_2059",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2514,7 +2525,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2054",
+      key: "TP_0X04_2060_2061",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2525,7 +2536,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2055",
+      key: "TP_0X04_2062_2063",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2536,7 +2547,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2056",
+      key: "TP_0X04_2064_2065",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2547,7 +2558,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2057",
+      key: "TP_0X04_2066_2067",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2558,7 +2569,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2058",
+      key: "TP_0X04_2068_2069",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2569,7 +2580,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2059",
+      key: "TP_0X04_2070_2071",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2580,7 +2591,7 @@ export const info3 = {
       unit: "kWh",
     },
     {
-      key: "TP_0X04_2060",
+      key: "TP_0X04_2072_2073",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2591,7 +2602,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2061",
+      key: "TP_0X04_2074_2075",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2602,7 +2613,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2062",
+      key: "TP_0X04_2076_2077",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2613,7 +2624,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2063",
+      key: "TP_0X04_2078_2079",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2624,7 +2635,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2064",
+      key: "TP_0X04_2080_2081",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2635,7 +2646,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2065",
+      key: "TP_0X04_2082_2083",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2646,7 +2657,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2066",
+      key: "TP_0X04_2084_2085",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2657,7 +2668,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2067",
+      key: "TP_0X04_2086_2087",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2668,7 +2679,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2068",
+      key: "TP_0X04_2088_2089",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2679,7 +2690,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2069",
+      key: "TP_0X04_2090_2091",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2690,7 +2701,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2070",
+      key: "TP_0X04_2092_2093",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2701,7 +2712,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2071",
+      key: "TP_0X04_2094_2095",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2712,7 +2723,7 @@ export const info3 = {
       unit: "V",
     },
     {
-      key: "TP_0X04_2072",
+      key: "TP_0X04_2096_2097",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2723,7 +2734,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2073",
+      key: "TP_0X04_2098_2099",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2734,7 +2745,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2074",
+      key: "TP_0X04_2100_2101",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2745,7 +2756,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2075",
+      key: "TP_0X04_2102_2103",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2756,7 +2767,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2076",
+      key: "TP_0X04_2104_2105",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2767,7 +2778,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2077",
+      key: "TP_0X04_2106_2107",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2778,7 +2789,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2078",
+      key: "TP_0X04_2108_2109",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2789,7 +2800,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2079",
+      key: "TP_0X04_2110_2111",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2800,7 +2811,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2080",
+      key: "TP_0X04_2112_2113",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2811,7 +2822,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2081",
+      key: "TP_0X04_2114_2115",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2822,7 +2833,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2082",
+      key: "TP_0X04_2116_2117",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2833,7 +2844,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2083",
+      key: "TP_0X04_2118_2119",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2844,7 +2855,7 @@ export const info3 = {
       unit: "A",
     },
     {
-      key: "TP_0X04_2084",
+      key: "TP_0X04_2120_2121",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2855,7 +2866,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2085",
+      key: "TP_0X04_2122_2123",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2866,7 +2877,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2086",
+      key: "TP_0X04_2124_2125",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2877,7 +2888,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2087",
+      key: "TP_0X04_2126_2127",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2888,7 +2899,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2088",
+      key: "TP_0X04_2128_2129",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2899,7 +2910,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2089",
+      key: "TP_0X04_2130_2131",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2910,7 +2921,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2090",
+      key: "TP_0X04_2132_2133",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2921,7 +2932,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2091",
+      key: "TP_0X04_2134_2135",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2932,7 +2943,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2092",
+      key: "TP_0X04_2136_2137",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2943,7 +2954,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2093",
+      key: "TP_0X04_2138_2139",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2954,7 +2965,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2094",
+      key: "TP_0X04_2140_2141",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2965,7 +2976,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2095",
+      key: "TP_0X04_2142_2143",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2976,7 +2987,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2096",
+      key: "TP_0X04_2144_2145",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2987,7 +2998,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2097",
+      key: "TP_0X04_2146_2147",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -2998,7 +3009,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2098",
+      key: "TP_0X04_2148_2149",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3009,7 +3020,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2099",
+      key: "TP_0X04_2150_2151",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3020,7 +3031,7 @@ export const info3 = {
       unit: "kW",
     },
     {
-      key: "TP_0X04_2100",
+      key: "TP_0X04_2152",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3031,7 +3042,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2101",
+      key: "TP_0X04_2153",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3042,7 +3053,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2102",
+      key: "TP_0X04_2154",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3053,7 +3064,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2103",
+      key: "TP_0X04_2155",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3064,7 +3075,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2104",
+      key: "TP_0X04_2156",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3075,7 +3086,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2105",
+      key: "TP_0X04_2157",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3086,7 +3097,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2106",
+      key: "TP_0X04_2158",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3097,7 +3108,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2107",
+      key: "TP_0X04_2159",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3108,7 +3119,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2108",
+      key: "TP_0X04_2160",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3119,7 +3130,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2109",
+      key: "TP_0X04_2161",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3130,7 +3141,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2110",
+      key: "TP_0X04_2162",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3141,7 +3152,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2111",
+      key: "TP_0X04_2163",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3152,7 +3163,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2112",
+      key: "TP_0X04_2164",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3163,7 +3174,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2113",
+      key: "TP_0X04_2165",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3174,7 +3185,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2114",
+      key: "TP_0X04_2166",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3185,7 +3196,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2115",
+      key: "TP_0X04_2167",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3196,7 +3207,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X04_2116",
+      key: "TP_0X04_2168",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3207,7 +3218,7 @@ export const info3 = {
       unit: "Hz",
     },
     {
-      key: "TP_0X04_2117",
+      key: "TP_0X04_2169",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3218,7 +3229,7 @@ export const info3 = {
       unit: "Hz",
     },
     {
-      key: "TP_0X04_2118",
+      key: "TP_0X04_2170",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3229,7 +3240,7 @@ export const info3 = {
       unit: "Hz",
     },
     {
-      key: "TP_0X04_2119",
+      key: "TP_0X04_2171",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3240,7 +3251,7 @@ export const info3 = {
       unit: "Hz",
     },
     {
-      key: "TP_0X04_2120",
+      key: "TP_0X04_2172_2173",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3251,7 +3262,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2121",
+      key: "TP_0X04_2174_2175",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3262,7 +3273,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2122",
+      key: "TP_0X04_2176_2177",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3273,7 +3284,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2123",
+      key: "TP_0X04_2178_2179",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3284,7 +3295,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2124",
+      key: "TP_0X04_2180_2181",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3295,7 +3306,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2125",
+      key: "TP_0X04_2182_2183",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3306,7 +3317,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2126",
+      key: "TP_0X04_2184_2185",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3317,7 +3328,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2127",
+      key: "TP_0X04_2186_2187",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3328,7 +3339,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2128",
+      key: "TP_0X04_2188_2189",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3339,7 +3350,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2129",
+      key: "TP_0X04_2190_2191",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3350,7 +3361,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2130",
+      key: "TP_0X04_2192_2193",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3361,7 +3372,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2131",
+      key: "TP_0X04_2194_2195",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3372,7 +3383,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2132",
+      key: "TP_0X04_2196_2197",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3383,7 +3394,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2133",
+      key: "TP_0X04_2198_2199",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3394,7 +3405,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2134",
+      key: "TP_0X04_2200_2201",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3405,7 +3416,7 @@ export const info3 = {
       unit: "kVar",
     },
     {
-      key: "TP_0X04_2135",
+      key: "TP_0X04_2202_2203",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -3868,6 +3879,28 @@ export const info3 = {
       val: "",
       unit: "W",
     },
+    {
+      key: "TP_0X04_4144",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "V",
+    },
+    {
+      key: "TP_0X04_4145",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "",
+    },
 
     //page45 EAST-BMS数据
     {
@@ -3883,6 +3916,17 @@ export const info3 = {
     },
     {
       key: "TP_0X04_4609",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "",
+    },
+    {
+      key: "TP_0X04_4610",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -5276,19 +5320,19 @@ export const info3 = {
       consumerIsShow: 1,
       consumerCanSet: 1,
       val: "",
-      unit: "",
+      unit: "V",
     },
-    {
-      key: "TP_0X04_5701",
-      isShow: 1,
-      canSet: 1,
-      installerIsShow: 1,
-      installerCanSet: 1,
-      consumerIsShow: 1,
-      consumerCanSet: 1,
-      val: "",
-      unit: "",
-    },
+    // {
+    //   key: "TP_0X04_5701",
+    //   isShow: 1,
+    //   canSet: 1,
+    //   installerIsShow: 1,
+    //   installerCanSet: 1,
+    //   consumerIsShow: 1,
+    //   consumerCanSet: 1,
+    //   val: "",
+    //   unit: "",
+    // },
     {
       key: "TP_0X04_5702",
       isShow: 1,
@@ -5309,7 +5353,7 @@ export const info3 = {
       consumerIsShow: 1,
       consumerCanSet: 1,
       val: "",
-      unit: "℃",
+      unit: "A",
     },
     {
       key: "TP_0X04_5704",
@@ -5331,7 +5375,7 @@ export const info3 = {
       consumerIsShow: 1,
       consumerCanSet: 1,
       val: "",
-      unit: "A",
+      unit: "",
     },
     {
       key: "TP_0X04_5719",
@@ -6749,6 +6793,17 @@ export const info3 = {
     },
     {
       key: "TP_0X03_1100",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "",
+    },
+    {
+      key: "TP_0X03_1101",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,

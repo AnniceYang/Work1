@@ -135,6 +135,13 @@
               </el-descriptions-item>
 
               <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_20')"
+                v-if="CCIsDisplay('41', 'TP_0X04_20')"
+              >
+                {{ DSPFilter[voListMap["41"]["TP_0X04_20"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_24')"
                 v-if="CCIsDisplay('41', 'TP_0X04_24')"
                 >{{
@@ -1507,552 +1514,552 @@
           <el-card style="margin-top: 10px">
             <el-descriptions :title="$t('deviceManage.meterData')" :column="3">
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2048')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2048')"
+                :label="$t('threePhase.TP_0X04_2048_2049')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2048_2049')"
               >
-                {{ voListMap["43"]["TP_0X04_2048"].val }}kWh
+                {{ voListMap["43"]["TP_0X04_2048_2049"].val }}kWh
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2049')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2049')"
+                :label="$t('threePhase.TP_0X04_2050_2051')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2050_2051')"
                 >{{
-                  voListMap["43"]["TP_0X04_2049"].val
+                  voListMap["43"]["TP_0X04_2050_2051"].val
                 }}kWh</el-descriptions-item
               >
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2050')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2050')"
+                :label="$t('threePhase.TP_0X04_2052_2053')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2052_2053')"
                 >{{
-                  voListMap["43"]["TP_0X04_2050"].val
+                  voListMap["43"]["TP_0X04_2052_2053"].val
                 }}kWh</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2051')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2051')"
+                :label="$t('threePhase.TP_0X04_2054_2055')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2054_2055')"
                 >{{
-                  voListMap["43"]["TP_0X04_2051"].val
+                  voListMap["43"]["TP_0X04_2054_2055"].val
                 }}kWh</el-descriptions-item
               >
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2052')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2052')"
+                :label="$t('threePhase.TP_0X04_2056_2057')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2056_2057')"
               >
-                {{ voListMap["43"]["TP_0X04_2052"].val }}kWh
+                {{ voListMap["43"]["TP_0X04_2056_2057"].val }}kWh
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2053')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2053')"
+                :label="$t('threePhase.TP_0X04_2058_2059')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2058_2059')"
               >
-                {{ voListMap["43"]["TP_0X04_2053"].val }}kWh
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2054')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2054')"
-              >
-                {{ voListMap["43"]["TP_0X04_2054"].val }}kWh
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2055')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2055')"
-              >
-                {{ voListMap["43"]["TP_0X04_2055"].val }}kWh
+                {{ voListMap["43"]["TP_0X04_2058_2059"].val }}kWh
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2056')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2056')"
+                :label="$t('threePhase.TP_0X04_2060_2061')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2060_2061')"
+              >
+                {{ voListMap["43"]["TP_0X04_2060_2061"].val }}kWh
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2062_2063')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2062_2063')"
+              >
+                {{ voListMap["43"]["TP_0X04_2062_2063"].val }}kWh
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2064_2065')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2064_2065')"
                 >{{
-                  voListMap["43"]["TP_0X04_2056"].val
-                }}kWh</el-descriptions-item
-              >
-
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2057')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2057')"
-                >{{
-                  voListMap["43"]["TP_0X04_2057"].val
+                  voListMap["43"]["TP_0X04_2064_2065"].val
                 }}kWh</el-descriptions-item
               >
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2058')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2058')"
+                :label="$t('threePhase.TP_0X04_2066_2067')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2066_2067')"
                 >{{
-                  voListMap["43"]["TP_0X04_2058"].val
+                  voListMap["43"]["TP_0X04_2066_2067"].val
                 }}kWh</el-descriptions-item
               >
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2059')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2059')"
+                :label="$t('threePhase.TP_0X04_2068_2069')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2068_2069')"
                 >{{
-                  voListMap["43"]["TP_0X04_2059"].val
+                  voListMap["43"]["TP_0X04_2068_2069"].val
                 }}kWh</el-descriptions-item
               >
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2060')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2060')"
+                :label="$t('threePhase.TP_0X04_2070_2071')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2070_2071')"
+                >{{
+                  voListMap["43"]["TP_0X04_2070_2071"].val
+                }}kWh</el-descriptions-item
               >
-                {{ voListMap["43"]["TP_0X04_2060"].val }}V
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2072_2073')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2072_2073')"
+              >
+                {{ voListMap["43"]["TP_0X04_2072_2073"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2061')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2061')"
+                :label="$t('threePhase.TP_0X04_2074_2075')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2074_2075')"
               >
-                {{ voListMap["43"]["TP_0X04_2061"].val }}V
+                {{ voListMap["43"]["TP_0X04_2074_2075"].val }}V
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2062')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2062')"
+                :label="$t('threePhase.TP_0X04_2076_2077')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2076_2077')"
               >
-                {{ voListMap["43"]["TP_0X04_2062"].val }}V
+                {{ voListMap["43"]["TP_0X04_2076_2077"].val }}V
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2063')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2063')"
+                :label="$t('threePhase.TP_0X04_2078_2079')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2078_2079')"
               >
-                {{ voListMap["43"]["TP_0X04_2063"].val }}V
+                {{ voListMap["43"]["TP_0X04_2078_2079"].val }}V
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2064')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2064')"
+                :label="$t('threePhase.TP_0X04_2080_2081')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2080_2081')"
               >
-                {{ voListMap["43"]["TP_0X04_2064"].val }}V
+                {{ voListMap["43"]["TP_0X04_2080_2081"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2065')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2065')"
+                :label="$t('threePhase.TP_0X04_2082_2083')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2082_2083')"
               >
-                {{ voListMap["43"]["TP_0X04_2065"].val }}V
+                {{ voListMap["43"]["TP_0X04_2082_2083"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2066')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2066')"
+                :label="$t('threePhase.TP_0X04_2084_2085')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2084_2085')"
               >
-                {{ voListMap["43"]["TP_0X04_2066"].val }}V
+                {{ voListMap["43"]["TP_0X04_2084_2085"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2067')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2067')"
+                :label="$t('threePhase.TP_0X04_2086_2087')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2086_2087')"
               >
-                {{ voListMap["43"]["TP_0X04_2067"].val }}V
+                {{ voListMap["43"]["TP_0X04_2086_2087"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2068')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2068')"
+                :label="$t('threePhase.TP_0X04_2088_2089')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2088_2089')"
               >
-                {{ voListMap["43"]["TP_0X04_2068"].val }}V
+                {{ voListMap["43"]["TP_0X04_2088_2089"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2069')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2069')"
+                :label="$t('threePhase.TP_0X04_2090_2091')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2090_2091')"
               >
-                {{ voListMap["43"]["TP_0X04_2069"].val }}V
-              </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2070')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2070')"
-              >
-                {{ voListMap["43"]["TP_0X04_2070"].val }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2071')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2071')"
-              >
-                {{ voListMap["43"]["TP_0X04_2071"].val }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2072')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2072')"
-              >
-                {{ voListMap["43"]["TP_0X04_2072"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2073')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2073')"
-              >
-                {{ voListMap["43"]["TP_0X04_2073"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2074')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2074')"
-              >
-                {{ voListMap["43"]["TP_0X04_2074"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2075')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2075')"
-              >
-                {{ voListMap["43"]["TP_0X04_2075"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2076')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2076')"
-              >
-                {{ voListMap["43"]["TP_0X04_2076"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2077')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2077')"
-              >
-                {{ voListMap["43"]["TP_0X04_2077"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2078')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2078')"
-              >
-                {{ voListMap["43"]["TP_0X04_2078"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2079')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2079')"
-              >
-                {{ voListMap["43"]["TP_0X04_2079"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2080')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2080')"
-              >
-                {{ voListMap["43"]["TP_0X04_2080"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2081')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2081')"
-              >
-                {{ voListMap["43"]["TP_0X04_2081"].val }}A
+                {{ voListMap["43"]["TP_0X04_2090_2091"].val }}V
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2082')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2082')"
+                :label="$t('threePhase.TP_0X04_2092_2093')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2092_2093')"
               >
-                {{ voListMap["43"]["TP_0X04_2082"].val }}A
+                {{ voListMap["43"]["TP_0X04_2092_2093"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2083')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2083')"
+                :label="$t('threePhase.TP_0X04_2094_2095')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2094_2095')"
               >
-                {{ voListMap["43"]["TP_0X04_2083"].val }}A
+                {{ voListMap["43"]["TP_0X04_2094_2095"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2084')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2084')"
+                :label="$t('threePhase.TP_0X04_2096_2097')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2096_2097')"
               >
-                {{ voListMap["43"]["TP_0X04_2084"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2096_2097"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2085')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2085')"
+                :label="$t('threePhase.TP_0X04_2098_2099')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2098_2099')"
               >
-                {{ voListMap["43"]["TP_0X04_2085"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2098_2099"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2100_2101')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2100_2101')"
+              >
+                {{ voListMap["43"]["TP_0X04_2100_2101"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2102_2103')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2102_2103')"
+              >
+                {{ voListMap["43"]["TP_0X04_2102_2103"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2104_2105')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2104_2105')"
+              >
+                {{ voListMap["43"]["TP_0X04_2104_2105"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2106_2107')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2106_2107')"
+              >
+                {{ voListMap["43"]["TP_0X04_2106_2107"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2108_2109')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2108_2109')"
+              >
+                {{ voListMap["43"]["TP_0X04_2108_2109"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2110_2111')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2110_2111')"
+              >
+                {{ voListMap["43"]["TP_0X04_2110_2111"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2112_2113')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2112_2113')"
+              >
+                {{ voListMap["43"]["TP_0X04_2112_2113"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2114_2115')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2114_2115')"
+              >
+                {{ voListMap["43"]["TP_0X04_2114_2115"].val }}A
               </el-descriptions-item>
 
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2086')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2086')"
+                :label="$t('threePhase.TP_0X04_2116_2117')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2116_2117')"
               >
-                {{ voListMap["43"]["TP_0X04_2086"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2116_2117"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2087')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2087')"
+                :label="$t('threePhase.TP_0X04_2118_2119')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2118_2119')"
               >
-                {{ voListMap["43"]["TP_0X04_2087"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2118_2119"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2088')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2088')"
+                :label="$t('threePhase.TP_0X04_2120_2121')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2120_2121')"
               >
-                {{ voListMap["43"]["TP_0X04_2088"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2120_2121"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2089')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2089')"
+                :label="$t('threePhase.TP_0X04_2122_2123')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2122_2123')"
               >
-                {{ voListMap["43"]["TP_0X04_2089"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2122_2123"].val }}kW
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2124_2125')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2124_2125')"
+              >
+                {{ voListMap["43"]["TP_0X04_2124_2125"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2090')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2090')"
+                :label="$t('threePhase.TP_0X04_2126_2127')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2126_2127')"
               >
-                {{ voListMap["43"]["TP_0X04_2090"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2126_2127"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2091')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2091')"
+                :label="$t('threePhase.TP_0X04_2128_2129')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2128_2129')"
               >
-                {{ voListMap["43"]["TP_0X04_2091"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2128_2129"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2092')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2092')"
+                :label="$t('threePhase.TP_0X04_2130_2131')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2130_2131')"
               >
-                {{ voListMap["43"]["TP_0X04_2092"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2130_2131"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2093')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2093')"
+                :label="$t('threePhase.TP_0X04_2132_2133')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2132_2133')"
               >
-                {{ voListMap["43"]["TP_0X04_2093"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2132_2133"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2094')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2094')"
+                :label="$t('threePhase.TP_0X04_2134_2135')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2134_2135')"
               >
-                {{ voListMap["43"]["TP_0X04_2094"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2134_2135"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2095')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2095')"
+                :label="$t('threePhase.TP_0X04_2136_2137')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2136_2137')"
               >
-                {{ voListMap["43"]["TP_0X04_2095"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2136_2137"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2096')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2096')"
+                :label="$t('threePhase.TP_0X04_2138_2139')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2138_2139')"
               >
-                {{ voListMap["43"]["TP_0X04_2096"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2138_2139"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2097')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2097')"
+                :label="$t('threePhase.TP_0X04_2140_2141')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2140_2141')"
               >
-                {{ voListMap["43"]["TP_0X04_2097"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2140_2141"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2098')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2098')"
+                :label="$t('threePhase.TP_0X04_2142_2143')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2142_2143')"
               >
-                {{ voListMap["43"]["TP_0X04_2098"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2142_2143"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2099')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2099')"
+                :label="$t('threePhase.TP_0X04_2144_2145')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2144_2145')"
               >
-                {{ voListMap["43"]["TP_0X04_2099"].val }}kW
+                {{ voListMap["43"]["TP_0X04_2144_2145"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2100')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2100')"
+                :label="$t('threePhase.TP_0X04_2146_2147')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2146_2147')"
               >
-                {{ voListMap["43"]["TP_0X04_2100"].val }}
+                {{ voListMap["43"]["TP_0X04_2146_2147"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2101')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2101')"
+                :label="$t('threePhase.TP_0X04_2148_2149')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2148_2149')"
               >
-                {{ voListMap["43"]["TP_0X04_2101"].val }}
+                {{ voListMap["43"]["TP_0X04_2148_2149"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2102')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2102')"
+                :label="$t('threePhase.TP_0X04_2150_2151')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2150_2151')"
               >
-                {{ voListMap["43"]["TP_0X04_2102"].val }}
+                {{ voListMap["43"]["TP_0X04_2150_2151"].val }}kW
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2103')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2103')"
+                :label="$t('threePhase.TP_0X04_2152')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2152')"
               >
-                {{ voListMap["43"]["TP_0X04_2103"].val }}
+                {{ voListMap["43"]["TP_0X04_2152"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2104')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2104')"
+                :label="$t('threePhase.TP_0X04_2153')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2153')"
               >
-                {{ voListMap["43"]["TP_0X04_2104"].val }}
+                {{ voListMap["43"]["TP_0X04_2153"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2105')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2105')"
+                :label="$t('threePhase.TP_0X04_2154')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2154')"
               >
-                {{ voListMap["43"]["TP_0X04_2105"].val }}
+                {{ voListMap["43"]["TP_0X04_2154"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2106')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2106')"
+                :label="$t('threePhase.TP_0X04_2155')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2155')"
               >
-                {{ voListMap["43"]["TP_0X04_2106"].val }}
+                {{ voListMap["43"]["TP_0X04_2155"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2107')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2107')"
+                :label="$t('threePhase.TP_0X04_2156')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2156')"
               >
-                {{ voListMap["43"]["TP_0X04_2107"].val }}
+                {{ voListMap["43"]["TP_0X04_2156"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2108')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2108')"
+                :label="$t('threePhase.TP_0X04_2157')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2157')"
               >
-                {{ voListMap["43"]["TP_0X04_2108"].val }}
+                {{ voListMap["43"]["TP_0X04_2157"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2109')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2109')"
+                :label="$t('threePhase.TP_0X04_2158')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2158')"
               >
-                {{ voListMap["43"]["TP_0X04_2109"].val }}
+                {{ voListMap["43"]["TP_0X04_2158"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2110')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2110')"
+                :label="$t('threePhase.TP_0X04_2159')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2159')"
               >
-                {{ voListMap["43"]["TP_0X04_2110"].val }}
+                {{ voListMap["43"]["TP_0X04_2159"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2111')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2111')"
+                :label="$t('threePhase.TP_0X04_2160')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2160')"
               >
-                {{ voListMap["43"]["TP_0X04_2111"].val }}
+                {{ voListMap["43"]["TP_0X04_2160"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2112')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2112')"
+                :label="$t('threePhase.TP_0X04_2161')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2161')"
               >
-                {{ voListMap["43"]["TP_0X04_2112"].val }}
+                {{ voListMap["43"]["TP_0X04_2161"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2113')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2113')"
+                :label="$t('threePhase.TP_0X04_2162')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2162')"
               >
-                {{ voListMap["43"]["TP_0X04_2113"].val }}
+                {{ voListMap["43"]["TP_0X04_2162"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2114')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2114')"
+                :label="$t('threePhase.TP_0X04_2163')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2163')"
               >
-                {{ voListMap["43"]["TP_0X04_2114"].val }}
+                {{ voListMap["43"]["TP_0X04_2163"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2115')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2115')"
+                :label="$t('threePhase.TP_0X04_2164')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2164')"
               >
-                {{ voListMap["43"]["TP_0X04_2115"].val }}
+                {{ voListMap["43"]["TP_0X04_2164"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2116')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2116')"
+                :label="$t('threePhase.TP_0X04_2165')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2165')"
               >
-                {{ voListMap["43"]["TP_0X04_2116"].val }}Hz
+                {{ voListMap["43"]["TP_0X04_2165"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2117')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2117')"
+                :label="$t('threePhase.TP_0X04_2166')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2166')"
               >
-                {{ voListMap["43"]["TP_0X04_2117"].val }}Hz
+                {{ voListMap["43"]["TP_0X04_2166"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2118')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2118')"
+                :label="$t('threePhase.TP_0X04_2167')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2167')"
               >
-                {{ voListMap["43"]["TP_0X04_2118"].val }}Hz
+                {{ voListMap["43"]["TP_0X04_2167"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2119')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2119')"
+                :label="$t('threePhase.TP_0X04_2168')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2168')"
               >
-                {{ voListMap["43"]["TP_0X04_2119"].val }}Hz
+                {{ voListMap["43"]["TP_0X04_2168"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2120')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2120')"
+                :label="$t('threePhase.TP_0X04_2169')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2169')"
               >
-                {{ voListMap["43"]["TP_0X04_2120"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2169"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2121')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2121')"
+                :label="$t('threePhase.TP_0X04_2170')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2170')"
               >
-                {{ voListMap["43"]["TP_0X04_2121"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2170"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2122')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2122')"
+                :label="$t('threePhase.TP_0X04_2171')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2171')"
               >
-                {{ voListMap["43"]["TP_0X04_2122"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2171"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2123')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2123')"
+                :label="$t('threePhase.TP_0X04_2172_2173')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2172_2173')"
               >
-                {{ voListMap["43"]["TP_0X04_2123"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2172_2173"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2124')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2124')"
+                :label="$t('threePhase.TP_0X04_2174_2175')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2174_2175')"
               >
-                {{ voListMap["43"]["TP_0X04_2124"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2174_2175"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2125')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2125')"
+                :label="$t('threePhase.TP_0X04_2176_2177')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2176_2177')"
               >
-                {{ voListMap["43"]["TP_0X04_2125"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2176_2177"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2126')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2126')"
+                :label="$t('threePhase.TP_0X04_2178_2179')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2178_2179')"
               >
-                {{ voListMap["43"]["TP_0X04_2126"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2178_2179"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2127')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2127')"
+                :label="$t('threePhase.TP_0X04_2180_2181')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2180_2181')"
               >
-                {{ voListMap["43"]["TP_0X04_2127"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2180_2181"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2128')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2128')"
+                :label="$t('threePhase.TP_0X04_2182_2183')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2182_2183')"
               >
-                {{ voListMap["43"]["TP_0X04_2128"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2182_2183"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2129')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2129')"
+                :label="$t('threePhase.TP_0X04_2184_2185')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2184_2185')"
               >
-                {{ voListMap["43"]["TP_0X04_2129"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2184_2185"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2130')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2130')"
+                :label="$t('threePhase.TP_0X04_2186_2187')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2186_2187')"
               >
-                {{ voListMap["43"]["TP_0X04_2130"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2186_2187"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2131')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2131')"
+                :label="$t('threePhase.TP_0X04_2188_2189')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2188_2189')"
               >
-                {{ voListMap["43"]["TP_0X04_2131"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2188_2189"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2132')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2132')"
+                :label="$t('threePhase.TP_0X04_2190_2191')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2190_2191')"
               >
-                {{ voListMap["43"]["TP_0X04_2132"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2190_2191"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2133')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2133')"
+                :label="$t('threePhase.TP_0X04_2192_2193')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2192_2193')"
               >
-                {{ voListMap["43"]["TP_0X04_2133"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2192_2193"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2134')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2134')"
+                :label="$t('threePhase.TP_0X04_2194_2195')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2194_2195')"
               >
-                {{ voListMap["43"]["TP_0X04_2134"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2194_2195"].val }}kvar
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_2135')"
-                v-if="CCIsDisplay('43', 'TP_0X04_2135')"
+                :label="$t('threePhase.TP_0X04_2196_2197')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2196_2197')"
               >
-                {{ voListMap["43"]["TP_0X04_2135"].val }}kvar
+                {{ voListMap["43"]["TP_0X04_2196_2197"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2198_2199')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2198_2199')"
+              >
+                {{ voListMap["43"]["TP_0X04_2198_2199"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2200_2201')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2200_2201')"
+              >
+                {{ voListMap["43"]["TP_0X04_2200_2201"].val }}kvar
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_2202_2203')"
+                v-if="CCIsDisplay('43', 'TP_0X04_2202_2203')"
+              >
+                {{ voListMap["43"]["TP_0X04_2202_2203"].val }}kvar
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
@@ -2317,6 +2324,19 @@
               >
                 {{ voListMap["44"]["TP_0X04_4143"].val }}W
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4144')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4144')"
+              >
+                {{ voListMap["44"]["TP_0X04_4144"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4145')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4145')"
+                >{{
+                  trimFilter[voListMap["44"]["TP_0X04_4145"].val]
+                }}</el-descriptions-item
+              >
             </el-descriptions>
           </el-card>
         </template>
@@ -2339,6 +2359,11 @@
                 >{{
                   BMSdisplayFilter[voListMap["45"]["TP_0X04_4609"].val]
                 }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4610')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4610')"
+                >{{ voListMap["45"]["TP_0X04_4610"].val }}</el-descriptions-item
               >
 
               <el-descriptions-item
@@ -3011,13 +3036,13 @@
                 :label="$t('threePhase.TP_0X04_5666')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5666')"
               >
-                {{ voListMap["45"]["TP_0X04_5666"].val }}
+                {{ voListMap["45"]["TP_0X04_5666"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5667')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5667')"
               >
-                {{ MOSFilter[voListMap["45"]["TP_0X04_5667"].val] }}
+                {{ voListMap["45"]["TP_0X04_5667"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5668')"
@@ -3047,19 +3072,19 @@
                 :label="$t('threePhase.TP_0X04_5672')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5672')"
               >
-                {{ MOSFilter[voListMap["45"]["TP_0X04_5672"].val] }}
+                {{ voListMap["45"]["TP_0X04_5672"].val }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5673')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5673')"
               >
-                {{ MOSFilter[voListMap["45"]["TP_0X04_5673"].val] }}
+                {{ voListMap["45"]["TP_0X04_5673"].val }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5674')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5674')"
               >
-                {{ MOSFilter[voListMap["45"]["TP_0X04_5674"].val] }}
+                {{ voListMap["45"]["TP_0X04_5674"].val }}
               </el-descriptions-item>
 
               <el-descriptions-item
@@ -3115,14 +3140,14 @@
                 :label="$t('threePhase.TP_0X04_5700')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5700')"
               >
-                {{ MOSFilter[voListMap["45"]["TP_0X04_5700"].val] }}
+                {{ voListMap["45"]["TP_0X04_5700"].val }}V
               </el-descriptions-item>
-              <el-descriptions-item
+              <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5701')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5701')"
               >
                 {{ fuseFilter[voListMap["45"]["TP_0X04_5701"].val] }}
-              </el-descriptions-item>
+              </el-descriptions-item> -->
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5702')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5702')"
@@ -3133,7 +3158,7 @@
                 :label="$t('threePhase.TP_0X04_5703')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5703')"
               >
-                {{ voListMap["45"]["TP_0X04_5703"].val }}℃
+                {{ voListMap["45"]["TP_0X04_5703"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5704')"
@@ -3145,7 +3170,7 @@
                 :label="$t('threePhase.TP_0X04_5705')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5705')"
               >
-                {{ voListMap["45"]["TP_0X04_5705"].val }}A
+                {{ batteryWorkFilter[voListMap["45"]["TP_0X04_5705"].val] }}
               </el-descriptions-item>
 
               <el-descriptions-item
@@ -5999,6 +6024,46 @@
                       handleSave2(
                         'TP_0X03_1100',
                         settingList['TP_0X03_1100Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_1101')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1101Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('48', 'TP_0X03_1101')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('threePhase.generatorMode0')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('threePhase.generatorMode1')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('threePhase.generatorMode2')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('threePhase.generatorMode3')"
+                      value="3"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1101')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1101',
+                        settingList['TP_0X03_1101Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -10196,6 +10261,10 @@ export default {
         0: this.$t("threePhase.fuseStatus0"),
         1: this.$t("threePhase.fuseStatus1"),
       },
+      batteryWorkFilter: {
+        0: this.$t("threePhase.batteryWork1"),
+        1: this.$t("threePhase.batteryWork2"),
+      },
       totalStatusFilter: {
         0: this.$t("threePhase.totalStatus0"),
         1: this.$t("threePhase.totalStatus1"),
@@ -10207,6 +10276,10 @@ export default {
         0: this.$t("deviceManage.BMS1"),
         1: this.$t("deviceManage.BMS2"),
       },
+      DSPFilter: {
+        0: this.$t("deviceManage.DSPnormal1"),
+        1: this.$t("deviceManage.DSPnormal2"),
+      },
       faultStatusFilter: {
         0: this.$t("threePhase.noFault"),
         1: this.$t("threePhase.faultStatus1"),
@@ -10215,6 +10288,10 @@ export default {
       displayFilter: {
         0: this.$t("threePhase.BCUdisplay1"),
         1: this.$t("threePhase.BCUdisplay2"),
+      },
+      trimFilter: {
+        0: this.$t("threePhase.Trim1"),
+        1: this.$t("threePhase.Trim2"),
       },
       powerOnStageFilter: {
         0: this.$t("threePhase.noStage"),
@@ -10471,6 +10548,7 @@ export default {
         TP_0X03_1098Val: "",
         TP_0X03_1099Val: "",
         TP_0X03_1100Val: "",
+        TP_0X03_1101Val: "",
 
         TP_0X03_76Val: "",
         TP_0X03_77Val: "",
