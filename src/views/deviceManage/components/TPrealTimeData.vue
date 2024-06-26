@@ -431,7 +431,7 @@
                 }}kW</el-descriptions-item
               >
 
-              <el-descriptions-item
+              <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_1038')"
                 v-if="CCIsDisplay('42', 'TP_0X04_1038')"
                 >{{ voListMap["42"]["TP_0X04_1038"].val }}</el-descriptions-item
@@ -465,7 +465,7 @@
                 >{{
                   voListMap["42"]["TP_0X04_1045_1046"].val
                 }}Wh</el-descriptions-item
-              >
+              > -->
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_1047')"
                 v-if="CCIsDisplay('42', 'TP_0X04_1047')"
