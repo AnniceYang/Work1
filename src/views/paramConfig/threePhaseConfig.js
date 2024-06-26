@@ -4869,7 +4869,7 @@ export const info3 = {
       consumerIsShow: 1,
       consumerCanSet: 1,
       val: "",
-      unit: "A",
+      unit: "W",
     },
     {
       key: "TP_0X04_5641",

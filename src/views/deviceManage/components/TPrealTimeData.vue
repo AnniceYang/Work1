@@ -2879,19 +2879,19 @@
                 :label="$t('threePhase.TP_0X04_5639')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5639')"
               >
-                {{ voListMap["45"]["TP_0X04_5639"].val }}
+                {{ voListMap["45"]["TP_0X04_5639"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5640')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5640')"
               >
-                {{ voListMap["45"]["TP_0X04_5640"].val }}
+                {{ voListMap["45"]["TP_0X04_5640"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5641')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5641')"
               >
-                {{ voListMap["45"]["TP_0X04_5641"].val }}
+                {{ voListMap["45"]["TP_0X04_5641"].val }}W
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5642')"
