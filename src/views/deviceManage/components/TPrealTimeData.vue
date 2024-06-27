@@ -8709,11 +8709,45 @@
             <el-descriptions :column="3" border>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_185')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_185Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_185')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8727,11 +8761,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_186')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_186Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_186')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8745,11 +8813,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_187')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_187Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_187')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8764,11 +8866,45 @@
 
               <el-descriptions-item :label="$t('threePhase.TP_0X03_188')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_188Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_188')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8782,11 +8918,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_189')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_189Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_189')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8800,11 +8970,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_190')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_190Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_190')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8818,11 +9022,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_191')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_191Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_191')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8836,11 +9074,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_192')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_192Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_192')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8854,11 +9126,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_193')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_193Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_193')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8872,11 +9178,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_194')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_194Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_194')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8890,11 +9230,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_195')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_195Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_195')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8908,11 +9282,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_196')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_196Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_196')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8926,11 +9334,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_197')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_197Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_197')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8944,11 +9386,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_198')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_198Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_198')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8962,11 +9438,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_199')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_199Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_199')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8980,11 +9490,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_200')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_200Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_200')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -8998,11 +9542,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_201')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_201Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_201')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9016,11 +9594,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_202')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_202Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_202')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9034,11 +9646,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_203')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_203Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_203')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9052,11 +9698,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_204')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_204Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_204')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9070,11 +9750,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_205')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_205Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_205')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9088,11 +9802,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_206')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_206Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_206')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9106,11 +9854,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_207')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_207Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_207')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -9124,11 +9906,45 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_208')">
                 <div style="display: flex">
-                  <el-input
+                  <el-select
                     v-model="settingList['TP_0X03_208Val']"
-                    :placeholder="$t('common.inputPrompt')"
+                    :placeholder="$t('common.selectPrompt')"
                     v-if="CCIsDisplay('49', 'TP_0X03_208')"
-                  />
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('deviceManage.batteryPriorityMode')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.homeLoadPriorityMode')"
+                      value="1"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.gridPriorityMode')"
+                      value="2"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.fullPowerFeedMode')"
+                      value="3"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.emergencyBackupMode')"
+                      value="4"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.acBackupMode')"
+                      value="5"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.purePVMode')"
+                      value="6"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.forcedOffGridMode')"
+                      value="7"
+                    />
+                  </el-select>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
