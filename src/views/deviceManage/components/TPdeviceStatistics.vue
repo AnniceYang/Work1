@@ -139,8 +139,8 @@
           devStatusFilter[deviceInfo.status]
         }}</el-descriptions-item>
 
-        <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
-          onlineStatusFilter[deviceInfo.onlineStatus]
+        <el-descriptions-item :label="$t('deviceManage.deviceStatus1')">{{
+          getDeviceStatusWithNetVersion()
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
@@ -150,7 +150,23 @@
           >{{ deviceInfo.versionNet }}</el-descriptions-item
         >
 
-        <el-descriptions-item :label="$t('deviceManage.buyingElectricity')"
+        <el-descriptions-item :label="$t('versionManage.inverterDSP')">{{
+          deviceInfo.versionDsp
+        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('versionManage.Dsp2')">{{
+          deviceInfo.versionDsp2
+        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('versionManage.inverterMCU')">{{
+          deviceInfo.versionMcu
+        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('versionManage.bcu')">{{
+          deviceInfo.versionBcu
+        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('versionManage.battery')">{{
+          deviceInfo.versionBat
+        }}</el-descriptions-item>
+
+        <!-- <el-descriptions-item :label="$t('deviceManage.buyingElectricity')"
           >{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item
         >
         <el-descriptions-item :label="$t('deviceManage.sellingElectricity')"
@@ -171,7 +187,7 @@
         >
         <el-descriptions-item :label="$t('deviceManage.equipmentRemarks')">{{
           deviceInfo.remarks
-        }}</el-descriptions-item>
+        }}</el-descriptions-item> -->
 
         <el-descriptions-item :label="$t('deviceManage.wifiFourRod')">{{
           deviceInfo.wifiFourRod == 1
@@ -463,6 +479,10 @@ import RecordData from "./recordData.vue";
 import moment from "moment";
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
+
+import { baseMqtt } from "@/config/env";
+
+const mqtt = require("mqtt/dist/mqtt.js");
 export default {
   components: { ElectricityData, IncomeData, PowerData, RecordData },
 
@@ -476,6 +496,10 @@ export default {
       const pagesWithDateSelection = ["page3", "page7", "page9", "page13"];
       return pagesWithDateSelection.includes(selectedPage);
     },
+
+    ...mapState({
+      userInfo: (state) => state.user.userInfo,
+    }),
   },
 
   data() {
@@ -718,6 +742,15 @@ export default {
       pageSize: 10,
       paramsIndex: 0,
       activeIndex: "0",
+
+      loading: false,
+      // mqtt
+      mqttClient: null,
+      connectState: "init",
+      interObj: null,
+
+      pageType31Data: null,
+      netVersion: null, //用来存储netVersion
     };
   },
   methods: {
@@ -800,6 +833,16 @@ export default {
     },
 
     init(info) {
+      console.log("init", info);
+      this.deviceInfo = { ...info };
+      console.log("设备信息：", this.deviceInfo);
+      if (this.deviceInfo.onlineStatus === 1) {
+        this.handleMqttInit();
+      } else {
+        // this.$message.info("设备不在线");
+        console.log("这个设备不在线");
+      }
+
       this.time = this.time2 = moment().unix() * 1000;
       this.listQuery.endTime =
         moment(moment().format("YYYY-MM-DD") + " 23:59:59").unix() + 1;
@@ -815,6 +858,69 @@ export default {
       this.getDevicePowerData();
       this.getDeviceRecordData();
     },
+
+    getDeviceStatusWithNetVersion() {
+      const deviceStatus =
+        this.onlineStatusFilter[this.deviceInfo.onlineStatus];
+      const netVersionDisplay = this.netVersion
+        ? `(${this.netVersion} %)`
+        : `(0 %)`;
+      return `${deviceStatus} ${netVersionDisplay}`;
+    },
+
+    // mqtt初始化
+    handleMqttInit() {
+      this.mqttClient = mqtt.connect(baseMqtt, {
+        protocolVersion: 4,
+        reconnectPeriod: 1000,
+        connectTimeout: 30 * 1000,
+        resubscribe: true,
+        keepalive: 3,
+        clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+      });
+      this.mqttClient
+        .on("connect", (res) => {
+          this.connectState = "connect";
+          this.subscribeInfo();
+          // this.loading = false
+          console.log("mqtt连接成功", res);
+        })
+        .on("message", (topic, message) => {
+          const messageInfo = JSON.parse(message.toString());
+          console.log("messageInfo里是： ", messageInfo);
+          if (messageInfo.msgOperation === 5 && messageInfo.valType === 31) {
+            const valData = JSON.parse(messageInfo.val);
+            console.log("Received netVersion: ", valData.netVersion);
+
+            this.paramsChange(valData);
+          }
+        });
+    },
+    // 订阅主题 /APP/设备id/NEWS
+    subscribeInfo() {
+      if (!this.mqttClient || this.connectState !== "connect") {
+        this.toast("通讯未连接");
+        return;
+      }
+      this.mqttClient.subscribe(
+        `/APP/${this.deviceInfo.id}/NEWS`,
+        (err, granted) => {
+          // console.log('订阅主题', `/APP/${this.deviceInfo.id}/NEWS`, err, granted)
+          if (!err) {
+            console.log("===订阅主题 订阅成功===");
+            //在订阅成功后尝试获取数据
+            this.getData();
+          }
+        }
+      );
+    },
+
+    // 数据处理转换
+    paramsChange(res) {
+      console.log(res, "res------收到啥？");
+      this.netVersion = res.netVersion;
+    },
+
     getData() {
       this.getElectricityData();
       this.getIncomeData();

@@ -3173,7 +3173,7 @@
                 {{ batteryWorkFilter[voListMap["45"]["TP_0X04_5705"].val] }}
               </el-descriptions-item>
 
-              <el-descriptions-item
+              <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5719')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5719')"
               >
@@ -3197,7 +3197,7 @@
                 v-if="CCIsDisplay('45', 'TP_0X04_5722')"
               >
                 {{ voListMap["45"]["TP_0X04_5722"].val }}W
-              </el-descriptions-item>
+              </el-descriptions-item> -->
             </el-descriptions>
           </el-card>
         </template>
