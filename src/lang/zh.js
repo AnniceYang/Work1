@@ -758,6 +758,8 @@ export default {
     Trim1: "从机",
     Trim2: "主机",
 
+    TP_0X03_4176_4184: "BCU_序列号",
+
     //page45 EAST-BMS数据
     TP_0X04_4608: "EAST-BMS 显示数据ID",
     TP_0X04_4609: "EAST-BMS 显示数据模式",
@@ -911,6 +913,9 @@ export default {
     TP_0X04_5705: "电池工作状态",
     batteryWork1: "电池不在工作",
     batteryWork2: "电池正常工作",
+
+    TP_0X04_5713: "BMS软件版本号",
+    TP_0X03_5714_5739: "电池 ID",
 
     TP_0X04_5719: "故障充放电状态汇总",
     totalStatus0: "允许充电允许放电",
@@ -3103,6 +3108,8 @@ export default {
     TP_0X04_4144: "输出电压微调值",
     TP_0X04_4145: "并机主从标志",
 
+    TP_0X03_4176_4184: "BCU_序列号",
+
     //page45 EAST-BMS数据
     TP_0X04_4608: "EAST-BMS 显示数据ID",
     TP_0X04_4609: "EAST-BMS 显示数据模式",
@@ -3243,6 +3250,9 @@ export default {
     TP_0X04_5703: "允许最大充电电流",
     TP_0X04_5704: "允许最大放电电流",
     TP_0X04_5705: "电池工作状态",
+
+    TP_0X04_5713: "BMS软件版本号",
+    TP_0X03_5714_5739: "电池 ID",
 
     TP_0X04_5719: "故障充放电状态汇总",
     totalStatus0: "允许充电允许放电",

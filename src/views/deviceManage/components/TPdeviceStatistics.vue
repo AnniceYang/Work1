@@ -836,12 +836,13 @@ export default {
       console.log("init", info);
       this.deviceInfo = { ...info };
       console.log("设备信息：", this.deviceInfo);
-      if (this.deviceInfo.onlineStatus === 1) {
-        this.handleMqttInit();
-      } else {
-        // this.$message.info("设备不在线");
-        console.log("这个设备不在线");
-      }
+      this.handleMqttInit();
+      // if (this.deviceInfo.onlineStatus === 1) {
+      //   this.handleMqttInit();
+      // } else {
+      //   // this.$message.info("设备不在线");
+      //   console.log("这个设备不在线");
+      // }
 
       this.time = this.time2 = moment().unix() * 1000;
       this.listQuery.endTime =
@@ -862,9 +863,15 @@ export default {
     getDeviceStatusWithNetVersion() {
       const deviceStatus =
         this.onlineStatusFilter[this.deviceInfo.onlineStatus];
-      const netVersionDisplay = this.netVersion
-        ? `(${this.netVersion} %)`
-        : `(0 %)`;
+      let netVersionDisplay = "(0 %)";
+
+      if (this.deviceInfo.onlineStatus === 2) {
+        if (this.netVersion !== null) {
+          console.log("this.netVersion已经取到值为：", this.netVersion);
+          netVersionDisplay = `(${this.netVersion} %)`;
+        }
+      }
+
       return `${deviceStatus} ${netVersionDisplay}`;
     },
 
@@ -899,14 +906,23 @@ export default {
     // 订阅主题 /APP/设备id/NEWS
     subscribeInfo() {
       if (!this.mqttClient || this.connectState !== "connect") {
+        console.log("====通讯未连接=====");
         this.toast("通讯未连接");
+
         return;
       }
+
+      //超时处理
+      let subscriptionTimeout = setTimeout(() => {
+        console.log("订阅主题超时");
+      }, 3000);
+
       this.mqttClient.subscribe(
         `/APP/${this.deviceInfo.id}/NEWS`,
         (err, granted) => {
           // console.log('订阅主题', `/APP/${this.deviceInfo.id}/NEWS`, err, granted)
           if (!err) {
+            clearTimeout(subscriptionTimeout);
             console.log("===订阅主题 订阅成功===");
             //在订阅成功后尝试获取数据
             this.getData();

@@ -2337,6 +2337,13 @@
                   trimFilter[voListMap["44"]["TP_0X04_4145"].val]
                 }}</el-descriptions-item
               >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_4176_4184')"
+                v-if="CCIsDisplay('44', 'TP_0X03_4176_4184')"
+                >{{
+                  voListMap["44"]["TP_0X03_4176_4184"].val
+                }}</el-descriptions-item
+              >
             </el-descriptions>
           </el-card>
         </template>
@@ -3173,6 +3180,18 @@
                 {{ batteryWorkFilter[voListMap["45"]["TP_0X04_5705"].val] }}
               </el-descriptions-item>
 
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5713')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5713')"
+              >
+                {{ voListMap["45"]["TP_0X04_5713"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_5714_5739')"
+                v-if="CCIsDisplay('45', 'TP_0X03_5714_5739')"
+              >
+                {{ voListMap["45"]["TP_0X03_5714_5739"].val }}
+              </el-descriptions-item>
               <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5719')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5719')"

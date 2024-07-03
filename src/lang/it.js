@@ -759,6 +759,8 @@ export default {
     Trim1: "Slave",
     Trim2: "Master",
 
+    TP_0X03_4176_4184: "Numero serie BCU",
+
     TP_0X04_4608: "ID Dati BMS EAST",
     TP_0X04_4609: "Modalità Dati BMS EAST",
     BMSdisplay1: "Visualizzazione Sondaggio",
@@ -911,6 +913,9 @@ export default {
     TP_0X04_5705: "Stato batteria",
     batteryWork1: "Batteria non funzionante",
     batteryWork2: "Batteria funzionante",
+
+    TP_0X04_5713: "Versione Software BMS",
+    TP_0X03_5714_5739: "ID Batteria",
 
     TP_0X04_5719: "Sommario Stato Carica/Scarica Difettoso",
     totalStatus0: "Carica e Scarica OK",
@@ -1473,17 +1478,17 @@ export default {
     validateDischarge: "Inserisci SOC di fine vendita per il periodo di carica",
     validateData: "Si prega di compilare tutti i dati",
     validateTimePeriod: "Il periodo non può sovrapporsi",
-    versionNumber: "Numero di versione",
-    updateTime: "Ora di aggiornamento",
+    versionNumber: "Numero versione",
+    updateTime: "Ora aggiornamento",
     upgradeStatus: "Stato aggiornamento",
     upgradeRecord: "Registro degli aggiornamenti",
     modelName: "Nome del modello",
     communicationStickSoftwareVersion:
       "Versione software dello stick di comunicazione",
-    buyingElectricity: "Acquisto di elettricità",
-    sellingElectricity: "Vendita di elettricità",
+    buyingElectricity: "Acquisto elettricità",
+    sellingElectricity: "Vendita elettricità",
     photovoltaicPowerGeneration: "Produzione PV",
-    capacity: "Capacità",
+    capacity: "Capacità carico",
     totalConsumption: "Consumo totale",
     cumulativeGain: "Guadagno cumulativo",
     pvPower: "Potenza PV",
@@ -3794,6 +3799,8 @@ export default {
     TP_0X04_4144: "Regolazione tensione uscita",
     TP_0X04_4145: "Flag master-slave",
 
+    TP_0X03_4176_4184: "Numero serie BCU",
+
     TP_0X04_4608: "ID Dati BMS EAST",
     TP_0X04_4609: "Modalità Dati BMS EAST",
     TP_0X04_4618: "Tensione Totale Batteria",
@@ -3932,6 +3939,9 @@ export default {
     TP_0X04_5703: "Corrente carica max",
     TP_0X04_5704: "Corrente scarica max",
     TP_0X04_5705: "Stato batteria",
+
+    TP_0X04_5713: "Versione Software BMS",
+    TP_0X03_5714_5739: "ID Batteria",
 
     TP_0X04_5719: "Sommario Stato Carica/Scarica Difettoso",
     TP_0X04_5720: "Max Tensione Carica",

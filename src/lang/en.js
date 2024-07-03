@@ -763,6 +763,8 @@ export default {
     Trim1: "Slave",
     Trim2: "Master",
 
+    TP_0X03_4176_4184: "BCU_Serial Number",
+
     TP_0X04_4608: "EAST-BMS Data ID",
     TP_0X04_4609: "EAST-BMS Data Mode",
     BMSdisplay1: "Polling Display",
@@ -915,6 +917,9 @@ export default {
     TP_0X04_5705: "Battery Operating Status",
     batteryWork1: "Battery Not Working",
     batteryWork2: "Battery Working Normally",
+
+    TP_0X04_5713: "BMS Software Version Number",
+    TP_0X03_5714_5739: "Battery ID",
 
     TP_0X04_5719: "Faulty Charge/Discharge Status Summary",
     totalStatus0: "Charge Allowed, Discharge Allowed",
@@ -1489,7 +1494,7 @@ export default {
     buyingElectricity: "Buying electricity",
     sellingElectricity: "Selling electricity",
     photovoltaicPowerGeneration: "PV power generation",
-    capacity: "Capacity",
+    capacity: "Load capacity",
     totalConsumption: "Total consumption",
     cumulativeGain: "cumulative gain",
     pvPower: "PV power",
@@ -3779,6 +3784,9 @@ export default {
     TP_0X04_4143: "Output Power Limit Setpoint",
     TP_0X04_4144: "Output voltage trim",
     TP_0X04_4145: "Master-slave flag",
+    TP_0X03_4176_4184: "BCU_Serial Number",
+
+    //page45 EAST-BMS数据
 
     TP_0X04_4608: "EAST-BMS Data ID",
     TP_0X04_4609: "EAST-BMS Data Mode",
@@ -3919,6 +3927,9 @@ export default {
     TP_0X04_5703: "Maximum Allowable Charging Current",
     TP_0X04_5704: "Maximum Allowable Discharging Current",
     TP_0X04_5705: "Battery Operating Status",
+
+    TP_0X04_5713: "BMS Software Version Number",
+    TP_0X03_5714_5739: "Battery ID",
 
     TP_0X04_5719: "Faulty Charge/Discharge Status Summary",
     TP_0X04_5720: "Maximum Charge Voltage",
