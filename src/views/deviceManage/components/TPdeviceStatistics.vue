@@ -799,7 +799,7 @@ export default {
     exportData() {
       const exportBaseUrl = "http://120.79.138.205:7072/excel"; // 测试服版
       // const exportBaseUrl = "https://esybackend.esysunhome.com:7072/excel"; // 力胜源版
-      // const exportBaseUrl = "http://3.126.27.80:7072/excel"; // ODM版
+      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072/excel"; // ODM版
       const page = this.exportOptions.selectedPage;
       const deviceId = this.deviceInfo.sn;
 
