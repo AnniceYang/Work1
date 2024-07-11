@@ -11875,6 +11875,18 @@ export default {
         } else {
           return false;
         }
+      } else if (role == "4") {
+        if (installerIsShowValue) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "5") {
+        if (installerIsShowValue) {
+          return true;
+        } else {
+          return false;
+        }
       }
 
       // 如果无法确定要检查的属性名，则默认返回true
@@ -11906,6 +11918,18 @@ export default {
         }
       } else if (role == "3") {
         if (consumerIsSet) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "4") {
+        if (installerIsSet) {
+          return true;
+        } else {
+          return false;
+        }
+      } else if (role == "5") {
+        if (installerIsSet) {
           return true;
         } else {
           return false;
@@ -11948,6 +11972,28 @@ export default {
         if (
           this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
             key2 + "consumerIsShow"
+          ]
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "4") {
+        if (
+          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
+            key2 + "installerIsShow"
+          ]
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (
+          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
+            key2 + "installerIsShow"
           ]
         ) {
           return true;

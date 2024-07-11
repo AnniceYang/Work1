@@ -135,9 +135,9 @@
               <el-button type="primary" @click="handleReset()">{{
                 $t("common.reset")
               }}</el-button>
-              <!-- <el-button type="primary" @click="handleExportPDF">{{
+              <el-button type="primary" @click="handleExportPDF">{{
                 $t("common.export")
-              }}</el-button> -->
+              }}</el-button>
             </el-form-item>
           </el-form>
           <el-table
@@ -206,6 +206,8 @@ import {
   getConfigData,
   qrySelfCheckNew,
   qrySelfCheckRecord,
+  qrySelfCheckPDF,
+  qrySelfCheckRecordPDF,
 } from "@/api/device";
 
 import jsPDF from "jspdf";
@@ -320,52 +322,36 @@ export default {
       this.selectedRecords = selection;
     },
 
+    // 处理导出 PDF 的函数
     handleExportPDF() {
       if (this.selectedRecords.length === 0) {
         this.$message.error("Please select records to export.");
         return;
       }
 
-      const doc = new jsPDF();
+      // 提取选中的记录ID
+      const selectedRecordIds = this.selectedRecords.map((record) => record.id);
 
-      const rows = this.selectedRecords.map((record) => [
-        this.$t("deviceManage.selfInspection") +
-          ": " +
-          this.$options.filters.selfTestTypeFilter(record.type),
-        this.$t("deviceManage.selfInspectionResults") +
-          ": " +
-          (record.checkStatus === 0
-            ? this.$t("deviceManage.success")
-            : this.$t("deviceManage.fail")),
-        this.$t("deviceManage.selfCheckActualProtectionThreshold") +
-          ": " +
-          record.selfCheckActualProtectionThreshold,
-        this.$t("deviceManage.selfCheckActualProtectionTime") +
-          ": " +
-          record.selfCheckActualProtectionTime,
-        this.$t("deviceManage.selfCheckRealtimeProtectionThreshold") +
-          ": " +
-          record.selfCheckRealTimeProtectionThreshold,
-        this.$t("deviceManage.selfInspectionTime") +
-          ": " +
-          this.$options.filters.parseTime(record.checkTime),
-      ]);
+      // 调用导出函数
+      qrySelfCheckRecordPDF(selectedRecordIds)
+        .then(() => {
+          const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
+          // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
+          // const exportBaseUrl = "http://3.126.27.80:7072"; // ODM版
 
-      doc.autoTable({
-        head: [
-          [
-            this.$t("deviceManage.selfInspection"),
-            this.$t("deviceManage.selfInspectionResults"),
-            this.$t("deviceManage.selfCheckActualProtectionThreshold"),
-            this.$t("deviceManage.selfCheckActualProtectionTime"),
-            this.$t("deviceManage.selfCheckRealtimeProtectionThreshold"),
-            this.$t("deviceManage.selfInspectionTime"),
-          ],
-        ],
-        body: rows,
-      });
+          const exportUrl = `${exportBaseUrl}/admin/lsydevicecheckrecord/export/pdf/${selectedRecordIds.join(
+            ","
+          )}`;
 
-      doc.save("inspection_records.pdf");
+          // 使用 window.open 打开 PDF 文件链接
+          window.open(exportUrl, "_blank");
+
+          this.$message.success("Export success!");
+        })
+        .catch((error) => {
+          console.error("Export failed:", error);
+          this.$message.error("Export failed");
+        });
     },
 
     initMqttData(messageInfo) {

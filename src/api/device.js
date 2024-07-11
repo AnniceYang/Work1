@@ -1,5 +1,5 @@
 import request from "@/router/axios";
-
+import axios from "axios";
 // 设备信息管理  查询
 export function qryDevice(query) {
   return request({
@@ -331,6 +331,23 @@ export function qrySelfCheckNew(data) {
     url: "/admin/lsydevicecheckrecord/last/info",
     method: "get",
     params: data,
+  });
+}
+
+// 导出所选择的自检记录的 PDF
+export function qrySelfCheckPDF(selectedRecords) {
+  return request({
+    url: "/admin/lsydevicecheckrecord/pdf/export",
+    method: "post",
+    responseType: "blob", // 响应类型为 Blob，用于处理二进制数据
+    data: selectedRecords,
+  });
+}
+
+export function qrySelfCheckRecordPDF(ids) {
+  return request({
+    url: `/admin/lsydevicecheckrecord/export/pdf/${ids.join(",")}`,
+    method: "get",
   });
 }
 

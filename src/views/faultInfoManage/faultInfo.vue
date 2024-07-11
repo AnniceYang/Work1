@@ -58,7 +58,10 @@
                 </el-select>
               </el-form-item>
 
-              <el-form-item :label="$t('faultInfo.faultInformation')">
+              <el-form-item
+                v-if="showFaultInformation"
+                :label="$t('faultInfo.faultInformation')"
+              >
                 <el-input
                   v-model="listQuery.content"
                   :placeholder="$t('common.inputPrompt')"
@@ -246,6 +249,7 @@ export default {
         this.$t("faultInfo.twoLevel"),
         this.$t("faultInfo.threeLevel"),
       ],
+      showFaultInformation: true,
     };
   },
   computed: {
@@ -257,6 +261,7 @@ export default {
   mounted() {
     this.activeIndex = this.permissions.admin_lsyinfo_show ? "1" : "2";
     // conosle.log(this.permissions.admin_lsyinfo_show)
+    this.showFaultInformation = this.$store.getters.language === "zh-CN";
   },
   methods: {
     handleSelect(index) {

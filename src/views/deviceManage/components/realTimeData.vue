@@ -16271,6 +16271,20 @@ export default {
           return false;
         }
       }
+      if (role == "4") {
+        if (this.operationInformation[key1][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.operationInformation[key1][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
       return true;
     },
     // 系统设置
@@ -16293,6 +16307,20 @@ export default {
       }
       if (role == "3") {
         if (this.systemSet[key1][key2 + "consumerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "4") {
+        if (this.systemSet[key1][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.systemSet[key1][key2 + "installerIsShow"]) {
           return true;
         } else {
           return false;
@@ -16325,6 +16353,20 @@ export default {
           return false;
         }
       }
+      if (role == "4") {
+        if (this.systemSet[key1][key2 + "installerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.systemSet[key1][key2 + "installerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
       return true;
     },
 
@@ -16347,6 +16389,20 @@ export default {
       }
       if (role == "3") {
         if (this.subList[key1][key2 + "consumerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "4") {
+        if (this.subList[key1][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.subList[key1][key2 + "installerIsShow"]) {
           return true;
         } else {
           return false;
@@ -16378,6 +16434,20 @@ export default {
           return false;
         }
       }
+      if (role == "4") {
+        if (this.subList[key1][key2 + "installerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.subList[key1][key2 + "installerCanSet"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
       return true;
     },
 
@@ -16401,6 +16471,20 @@ export default {
       }
       if (role == "3") {
         if (this.batteryParameter["batterySetObj"][key2 + "consumerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "4") {
+        if (this.batteryParameter["batterySetObj"][key2 + "installerIsShow"]) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (this.batteryParameter["batterySetObj"][key2 + "installerIsShow"]) {
           return true;
         } else {
           return false;
@@ -16438,6 +16522,28 @@ export default {
         if (
           this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
             key2 + "consumerIsShow"
+          ]
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "4") {
+        if (
+          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
+            key2 + "installerIsShow"
+          ]
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      if (role == "5") {
+        if (
+          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
+            key2 + "installerIsShow"
           ]
         ) {
           return true;
