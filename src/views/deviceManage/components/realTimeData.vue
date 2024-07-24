@@ -3206,6 +3206,490 @@
           </el-descriptions>
         </el-card>
 
+        <el-card style="margin-top: 10px" v-if="systemSet.alternatorSet">
+          <el-descriptions
+            :title="$t('deviceManage.alternatorSet')"
+            :column="3"
+            border
+          >
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_409')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_409')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_409Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_409'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_409',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_409Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_410')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_410')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_410Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_410'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_410',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_410Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_411')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_411')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_411Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_411'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_411',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_411Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_412')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_412')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_412Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_412'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_412',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_412Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_413')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_413')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_413Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_413'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_413',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_413Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_414')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_414')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_414Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">Min</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_414'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_414',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_414Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_415')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_415')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_415Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">kW</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_415'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_415',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_415Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_416')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_416')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_416Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_416'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_416',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_416Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_417')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_417')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_417Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_417'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_417',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_417Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_418')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_418')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_418Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option
+                    :label="$t('deviceManage.feedForward0')"
+                    value="0"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.feedForward1')"
+                    value="1"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.feedForward2')"
+                    value="2"
+                  />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_418'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_418',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_418Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_419')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_419')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_419Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_419'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_419',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_419Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_420')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_420')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_420Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">Hz</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_420'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_420',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_420Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_421')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_421')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_421Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">Hz</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_421'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_421',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_421Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_422')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_422')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_422Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_422'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_422',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_422Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_423')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'PROTOCOL_ADDR_423')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.PROTOCOL_ADDR_423Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay(
+                      'alternatorSetObj',
+                      'PROTOCOL_ADDR_423'
+                    )
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_423',
+                      systemSet.alternatorSetObj.PROTOCOL_ADDR_423Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+          </el-descriptions>
+        </el-card>
+
         <el-card style="margin-top: 10px" v-if="systemSet.otherSet">
           <el-descriptions
             :title="$t('deviceManage.otherSettings')"
@@ -15209,6 +15693,8 @@ export default {
         communicationSetObj: {},
         advancedSet: false,
         advancedSetObj: {},
+        alternatorSet: false,
+        alternatorSetObj: {},
         gridOvervoltageSet: false,
         gridOvervoltageSetObj: {},
         otherSet: false,

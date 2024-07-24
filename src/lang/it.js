@@ -117,8 +117,10 @@ export default {
     normal: "Normale",
     offLine: "Offline",
     errorReporting: "Segnalazione di errore",
-    installationPower: "Potenza di installazione",
-    installationCapacity: "Capacità installata",
+    installationNum: "Numero Installazioni",
+    installationPower: "Potenza Installazione",
+    batteryNum: "Numero Batterie",
+    installationCapacity: "Capacità Installazione",
     CO2Reduction: "Riduzione delle emissioni di CO2",
     save: "Salva",
     plant: "Impianto",
@@ -1899,6 +1901,7 @@ export default {
     deviceAddress: "Indirizzo di comunicazione del dispositivo",
 
     advancedSetting: "Impostazioni avanzate",
+    alternatorSet: "Impostazioni Generatore",
     parallelOffMode: "Modalità parallela off",
     gridConnectionMode: "Modalità di connessione alla rete",
     antiBackflowMode: "Modalità anti-reflusso",
@@ -1928,6 +1931,27 @@ export default {
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
     PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
     PROTOCOL_ADDR_441: "Arresto Remoto Potenza Attiva",
+
+    PROTOCOL_ADDR_409: "Modalità Generatore",
+    PROTOCOL_ADDR_410: "Tensione Batteria Avvio Gen",
+    PROTOCOL_ADDR_411: "SOC Batteria Avvio Gen",
+    PROTOCOL_ADDR_412: "Tensione Batteria Stop Gen",
+    PROTOCOL_ADDR_413: "SOC Batteria Stop Gen",
+    PROTOCOL_ADDR_414: "Min Tempo di Funzionamento Gen",
+    PROTOCOL_ADDR_415: "Potenza Nominale Gen",
+    PROTOCOL_ADDR_416: "Abilita Carica Batteria Gen",
+    PROTOCOL_ADDR_417: "Abilita Alimentazione Carico Gen",
+    PROTOCOL_ADDR_418: "Feedforward Gen",
+
+    feedForward0: "Filtro di Primo Ordine",
+    feedForward1: "Filtro PLL",
+    feedForward2: "Valore Istantaneo",
+
+    PROTOCOL_ADDR_419: "Potenza Rettificatore Gen %",
+    PROTOCOL_ADDR_420: "Limite Protezione Sovrafreq Gen",
+    PROTOCOL_ADDR_421: "Limite Protezione Sottofreq Gen",
+    PROTOCOL_ADDR_422: "Limite Protezione Sovratensione Gen",
+    PROTOCOL_ADDR_423: "Limite Protezione Sottotensione Gen",
 
     electricityMeter: "Contatore elettrico",
 
@@ -2974,6 +2998,25 @@ export default {
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
     PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
     PROTOCOL_ADDR_441: "Arresto Remoto Potenza Attiva",
+
+    alternatorSet: "Impostazioni Generatore",
+
+    PROTOCOL_ADDR_409: "Modalità Generatore",
+    PROTOCOL_ADDR_410: "Tensione Batteria Avvio Gen",
+    PROTOCOL_ADDR_411: "SOC Batteria Avvio Gen",
+    PROTOCOL_ADDR_412: "Tensione Batteria Stop Gen",
+    PROTOCOL_ADDR_413: "SOC Batteria Stop Gen",
+    PROTOCOL_ADDR_414: "Min Tempo di Funzionamento Gen",
+    PROTOCOL_ADDR_415: "Potenza Nominale Gen",
+    PROTOCOL_ADDR_416: "Abilita Carica Batteria Gen",
+    PROTOCOL_ADDR_417: "Abilita Alimentazione Carico Gen",
+    PROTOCOL_ADDR_418: "Feedforward Gen",
+    PROTOCOL_ADDR_419: "Potenza Rettificatore Gen %",
+    PROTOCOL_ADDR_420: "Limite Protezione Sovrafreq Gen",
+    PROTOCOL_ADDR_421: "Limite Protezione Sottofreq Gen",
+    PROTOCOL_ADDR_422: "Limite Protezione Sovratensione Gen",
+    PROTOCOL_ADDR_423: "Limite Protezione Sottotensione Gen",
+
     otherSet: "Altre impostazioni",
 
     resetDeviceCommunicationSettingsToInitialValues:

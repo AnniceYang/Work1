@@ -9,6 +9,23 @@ export function qryDevice(query) {
   });
 }
 
+// admin数据看板获取安装商列表
+export function listAgent() {
+  return request({
+    url: "/admin/lsydevice/listAgent",
+    method: "get",
+  });
+}
+
+// admin数据看板查看安装数据
+export function installData(query) {
+  return request({
+    url: "/admin/administer/board/installer",
+    method: "get",
+    params: query,
+  });
+}
+
 // 设备信息详情  查询
 export function qryDeviceDetail(query) {
   return request({

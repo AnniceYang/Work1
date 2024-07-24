@@ -29,7 +29,10 @@
         </div>
 
         <!-- Offline Devices -->
-        <div class="top-item">
+        <div
+          class="top-item clickable"
+          @click="handleExport('/excel/snOffline')"
+        >
           <div class="item-line">
             <img class="img" src="@/assets/img/offlineDevice.png" />
             <span class="text">{{ $t("dataBoard.offlineDevices") }}</span>
@@ -42,7 +45,7 @@
         </div>
 
         <!-- Error Devices -->
-        <div class="top-item">
+        <div class="top-item clickable" @click="handleExport('/excel/snError')">
           <div class="item-line">
             <img class="img" src="@/assets/img/alarmDevice.png" />
             <span class="text">{{ $t("dataBoard.errorDevices") }}</span>
@@ -61,6 +64,19 @@
             <span class="text">{{
               $t("dataBoard.installationStatistics")
             }}</span>
+            <el-select
+              v-model="selectedInstaller"
+              @change="fetchInstallerData"
+              :placeholder="$t('common.selectInstaller')"
+            >
+              <el-option :label="Null" :value="''"></el-option>
+              <el-option
+                v-for="installer in installers"
+                :key="installer.userId"
+                :label="installer.username"
+                :value="installer.userId"
+              ></el-option>
+            </el-select>
           </div>
           <!-- <div class="center-content">
             <DeviceStatus :chartData="chartData" />
@@ -71,7 +87,7 @@
             <img src="@/assets/img/home-install.png" />
             <span>{{ $t("dataBoard.installationStatistics") }}</span>
           </div> -->
-          <div class="center-content2">
+          <!-- <div class="center-content2">
             <div class="center-content-left">
               <div class="point1"></div>
               <div>
@@ -94,6 +110,51 @@
                 {{ $t("dataBoard.installationCapacity") }}
               </div>
             </div>
+          </div> -->
+          <div class="center-content2">
+            <div class="circle-container">
+              <div class="circle" :style="{ backgroundColor: '#4CAF50' }">
+                <div class="circle-content">
+                  <div class="point"></div>
+                  <div>
+                    <span class="val">{{ circles[0].value }}</span>
+                  </div>
+                  <div class="text1">{{ circles[0].text }}</div>
+                </div>
+              </div>
+
+              <div class="circle" :style="{ backgroundColor: '#FF9800' }">
+                <div class="circle-content">
+                  <div class="point"></div>
+                  <div>
+                    <span class="val">{{ circles[1].value }} </span>
+                    <span class="kWh">kWh</span>
+                  </div>
+                  <div class="text1">{{ circles[1].text }}</div>
+                </div>
+              </div>
+
+              <div class="circle" :style="{ backgroundColor: '#2196F3' }">
+                <div class="circle-content">
+                  <div class="point"></div>
+                  <div>
+                    <span class="val">{{ circles[2].value }}</span>
+                  </div>
+                  <div class="text1">{{ circles[2].text }}</div>
+                </div>
+              </div>
+
+              <div class="circle" :style="{ backgroundColor: '#F44336' }">
+                <div class="circle-content">
+                  <div class="point"></div>
+                  <div>
+                    <span class="val">{{ circles[3].value }}</span>
+                    <span class="kWh">kWh</span>
+                  </div>
+                  <div class="text1">{{ circles[3].text }}</div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -103,14 +164,14 @@
 
 <script>
 import { getTotalcount } from "@/api/home/backend";
-import ElectricityData from "../electricityData.vue";
-import IncomeData from "../incomeData.vue";
+import { listAgent, installData } from "@/api/device";
+
 import DeviceStatus from "./deviceStatus.vue";
-import PowerData from "../powerData.vue";
+
 import { mapGetters } from "vuex";
 import moment from "moment";
 export default {
-  components: { DeviceStatus, ElectricityData, IncomeData, PowerData },
+  components: { DeviceStatus },
   data() {
     return {
       total: {
@@ -125,41 +186,22 @@ export default {
         data: [],
       },
 
-      electricityInfo: {
-        startTime: null,
-        endTime: null,
-        type: 0,
-      },
-      radio1: 0,
-      time1: [],
-      chartData1: {
-        xData: [],
-        yData: [],
-      },
+      installers: [], //存储安装商列表
+      selectedInstaller: "", //选中的安装商
+      circles: [
+        { text: this.$t("dataBoard.installationNum"), value: 0 },
+        { text: this.$t("dataBoard.installationPower"), value: 0 },
+        { text: this.$t("dataBoard.batteryNum"), value: 0 },
+        { text: this.$t("dataBoard.installationCapacity"), value: 0 },
+      ],
 
-      incomeInfo: {
-        startTime: null,
-        endTime: null,
-        type: 0,
-      },
-      totalIncome: 0,
-      radio2: 0,
-      time2: [],
-      chartData2: {
-        xData: [],
-        yData: [],
-      },
-
-      radio3: 0,
-      time3: moment().unix() * 1000,
-      chartData3: {
-        xData: [],
-        yData: [],
-      },
       listLoading: false,
     };
   },
   mounted() {
+    this.fetchInstallers();
+    this.fetchInstallerData();
+
     getTotalcount().then((res) => {
       console.log("API Response: ", res);
       this.total.onlineNum = res.onlineNum;
@@ -189,31 +231,47 @@ export default {
     });
   },
   methods: {
-    getPowerData() {
-      electricityPower({
-        time: this.time3 / 1000,
-      }).then((res) => {
-        this.chartData3.xData = res.map((item) => {
-          return item.time;
+    fetchInstallers() {
+      listAgent()
+        .then((res) => {
+          this.installers = res;
+        })
+        .catch((error) => {
+          console.error("Error fetching installers: ", error);
         });
-        this.chartData3.yData = res.map((item) => {
-          if (this.radio3 === 0) {
-            return item.battery;
-          }
-          if (this.radio3 === 1) {
-            return item.pvElec;
-          }
-          if (this.radio3 === 2) {
-            return item.loadElec;
-          }
-          if (this.radio3 === 3) {
-            return item.feedNetwork;
-          }
-          if (this.radio3 === 4) {
-            return item.buyElec;
-          }
+    },
+
+    fetchInstallerData() {
+      const installUserId = this.selectedInstaller;
+      if (installUserId) {
+        installData({ installUserId })
+          .then((res) => {
+            this.circles[0].value = res.installedNum || 0;
+            this.circles[1].value = res.installedPower || 0;
+            this.circles[2].value = res.batteryNum || 0;
+            this.circles[3].value = res.installedCapacity || 0;
+          })
+          .catch((error) => {
+            console.error("Error fetching installer data: ", error);
+          });
+      } else {
+        installData().then((res) => {
+          this.circles[0].value = res.installedNum || 0;
+          this.circles[1].value = res.installedPower || 0;
+          this.circles[2].value = res.batteryNum || 0;
+          this.circles[3].value = res.installedCapacity || 0;
         });
-      });
+      }
+    },
+
+    handleExport(endpoint) {
+      const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
+      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
+      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072"; // ODM版
+
+      const exportUrl = `${exportBaseUrl}${endpoint}`;
+
+      window.open(exportUrl, "_blank");
     },
   },
 };
@@ -237,212 +295,100 @@ export default {
   // margin-top: 15px;
   padding: 20px;
 }
+
+.clickable {
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+.clickable :hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 .item-line {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+  justify-content: center;
+}
+.img {
+  width: 20px;
+  height: 20px;
 }
 .text {
   font-size: 20px;
+  font-weight: bold;
   margin-left: 10px;
 }
 
-.text1 {
-  margin-top: 10px;
-}
-
-.kwh {
-  margin-left: 50px;
-}
 .val {
+  margin-top: 20px;
   font-size: 48px;
   font-weight: bold;
-  margin-top: 5px;
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-.unit1 {
-  margin-left: 15px;
-  background: rgba(32, 138, 66, 0.1);
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #208a42;
-}
-.unit2 {
-  margin-left: 15px;
-  background: rgba(253, 159, 21, 0.1);
-  padding: 5px;
-  border-radius: 5px;
-  font-size: 12px;
-  font-weight: bold;
-  color: #fd9f15;
+  color: #000;
 }
 
 .center {
   display: flex;
-  // flex-wrap: wrap;
+
   justify-content: space-between;
+
+  flex-wrap: wrap;
 }
 .center-item {
-  height: 350px;
   width: 100%;
   border-radius: 20px;
   background: #fff;
-  margin-bottom: 15px;
+
   padding: 20px;
 }
 .center-item-title {
-  height: 50px;
   display: flex;
   align-items: center;
-  // line-height: 50px;
-  border-bottom: 1px solid #eeeeee;
+
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
-.center-item-title img {
-  margin-left: 20px;
-}
-.center-item-title span {
-  margin-left: 10px;
-}
-.center-content {
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-  height: 220px;
-}
-.center-content2 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-.center-content-left {
-  // height: 200px;
-  position: relative;
-  // padding-top: 40%;
-  // width: 40%;
-  width: 180px;
-  height: 180px;
-  margin-left: 5px;
-  background: rgba(32, 138, 66, 0.1);
-  border-radius: 50%;
-  left: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.point1 {
-  width: 40px;
-  height: 40px;
-  background: rgba(32, 138, 66, 0.3);
-  border-radius: 50%;
-}
-.center-content-right {
-  width: 180px;
-  height: 180px;
-  margin-left: 5px;
-  background: rgba(253, 159, 21, 0.1);
-  border-radius: 50%;
-  // padding-top: 40%;
-  position: relative;
-  right: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-.point2 {
-  width: 40px;
-  height: 40px;
-  background: rgba(253, 159, 21, 0.3);
-  border-radius: 50%;
-}
-.center-content3 {
-  display: flex;
-  flex-direction: column;
-  // justify-content: center;
-  align-items: center;
-}
-.center-content3-line {
-  display: flex;
-  align-items: center;
-  // height: 220px;
-  width: 80%;
-  border-radius: 6px;
-  margin-top: 25px;
-  // margin-bottom: 20px;
-  border: 1px solid #208a42;
-}
-.center-content3-line .text {
-  width: 80px;
-  // border: 1px solid #208A42;
+.text {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.electricity-data {
-  background: #fff;
-  border-radius: 20px;
-  margin-top: 15px;
-}
-.data-title {
+.center-content2 {
   display: flex;
-  height: 50px;
-  align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid #eeeeee;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-.data-title-left {
-  display: flex;
   align-items: center;
 }
-.data-title-left span {
-  margin-left: 15px;
+
+.circle-container {
+  display: flex;
+  justify-content: space-between;
+
+  width: 100%;
 }
-.data-title-right span {
-  display: inline-block;
-  width: 50px;
-  height: 30px;
-  line-height: 30px;
-  border: 1px solid #dddddd;
-  border-radius: 6px;
-  margin-right: 10px;
+.circle {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+.circle-content {
   text-align: center;
 }
-.active-type {
-  background: #208a42;
-  color: #ffffff;
+.circle-val {
+  margin-top: 20px;
+  font-size: 48px;
+  font-weight: bold;
+  color: #000;
 }
-.data-content {
-  height: 280px;
-}
-.data-content-line {
-  display: flex;
-  // margin-top: 10px;
-}
-.data-content-line div {
-  width: 50%;
-  // border: 1px solid red;
-  margin-left: 30px;
-  display: flex;
-  align-items: center;
-}
-.data-content-line span {
-  margin-left: 10px;
-}
-.data-content-radio {
+.text1 {
   margin-top: 10px;
-  height: 20px;
-  line-height: 20px;
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #666;
+}
+.kWh {
+  font-size: 16px;
+  vertical-align: super;
 }
 </style>

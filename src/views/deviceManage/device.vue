@@ -327,7 +327,7 @@
   </div>
 </template>
 <script>
-import { qryAppUser } from "@/api/appUser";
+import { qryAppUser, qryinstallUser } from "@/api/appUser";
 import { qryDevice, delDevice } from "@/api/device";
 import QrCode from "@/components/QrCode/index.vue";
 import DeviceForm from "./components/deviceForm.vue";
@@ -398,8 +398,9 @@ export default {
   },
   created() {
     // 查询安装商用户
-    qryAppUser({ type: 0, size: 999 }).then((res) => {
-      this.installUserList = res.records;
+    qryinstallUser().then((res) => {
+      this.installUserList = res;
+      console.log("installUserList是：", this.installUserList);
     });
 
     // 解析url
