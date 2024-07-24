@@ -210,6 +210,7 @@ import {
   qrySelfCheckRecordPDF,
 } from "@/api/device";
 
+import { baseUrl } from "@/config/env";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
@@ -335,11 +336,7 @@ export default {
       // 调用导出函数
       qrySelfCheckRecordPDF(selectedRecordIds)
         .then(() => {
-          const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
-          // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
-          // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072"; // ODM版
-
-          const exportUrl = `${exportBaseUrl}/admin/lsydevicecheckrecord/export/pdf/${selectedRecordIds.join(
+          const exportUrl = `${baseUrl}/admin/lsydevicecheckrecord/export/pdf/${selectedRecordIds.join(
             ","
           )}`;
 

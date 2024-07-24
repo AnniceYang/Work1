@@ -337,6 +337,7 @@ import TPdeviceStatistics from "./components/TPdeviceStatistics.vue";
 import RealTimeData from "./components/realTimeData.vue";
 import TPrealTimeData from "./components/TPrealTimeData.vue";
 
+import { baseUrl } from "@/config/env";
 import UpdateRecord from "./components/updateRecord.vue";
 import DeviceUpgrade from "./components/deviceUpgrade.vue";
 import SelfTest from "./components/selfTest.vue";
@@ -424,11 +425,8 @@ export default {
         return;
       }
 
-      const exportBaseUrl = "http://120.79.138.205:7072/excel"; // 测试服版
-      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072/excel"; // 力胜源版
-      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072/excel"; // ODM版
       const installerId = this.listQuery.installUserId;
-      const exportUrl = `${exportBaseUrl}/deviceInfo/${installerId}`;
+      const exportUrl = `${baseUrl}/excel/deviceInfo/${installerId}`;
 
       window.open(exportUrl, "_blank");
     },

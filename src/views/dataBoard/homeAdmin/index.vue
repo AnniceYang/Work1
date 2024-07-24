@@ -165,7 +165,7 @@
 <script>
 import { getTotalcount } from "@/api/home/backend";
 import { listAgent, installData } from "@/api/device";
-
+import { baseUrl } from "@/config/env";
 import DeviceStatus from "./deviceStatus.vue";
 
 import { mapGetters } from "vuex";
@@ -265,11 +265,7 @@ export default {
     },
 
     handleExport(endpoint) {
-      const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
-      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
-      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072"; // ODM版
-
-      const exportUrl = `${exportBaseUrl}${endpoint}`;
+      const exportUrl = `${baseUrl}${endpoint}`;
 
       window.open(exportUrl, "_blank");
     },

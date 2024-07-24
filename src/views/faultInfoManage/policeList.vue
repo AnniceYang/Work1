@@ -171,6 +171,7 @@
 </template>
 <script>
 import { qryDeviceAlarm, exportCurrentAlarm } from "@/api/faultInfo";
+import { baseUrl } from "@/config/env";
 import { mapGetters } from "vuex";
 export default {
   data() {
@@ -202,11 +203,7 @@ export default {
   },
   methods: {
     handleExport() {
-      const exportBaseUrl = "http://120.79.138.205:7072"; // 测试服版
-      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072"; // 力胜源版
-      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072"; // ODM版
-
-      const exportUrl = `${exportBaseUrl}/excel/currentAlarm`;
+      const exportUrl = `${baseUrl}/excel/currentAlarm`;
 
       window.open(exportUrl, "_blank");
     },

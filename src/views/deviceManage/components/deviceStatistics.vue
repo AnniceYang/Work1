@@ -571,6 +571,8 @@ import IncomeData from "./incomeData.vue";
 import PowerData from "./powerData.vue";
 import RecordData from "./recordData.vue";
 import moment from "moment";
+
+import { baseUrl } from "@/config/env";
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
 export default {
@@ -909,25 +911,10 @@ export default {
     },
 
     exportData() {
-      const exportBaseUrl = "http://120.79.138.205:7072/excel"; // 测试服版
-      // const exportBaseUrl = "https://esybackend.esysunhome.com:7072/excel"; // 力胜源版
-      // const exportBaseUrl = "https://pubbackend.esysunhome.com:7072/excel"; // ODM版
       const page = this.exportOptions.selectedPage;
       const deviceId = this.deviceInfo.sn;
 
-      // let exportUrl = "";
-
-      // switch (page) {
-      //   case "necessaryInfo":
-      //     //如果选择导出必要信息，则根据选定的安装商ID构建URL
-      //     const installerId = this.exportOptions.installerId; //从选项中获取安装商ID
-      //     exportUrl = `${exportBaseUrl}/deviceInfo/${installerId}`;
-      //     break;
-      //   default:
-      //     exportUrl = `${exportBaseUrl}/${page}/${deviceId}`;
-      // }
-
-      let exportUrl = `${exportBaseUrl}/${page}/${deviceId}`;
+      let exportUrl = `${baseUrl}/excel/${page}/${deviceId}`;
       if (
         this.requireDateSelection &&
         this.exportDate &&
