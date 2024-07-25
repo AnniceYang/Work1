@@ -1,12 +1,16 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="container">
-      <el-select v-model="deviceId" style="margin-bottom: 15px">
+      <el-select
+        v-model="deviceId"
+        style="margin-bottom: 15px"
+        @change="changeDevice"
+      >
         <el-option
           :label="item.sn"
           :value="item.id"
           v-for="item in list"
-          @change="changeDevice"
+          :key="item.id"
         />
       </el-select>
       <div class="top">
