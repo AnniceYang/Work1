@@ -1620,7 +1620,7 @@ export default {
     phaseALoadPowerPercentage: "Percentuale di potenza del carico fase A",
     phaseBLoadPowerPercentage: "Percentuale di potenza del carico fase B",
     phaseCLoadPowerPercentage: "Percentuale di potenza del carico fase C",
-    powerConsumption: "Consumo di energia",
+    powerConsumption: "Consumo cumulativo",
     electricityMeterInformation: "Informazioni sul contatore elettrico",
     normalIndicatorOfElectricityMeter:
       "Indicatore normale del contatore elettrico",
@@ -2870,7 +2870,7 @@ export default {
     loadPowerPercentageB: "Percentuale di potenza del carico B",
     loadPowerPercentageC: "Percentuale di potenza del carico C",
     realTimePowerOfLoad: "Potenza in tempo reale del carico",
-    powerConsumption: "Consumo di energia",
+    powerConsumption: "Consumo cumulativo",
     electricityMeterInformation: "Informazioni sul contatore elettrico",
     normalIndicatorOfElectricityMeter:
       "Indicatore normale del contatore elettrico",
