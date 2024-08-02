@@ -3169,24 +3169,16 @@
               :label="$t('deviceManage.PROTOCOL_ADDR_441')"
               v-if="
                 systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_441') &&
-                systemSet.otherSetObj.countryCodeVal == '9'
+                systemSet.otherSetObj.countryCodeVal == '6'
               "
             >
               <div style="display: flex">
-                <el-select
+                <el-input
                   v-model="systemSet.advancedSetObj.PROTOCOL_ADDR_441Val"
-                  :placeholder="$t('common.selectPrompt')"
-                  style="width: 100%"
+                  :placeholder="$t('common.inputPrompt')"
                 >
-                  <el-option
-                    :label="'0:' + $t('deviceManage.prohibit')"
-                    value="0"
-                  />
-                  <el-option
-                    :label="'1:' + $t('deviceManage.enable')"
-                    value="1"
-                  />
-                </el-select>
+                  <template slot="append">%</template>
+                </el-input>
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_441')
@@ -4200,6 +4192,8 @@
                       value="8"
                     /> -->
                   <el-option :label="$t('deviceManage.Ireland')" value="9" />
+                  <el-option :label="$t('deviceManage.France')" value="10" />
+                  <el-option :label="$t('deviceManage.Greece')" value="11" />
                 </el-select>
                 <el-button
                   v-if="systemSetBtnIsDisplay('otherSetObj', 'countryCode')"
@@ -7149,6 +7143,11 @@
                 >
               </div>
             </el-descriptions-item>
+
+           
+
+
+
             <el-descriptions-item
               :label="$t('deviceManage.protocolAddress341')"
               v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress341')"
@@ -7284,6 +7283,45 @@
                 >
               </div>
             </el-descriptions-item>
+
+
+
+            <el-descriptions-item
+              :label="$t('deviceManage.PROTOCOL_ADDR_442')"
+              v-if="
+                systemSetIsDisplay('otherSetObj', 'PROTOCOL_ADDR_442') &&
+                (systemSet.otherSetObj.countryCodeVal == '10'||systemSet.otherSetObj.countryCodeVal == '11')
+              "
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.otherSetObj.PROTOCOL_ADDR_442Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.island0')" value="0" />
+                  <el-option :label="$t('deviceManage.island1')" value="1" />
+                  <el-option :label="$t('deviceManage.island2')" value="2" />
+                </el-select>
+             
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('otherSetObj', 'PROTOCOL_ADDR_442')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'PROTOCOL_ADDR_442',
+                      systemSet.otherSetObj.PROTOCOL_ADDR_442Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            
             <el-descriptions-item
               :label="$t('deviceManage.realTimeClock')"
               v-if="systemSetIsDisplay('otherSetObj', 'realTimeClock')"
@@ -15581,6 +15619,8 @@ export default {
         this.$t("deviceManage.Spain"),
         this.$t("deviceManage.Europe50549"),
         this.$t("deviceManage.Ireland"),
+        this.$t("deviceManage.France"),
+        this.$t("deviceManage.Greece"),
       ],
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),

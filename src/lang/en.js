@@ -1708,6 +1708,10 @@ export default {
     protocolAddress328: "Total voltage overvoltage protection",
     protocolAddress329: "Total pressure over discharge recovery",
     protocolAddress340: "Total voltage over discharge alarm voltage",
+    PROTOCOL_ADDR_442: "Mainland-Island Settings",
+    island0: "Mainland",
+    island1: "50Hz Island",
+    island2: "60Hz Island",
 
     hm6_0X03_80: "Special Date 1Year",
     hm6_0X03_81: "Special Date 1Month",
@@ -1942,7 +1946,7 @@ export default {
     PROTOCOL_ADDR_406: "Battery maintenance",
     PROTOCOL_ADDR_407: "Upgrade configuration",
     PROTOCOL_ADDR_408: "CT Reverse connection detection power (3p meter)",
-    PROTOCOL_ADDR_441: "Remote Stop Active Power",
+    PROTOCOL_ADDR_441: "Freq-Watt Curve Overfrequency Ratio",
     electricityMeter: "electricity meter",
 
     PROTOCOL_ADDR_409: "Generator Mode",
@@ -2007,6 +2011,8 @@ export default {
     Spain: "Spain",
     Europe50549: "Europe 50549",
     Ireland: "Ireland",
+    France: "France",
+    Greece: "Greece",
     systemTimeSetting: "system time setting",
     inverterActivePowerSetting: "Inverter active power setting",
     communicationProtocolType485: "485 communication protocol type",
@@ -2998,7 +3004,7 @@ export default {
     PROTOCOL_ADDR_406: "Battery maintenance",
     PROTOCOL_ADDR_407: "Upgrade configuration",
     PROTOCOL_ADDR_408: "CT Reverse connection detection power (3p meter)",
-    PROTOCOL_ADDR_441: "Remote Stop Active Power",
+    PROTOCOL_ADDR_441: "Freq-Watt Curve Overfrequency Ratio",
 
     alternatorSet: "Generator Settings",
     PROTOCOL_ADDR_409: "Generator Mode",
@@ -3155,6 +3161,7 @@ export default {
     protocolAddress328: "Total voltage overvoltage protection",
     protocolAddress329: "Total pressure over discharge recovery",
     protocolAddress340: "Total voltage over discharge alarm voltage",
+    PROTOCOL_ADDR_442: "Mainland-Island Settings",
 
     batterySet: "Battery parameters",
     batteryPackId: "Battery pack ID",

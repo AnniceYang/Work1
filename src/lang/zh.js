@@ -1724,6 +1724,10 @@ export default {
     protocolAddress328: "总压过放保护",
     protocolAddress329: "总压过放恢复",
     protocolAddress340: "总压过放告警电压",
+    PROTOCOL_ADDR_442: "大陆岛屿设置",
+    island0: "大陆",
+    island1: "50Hz岛屿",
+    island2: "60Hz岛屿",
 
     hm6_0X03_80: "特殊日期1_年",
     hm6_0X03_81: "特殊日期1_月",
@@ -1955,7 +1959,7 @@ export default {
     PROTOCOL_ADDR_406: "电池维护",
     PROTOCOL_ADDR_407: "升级配置",
     PROTOCOL_ADDR_408: "CT反接检测功率（三相电表）",
-    PROTOCOL_ADDR_441: "远程停止有功功率",
+    PROTOCOL_ADDR_441: "Freq-Watt曲线过频频率功率变比",
     electricityMeter: "电表",
 
     PROTOCOL_ADDR_409: "发电机模式功能",
@@ -2019,6 +2023,8 @@ export default {
     Spain: "西班牙",
     Europe50549: "欧洲50549",
     Ireland: "爱尔兰",
+    France: "法国",
+    Greece: "希腊",
     systemTimeSetting: "系统时间设置",
     inverterActivePowerSetting: "逆变有功设定",
     communicationProtocolType485: "485通讯协议类型",
@@ -2302,6 +2308,7 @@ export default {
     systemLockNumber: "系统锁状态序号",
     totalOvervoltageVoltage: "总压过压告警电压",
     totalOverdischargeVoltage: "总压过放告警电压",
+
     cellOvervoltageVoltage: "电芯过压告警电压",
     cellOverdischargeVoltage: "电芯过放告警电压",
     chargingOvercurrentAlarm: "充电过流告警电流",
@@ -3784,7 +3791,7 @@ export default {
     PROTOCOL_ADDR_406: "电池维护",
     PROTOCOL_ADDR_407: "升级配置",
     PROTOCOL_ADDR_408: "CT反接检测功率（三相电表）",
-    PROTOCOL_ADDR_441: "远程停止有功功率",
+    PROTOCOL_ADDR_441: "Freq-Watt曲线过频频率功率变比",
 
     alternatorSet: "发电机设置",
     PROTOCOL_ADDR_409: "发电机模式功能",
@@ -3904,6 +3911,7 @@ export default {
     protocolAddress328: "总压过放保护",
     protocolAddress329: "总压过放恢复",
     protocolAddress340: "总压过放告警电压",
+    PROTOCOL_ADDR_442: "大陆岛屿设置",
 
     batterySet: "电池参数",
     batteryPackId: "电池组ID",

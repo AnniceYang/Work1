@@ -1701,6 +1701,10 @@ export default {
     protocolAddress328: "Protezione per sovrascarica totale",
     protocolAddress329: "Ripristino per sovrascarica totale",
     protocolAddress340: "Tensione di allarme per sovrascarica totale",
+    PROTOCOL_ADDR_442: "Impostazioni continente-isola",
+    island0: "Continente",
+    island1: "Isola 50Hz",
+    island2: "Isola 60Hz",
 
     hm6_0X03_80: "Spec. Date 1 Anno",
     hm6_0X03_81: "Spec. Date 1 Mese",
@@ -1930,7 +1934,7 @@ export default {
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
     PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
-    PROTOCOL_ADDR_441: "Arresto Remoto Potenza Attiva",
+    PROTOCOL_ADDR_441: "Rapporto di sovrafrequenza curva Freq-Watt",
 
     PROTOCOL_ADDR_409: "Modalità Generatore",
     PROTOCOL_ADDR_410: "Tensione Batteria Avvio Gen",
@@ -1999,6 +2003,8 @@ export default {
     Spain: "Spagna",
     Europe50549: "Europa 50549",
     Ireland: "Irlanda",
+    France: "Francia",
+    Greece: "Grecia",
     systemTimeSetting: "Impostazione dell'orario di sistema",
     inverterActivePowerSetting:
       "Impostazione della potenza attiva dell'inverter",
@@ -2997,7 +3003,7 @@ export default {
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
     PROTOCOL_ADDR_408: "Potenza inverso CT (contatore trifase)",
-    PROTOCOL_ADDR_441: "Arresto Remoto Potenza Attiva",
+    PROTOCOL_ADDR_441: "Rapporto di sovrafrequenza curva Freq-Watt",
 
     alternatorSet: "Impostazioni Generatore",
 
@@ -3154,6 +3160,7 @@ export default {
     protocolAddress328: "Protezione sovrascarica totale",
     protocolAddress329: "Ripristino sovrascarica totale",
     protocolAddress340: "Tensione di allarme per sovrascarica totale",
+    PROTOCOL_ADDR_442: "Impostazioni continente-isola",
 
     batterySet: "Impostazioni della batteria",
     batteryPackId: "ID del pacco batterie",
