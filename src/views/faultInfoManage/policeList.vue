@@ -203,7 +203,17 @@ export default {
   },
   methods: {
     handleExport() {
-      const exportUrl = `${baseUrl}/excel/currentAlarm`;
+      const { sn, faultCode, level, tpType, handleStatus } = this.listQuery;
+
+      //construct the URL by replacing the default -1 with the actual values if present
+      const snValue = sn || "sn";
+      const faultCodeValue = faultCode || "fc";
+      const levelValue = level !== undefined ? level : "-1";
+      const tpTypeValue = tpType !== undefined ? tpType : "-1";
+      const handleStatusValue =
+        handleStatus !== undefined ? handleStatus : "-1";
+
+      const exportUrl = `${baseUrl}/excel/alarm/${snValue}/${faultCodeValue}/${levelValue}/${tpTypeValue}/${handleStatusValue}`;
 
       window.open(exportUrl, "_blank");
     },
