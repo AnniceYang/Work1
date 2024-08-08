@@ -33,10 +33,13 @@
           v-if="systemSet.otherSetObj.countryCodeVal == '1'"
           >{{ $t("deviceManage.selfTest") }}</el-menu-item
         >
+        <div class="fixed-sn-box" v-if="isAdmin">
+          SN Code: {{ deviceInfo.sn }}
+        </div>
       </el-menu>
 
       <div v-loading="loading">
-        <el-card style="margin-top: 20px">
+        <el-card style="margin-top: 20px; position: relative">
           <el-descriptions
             :title="$t('deviceManage.deviceInformation')"
             :column="3"
@@ -56,6 +59,7 @@
           </el-descriptions>
         </el-card>
       </div>
+
       <template v-if="activeIndex === '7'">
         <el-card
           style="margin-top: 10px"
@@ -7144,10 +7148,6 @@
               </div>
             </el-descriptions-item>
 
-           
-
-
-
             <el-descriptions-item
               :label="$t('deviceManage.protocolAddress341')"
               v-if="systemSetIsDisplay('otherSetObj', 'protocolAddress341')"
@@ -7284,13 +7284,12 @@
               </div>
             </el-descriptions-item>
 
-
-
             <el-descriptions-item
               :label="$t('deviceManage.PROTOCOL_ADDR_442')"
               v-if="
                 systemSetIsDisplay('otherSetObj', 'PROTOCOL_ADDR_442') &&
-                (systemSet.otherSetObj.countryCodeVal == '10'||systemSet.otherSetObj.countryCodeVal == '11')
+                (systemSet.otherSetObj.countryCodeVal == '10' ||
+                  systemSet.otherSetObj.countryCodeVal == '11')
               "
             >
               <div style="display: flex">
@@ -7303,7 +7302,7 @@
                   <el-option :label="$t('deviceManage.island1')" value="1" />
                   <el-option :label="$t('deviceManage.island2')" value="2" />
                 </el-select>
-             
+
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay('otherSetObj', 'PROTOCOL_ADDR_442')
@@ -7321,7 +7320,6 @@
               </div>
             </el-descriptions-item>
 
-            
             <el-descriptions-item
               :label="$t('deviceManage.realTimeClock')"
               v-if="systemSetIsDisplay('otherSetObj', 'realTimeClock')"
@@ -16677,6 +16675,7 @@ export default {
   },
   beforeDestroy() {
     console.log("页面卸载了====关闭mqtt客户端连接");
+    window.removeEventListener("scroll", this.handleScroll);
     if (this.mqttClient) {
       this.mqttClient.end(true);
       this.mqttClient = null;
@@ -16694,6 +16693,20 @@ export default {
   }
 }
 
+.fixed-sn-box {
+  position: fixed;
+  top: 180px;
+  right: 100px;
+  background-color: green;
+  padding: 10px;
+  border: 1px solid #dcdcdc;
+  border-radius: 20px;
+  font-size: 18px;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
 .input-container {
   display: flex;
   align-items: center;
