@@ -602,13 +602,7 @@ export default {
     TP_0X04_1296: "Actual Protection Time",
     TP_0X04_1297: "Real-Time Protection Threshold",
 
-    TP_0X04_57_58: "Self-Sufficient Power",
-    TP_0X04_61_62: "Self-Consumption Power",
     TP_0X04_1045_1046: "PV Generation",
-    TP_0X04_67: "Self-Sufficiency Ratio",
-    TP_0X04_68: "Purchase Ratio",
-    TP_0X04_69: "Self-Consumption Ratio",
-    TP_0X04_70: "Grid Ratio",
 
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
@@ -869,8 +863,8 @@ export default {
     TP_0X04_5644: "Phase B Voltage",
     TP_0X04_5645: "Phase C Voltage",
     TP_0X04_5646: "Inlet Ambient Temperature",
-    TP_0X04_5647: "Output Current Display Value",
-    TP_0X04_5648: "External Output Voltage",
+    TP_0X04_5647: "Output Current",
+    TP_0X04_5648: "Flying Capacitor Voltage",
     TP_0X04_5649: "Total Operating Time Low",
     TP_0X04_5650: "Total Operating Time High",
     TP_0X04_5651: "Current Status 1",
@@ -3505,7 +3499,7 @@ export default {
     TP_0X04_1031: "Current Country Code",
     TP_0X04_1032: "Bus Charging/Discharging Voltage Setting",
     TP_0X04_1033: "Bus Charging/Discharging Power Setting",
-    TP_0X04_1034: "System Operating Mode",
+    TP_0X04_1034: "Current System Operating Mode",
     TP_0X04_1035: "System Operating Mode Control Source",
     TP_0X04_1036: "DSP1 Version",
     TP_0X04_1037: "Output Rated Power",
@@ -3685,13 +3679,7 @@ export default {
     TP_0X04_1296: "Actual Protection Time",
     TP_0X04_1297: "Real-Time Protection Threshold",
 
-    TP_0X04_57_58: "Self-Sufficient Power",
-    TP_0X04_61_62: "Self-Consumption Power",
     TP_0X04_1045_1046: "PV Generation",
-    TP_0X04_67: "Self-Sufficiency Ratio",
-    TP_0X04_68: "Purchase Ratio",
-    TP_0X04_69: "Self-Consumption Ratio",
-    TP_0X04_70: "Grid Ratio",
 
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
@@ -3929,8 +3917,8 @@ export default {
     TP_0X04_5644: "Phase B Voltage",
     TP_0X04_5645: "Phase C Voltage",
     TP_0X04_5646: "Inlet Ambient Temperature",
-    TP_0X04_5647: "Output Current Display Value",
-    TP_0X04_5648: "External Output Voltage",
+    TP_0X04_5647: "Output Current",
+    TP_0X04_5648: "Flying Capacitor Voltage",
     TP_0X04_5649: "Total Operating Time Low",
     TP_0X04_5650: "Total Operating Time High",
     TP_0X04_5651: "Current Status 1",
