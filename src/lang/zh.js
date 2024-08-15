@@ -36,6 +36,7 @@ export default {
     forgotPrompt: "忘记密码请联系管理员",
     admin: "管理员",
     installer: "安装商",
+    agent: "代理商",
     unknown: "未知",
     dealer: "二级分销商",
     distributor: "一级分销商",
@@ -285,6 +286,10 @@ export default {
   },
   installUser: {
     enterpriseName: "企业名称",
+    showDealerAgent: "是否显示二级分销商下安装商",
+    display: "显示",
+    notDisplay: "不显示",
+    validateShowDealerAgent: "显示选项不能为空",
     authorizationCode: "授权码",
     contactPerson: "联系人",
     email: "邮箱",
@@ -693,6 +698,10 @@ export default {
     BCUdisplay1: "轮询显示",
     BCUdisplay2: "手动切换",
     TP_0X04_4098: "EAST-BCU在线数量",
+
+    TP_0X04_4101: "BCU告警字1",
+    TP_0X04_4102: "BCU告警字2",
+    TP_0X04_4103: "BCU告警字3",
 
     TP_0X04_4106: "BCU软件主版本",
     TP_0X04_4107: "BCU软件子版本",
@@ -3080,6 +3089,10 @@ export default {
     TP_0X04_4096: "EAST-BCU 显示数据ID",
     TP_0X04_4097: "EAST-BCU EAST-BCU 显示数据模式",
     TP_0X04_4098: "EAST-BCU在线数量",
+
+    TP_0X04_4101: "BCU告警字1",
+    TP_0X04_4102: "BCU告警字2",
+    TP_0X04_4103: "BCU告警字3",
 
     TP_0X04_4106: "BCU软件主版本",
     TP_0X04_4107: "BCU软件子版本",

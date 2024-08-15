@@ -50,6 +50,21 @@
           >{{ $t("common.distributor") }}</el-radio
         >
       </el-form-item>
+
+      <!-- 动态显示showDealerAgent选项 -->
+      <el-form-item
+        v-if="dataForm.roleId === '5'"
+        :label="$t('installUser.showDealerAgent')"
+        prop="showDealerAgent"
+      >
+        <el-radio v-model="dataForm.showDealerAgent" :label="1">
+          {{ $t("installUser.display") }}
+        </el-radio>
+
+        <el-radio v-model="dataForm.showDealerAgent" :label="0">
+          {{ $t("installUser.notDisplay") }}
+        </el-radio>
+      </el-form-item>
     </el-form>
 
     <span slot="footer" class="dialog-footer">
@@ -100,6 +115,13 @@ export default {
           },
         ],
         roleId: [{ required: true }],
+        showDealerAgent: [
+          {
+            required: (model) => model.roleId === "5",
+            message: this.$t("installUser.validateShowDealerAgent"),
+            trigger: "change",
+          },
+        ], //仅当roleId为5时为必填项
       },
     };
   },
@@ -112,6 +134,7 @@ export default {
         mail: null,
         name: null,
         roleId: "2",
+        showDealerAgent: null,
       };
       if (info) {
         for (const key in info) {

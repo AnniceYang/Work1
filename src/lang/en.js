@@ -38,6 +38,7 @@ export default {
       "If you forgot the password, please contact the administrator",
     admin: "Admin",
     installer: "Installer",
+    agent: "Agent",
     unknown: "Unknown",
     dealer: "Secondary Distributor",
     distributor: "Primary Distributor",
@@ -288,6 +289,11 @@ export default {
   },
   installUser: {
     enterpriseName: "Enterprise name",
+
+    showDealerAgent: "Show Installers Under Sub-distributors",
+    display: "Display",
+    notDisplay: "Not Display",
+    validateShowDealerAgent: "Display option cannot be empty",
     authorizationCode: "Authorization code",
     contactPerson: "Contact person",
     email: "E-mail",
@@ -700,6 +706,10 @@ export default {
     BCUdisplay1: "Polling Display",
     BCUdisplay2: "Manual Switch",
     TP_0X04_4098: "EAST-BCU Online Count",
+
+    TP_0X04_4101: "BCU Alarm 1",
+    TP_0X04_4102: "BCU Alarm 2",
+    TP_0X04_4103: "BCU Alarm 3",
 
     TP_0X04_4106: "BCU SW Main Version",
     TP_0X04_4107: "BCU SW Sub Version",
@@ -3776,6 +3786,10 @@ export default {
     TP_0X04_4096: "EAST-BCU Data ID",
     TP_0X04_4097: "EAST-BCU Data Mode",
     TP_0X04_4098: "EAST-BCU Online Count",
+
+    TP_0X04_4101: "BCU Alarm 1",
+    TP_0X04_4102: "BCU Alarm 2",
+    TP_0X04_4103: "BCU Alarm 3",
 
     TP_0X04_4106: "BCU SW Main Version",
     TP_0X04_4107: "BCU SW Sub Version",

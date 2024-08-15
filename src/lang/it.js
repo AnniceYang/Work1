@@ -36,6 +36,7 @@ export default {
     forgotPrompt: "Se hai dimenticato la password, contatta l'amministratore",
     admin: "Amministratore",
     installer: "Installatore",
+    agent: "Agente",
     unknown: "Sconosciuto",
     dealer: "Distributore Secondario",
     distributor: "Distributore Primario",
@@ -286,6 +287,12 @@ export default {
   },
   installUser: {
     enterpriseName: "Nome dell'Impresa",
+
+    showDealerAgent: "Mostra Installatori Sotto Sub-distributori",
+    display: "Mostra",
+    notDisplay: "Non Mostrare",
+    validateShowDealerAgent:
+      "L'opzione di visualizzazione non può essere vuota",
     authorizationCode: "Codice di Autorizzazione",
     contactPerson: "Persona di Contatto",
     email: "Email",
@@ -698,6 +705,11 @@ export default {
     BCUdisplay1: "Visualizzazione Polling",
     BCUdisplay2: "Comm. Manuale",
     TP_0X04_4098: "Conteggio Online EAST-BCU",
+
+    TP_0X04_4101: "Allarme BCU 1",
+    TP_0X04_4102: "Allarme BCU 2",
+    TP_0X04_4103: "Allarme BCU 3",
+
     TP_0X04_4106: "Versione Principale SW BCU",
     TP_0X04_4107: "Versione Secondaria SW BCU",
     TP_0X04_4108: "Versione HW BCU",
@@ -3796,6 +3808,11 @@ export default {
     TP_0X04_4096: "ID Dati EAST-BCU",
     TP_0X04_4097: "Modalità Dati EAST-BCU",
     TP_0X04_4098: "Conteggio Online EAST-BCU",
+
+    TP_0X04_4101: "Allarme BCU 1",
+    TP_0X04_4102: "Allarme BCU 2",
+    TP_0X04_4103: "Allarme BCU 3",
+
     TP_0X04_4106: "Versione Principale SW BCU",
     TP_0X04_4107: "Versione Secondaria SW BCU",
     TP_0X04_4108: "Versione HW BCU",

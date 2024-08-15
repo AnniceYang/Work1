@@ -53,7 +53,7 @@
               </el-select>
             </el-form-item>
             <el-form-item
-              :label="$t('deviceManage.installer')"
+              :label="$t('common.agent')"
               v-if="permissions.admin_lsydevice_installer"
             >
               <el-select

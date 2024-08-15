@@ -59,8 +59,7 @@
       </el-menu>
 
       <div class="fixed-sn-box" v-if="isAdmin">
-        SN Code:<br />
-        {{ deviceInfo.sn }}
+        SN Code: {{ deviceInfo.sn }}
       </div>
 
       <div v-loading="loading">
@@ -2103,6 +2102,23 @@
                 v-if="CCIsDisplay('44', 'TP_0X04_4098')"
                 >{{ voListMap["44"]["TP_0X04_4098"].val }}</el-descriptions-item
               >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4101')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4101')"
+                >{{ voListMap["44"]["TP_0X04_4101"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4102')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4102')"
+                >{{ voListMap["44"]["TP_0X04_4102"].val }}</el-descriptions-item
+              >
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4103')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4103')"
+                >{{ voListMap["44"]["TP_0X04_4103"].val }}</el-descriptions-item
+              >
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4106')"
                 v-if="CCIsDisplay('44', 'TP_0X04_4106')"
@@ -11572,6 +11588,38 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    // getFormattedAlarms(val) {
+    //   // 先将字符串转换为数组
+    //   const valArray = val.split(",").map(Number); // 以逗号分隔并转换为数字数组
+    //   console.log("valArray: ", valArray);
+    //   const alarms = [
+    //     "BMU1 通信异常",
+    //     "BMU2 通信异常",
+    //     "BMU3 通信异常",
+    //     "BMU4 通信异常",
+    //     "BMU5 通信异常",
+    //     "BMU6 通信异常",
+    //     "BMU7 通信异常",
+    //     "BMU8 通信异常",
+    //   ];
+
+    //   // 检查是否所有位都是0
+    //   const isAllZeros = valArray.every((bit) => bit === 0);
+    //   console.log("isAllZeros: ", isAllZeros);
+    //   if (isAllZeros) {
+    //     // 如果都是0，返回原始的字符串
+    //     return val;
+    //   }
+
+    //   // 否则返回告警名称列表
+    //   const activeAlarms = valArray
+    //     .slice(0, 8) // 只处理前8位
+    //     .map((bit, index) => (bit === 1 ? alarms[index] : ""))
+    //     .filter((alarm) => alarm !== "");
+
+    //   return activeAlarms.join(", "); // 用逗号和空格分隔
+    // },
+
     saveEnableSettings() {
       const sendData = {
         deviceId: this.deviceInfo.id,
