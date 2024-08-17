@@ -857,12 +857,12 @@ export default {
     alarm: "Allarme",
     TP_0X04_5162: "Allarme",
 
-    TP_0X04_5632: "Pot. Ingresso Basso",
-    TP_0X04_5633: "Pot. Ingresso Alto",
+    TP_0X04_5632_5633: "Pot. Ingresso",
+
     TP_0X04_5634: "Frequenza Ingresso",
     TP_0X04_5635: "Corrente Ingresso",
-    TP_0X04_5636: "Pot. Uscita CC Basso",
-    TP_0X04_5637: "Pot. Uscita CC Alto",
+    TP_0X04_5636_5637: "Pot. Uscita CC",
+
     TP_0X04_5638: "Efficienza in Tempo Reale",
     TP_0X04_5639: "Tensione uscita CC",
     TP_0X04_5640: "Limite potenza uscita",
@@ -874,15 +874,15 @@ export default {
     TP_0X04_5646: "Temperatura Ambiente Ingresso",
     TP_0X04_5647: "Corrente di uscita",
     TP_0X04_5648: "Tensione del condensatore volante",
-    TP_0X04_5649: "Tempo Operativo Totale Basso",
-    TP_0X04_5650: "Tempo Operativo Totale Alto",
+    TP_0X04_5649_5650: "Tempo Operativo Totale",
+
     TP_0X04_5651: "Stato Attuale 1",
     TP_0X04_5652: "Stato Attuale 2",
     TP_0X04_5653: "SOC Batteria",
     TP_0X04_5654: "SOH Batteria",
     TP_0X04_5655: "Tempo Batteria Residuo",
-    TP_0X04_5656: "Pot. Ingresso Totale Basso",
-    TP_0X04_5657: "Pot. Ingresso Totale Alto",
+    TP_0X04_5656_5657: "Pot. Ingresso Totale",
+
     TP_0X04_5658: "Allarme/Stato Attuale Corrente 1",
     TP_0X04_5659: "Allarme/Stato Attuale Corrente 2",
     TP_0X04_5660: "Allarme/Stato Attuale Corrente 3",
@@ -3937,12 +3937,12 @@ export default {
     TP_0X04_5161: "Guasto",
     TP_0X04_5162: "Allarme",
 
-    TP_0X04_5632: "Pot. Ingresso Basso",
-    TP_0X04_5633: "Pot. Ingresso Alto",
+    TP_0X04_5632_5633: "Pot. Ingresso",
+
     TP_0X04_5634: "Frequenza Ingresso",
     TP_0X04_5635: "Corrente Ingresso",
-    TP_0X04_5636: "Pot. Uscita CC Basso",
-    TP_0X04_5637: "Pot. Uscita CC Alto",
+    TP_0X04_5636_5637: "Pot. Uscita CC",
+
     TP_0X04_5638: "Efficienza in Tempo Reale",
     TP_0X04_5639: "Tensione uscita CC",
     TP_0X04_5640: "Limite potenza uscita",
@@ -3954,15 +3954,15 @@ export default {
     TP_0X04_5646: "Temperatura Ambiente Ingresso",
     TP_0X04_5647: "Corrente di uscita",
     TP_0X04_5648: "Tensione del condensatore volante",
-    TP_0X04_5649: "Tempo Operativo Totale Basso",
-    TP_0X04_5650: "Tempo Operativo Totale Alto",
+    TP_0X04_5649_5650: "Tempo Operativo Totale",
+
     TP_0X04_5651: "Stato Attuale 1",
     TP_0X04_5652: "Stato Attuale 2",
     TP_0X04_5653: "SOC Batteria",
     TP_0X04_5654: "SOH Batteria",
     TP_0X04_5655: "Tempo Batteria Residuo",
-    TP_0X04_5656: "Pot. Ingresso Totale Basso",
-    TP_0X04_5657: "Pot. Ingresso Totale Alto",
+    TP_0X04_5656_5657: "Pot. Ingresso Totale",
+
     TP_0X04_5658: "Allarme/Stato Attuale Corrente 1",
     TP_0X04_5659: "Allarme/Stato Attuale Corrente 2",
     TP_0X04_5660: "Allarme/Stato Attuale Corrente 3",

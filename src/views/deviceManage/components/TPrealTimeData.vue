@@ -2870,17 +2870,12 @@
                 {{ alarmFilter[voListMap["45"]["TP_0X04_5162"].val] }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5632')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5632')"
+                :label="$t('threePhase.TP_0X04_5632_5633')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5632_5633')"
               >
-                {{ voListMap["45"]["TP_0X04_5632"].val }}
+                {{ voListMap["45"]["TP_0X04_5632_5633"].val }}
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5633')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5633')"
-              >
-                {{ voListMap["45"]["TP_0X04_5633"].val }}
-              </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5634')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5634')"
@@ -2894,17 +2889,12 @@
                 {{ voListMap["45"]["TP_0X04_5635"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5636')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5636')"
+                :label="$t('threePhase.TP_0X04_5636_5637')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5636_5637')"
               >
-                {{ voListMap["45"]["TP_0X04_5636"].val }}
+                {{ voListMap["45"]["TP_0X04_5636_5637"].val }}
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5637')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5637')"
-              >
-                {{ voListMap["45"]["TP_0X04_5637"].val }}
-              </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5638')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5638')"
@@ -2972,17 +2962,12 @@
                 {{ voListMap["45"]["TP_0X04_5648"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5649')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5649')"
+                :label="$t('threePhase.TP_0X04_5649_5650')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5649_5650')"
               >
-                {{ voListMap["45"]["TP_0X04_5649"].val }}
+                {{ voListMap["45"]["TP_0X04_5649_5650"].val }}
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5650')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5650')"
-              >
-                {{ voListMap["45"]["TP_0X04_5650"].val }}
-              </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5651')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5651')"
@@ -3014,17 +2999,12 @@
                 {{ voListMap["45"]["TP_0X04_5655"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5656')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5656')"
+                :label="$t('threePhase.TP_0X04_5656_5657')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5656_5657')"
               >
-                {{ voListMap["45"]["TP_0X04_5656"].val }}
+                {{ voListMap["45"]["TP_0X04_5656_5657"].val }}
               </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5657')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5657')"
-              >
-                {{ voListMap["45"]["TP_0X04_5657"].val }}
-              </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5658')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5658')"
@@ -3215,12 +3195,12 @@
               >
                 {{ voListMap["45"]["TP_0X04_5713"].val }}
               </el-descriptions-item>
-              <el-descriptions-item
+              <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_5714_5739')"
                 v-if="CCIsDisplay('45', 'TP_0X03_5714_5739')"
               >
                 {{ voListMap["45"]["TP_0X03_5714_5739"].val }}
-              </el-descriptions-item>
+              </el-descriptions-item> -->
               <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5719')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5719')"
@@ -3950,9 +3930,10 @@
               <el-descriptions-item :label="$t('threePhase.TP_0X03_55')">
                 <div style="display: flex">
                   <el-input
-                    v-model="settingList['TP_0X03_55Val']"
+                    :value="displayValue"
                     :placeholder="$t('common.inputPrompt')"
                     v-if="CCIsDisplay('47', 'TP_0X03_55')"
+                    @input="updateValue"
                   >
                     <template slot="append">Min</template>
                   </el-input>
@@ -11558,6 +11539,12 @@ export default {
   },
 
   computed: {
+    displayValue() {
+      return this.settingList["TP_0X03_55Val"] === 60
+        ? "长鸣"
+        : this.settingList["TP_0X03_55Val"];
+    },
+
     isAdmin() {
       return this.$store.state.user.roles.includes("1");
     },
@@ -11619,6 +11606,16 @@ export default {
 
     //   return activeAlarms.join(", "); // 用逗号和空格分隔
     // },
+
+    updateValue(val) {
+      if (val > 0 && val <= 60) {
+        this.settingList["TP_0X03_55Val"] = val;
+      } else if (val === "长鸣") {
+        this.settingList["TP_0X03_55Val"] = 60;
+      } else {
+        this.settingList["TP_0X03_55Val"] = "";
+      }
+    },
 
     saveEnableSettings() {
       const sendData = {

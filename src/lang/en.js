@@ -858,12 +858,12 @@ export default {
     alarm: "Alarm",
     TP_0X04_5162: "Alarm",
 
-    TP_0X04_5632: "Input Power Low",
-    TP_0X04_5633: "Input Power High",
+    TP_0X04_5632_5633: "Input Power",
+
     TP_0X04_5634: "Input Frequency",
     TP_0X04_5635: "Input Current",
-    TP_0X04_5636: "DC Output Power Low",
-    TP_0X04_5637: "DC Output Power High",
+    TP_0X04_5636_5637: "DC Output Power",
+
     TP_0X04_5638: "Real-time Efficiency",
     TP_0X04_5639: "DC Output Voltage",
     TP_0X04_5640: "Actual Output Power Limit",
@@ -875,15 +875,15 @@ export default {
     TP_0X04_5646: "Inlet Ambient Temperature",
     TP_0X04_5647: "Output Current",
     TP_0X04_5648: "Flying Capacitor Voltage",
-    TP_0X04_5649: "Total Operating Time Low",
-    TP_0X04_5650: "Total Operating Time High",
+    TP_0X04_5649_5650: "Total Operating Time",
+
     TP_0X04_5651: "Current Status 1",
     TP_0X04_5652: "Current Status 2",
     TP_0X04_5653: "Battery SOC",
     TP_0X04_5654: "Battery SOH",
     TP_0X04_5655: "Remaining Battery Time",
-    TP_0X04_5656: "Total Input Power Low",
-    TP_0X04_5657: "Total Input Power High",
+    TP_0X04_5656_5657: "Total Input Power",
+
     TP_0X04_5658: "Current Alarm/Status 1",
     TP_0X04_5659: "Current Alarm/Status 2",
     TP_0X04_5660: "Current Alarm/Status 3",
@@ -3916,12 +3916,12 @@ export default {
     TP_0X04_5161: "Fault",
     TP_0X04_5162: "Alarm",
 
-    TP_0X04_5632: "Input Power Low",
-    TP_0X04_5633: "Input Power High",
+    TP_0X04_5632_5633: "Input Power",
+
     TP_0X04_5634: "Input Frequency",
     TP_0X04_5635: "Input Current",
-    TP_0X04_5636: "DC Output Power Low",
-    TP_0X04_5637: "DC Output Power High",
+    TP_0X04_5636_5637: "DC Output Power",
+
     TP_0X04_5638: "Real-time Efficiency",
     TP_0X04_5639: "DC Output Voltage",
     TP_0X04_5640: "Actual Output Power Limit",
@@ -3933,15 +3933,15 @@ export default {
     TP_0X04_5646: "Inlet Ambient Temperature",
     TP_0X04_5647: "Output Current",
     TP_0X04_5648: "Flying Capacitor Voltage",
-    TP_0X04_5649: "Total Operating Time Low",
-    TP_0X04_5650: "Total Operating Time High",
+    TP_0X04_5649_5650: "Total Operating Time",
+
     TP_0X04_5651: "Current Status 1",
     TP_0X04_5652: "Current Status 2",
     TP_0X04_5653: "Battery SOC",
     TP_0X04_5654: "Battery SOH",
     TP_0X04_5655: "Remaining Battery Time",
-    TP_0X04_5656: "Total Input Power Low",
-    TP_0X04_5657: "Total Input Power High",
+    TP_0X04_5656_5657: "Total Input Power",
+
     TP_0X04_5658: "Current Alarm/Status 1",
     TP_0X04_5659: "Current Alarm/Status 2",
     TP_0X04_5660: "Current Alarm/Status 3",

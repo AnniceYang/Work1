@@ -5081,7 +5081,7 @@ export const info3 = {
       unit: "AH",
     },
     {
-      key: "TP_0X04_5656",
+      key: "TP_0X04_5656_5657",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -5091,17 +5091,7 @@ export const info3 = {
       val: "",
       unit: "W",
     },
-    {
-      key: "TP_0X04_5657",
-      isShow: 1,
-      canSet: 1,
-      installerIsShow: 1,
-      installerCanSet: 1,
-      consumerIsShow: 1,
-      consumerCanSet: 1,
-      val: "",
-      unit: "W",
-    },
+
     {
       key: "TP_0X04_5658",
       isShow: 1,
