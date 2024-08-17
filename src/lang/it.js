@@ -427,6 +427,7 @@ export default {
     TP_0X04_1033: "Impostazione Potenza Carica/Scarica Bus",
     TP_0X04_1034: "Modalità Sistema Corrente",
     TP_0X04_1035: "Sorgente Controllo Sistema Corrente",
+    DSPControl: " Controllo Attivo DSP",
     TP_0X04_1036: "Versione DSP1",
     TP_0X04_1037: "Potenza Nominale di Uscita",
     TP_0X04_1038: "Versione Hardware",

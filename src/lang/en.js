@@ -428,6 +428,7 @@ export default {
     TP_0X04_1033: "Bus Charging/Discharging Power Setting",
     TP_0X04_1034: "Current System Operating Mode",
     TP_0X04_1035: "Current System Operating Mode Control Source",
+    DSPControl: "DSP Active Control",
     TP_0X04_1036: "DSP1 Version",
     TP_0X04_1037: "Output Rated Power",
     TP_0X04_1038: "Hardware Version",
@@ -3511,6 +3512,7 @@ export default {
     TP_0X04_1033: "Bus Charging/Discharging Power Setting",
     TP_0X04_1034: "Current System Operating Mode",
     TP_0X04_1035: "System Operating Mode Control Source",
+
     TP_0X04_1036: "DSP1 Version",
     TP_0X04_1037: "Output Rated Power",
     TP_0X04_1038: "Hardware Version",
@@ -4058,6 +4060,7 @@ export default {
     TP_0X03_1033: "Reactive Power Adjustment Rate",
     TP_0X03_1034: "Inverter Active Power Setpoint",
     TP_0X03_1035: "PV Active Power Setpoint",
+
     TP_0X03_1036: "Active Power Change Rate Limit",
     TP_0X03_1037: "Island Detection Enable",
     TP_0X03_1038: "Authentication Mode",
