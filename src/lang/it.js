@@ -37,6 +37,7 @@ export default {
     admin: "Amministratore",
     installer: "Installatore",
     agent: "Agente",
+    timeZone: "Fuso orario",
     unknown: "Sconosciuto",
     dealer: "Distributore Secondario",
     distributor: "Distributore Primario",

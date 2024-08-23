@@ -2106,17 +2106,26 @@
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4101')"
                 v-if="CCIsDisplay('44', 'TP_0X04_4101')"
-                >{{ voListMap["44"]["TP_0X04_4101"].val }}</el-descriptions-item
+                >{{
+                  getFormattedAlarms(voListMap["44"]["TP_0X04_4101"].val)
+                }}</el-descriptions-item
               >
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4102')"
                 v-if="CCIsDisplay('44', 'TP_0X04_4102')"
-                >{{ voListMap["44"]["TP_0X04_4102"].val }}</el-descriptions-item
+                >{{
+                  getFormattedFaults(voListMap["44"]["TP_0X04_4102"].val)
+                }}</el-descriptions-item
               >
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4103')"
                 v-if="CCIsDisplay('44', 'TP_0X04_4103')"
-                >{{ voListMap["44"]["TP_0X04_4103"].val }}</el-descriptions-item
+                >{{
+                  getFormattedFaultsAndWarnings(
+                    voListMap["44"]["TP_0X04_4103"].val
+                  )
+                }}</el-descriptions-item
               >
 
               <el-descriptions-item
@@ -2366,13 +2375,13 @@
                   trimFilter[voListMap["44"]["TP_0X04_4145"].val]
                 }}</el-descriptions-item
               >
-              <!-- <el-descriptions-item
+              <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_4176_4184')"
                 v-if="CCIsDisplay('44', 'TP_0X03_4176_4184')"
                 >{{
                   voListMap["44"]["TP_0X03_4176_4184"].val
                 }}</el-descriptions-item
-              > -->
+              >
             </el-descriptions>
           </el-card>
         </template>
@@ -2547,32 +2556,34 @@
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4639')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4639')"
+                >{{
+                  getFormattedWarnings(voListMap["45"]["TP_0X04_4639"].val)
+                }}</el-descriptions-item
               >
-                {{ voListMap["45"]["TP_0X04_4639"].val }}
-              </el-descriptions-item>
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4640')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4640')"
               >
-                {{ voListMap["45"]["TP_0X04_4640"].val }}
+                {{ getProtectionLevel(voListMap["45"]["TP_0X04_4640"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4641')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4641')"
               >
-                {{ voListMap["45"]["TP_0X04_4641"].val }}
+                {{ getSelfCheckStatus(voListMap["45"]["TP_0X04_4641"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4642')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4642')"
               >
-                {{ voListMap["45"]["TP_0X04_4642"].val }}
+                {{ getForcedCharging(voListMap["45"]["TP_0X04_4642"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4643')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4643')"
               >
-                {{ voListMap["45"]["TP_0X04_4643"].val }}
+                {{ getLockStatus(voListMap["45"]["TP_0X04_4643"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4644')"
@@ -2602,7 +2613,9 @@
                 :label="$t('threePhase.TP_0X04_4648')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4648')"
               >
-                {{ voListMap["45"]["TP_0X04_4648"].val }}
+                {{
+                  getSecondProtectionStatus(voListMap["45"]["TP_0X04_4648"].val)
+                }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4649')"
@@ -2873,33 +2886,33 @@
                 :label="$t('threePhase.TP_0X04_5632_5633')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5632_5633')"
               >
-                {{ voListMap["45"]["TP_0X04_5632_5633"].val }}
+                {{ voListMap["45"]["TP_0X04_5632_5633"].val }}W
               </el-descriptions-item>
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5634')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5634')"
               >
-                {{ voListMap["45"]["TP_0X04_5634"].val }}
+                {{ voListMap["45"]["TP_0X04_5634"].val }}Hz
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5635')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5635')"
               >
-                {{ voListMap["45"]["TP_0X04_5635"].val }}
+                {{ voListMap["45"]["TP_0X04_5635"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5636_5637')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5636_5637')"
               >
-                {{ voListMap["45"]["TP_0X04_5636_5637"].val }}
+                {{ voListMap["45"]["TP_0X04_5636_5637"].val }}W
               </el-descriptions-item>
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5638')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5638')"
               >
-                {{ voListMap["45"]["TP_0X04_5638"].val }}
+                {{ voListMap["45"]["TP_0X04_5638"].val }}%
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5639')"
@@ -2947,25 +2960,25 @@
                 :label="$t('threePhase.TP_0X04_5646')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5646')"
               >
-                {{ voListMap["45"]["TP_0X04_5646"].val }}
+                {{ voListMap["45"]["TP_0X04_5646"].val }}℃
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5647')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5647')"
               >
-                {{ voListMap["45"]["TP_0X04_5647"].val }}
+                {{ voListMap["45"]["TP_0X04_5647"].val }}A
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5648')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5648')"
               >
-                {{ voListMap["45"]["TP_0X04_5648"].val }}
+                {{ voListMap["45"]["TP_0X04_5648"].val }}V
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5649_5650')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5649_5650')"
               >
-                {{ voListMap["45"]["TP_0X04_5649_5650"].val }}
+                {{ voListMap["45"]["TP_0X04_5649_5650"].val }}h
               </el-descriptions-item>
 
               <el-descriptions-item
@@ -2984,45 +2997,45 @@
                 :label="$t('threePhase.TP_0X04_5653')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5653')"
               >
-                {{ voListMap["45"]["TP_0X04_5653"].val }}
+                {{ voListMap["45"]["TP_0X04_5653"].val }}%
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5654')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5654')"
               >
-                {{ voListMap["45"]["TP_0X04_5654"].val }}
+                {{ voListMap["45"]["TP_0X04_5654"].val }}%
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5655')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5655')"
               >
-                {{ voListMap["45"]["TP_0X04_5655"].val }}
+                {{ voListMap["45"]["TP_0X04_5655"].val }}Min
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5656_5657')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5656_5657')"
               >
-                {{ voListMap["45"]["TP_0X04_5656_5657"].val }}
+                {{ voListMap["45"]["TP_0X04_5656_5657"].val }}W
               </el-descriptions-item>
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5658')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5658')"
               >
-                {{ voListMap["45"]["TP_0X04_5658"].val }}
+                {{ getStatus5658(voListMap["45"]["TP_0X04_5658"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5659')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5659')"
               >
-                {{ voListMap["45"]["TP_0X04_5659"].val }}
+                {{ getStatus5659(voListMap["45"]["TP_0X04_5659"].val) }}
               </el-descriptions-item>
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5660')"
                 v-if="CCIsDisplay('45', 'TP_0X04_5660')"
               >
-                {{ voListMap["45"]["TP_0X04_5660"].val }}
+                {{ getStatus5660(voListMap["45"]["TP_0X04_5660"].val) }}
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_5662')"
@@ -11933,37 +11946,321 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
-    // getFormattedAlarms(val) {
-    //   // 先将字符串转换为数组
-    //   const valArray = val.split(",").map(Number); // 以逗号分隔并转换为数字数组
-    //   console.log("valArray: ", valArray);
-    //   const alarms = [
-    //     "BMU1 通信异常",
-    //     "BMU2 通信异常",
-    //     "BMU3 通信异常",
-    //     "BMU4 通信异常",
-    //     "BMU5 通信异常",
-    //     "BMU6 通信异常",
-    //     "BMU7 通信异常",
-    //     "BMU8 通信异常",
-    //   ];
+    getFormattedData(val, descriptions) {
+      if (!val) {
+        return "传回来的数值为空";
+      }
 
-    //   // 检查是否所有位都是0
-    //   const isAllZeros = valArray.every((bit) => bit === 0);
-    //   console.log("isAllZeros: ", isAllZeros);
-    //   if (isAllZeros) {
-    //     // 如果都是0，返回原始的字符串
-    //     return val;
-    //   }
+      // 去除方括号和空格，并将字符串转换为数字数组
+      const valArray = val
+        .replace(/[\[\]\s]/g, "")
+        .split(",")
+        .map(Number);
 
-    //   // 否则返回告警名称列表
-    //   const activeAlarms = valArray
-    //     .slice(0, 8) // 只处理前8位
-    //     .map((bit, index) => (bit === 1 ? alarms[index] : ""))
-    //     .filter((alarm) => alarm !== "");
+      // 检查是否所有位都是0
+      if (valArray.every((bit) => bit === 0)) {
+        return "0"; // 如果都是0，返回"0"
+      }
 
-    //   return activeAlarms.join(", "); // 用逗号和空格分隔
-    // },
+      // 返回有效的名称列表
+      const activeItems = valArray
+        .map((bit, index) =>
+          bit === 1 && descriptions[index] !== "预留" ? descriptions[index] : ""
+        )
+        .filter((item) => item !== "");
+
+      return activeItems.length > 0 ? activeItems.join(", ") : "0";
+    },
+
+    getForcedCharging(val) {
+      if (!val) {
+        return "传回来的数值为空";
+      }
+
+      // 去除方括号和空格，并将字符串转换为数字数组
+      const valArray = val
+        .replace(/[\[\]\s]/g, "")
+        .split(",")
+        .map(Number);
+
+      // 检查 bit0 的值并返回相应的描述
+      let result = valArray[0] === 1 ? "强制充电" : "不强制充电";
+
+      // 处理其他位 (bit1 ~ bit15)
+      const descriptions = [
+        "", // bit0 已经处理过
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+      ];
+
+      const additionalBits = valArray
+        .slice(1)
+        .map((bit, index) => (bit === 1 ? descriptions[index + 1] : ""))
+        .filter((item) => item !== "");
+
+      if (additionalBits.length > 0) {
+        result += ", " + additionalBits.join(", ");
+      }
+
+      return result;
+    },
+
+    // 调用时分别传入不同的描述数组
+
+    getStatus5660(val) {
+      const status = [
+        "LLC 软起故障", // bit0
+        "预留", // bit1
+        "预留", // bit2
+        "输入连接异常告警", // bit3
+        "软启失败", // bit4
+        "BMS 通讯异常", // bit5
+        "SPIFlash 异常", // bit6
+        "预留", // bit7
+        "预留", // bit8
+        "预留", // bit9
+        "预留", // bit10
+        "预留", // bit11
+        "预留", // bit12
+        "预留", // bit13
+        "预留", // bit14
+        "充电电池过流", // bit15
+      ];
+      return this.getFormattedData(val, status);
+    },
+
+    getStatus5659(val) {
+      const status = [
+        "LLC 高压侧过压", // bit0
+        "LLC 高压侧过流", // bit1
+        "LLC 高压侧欠压", // bit2
+        "预留", // bit3
+        "预留", // bit4
+        "逐波限流告警", // bit5
+        "模块输入过压", // bit6
+        "预留", // bit7
+        "预留", // bit8
+        "预留", // bit9
+        "模块内部通讯异常告警", // bit10
+        "预留", // bit11
+        "放电输出过流", // bit12
+        "预留", // bit13
+        "预留", // bit14
+        "预留", // bit15
+      ];
+      return this.getFormattedData(val, status);
+    },
+
+    getStatus5658(val) {
+      const status = [
+        "预留", // bit0
+        "环温过温", // bit1
+        "模块故障", // bit2
+        "预留", // bit3
+        "风扇故障", // bit4
+        "输入过流", // bit5
+        "输出过流", // bit6
+        "输出短路", // bit7
+        "低温关机告警", // bit8
+        "预留", // bit9
+        "Buck_Boost 散热器过温", // bit10
+        "LLC 高压侧散热器过温", // bit11
+        "LLC 低压侧散热器过温", // bit12
+        "逐波限流故障", // bit13
+        "输出过压保护", // bit14
+        "DSP 间通讯异常故障", // bit15
+      ];
+      return this.getFormattedData(val, status);
+    },
+
+    getSecondProtectionStatus(val) {
+      const protections = [
+        "整组过压二级保护", // bit0
+        "整组欠压二级保护", // bit1
+        "充电过流二级保护", // bit2
+        "放电过流二级保护", // bit3
+        "充电过温二级保护", // bit4
+        "充电低温二级保护", // bit5
+        "RFU", // bit6
+        "外部保护", // bit7
+        "温度不均衡二级保护", // bit8
+        "绝缘等级低二级保护", // bit9
+        "电芯不均衡二级保护", // bit10
+        "SOC 过低二级保护", // bit11
+        "单体过压二级保护", // bit12
+        "单体欠压二级保护", // bit13
+        "放电温度过高二级保护", // bit14
+        "放电温度过低二级保护", // bit15
+      ];
+      return this.getFormattedData(val, protections);
+    },
+
+    getLockStatus(val) {
+      const statuses = [
+        "充电过压锁", // bit0
+        "放电欠压锁", // bit1
+        "充电过流锁", // bit2
+        "放电一级过流锁", // bit3
+        "放电二级过流锁", // bit4
+        "充电过温锁", // bit5
+        "放电过温锁", // bit6
+        "充电低温锁", // bit7
+        "放电低温锁", // bit8
+        "RFU", // bit9
+        "RFU", // bit10
+        "RFU", // bit11
+        "RFU", // bit12
+        "RFU", // bit13
+        "RFU", // bit14
+        "RFU", // bit15
+      ];
+      return this.getFormattedData(val, statuses);
+    },
+
+    getSelfCheckStatus(val) {
+      const status = [
+        "霍尔传感器自检状态",
+        "以太网自检状态",
+        "存储芯片自检状态",
+        "BMU 供电电压自检状态",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+        "RFU",
+      ];
+      return this.getFormattedData(val, status);
+    },
+
+    getFormattedWarnings(val) {
+      const warnings = [
+        "整组过压告警",
+        "整组欠压告警",
+        "充电过流告警",
+        "放电过流告警",
+        "充电高温告警",
+        "充电低温告警",
+        "BMU 通讯故障告警",
+        "BMS 均衡芯片高温告警",
+        "温度不均衡告警",
+        "电芯不均衡告警",
+        "SOC 过低告警",
+        "绝缘等级低告警",
+        "单体过压告警",
+        "单体欠压告警",
+        "放电温度过高告警",
+        "放电温度过低告警",
+      ];
+      return this.getFormattedData(val, warnings);
+    },
+
+    getProtectionLevel(val) {
+      const descriptions = [
+        "整组过压一级保护",
+        "整组欠压一级保护",
+        "充电过流一级保护",
+        "放电过流一级保护",
+        "充电过温一级保护",
+        "充电低温一级保护",
+        "BMU 通讯故障一级保护",
+        "电芯故障",
+        "温度不均衡一级保护",
+        "绝缘等级低一级保护",
+        "电芯不均衡一级保护",
+        "SOC 过低一级保护",
+        "单体过压一级保护",
+        "单体欠压一级保护",
+        "放电温度过高一级保护",
+        "放电温度过低一级保护",
+      ];
+      return this.getFormattedData(val, descriptions);
+    },
+
+    getFormattedFaults(val) {
+      const faults = [
+        "主接触器闭合故障",
+        "主接触器粘连故障",
+        "母线过压",
+        "母线欠压",
+        "DC 过压",
+        "DC 欠压",
+        "电池过流",
+        "预充超时",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+      ];
+      return this.getFormattedData(val, faults);
+    },
+
+    getFormattedFaultsAndWarnings(val) {
+      const descriptions = [
+        "BMS1 故障",
+        "BMS2 故障",
+        "BMS3 故障",
+        "BMS4 故障",
+        "BMS5 故障",
+        "BMS6 故障",
+        "BMS7 故障",
+        "BMS8 故障",
+        "BMS1 告警",
+        "BMS2 告警",
+        "BMS3 告警",
+        "BMS4 告警",
+        "BMS5 告警",
+        "BMS6 告警",
+        "BMS7 告警",
+        "BMS8 告警",
+      ];
+      return this.getFormattedData(val, descriptions);
+    },
+
+    getFormattedAlarms(val) {
+      const alarms = [
+        "BMU1 通信异常",
+        "BMU2 通信异常",
+        "BMU3 通信异常",
+        "BMU4 通信异常",
+        "BMU5 通信异常",
+        "BMU6 通信异常",
+        "BMU7 通信异常",
+        "BMU8 通信异常",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+        "预留",
+      ];
+      return this.getFormattedData(val, alarms);
+    },
 
     saveEnableSettings() {
       const sendData = {

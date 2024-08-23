@@ -37,6 +37,7 @@ export default {
     admin: "管理员",
     installer: "安装商",
     agent: "代理商",
+    timeZone: "时区",
     unknown: "未知",
     dealer: "二级分销商",
     distributor: "一级分销商",
