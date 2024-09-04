@@ -4965,21 +4965,26 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_1054')">
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1054Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1054')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
+                  <el-tooltip content="Range: 15-80%" placement="top">
+                    <el-input
+                      v-model.number="settingList['TP_0X03_1054Val']"
+                      type="number"
+                      :placeholder="$t('common.inputPrompt')"
+                      v-if="CCIsDisplay('48', 'TP_0X03_1054')"
+                    >
+                      <template slot="append">%</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1054')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1054',
-                        settingList['TP_0X03_1054Val']
+                        settingList['TP_0X03_1054Val'],
+                        15,
+                        80
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -4988,21 +4993,26 @@
               </el-descriptions-item>
               <el-descriptions-item :label="$t('threePhase.TP_0X03_1055')">
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1055Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1055')"
-                  >
-                    <template slot="append">%</template>
-                  </el-input>
+                  <el-tooltip content="Range: 1-15%" placement="top">
+                    <el-input
+                      v-model.number="settingList['TP_0X03_1055Val']"
+                      type="number"
+                      :placeholder="$t('common.inputPrompt')"
+                      v-if="CCIsDisplay('48', 'TP_0X03_1055')"
+                    >
+                      <template slot="append">%</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1055')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1055',
-                        settingList['TP_0X03_1055Val']
+                        settingList['TP_0X03_1055Val'],
+                        1,
+                        15
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -11946,6 +11956,19 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    //三相并离网单独处理
+    handleSaveWithValidation(key, value, min, max) {
+      value = parseFloat(value);
+      console.log("Value entered:", value);
+
+      //Validate range
+      if (value < min || value > max) {
+        this.$message.error(`Please enter value between ${min}% and ${max}%.`);
+        return;
+      }
+      this.handleSave2(key, value);
+    },
+
     getFormattedData(val, descriptions) {
       if (!val) {
         return "传回来的数值为空";
@@ -12369,6 +12392,7 @@ export default {
         this.saveConfigSettings1(sendData);
       }
     },
+
     handleSave2(key, val) {
       if (
         this.systemSet.otherSetObj.countryCodeVal === "7" &&

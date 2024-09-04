@@ -278,6 +278,207 @@
           </el-descriptions>
         </el-card>
 
+        <el-card style="margin-top: 10px" v-if="operationInformation.hm12Info">
+          <el-descriptions :title="$t('deviceManage.hm12Info')" :column="3">
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_16')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_16')"
+              >{{
+                HM_0X04_16ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_16Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_36')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_36')"
+            >
+              {{ operationInformation.hm12InfoObj.HM_0X04_36Val }}V
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_51')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_51')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_51Val
+              }}℃</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_110')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_110')"
+              >{{
+                HM_0X04_110ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_110Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_115')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_115')"
+              >{{
+                HM_0X04_115ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_115Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_117')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_117')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_117Val
+              }}%</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_160')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_160')"
+              >{{
+                HM_0X04_160ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_160Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_171')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_171')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_171Val
+              }}A</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32772_32779')"
+              v-if="
+                operationInformationIsDisplay(
+                  'hm12InfoObj',
+                  'HM_0X04_32772_32779'
+                )
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32772_32779Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32780_32787')"
+              v-if="
+                operationInformationIsDisplay(
+                  'hm12InfoObj',
+                  'HM_0X04_32780_32787'
+                )
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32780_32787Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32788_32795')"
+              v-if="
+                operationInformationIsDisplay(
+                  'hm12InfoObj',
+                  'HM_0X04_32788_32795'
+                )
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32788_32795Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32796')"
+              v-if="
+                operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_32796')
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32796Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32797')"
+              v-if="
+                operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_32797')
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32797Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32813_32820')"
+              v-if="
+                operationInformationIsDisplay(
+                  'hm12InfoObj',
+                  'HM_0X04_32813_32820'
+                )
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32813_32820Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_440')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_440')"
+              >{{
+                HM_0X04_440ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_440Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_308')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_308')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_308Val
+              }}mA</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_430')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_430')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_430Val
+              }}V</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_431')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_431')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_431Val
+              }}A</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_432')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_432')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_432Val
+              }}Hz</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_433')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_433')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_433Val
+              }}VA</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_434')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_434')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_434Val
+              }}W</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_435')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_435')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_435Val
+              }}VAR</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_436')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_436')"
+              >{{
+                HM_0X04_436ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_436Val
+                ]
+              }}</el-descriptions-item
+            >
+          </el-descriptions>
+        </el-card>
+
         <el-card
           style="margin-top: 10px"
           v-if="operationInformation.pvInformation"
@@ -475,7 +676,7 @@
                 operationInformation.powerGridInformationObj.gridFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBGridFrequency')"
               v-if="
                 operationInformationIsDisplay(
@@ -498,7 +699,7 @@
               >{{
                 operationInformation.powerGridInformationObj.gridFrequencyCVal
               }}Hz</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAGridVoltage')"
               v-if="
@@ -511,7 +712,7 @@
                 operationInformation.powerGridInformationObj.gridVoltageAVal
               }}V</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBGridVoltage')"
               v-if="
                 operationInformationIsDisplay(
@@ -534,7 +735,7 @@
               >{{
                 operationInformation.powerGridInformationObj.gridVoltageCVal
               }}V</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.apparentPowerOfThePowerGrid')"
               v-if="
@@ -665,7 +866,7 @@
                   .inverterOutputFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBInverterOutputFrequency')"
               v-if="
                 operationInformationIsDisplay(
@@ -690,7 +891,7 @@
                 operationInformation.inverterInformationObj
                   .inverterOutputFrequencyCVal
               }}Hz</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterOutputVoltage')"
               v-if="
@@ -704,7 +905,7 @@
                   .inverterOutputVoltageAVal
               }}V</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBInverterOutputVoltage')"
               v-if="
                 operationInformationIsDisplay(
@@ -729,7 +930,7 @@
                 operationInformation.inverterInformationObj
                   .inverterOutputVoltageCVal
               }}V</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterOutputCurrent')"
               v-if="
@@ -743,7 +944,7 @@
                   .inverterOutputCurrentAVal
               }}A</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBInverterOutputCurrent')"
               v-if="
                 operationInformationIsDisplay(
@@ -768,7 +969,7 @@
                 operationInformation.inverterInformationObj
                   .inverterOutputCurrentCVal
               }}A</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterApparentPower')"
               v-if="
@@ -782,7 +983,7 @@
                   .invertedApparentPowerAVal
               }}VA</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBInverterApparentPower')"
               v-if="
                 operationInformationIsDisplay(
@@ -807,7 +1008,7 @@
                 operationInformation.inverterInformationObj
                   .invertedApparentPowerCVal
               }}VA</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterActivePower')"
               v-if="
@@ -821,7 +1022,7 @@
                   .invertedActivePowerAVal
               }}W</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBInverterActivePower')"
               v-if="
                 operationInformationIsDisplay(
@@ -846,7 +1047,7 @@
                 operationInformation.inverterInformationObj
                   .invertedActivePowerCVal
               }}W</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterReactivePower')"
               v-if="
@@ -860,8 +1061,8 @@
                   .invertedReactivePowerAVal
               }}VAR</el-descriptions-item
             >
-            <el-descriptions-item
-              :label="$t('deviceManage.phaseAInverterReactivePower')"
+            <!-- <el-descriptions-item
+              :label="$t('deviceManage.phaseBInverterReactivePower')"
               v-if="
                 operationInformationIsDisplay(
                   'inverterInformationObj',
@@ -874,7 +1075,7 @@
               }}VAR</el-descriptions-item
             >
             <el-descriptions-item
-              :label="$t('deviceManage.phaseAInverterReactivePower')"
+              :label="$t('deviceManage.phaseCInverterReactivePower')"
               v-if="
                 operationInformationIsDisplay(
                   'inverterInformationObj',
@@ -885,7 +1086,7 @@
                 operationInformation.inverterInformationObj
                   .invertedReactivePowerCVal
               }}VAR</el-descriptions-item
-            >
+            > -->
           </el-descriptions>
         </el-card>
 
@@ -909,7 +1110,7 @@
                 operationInformation.loadInformationObj.loadVoltageAVal
               }}V</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBLoadVoltage')"
               v-if="
                 operationInformationIsDisplay(
@@ -932,7 +1133,7 @@
               >{{
                 operationInformation.loadInformationObj.loadVoltageCVal
               }}V</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseALoadCurrent')"
               v-if="
@@ -945,7 +1146,7 @@
                 operationInformation.loadInformationObj.loadCurrentAVal
               }}A</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBLoadCurrent')"
               v-if="
                 operationInformationIsDisplay(
@@ -968,7 +1169,7 @@
               >{{
                 operationInformation.loadInformationObj.loadCurrentCVal
               }}A</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.apparentPowerOfPhaseALoad')"
               v-if="
@@ -981,7 +1182,7 @@
                 operationInformation.loadInformationObj.apparentPowerOfLoadAVal
               }}VA</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.apparentPowerOfPhaseBLoad')"
               v-if="
                 operationInformationIsDisplay(
@@ -1004,7 +1205,7 @@
               >{{
                 operationInformation.loadInformationObj.apparentPowerOfLoadCVal
               }}VA</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseALoadActivePower')"
               v-if="
@@ -1017,7 +1218,7 @@
                 operationInformation.loadInformationObj.loadActivePowerAVal
               }}W</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBLoadActivePower')"
               v-if="
                 operationInformationIsDisplay(
@@ -1040,7 +1241,7 @@
               >{{
                 operationInformation.loadInformationObj.loadActivePowerCVal
               }}W</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.phaseALoadPowerPercentage')"
               v-if="
@@ -1053,7 +1254,7 @@
                 operationInformation.loadInformationObj.loadPowerPercentageAVal
               }}%</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseBLoadPowerPercentage')"
               v-if="
                 operationInformationIsDisplay(
@@ -1076,7 +1277,7 @@
               >{{
                 operationInformation.loadInformationObj.loadPowerPercentageCVal
               }}%</el-descriptions-item
-            >
+            > -->
             <el-descriptions-item
               :label="$t('deviceManage.loadRealTimePower')"
               v-if="
@@ -2949,14 +3150,17 @@
               "
             >
               <div style="display: flex">
-                <el-input
-                  v-model="
-                    systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
-                  "
-                  :placeholder="$t('common.inputPrompt')"
-                >
-                  <template slot="append">%</template>
-                </el-input>
+                <el-tooltip content="Range: 15-80%" placement="top">
+                  <el-input
+                    v-model.number="
+                      systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
+                    "
+                    type="number"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                </el-tooltip>
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay(
@@ -2967,9 +3171,11 @@
                   type="text"
                   style="margin-left: 5px"
                   @click="
-                    handleSave(
+                    handleSaveWithValidation(
                       'lowerLimitOfGridConnectedSoc',
-                      systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
+                      systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal,
+                      15,
+                      80
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -2983,12 +3189,17 @@
               "
             >
               <div style="display: flex">
-                <el-input
-                  v-model="systemSet.advancedSetObj.offGridSocLowerLimitVal"
-                  :placeholder="$t('common.inputPrompt')"
-                >
-                  <template slot="append">%</template>
-                </el-input>
+                <el-tooltip content="Range: 0-15%" placement="top">
+                  <el-input
+                    v-model.number="
+                      systemSet.advancedSetObj.offGridSocLowerLimitVal
+                    "
+                    type="number"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">%</template>
+                  </el-input>
+                </el-tooltip>
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay(
@@ -2999,9 +3210,11 @@
                   type="text"
                   style="margin-left: 5px"
                   @click="
-                    handleSave(
+                    handleSaveWithValidation(
                       'offGridSocLowerLimit',
-                      systemSet.advancedSetObj.offGridSocLowerLimitVal
+                      systemSet.advancedSetObj.offGridSocLowerLimitVal,
+                      0,
+                      15
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -7669,24 +7882,24 @@
             <el-descriptions-item
               :label="$t('deviceManage.cellOverDischargeProtection')"
               v-if="batteryParameterIsDisplay('cellOverDischargeProtection')"
-              >{{
-                batteryParameter.batterySetObj.cellOverDischargeProtectionVal
-              }}V
-              <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtection"
-                    v-model="formData.cellOverDischargeProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="savecellOverDischargeProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-            </el-descriptions-item>
+            >
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  v-model.number="formData.cellOverDischargeProtection"
+                  class="custom-input"
+                ></el-input>
+                <span>V</span>                
+                <el-button
+                  @click="saveBatteryParameter('cellOverDischargeProtection')"
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
+            >
             <el-descriptions-item
               :label="$t('deviceManage.cellOverDischargeProtectionDelay')"
               v-if="
@@ -7696,22 +7909,6 @@
                 batteryParameter.batterySetObj
                   .cellOverDischargeProtectionDelayVal
               }}ms
-              <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOverDischargeProtectionDelay"
-                    v-model="formData.cellOverDischargeProtectionDelay"
-                    :min="100"
-                    :max="10000"
-                    class="custom-input"
-                  ></el-input>
-                  <span>ms</span>
-                  <el-button
-                    @click="savecellOverDischargeProtectionDelay"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
             </el-descriptions-item>
             <el-descriptions-item
               :label="$t('deviceManage.overvoltageHysteresisVoltage')"
@@ -7737,24 +7934,23 @@
             <el-descriptions-item
               :label="$t('deviceManage.overdischargeHysteresisVoltage')"
               v-if="batteryParameterIsDisplay('overdischargeHysteresisVoltage')"
-              >{{
-                batteryParameter.batterySetObj
-                  .overdischargeHysteresisVoltageVal
-              }}V
-              <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="overdischargeHysteresisVoltage"
-                    v-model="formData.overdischargeHysteresisVoltage"
-                    class="custom-input"
-                  ></el-input>
-                  <span>V</span>
-                  <el-button
-                    @click="saveoverdischargeHysteresisVoltage"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
+            >
+              <div class="input-container">
+                <el-input
+                  type="number"
+                  id="overdischargeHysteresisVoltage"
+                  v-model="formData.overdischargeHysteresisVoltage"
+                  class="custom-input"
+                ></el-input>
+                <span>V</span>
+                <el-button
+                  @click="
+                    saveBatteryParameter('overdischargeHysteresisVoltage')
+                  "
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
             </el-descriptions-item>
             <el-descriptions-item
               :label="$t('deviceManage.cellOvervoltageRecoveryDelay')"
@@ -8698,20 +8894,53 @@
               v-if="
                 batteryParameterIsDisplay('totalVoltageOvervoltageProtection')
               "
-              >{{
-                batteryParameter.batterySetObj
-                  .totalVoltageOvervoltageProtectionVal
-              }}mV</el-descriptions-item
             >
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  id="totalVoltageOvervoltageProtection"
+                  v-model.number="formData.totalVoltageOvervoltageProtection"
+                  class="custom-input"
+                ></el-input>
+                                <span>mV</span>                
+                <el-button
+                  @click="
+                    saveBatteryParameter('totalVoltageOvervoltageProtection')
+                  "
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
+            >
+             
             <el-descriptions-item
               :label="$t('deviceManage.totalPressureOverdischargeRecovery')"
               v-if="
                 batteryParameterIsDisplay('totalPressureOverDischargeRecovery')
               "
-              >{{
-                batteryParameter.batterySetObj
-                  .totalPressureOverDischargeRecoveryVal
-              }}mV</el-descriptions-item
+            >
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  id="totalPressureOverDischargeRecovery"
+                  v-model.number="formData.totalPressureOverDischargeRecovery"
+                  class="custom-input"
+                ></el-input>
+                                <span>mV</span>                
+                <el-button
+                  @click="
+                    saveBatteryParameter('totalPressureOverDischargeRecovery')
+                  "
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
             >
             <el-descriptions-item
               :label="$t('deviceManage.totalOvervoltageProtectionDelay')"
@@ -9011,6 +9240,7 @@
                   .totalVoltageOvervoltageAlarmVoltageVal
               }}mV</el-descriptions-item
             >
+             
             <el-descriptions-item
               :label="$t('deviceManage.totalOverdischargeVoltage')"
               v-if="
@@ -9018,10 +9248,30 @@
                   'totalVoltageOverDischargeAlarmVoltage'
                 )
               "
-              >{{
-                batteryParameter.batterySetObj
-                  .totalVoltageOverDischargeAlarmVoltageVal
-              }}mV</el-descriptions-item
+            >
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  id="totalVoltageOverDischargeAlarmVoltage"
+                  v-model.number="
+                    formData.totalVoltageOverDischargeAlarmVoltage
+                  "
+                  class="custom-input"
+                ></el-input>
+                                <span>mV</span>                
+                <el-button
+                  @click="
+                    saveBatteryParameter(
+                      'totalVoltageOverDischargeAlarmVoltage'
+                    )
+                  "
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
             >
             <el-descriptions-item
               :label="$t('deviceManage.cellOvervoltageVoltage')"
@@ -9035,10 +9285,24 @@
               :label="$t('deviceManage.cellOverdischargeVoltage')"
               v-if="batteryParameterIsDisplay('cellOverDischargeAlarmVoltage')"
             >
-              {{
-                batteryParameter.batterySetObj.cellOverDischargeAlarmVoltageVal
-              }}V
-            </el-descriptions-item>
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  id="cellOverDischargeAlarmVoltage"
+                  v-model.number="formData.cellOverDischargeAlarmVoltage"
+                  class="custom-input"
+                ></el-input>
+                                <span>V</span>                
+                <el-button
+                  @click="saveBatteryParameter('cellOverDischargeAlarmVoltage')"
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
+            >
             <el-descriptions-item
               :label="$t('deviceManage.chargingOvercurrentAlarm')"
               v-if="
@@ -9226,12 +9490,28 @@
                   : $t("common.disable")
               }}
             </el-descriptions-item>
+
             <el-descriptions-item
               :label="$t('deviceManage.powerDownVoltage')"
               v-if="batteryParameterIsDisplay('powerDownVoltage')"
-              >{{
-                batteryParameter.batterySetObj.powerDownVoltageVal
-              }}V</el-descriptions-item
+            >
+                           
+              <div class="input-container">
+                               
+                <el-input
+                  type="number"
+                  id="powerDownVoltage"
+                  v-model.number="formData.powerDownVoltage"
+                  class="custom-input"
+                ></el-input>
+                                <span>V</span>                
+                <el-button
+                  @click="saveBatteryParameter('powerDownVoltage')"
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                             
+              </div></el-descriptions-item
             >
             <el-descriptions-item
               :label="$t('deviceManage.powerDownCurrent')"
@@ -15529,6 +15809,30 @@ export default {
     "batteryParameter.batterySetObj.enableSettingBit4Val"(newValue) {
       this.formData.enableSettingBit4 = newValue;
     },
+
+    "batteryParameter.batterySetObj.powerDownVoltageVal"(newValue) {
+      this.formData.powerDownVoltage = newValue;
+    },
+    "batteryParameter.batterySetObj.cellOverDischargeAlarmVoltageVal"(
+      newValue
+    ) {
+      this.formData.cellOverDischargeAlarmVoltage = newValue;
+    },
+    "batteryParameter.batterySetObj.totalVoltageOvervoltageProtectionVal"(
+      newValue
+    ) {
+      this.formData.totalVoltageOvervoltageProtection = newValue;
+    },
+    "batteryParameter.batterySetObj.totalPressureOverDischargeRecoveryVal"(
+      newValue
+    ) {
+      this.formData.totalPressureOverDischargeRecovery = newValue;
+    },
+    "batteryParameter.batterySetObj.totalVoltageOverDischargeAlarmVoltageVal"(
+      newValue
+    ) {
+      this.formData.totalVoltageOverDischargeAlarmVoltage = newValue;
+    },
   },
   components: { SelfTest },
   data() {
@@ -15542,6 +15846,12 @@ export default {
 
         batteryImbalanceAlarmPressureDifference: null,
         imbalanceAlarmRecoveryPressureDifference: null,
+
+        powerDownVoltage: null,
+        cellOverDischargeAlarmVoltage: null,
+        totalVoltageOvervoltageProtection: null,
+        totalPressureOverDischargeRecovery: null,
+        totalVoltageOverDischargeAlarmVoltage: null,
 
         lowTemperatureProtectionDuringCharging: null,
         lowTemperatureProtectionRecoveryDuringCharging: null,
@@ -15620,6 +15930,49 @@ export default {
         this.$t("deviceManage.France"),
         this.$t("deviceManage.Greece"),
       ],
+      HM_0X04_16ValFilter: [
+        this.$t("deviceManage.MCUIssuedControl"),
+        this.$t("deviceManage.DSPIssuedControl"),
+      ],
+
+      HM_0X04_110ValFilter: [
+        this.$t("deviceManage.none"),
+        this.$t("deviceManage.overvoltageForASection"),
+        this.$t("deviceManage.secondStageOvervoltage"),
+        this.$t("deviceManage.oneSectionUnderVoltage"),
+        this.$t("deviceManage.secondaryUndervoltage"),
+        this.$t("deviceManage.overfrequencyOfASegment"),
+        this.$t("deviceManage.secondStageOverfrequency"),
+        this.$t("deviceManage.oneUnderfrequency"),
+        this.$t("deviceManage.twoStageUnderfrequency"),
+      ],
+
+      HM_0X04_115ValFilter: [
+        this.$t("deviceManage.none"),
+        this.$t("deviceManage.process1"),
+      ],
+
+      HM_0X04_160ValFilter: [
+        this.$t("threePhase.noFault"),
+        this.$t("threePhase.faultStatus1"),
+        this.$t("threePhase.faultStatus2"),
+      ],
+
+      HM_0X04_440ValFilter: [
+        this.$t("deviceManage.none"),
+        this.$t("deviceManage.forceDischarging"),
+        this.$t("deviceManage.forceCharging"),
+      ],
+
+      HM_0X04_436ValFilter: [
+        this.$t("deviceManage.generatorState0"),
+        this.$t("deviceManage.generatorState1"),
+        this.$t("deviceManage.generatorState2"),
+        this.$t("deviceManage.generatorState3"),
+        this.$t("deviceManage.generatorState4"),
+        this.$t("deviceManage.generatorState5"),
+      ],
+
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),
         this.$t("deviceManage.batteryStatus1"),
@@ -15708,6 +16061,8 @@ export default {
         runInformationObj: {},
         basicInformation: false,
         basicInformationObj: {},
+        hm12Info: false,
+        hm12InfoObj: {},
         pvInformation: false,
         pvInformationObj: {},
         batteryInformation: false,
@@ -15795,6 +16150,18 @@ export default {
   },
 
   methods: {
+    //完善单相并离网soc下限设置
+    handleSaveWithValidation(key, value, min, max) {
+      value = parseFloat(value);
+      console.log("Value entered:", value); //Validate range
+
+      if (value < min || value > max) {
+        this.$message.error(`Please enter value between ${min}% and ${max}%.`);
+        return;
+      }
+      this.handleSave(key, value);
+    },
+
     saveEnableSettings() {
       const sendData = {
         deviceId: this.deviceInfo.id,
