@@ -1824,7 +1824,7 @@
               {{
                 operationInformation.otherInformationObj
                   .dcComponentOfLoadVoltageVal
-              }}mA
+              }}mV
             </el-descriptions-item>
             <el-descriptions-item
               :label="$t('deviceManage.relayIntermediateVoltage')"
@@ -7834,27 +7834,27 @@
                   >
                 </div> -->
             </el-descriptions-item>
-            <el-descriptions-item
+             <el-descriptions-item
               :label="$t('deviceManage.cellOvervoltageProtection')"
               v-if="batteryParameterIsDisplay('cellOvervoltageProtection')"
-              >{{
-                batteryParameter.batterySetObj.cellOvervoltageProtectionVal
-              }}V
-              <!-- <div class="input-container">
-                  <el-input
-                    type="number"
-                    id="cellOvervoltageProtection"
-                    v-model="formData.cellOvervoltageProtection"
-                    class="custom-input"
-                  ></el-input>
-                  <span>mV</span>
-                  <el-button
-                    @click="savecellOvervoltageProtection"
-                    class="save-button"
-                    >{{ $t("common.save") }}</el-button
-                  >
-                </div> -->
-            </el-descriptions-item>
+            >
+                                                       
+              <div class="input-container">
+                                                               
+                <el-input
+                  type="number"
+                  v-model.number="formData.cellOvervoltageProtection"
+                  class="custom-input"
+                ></el-input>
+                                <span>V</span>                                
+                <el-button
+                  @click="saveBatteryParameter('cellOvervoltageProtection')"
+                  class="save-button"
+                  >{{ $t("common.save") }}</el-button
+                >
+                                                           
+              </div></el-descriptions-item
+            >
             <el-descriptions-item
               :label="$t('deviceManage.cellOvervoltageProtectionDelay')"
               v-if="batteryParameterIsDisplay('cellOvervoltageProtectionDelay')"
@@ -15833,6 +15833,9 @@ export default {
     ) {
       this.formData.totalVoltageOverDischargeAlarmVoltage = newValue;
     },
+    "batteryParameter.batterySetObj.cellOvervoltageProtectionVal"(newValue) {
+      this.formData.cellOvervoltageProtection = newValue;
+    },
   },
   components: { SelfTest },
   data() {
@@ -15852,6 +15855,7 @@ export default {
         totalVoltageOvervoltageProtection: null,
         totalPressureOverDischargeRecovery: null,
         totalVoltageOverDischargeAlarmVoltage: null,
+        cellOvervoltageProtection: null,
 
         lowTemperatureProtectionDuringCharging: null,
         lowTemperatureProtectionRecoveryDuringCharging: null,

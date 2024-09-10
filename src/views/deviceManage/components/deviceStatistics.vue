@@ -248,9 +248,13 @@
           devStatusFilter[deviceInfo.status]
         }}</el-descriptions-item>
 
-        <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
-          onlineStatusFilter[deviceInfo.onlineStatus]
+        <el-descriptions-item :label="$t('deviceManage.deviceStatus1')">{{
+          getDeviceStatusWithNetVersion()
         }}</el-descriptions-item>
+
+        <!-- <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
+          onlineStatusFilter[deviceInfo.onlineStatus]
+        }}</el-descriptions-item> -->
         <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
         }}</el-descriptions-item>
@@ -947,6 +951,22 @@ export default {
       this.getDevicePowerData();
       this.getDeviceRecordData();
     },
+
+    getDeviceStatusWithNetVersion() {
+      const deviceStatus =
+        this.onlineStatusFilter[this.deviceInfo.onlineStatus];
+      let netVersionDisplay = "(0 %)";
+
+      if (this.deviceInfo.onlineStatus === 2) {
+        if (this.netVersion !== null) {
+          console.log("this.netVersion已经取到值为：", this.netVersion);
+          netVersionDisplay = `(${this.netVersion} %)`;
+        }
+      }
+
+      return `${deviceStatus} ${netVersionDisplay}`;
+    },
+
     getData() {
       this.getElectricityData();
       this.getIncomeData();
