@@ -33,6 +33,12 @@
                   value="necessaryInfo"
                 ></el-option> -->
                 <el-option
+                  :label="`${$t('deviceManage.versionInfo')}(${$t(
+                    'common.page'
+                  )}1)`"
+                  value="page1"
+                ></el-option>
+                <el-option
                   :label="`${$t('deviceManage.energyFlowChart')}(${$t(
                     'common.page'
                   )}3)`"

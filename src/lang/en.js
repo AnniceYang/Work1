@@ -1432,6 +1432,7 @@ export default {
     nandA: "N/A",
     forceDischarging: "Force discharge",
     forceCharging: "Force charge",
+    versionInfo: "Version Info",
     energyFlowChart: "Energy flow chart",
     deviceName: "Device name",
     deviceDetails: "Device details",

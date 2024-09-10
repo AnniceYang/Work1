@@ -33,61 +33,84 @@
                     value="necessaryInfo"
                   ></el-option> -->
                 <el-option
+                  :label="`${$t('deviceManage.versionInfo')}(${$t(
+                    'common.page'
+                  )}31)`"
+                  value="tpPage31"
+                ></el-option>
+                <el-option
                   :label="`${$t('deviceManage.energyFlowChart')}(${$t(
                     'common.page'
-                  )}3)`"
-                  value="page3"
+                  )}33)`"
+                  value="tpPage33"
                 ></el-option>
                 <el-option
                   :label="`${$t('deviceManage.electricityInformation')}(${$t(
                     'common.page'
-                  )}4)`"
-                  value="page4"
+                  )}34)`"
+                  value="tpPage34"
                 ></el-option>
                 <el-option
                   :label="`${$t('deviceManage.realTimePower')}(${$t(
                     'common.page'
-                  )}5)`"
-                  value="page5"
+                  )}35)`"
+                  value="tpPage35"
                 ></el-option>
                 <el-option
-                  :label="`${$t('deviceManage.operationInformation')}(${$t(
+                  :label="`${$t('deviceManage.monitorData')}(${$t(
                     'common.page'
-                  )}7)`"
-                  value="page7"
+                  )}41)`"
+                  value="tpPage41"
                 ></el-option>
                 <el-option
-                  :label="`${$t('deviceManage.systemSettings')}(${$t(
+                  :label="`${$t('deviceManage.primaryControlData')}(${$t(
                     'common.page'
-                  )}8)`"
-                  value="page8"
+                  )}42)`"
+                  value="tpPage42"
                 ></el-option>
                 <el-option
-                  :label="`${$t('deviceManage.batteryParameters')}(${$t(
+                  :label="`${$t('deviceManage.meterData')}(${$t(
                     'common.page'
-                  )}9)`"
-                  value="page9"
+                  )}43)`"
+                  value="tpPage43"
                 ></el-option>
-
+                <el-option
+                  :label="`${$t('deviceManage.eastBCUData')}(${$t(
+                    'common.page'
+                  )}44)`"
+                  value="tpPage44"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.eastBMSData')}(${$t(
+                    'common.page'
+                  )}45)`"
+                  value="tpPage45"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.deviceInformation')}(${$t(
+                    'common.page'
+                  )}46)`"
+                  value="tpPage46"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.monitorSettings')}(${$t(
+                    'common.page'
+                  )}47)`"
+                  value="tpPage47"
+                ></el-option>
+                <el-option
+                  :label="`${$t('deviceManage.masterUser')}(${$t(
+                    'common.page'
+                  )}48)`"
+                  value="tpPage48"
+                ></el-option>
                 <el-option
                   :label="`${$t('deviceManage.scheduledSettings')}(${$t(
                     'common.page'
-                  )}11)`"
-                  value="page11"
+                  )}49)`"
+                  value="tpPage49"
                 ></el-option>
 
-                <el-option
-                  :label="`${$t('parameterConfiguration.selfTestReport')}(${$t(
-                    'common.page'
-                  )}12)`"
-                  value="page12"
-                ></el-option>
-                <el-option
-                  :label="`${$t(
-                    'parameterConfiguration.threePhaseMeterBasic'
-                  )}(${$t('common.page')}13)`"
-                  value="page13"
-                ></el-option>
                 <el-option
                   :label="$t('faultInfo.alarmInfo')"
                   value="alarm"

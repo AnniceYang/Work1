@@ -1427,6 +1427,7 @@ export default {
     nandA: "N/A",
     forceDischarging: "Scarica forzata",
     forceCharging: "Carica forzata",
+    versionInfo: "Informazioni sulla versione",
     energyFlowChart: "Dati della pagina del flusso energetico",
     deviceName: "Nome dispositivo",
     deviceDetails: "Dettagli dispositivo",

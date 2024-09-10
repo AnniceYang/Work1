@@ -1448,6 +1448,7 @@ export default {
     nandA: "N/A",
     forceDischarging: "强制放电",
     forceCharging: "强制充电",
+    versionInfo: "版本信息",
     energyFlowChart: "能流图页面数据",
     deviceName: "设备名称",
     deviceDetails: "设备详细信息",
