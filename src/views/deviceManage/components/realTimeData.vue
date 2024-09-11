@@ -3175,7 +3175,8 @@
                       'lowerLimitOfGridConnectedSoc',
                       systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal,
                       15,
-                      80
+                      80,
+                      systemSet.advancedSetObj.offGridSocLowerLimitVal
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -3214,7 +3215,8 @@
                       'offGridSocLowerLimit',
                       systemSet.advancedSetObj.offGridSocLowerLimitVal,
                       0,
-                      15
+                      15,
+                      systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -16155,14 +16157,46 @@ export default {
 
   methods: {
     //完善单相并离网soc下限设置
-    handleSaveWithValidation(key, value, min, max) {
+    handleSaveWithValidation(key, value, min, max, offGridSocValue = null) {
       value = parseFloat(value);
-      console.log("Value entered:", value); //Validate range
+      const epsilon = 0.00001; //small tolerance to handle floating-point precision
+      console.log("Value entered:", value); // Validate range
 
       if (value < min || value > max) {
         this.$message.error(`Please enter value between ${min}% and ${max}%.`);
         return;
       }
+
+      // Check if the off-grid SOC value is provided and perform the comparison
+      if (offGridSocValue !== null) {
+        offGridSocValue = parseFloat(offGridSocValue);
+
+        // If the key is 'lowerLimitOfGridConnectedSoc', check both conditions
+        if (key === "lowerLimitOfGridConnectedSoc") {
+          if (value <= offGridSocValue + 10 - epsilon) {
+            this.$message.error(
+              "Grid-connected SOC value must be at least 10% higher than off-grid SOC value."
+            );
+            return;
+          }
+        }
+
+        // If the key is 'offGridSocLowerLimit', check the reverse condition
+        if (key === "offGridSocLowerLimit") {
+          if (
+            value >=
+            this.systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal -
+              10 +
+              epsilon
+          ) {
+            this.$message.error(
+              "Off-grid SOC value must be at most 10% lower than grid-connected SOC value."
+            );
+            return;
+          }
+        }
+      }
+
       this.handleSave(key, value);
     },
 
