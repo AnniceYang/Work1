@@ -14795,9 +14795,11 @@
                   type="text"
                   style="margin-left: 5px"
                   @click="
-                    handleSave11(
+                    validateAndSave(
                       'HM6_0X03_450',
-                      subList.modeSettingObj.HM6_0X03_450Val
+                      subList.modeSettingObj.HM6_0X03_450Val,
+                      10,
+                      100
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -14849,9 +14851,11 @@
                   type="text"
                   style="margin-left: 5px"
                   @click="
-                    handleSave11(
+                    validateAndSave(
                       'HM6_0X03_452',
-                      subList.modeSettingObj.HM6_0X03_452Val
+                      subList.modeSettingObj.HM6_0X03_452Val,
+                      5,
+                      80
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -14903,9 +14907,11 @@
                   type="text"
                   style="margin-left: 5px"
                   @click="
-                    handleSave11(
+                    validateAndSave(
                       'HM6_0X03_454',
-                      subList.modeSettingObj.HM6_0X03_454Val
+                      subList.modeSettingObj.HM6_0X03_454Val,
+                      5,
+                      80
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -16550,6 +16556,16 @@ export default {
           console.error("Error saving settings: ", error);
           this.$message.error(this.$t("common.savefailed"));
         });
+    },
+
+    //HM12 page11增加的参数保存限制
+    validateAndSave(key, value, min, max) {
+      if (value < min || value > max) {
+        this.$message.error(`${this.$t("common.inputPrompt")} ${min}-${max}%`);
+        return;
+      }
+
+      this.handleSave11(key, value);
     },
 
     handleSave11(key, val) {
