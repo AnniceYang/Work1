@@ -1442,6 +1442,15 @@ export default {
     HM6_0X03_218: "22H",
     HM6_0X03_219: "23H",
 
+    //HM12新加page11定时设置参数
+    modeSetting: "模式设置",
+    HM6_0X03_450: "买电模式SOC上限",
+    HM6_0X03_451: "买电模式管理使能",
+    HM6_0X03_452: "卖电模式SOC下限",
+    HM6_0X03_453: "卖电模式管理使能",
+    HM6_0X03_454: "用电模式SOC上限",
+    HM6_0X03_455: "用电模式管理使能",
+
     none: "无",
     normalregulation: "常规",
     lesy: "力胜源",
@@ -2831,6 +2840,14 @@ export default {
     HM6_0X03_218: "22H",
     HM6_0X03_219: "23H",
 
+    //HM12新加page11定时设置参数
+    HM6_0X03_450: "买电模式SOC上限",
+    HM6_0X03_451: "买电模式管理使能",
+    HM6_0X03_452: "卖电模式SOC下限",
+    HM6_0X03_453: "卖电模式管理使能",
+    HM6_0X03_454: "用电模式SOC上限",
+    HM6_0X03_455: "用电模式管理使能",
+
     //三相系统参数配置
     //Page41 监控数据
     TP_0X04_0: "外观版本",
@@ -3689,10 +3706,10 @@ export default {
     powerGridInformation: "电网信息",
     powerGridStatus: "电网状态",
     gridFrequencyA: "A相电网频率",
-    gridFrequencyB: "B相电网频率",
+    gridFrequencyB: "电网电流",
     gridFrequencyC: "C相电网频率",
     gridVoltageA: "A相电网电压",
-    gridVoltageB: "B相电网电压",
+    gridVoltageB: "采样电网电压",
     gridVoltageC: "C相电网电压",
     apparentPowerOfThePowerGrid: "电网视在功率",
     activePowerOfThePowerGrid: "电网有功功率",
@@ -3704,8 +3721,8 @@ export default {
     inverterTemperature: "逆变器温度",
     inversionState: "逆变状态",
     inverterOutputFrequencyA: "A相逆变输出频率",
-    inverterOutputFrequencyB: "B相逆变输出频率",
-    inverterOutputFrequencyC: "C相逆变输出频率",
+    inverterOutputFrequencyB: "CT2电流",
+    inverterOutputFrequencyC: "CT2功率",
     inverterOutputVoltageA: "A相逆变输出电压",
     inverterOutputVoltageB: "B相逆变输出电压",
     inverterOutputVoltageC: "C相逆变输出电压",

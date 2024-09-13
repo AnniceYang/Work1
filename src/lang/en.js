@@ -1426,6 +1426,15 @@ export default {
     HM6_0X03_218: "22H",
     HM6_0X03_219: "23H",
 
+    //HM12新加page11定时设置参数
+    modeSetting: "Mode Setting",
+    HM6_0X03_450: "SOC Upper Limit - Buy Mode",
+    HM6_0X03_451: "Enable Buy Mode",
+    HM6_0X03_452: "SOC Lower Limit - Sell Mode",
+    HM6_0X03_453: "Enable Sell Mode",
+    HM6_0X03_454: "SOC Upper Limit - Use Mode",
+    HM6_0X03_455: "Enable Use Mode",
+
     none: "None",
     normalregulation: "Normal regulation",
     lesy: "Lesy",
@@ -2871,6 +2880,15 @@ export default {
     HM6_0X03_218: "22H",
     HM6_0X03_219: "23H",
 
+    //HM12新加page11定时设置参数
+
+    HM6_0X03_450: "SOC Upper Limit - Buy Mode",
+    HM6_0X03_451: "Enable Buy Mode",
+    HM6_0X03_452: "SOC Lower Limit - Sell Mode",
+    HM6_0X03_453: "Enable Sell Mode",
+    HM6_0X03_454: "SOC Upper Limit - Use Mode",
+    HM6_0X03_455: "Enable Use Mode",
+
     selfTestReport: "Self Test Report",
 
     runInformation: "Operation information",
@@ -2912,10 +2930,10 @@ export default {
     powerGridInformation: "Power grid information",
     powerGridStatus: "Power grid status",
     gridFrequencyA: "A-phase grid frequency",
-    gridFrequencyB: "B-phase grid frequency",
+    gridFrequencyB: "Grid current",
     gridFrequencyC: "C-phase grid frequency",
     gridVoltageA: "A-phase grid voltage",
-    gridVoltageB: "B-phase grid voltage",
+    gridVoltageB: "Sampled Grid Voltage",
     gridVoltageC: "C-phase grid voltage",
     apparentPowerOfThePowerGrid: "Apparent power of the power grid",
     activePowerOfThePowerGrid: "Active power of the power grid",
@@ -2927,8 +2945,8 @@ export default {
     inverterTemperature: "Inverter temperature",
     inversionState: "Inversion state",
     inverterOutputFrequencyA: "A-phase inverter output frequency",
-    inverterOutputFrequencyB: "B-phase inverter output frequency",
-    inverterOutputFrequencyC: "C-phase inverter output frequency",
+    inverterOutputFrequencyB: "CT2 current",
+    inverterOutputFrequencyC: "CT2 power",
     inverterOutputVoltageA: "A-phase inverter output voltage",
     inverterOutputVoltageB: "B-phase inverter output voltage",
     inverterOutputVoltageC: "C-phase inverter output voltage",

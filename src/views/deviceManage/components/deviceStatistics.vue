@@ -141,6 +141,21 @@
             >{{ $t("deviceManage.deviceDetails") }}</el-button
           >
 
+          <!-- 升级结果弹窗 -->
+          <el-dialog
+            title="Upgrade Result"
+            :visible.sync="isUpgradeResultVisible"
+            width="30%"
+            @close="handleDialogClose"
+          >
+            <span>{{ upgradeResultMessage }}</span>
+            <span slot="footer" class="dialog-footer">
+              <el-button @click="isUpgradeResultVisible = false"
+                >Close</el-button
+              >
+            </span>
+          </el-dialog>
+
           <!-- 弹窗组件 -->
           <el-dialog
             :visible.sync="detailModalVisible"
@@ -255,7 +270,7 @@
         }}</el-descriptions-item>
 
         <el-descriptions-item :label="$t('deviceManage.deviceStatus1')">{{
-          getDeviceStatusWithNetVersion()
+          getDeviceStatusWithupgradeProgress()
         }}</el-descriptions-item>
 
         <!-- <el-descriptions-item :label="$t('deviceManage.onlineStatus')">{{
@@ -585,6 +600,10 @@ import moment from "moment";
 import { baseUrl } from "@/config/env";
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
+
+import { baseMqtt } from "@/config/env";
+
+const mqtt = require("mqtt/dist/mqtt.js");
 export default {
   components: { ElectricityData, IncomeData, PowerData, RecordData },
 
@@ -598,6 +617,9 @@ export default {
       const pagesWithDateSelection = ["page3", "page7", "page9", "page13"];
       return pagesWithDateSelection.includes(selectedPage);
     },
+    ...mapState({
+      userInfo: (state) => state.user.userInfo,
+    }),
   },
 
   data() {
@@ -842,6 +864,19 @@ export default {
       pageSize: 10,
       paramsIndex: 0,
       activeIndex: "0",
+
+      // mqtt
+      mqttClient: null,
+      connectState: "init",
+      interObj: null,
+
+      upgradeProgress: null, //用来存储upgradeProgress
+      fl: null,
+      fileLength: null,
+      oc: null,
+      otaCrc: null,
+      isUpgradeResultVisible: false,
+      upgradeResultMessage: "",
     };
   },
   methods: {
@@ -942,6 +977,11 @@ export default {
     },
 
     init(info) {
+      console.log("init", info);
+      this.deviceInfo = { ...info };
+      console.log("设备信息：", this.deviceInfo);
+      this.handleMqttInit();
+
       this.time = this.time2 = moment().unix() * 1000;
       this.listQuery.endTime =
         moment(moment().format("YYYY-MM-DD") + " 23:59:59").unix() + 1;
@@ -958,19 +998,106 @@ export default {
       this.getDeviceRecordData();
     },
 
-    getDeviceStatusWithNetVersion() {
+    getDeviceStatusWithupgradeProgress() {
       const deviceStatus =
         this.onlineStatusFilter[this.deviceInfo.onlineStatus];
-      let netVersionDisplay = "(0 %)";
+      let statusDisplay = deviceStatus;
 
-      if (this.deviceInfo.onlineStatus === 2) {
-        if (this.netVersion !== null) {
-          console.log("this.netVersion已经取到值为：", this.netVersion);
-          netVersionDisplay = `(${this.netVersion} %)`;
-        }
+      // Check if onlineStatus is 2 and user is an admin
+      if (this.deviceInfo.onlineStatus === 2 && this.isAdmin) {
+        // Handle undefined or null upgradeProgress
+        const upgradeProgress = this.upgradeProgress || 0;
+        let upgradeProgressDisplay = `(${upgradeProgress}%)`;
+        let additionalInfo = "";
+
+        // Use 0 as fallback for undefined or null values
+        const fl = this.fl || 0;
+        const fileLength = this.fileLength || 0;
+        const oc = this.oc || 0;
+        const otaCrc = this.otaCrc || 0;
+
+        // Generate additional info string
+        additionalInfo = ` (原文件: ${fl}, 收到文件: ${fileLength}, 下发CRC: ${oc}, 收到CRC: ${otaCrc})`;
+
+        statusDisplay = `${deviceStatus} ${upgradeProgressDisplay}${additionalInfo}`;
       }
 
-      return `${deviceStatus} ${netVersionDisplay}`;
+      return statusDisplay;
+    },
+
+    // mqtt初始化
+    handleMqttInit() {
+      this.mqttClient = mqtt.connect(baseMqtt, {
+        protocolVersion: 4,
+        reconnectPeriod: 1000,
+        connectTimeout: 30 * 1000,
+        resubscribe: true,
+        keepalive: 3,
+        clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+      });
+      this.mqttClient
+        .on("connect", (res) => {
+          this.connectState = "connect";
+          this.subscribeInfo();
+          // this.loading = false
+          console.log("mqtt连接成功", res);
+        })
+        .on("message", (topic, message) => {
+          const messageInfo = JSON.parse(message.toString());
+          console.log("messageInfo里是： ", messageInfo);
+          if (messageInfo.msgOperation === 5 && messageInfo.valType === 1) {
+            const valData = JSON.parse(messageInfo.val);
+            console.log("Received upgradeProgress: ", valData.upgradeProgress);
+
+            this.paramsChange(valData);
+          }
+        });
+    },
+    // 订阅主题 /APP/设备id/NEWS
+    subscribeInfo() {
+      if (!this.mqttClient || this.connectState !== "connect") {
+        console.log("====通讯未连接=====");
+        this.toast("通讯未连接");
+
+        return;
+      }
+
+      //超时处理
+      let subscriptionTimeout = setTimeout(() => {
+        console.log("订阅主题超时");
+      }, 3000);
+
+      this.mqttClient.subscribe(
+        `/APP/${this.deviceInfo.id}/NEWS`,
+        (err, granted) => {
+          // console.log('订阅主题', `/APP/${this.deviceInfo.id}/NEWS`, err, granted)
+          if (!err) {
+            clearTimeout(subscriptionTimeout);
+            console.log("===订阅主题 订阅成功===");
+            //在订阅成功后尝试获取数据
+            this.getData();
+          }
+        }
+      );
+    },
+
+    // 数据处理转换
+    paramsChange(res) {
+      console.log(res, "res------收到啥？");
+      this.upgradeProgress = res.upgradeProgress;
+      this.fl = res.fl;
+      this.fileLength = res.fileLength;
+      this.oc = res.oc;
+      this.otaCrc = res.otaCrc;
+
+      if (res.upgradeResult) {
+        this.upgradeResultMessage = res.upgradeResult;
+        this.isUpgradeResultVisible = true;
+      }
+    },
+
+    handleDialogClose() {
+      this.isUpgradeResultVisible = false;
     },
 
     getData() {

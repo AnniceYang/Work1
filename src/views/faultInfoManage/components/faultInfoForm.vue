@@ -45,6 +45,7 @@
       <el-form-item
         :label="$t('faultInfo.displayOrNot')"
         prop="installerDisplay"
+        v-if="isAdmin"
       >
         <el-radio-group v-model="dataForm.installerDisplay">
           <el-radio :label="1">{{ $t("faultInfo.display") }}</el-radio>
@@ -82,6 +83,13 @@ import { addFaultInfo, editFaultInfo } from "@/api/faultInfo";
 import Tinymce from "@/components/Tinymce";
 export default {
   components: { Tinymce },
+
+  computed: {
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
+  },
+
   data() {
     return {
       visible: false,

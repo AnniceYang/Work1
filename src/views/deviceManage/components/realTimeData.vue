@@ -676,8 +676,8 @@
                 operationInformation.powerGridInformationObj.gridFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseBGridFrequency')"
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.gridFrequencyB')"
               v-if="
                 operationInformationIsDisplay(
                   'powerGridInformationObj',
@@ -686,9 +686,9 @@
               "
               >{{
                 operationInformation.powerGridInformationObj.gridFrequencyBVal
-              }}Hz</el-descriptions-item
+              }}A</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseCGridFrequency')"
               v-if="
                 operationInformationIsDisplay(
@@ -712,8 +712,8 @@
                 operationInformation.powerGridInformationObj.gridVoltageAVal
               }}V</el-descriptions-item
             >
-            <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseBGridVoltage')"
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.gridVoltageB')"
               v-if="
                 operationInformationIsDisplay(
                   'powerGridInformationObj',
@@ -722,9 +722,9 @@
               "
               >{{
                 operationInformation.powerGridInformationObj.gridVoltageBVal
-              }}V</el-descriptions-item
+              }}</el-descriptions-item
             >
-            <el-descriptions-item
+            <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseCGridVoltage')"
               v-if="
                 operationInformationIsDisplay(
@@ -866,8 +866,8 @@
                   .inverterOutputFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseBInverterOutputFrequency')"
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.inverterOutputFrequencyB')"
               v-if="
                 operationInformationIsDisplay(
                   'inverterInformationObj',
@@ -877,10 +877,10 @@
               >{{
                 operationInformation.inverterInformationObj
                   .inverterOutputFrequencyBVal
-              }}Hz</el-descriptions-item
+              }}A</el-descriptions-item
             >
             <el-descriptions-item
-              :label="$t('deviceManage.phaseCInverterOutputFrequency')"
+              :label="$t('parameterConfiguration.inverterOutputFrequencyC')"
               v-if="
                 operationInformationIsDisplay(
                   'inverterInformationObj',
@@ -890,8 +890,8 @@
               >{{
                 operationInformation.inverterInformationObj
                   .inverterOutputFrequencyCVal
-              }}Hz</el-descriptions-item
-            > -->
+              }}W</el-descriptions-item
+            >
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterOutputVoltage')"
               v-if="
@@ -14770,6 +14770,178 @@
             </el-descriptions-item>
           </el-descriptions>
         </el-card>
+
+        <!-- HM12新增page11 -->
+
+        <el-card style="margin-top: 10px">
+          <el-descriptions
+            :title="$t('deviceManage.modeSetting')"
+            :column="3"
+            border
+          >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_450')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_450')"
+            >
+              <div style="display: flex">
+                <el-tooltip content="Range: 10-100%" placement="top">
+                  <el-input
+                    v-model="subList.modeSettingObj.HM6_0X03_450Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                </el-tooltip>
+                <el-button
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_450')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_450',
+                      subList.modeSettingObj.HM6_0X03_450Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_451')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_451')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="subList.modeSettingObj.HM6_0X03_451Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  type="text"
+                  style="margin-left: 5px"
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_451')"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_451',
+                      subList.modeSettingObj.HM6_0X03_451Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_452')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_452')"
+            >
+              <div style="display: flex">
+                <el-tooltip content="Range: 5-80%" placement="top">
+                  <el-input
+                    v-model="subList.modeSettingObj.HM6_0X03_452Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                </el-tooltip>
+                <el-button
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_452')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_452',
+                      subList.modeSettingObj.HM6_0X03_452Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_453')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_453')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="subList.modeSettingObj.HM6_0X03_453Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  type="text"
+                  style="margin-left: 5px"
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_453')"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_453',
+                      subList.modeSettingObj.HM6_0X03_453Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_454')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_454')"
+            >
+              <div style="display: flex">
+                <el-tooltip content="Range: 5-80%" placement="top">
+                  <el-input
+                    v-model="subList.modeSettingObj.HM6_0X03_454Val"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                </el-tooltip>
+                <el-button
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_454')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_454',
+                      subList.modeSettingObj.HM6_0X03_454Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X03_455')"
+              v-if="timeSettingIsDisplay('modeSettingObj', 'HM6_0X03_455')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="subList.modeSettingObj.HM6_0X03_455Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  type="text"
+                  style="margin-left: 5px"
+                  v-if="timeSettingIsSet('modeSettingObj', 'HM6_0X03_455')"
+                  @click="
+                    handleSave11(
+                      'HM6_0X03_455',
+                      subList.modeSettingObj.HM6_0X03_455Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+          </el-descriptions>
+        </el-card>
       </template>
 
       <template v-else-if="activeIndex === '13'">
@@ -16121,6 +16293,7 @@ export default {
         quarterThreeObj: {},
         quarterFourObj: {},
         hourSettingObj: {},
+        modeSettingObj: {},
       },
     };
   },

@@ -105,6 +105,7 @@
               :label="$t('faultInfo.displayOrNot')"
               prop="level"
               width="120"
+              v-if="isAdmin"
             >
               <template slot-scope="scope">
                 <el-tag
@@ -253,6 +254,10 @@ export default {
     };
   },
   computed: {
+    isAdmin() {
+      return this.$store.state.user.roles.includes("1");
+    },
+
     ...mapGetters(["permissions"]),
   },
   created() {

@@ -4172,12 +4172,14 @@
               :column="3"
               border
             >
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1024')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1024')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1024')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1024Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1024')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('deviceManage.China')" value="0" />
@@ -4210,12 +4212,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1025')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1025')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1025')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1025Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1025')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4242,12 +4246,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1026')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1026')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1026')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1026Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1026')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('deviceManage.enable')" value="1" />
@@ -4268,12 +4274,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1027')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1027')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1027')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1027Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1027')"
                   />
                   <el-button
                     type="text"
@@ -4290,12 +4298,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1028')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1028')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1028')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1028Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1028')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -4313,12 +4323,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1029')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1029')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1029')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1029Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1029')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -4336,12 +4348,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1030')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1030')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1030')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1030Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1030')"
                   >
                     <template slot="append">%Wmax/s</template>
                   </el-input>
@@ -4359,12 +4373,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1031')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1031')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1031')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1031Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1031')"
                   >
                     <template slot="append">%Wmax/Min</template>
                   </el-input>
@@ -4383,12 +4399,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1032')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1032')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1032')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1032Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1032')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4423,12 +4441,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1033')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1033')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1033')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1033Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1033')"
                   >
                     <template slot="append">%VAmax/s</template>
                   </el-input>
@@ -4446,12 +4466,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1034')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1034')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1034')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1034Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1034')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -4469,12 +4491,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1035')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1035')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1035')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1035Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1035')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -4492,11 +4516,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1036')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1036')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1036')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1036Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1036')"
                     :placeholder="$t('common.inputPrompt')"
                   />
                   <el-button
@@ -4513,12 +4539,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1037')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1037')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1037')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1037Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1037')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4542,12 +4570,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1038')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1038')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1038')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1038Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1038')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('menuManage.close')" value="0" />
@@ -4567,12 +4597,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1039')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1039')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1039')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1039Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1039')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4598,11 +4630,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1040')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1040')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1040')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1040Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1040')"
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
@@ -4625,12 +4659,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1041')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1041')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1041')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1041Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1041')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4664,12 +4700,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1042')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1042')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1042')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1042Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1042')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4695,12 +4733,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1043')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1043')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1043')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1043Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1043')"
                     style="width: 100%"
                   >
                     <el-option label="UPS" value="0" />
@@ -4720,12 +4760,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1044')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1044')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1044')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1044Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1044')"
                     style="width: 100%"
                   >
                     <el-option
@@ -4751,11 +4793,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1045')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1045')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1045')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1045Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1045')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">V</template>
@@ -4774,12 +4818,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1046')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1046')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1046')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1046Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1046')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -4797,12 +4843,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1047')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1047')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1047')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1047Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1047')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('deviceManage.leadAcid')" value="0" />
@@ -4825,11 +4873,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1048')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1048')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1048')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1048Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1048')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">A</template>
@@ -4848,12 +4898,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1049')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1049')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1049')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1049Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1049')"
                   >
                     <template slot="append">A</template>
                   </el-input>
@@ -4871,12 +4923,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1050')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1050')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1050')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1050Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1050')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -4894,12 +4948,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1051')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1051')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1051')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1051Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1051')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -4917,12 +4973,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1052')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1052')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1052')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1052Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1052')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -4940,12 +4998,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1053')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1053')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1053')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1053Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1053')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -4963,14 +5023,16 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1054')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1054')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1054')"
+              >
                 <div style="display: flex">
                   <el-tooltip content="Range: 15-80%" placement="top">
                     <el-input
                       v-model.number="settingList['TP_0X03_1054Val']"
                       type="number"
                       :placeholder="$t('common.inputPrompt')"
-                      v-if="CCIsDisplay('48', 'TP_0X03_1054')"
                     >
                       <template slot="append">%</template>
                     </el-input>
@@ -4991,14 +5053,16 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1055')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1055')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1055')"
+              >
                 <div style="display: flex">
                   <el-tooltip content="Range: 1-15%" placement="top">
                     <el-input
                       v-model.number="settingList['TP_0X03_1055Val']"
                       type="number"
                       :placeholder="$t('common.inputPrompt')"
-                      v-if="CCIsDisplay('48', 'TP_0X03_1055')"
                     >
                       <template slot="append">%</template>
                     </el-input>
@@ -5019,12 +5083,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1056')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1056')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1056')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1056Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1056')"
                     style="width: 100%"
                   >
                     <el-option label="NULL" value="0" />
@@ -5048,12 +5114,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1057')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1057')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1057')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1057Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1057')"
                   />
                   <el-button
                     type="text"
@@ -5070,11 +5138,13 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1058')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1058')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1058')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1058Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1058')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">V</template>
@@ -5093,11 +5163,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1059')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1059')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1059')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1059Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1059')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">V</template>
@@ -5116,12 +5188,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1060')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1060')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1060')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1060Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1060')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5139,11 +5213,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1061')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1061')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1061')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1061Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1061')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">V</template>
@@ -5162,12 +5238,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1062')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1062')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1062')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1062Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1062')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5185,12 +5263,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1063')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1063')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1063')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1063Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1063')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5208,12 +5288,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1064')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1064')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1064')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1064Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1064')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5231,12 +5313,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1065')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1065')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1065')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1065Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1065')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5254,12 +5338,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1066')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1066')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1066')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1066Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1066')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5277,11 +5363,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1067')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1067')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1067')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1067Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1067')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">ms</template>
@@ -5300,11 +5388,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1068')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1068')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1068')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1068Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1068')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">ms</template>
@@ -5323,11 +5413,13 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1069')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1069')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1069')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1069Val']"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1069')"
                     :placeholder="$t('common.inputPrompt')"
                   >
                     <template slot="append">ms</template>
@@ -5346,12 +5438,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1070')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1070')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1070')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1070Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1070')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5369,12 +5463,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1071')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1071')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1071')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1071Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1071')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5392,12 +5488,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1072')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1072')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1072')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1072Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1072')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5415,12 +5513,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1073')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1073')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1073')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1073Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1073')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5438,12 +5538,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1074')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1074')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1074')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1074Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1074')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5461,12 +5563,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1075')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1075')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1075')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1075Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1075')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5484,12 +5588,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1076')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1076')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1076')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1076Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1076')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5507,12 +5613,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1077')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1077')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1077')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1077Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1077')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5530,12 +5638,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1078')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1078')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1078')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1078Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1078')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5553,12 +5663,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1079')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1079')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1079')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1079Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1079')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5576,12 +5688,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1080')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1080')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1080')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1080Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1080')"
                   >
                     <template slot="append">Hz</template>
                   </el-input>
@@ -5599,12 +5713,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1081')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1081')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1081')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1081Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1081')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5622,12 +5738,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1082')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1082')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1082')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1082Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1082')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5645,12 +5763,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1083')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1083')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1083')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1083Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1083')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5668,12 +5788,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1084')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1084')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1084')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1084Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1084')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5691,12 +5813,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1085')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1085')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1085')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1085Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1085')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5714,12 +5838,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1086')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1086')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1086')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1086Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1086')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5737,12 +5863,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1087')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1087')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1087')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1087Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1087')"
                   >
                     <template slot="append">ms</template>
                   </el-input>
@@ -5760,12 +5888,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1088')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1088')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1088')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1088Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1088')"
                   >
                     <template slot="append">V</template>
                   </el-input>
@@ -5783,12 +5913,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1089')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1089')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1089')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1089Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1089')"
                   >
                     <template slot="append">s</template>
                   </el-input>
@@ -5806,12 +5938,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1090')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1090')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1090')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1090Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1090')"
                   >
                     <template slot="append">s</template>
                   </el-input>
@@ -5830,12 +5964,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1091')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1091')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1091')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1091Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1091')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -5853,12 +5989,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1092')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1092')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1092')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1092Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1092')"
                     style="width: 100%"
                   >
                     <el-option
@@ -5881,12 +6019,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1093')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1093')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1093')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1093Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1093')"
                     style="width: 100%"
                   >
                     <el-option
@@ -5909,12 +6049,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1094')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1094')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1094')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1094Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1094')"
                     style="width: 100%"
                   >
                     <el-option
@@ -5937,12 +6079,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1095')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1095')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1095')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1095Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1095')"
                     style="width: 100%"
                   >
                     <el-option
@@ -5965,12 +6109,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1096')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1096')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1096')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1096Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1096')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -5988,12 +6134,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1097')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1097')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1097')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1097Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1097')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -6011,12 +6159,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1098')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1098')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1098')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1098Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1098')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -6034,12 +6184,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1099')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1099')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1099')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_1099Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1099')"
                   >
                     <template slot="append">%</template>
                   </el-input>
@@ -6057,12 +6209,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1100')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1100')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1100')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1100Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1100')"
                     style="width: 100%"
                   >
                     <el-option :label="$t('threePhase.three')" value="0" />
@@ -6083,12 +6237,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_1101')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1101')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1101')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_1101Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('48', 'TP_0X03_1101')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6133,12 +6289,14 @@
               :column="3"
               border
             >
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_76')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_76')"
+                v-if="CCIsDisplay('49', 'TP_0X03_76')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_76Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_76')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -6153,12 +6311,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_77')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_77')"
+                v-if="CCIsDisplay('49', 'TP_0X03_77')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_77Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_77')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -6173,12 +6333,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_78')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_78')"
+                v-if="CCIsDisplay('49', 'TP_0X03_78')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_78Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_78')"
                   >
                   </el-input>
                   <el-button
@@ -6192,12 +6354,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_79')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_79')"
+                v-if="CCIsDisplay('49', 'TP_0X03_79')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_79Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_79')"
                   >
                   </el-input>
                   <el-button
@@ -6211,12 +6375,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_80')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_80')"
+                v-if="CCIsDisplay('49', 'TP_0X03_80')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_80Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_80')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6232,12 +6398,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_81')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_81')"
+                v-if="CCIsDisplay('49', 'TP_0X03_81')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_81Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_81')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6253,12 +6421,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_82')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_82')"
+                v-if="CCIsDisplay('49', 'TP_0X03_82')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_82Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_82')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6273,12 +6443,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_83')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_83')"
+                v-if="CCIsDisplay('49', 'TP_0X03_83')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_83Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_83')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6293,12 +6465,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_84')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_84')"
+                v-if="CCIsDisplay('49', 'TP_0X03_84')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_84Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_84')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6313,12 +6487,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_85')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_85')"
+                v-if="CCIsDisplay('49', 'TP_0X03_85')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_85Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_85')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6333,12 +6509,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_86')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_86')"
+                v-if="CCIsDisplay('49', 'TP_0X03_86')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_86Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_86')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6353,12 +6531,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_87')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_87')"
+                v-if="CCIsDisplay('49', 'TP_0X03_87')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_87Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_87')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6373,12 +6553,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_88')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_88')"
+                v-if="CCIsDisplay('49', 'TP_0X03_88')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_88Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_88')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6426,12 +6608,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_89')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_89')"
+                v-if="CCIsDisplay('49', 'TP_0X03_89')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_89Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_89')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6478,12 +6662,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_90')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_90')"
+                v-if="CCIsDisplay('49', 'TP_0X03_90')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_90Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_90')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6530,12 +6716,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_91')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_91')"
+                v-if="CCIsDisplay('49', 'TP_0X03_91')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_91Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_91')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6587,12 +6775,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_92')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_92')"
+                v-if="CCIsDisplay('49', 'TP_0X03_92')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_92Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_92')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -6607,12 +6797,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_93')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_93')"
+                v-if="CCIsDisplay('49', 'TP_0X03_93')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_93Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_93')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -6627,12 +6819,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_94')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_94')"
+                v-if="CCIsDisplay('49', 'TP_0X03_94')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_94Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_94')"
                   >
                   </el-input>
                   <el-button
@@ -6646,12 +6840,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_95')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_95')"
+                v-if="CCIsDisplay('49', 'TP_0X03_95')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_95Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_95')"
                   >
                   </el-input>
                   <el-button
@@ -6666,12 +6862,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_96')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_96')"
+                v-if="CCIsDisplay('49', 'TP_0X03_96')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_96Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_96')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6686,12 +6884,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_97')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_97')"
+                v-if="CCIsDisplay('49', 'TP_0X03_97')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_97Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_97')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6706,12 +6906,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_98')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_98')"
+                v-if="CCIsDisplay('49', 'TP_0X03_98')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_98Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_98')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6726,12 +6928,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_99')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_99')"
+                v-if="CCIsDisplay('49', 'TP_0X03_99')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_99Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_99')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6746,12 +6950,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_100')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_100')"
+                v-if="CCIsDisplay('49', 'TP_0X03_100')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_100Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_100')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6766,12 +6972,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_101')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_101')"
+                v-if="CCIsDisplay('49', 'TP_0X03_101')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_101Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_101')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6786,12 +6994,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_102')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_102')"
+                v-if="CCIsDisplay('49', 'TP_0X03_102')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_102Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_102')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -6806,12 +7016,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_103')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_103')"
+                v-if="CCIsDisplay('49', 'TP_0X03_103')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_103Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_103')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -6826,12 +7038,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_104')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_104')"
+                v-if="CCIsDisplay('49', 'TP_0X03_104')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_104Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_104')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6878,12 +7092,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_105')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_105')"
+                v-if="CCIsDisplay('49', 'TP_0X03_105')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_105Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_105')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6930,12 +7146,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_106')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_106')"
+                v-if="CCIsDisplay('49', 'TP_0X03_106')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_106Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_106')"
                     style="width: 100%"
                   >
                     <el-option
@@ -6982,12 +7200,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_107')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_107')"
+                v-if="CCIsDisplay('49', 'TP_0X03_107')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_107Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_107')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7039,12 +7259,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_108')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_108')"
+                v-if="CCIsDisplay('49', 'TP_0X03_108')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_108Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_108')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -7059,12 +7281,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_109')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_109')"
+                v-if="CCIsDisplay('49', 'TP_0X03_109')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_109Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_109')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -7079,12 +7303,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_110')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_110')"
+                v-if="CCIsDisplay('49', 'TP_0X03_110')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_110Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_110')"
                   >
                   </el-input>
                   <el-button
@@ -7098,12 +7324,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_111')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_111')"
+                v-if="CCIsDisplay('49', 'TP_0X03_111')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_111Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_111')"
                   >
                   </el-input>
                   <el-button
@@ -7118,12 +7346,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_112')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_112')"
+                v-if="CCIsDisplay('49', 'TP_0X03_112')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_112Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_112')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7138,12 +7368,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_113')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_113')"
+                v-if="CCIsDisplay('49', 'TP_0X03_113')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_113Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_113')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7158,12 +7390,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_114')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_114')"
+                v-if="CCIsDisplay('49', 'TP_0X03_114')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_114Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_114')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7178,12 +7412,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_115')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_115')"
+                v-if="CCIsDisplay('49', 'TP_0X03_115')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_115Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_115')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7198,12 +7434,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_116')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_116')"
+                v-if="CCIsDisplay('49', 'TP_0X03_116')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_116Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_116')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7218,12 +7456,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_117')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_117')"
+                v-if="CCIsDisplay('49', 'TP_0X03_117')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_117Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_117')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7238,12 +7478,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_118')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_118')"
+                v-if="CCIsDisplay('49', 'TP_0X03_118')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_118Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_118')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7258,12 +7500,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_119')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_119')"
+                v-if="CCIsDisplay('49', 'TP_0X03_119')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_119Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_119')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7278,12 +7522,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_120')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_120')"
+                v-if="CCIsDisplay('49', 'TP_0X03_120')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_120Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_120')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7330,12 +7576,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_121')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_121')"
+                v-if="CCIsDisplay('49', 'TP_0X03_121')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_121Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_121')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7382,12 +7630,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_122')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_122')"
+                v-if="CCIsDisplay('49', 'TP_0X03_122')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_122Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_122')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7434,12 +7684,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_123')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_123')"
+                v-if="CCIsDisplay('49', 'TP_0X03_123')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_123Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_123')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7491,12 +7743,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_124')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_124')"
+                v-if="CCIsDisplay('49', 'TP_0X03_124')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_124Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_124')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -7511,12 +7765,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_125')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_125')"
+                v-if="CCIsDisplay('49', 'TP_0X03_125')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_125Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_125')"
                   >
                     <template slot="append">Month</template>
                   </el-input>
@@ -7531,12 +7787,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_126')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_126')"
+                v-if="CCIsDisplay('49', 'TP_0X03_126')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_126Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_126')"
                   >
                   </el-input>
                   <el-button
@@ -7550,12 +7808,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_127')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_127')"
+                v-if="CCIsDisplay('49', 'TP_0X03_127')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_127Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_127')"
                   >
                   </el-input>
                   <el-button
@@ -7570,12 +7830,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_128')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_128')"
+                v-if="CCIsDisplay('49', 'TP_0X03_128')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_128Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_128')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7590,12 +7852,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_129')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_129')"
+                v-if="CCIsDisplay('49', 'TP_0X03_129')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_129Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_129')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7610,12 +7874,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_130')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_130')"
+                v-if="CCIsDisplay('49', 'TP_0X03_130')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_130Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_130')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7630,12 +7896,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_131')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_131')"
+                v-if="CCIsDisplay('49', 'TP_0X03_131')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_131Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_131')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7650,12 +7918,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_132')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_132')"
+                v-if="CCIsDisplay('49', 'TP_0X03_132')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_132Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_132')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7670,12 +7940,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_133')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_133')"
+                v-if="CCIsDisplay('49', 'TP_0X03_133')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_133Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_133')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7690,12 +7962,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_134')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_134')"
+                v-if="CCIsDisplay('49', 'TP_0X03_134')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_134Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_134')"
                   >
                     <template slot="append">h</template>
                   </el-input>
@@ -7710,12 +7984,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_135')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_135')"
+                v-if="CCIsDisplay('49', 'TP_0X03_135')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_135Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_135')"
                   >
                     <template slot="append">min</template>
                   </el-input>
@@ -7730,12 +8006,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_136')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_136')"
+                v-if="CCIsDisplay('49', 'TP_0X03_136')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_136Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_136')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7782,12 +8060,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_137')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_137')"
+                v-if="CCIsDisplay('49', 'TP_0X03_137')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_137Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_137')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7834,12 +8114,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_138')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_138')"
+                v-if="CCIsDisplay('49', 'TP_0X03_138')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_138Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_138')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7886,12 +8168,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_139')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_139')"
+                v-if="CCIsDisplay('49', 'TP_0X03_139')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_139Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_139')"
                     style="width: 100%"
                   >
                     <el-option
@@ -7943,12 +8227,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_140')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_140')"
+                v-if="CCIsDisplay('49', 'TP_0X03_140')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_140Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_140')"
                   />
                   <el-button
                     type="text"
@@ -7961,12 +8247,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_141')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_141')"
+                v-if="CCIsDisplay('49', 'TP_0X03_141')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_141Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_141')"
                   />
                   <el-button
                     type="text"
@@ -7979,12 +8267,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_142')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_142')"
+                v-if="CCIsDisplay('49', 'TP_0X03_142')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_142Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_142')"
                   />
                   <el-button
                     type="text"
@@ -7998,12 +8288,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_143')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_143')"
+                v-if="CCIsDisplay('49', 'TP_0X03_143')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_143Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_143')"
                   />
                   <el-button
                     type="text"
@@ -8016,12 +8308,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_144')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_144')"
+                v-if="CCIsDisplay('49', 'TP_0X03_144')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_144Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_144')"
                   />
                   <el-button
                     type="text"
@@ -8034,12 +8328,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_145')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_145')"
+                v-if="CCIsDisplay('49', 'TP_0X03_145')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_145Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_145')"
                   />
                   <el-button
                     type="text"
@@ -8052,12 +8348,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_146')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_146')"
+                v-if="CCIsDisplay('49', 'TP_0X03_146')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_146Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_146')"
                   />
                   <el-button
                     type="text"
@@ -8070,12 +8368,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_147')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_147')"
+                v-if="CCIsDisplay('49', 'TP_0X03_147')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_147Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_147')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8122,12 +8422,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_148')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_148')"
+                v-if="CCIsDisplay('49', 'TP_0X03_148')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_148Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_148')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8179,12 +8481,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_149')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_149')"
+                v-if="CCIsDisplay('49', 'TP_0X03_149')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_149Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_149')"
                   />
                   <el-button
                     type="text"
@@ -8197,12 +8501,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_150')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_150')"
+                v-if="CCIsDisplay('49', 'TP_0X03_150')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_150Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_150')"
                   />
                   <el-button
                     type="text"
@@ -8215,12 +8521,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_151')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_151')"
+                v-if="CCIsDisplay('49', 'TP_0X03_151')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_151Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_151')"
                   />
                   <el-button
                     type="text"
@@ -8234,12 +8542,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_152')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_152')"
+                v-if="CCIsDisplay('49', 'TP_0X03_152')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_152Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_152')"
                   />
                   <el-button
                     type="text"
@@ -8252,12 +8562,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_153')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_153')"
+                v-if="CCIsDisplay('49', 'TP_0X03_153')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_153Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_153')"
                   />
                   <el-button
                     type="text"
@@ -8270,12 +8582,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_154')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_154')"
+                v-if="CCIsDisplay('49', 'TP_0X03_154')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_154Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_154')"
                   />
                   <el-button
                     type="text"
@@ -8288,12 +8602,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_155')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_155')"
+                v-if="CCIsDisplay('49', 'TP_0X03_155')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_155Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_155')"
                   />
                   <el-button
                     type="text"
@@ -8306,12 +8622,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_156')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_156')"
+                v-if="CCIsDisplay('49', 'TP_0X03_156')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_156Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_156')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8358,12 +8676,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_157')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_157')"
+                v-if="CCIsDisplay('49', 'TP_0X03_157')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_157Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_157')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8415,12 +8735,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_158')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_158')"
+                v-if="CCIsDisplay('49', 'TP_0X03_158')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_158Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_158')"
                   />
                   <el-button
                     type="text"
@@ -8433,12 +8755,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_159')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_159')"
+                v-if="CCIsDisplay('49', 'TP_0X03_159')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_159Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_159')"
                   />
                   <el-button
                     type="text"
@@ -8451,12 +8775,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_160')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_160')"
+                v-if="CCIsDisplay('49', 'TP_0X03_160')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_160Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_160')"
                   />
                   <el-button
                     type="text"
@@ -8470,12 +8796,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_161')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_161')"
+                v-if="CCIsDisplay('49', 'TP_0X03_161')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_161Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_161')"
                   />
                   <el-button
                     type="text"
@@ -8488,12 +8816,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_162')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_162')"
+                v-if="CCIsDisplay('49', 'TP_0X03_162')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_162Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_162')"
                   />
                   <el-button
                     type="text"
@@ -8506,12 +8836,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_163')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_163')"
+                v-if="CCIsDisplay('49', 'TP_0X03_163')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_163Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_163')"
                   />
                   <el-button
                     type="text"
@@ -8524,12 +8856,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_164')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_164')"
+                v-if="CCIsDisplay('49', 'TP_0X03_164')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_164Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_164')"
                   />
                   <el-button
                     type="text"
@@ -8542,12 +8876,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_165')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_165')"
+                v-if="CCIsDisplay('49', 'TP_0X03_165')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_165Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_165')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8594,12 +8930,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_166')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_166')"
+                v-if="CCIsDisplay('49', 'TP_0X03_166')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_166Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_166')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8651,12 +8989,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_167')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_167')"
+                v-if="CCIsDisplay('49', 'TP_0X03_167')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_167Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_167')"
                   />
                   <el-button
                     type="text"
@@ -8669,12 +9009,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_168')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_168')"
+                v-if="CCIsDisplay('49', 'TP_0X03_168')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_168Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_168')"
                   />
                   <el-button
                     type="text"
@@ -8687,12 +9029,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_169')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_169')"
+                v-if="CCIsDisplay('49', 'TP_0X03_169')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_169Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_169')"
                   />
                   <el-button
                     type="text"
@@ -8706,12 +9050,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_170')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_170')"
+                v-if="CCIsDisplay('49', 'TP_0X03_170')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_170Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_170')"
                   />
                   <el-button
                     type="text"
@@ -8724,12 +9070,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_171')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_171')"
+                v-if="CCIsDisplay('49', 'TP_0X03_171')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_171Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_171')"
                   />
                   <el-button
                     type="text"
@@ -8742,12 +9090,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_172')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_172')"
+                v-if="CCIsDisplay('49', 'TP_0X03_172')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_172Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_172')"
                   />
                   <el-button
                     type="text"
@@ -8760,12 +9110,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_173')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_173')"
+                v-if="CCIsDisplay('49', 'TP_0X03_173')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_173Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_173')"
                   />
                   <el-button
                     type="text"
@@ -8778,12 +9130,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_174')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_174')"
+                v-if="CCIsDisplay('49', 'TP_0X03_174')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_174Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_174')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8830,12 +9184,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_175')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_175')"
+                v-if="CCIsDisplay('49', 'TP_0X03_175')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_175Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_175')"
                     style="width: 100%"
                   >
                     <el-option
@@ -8887,12 +9243,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_176')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_176')"
+                v-if="CCIsDisplay('49', 'TP_0X03_176')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_176Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_176')"
                   />
                   <el-button
                     type="text"
@@ -8905,12 +9263,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_177')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_177')"
+                v-if="CCIsDisplay('49', 'TP_0X03_177')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_177Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_177')"
                   />
                   <el-button
                     type="text"
@@ -8923,12 +9283,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_178')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_178')"
+                v-if="CCIsDisplay('49', 'TP_0X03_178')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_178Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_178')"
                   />
                   <el-button
                     type="text"
@@ -8942,12 +9304,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_179')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_179')"
+                v-if="CCIsDisplay('49', 'TP_0X03_179')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_179Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_179')"
                   />
                   <el-button
                     type="text"
@@ -8960,12 +9324,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_180')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_180')"
+                v-if="CCIsDisplay('49', 'TP_0X03_180')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_180Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_180')"
                   />
                   <el-button
                     type="text"
@@ -8978,12 +9344,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_181')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_181')"
+                v-if="CCIsDisplay('49', 'TP_0X03_181')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_181Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_181')"
                   />
                   <el-button
                     type="text"
@@ -8996,12 +9364,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_182')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_182')"
+                v-if="CCIsDisplay('49', 'TP_0X03_182')"
+              >
                 <div style="display: flex">
                   <el-input
                     v-model="settingList['TP_0X03_182Val']"
                     :placeholder="$t('common.inputPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_182')"
                   />
                   <el-button
                     type="text"
@@ -9014,12 +9384,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_183')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_183')"
+                v-if="CCIsDisplay('49', 'TP_0X03_183')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_183Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_183')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9066,12 +9438,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_184')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_184')"
+                v-if="CCIsDisplay('49', 'TP_0X03_184')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_184Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_184')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9123,12 +9497,14 @@
 
           <el-card style="margin-top: 10px">
             <el-descriptions :column="3" border>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_185')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_185')"
+                v-if="CCIsDisplay('49', 'TP_0X03_185')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_185Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_185')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9175,12 +9551,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_186')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_186')"
+                v-if="CCIsDisplay('49', 'TP_0X03_186')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_186Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_186')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9227,12 +9605,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_187')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_187')"
+                v-if="CCIsDisplay('49', 'TP_0X03_187')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_187Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_187')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9280,12 +9660,14 @@
                 </div>
               </el-descriptions-item>
 
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_188')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_188')"
+                v-if="CCIsDisplay('49', 'TP_0X03_188')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_188Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_188')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9332,12 +9714,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_189')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_189')"
+                v-if="CCIsDisplay('49', 'TP_0X03_189')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_189Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_189')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9384,12 +9768,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_190')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_190')"
+                v-if="CCIsDisplay('49', 'TP_0X03_190')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_190Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_190')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9436,12 +9822,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_191')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_191')"
+                v-if="CCIsDisplay('49', 'TP_0X03_191')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_191Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_191')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9488,12 +9876,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_192')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_192')"
+                v-if="CCIsDisplay('49', 'TP_0X03_192')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_192Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_192')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9540,12 +9930,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_193')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_193')"
+                v-if="CCIsDisplay('49', 'TP_0X03_193')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_193Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_193')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9592,12 +9984,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_194')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_194')"
+                v-if="CCIsDisplay('49', 'TP_0X03_194')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_194Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_194')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9644,12 +10038,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_195')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_195')"
+                v-if="CCIsDisplay('49', 'TP_0X03_195')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_195Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_195')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9696,12 +10092,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_196')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_196')"
+                v-if="CCIsDisplay('49', 'TP_0X03_196')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_196Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_196')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9748,12 +10146,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_197')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_197')"
+                v-if="CCIsDisplay('49', 'TP_0X03_197')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_197Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_197')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9800,12 +10200,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_198')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_198')"
+                v-if="CCIsDisplay('49', 'TP_0X03_198')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_198Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_198')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9852,12 +10254,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_199')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_199')"
+                v-if="CCIsDisplay('49', 'TP_0X03_199')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_199Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_199')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9904,12 +10308,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_200')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_200')"
+                v-if="CCIsDisplay('49', 'TP_0X03_200')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_200Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_200')"
                     style="width: 100%"
                   >
                     <el-option
@@ -9956,12 +10362,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_201')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_201')"
+                v-if="CCIsDisplay('49', 'TP_0X03_201')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_201Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_201')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10008,12 +10416,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_202')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_202')"
+                v-if="CCIsDisplay('49', 'TP_0X03_202')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_202Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_202')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10060,12 +10470,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_203')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_203')"
+                v-if="CCIsDisplay('49', 'TP_0X03_203')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_203Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_203')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10112,12 +10524,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_204')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_204')"
+                v-if="CCIsDisplay('49', 'TP_0X03_204')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_204Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_204')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10164,12 +10578,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_205')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_205')"
+                v-if="CCIsDisplay('49', 'TP_0X03_205')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_205Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_205')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10216,12 +10632,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_206')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_206')"
+                v-if="CCIsDisplay('49', 'TP_0X03_206')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_206Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_206')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10268,12 +10686,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_207')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_207')"
+                v-if="CCIsDisplay('49', 'TP_0X03_207')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_207Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_207')"
                     style="width: 100%"
                   >
                     <el-option
@@ -10320,12 +10740,14 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item :label="$t('threePhase.TP_0X03_208')">
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_208')"
+                v-if="CCIsDisplay('49', 'TP_0X03_208')"
+              >
                 <div style="display: flex">
                   <el-select
                     v-model="settingList['TP_0X03_208Val']"
                     :placeholder="$t('common.selectPrompt')"
-                    v-if="CCIsDisplay('49', 'TP_0X03_208')"
                     style="width: 100%"
                   >
                     <el-option
