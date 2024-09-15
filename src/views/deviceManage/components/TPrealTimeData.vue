@@ -4632,7 +4632,10 @@
               </el-descriptions-item>
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_1040')"
-                v-if="CCIsDisplay('48', 'TP_0X03_1040')"
+                v-if="
+                  CCIsDisplay('48', 'TP_0X03_1040') &&
+                  settingList['TP_0X03_1024Val'] == '3'
+                "
               >
                 <div style="display: flex">
                   <el-select
@@ -4661,7 +4664,10 @@
 
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_1041')"
-                v-if="CCIsDisplay('48', 'TP_0X03_1041')"
+                v-if="
+                  CCIsDisplay('48', 'TP_0X03_1041') &&
+                  settingList['TP_0X03_1024Val'] == '3'
+                "
               >
                 <div style="display: flex">
                   <el-select
