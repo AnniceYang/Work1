@@ -1227,6 +1227,10 @@ export default {
   },
 
   deviceManage: {
+    //时间戳年份提醒
+    startYearError: "The start year cannot be later than the end year",
+    endYearError: "The end year cannot be earlier than the start year",
+
     //单相4.5协议新增设备详情详细信息
     modbusDecodeVer: "ModbusDecode Ver.",
     typeIdentifierOne: "Device Identifier1",

@@ -1227,6 +1227,10 @@ export default {
 
   //单相系统配置中文
   deviceManage: {
+    //时间戳年份提醒
+    startYearError: "起始年份不能比终止年份晚",
+    endYearError: "终止年份不能比起始年份早",
+
     //单相4.5协议新增设备详情详细信息
     modbusDecodeVer: "ModbusDecode Ver.",
     typeIdentifierOne: "设备标识符1",

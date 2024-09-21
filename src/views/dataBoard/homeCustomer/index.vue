@@ -221,18 +221,46 @@
               @click="changeElectricityType(2)"
               >{{ $t("deviceManage.year") }}</span
             >
-            <el-date-picker
-              width="150px"
-              v-model="time1"
-              value-format="timestamp"
-              type="daterange"
-              @change="changeTime"
-              style="width: 260px"
-              :range-separator="$t('deviceManage.to')"
-              :start-placeholder="$t('common.startingTime')"
-              :end-placeholder="$t('common.endTime')"
-            >
-            </el-date-picker>
+
+            <!-- 年选择 -->
+            <div v-if="electricityInfo.type === 2" class="year-picker">
+              <el-date-picker
+                v-model="startYear"
+                type="year"
+                :start-placeholder="$t('common.startingTime')"
+                size="mini"
+                format="yyyy"
+                value-format="yyyy"
+                @change="changeYearRange('start', startYear)"
+                style="width: 100px; margin-right: 5px"
+              />
+              <span>{{ $t("deviceManage.to") }}</span>
+              <el-date-picker
+                v-model="endYear"
+                type="year"
+                :end-placeholder="$t('common.endTime')"
+                size="mini"
+                format="yyyy"
+                value-format="yyyy"
+                @change="changeYearRange('end', endYear)"
+                style="width: 100px; margin-right: 5px"
+              />
+            </div>
+
+            <div v-else style="margin-left: 10px">
+              <el-date-picker
+                width="150px"
+                v-model="time1"
+                value-format="timestamp"
+                :type="electricityInfo.type === 1 ? 'monthrange' : 'daterange'"
+                @change="changeTime"
+                style="width: 260px"
+                :range-separator="$t('deviceManage.to')"
+                :start-placeholder="$t('common.startingTime')"
+                :end-placeholder="$t('common.endTime')"
+              >
+              </el-date-picker>
+            </div>
           </div>
         </div>
         <div class="data-content">
@@ -277,18 +305,46 @@
               @click="changeIncomeType(2)"
               >{{ $t("deviceManage.year") }}</span
             >
-            <el-date-picker
-              width="150px"
-              v-model="time2"
-              value-format="timestamp"
-              type="daterange"
-              @change="changeTime2"
-              style="width: 260px"
-              :range-separator="$t('deviceManage.to')"
-              :start-placeholder="$t('common.startingTime')"
-              :end-placeholder="$t('common.endTime')"
-            >
-            </el-date-picker>
+
+            <!-- 年选择 -->
+            <div v-if="incomeInfo.type === 2" class="year-picker">
+              <el-date-picker
+                v-model="startIncomeYear"
+                type="year"
+                :start-placeholder="$t('common.startingTime')"
+                size="mini"
+                format="yyyy"
+                value-format="yyyy"
+                @change="changeIncomeYearRange('start', startIncomeYear)"
+                style="width: 100px; margin-right: 5px"
+              />
+              <span>{{ $t("deviceManage.to") }}</span>
+              <el-date-picker
+                v-model="endIncomeYear"
+                type="year"
+                :end-placeholder="$t('common.endTime')"
+                size="mini"
+                format="yyyy"
+                value-format="yyyy"
+                @change="changeIncomeYearRange('end', endIncomeYear)"
+                style="width: 100px; margin-right: 5px"
+              />
+            </div>
+
+            <div v-else style="margin-left: 10px">
+              <el-date-picker
+                width="150px"
+                v-model="time2"
+                value-format="timestamp"
+                :type="incomeInfo.type === 1 ? 'monthrange' : 'daterange'"
+                @change="changeTime2"
+                style="width: 260px"
+                :range-separator="$t('deviceManage.to')"
+                :start-placeholder="$t('common.startingTime')"
+                :end-placeholder="$t('common.endTime')"
+              >
+              </el-date-picker>
+            </div>
           </div>
         </div>
         <div class="data-content">
@@ -411,6 +467,11 @@ export default {
         yData: [],
       },
 
+      startYear: null,
+      endYear: null,
+      startIncomeYear: null,
+      endIncomeYear: null,
+
       incomeInfo: {
         startTime: null,
         endTime: null,
@@ -514,20 +575,55 @@ export default {
     },
     changeElectricityType(type) {
       this.electricityInfo.type = type;
+      this.time1 = [];
       this.getElectricityData();
     },
     changeTime(e) {
       if (e) {
-        this.electricityInfo.startTime = e[0] / 1000;
-        this.electricityInfo.endTime = e[1] / 1000 + 86401;
+        if (this.electricityInfo.type === 1) {
+          this.electricityInfo.startTime = moment(e[0]).startOf("month").unix();
+          this.electricityInfo.endTime = moment(e[1]).startOf("month").unix();
+        } else if (this.electricityInfo.type === 2) {
+          this.electricityInfo.startTime = moment(e[0], "YYYY")
+            .startOf("year")
+            .unix();
+          this.electricityInfo.endTime = moment(e[1], "YYYY")
+            .endOf("year")
+            .unix();
+          this.electricityInfo.startDate = `${this.startYear}-01-01`;
+          this.electricityInfo.endDate = `${this.endYear}-12-31`;
+        } else {
+          this.electricityInfo.startTime = moment(e[0]).startOf("day").unix();
+          this.electricityInfo.endTime = moment(e[1]).endOf("day").unix();
+        }
       } else {
         this.electricityInfo.startTime = this.electricityInfo.endTime = "";
       }
       this.getElectricityData();
     },
     getElectricityData() {
-      const startDate = moment(this.time1[0]).format("YYYY-MM-DD");
-      const endDate = moment(this.time1[1]).format("YYYY-MM-DD");
+      let startDate, endDate;
+      if (this.electricityInfo.type === 1) {
+        startDate = moment(this.time1[0]).startOf("month").format("YYYY-MM-DD");
+        endDate = moment(this.time1[1]).endOf("month").format("YYYY-MM-DD");
+      } else if (this.electricityInfo.type === 2) {
+        if (!this.startYear || !this.endYear) {
+          return;
+        }
+
+        startDate = `${this.startYear}-01-01`;
+        endDate = `${this.endYear}-12-31`;
+        this.electricityInfo.startTime = moment(this.startYear, "YYYY")
+          .startOf("year")
+          .unix();
+        this.electricityInfo.endTime = moment(this.endYear, "YYYY")
+          .endOf("year")
+          .unix();
+      } else {
+        startDate = moment(this.time1[0]).format("YYYY-MM-DD");
+        endDate = moment(this.time1[1]).format("YYYY-MM-DD");
+      }
+
       electricityData({
         ...this.electricityInfo,
         deviceId: this.deviceId,
@@ -553,22 +649,92 @@ export default {
         });
       });
     },
+    changeYearRange(type, year) {
+      if (type === "start") {
+        this.electricityInfo.startTime = moment(year, "YYYY")
+          .startOf("year")
+          .unix();
+        this.electricityInfo.startDate = moment(year, "YYYY")
+          .startOf("year")
+          .format("YYYY-MM-DD");
+      } else {
+        this.electricityInfo.endTime = moment(year, "YYYY")
+          .endOf("year")
+          .unix();
+        this.electricityInfo.endDate = moment(year, "YYYY")
+          .endOf("year")
+          .format("YYYY-MM-DD");
+      }
+      this.getElectricityData();
+    },
+    changeIncomeYearRange(type, year) {
+      if (type === "start") {
+        this.incomeInfo.startTime = moment(year, "YYYY").startOf("year").unix();
+        this.incomeInfo.startDate = moment(year, "YYYY")
+          .startOf("year")
+          .format("YYYY-MM-DD");
+      } else {
+        this.incomeInfo.endTime = moment(year, "YYYY").endOf("year").unix();
+        this.incomeInfo.endDate = moment(year, "YYYY")
+          .endOf("year")
+          .format("YYYY-MM-DD");
+      }
+      this.getElectricityIncome();
+    },
+
     changeIncomeType(type) {
       this.incomeInfo.type = type;
+      this.time2 = [];
       this.getElectricityIncome();
     },
     changeTime2(e) {
       if (e) {
-        this.incomeInfo.startTime = e[0] / 1000;
-        this.incomeInfo.endTime = e[1] / 1000 + 86401;
+        if (this.incomeInfo.type === 1) {
+          // Month range
+          this.incomeInfo.startTime = moment(e[0]).startOf("month").unix();
+          this.incomeInfo.endTime = moment(e[1]).endOf("month").unix();
+        } else if (this.incomeInfo.type === 2) {
+          // Year range
+          this.incomeInfo.startTime = moment(this.startIncomeYear, "YYYY")
+            .startOf("year")
+            .unix();
+          this.incomeInfo.endTime = moment(this.endIncomeYear, "YYYY")
+            .endOf("year")
+            .unix();
+          this.incomeInfo.startDate = `${this.startIncomeYear}-01-01`;
+          this.incomeInfo.endDate = `${this.endIncomeYear}-12-31`;
+        } else {
+          this.incomeInfo.startTime = moment(e[0]).startOf("day").unix();
+          this.incomeInfo.endTime = moment(e[1]).endOf("day").unix();
+        }
       } else {
         this.incomeInfo.startTime = this.incomeInfo.endTime = "";
       }
       this.getElectricityIncome();
     },
     getElectricityIncome() {
-      const startDate = moment(this.time2[0]).format("YYYY-MM-DD");
-      const endDate = moment(this.time2[1]).format("YYYY-MM-DD");
+      let startDate, endDate;
+      if (this.incomeInfo.type === 1) {
+        startDate = moment(this.time2[0]).startOf("month").format("YYYY-MM-DD");
+        endDate = moment(this.time2[1]).endOf("month").format("YYYY-MM-DD");
+      } else if (this.incomeInfo.type === 2) {
+        if (!this.startIncomeYear || !this.endIncomeYear) {
+          return; // Prevent request if years are not selected
+        }
+
+        startDate = `${this.startIncomeYear}-01-01`;
+        endDate = `${this.endIncomeYear}-12-31`;
+        this.incomeInfo.startTime = moment(this.startIncomeYear, "YYYY")
+          .startOf("year")
+          .unix();
+        this.incomeInfo.endTime = moment(this.endIncomeYear, "YYYY")
+          .endOf("year")
+          .unix();
+      } else {
+        startDate = moment(this.time2[0]).format("YYYY-MM-DD");
+        endDate = moment(this.time2[1]).format("YYYY-MM-DD");
+      }
+
       electricityIncome({
         ...this.incomeInfo,
         deviceId: this.deviceId,
@@ -590,6 +756,7 @@ export default {
             return item.totalIncome;
           }
         });
+        console.log(this.chartData2);
       });
     },
     getPowerData() {
@@ -879,5 +1046,21 @@ export default {
   display: flex;
   justify-content: flex-end;
   padding-right: 20px;
+}
+.data-title-right {
+  display: flex;
+  align-items: center; /* Center align items vertically */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow: hidden; /* Hide overflow */
+}
+
+.data-title-right > span,
+.data-title-right > div {
+  margin-left: 10px; /* Add spacing between elements */
+}
+.year-picker {
+  display: flex;
+  align-items: center;
+  margin-left: 10px; /* 添加间距 */
 }
 </style>

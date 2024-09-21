@@ -305,6 +305,7 @@
             <el-select
               v-model="listQuery.type"
               :placeholder="$t('common.selectPrompt')"
+              @change="handleTypeChange"
             >
               <el-option :label="$t('deviceManage.day')" :value="0"></el-option>
               <el-option
@@ -317,10 +318,36 @@
               ></el-option>
             </el-select>
           </el-form-item>
-          <el-form-item :label="$t('deviceManage.timeFrame')">
+
+          <el-form-item
+            v-if="listQuery.type === 2"
+            :label="$t('deviceManage.timeFrame')"
+          >
+            <el-date-picker
+              v-model="startYear"
+              type="year"
+              :start-placeholder="$t('common.startingTime')"
+              size="mini"
+              format="yyyy"
+              value-format="yyyy"
+              @change="changeYearRange('start', startYear)"
+            />
+            <span>{{ $t("deviceManage.to") }}</span>
+            <el-date-picker
+              v-model="endYear"
+              type="year"
+              :end-placeholder="$t('common.endTime')"
+              size="mini"
+              format="yyyy"
+              value-format="yyyy"
+              @change="changeYearRange('end', endYear)"
+            />
+          </el-form-item>
+
+          <el-form-item v-else :label="$t('deviceManage.timeFrame')">
             <el-date-picker
               v-model="timeList"
-              type="daterange"
+              :type="datePickerType"
               value-format="timestamp"
               :range-separator="$t('deviceManage.to')"
               :start-placeholder="$t('common.startingTime')"
@@ -580,10 +607,15 @@ export default {
       money: 0,
       listQuery: {
         type: 0,
+        startTime: "",
+        endTime: "",
       },
       time: "",
       time2: "",
+      startYear: null,
+      endYear: null,
       timeList: [],
+      datePickerType: "daterange",
       paramsList: [
         {
           name: this.$t("deviceManage.dcdcTemperature"),
@@ -947,14 +979,79 @@ export default {
       this.netVersion = res.netVersion;
     },
 
+    handleTypeChange() {
+      if (this.listQuery.type === 0) {
+        this.datePickerType = "daterange";
+      } else if (this.listQuery.type === 1) {
+        this.datePickerType = "monthrange";
+      } else if (this.listQuery.type === 2) {
+        this.datePickerType = "year";
+      }
+    },
+
+    //处理年份范围选择
+    changeYearRange(picker, value) {
+      if (picker === "start") {
+        // Update startYear, validate it against endYear
+        const startYearTimestamp = new Date(value, 0, 1, 0, 0, 0).getTime();
+        if (this.endYear && value > this.endYear) {
+          this.$message.error(this.$t("deviceManage.startYearError")); // Error message
+          return;
+        }
+        this.listQuery.startTime = startYearTimestamp / 1000;
+        this.startYear = value; // Update the start year value
+        this.listQuery.startDate = `${value}-01-01`;
+      } else if (picker === "end") {
+        // Update endYear, validate it against startYear
+        const endYearTimestamp = new Date(value, 11, 31, 23, 59, 59).getTime();
+        if (this.startYear && value < this.startYear) {
+          this.$message.error(this.$t("deviceManage.endYearError")); // Error message
+          return;
+        }
+        this.listQuery.endTime = endYearTimestamp / 1000;
+        this.endYear = value; // Update the end year value
+        this.listQuery.endDate = `${value}-12-31`;
+      }
+    },
+
+    //校验年份范围
+    validateYearRange() {
+      if (this.listQuery.type === 2) {
+        if (this.startYear > this.endYear) {
+          return false;
+        }
+      }
+      return true;
+    },
+
     getData() {
+      if (!this.validateYearRange()) {
+        return;
+      }
       this.getElectricityData();
       this.getIncomeData();
     },
     changeTime(e) {
       if (e) {
-        this.listQuery.startTime = e[0] / 1000;
-        this.listQuery.endTime = e[1] / 1000 + 86401;
+        const type = this.listQuery.type;
+        if (type === 0) {
+          this.listQuery.startTime = e[0] / 1000;
+          this.listQuery.endTime = e[1] / 1000 + 86400;
+        } else if (type === 1) {
+          const startMonth = new Date(
+            e[0].getFullYear(),
+            e[0].getMonth(),
+            1
+          ).getTime();
+          const endMonth = new Date(
+            e[1].getFullYear(),
+            e[1].getMonth() + 1,
+            1
+          ).getTime();
+
+          this.listQuery.startTime = startMonth / 1000;
+          this.listQuery.endTime = endMonth / 1000;
+        }
       } else {
         this.listQuery.startTime = this.listQuery.endTime = "";
       }
@@ -971,11 +1068,21 @@ export default {
         this.listQuery.startTime * 1000,
         this.listQuery.endTime * 1000 - 1000,
       ];
+      this.datePickerType = "daterange";
       this.getData();
     },
     getElectricityData() {
-      const startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
-      const endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
+      let startDate, endDate;
+
+      //判断选择的查询类型是否为按年查询
+      if (this.listQuery.type === 2) {
+        startDate = `${this.startYear}-01-01`;
+        endDate = `${this.endYear}-12-31`;
+      } else {
+        startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
+        endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
+      }
+
       (this.chartData1 = {
         xData: [],
         yDataTotalElec: [],
@@ -1003,8 +1110,17 @@ export default {
         });
     },
     getIncomeData() {
-      const startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
-      const endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
+      let startDate, endDate;
+
+      //判断选择的查询类型是否为按年查询
+      if (this.listQuery.type === 2) {
+        startDate = `${this.startYear}-01-01`;
+        endDate = `${this.endYear}-12-31`;
+      } else {
+        startDate = moment(this.timeList[0]).format("YYYY-MM-DD");
+        endDate = moment(this.timeList[1]).format("YYYY-MM-DD");
+      }
+
       (this.chartData2 = {
         xData: [],
         yDataSpontaneousIncome: [],

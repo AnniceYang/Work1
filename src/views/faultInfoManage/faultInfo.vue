@@ -6,13 +6,17 @@
         mode="horizontal"
         @select="handleSelect"
       >
-        <el-menu-item index="1" v-show="permissions.admin_lsyinfo_show">{{
+        <el-menu-item index="1">{{ $t("faultInfo.faultAlarm") }}</el-menu-item>
+        <el-menu-item index="2" v-show="permissions.admin_lsyinfo_show">{{
           $t("faultInfo.faultInformation")
         }}</el-menu-item>
-        <el-menu-item index="2">{{ $t("faultInfo.faultAlarm") }}</el-menu-item>
       </el-menu>
 
       <div v-show="activeIndex === '1'" style="margin-top: 20px">
+        <PoliceList ref="policeList" />
+      </div>
+
+      <div v-show="activeIndex === '2'" style="margin-top: 20px">
         <div class="header-search">
           <div class="lside">
             <el-form :inline="true">
@@ -217,10 +221,6 @@
           >
           </el-pagination>
         </div>
-      </div>
-
-      <div v-show="activeIndex === '2'" style="margin-top: 20px">
-        <PoliceList ref="policeList" />
       </div>
     </basic-container>
 

@@ -1223,6 +1223,11 @@ export default {
   },
 
   deviceManage: {
+    //时间戳年份提醒
+    startYearError:
+      "L'anno di inizio non può essere successivo all'anno di fine",
+    endYearError: "L'anno di fine non può essere precedente all'anno di inizio",
+
     //单相4.5协议新增设备详情详细信息
     modbusDecodeVer: "Versione Decodifica Modbus",
     typeIdentifierOne: "Identificatore Dispositivo1",
