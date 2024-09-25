@@ -1252,23 +1252,17 @@ export default {
     HM_0X04_16: "Fonte di Controllo Modalità Operativa Corrente",
     HM_0X04_36: "Tensione di Carica Standard della Batteria",
     HM_0X04_51: "Temperatura della Scheda Madre",
-    HM_0X04_110: "Elementi di Autotest",
+
     HM_0X04_115: "Stato Funzione Configurazione Automatica USB",
     process1: "Elaborazione automatica",
     HM_0X04_117: "Avanzamento Aggiornamento",
     HM_0X04_160: "Stato di Guasto",
     HM_0X04_171: "Corrente BuckBoost2",
 
-    HM_0X04_32772_32779: "Nome del Dispositivo",
-    HM_0X04_32780_32787: "Modello del Dispositivo",
-    HM_0X04_32788_32795: "Nome dell'Azienda",
-
-    HM_0X04_32796: "Versione Firmware",
-    HM_0X04_32797: "Versione del Programma di Monitoraggio",
     HM_0X04_32813_32820: "Informazioni sul Produttore",
 
     HM_0X04_440: "Stato Manutenzione della Batteria",
-    HM_0X04_308: "Corrente Massima di Carica Ammessa",
+
     HM_0X04_430: "Tensione del Generatore",
     HM_0X04_431: "Corrente del Generatore",
     HM_0X04_432: "Frequenza del Generatore",
@@ -1977,8 +1971,7 @@ export default {
     independence: "Indipendenza",
     paralleling: "Parallelo",
     ratedOutputVoltageSetting: "Impostazione della tensione di uscita nominale",
-    ratedOutputFrequencySetting:
-      "Impostazione della frequenza di uscita nominale",
+    ratedOutputFrequencySetting: "Frequenza nominale della rete",
     batteryTypeSettings: "Impostazioni del tipo di batteria",
     leadAcid: "Piombo-acido",
     lithiumBattery: "Batteria al litio",
@@ -1993,6 +1986,24 @@ export default {
     offGridSOCLowerLimit:
       "Limite inferiore dello stato di carica non connesso alla rete",
     electricityMeterCT: "CT del contatore elettrico",
+
+    HM_0X03_424: "SOC batteria avviata inverter PV",
+    HM_0X03_425: "Tensione batteria avviata inverter PV",
+    HM_0X03_426: "SOC batteria spenta inverter PV",
+    HM_0X03_427: "Tensione batteria spenta inverter PV",
+    HM_0X03_428: "Frequenza accoppiamento AC",
+    HM_0X03_429: "Modalità riduzione lineare",
+    HM_0X03_430: "SOC batteria carico intelligente avviato",
+    HM_0X03_429_mode0: "SOC della batteria",
+    HM_0X03_429_mode1: "Tensione della batteria",
+
+    HM_0X03_431: "Tensione batteria carico intelligente avviato",
+    HM_0X03_432: "SOC batteria carico intelligente spento",
+    HM_0X03_433: "Tensione batteria carico intelligente spento",
+    HM_0X03_434: "Potenza PV carico intelligente avviato",
+    HM_0X03_435: "Potenza PV carico intelligente spento",
+    HM_0X03_436: "Modalità normale chiusa carico intelligente",
+
     PROTOCOL_ADDR_405: "Capacità nominale della batteria",
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
@@ -2019,6 +2030,17 @@ export default {
     PROTOCOL_ADDR_421: "Limite Protezione Sottofreq Gen",
     PROTOCOL_ADDR_422: "Limite Protezione Sovratensione Gen",
     PROTOCOL_ADDR_423: "Limite Protezione Sottotensione Gen",
+
+    HM_0X03_443: "ID dati di visualizzazione EAST BMS",
+    HM_0X03_444: "Modalità dati di visualizzazione EAST BMS",
+    HM_0X03_445: "Tipo di lingua storica",
+    chinese: "Cinese",
+    english: "Inglese",
+
+    HM_0X03_446:
+      "Coefficiente di compensazione temperatura batteria (riservato)",
+    HM_0X03_447: "Numero di pacchi batteria",
+    HM_0X03_448: "Numero di celle in un pacco batteria",
 
     electricityMeter: "Contatore elettrico",
 
@@ -2715,22 +2737,16 @@ export default {
     HM_0X04_16: "Fonte di Controllo Modalità Operativa Corrente",
     HM_0X04_36: "Tensione di Carica Standard della Batteria",
     HM_0X04_51: "Temperatura della Scheda Madre",
-    HM_0X04_110: "Elementi di Autotest",
+
     HM_0X04_115: "Stato Funzione Configurazione Automatica USB",
     HM_0X04_117: "Avanzamento Aggiornamento",
     HM_0X04_160: "Stato di Guasto",
     HM_0X04_171: "Corrente BuckBoost2",
 
-    HM_0X04_32772_32779: "Nome del Dispositivo",
-    HM_0X04_32780_32787: "Modello del Dispositivo",
-    HM_0X04_32788_32795: "Nome dell'Azienda",
-
-    HM_0X04_32796: "Versione Firmware",
-    HM_0X04_32797: "Versione del Programma di Monitoraggio",
     HM_0X04_32813_32820: "Informazioni sul Produttore",
 
     HM_0X04_440: "Stato Manutenzione della Batteria",
-    HM_0X04_308: "Corrente Massima di Carica Ammessa",
+
     HM_0X04_430: "Tensione del Generatore",
     HM_0X04_431: "Corrente del Generatore",
     HM_0X04_432: "Frequenza del Generatore",
@@ -2932,7 +2948,7 @@ export default {
     gridFrequencyC: "Frequenza di rete C",
     gridVoltageA: "Tensione di rete A",
     gridVoltageB: "Tensione di rete campionata",
-    gridVoltageC: "Tensione di rete C",
+    gridVoltageC: "Capacità Totale della Batteria",
     apparentPowerOfThePowerGrid: "Potenza apparente della rete elettrica",
     activePowerOfThePowerGrid: "Potenza attiva della rete elettrica",
     reactivePowerOfThePowerGrid: "Potenza reattiva della rete elettrica",
@@ -2949,7 +2965,7 @@ export default {
     inverterOutputVoltageB: "Tensione di uscita dell'inverter B",
     inverterOutputVoltageC: "Tensione di uscita dell'inverter C",
     inverterOutputCurrentA: "Corrente di uscita dell'inverter A",
-    inverterOutputCurrentB: "Corrente di uscita dell'inverter B",
+    inverterOutputCurrentB: "Max Batterie Online",
     inverterOutputCurrentC: "Corrente di uscita dell'inverter C",
     invertedApparentPowerA: "Potenza apparente invertita A",
     invertedApparentPowerB: "Potenza apparente invertita B",
@@ -3032,7 +3048,7 @@ export default {
     batteryProductNumber: "Numero di prodotto della batteria",
     batteryFactoryDate: "Data di fabbricazione della batteria",
     maximumAllowableChargingCurrent: "Corrente massima di carica consentita",
-    manufacturerInformation: "Informazioni sul produttore",
+    manufacturerInformation: "Nome dell'azienda",
     inverterSerialNumber: "Numero di serie dell'inverter",
     maximumAllowableDischargeCurrent: "Corrente massima di scarica consentita",
     maximumChargingCurrentAllowedByTheInverterForTheBattery:
@@ -3065,10 +3081,7 @@ export default {
     commonSet: "Impostazioni comuni",
     systemTime: "Impostazioni dell'ora di sistema",
     communicationProtocolType: "Tipo di protocollo di comunicazione",
-    dailyPowerGenerationCalibration:
-      "Calibrazione della produzione giornaliera di energia",
-    totalPowerGenerationCalibration:
-      "Calibrazione della produzione totale di energia",
+
     clearBatteryData: "Cancellazione dei dati della batteria",
     bootCommand: "Comando di avvio",
     shutdownCommand: "Comando di spegnimento",
@@ -3089,7 +3102,7 @@ export default {
     systemModeSet: "Impostazioni della modalità di sistema",
     pvConnectionSet: "Impostazioni della connessione PV",
     ratedOutputVoltageSet: "Impostazioni della tensione di uscita nominale",
-    ratedOutputFrequencySet: "Impostazioni della frequenza di uscita nominale",
+    ratedOutputFrequencySet: "Frequenza nominale della rete",
     batteryTypeSet: "Impostazioni del tipo di batteria",
     batteryChargingCurrent: "Corrente di carica della batteria",
     batteryDischargeCurrent: "Corrente di scarica della batteria",
@@ -3100,6 +3113,21 @@ export default {
     lowerLimitOfGridConnectedSoc: "Limite inferiore di SOC connesso alla rete",
     offGridSocLowerLimit: "Limite inferiore di SOC disconnesso dalla rete",
     electricityMeterCt: "Contatore di elettricità - CT",
+
+    HM_0X03_424: "SOC batteria avviata inverter PV",
+    HM_0X03_425: "Tensione batteria avviata inverter PV",
+    HM_0X03_426: "SOC batteria spenta inverter PV",
+    HM_0X03_427: "Tensione batteria spenta inverter PV",
+    HM_0X03_428: "Frequenza accoppiamento AC",
+    HM_0X03_429: "Modalità riduzione lineare",
+    HM_0X03_430: "SOC batteria carico intelligente avviato",
+    HM_0X03_431: "Tensione batteria carico intelligente avviato",
+    HM_0X03_432: "SOC batteria carico intelligente spento",
+    HM_0X03_433: "Tensione batteria carico intelligente spento",
+    HM_0X03_434: "Potenza PV carico intelligente avviato",
+    HM_0X03_435: "Potenza PV carico intelligente spento",
+    HM_0X03_436: "Modalità normale chiusa carico intelligente",
+
     PROTOCOL_ADDR_405: "Capacità nominale della batteria",
     PROTOCOL_ADDR_406: "Manutenzione della batteria",
     PROTOCOL_ADDR_407: "Configurazione dell'aggiornamento",
@@ -3123,6 +3151,14 @@ export default {
     PROTOCOL_ADDR_421: "Limite Protezione Sottofreq Gen",
     PROTOCOL_ADDR_422: "Limite Protezione Sovratensione Gen",
     PROTOCOL_ADDR_423: "Limite Protezione Sottotensione Gen",
+
+    HM_0X03_443: "ID dati di visualizzazione EAST BMS",
+    HM_0X03_444: "Modalità dati di visualizzazione EAST BMS",
+    HM_0X03_445: "Tipo di lingua storica",
+    HM_0X03_446:
+      "Coefficiente di compensazione temperatura batteria (riservato)",
+    HM_0X03_447: "Numero di pacchi batteria",
+    HM_0X03_448: "Numero di celle in un pacco batteria",
 
     otherSet: "Altre impostazioni",
 

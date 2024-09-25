@@ -278,206 +278,10 @@
           </el-descriptions>
         </el-card>
 
-        <el-card style="margin-top: 10px" v-if="operationInformation.hm12Info">
+        <!-- <el-card style="margin-top: 10px" v-if="operationInformation.hm12Info">
           <el-descriptions :title="$t('deviceManage.hm12Info')" :column="3">
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_16')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_16')"
-              >{{
-                HM_0X04_16ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_16Val
-                ]
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_36')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_36')"
-            >
-              {{ operationInformation.hm12InfoObj.HM_0X04_36Val }}V
-            </el-descriptions-item>
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_51')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_51')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_51Val
-              }}℃</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_110')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_110')"
-              >{{
-                HM_0X04_110ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_110Val
-                ]
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_115')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_115')"
-              >{{
-                HM_0X04_115ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_115Val
-                ]
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_117')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_117')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_117Val
-              }}%</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_160')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_160')"
-              >{{
-                HM_0X04_160ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_160Val
-                ]
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_171')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_171')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_171Val
-              }}A</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32772_32779')"
-              v-if="
-                operationInformationIsDisplay(
-                  'hm12InfoObj',
-                  'HM_0X04_32772_32779'
-                )
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32772_32779Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32780_32787')"
-              v-if="
-                operationInformationIsDisplay(
-                  'hm12InfoObj',
-                  'HM_0X04_32780_32787'
-                )
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32780_32787Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32788_32795')"
-              v-if="
-                operationInformationIsDisplay(
-                  'hm12InfoObj',
-                  'HM_0X04_32788_32795'
-                )
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32788_32795Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32796')"
-              v-if="
-                operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_32796')
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32796Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32797')"
-              v-if="
-                operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_32797')
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32797Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_32813_32820')"
-              v-if="
-                operationInformationIsDisplay(
-                  'hm12InfoObj',
-                  'HM_0X04_32813_32820'
-                )
-              "
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_32813_32820Val
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_440')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_440')"
-              >{{
-                HM_0X04_440ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_440Val
-                ]
-              }}</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_308')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_308')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_308Val
-              }}mA</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_430')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_430')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_430Val
-              }}V</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_431')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_431')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_431Val
-              }}A</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_432')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_432')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_432Val
-              }}Hz</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_433')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_433')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_433Val
-              }}VA</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_434')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_434')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_434Val
-              }}W</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_435')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_435')"
-              >{{
-                operationInformation.hm12InfoObj.HM_0X04_435Val
-              }}VAR</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.HM_0X04_436')"
-              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_436')"
-              >{{
-                HM_0X04_436ValFilter[
-                  operationInformation.hm12InfoObj.HM_0X04_436Val
-                ]
-              }}</el-descriptions-item
-            >
           </el-descriptions>
-        </el-card>
+        </el-card> -->
 
         <el-card
           style="margin-top: 10px"
@@ -676,18 +480,7 @@
                 operationInformation.powerGridInformationObj.gridFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <el-descriptions-item
-              :label="$t('parameterConfiguration.gridFrequencyB')"
-              v-if="
-                operationInformationIsDisplay(
-                  'powerGridInformationObj',
-                  'gridFrequencyB'
-                )
-              "
-              >{{
-                operationInformation.powerGridInformationObj.gridFrequencyBVal
-              }}A</el-descriptions-item
-            >
+
             <!-- <el-descriptions-item
               :label="$t('deviceManage.phaseCGridFrequency')"
               v-if="
@@ -712,30 +505,7 @@
                 operationInformation.powerGridInformationObj.gridVoltageAVal
               }}V</el-descriptions-item
             >
-            <el-descriptions-item
-              :label="$t('parameterConfiguration.gridVoltageB')"
-              v-if="
-                operationInformationIsDisplay(
-                  'powerGridInformationObj',
-                  'gridVoltageB'
-                )
-              "
-              >{{
-                operationInformation.powerGridInformationObj.gridVoltageBVal
-              }}</el-descriptions-item
-            >
-            <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseCGridVoltage')"
-              v-if="
-                operationInformationIsDisplay(
-                  'powerGridInformationObj',
-                  'gridVoltageC'
-                )
-              "
-              >{{
-                operationInformation.powerGridInformationObj.gridVoltageCVal
-              }}V</el-descriptions-item
-            > -->
+
             <el-descriptions-item
               :label="$t('deviceManage.apparentPowerOfThePowerGrid')"
               v-if="
@@ -866,32 +636,7 @@
                   .inverterOutputFrequencyAVal
               }}Hz</el-descriptions-item
             >
-            <el-descriptions-item
-              :label="$t('parameterConfiguration.inverterOutputFrequencyB')"
-              v-if="
-                operationInformationIsDisplay(
-                  'inverterInformationObj',
-                  'inverterOutputFrequencyB'
-                )
-              "
-              >{{
-                operationInformation.inverterInformationObj
-                  .inverterOutputFrequencyBVal
-              }}A</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('parameterConfiguration.inverterOutputFrequencyC')"
-              v-if="
-                operationInformationIsDisplay(
-                  'inverterInformationObj',
-                  'inverterOutputFrequencyC'
-                )
-              "
-              >{{
-                operationInformation.inverterInformationObj
-                  .inverterOutputFrequencyCVal
-              }}W</el-descriptions-item
-            >
+
             <el-descriptions-item
               :label="$t('deviceManage.phaseAInverterOutputVoltage')"
               v-if="
@@ -944,20 +689,8 @@
                   .inverterOutputCurrentAVal
               }}A</el-descriptions-item
             >
+
             <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseBInverterOutputCurrent')"
-              v-if="
-                operationInformationIsDisplay(
-                  'inverterInformationObj',
-                  'inverterOutputCurrentB'
-                )
-              "
-              >{{
-                operationInformation.inverterInformationObj
-                  .inverterOutputCurrentBVal
-              }}A</el-descriptions-item
-            >
-            <el-descriptions-item
               :label="$t('deviceManage.phaseCInverterOutputCurrent')"
               v-if="
                 operationInformationIsDisplay(
@@ -2200,6 +1933,224 @@
                 operationInformation.otherInformationObj.protocolAddress159Val
               }}
             </el-descriptions-item>
+
+            <!-- 美观的分割线 -->
+            <hr
+              style="
+                border: none;
+                border-top: 4px solid #333; /* 更深的颜色和更粗的线条 */
+                margin: 20px 0; /* 上下留出空白 */
+                width: 100%; /* 使分割线占满父容器的宽度 */
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 添加阴影效果 */
+              "
+            />
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_16')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_16')"
+              >{{
+                HM_0X04_16ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_16Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_36')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_36')"
+            >
+              {{ operationInformation.hm12InfoObj.HM_0X04_36Val }}V
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_51')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_51')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_51Val
+              }}℃</el-descriptions-item
+            >
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_115')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_115')"
+              >{{
+                HM_0X04_115ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_115Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_117')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_117')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_117Val
+              }}%</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_160')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_160')"
+              >{{
+                HM_0X04_160ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_160Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_171')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_171')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_171Val
+              }}A</el-descriptions-item
+            >
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_32813_32820')"
+              v-if="
+                operationInformationIsDisplay(
+                  'hm12InfoObj',
+                  'HM_0X04_32813_32820'
+                )
+              "
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_32813_32820Val
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_440')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_440')"
+              >{{
+                HM_0X04_440ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_440Val
+                ]
+              }}</el-descriptions-item
+            >
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_430')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_430')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_430Val
+              }}V</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_431')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_431')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_431Val
+              }}A</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_432')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_432')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_432Val
+              }}Hz</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_433')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_433')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_433Val
+              }}VA</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_434')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_434')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_434Val
+              }}W</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_435')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_435')"
+              >{{
+                operationInformation.hm12InfoObj.HM_0X04_435Val
+              }}VAR</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X04_436')"
+              v-if="operationInformationIsDisplay('hm12InfoObj', 'HM_0X04_436')"
+              >{{
+                HM_0X04_436ValFilter[
+                  operationInformation.hm12InfoObj.HM_0X04_436Val
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.gridVoltageC')"
+              v-if="
+                operationInformationIsDisplay(
+                  'powerGridInformationObj',
+                  'gridVoltageC'
+                )
+              "
+              >{{
+                operationInformation.powerGridInformationObj.gridVoltageCVal
+              }}Ah</el-descriptions-item
+            >
+
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.inverterOutputFrequencyB')"
+              v-if="
+                operationInformationIsDisplay(
+                  'inverterInformationObj',
+                  'inverterOutputFrequencyB'
+                )
+              "
+              >{{
+                operationInformation.inverterInformationObj
+                  .inverterOutputFrequencyBVal
+              }}A</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.inverterOutputFrequencyC')"
+              v-if="
+                operationInformationIsDisplay(
+                  'inverterInformationObj',
+                  'inverterOutputFrequencyC'
+                )
+              "
+              >{{
+                operationInformation.inverterInformationObj
+                  .inverterOutputFrequencyCVal
+              }}W</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.gridFrequencyB')"
+              v-if="
+                operationInformationIsDisplay(
+                  'powerGridInformationObj',
+                  'gridFrequencyB'
+                )
+              "
+              >{{
+                operationInformation.powerGridInformationObj.gridFrequencyBVal
+              }}A</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.gridVoltageB')"
+              v-if="
+                operationInformationIsDisplay(
+                  'powerGridInformationObj',
+                  'gridVoltageB'
+                )
+              "
+              >{{
+                operationInformation.powerGridInformationObj.gridVoltageBVal
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('parameterConfiguration.inverterOutputCurrentB')"
+              v-if="
+                operationInformationIsDisplay(
+                  'inverterInformationObj',
+                  'inverterOutputCurrentB'
+                )
+              "
+              >{{
+                operationInformation.inverterInformationObj
+                  .inverterOutputCurrentBVal
+              }}</el-descriptions-item
+            >
           </el-descriptions>
         </el-card>
       </template>
@@ -2268,76 +2219,7 @@
                 >
               </div>
             </el-descriptions-item>
-            <el-descriptions-item
-              :label="$t('deviceManage.dailyCalibration')"
-              v-if="
-                systemSetIsDisplay(
-                  'commonSetObj',
-                  'dailyPowerGenerationCalibration'
-                )
-              "
-            >
-              <div style="display: flex">
-                <el-input
-                  v-model="
-                    systemSet.commonSetObj.dailyPowerGenerationCalibrationVal
-                  "
-                  :placeholder="$t('common.inputPrompt')"
-                />
-                <el-button
-                  v-if="
-                    systemSetBtnIsDisplay(
-                      'commonSetObj',
-                      'dailyPowerGenerationCalibration'
-                    )
-                  "
-                  type="text"
-                  style="margin-left: 5px"
-                  @click="
-                    handleSave(
-                      'dailyPowerGenerationCalibration',
-                      systemSet.commonSetObj.dailyPowerGenerationCalibrationVal
-                    )
-                  "
-                  >{{ $t("common.save") }}</el-button
-                >
-              </div>
-            </el-descriptions-item>
-            <el-descriptions-item
-              :label="$t('deviceManage.totalCalibration')"
-              v-if="
-                systemSetIsDisplay(
-                  'commonSetObj',
-                  'totalPowerGenerationCalibration'
-                )
-              "
-            >
-              <div style="display: flex">
-                <el-input
-                  v-model="
-                    systemSet.commonSetObj.totalPowerGenerationCalibrationVal
-                  "
-                  :placeholder="$t('common.inputPrompt')"
-                />
-                <el-button
-                  v-if="
-                    systemSetBtnIsDisplay(
-                      'commonSetObj',
-                      'totalPowerGenerationCalibration'
-                    )
-                  "
-                  type="text"
-                  style="margin-left: 5px"
-                  @click="
-                    handleSave(
-                      'totalPowerGenerationCalibration',
-                      systemSet.commonSetObj.totalPowerGenerationCalibrationVal
-                    )
-                  "
-                  >{{ $t("common.save") }}</el-button
-                >
-              </div>
-            </el-descriptions-item>
+
             <el-descriptions-item
               :label="$t('deviceManage.clearBatteryData')"
               v-if="systemSetIsDisplay('commonSetObj', 'clearBatteryData')"
@@ -2889,18 +2771,22 @@
               </div>
             </el-descriptions-item>
             <el-descriptions-item
-              :label="$t('deviceManage.ratedOutputFrequencySetting')"
+              :label="$t('parameterConfiguration.ratedOutputFrequencySet')"
               v-if="
                 systemSetIsDisplay('advancedSetObj', 'ratedOutputFrequencySet')
               "
             >
               <div style="display: flex">
-                <el-input
-                  v-model="systemSet.advancedSetObj.ratedOutputFrequencySetVal"
-                  :placeholder="$t('common.inputPrompt')"
-                >
-                  <template slot="append">Hz</template>
-                </el-input>
+                <el-tooltip content="Value:50/60" placement="top">
+                  <el-input
+                    v-model="
+                      systemSet.advancedSetObj.ratedOutputFrequencySetVal
+                    "
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">Hz</template>
+                  </el-input>
+                </el-tooltip>
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay(
@@ -3259,6 +3145,352 @@
                 >
               </div>
             </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_424')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_424')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_424Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_424')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_424',
+                      systemSet.advancedSetObj.HM_0X03_424Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_425')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_425')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_425Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_425')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_425',
+                      systemSet.advancedSetObj.HM_0X03_425Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_426')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_426')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_426Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_426')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_426',
+                      systemSet.advancedSetObj.HM_0X03_426Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_427')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_427')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_427Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_427')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_427',
+                      systemSet.advancedSetObj.HM_0X03_427Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_428')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_428')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_428Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">Hz</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_428')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_428',
+                      systemSet.advancedSetObj.HM_0X03_428Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_429')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_429')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.advancedSetObj.HM_0X03_429Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option
+                    :label="$t('deviceManage.HM_0X03_429_mode0')"
+                    value="0"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.HM_0X03_429_mode1')"
+                    value="1"
+                  />
+                </el-select>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_429')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_429',
+                      systemSet.advancedSetObj.HM_0X03_429Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_430')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_430')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_430Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_430')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_430',
+                      systemSet.advancedSetObj.HM_0X03_430Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_431')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_431')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_431Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_431')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_431',
+                      systemSet.advancedSetObj.HM_0X03_431Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_432')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_432')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_432Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_432')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_432',
+                      systemSet.advancedSetObj.HM_0X03_432Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_433')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_433')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_433Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_433')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_433',
+                      systemSet.advancedSetObj.HM_0X03_433Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_434')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_434')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_434Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">kW</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_434')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_434',
+                      systemSet.advancedSetObj.HM_0X03_434Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_435')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_435')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.advancedSetObj.HM_0X03_435Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">kW</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_435')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_435',
+                      systemSet.advancedSetObj.HM_0X03_435Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_436')"
+              v-if="systemSetIsDisplay('advancedSetObj', 'HM_0X03_436')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.advancedSetObj.HM_0X03_436Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('advancedSetObj', 'HM_0X03_436')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_436',
+                      systemSet.advancedSetObj.HM_0X03_436Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
             <el-descriptions-item
               :label="$t('deviceManage.PROTOCOL_ADDR_405')"
               v-if="systemSetIsDisplay('advancedSetObj', 'PROTOCOL_ADDR_405')"
@@ -7500,6 +7732,30 @@
             </el-descriptions-item>
 
             <el-descriptions-item
+              :label="$t('deviceManage.realTimeClock')"
+              v-if="systemSetIsDisplay('otherSetObj', 'realTimeClock')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.otherSetObj.realTimeClockVal"
+                  :placeholder="$t('common.inputPrompt')"
+                />
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'realTimeClock')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'realTimeClock',
+                      systemSet.otherSetObj.realTimeClockVal
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
               :label="$t('deviceManage.PROTOCOL_ADDR_442')"
               v-if="
                 systemSetIsDisplay('otherSetObj', 'PROTOCOL_ADDR_442') &&
@@ -7536,22 +7792,154 @@
             </el-descriptions-item>
 
             <el-descriptions-item
-              :label="$t('deviceManage.realTimeClock')"
-              v-if="systemSetIsDisplay('otherSetObj', 'realTimeClock')"
+              :label="$t('deviceManage.HM_0X03_443')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_443')"
             >
               <div style="display: flex">
                 <el-input
-                  v-model="systemSet.otherSetObj.realTimeClockVal"
+                  v-model="systemSet.otherSetObj.HM_0X03_443Val"
                   :placeholder="$t('common.inputPrompt')"
                 />
                 <el-button
-                  v-if="systemSetBtnIsDisplay('otherSetObj', 'realTimeClock')"
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_443')"
                   type="text"
                   style="margin-left: 5px"
                   @click="
                     handleSave(
-                      'realTimeClock',
-                      systemSet.otherSetObj.realTimeClockVal
+                      'HM_0X03_443',
+                      systemSet.otherSetObj.HM_0X03_443Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_444')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_444')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.otherSetObj.HM_0X03_444Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option
+                    :label="$t('deviceManage.automaticPolling')"
+                    value="0"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.manualSwitching')"
+                    value="1"
+                  />
+                </el-select>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_444')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_444',
+                      systemSet.otherSetObj.HM_0X03_444Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_445')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_445')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.otherSetObj.HM_0X03_445Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.chinese')" value="0" />
+                  <el-option :label="$t('deviceManage.english')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_445')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_445',
+                      systemSet.otherSetObj.HM_0X03_445Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_446')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_446')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.otherSetObj.HM_0X03_446Val"
+                  :placeholder="$t('common.inputPrompt')"
+                />
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_446')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_446',
+                      systemSet.otherSetObj.HM_0X03_446Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_447')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_447')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.otherSetObj.HM_0X03_447Val"
+                  :placeholder="$t('common.inputPrompt')"
+                />
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_447')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_447',
+                      systemSet.otherSetObj.HM_0X03_447Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_448')"
+              v-if="systemSetIsDisplay('otherSetObj', 'HM_0X03_448')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.otherSetObj.HM_0X03_448Val"
+                  :placeholder="$t('common.inputPrompt')"
+                />
+                <el-button
+                  v-if="systemSetBtnIsDisplay('otherSetObj', 'HM_0X03_448')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_448',
+                      systemSet.otherSetObj.HM_0X03_448Val
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -16117,18 +16505,6 @@ export default {
       HM_0X04_16ValFilter: [
         this.$t("deviceManage.MCUIssuedControl"),
         this.$t("deviceManage.DSPIssuedControl"),
-      ],
-
-      HM_0X04_110ValFilter: [
-        this.$t("deviceManage.none"),
-        this.$t("deviceManage.overvoltageForASection"),
-        this.$t("deviceManage.secondStageOvervoltage"),
-        this.$t("deviceManage.oneSectionUnderVoltage"),
-        this.$t("deviceManage.secondaryUndervoltage"),
-        this.$t("deviceManage.overfrequencyOfASegment"),
-        this.$t("deviceManage.secondStageOverfrequency"),
-        this.$t("deviceManage.oneUnderfrequency"),
-        this.$t("deviceManage.twoStageUnderfrequency"),
       ],
 
       HM_0X04_115ValFilter: [

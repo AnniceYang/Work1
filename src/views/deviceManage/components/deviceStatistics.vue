@@ -426,8 +426,10 @@
               format="yyyy"
               value-format="yyyy"
               @change="changeYearRange('start', startYear)"
+              :append-to-body="false"
+              style="width: 100px; margin-right: 5px"
             />
-            <span>{{ $t("deviceManage.to") }}</span>
+            <span style="margin: 0 5px">{{ $t("deviceManage.to") }}</span>
             <el-date-picker
               v-model="endYear"
               type="year"
@@ -436,6 +438,8 @@
               format="yyyy"
               value-format="yyyy"
               @change="changeYearRange('end', endYear)"
+              :append-to-body="false"
+              style="width: 100px; margin-right: 5px"
             />
           </el-form-item>
 
