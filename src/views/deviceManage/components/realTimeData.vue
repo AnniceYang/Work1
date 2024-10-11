@@ -10156,6 +10156,17 @@
                   : $t("deviceManage.notConnected")
               }}</el-descriptions-item
             >
+
+            <el-descriptions-item
+              :label="$t('deviceManage.stateOneBit3')"
+              v-if="batteryParameterIsDisplay('stateOneBit3')"
+              >{{
+                +batteryParameter.batterySetObj.stateOneBit3Val
+                  ? $t("deviceManage.bit3State1")
+                  : $t("deviceManage.bit3State0")
+              }}</el-descriptions-item
+            >
+
             <el-descriptions-item
               :label="$t('deviceManage.stateMOSTemperature1')"
               v-if="batteryParameterIsDisplay('stateOneBit4')"

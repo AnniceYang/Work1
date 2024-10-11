@@ -2453,6 +2453,7 @@ export default {
     stateDischargeState1: "Stato 1 - Scarica",
     stateChargingState1: "Stato 1 - Carica",
     stateChargerState1: "Stato 1 - Caricatore",
+    stateOneBit3: "State1 - Carica Forzata Inverter",
     stateMOSTemperature1: "Stato 1 - Temperatura MOS",
     stateAmbientTemperature1: "Stato 1 - Temperatura Ambiente",
     stateCellOvervoltage1: "Stato 1 - Sovratensione Celle",
@@ -2534,6 +2535,10 @@ export default {
     noCharging: "Nessuna carica",
     connected: "Connesso",
     notConnected: "Non connesso",
+
+    bit3State1: "Richiesta carica forzata inverter",
+    bit3State0: "Nessuno",
+
     withMOStemperature: "Con temperatura MOS",
     noMOStemperature: "Senza temperatura MOS",
     withAmbientTemperature: "Con temperatura ambiente",
@@ -3565,6 +3570,7 @@ export default {
     stateOneBit0: "Stato 1 - Scarica",
     stateOneBit1: "Stato 1 - Carica",
     stateOneBit2: "Stato 1 - Caricatore",
+    stateOneBit3: "State1 - Carica Forzata Inverter",
     stateOneBit4: "Stato 1 - Temperatura MOS",
     stateOneBit5: "Stato 1 - Temperatura ambiente",
     stateOneBit8: "Stato 1 - Sovratensione delle celle",

@@ -2427,6 +2427,7 @@ export default {
     stateDischargeState1: "State1-放电状态",
     stateChargingState1: "State1-充电状态",
     stateChargerState1: "State1-充电器状态",
+    stateOneBit3: "State1-逆变器强充状态",
     stateMOSTemperature1: "State1-MOS温度",
     stateAmbientTemperature1: "State1-环境温度",
     stateCellOvervoltage1: "State1-电芯过压",
@@ -2484,6 +2485,10 @@ export default {
     noCharging: "无充电",
     connected: "已连接",
     notConnected: "未连接",
+
+    bit3State1: "请求逆变器强充",
+    bit3State0: "无",
+
     withMOStemperature: "有MOS温度",
     noMOStemperature: "无MOS温度",
     withAmbientTemperature: "有环境温度",
@@ -4245,6 +4250,7 @@ export default {
     stateOneBit0: "State1-放电状态",
     stateOneBit1: "State1-充电状态",
     stateOneBit2: "State1-充电器状态",
+    stateOneBit3: "State1-逆变器强充状态",
     stateOneBit4: "State1-MOS温度",
     stateOneBit5: "State1-环境温度",
     stateOneBit8: "State1-电芯过压",

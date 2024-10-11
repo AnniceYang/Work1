@@ -2459,6 +2459,7 @@ export default {
     stateDischargeState1: "State 1- Discharge state",
     stateChargingState1: "State 1- Charging State",
     stateChargerState1: "State 1- Charger State",
+    stateOneBit3: "State1- Inverter Forced Charging Status",
     stateMOSTemperature1: "State 1 MOS temperature",
     stateAmbientTemperature1: "State 1- ambient temperature",
     stateCellOvervoltage1: "State 1- Cell overvoltage",
@@ -2538,6 +2539,10 @@ export default {
     noCharging: "No charging",
     connected: "Connected",
     notConnected: "Not connected",
+
+    bit3State1: "Request inverter forced charge",
+    bit3State0: "None",
+
     withMOStemperature: "With MOS temperature",
     noMOStemperature: "No MOS temperature",
     withAmbientTemperature: "With ambient temperature",
@@ -3549,6 +3554,7 @@ export default {
     stateOneBit0: "State 1- Discharge state",
     stateOneBit1: "State 1- Charging State",
     stateOneBit2: "State 1- Charger State",
+    stateOneBit3: "State1- Inverter Forced Charging Status",
     stateOneBit4: "State 1 MOS temperature",
     stateOneBit5: "State 1- ambient temperature",
     stateOneBit8: "State 1- Cell overvoltage",
