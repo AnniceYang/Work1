@@ -12355,7 +12355,8 @@ export default {
 
   computed: {
     isAdmin() {
-      return this.$store.state.user.roles.includes("1");
+      const roles = this.$store.state.user.roles;
+      return roles.includes("1") || roles.includes("5");
     },
 
     // 计算属性，根据 WiFi 强度值计算强度级别
@@ -13037,7 +13038,7 @@ export default {
           return false;
         }
       } else if (role == "5") {
-        if (installerIsShowValue) {
+        if (isShowValue) {
           return true;
         } else {
           return false;
@@ -13084,7 +13085,7 @@ export default {
           return false;
         }
       } else if (role == "5") {
-        if (installerIsSet) {
+        if (IsSet) {
           return true;
         } else {
           return false;
@@ -13148,7 +13149,7 @@ export default {
       if (role == "5") {
         if (
           this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "installerIsShow"
+            key2 + "isShow"
           ]
         ) {
           return true;

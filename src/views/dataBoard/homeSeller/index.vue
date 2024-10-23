@@ -1,18 +1,20 @@
 <template>
   <div class="app-container calendar-list-container">
     <div class="container">
-      <el-select
-        v-model="selectedInstaller"
-        placeholder="Select Installer"
-        @change="loadInstallerData"
-      >
-        <el-option
-          v-for="installer in installers"
-          :key="installer.installerUserId"
-          :label="installer.installerUsername"
-          :value="installer.installerUserId"
-        />
-      </el-select>
+      <div class="select-wrapper">
+        <el-select
+          v-model="selectedInstaller"
+          placeholder="Select Installer"
+          @change="loadInstallerData"
+        >
+          <el-option
+            v-for="installer in installers"
+            :key="installer.installerUserId"
+            :label="installer.installerUsername"
+            :value="installer.installerUserId"
+          />
+        </el-select>
+      </div>
 
       <div class="top">
         <!-- Add dropdown menu to select dealer -->
@@ -791,6 +793,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.select-wrapper {
+  margin-bottom: 20px;
+}
 .container {
   padding: 20px;
 }

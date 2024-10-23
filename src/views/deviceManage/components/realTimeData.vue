@@ -16692,7 +16692,8 @@ export default {
   },
   computed: {
     isAdmin() {
-      return this.$store.state.user.roles.includes("1");
+      const roles = this.$store.state.user.roles;
+      return roles.includes("1") || roles.includes("5");
     },
 
     // 计算属性，根据 WiFi 强度值计算强度级别
@@ -17178,7 +17179,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.operationInformation[key1][key2 + "installerIsShow"]) {
+        if (this.operationInformation[key1][key2 + "isShow"]) {
           return true;
         } else {
           return false;
@@ -17219,7 +17220,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.systemSet[key1][key2 + "installerIsShow"]) {
+        if (this.systemSet[key1][key2 + "isShow"]) {
           return true;
         } else {
           return false;
@@ -17260,7 +17261,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.systemSet[key1][key2 + "installerCanSet"]) {
+        if (this.systemSet[key1][key2 + "canSet"]) {
           return true;
         } else {
           return false;
@@ -17301,7 +17302,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.subList[key1][key2 + "installerIsShow"]) {
+        if (this.subList[key1][key2 + "isShow"]) {
           return true;
         } else {
           return false;
@@ -17341,7 +17342,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.subList[key1][key2 + "installerCanSet"]) {
+        if (this.subList[key1][key2 + "canSet"]) {
           return true;
         } else {
           return false;
@@ -17383,7 +17384,7 @@ export default {
         }
       }
       if (role == "5") {
-        if (this.batteryParameter["batterySetObj"][key2 + "installerIsShow"]) {
+        if (this.batteryParameter["batterySetObj"][key2 + "isShow"]) {
           return true;
         } else {
           return false;
@@ -17442,7 +17443,7 @@ export default {
       if (role == "5") {
         if (
           this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "installerIsShow"
+            key2 + "isShow"
           ]
         ) {
           return true;
