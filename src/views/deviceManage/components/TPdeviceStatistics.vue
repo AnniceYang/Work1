@@ -146,6 +146,19 @@
         :title="$t('deviceManage.deviceInformation')"
         style="margin-top: 20px"
       >
+        <!-- 升级结果弹窗 -->
+        <el-dialog
+          title="Upgrade Result"
+          :visible.sync="isUpgradeResultVisible"
+          width="30%"
+          @close="handleDialogClose"
+        >
+          <span>{{ upgradeResultMessage }}</span>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="isUpgradeResultVisible = false">Close</el-button>
+          </span>
+        </el-dialog>
+
         <el-descriptions-item :label="$t('deviceManage.deviceName')">{{
           deviceInfo.name
         }}</el-descriptions-item>
@@ -163,7 +176,7 @@
         }}</el-descriptions-item>
 
         <el-descriptions-item :label="$t('deviceManage.deviceStatus1')">{{
-          getDeviceStatusWithNetVersion()
+          getDeviceStatusWithupgradeProgress()
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('common.createTime')">{{
           deviceInfo.createTime | parseTime
@@ -810,8 +823,13 @@ export default {
       connectState: "init",
       interObj: null,
 
-      pageType31Data: null,
-      netVersion: null, //用来存储netVersion
+      upgradeProgress: null, //用来存储upgradeProgress
+      fl: null,
+      fileLength: null,
+      oc: null,
+      otaCrc: null,
+      isUpgradeResultVisible: false,
+      upgradeResultMessage: "",
     };
   },
   methods: {
@@ -906,49 +924,63 @@ export default {
       this.getDeviceRecordData();
     },
 
-    getDeviceStatusWithNetVersion() {
+    getDeviceStatusWithupgradeProgress() {
       const deviceStatus =
         this.onlineStatusFilter[this.deviceInfo.onlineStatus];
-      let netVersionDisplay = "(0 %)";
+      let statusDisplay = deviceStatus;
 
-      if (this.deviceInfo.onlineStatus === 2) {
-        if (this.netVersion !== null) {
-          console.log("this.netVersion已经取到值为：", this.netVersion);
-          netVersionDisplay = `(${this.netVersion} %)`;
-        }
+      // Check if onlineStatus is 2 and user is an admin
+      if (this.deviceInfo.onlineStatus === 2 && this.isAdmin) {
+        // Handle undefined or null upgradeProgress
+        const upgradeProgress = this.upgradeProgress || 0;
+        let upgradeProgressDisplay = `(${upgradeProgress}%)`;
+        let additionalInfo = "";
+
+        // Use 0 as fallback for undefined or null values
+        const fl = this.fl || 0;
+        const fileLength = this.fileLength || 0;
+        const oc = this.oc || 0;
+        const otaCrc = this.otaCrc || 0;
+
+        // Generate additional info string
+        additionalInfo = ` (原文件: ${fl}, 收到文件: ${fileLength}, 下发CRC: ${oc}, 收到CRC: ${otaCrc})`;
+
+        statusDisplay = `${deviceStatus} ${upgradeProgressDisplay}${additionalInfo}`;
       }
 
-      return `${deviceStatus} ${netVersionDisplay}`;
+      return statusDisplay;
     },
 
     // mqtt初始化
     handleMqttInit() {
-      this.mqttClient = mqtt.connect(baseMqtt, {
-        protocolVersion: 4,
-        reconnectPeriod: 1000,
-        connectTimeout: 30 * 1000,
-        resubscribe: true,
-        keepalive: 3,
-        clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
-      });
-      this.mqttClient
-        .on("connect", (res) => {
+      if (this.deviceInfo.onlineStatus === 2) {
+        this.mqttClient = mqtt.connect(baseMqtt, {
+          protocolVersion: 4,
+          reconnectPeriod: 1000,
+          connectTimeout: 30 * 1000,
+          resubscribe: true,
+          keepalive: 60,
+          clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+        });
+
+        this.mqttClient.on("connect", (res) => {
           this.connectState = "connect";
           this.subscribeInfo();
-          // this.loading = false
           console.log("mqtt连接成功", res);
-        })
-        .on("message", (topic, message) => {
+        });
+
+        this.mqttClient.on("message", (topic, message) => {
           const messageInfo = JSON.parse(message.toString());
-          console.log("messageInfo里是： ", messageInfo);
           if (messageInfo.msgOperation === 5 && messageInfo.valType === 31) {
             const valData = JSON.parse(messageInfo.val);
-            console.log("Received netVersion: ", valData.netVersion);
-
             this.paramsChange(valData);
           }
         });
+      } else {
+        console.log("设备不在升级状态，跳过MQTT连接");
+      }
     },
+
     // 订阅主题 /APP/设备id/NEWS
     subscribeInfo() {
       if (!this.mqttClient || this.connectState !== "connect") {
@@ -980,7 +1012,20 @@ export default {
     // 数据处理转换
     paramsChange(res) {
       console.log(res, "res------收到啥？");
-      this.netVersion = res.netVersion;
+      this.upgradeProgress = res.upgradeProgress;
+      this.fl = res.fl;
+      this.fileLength = res.fileLength;
+      this.oc = res.oc;
+      this.otaCrc = res.otaCrc;
+
+      if (res.upgradeResult) {
+        this.upgradeResultMessage = res.upgradeResult;
+        this.isUpgradeResultVisible = true;
+      }
+    },
+
+    handleDialogClose() {
+      this.isUpgradeResultVisible = false;
     },
 
     handleTypeChange() {
@@ -1242,9 +1287,6 @@ export default {
   margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
-}
-
-.card2-content {
 }
 
 .card3-content {
