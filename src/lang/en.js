@@ -416,6 +416,39 @@ export default {
     TP_0X04_79: "Operating Time (Minutes)",
     TP_0X04_80: "Operating Time (Seconds)",
 
+    //1.6协议新增三相参数
+    TP_0X04_10: "Serial Upgrade Status",
+    serialStatus0: "None",
+    serialStatus1: "MCU Upgrading",
+    serialStatus2: "MCU Upgrade Successful",
+    serialStatus3: "MCU Upgrade Failed",
+    serialStatus4: "Slave Module Upgrading",
+    serialStatus5: "Slave Module Upgrade Successful",
+    serialStatus6: "Slave Module Upgrade Failed",
+
+    TP_0X04_26: "Max Charge Current Allowed",
+    TP_0X04_27: "Max Discharge Current Allowed",
+    TP_0X04_28: "Max Cell Voltage",
+    TP_0X04_29: "Min Cell Voltage",
+    TP_0X04_30: "Battery Operating Status",
+    batteryStatus0: "Rechargeable and Dischargeable",
+    batteryStatus1: "Charge and Discharge Prohibited",
+    batteryStatus2: "Rechargeable but Not Dischargeable",
+    batteryStatus3: "Dischargeable but Not Rechargeable",
+
+    TP_0X04_100: "Phase A Grid Frequency",
+    TP_0X04_101: "Phase B Grid Frequency",
+    TP_0X04_102: "Phase C Grid Frequency",
+    TP_0X04_103: "Phase A Grid Voltage",
+    TP_0X04_104: "Phase B Grid Voltage",
+    TP_0X04_105: "Phase C Grid Voltage",
+    TP_0X04_106: "Phase A Grid Current",
+    TP_0X04_107: "Phase B Grid Current",
+    TP_0X04_108: "Phase C Grid Current",
+    TP_0X04_109: "Phase A Active Power",
+    TP_0X04_110: "Phase B Active Power",
+    TP_0X04_111: "Phase C Active Power",
+
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
     TP_0X04_1025: "Inverter Active Power Setting",
@@ -773,6 +806,8 @@ export default {
 
     TP_0X03_4176_4184: "BCU_Serial Number",
 
+    TP_0X04_4099: "EAST-BCU Maximum Quantity",
+
     TP_0X04_4608: "EAST-BMS Data ID",
     TP_0X04_4609: "EAST-BMS Data Mode",
     BMSdisplay1: "Polling Display",
@@ -938,8 +973,9 @@ export default {
     TP_0X04_5721: "Maximum Charge Current",
     TP_0X04_5722: "Maximum Charge Power",
 
-    //page45 v1.2新增
+    //page45 v1.6新增
     TP_0X04_4610: "EAST-BMS online count",
+    TP_0X04_4611: "EAST-BMS Maximum Quantity",
 
     //page46 Device Information
     TP_0X04_32768: "ModbusDecode Ver.",
@@ -1224,6 +1260,13 @@ export default {
     TP_0X03_206: "21H",
     TP_0X03_207: "22H",
     TP_0X03_208: "23H",
+
+    TP_0X03_209: "Buy Mode SOC Upper Limit",
+    TP_0X03_210: "Buy Mode Management Enable",
+    TP_0X03_211: "Sell Mode SOC Lower Limit",
+    TP_0X03_212: "Sell Mode Management Enable",
+    TP_0X03_213: "Use Mode SOC Lower Limit",
+    TP_0X03_214: "Use Mode Management Enable",
   },
 
   deviceManage: {
@@ -3635,6 +3678,27 @@ export default {
     TP_0X04_79: "Operating Time (Minutes)",
     TP_0X04_80: "Operating Time (Seconds)",
 
+    //1.6协议新增三相参数
+    TP_0X04_10: "Serial Upgrade Status",
+    TP_0X04_26: "Max Charge Current Allowed",
+    TP_0X04_27: "Max Discharge Current Allowed",
+    TP_0X04_28: "Max Cell Voltage",
+    TP_0X04_29: "Min Cell Voltage",
+    TP_0X04_30: "Battery Operating Status",
+
+    TP_0X04_100: "Phase A Grid Frequency",
+    TP_0X04_101: "Phase B Grid Frequency",
+    TP_0X04_102: "Phase C Grid Frequency",
+    TP_0X04_103: "Phase A Grid Voltage",
+    TP_0X04_104: "Phase B Grid Voltage",
+    TP_0X04_105: "Phase C Grid Voltage",
+    TP_0X04_106: "Phase A Grid Current",
+    TP_0X04_107: "Phase B Grid Current",
+    TP_0X04_108: "Phase C Grid Current",
+    TP_0X04_109: "Phase A Active Power",
+    TP_0X04_110: "Phase B Active Power",
+    TP_0X04_111: "Phase C Active Power",
+
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
     TP_0X04_1025: "Inverter Active Power Setting",
@@ -3971,7 +4035,10 @@ export default {
     TP_0X04_4143: "Output Power Limit Setpoint",
     TP_0X04_4144: "Output voltage trim",
     TP_0X04_4145: "Master-slave flag",
+
     TP_0X03_4176_4184: "BCU_Serial Number",
+
+    TP_0X04_4099: "EAST-BCU Maximum Quantity",
 
     //page45 EAST-BMS数据
 
@@ -4123,8 +4190,9 @@ export default {
     TP_0X04_5721: "Maximum Charge Current",
     TP_0X04_5722: "Maximum Charge Power",
 
-    //page45 v1.2新增
+    //page45 v1.6新增
     TP_0X04_4610: "EAST-BMS online count",
+    TP_0X04_4611: "EAST-BMS Maximum Quantity",
 
     //page46 Device Information
     TP_0X04_32768: "ModbusDecode Ver.",
@@ -4402,6 +4470,13 @@ export default {
     TP_0X03_206: "21H",
     TP_0X03_207: "22H",
     TP_0X03_208: "23H",
+
+    TP_0X03_209: "Buy Mode SOC Upper Limit",
+    TP_0X03_210: "Buy Mode Management Enable",
+    TP_0X03_211: "Sell Mode SOC Lower Limit",
+    TP_0X03_212: "Sell Mode Management Enable",
+    TP_0X03_213: "Use Mode SOC Lower Limit",
+    TP_0X03_214: "Use Mode Management Enable",
 
     threePhaseMeterBasic: "Three phase electricity meter",
     // BasicSettings:'Basic Settings',

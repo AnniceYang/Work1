@@ -416,6 +416,39 @@ export default {
     TP_0X04_79: "Tempo Operativo (Minuti)",
     TP_0X04_80: "Tempo Operativo (Secondi)",
 
+    //1.6协议新增三相参数
+    TP_0X04_10: "Stato Aggiornamento Serial",
+    serialStatus0: "Nessuno",
+    serialStatus1: "Aggiornamento MCU",
+    serialStatus2: "Aggiornamento MCU riuscito",
+    serialStatus3: "Aggiornamento MCU fallito",
+    serialStatus4: "Aggiornamento Modulo Slave",
+    serialStatus5: "Aggiornamento Modulo Slave riuscito",
+    serialStatus6: "Aggiornamento Modulo Slave fallito",
+
+    TP_0X04_26: "Max Corrente di Carica Consentita",
+    TP_0X04_27: "Max Corrente di Scarica Consentita",
+    TP_0X04_28: "Max Tensione Cellula",
+    TP_0X04_29: "Min Tensione Cellula",
+    TP_0X04_30: "Stato di Funzionamento Batteria",
+    batteryStatus0: "Ricaricabile e Scaricabile",
+    batteryStatus1: "Carica e Scarica Proibiti",
+    batteryStatus2: "Ricaricabile ma Non Scaricabile",
+    batteryStatus3: "Scaricabile ma Non Ricaricabile",
+
+    TP_0X04_100: "Frequenza Rete Fase A",
+    TP_0X04_101: "Frequenza Rete Fase B",
+    TP_0X04_102: "Frequenza Rete Fase C",
+    TP_0X04_103: "Tensione Rete Fase A",
+    TP_0X04_104: "Tensione Rete Fase B",
+    TP_0X04_105: "Tensione Rete Fase C",
+    TP_0X04_106: "Corrente Rete Fase A",
+    TP_0X04_107: "Corrente Rete Fase B",
+    TP_0X04_108: "Corrente Rete Fase C",
+    TP_0X04_109: "Potenza Attiva Fase A",
+    TP_0X04_110: "Potenza Attiva Fase B",
+    TP_0X04_111: "Potenza Attiva Fase C",
+
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
     TP_0X04_1026: "Impostazione Potenza Attiva PV",
@@ -772,6 +805,8 @@ export default {
 
     TP_0X03_4176_4184: "Numero serie BCU",
 
+    TP_0X04_4099: "Quantità Massima EAST-BCU",
+
     TP_0X04_4608: "ID Dati BMS EAST",
     TP_0X04_4609: "Modalità Dati BMS EAST",
     BMSdisplay1: "Visualizzazione Sondaggio",
@@ -936,8 +971,10 @@ export default {
     TP_0X04_5720: "Max Tensione Carica",
     TP_0X04_5721: "Max Corrente Carica",
     TP_0X04_5722: "Max Potenza Carica",
-    //page45 v1.2新增
+
+    //page45 v1.6新增
     TP_0X04_4610: "Conteggio online EAST-BMS",
+    TP_0X04_4611: "Quantità Massima EAST-BMS",
 
     TP_0X04_32768: "Decodifica Modbus Ver.",
     TP_0X04_32769: "ID Tipo Dispositivo 1",
@@ -1220,6 +1257,13 @@ export default {
     TP_0X03_206: "21H",
     TP_0X03_207: "22H",
     TP_0X03_208: "23H",
+
+    TP_0X03_209: "Limite Sup. SOC Modalità Acquisto",
+    TP_0X03_210: "Abilita Gestione Modalità Acquisto",
+    TP_0X03_211: "Limite Inf. SOC Modalità Vendita",
+    TP_0X03_212: "Abilita Gestione Modalità Vendita",
+    TP_0X03_213: "Limite Inf. SOC Modalità Uso",
+    TP_0X03_214: "Abilita Gestione Modalità Uso",
   },
 
   deviceManage: {
@@ -3657,6 +3701,27 @@ export default {
     TP_0X04_79: "Tempo Operativo (Minuti)",
     TP_0X04_80: "Tempo Operativo (Secondi)",
 
+    //1.6协议新增三相参数
+    TP_0X04_10: "Stato Aggiornamento Serial",
+    TP_0X04_26: "Max Corrente di Carica Consentita",
+    TP_0X04_27: "Max Corrente di Scarica Consentita",
+    TP_0X04_28: "Max Tensione Cellula",
+    TP_0X04_29: "Min Tensione Cellula",
+    TP_0X04_30: "Stato di Funzionamento Batteria",
+
+    TP_0X04_100: "Frequenza Rete Fase A",
+    TP_0X04_101: "Frequenza Rete Fase B",
+    TP_0X04_102: "Frequenza Rete Fase C",
+    TP_0X04_103: "Tensione Rete Fase A",
+    TP_0X04_104: "Tensione Rete Fase B",
+    TP_0X04_105: "Tensione Rete Fase C",
+    TP_0X04_106: "Corrente Rete Fase A",
+    TP_0X04_107: "Corrente Rete Fase B",
+    TP_0X04_108: "Corrente Rete Fase C",
+    TP_0X04_109: "Potenza Attiva Fase A",
+    TP_0X04_110: "Potenza Attiva Fase B",
+    TP_0X04_111: "Potenza Attiva Fase C",
+
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
     TP_0X04_1026: "Impostazione Potenza Attiva PV",
@@ -3994,6 +4059,8 @@ export default {
 
     TP_0X03_4176_4184: "Numero serie BCU",
 
+    TP_0X04_4099: "Quantità Massima EAST-BCU",
+
     TP_0X04_4608: "ID Dati BMS EAST",
     TP_0X04_4609: "Modalità Dati BMS EAST",
     TP_0X04_4618: "Tensione Totale Batteria",
@@ -4141,8 +4208,9 @@ export default {
     TP_0X04_5721: "Max Corrente Carica",
     TP_0X04_5722: "Max Potenza Carica",
 
-    //page45 v1.2新增
+    //page45 v1.6新增
     TP_0X04_4610: "Conteggio online EAST-BMS",
+    TP_0X04_4611: "Quantità Massima EAST-BMS",
 
     TP_0X04_32768: "Decodifica Modbus Ver.",
     TP_0X04_32769: "ID Tipo Dispositivo 1",
@@ -4414,6 +4482,13 @@ export default {
     TP_0X03_206: "21H",
     TP_0X03_207: "22H",
     TP_0X03_208: "23H",
+
+    TP_0X03_209: "Limite Sup. SOC Modalità Acquisto",
+    TP_0X03_210: "Abilita Gestione Modalità Acquisto",
+    TP_0X03_211: "Limite Inf. SOC Modalità Vendita",
+    TP_0X03_212: "Abilita Gestione Modalità Vendita",
+    TP_0X03_213: "Limite Inf. SOC Modalità Uso",
+    TP_0X03_214: "Abilita Gestione Modalità Uso",
 
     threePhaseMeterBasic: "Contatore trifase",
     // BasicSettings:'Impostazioni di base',

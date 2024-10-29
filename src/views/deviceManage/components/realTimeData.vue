@@ -4910,10 +4910,14 @@
               "
             >
               <div style="display: flex">
-                <el-input
+                <el-select
                   v-model="systemSet.otherSetObj.bluetoothConnectionFlagVal"
-                  :placeholder="$t('common.inputPrompt')"
-                />
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
                 <el-button
                   v-if="
                     systemSetBtnIsDisplay(
@@ -5174,10 +5178,14 @@
               v-if="systemSetIsDisplay('otherSetObj', 'appStartupFlag')"
             >
               <div style="display: flex">
-                <el-input
+                <el-select
                   v-model="systemSet.otherSetObj.appStartupFlagVal"
-                  :placeholder="$t('common.inputPrompt')"
-                />
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="0" value="0" />
+                  <el-option :label="$t('common.confirm')" value="65535" />
+                </el-select>
                 <el-button
                   v-if="systemSetBtnIsDisplay('otherSetObj', 'appStartupFlag')"
                   type="text"

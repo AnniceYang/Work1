@@ -338,6 +338,118 @@
               >
                 {{ voListMap["41"]["TP_0X04_80"].val }}s
               </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_10')"
+                v-if="CCIsDisplay('41', 'TP_0X04_10')"
+              >
+                {{ TP_0X04_10Filter[voListMap["41"]["TP_0X04_10"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_26')"
+                v-if="CCIsDisplay('41', 'TP_0X04_26')"
+              >
+                {{ voListMap["41"]["TP_0X04_26"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_27')"
+                v-if="CCIsDisplay('41', 'TP_0X04_27')"
+              >
+                {{ voListMap["41"]["TP_0X04_27"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_28')"
+                v-if="CCIsDisplay('41', 'TP_0X04_28')"
+              >
+                {{ voListMap["41"]["TP_0X04_28"].val }}mV
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_29')"
+                v-if="CCIsDisplay('41', 'TP_0X04_29')"
+              >
+                {{ voListMap["41"]["TP_0X04_29"].val }}mV
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_30')"
+                v-if="CCIsDisplay('41', 'TP_0X04_30')"
+              >
+                {{ TP_0X04_30Filter[voListMap["41"]["TP_0X04_30"].val] }}
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_100')"
+                v-if="CCIsDisplay('41', 'TP_0X04_100')"
+              >
+                {{ voListMap["41"]["TP_0X04_100"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_101')"
+                v-if="CCIsDisplay('41', 'TP_0X04_101')"
+              >
+                {{ voListMap["41"]["TP_0X04_101"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_102')"
+                v-if="CCIsDisplay('41', 'TP_0X04_102')"
+              >
+                {{ voListMap["41"]["TP_0X04_102"].val }}Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_103')"
+                v-if="CCIsDisplay('41', 'TP_0X04_103')"
+              >
+                {{ voListMap["41"]["TP_0X04_103"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_104')"
+                v-if="CCIsDisplay('41', 'TP_0X04_104')"
+              >
+                {{ voListMap["41"]["TP_0X04_104"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_105')"
+                v-if="CCIsDisplay('41', 'TP_0X04_105')"
+              >
+                {{ voListMap["41"]["TP_0X04_105"].val }}V
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_106')"
+                v-if="CCIsDisplay('41', 'TP_0X04_106')"
+              >
+                {{ voListMap["41"]["TP_0X04_106"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_107')"
+                v-if="CCIsDisplay('41', 'TP_0X04_107')"
+              >
+                {{ voListMap["41"]["TP_0X04_107"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_108')"
+                v-if="CCIsDisplay('41', 'TP_0X04_108')"
+              >
+                {{ voListMap["41"]["TP_0X04_108"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_109')"
+                v-if="CCIsDisplay('41', 'TP_0X04_109')"
+              >
+                {{ voListMap["41"]["TP_0X04_109"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_110')"
+                v-if="CCIsDisplay('41', 'TP_0X04_110')"
+              >
+                {{ voListMap["41"]["TP_0X04_110"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_111')"
+                v-if="CCIsDisplay('41', 'TP_0X04_111')"
+              >
+                {{ voListMap["41"]["TP_0X04_111"].val }}W
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -646,13 +758,7 @@
                   voListMap["42"]["TP_0X04_1074"].val
                 }}%</el-descriptions-item
               >
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_1075')"
-                v-if="CCIsDisplay('42', 'TP_0X04_1075')"
-                >{{
-                  voListMap["42"]["TP_0X04_1075"].val
-                }}%</el-descriptions-item
-              >
+
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_1076')"
                 v-if="CCIsDisplay('42', 'TP_0X04_1076')"
@@ -666,13 +772,6 @@
                 >{{
                   voListMap["42"]["TP_0X04_1077"].val
                 }}A</el-descriptions-item
-              >
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_1078')"
-                v-if="CCIsDisplay('42', 'TP_0X04_1078')"
-                >{{
-                  voListMap["42"]["TP_0X04_1078"].val
-                }}Min</el-descriptions-item
               >
             </el-descriptions>
           </el-card>
@@ -2104,6 +2203,12 @@
               >
 
               <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4099')"
+                v-if="CCIsDisplay('44', 'TP_0X04_4099')"
+                >{{ voListMap["44"]["TP_0X04_4099"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
                 :label="$t('threePhase.TP_0X04_4101')"
                 v-if="CCIsDisplay('44', 'TP_0X04_4101')"
                 >{{
@@ -2409,6 +2514,12 @@
                 :label="$t('threePhase.TP_0X04_4610')"
                 v-if="CCIsDisplay('45', 'TP_0X04_4610')"
                 >{{ voListMap["45"]["TP_0X04_4610"].val }}</el-descriptions-item
+              >
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_4611')"
+                v-if="CCIsDisplay('45', 'TP_0X04_4611')"
+                >{{ voListMap["45"]["TP_0X04_4611"].val }}</el-descriptions-item
               >
 
               <el-descriptions-item
@@ -3208,37 +3319,12 @@
               >
                 {{ voListMap["45"]["TP_0X04_5713"].val }}
               </el-descriptions-item>
-              <!-- <el-descriptions-item
+              <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_5714_5739')"
                 v-if="CCIsDisplay('45', 'TP_0X03_5714_5739')"
               >
                 {{ voListMap["45"]["TP_0X03_5714_5739"].val }}
-              </el-descriptions-item> -->
-              <!-- <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5719')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5719')"
-              >
-                {{ totalStatusFilter[voListMap["45"]["TP_0X04_5719"].val] }}
               </el-descriptions-item>
-
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5720')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5720')"
-              >
-                {{ voListMap["45"]["TP_0X04_5720"].val }}V
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5721')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5721')"
-              >
-                {{ voListMap["45"]["TP_0X04_5721"].val }}A
-              </el-descriptions-item>
-              <el-descriptions-item
-                :label="$t('threePhase.TP_0X04_5722')"
-                v-if="CCIsDisplay('45', 'TP_0X04_5722')"
-              >
-                {{ voListMap["45"]["TP_0X04_5722"].val }}W
-              </el-descriptions-item> -->
             </el-descriptions>
           </el-card>
         </template>
@@ -10800,6 +10886,171 @@
                   >
                 </div>
               </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_209')"
+                v-if="CCIsDisplay('49', 'TP_0X03_209')"
+              >
+                <div style="display: flex">
+                  <el-tooltip
+                    content="Range: 10-100%"
+                    placement="top"
+                  ></el-tooltip>
+                  <el-input
+                    v-model="settingList['TP_0X03_209Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_209')"
+                    @click="
+                      validateAndSave(
+                        'TP_0X03_209',
+                        settingList['TP_0X03_209Val'],
+                        10,
+                        100
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_210')"
+                v-if="CCIsDisplay('49', 'TP_0X03_210')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_210Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_210')"
+                    @click="
+                      handleSave3('TP_0X03_210', settingList['TP_0X03_210Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_211')"
+                v-if="CCIsDisplay('49', 'TP_0X03_211')"
+              >
+                <div style="display: flex">
+                  <el-tooltip
+                    content="Range: 5-80%"
+                    placement="top"
+                  ></el-tooltip>
+                  <el-input
+                    v-model="settingList['TP_0X03_211Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_211')"
+                    @click="
+                      validateAndSave(
+                        'TP_0X03_211',
+                        settingList['TP_0X03_211Val'],
+                        5,
+                        80
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_212')"
+                v-if="CCIsDisplay('49', 'TP_0X03_212')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_212Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_212')"
+                    @click="
+                      handleSave3('TP_0X03_212', settingList['TP_0X03_212Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_213')"
+                v-if="CCIsDisplay('49', 'TP_0X03_213')"
+              >
+                <div style="display: flex">
+                  <el-tooltip
+                    content="Range: 5-80%"
+                    placement="top"
+                  ></el-tooltip>
+                  <el-input
+                    v-model="settingList['TP_0X03_213Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                  />
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_213')"
+                    @click="
+                      validateAndSave(
+                        'TP_0X03_213',
+                        settingList['TP_0X03_213Val'],
+                        5,
+                        80
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_214')"
+                v-if="CCIsDisplay('49', 'TP_0X03_214')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_214Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('49', 'TP_0X03_214')"
+                    @click="
+                      handleSave3('TP_0X03_214', settingList['TP_0X03_214Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -11940,6 +12191,21 @@ export default {
         0: this.$t("deviceManage.DSPnormal1"),
         1: this.$t("deviceManage.DSPnormal2"),
       },
+      TP_0X04_10Filter: {
+        0: this.$t("threePhase.serialStatus0"),
+        1: this.$t("threePhase.serialStatus1"),
+        2: this.$t("threePhase.serialStatus2"),
+        3: this.$t("threePhase.serialStatus3"),
+        4: this.$t("threePhase.serialStatus4"),
+        5: this.$t("threePhase.serialStatus5"),
+        6: this.$t("threePhase.serialStatus6"),
+      },
+      TP_0X04_30Filter: {
+        0: this.$t("threePhase.batteryStatus0"),
+        1: this.$t("threePhase.batteryStatus1"),
+        2: this.$t("threePhase.batteryStatus2"),
+        3: this.$t("threePhase.batteryStatus3"),
+      },
       faultStatusFilter: {
         0: this.$t("threePhase.noFault"),
         1: this.$t("threePhase.faultStatus1"),
@@ -12348,6 +12614,13 @@ export default {
         TP_0X03_206Val: "",
         TP_0X03_207Val: "",
         TP_0X03_208Val: "",
+
+        TP_0X03_209Val: "",
+        TP_0X03_210Val: "",
+        TP_0X03_211Val: "",
+        TP_0X03_212Val: "",
+        TP_0X03_213Val: "",
+        TP_0X03_214Val: "",
       },
       voListMap: {},
     };
@@ -12863,6 +13136,15 @@ export default {
           console.error("Error saving config settings: ", error);
           this.$message.error(this.$t("common.savefailed"));
         });
+    },
+
+    validateAndSave(key, value, min, max) {
+      if (value < min || value > max) {
+        this.$message.error(`${this.$t("common.inputPrompt")} ${min}-${max}%`);
+        return;
+      }
+
+      this.handleSave3(key, value);
     },
 
     handleSave3(key, val) {
