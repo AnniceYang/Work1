@@ -1,5 +1,9 @@
 export default {
   common: {
+    deviceSelfcheck: "Installation Check",
+    instructionMsg1: "Device operating normally. Acknowledged.",
+    instructionMsg2: "Device malfunctioning. Please check and confirm.",
+
     slideVerification: "Slide Verification",
     passwordCheck: "Passwords entered twice do not match!",
     phoneNumberCheck: "Please enter a valid phone number",
@@ -1270,6 +1274,14 @@ export default {
   },
 
   deviceManage: {
+    //设备安装自检框翻译
+    wifiConnectivity: "WiFi Signal",
+    systemStatus: "System Status",
+    pvConnection: "PV Status",
+    bmsConnection: "BMS Connection",
+    gridConnection: "Grid Status",
+    meterConnection: "Meter Status",
+
     //时间戳年份提醒
     startYearError: "The start year cannot be later than the end year",
     endYearError: "The end year cannot be earlier than the start year",

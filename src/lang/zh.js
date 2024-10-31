@@ -1,5 +1,9 @@
 export default {
   common: {
+    deviceSelfcheck: "安装自检",
+    instructionMsg1: "设备运行正常，已知悉结果",
+    instructionMsg2: "设备运行异常，请检查确认",
+
     slideVerification: "滑动解锁",
     passwordCheck: "两次输入密码不一致！",
     phoneNumberCheck: "请输入正确的手机号",
@@ -1270,6 +1274,14 @@ export default {
 
   //单相系统配置中文
   deviceManage: {
+    //设备安装自检框翻译
+    wifiConnectivity: "Wifi 信号",
+    systemStatus: "系统运行状态",
+    pvConnection: "PV 状态",
+    bmsConnection: "BMS 连接状态",
+    gridConnection: "电网状态",
+    meterConnection: "电表状态",
+
     //时间戳年份提醒
     startYearError: "起始年份不能比终止年份晚",
     endYearError: "终止年份不能比起始年份早",

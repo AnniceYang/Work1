@@ -235,6 +235,60 @@
             </el-form-item>
           </el-form>
         </div>
+        <el-dialog
+          :title="$t('common.deviceSelfcheck')"
+          :visible.sync="selfCheckVisible"
+          width="400px"
+          :show-close="false"
+          custom-class="self-check-dialog"
+        >
+          <div>
+            <div class="sn-display">
+              <strong>SN: {{ currentSn }}</strong>
+            </div>
+          </div>
+
+          <div
+            v-for="item in selfCheckItems"
+            :key="item.key"
+            class="self-check-item"
+          >
+            <span>{{ item.label }}</span>
+            <span v-if="item.loading">Loading...</span>
+
+            <span v-else-if="item.status !== null">
+              <span v-if="item.key === 'wifiConnectivity'" class="wifi-signal">
+                {{ getWifiSignalStrength(item.status) }}</span
+              >
+              <i
+                v-else
+                :class="{
+                  'el-icon-check status-success large-icon': item.status === 1,
+                  'el-icon-close status-failure large-icon': item.status !== 1,
+                }"
+              ></i>
+            </span>
+
+            <span v-else class="loading-icon">Loading...</span>
+            <!-- Simple loading indicator -->
+          </div>
+
+          <div
+            class="instruction-message"
+            :class="{
+              'success-message': instructionMessageType === 'msg1',
+              'error-message': instructionMessageType === 'msg2',
+            }"
+          >
+            {{ isLoading ? "Loading..." : `(${instructionMessage})` }}
+          </div>
+
+          <div class="dialog-footer">
+            <el-button type="primary" @click="selfCheckVisible = false">{{
+              $t("common.confirm")
+            }}</el-button>
+          </div>
+        </el-dialog>
         <div class="rside">
           <el-button
             type="primary"
@@ -325,6 +379,7 @@
               {{ scope.row.createTime | parseTime }}
             </template>
           </el-table-column> -->
+
           <el-table-column
             :label="$t('common.operate')"
             align="center"
@@ -362,6 +417,12 @@
                   @click="handleRealTime(scope.row)"
                   v-if="permissions.operation_info"
                   >{{ $t("deviceManage.operationParameters") }}</el-button
+                >
+                <el-button
+                  type="text"
+                  @click="handleSelfCheck(scope.row.id, scope.row.sn)"
+                  v-if="permissions.deviceSelfcheck"
+                  >{{ $t("common.deviceSelfcheck") }}</el-button
                 >
                 <el-button
                   type="text"
@@ -444,7 +505,7 @@
 </template>
 <script>
 import { qryAppUser, qryinstallUser } from "@/api/appUser";
-import { qryDevice, delDevice } from "@/api/device";
+import { qryDevice, delDevice, checkDevice } from "@/api/device";
 import QrCode from "@/components/QrCode/index.vue";
 import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
@@ -476,6 +537,46 @@ export default {
   },
   data() {
     return {
+      selfCheckVisible: false,
+      selfCheckItems: [
+        {
+          key: "wifiConnectivity",
+          label: this.$t("deviceManage.wifiConnectivity"),
+          status: null,
+          loading: true,
+        },
+        {
+          key: "systemStatus",
+          label: this.$t("deviceManage.systemStatus"),
+          status: null,
+          loading: true,
+        },
+        {
+          key: "pvConnection",
+          label: this.$t("deviceManage.pvConnection"),
+          status: null,
+          loading: true,
+        },
+        {
+          key: "bmsConnection",
+          label: this.$t("deviceManage.bmsConnection"),
+          status: null,
+          loading: true,
+        },
+        {
+          key: "gridConnection",
+          label: this.$t("deviceManage.gridConnection"),
+          status: null,
+          loading: true,
+        },
+        {
+          key: "meterConnection",
+          label: this.$t("deviceManage.meterConnection"),
+          status: null,
+          loading: true,
+        },
+      ],
+
       pageState: 1,
       installUserList: [],
       devStatusFilter: [
@@ -506,6 +607,30 @@ export default {
       userInfo: (state) => state.user.userInfo,
     }),
 
+    isLoading() {
+      return this.selfCheckItems.some((item) => item.loading);
+    },
+
+    instructionMessage() {
+      if (this.isLoading) return "";
+
+      const allSuccess = this.selfCheckItems.every((item) => {
+        return item.key === "wifiConnectivity" || item.status === 1;
+      });
+      return allSuccess
+        ? this.$t("common.instructionMsg1")
+        : this.$t("common.instructionMsg2");
+    },
+
+    instructionMessageType() {
+      if (this.isLoading) return ""; // Show nothing while loading
+      return this.selfCheckItems.every(
+        (item) => item.key === "wifiConnectivity" || item.status === 1
+      )
+        ? "msg1"
+        : "msg2"; // Return msg1 or msg2 based on conditions
+    },
+
     isAdmin() {
       return this.$store.state.user.roles.includes("1");
     },
@@ -534,6 +659,50 @@ export default {
     this.getData();
   },
   methods: {
+    getWifiSignalStrength(signal) {
+      let strengthLabel = this.$t("common.unknown"); // Default to unknown
+
+      if (signal >= -40 && signal <= -30) {
+        strengthLabel = `${this.$t("common.strong")} (${signal} dBm)`;
+      } else if (signal >= -85 && signal < -40) {
+        strengthLabel = `${this.$t("common.medium")} (${signal} dBm)`;
+      } else if (signal < -90) {
+        strengthLabel = `${this.$t("common.weak")} (${signal} dBm)`;
+      }
+
+      return strengthLabel;
+    },
+
+    handleSelfCheck(id, sn) {
+      this.selfCheckVisible = true; // Open dialog
+
+      this.currentSn = sn;
+
+      //Set loading state to true for all items
+      this.selfCheckItems.forEach((item) => {
+        item.loading = true;
+      });
+
+      checkDevice({ id })
+        .then((response) => {
+          // Update each item based on the response data
+          this.selfCheckItems.forEach((item) => {
+            if (item.key === "wifiConnectivity") {
+              item.status = response[item.key]; // Use value directly for wifi
+            } else {
+              item.status = response[item.key] === 1 ? 1 : 0; // Set 1 for success, 0 for failure
+            }
+            item.loading = false;
+          });
+        })
+        .catch((error) => {
+          console.error("Error fetching device check status:", error);
+          this.selfCheckItems.forEach((item) => {
+            item.loading = false;
+          });
+        });
+    },
+
     //Method to export data
     exportData() {
       if (!this.listQuery.installUserId) {
@@ -754,6 +923,64 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.large-icon {
+  font-size: 32px;
+  margin-left: 8px;
+}
+
+.status-success {
+  color: green; /* Set color to green for success */
+}
+
+.status-failure {
+  color: red; /* Set color to red for failure */
+}
+
+.wifi-signal {
+  font-size: 18px;
+  font-weight: bold;
+  color: green;
+}
+
+.sn-display {
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.self-check-items {
+  margin-bottom: 20px;
+}
+.self-check-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.instruction-message {
+  text-align: center;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.success-message {
+  color: green; /* Green for success message */
+}
+
+.error-message {
+  color: red; /* Red for error message */
+}
+
+.dialog-footer {
+  display: flex;
+  justify-content: center; /* Center the footer content */
+  padding-top: 10px; /* Spacing above the button */
+}
+
+.loading-icon {
+  font-style: italic; /* Add some styling to the loading text */
+}
+
 .operate-buttons {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,9 @@
 export default {
   common: {
+    deviceSelfcheck: "Controllo Installazione",
+    instructionMsg1: "Dispositivo operativo. Preso atto.",
+    instructionMsg2: "Malfunzionamento del dispositivo. Verifica e conferma.",
+
     slideVerification: "Verifica tramite scorrimento",
     passwordCheck: "Le password inserite due volte non corrispondono!",
     phoneNumberCheck: "Si prega inserire un numero di telefono valido",
@@ -1267,6 +1271,14 @@ export default {
   },
 
   deviceManage: {
+    //设备安装自检框翻译
+    wifiConnectivity: "Segnale WiFi",
+    systemStatus: "Stato Sistema",
+    pvConnection: "Stato PV",
+    bmsConnection: "Stato BMS",
+    gridConnection: "Stato Rete",
+    meterConnection: "Stato Contatore",
+
     //时间戳年份提醒
     startYearError:
       "L'anno di inizio non può essere successivo all'anno di fine",

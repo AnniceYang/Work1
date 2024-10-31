@@ -71,6 +71,15 @@ export function delDevice(data) {
   });
 }
 
+// 通过id安装自检
+export function checkDevice(query) {
+  return request({
+    url: "/admin/lsydevice/check",
+    method: "get",
+    params: query,
+  });
+}
+
 //解除安装商绑定
 export function unbindAgent(data) {
   return request({
