@@ -109,6 +109,25 @@ export default {
     // validatePass: 'Please enter a password containing 6-12 letters and numbers',
     // validatePhone: 'Please enter the correct phone number'
   },
+
+  referralCode: {
+    customerList: "Customer List Using Referral Code",
+    number: "Serial Number",
+    referralAccount: "Referrer Account",
+    referralCode: "Referral Code",
+    referralBankAccount: "Referrer's Bank Account",
+    referralName: "Referrer's Name",
+    refereeAccount: "Referred Account",
+    refereeName: "Referred Person's Name",
+    refereeBankAccount: "Referred Person's Bank Account",
+    deviceSn: "Device SN Code",
+    cashOutDate: "Cash Out Date",
+    cashOutState: "Cash Out Status",
+    cashOut0: "Not Cashed Out",
+    cashOut1: "Cashed Out",
+    cashOutWarning: "Please confirm the change of cash out status?",
+  },
+
   dataBoard: {
     todayPPG: "Photovoltaic power generation today",
     todayET: "Buy electricity today",

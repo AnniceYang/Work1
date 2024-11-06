@@ -108,6 +108,24 @@ export default {
     savefailed: "Salvataggio Fallito",
   },
 
+  referralCode: {
+    customerList: "Lista Clienti con Codice di Riferimento",
+    number: "Numero",
+    referralAccount: "Account Riferente",
+    referralCode: "Codice di Riferimento",
+    referralBankAccount: "Conto Bancario del Riferente",
+    referralName: "Nome del Riferente",
+    refereeAccount: "Account Referito",
+    refereeName: "Nome del Referito",
+    refereeBankAccount: "Conto Bancario del Referito",
+    deviceSn: "Codice SN Dispositivo",
+    cashOutDate: "Data di Pagamento",
+    cashOutState: "Stato Pagamento",
+    cashOut0: "Non Pagato",
+    cashOut1: "Pagato",
+    cashOutWarning: "Confermi la modifica dello stato del pagamento?",
+  },
+
   dataBoard: {
     todayPPG: "Produzione fotovoltaica di oggi",
     todayET: "Energia acquistata oggi",

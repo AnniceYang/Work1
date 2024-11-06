@@ -43,3 +43,20 @@ export function delInstallUser(data) {
     data,
   });
 }
+
+//推荐码列表查询
+export function qryReferralList() {
+  return request({
+    url: "/aus/referral/ausReferralCashback/list",
+    method: "get",
+  });
+}
+
+// 返现状态修改
+export function editRefferState(data) {
+  return request({
+    url: "/aus/referral/ausReferralCashback/modify",
+    method: "post",
+    data,
+  });
+}
