@@ -28,6 +28,13 @@
         <el-menu-item index="13" v-if="deviceInfo.threePhase">{{
           $t("parameterConfiguration.threePhaseMeterBasic")
         }}</el-menu-item>
+
+        <el-menu-item
+          index="15"
+          v-if="systemSet.otherSetObj.countryCodeVal == '3'"
+          >{{ $t("deviceManage.AusMeter") }}</el-menu-item
+        >
+
         <el-menu-item
           index="0"
           v-if="systemSet.otherSetObj.countryCodeVal == '1'"
@@ -987,30 +994,7 @@
                 operationInformation.loadInformationObj.loadPowerPercentageAVal
               }}%</el-descriptions-item
             >
-            <!-- <el-descriptions-item
-              :label="$t('deviceManage.phaseBLoadPowerPercentage')"
-              v-if="
-                operationInformationIsDisplay(
-                  'loadInformationObj',
-                  'loadPowerPercentageB'
-                )
-              "
-              >{{
-                operationInformation.loadInformationObj.loadPowerPercentageBVal
-              }}%</el-descriptions-item
-            >
-            <el-descriptions-item
-              :label="$t('deviceManage.phaseCLoadPowerPercentage')"
-              v-if="
-                operationInformationIsDisplay(
-                  'loadInformationObj',
-                  'loadPowerPercentageC'
-                )
-              "
-              >{{
-                operationInformation.loadInformationObj.loadPowerPercentageCVal
-              }}%</el-descriptions-item
-            > -->
+
             <el-descriptions-item
               :label="$t('deviceManage.loadRealTimePower')"
               v-if="
@@ -2151,6 +2135,33 @@
                   .inverterOutputCurrentBVal
               }}</el-descriptions-item
             >
+            <el-descriptions-item
+              :label="$t('deviceManage.loadPowerPercentageB')"
+              v-if="
+                operationInformationIsDisplay(
+                  'loadInformationObj',
+                  'loadPowerPercentageB'
+                )
+              "
+              >{{
+                generatorSwitchFilter[
+                  operationInformation.loadInformationObj
+                    .loadPowerPercentageBVal
+                ]
+              }}</el-descriptions-item
+            >
+            <el-descriptions-item
+              :label="$t('deviceManage.loadPowerPercentageC')"
+              v-if="
+                operationInformationIsDisplay(
+                  'loadInformationObj',
+                  'loadPowerPercentageC'
+                )
+              "
+              >{{
+                operationInformation.loadInformationObj.loadPowerPercentageCVal
+              }}</el-descriptions-item
+            >
           </el-descriptions>
         </el-card>
       </template>
@@ -3036,7 +3047,7 @@
               "
             >
               <div style="display: flex">
-                <el-tooltip content="Range: 15-80%" placement="top">
+                <el-tooltip content="Range: 5-80%" placement="top">
                   <el-input
                     v-model.number="
                       systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
@@ -3060,7 +3071,7 @@
                     handleSaveWithValidation(
                       'lowerLimitOfGridConnectedSoc',
                       systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal,
-                      15,
+                      5,
                       80,
                       systemSet.advancedSetObj.offGridSocLowerLimitVal
                     )
@@ -3076,7 +3087,7 @@
               "
             >
               <div style="display: flex">
-                <el-tooltip content="Range: 0-15%" placement="top">
+                <el-tooltip content="Range: 1-15%" placement="top">
                   <el-input
                     v-model.number="
                       systemSet.advancedSetObj.offGridSocLowerLimitVal
@@ -3100,7 +3111,7 @@
                     handleSaveWithValidation(
                       'offGridSocLowerLimit',
                       systemSet.advancedSetObj.offGridSocLowerLimitVal,
-                      0,
+                      1,
                       15,
                       systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal
                     )
@@ -15357,6 +15368,205 @@
         </el-card>
       </template>
 
+      <template v-else-if="activeIndex === '15'">
+        <el-card style="margin-top: 10px">
+          <el-descriptions
+            :title="$t('deviceManage.AusMeter')"
+            :column="3"
+            border
+          >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_93')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_93')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_93Val }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_94')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_94')"
+            >
+              {{ meterNormalFilter[subList.page15AllObj.HM6_0X04_94Val] }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_95')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_95')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_95Val }}V
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_96_97')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_96_97')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_96_97Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_98_99')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_98_99')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_98_99Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_100_101')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_100_101')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_100_101Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_102_103')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_102_103')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_102_103Val }}A
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_104_105')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_104_105')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_104_105Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_106')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_106')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_106Val }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_107')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_107')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_107Val }}Hz
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_441_442')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_441_442')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_441_442Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_443_444')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_443_444')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_443_444Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_445_446')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_445_446')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_445_446Val }}kWh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_447')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_447')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_447Val }}V
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_448_449')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_448_449')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_448_449Val }}A
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_450_451')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_450_451')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_450_451Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_452')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_452')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_452Val }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_453')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_453')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_453Val }}Hz
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_454')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_454')"
+            >
+              {{ HM6_0X04_454Filter[subList.page15AllObj.HM6_0X04_454Val] }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_455')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_455')"
+            >
+              {{ HM6_0X04_454Filter[subList.page15AllObj.HM6_0X04_455Val] }}
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_456')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_456')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_456Val }}%
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_457_458')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_457_458')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_457_458Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_459_460')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_459_460')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_459_460Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_461')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_461')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_461Val }}%
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_462_463')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_462_463')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_462_463Val }}Wh
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_464_465')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_464_465')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_464_465Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_466_467')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_466_467')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_466_467Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_468_469')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_468_469')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_468_469Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_470_471')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_470_471')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_470_471Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_472_473')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_472_473')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_472_473Val }}W
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM6_0X04_474_475')"
+              v-if="timeSettingIsDisplay('page15AllObj', 'HM6_0X04_474_475')"
+            >
+              {{ subList.page15AllObj.HM6_0X04_474_475Val }}W
+            </el-descriptions-item>
+          </el-descriptions>
+        </el-card>
+      </template>
+
       <template v-else-if="activeIndex === '13'">
         <el-card
           style="margin-top: 10px"
@@ -16552,6 +16762,16 @@ export default {
         this.$t("deviceManage.generatorState5"),
       ],
 
+      generatorSwitchFilter: [
+        this.$t("deviceManage.switch0"),
+        this.$t("deviceManage.switch1"),
+      ],
+
+      HM6_0X04_454Filter: [
+        this.$t("deviceManage.prohibit"),
+        this.$t("deviceManage.enable"),
+      ],
+
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),
         this.$t("deviceManage.batteryStatus1"),
@@ -16695,6 +16915,7 @@ export default {
         quarterFourObj: {},
         hourSettingObj: {},
         modeSettingObj: {},
+        page15AllObj: {},
       },
     };
   },
@@ -16742,35 +16963,35 @@ export default {
         return;
       }
 
-      // Check if the off-grid SOC value is provided and perform the comparison
-      if (offGridSocValue !== null) {
-        offGridSocValue = parseFloat(offGridSocValue);
+      // // Check if the off-grid SOC value is provided and perform the comparison
+      // if (offGridSocValue !== null) {
+      //   offGridSocValue = parseFloat(offGridSocValue);
 
-        // If the key is 'lowerLimitOfGridConnectedSoc', check both conditions
-        if (key === "lowerLimitOfGridConnectedSoc") {
-          if (value <= offGridSocValue + 10 - epsilon) {
-            this.$message.error(
-              "Grid-connected SOC value must be at least 10% higher than off-grid SOC value."
-            );
-            return;
-          }
-        }
+      //   // If the key is 'lowerLimitOfGridConnectedSoc', check both conditions
+      //   if (key === "lowerLimitOfGridConnectedSoc") {
+      //     if (value <= offGridSocValue + 10 - epsilon) {
+      //       this.$message.error(
+      //         "Grid-connected SOC value must be at least 10% higher than off-grid SOC value."
+      //       );
+      //       return;
+      //     }
+      //   }
 
-        // If the key is 'offGridSocLowerLimit', check the reverse condition
-        if (key === "offGridSocLowerLimit") {
-          if (
-            value >=
-            this.systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal -
-              10 +
-              epsilon
-          ) {
-            this.$message.error(
-              "Off-grid SOC value must be at most 10% lower than grid-connected SOC value."
-            );
-            return;
-          }
-        }
-      }
+      //   // If the key is 'offGridSocLowerLimit', check the reverse condition
+      //   if (key === "offGridSocLowerLimit") {
+      //     if (
+      //       value >=
+      //       this.systemSet.advancedSetObj.lowerLimitOfGridConnectedSocVal -
+      //         10 +
+      //         epsilon
+      //     ) {
+      //       this.$message.error(
+      //         "Off-grid SOC value must be at most 10% lower than grid-connected SOC value."
+      //       );
+      //       return;
+      //     }
+      //   }
+      // }
 
       this.handleSave(key, value);
     },
@@ -17091,7 +17312,7 @@ export default {
     goBack() {
       this.$emit("back");
     },
-    // mqtt初始化
+    // MQTT Initialization
     handleMqttInit() {
       this.mqttClient = mqtt.connect(baseMqtt, {
         protocolVersion: 4,
@@ -17101,40 +17322,39 @@ export default {
         keepalive: 3,
         clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
       });
+
       this.mqttClient
         .on("connect", (res) => {
           this.connectState = "connect";
           this.subscribeInfo();
-          // this.loading = false
           console.log("mqtt连接成功", res);
         })
         .on("message", (topic, message) => {
           const messageInfo = JSON.parse(message.toString());
-          if (this.activeIndex === "0") {
-            this.$refs.selfTest.initMqttData(messageInfo);
-          } else {
-            if (this.activeIndex === "11" && messageInfo.valType === 11) {
-              console.log("page11 messageInfo:", JSON.parse(messageInfo.val));
+          const parsedVal = JSON.parse(messageInfo.val);
 
-              this.loading = false;
-              this.paramsChange(JSON.parse(messageInfo.val));
-            } else if (
-              this.activeIndex === "13" &&
-              messageInfo.valType === 13
-            ) {
-              console.log("page13 messageInfo:", JSON.parse(messageInfo.val));
+          // Check if we need to log for specific pages
+          if (this.activeIndex === "11" && messageInfo.valType === 11) {
+            console.log("page11 messageInfo:", parsedVal);
+          } else if (this.activeIndex === "15" && messageInfo.valType === 15) {
+            console.log("page15 messageInfo:", parsedVal);
+          }
 
-              this.loading = false;
-              this.paramsChange(JSON.parse(messageInfo.val));
-            } else if (messageInfo.msgOperation === 5) {
-              console.log("dataList", JSON.parse(messageInfo.val));
-
-              this.loading = false;
-              this.paramsChange(JSON.parse(messageInfo.val));
-            }
+          // Handle data updates when conditions are met
+          if (
+            ["0", "11", "13", "15"].includes(this.activeIndex) &&
+            messageInfo.valType === Number(this.activeIndex)
+          ) {
+            this.loading = false;
+            this.paramsChange(parsedVal);
+          } else if (messageInfo.msgOperation === 5) {
+            console.log("dataList", parsedVal);
+            this.loading = false;
+            this.paramsChange(parsedVal);
           }
         });
     },
+
     // 订阅主题 /APP/设备id/NEWS
     subscribeInfo() {
       if (!this.mqttClient || this.connectState !== "connect") {
@@ -17500,7 +17720,6 @@ export default {
             });
           }
         });
-        console.log("page11中的参数：", this.subList.specialDateOneObj);
       }
 
       if (!Array.isArray(res)) {

@@ -204,7 +204,7 @@ export function qryConfigDataShow() {
   });
 }
 
-// 单相定时设置显示配置
+// 单相-定时设置显示配置以及澳洲选配电表配置
 export function qryPage11ConfigDataShow(query) {
   return request({
     url: "/admin/config/hm6/page",
@@ -213,7 +213,7 @@ export function qryPage11ConfigDataShow(query) {
   });
 }
 
-// 单相定时设置配置-新增或修改
+// 单相-定时设置配置以及澳洲选配电表配置-新增或修改
 export function Page11ConfigModify(data) {
   return request({
     url: "/admin/config/hm6/modify",
