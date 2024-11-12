@@ -29,17 +29,13 @@
           $t("parameterConfiguration.threePhaseMeterBasic")
         }}</el-menu-item>
 
-        <el-menu-item
-          index="15"
-          v-if="systemSet.otherSetObj.countryCodeVal == '3'"
-          >{{ $t("deviceManage.AusMeter") }}</el-menu-item
-        >
+        <el-menu-item index="15" v-if="ausCatchMeter == '1'">{{
+          $t("deviceManage.AusMeter")
+        }}</el-menu-item>
 
-        <el-menu-item
-          index="0"
-          v-if="systemSet.otherSetObj.countryCodeVal == '1'"
-          >{{ $t("deviceManage.selfTest") }}</el-menu-item
-        >
+        <el-menu-item index="0" v-if="deviceCountryCode == '1'">{{
+          $t("deviceManage.selfTest")
+        }}</el-menu-item>
         <div class="fixed-sn-box" v-if="isAdmin">
           SN Code: {{ deviceInfo.sn }}
         </div>
@@ -16475,6 +16471,7 @@ import {
   batterySetCustom,
   updateEnable,
   savePage11ConfigData,
+  qryDevice,
 } from "@/api/device";
 import SelfTest from "./selfTest.vue";
 import { baseMqtt } from "@/config/env";
@@ -16849,6 +16846,8 @@ export default {
       ],
       activeIndex: "7",
       loading: false,
+      deviceCountryCode: "",
+      ausCatchMeter: "",
       // mqtt
       mqttClient: null,
       connectState: "init",
@@ -17880,6 +17879,19 @@ export default {
       setTimeout(() => {
         this.loading = false;
       }, 3000);
+
+      qryDevice({ sn: this.deviceInfo.sn })
+        .then((res) => {
+          if (res.records && res.records.length > 0) {
+            this.deviceCountryCode = res.records[0].countryCode;
+            this.ausCatchMeter = res.records[0].ausCatchMeter;
+            console.log("deviceCountryCode的值为：", this.deviceCountryCode);
+            console.log("ausCatchMeter的值为：", this.ausCatchMeter);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching deviceCountryCode: ", error);
+        });
     },
   },
   beforeDestroy() {

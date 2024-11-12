@@ -125,7 +125,7 @@ export default {
     cashOutState: "Cash Out Status",
     cashOut0: "Not Cashed Out",
     cashOut1: "Cashed Out",
-    cashOutWarning: "Please confirm the change of cash out status?",
+    cashOutWarning: "Please confirm the change of cashOut status?",
   },
 
   dataBoard: {
