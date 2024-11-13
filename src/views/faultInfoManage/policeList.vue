@@ -65,6 +65,17 @@
               ></el-option>
             </el-select>
           </el-form-item>
+
+          <el-form-item :label="$t('faultInfo.raymond')" v-if="isAdmin">
+            <el-select
+              v-model="listQuery.raymond"
+              :placeholder="$t('common.selectPrompt')"
+            >
+              <el-option :label="$t('common.yes')" :value="1"></el-option>
+              <el-option :label="$t('common.no')" :value="0"></el-option>
+            </el-select>
+          </el-form-item>
+
           <el-form-item>
             <el-button
               type="primary"
@@ -183,6 +194,7 @@ export default {
       listQuery: {
         current: 1,
         size: 10,
+        raymond: null,
       },
       faultLevelFilter: [
         this.$t("faultInfo.oneLevel"),
@@ -203,7 +215,8 @@ export default {
   },
   methods: {
     handleExport() {
-      const { sn, faultCode, level, tpType, handleStatus } = this.listQuery;
+      const { sn, faultCode, level, tpType, handleStatus, raymond } =
+        this.listQuery;
 
       //construct the URL by replacing the default -1 with the actual values if present
       const snValue = sn || "sn";
@@ -213,7 +226,9 @@ export default {
       const handleStatusValue =
         handleStatus !== undefined ? handleStatus : "-1";
 
-      const exportUrl = `${baseUrl}/excel/alarm/${snValue}/${faultCodeValue}/${levelValue}/${tpTypeValue}/${handleStatusValue}`;
+      const raymondValue = raymond !== null ? (raymond ? "1" : "0") : "-1";
+
+      const exportUrl = `${baseUrl}/excel/alarm/${snValue}/${faultCodeValue}/${levelValue}/${tpTypeValue}/${handleStatusValue}/${raymondValue}`;
 
       window.open(exportUrl, "_blank");
     },
@@ -259,6 +274,7 @@ export default {
       this.listQuery = {
         current: 1,
         size: 10,
+        raymond: null,
       };
       this.getData();
     },

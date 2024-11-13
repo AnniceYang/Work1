@@ -326,6 +326,7 @@ export default {
     validateE: "Il nome dell'impresa non può essere vuoto",
   },
   faultInfo: {
+    raymond: "Allarme anomalo",
     faultCode: "Codice Errore",
     faultLevel: "Livello di Errore",
     faultAlarm: "Allarme Errore",

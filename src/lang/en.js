@@ -328,6 +328,7 @@ export default {
     validateE: "Enterprise name code cannot be empty",
   },
   faultInfo: {
+    raymond: "Abnormal alarm",
     faultCode: "Fault code",
     faultLevel: "Fault level",
     faultAlarm: "Fault alarm",

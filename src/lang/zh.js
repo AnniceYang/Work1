@@ -323,6 +323,7 @@ export default {
     validateE: "企业名称不能为空",
   },
   faultInfo: {
+    raymond: "异常报警",
     faultCode: "故障编码",
     faultLevel: "故障等级",
     faultAlarm: "故障报警",
