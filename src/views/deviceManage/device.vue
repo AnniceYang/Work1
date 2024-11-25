@@ -289,6 +289,7 @@
             }}</el-button>
           </div>
         </el-dialog>
+
         <div class="rside">
           <el-button
             type="primary"
@@ -393,9 +394,9 @@
                 }}</el-button>
                 <el-button
                   type="text"
-                  @click="handleCellSet(scope.row)"
-                  v-if="isAdmin"
-                  >{{ $t("deviceManage.batterySettings") }}</el-button
+                  @click="openUserSettingDialog(scope.row)"
+                  v-if="permissions.userSettings"
+                  >{{ $t("deviceManage.userSettings") }}</el-button
                 >
                 <el-button
                   type="text"
@@ -442,6 +443,45 @@
           </el-table-column>
         </el-table>
       </div>
+
+      <el-dialog
+        :title="$t('deviceManage.userSettings')"
+        :visible.sync="isDialogVisible"
+        width="400px"
+        class="centered-dialog"
+      >
+        <el-row class="dialog-content" justify="center" align="middle">
+          <el-col :span="24">
+            <el-button
+              class="dialog-button"
+              type="primary"
+              block
+              @click="handleCellSet"
+              >{{ $t("deviceManage.batterySettings") }}</el-button
+            >
+          </el-col>
+          <el-col :span="24">
+            <el-button
+              class="dialog-button"
+              type="primary"
+              block
+              @click="handleGeneratorSettings"
+              >{{ $t("deviceManage.generatorSettings") }}</el-button
+            >
+          </el-col>
+          <el-col :span="24">
+            <el-button
+              v-if="selectedRow.countryCode === '3'"
+              class="dialog-button"
+              type="primary"
+              block
+              @click="handleGridSettings"
+              >{{ $t("deviceManage.gridSettingsAus") }}</el-button
+            >
+          </el-col>
+        </el-row>
+      </el-dialog>
+
       <div class="table-pagination">
         <el-pagination
           @size-change="sizeChangeHandle"
@@ -460,6 +500,12 @@
 
       <!-- 电池设置 -->
       <CellSet ref="cellSet" @back="getData" />
+
+      <!-- 电网公司（澳洲）设置 -->
+      <GridSet ref="gridSet" />
+
+      <!-- 发电机设置 -->
+      <GeneratorSet ref="generatorSet" />
 
       <!-- ota升级 -->
       <DeviceUpgrade ref="deviceUpgrade" />
@@ -509,6 +555,8 @@ import { qryDevice, delDevice, checkDevice } from "@/api/device";
 import QrCode from "@/components/QrCode/index.vue";
 import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
+import GridSet from "./components/gridSet.vue";
+import GeneratorSet from "./components/generatorSet.vue";
 import DeviceStatistics from "./components/deviceStatistics.vue";
 import TPdeviceStatistics from "./components/TPdeviceStatistics.vue";
 import RealTimeData from "./components/realTimeData.vue";
@@ -526,6 +574,8 @@ export default {
   components: {
     DeviceForm,
     CellSet,
+    GridSet,
+    GeneratorSet,
     DeviceStatistics,
     TPdeviceStatistics,
     RealTimeData,
@@ -537,6 +587,15 @@ export default {
   },
   data() {
     return {
+      isDialogVisible: false,
+
+      selectedRow: {
+        type: Object,
+        required: true,
+        default: () => ({ countryCode: null }),
+      },
+      nmi: "",
+
       selfCheckVisible: false,
       selfCheckItems: [
         {
@@ -659,6 +718,61 @@ export default {
     this.getData();
   },
   methods: {
+    //UserSettings dialog巴啦啦
+    openUserSettingDialog(scopeRow) {
+      this.selectedRow = scopeRow;
+      this.isDialogVisible = true;
+    },
+
+    // 电池设置
+    handleCellSet() {
+      if (this.$refs.cellSet && this.selectedRow) {
+        console.log("Selected Row for CellSet:", this.selectedRow);
+
+        // // Close the dialog
+        this.isDialogVisible = false;
+
+        // Wait for DOM updates to complete
+        this.$nextTick(() => {
+          // Initialize cellSet after the dialog has been removed
+          this.$refs.cellSet.init(this.selectedRow);
+        });
+      }
+    },
+
+    // 电网公司（澳洲）设置
+    handleGridSettings() {
+      if (this.$refs.gridSet && this.selectedRow) {
+        console.log("Selected Row for GridSet:", this.selectedRow);
+
+        // 关闭主对话框
+        this.isDialogVisible = false;
+
+        // 等待 DOM 更新完成后再初始化子组件
+        this.$nextTick(() => {
+          this.$refs.gridSet.init(this.selectedRow.sn); // 初始化电网公司设置
+        });
+      }
+    },
+
+    // 发电机设置
+    handleGeneratorSettings() {
+      if (this.$refs.generatorSet && this.selectedRow) {
+        // console.log("Selected Row for GeneratorSet:", this.selectedRow);
+
+        // console.log("传递的id是：", this.selectedRow.id);
+
+        // Close the main dialog
+        this.isDialogVisible = false;
+
+        // Wait for DOM updates to complete
+        this.$nextTick(() => {
+          // Initialize generatorSet with the selected row data
+          this.$refs.generatorSet.init(this.selectedRow.id);
+        });
+      }
+    },
+
     getWifiSignalStrength(signal) {
       let strengthLabel = this.$t("common.unknown"); // Default to unknown
 
@@ -759,10 +873,7 @@ export default {
     handleUpgrade(info) {
       this.$refs.deviceUpgrade.init(info);
     },
-    // 电池设置
-    handleCellSet(info) {
-      this.$refs.cellSet.init(info);
-    },
+
     // 实时数据
     handleRealTime(info) {
       if (info.tpType === 1) {
@@ -988,5 +1099,21 @@ export default {
 }
 .operate-buttons > .el-button {
   margin: 5px;
+}
+.centered-dialog .el-dialog__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px 0;
+}
+
+.dialog-content {
+  width: 100%; /* 确保按钮宽度占据全宽 */
+}
+
+.dialog-button {
+  margin-bottom: 15px; /* 设置按钮之间的间距 */
 }
 </style>

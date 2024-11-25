@@ -1,5 +1,6 @@
 export default {
   common: {
+    inputInvalid: "Input non valido",
     deviceSelfcheck: "Controllo Installazione",
     instructionMsg1: "Dispositivo operativo. Preso atto.",
     instructionMsg2: "Malfunzionamento del dispositivo. Verifica e conferma.",
@@ -113,6 +114,8 @@ export default {
     number: "Numero",
     referralAccount: "Account Riferente",
     referralCode: "Codice di Riferimento",
+    referralBsbNumber: "BSB Referente",
+    refereeBsbNumber: "BSB Referito",
     referralBankAccount: "Conto Bancario del Riferente",
     referralName: "Nome del Riferente",
     refereeAccount: "Account Referito",
@@ -124,6 +127,28 @@ export default {
     cashOut0: "Non Pagato",
     cashOut1: "Pagato",
     cashOutWarning: "Confermi la modifica dello stato del pagamento?",
+  },
+
+  generator: {
+    onOff: "Attiva Generatore",
+    on: "Acceso",
+    off: "Spento",
+    ratedPower: "Potenza Nominale",
+    availablePowerPercentage: "Potenza Disponibile (%)",
+    controlModelDto: "Modalità di Controllo",
+    manualControl: "Manuale",
+    socControl: "Controllo SOC",
+    socRange: "Intervallo SOC (%)",
+    lowerLimit: "Limite Inferiore",
+    upperLimit: "Limite Superiore",
+    timeSlotDtoList: "Controllo Intervallo Orario",
+    outputModelDto: "Modalità di Uscita",
+    batteryChargingPower: "Potenza Ricarica Batteria",
+    timeRange: "Intervallo Orario",
+    startingTime: "Ora Inizio",
+    endTime: "Ora Fine",
+    ratedPowerWarning: "Seleziona la potenza nominale",
+    timeWarning: "L'ora di fine deve essere successiva a quella di inizio",
   },
 
   dataBoard: {
@@ -289,6 +314,7 @@ export default {
     validateC: "Il contenuto non può essere vuoto",
   },
   cancelRecord: {
+    ipAddr: "Disconnetti IP",
     cancelEmail: "Email di Cancellazione",
     processingStatus: "Stato di Elaborazione",
     toBeProcessed: "In Attesa di Elaborazione",
@@ -1569,6 +1595,12 @@ export default {
     timeZone: "Fuso orario",
     userName: "Nome utente",
     details: "Dettagli",
+    userSettings: "Impostazioni Utente",
+    generatorSettings: "Impostazioni Generatore",
+    gridSettingsAus: "Impostazioni Rete (AUS)",
+    powerGrid: "Compagnia Elettrica",
+    nmi: "Numero NMI",
+
     batterySettings: "Impostazioni della batteria",
     OTAupgrade: "Aggiornamento OTA",
     upgradeRecord: "Registro degli aggiornamenti",

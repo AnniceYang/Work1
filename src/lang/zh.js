@@ -1,5 +1,6 @@
 export default {
   common: {
+    inputInvalid: "输入无效",
     deviceSelfcheck: "安装自检",
     instructionMsg1: "设备运行正常，已知悉结果",
     instructionMsg2: "设备运行异常，请检查确认",
@@ -112,6 +113,8 @@ export default {
     number: "序号",
     referralAccount: "推荐账号",
     referralCode: "推荐码",
+    referralBsbNumber: "推荐人BSB",
+    refereeBsbNumber: "被推荐人BSB",
     referralBankAccount: "推荐人银行账号",
     referralName: "推荐人姓名",
     refereeAccount: "被推荐账号",
@@ -125,6 +128,28 @@ export default {
 
     cashOutWarning: "请确定更改返现状态？",
   },
+  generator: {
+    onOff: "启用柴油机",
+    on: "开",
+    off: "关",
+    ratedPower: "柴油机额定功率",
+    availablePowerPercentage: "可用功率百分比",
+    controlModelDto: "控制模式",
+    manualControl: "手动控制",
+    socControl: "SOC控制",
+    socRange: "运行SOC范围 （%）",
+    lowerLimit: "下限",
+    upperLimit: "上限",
+    timeSlotDtoList: "时间范围控制",
+    outputModelDto: "输出模式",
+    batteryChargingPower: "电池充电功率",
+    timeRange: "时间范围",
+    startingTime: "起始时间",
+    endTime: "截止时间",
+    ratedPowerWarning: "请选择额定功率",
+    timeWarning: "结束时间必须大于开始时间！",
+  },
+
   dataBoard: {
     todayPPG: "今日光伏发电量",
     todayET: "今日买电量",
@@ -288,6 +313,7 @@ export default {
     validateC: "分类内容不能为空",
   },
   cancelRecord: {
+    ipAddr: "注销IP",
     cancelEmail: "注销邮箱",
     processingStatus: "审核状态",
     toBeProcessed: "待审核",
@@ -1587,6 +1613,12 @@ export default {
     timeZone: "时区",
     userName: "用户名称",
     details: "详情",
+    userSettings: "用户设置",
+    generatorSettings: "发电机设置",
+    gridSettingsAus: "电网设置（澳洲）",
+    powerGrid: "电网公司",
+    nmi: "NMI 号码",
+
     batterySettings: "电池设置",
     OTAupgrade: "OTA升级",
     upgradeRecord: "升级记录",

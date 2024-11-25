@@ -1,5 +1,6 @@
 export default {
   common: {
+    inputInvalid: "Invalid input",
     deviceSelfcheck: "Installation Check",
     instructionMsg1: "Device operating normally. Acknowledged.",
     instructionMsg2: "Device malfunctioning. Please check and confirm.",
@@ -115,6 +116,8 @@ export default {
     number: "Serial Number",
     referralAccount: "Referrer Account",
     referralCode: "Referral Code",
+    referralBsbNumber: "Referrer BSB",
+    refereeBsbNumber: "Referee BSB",
     referralBankAccount: "Referrer's Bank Account",
     referralName: "Referrer's Name",
     refereeAccount: "Referred Account",
@@ -126,6 +129,28 @@ export default {
     cashOut0: "Not Cashed Out",
     cashOut1: "Cashed Out",
     cashOutWarning: "Please confirm the change of cashOut status?",
+  },
+
+  generator: {
+    onOff: "Enable Generator",
+    on: "On",
+    off: "Off",
+    ratedPower: "Rated Power",
+    availablePowerPercentage: "Available Power (%)",
+    controlModelDto: "Control Mode",
+    manualControl: "Manual",
+    socControl: "SOC Control",
+    socRange: "SOC Range (%)",
+    lowerLimit: "Lower Limit",
+    upperLimit: "Upper Limit",
+    timeSlotDtoList: "Time Range Control",
+    outputModelDto: "Output Mode",
+    batteryChargingPower: "Battery Charging Power",
+    timeRange: "Time Range",
+    startingTime: "Start Time",
+    endTime: "End Time",
+    ratedPowerWarning: "Please select rated power",
+    timeWarning: "End time must be later than start time",
   },
 
   dataBoard: {
@@ -292,6 +317,7 @@ export default {
     validateC: "Content cannot be empty",
   },
   cancelRecord: {
+    ipAddr: "Logout IP",
     cancelEmail: "Cancel email",
     processingStatus: "Processing status",
     toBeProcessed: "To be processed",
@@ -1572,6 +1598,12 @@ export default {
     timeZone: "Time zone",
     userName: "User name",
     details: "Details",
+    userSettings: "User Settings",
+    generatorSettings: "Generator Settings",
+    gridSettingsAus: "Grid Settings (AUS)",
+    powerGrid: "Grid Company",
+    nmi: "NMI Number",
+
     batterySettings: "Battery settings",
     OTAupgrade: "OTA Upgrade",
     upgradeRecord: "Upgrade record",

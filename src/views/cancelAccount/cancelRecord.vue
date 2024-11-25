@@ -19,7 +19,7 @@
                 :placeholder="$t('common.inputPrompt')"
               ></el-input>
             </el-form-item>
-            <el-form-item :label="$t('cancelRecord.processingStatus')">
+            <!-- <el-form-item :label="$t('cancelRecord.processingStatus')">
               <el-select
                 v-model="listQuery.status"
                 :placeholder="$t('common.selectPrompt')"
@@ -31,7 +31,7 @@
                 <el-option :value="1" :label="$t('cancelRecord.pass')" />
                 <el-option :value="2" :label="$t('cancelRecord.refuse')" />
               </el-select>
-            </el-form-item>
+            </el-form-item> -->
             <el-form-item>
               <el-button
                 type="primary"
@@ -82,6 +82,12 @@
           />
           <el-table-column
             align="center"
+            prop="ipAddr"
+            :label="$t('cancelRecord.ipAddr')"
+            min-width="120"
+          />
+          <!-- <el-table-column
+            align="center"
             :label="$t('cancelRecord.processingStatus')"
             min-width=""
           >
@@ -102,7 +108,7 @@
             prop="reject"
             :label="$t('cancelRecord.remarks')"
             show-overflow-tooltip
-          />
+          /> -->
           <el-table-column
             align="center"
             :label="$t('common.createTime')"
@@ -112,7 +118,7 @@
               {{ scope.row.createTime | parseTime }}
             </template>
           </el-table-column>
-          <el-table-column :label="$t('common.operate')" align="center">
+          <!-- <el-table-column :label="$t('common.operate')" align="center">
             <template slot-scope="scope">
               <el-button
                 type="text"
@@ -131,7 +137,7 @@
                 >{{ $t("common.delete") }}</el-button
               >
             </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
       </div>
       <div class="table-pagination">

@@ -10,7 +10,7 @@
           <el-table-column
             align="center"
             :label="$t('referralCode.number')"
-            width="60"
+            width="30"
           >
             <template slot-scope="scope">
               {{ scope.$index + 1 }}
@@ -21,7 +21,7 @@
             align="center"
             prop="referralAccount"
             :label="$t('referralCode.referralAccount')"
-            width="140"
+            width="120"
           />
           <el-table-column
             align="center"
@@ -31,9 +31,15 @@
 
           <el-table-column
             align="center"
+            prop="referralBsbNumber"
+            :label="$t('referralCode.referralBsbNumber')"
+          />
+
+          <el-table-column
+            align="center"
             prop="referralBankAccount"
             :label="$t('referralCode.referralBankAccount')"
-            width="120"
+            width="100"
           />
 
           <el-table-column
@@ -41,11 +47,18 @@
             prop="referralName"
             :label="$t('referralCode.referralName')"
           />
+
+          <el-table-column
+            align="center"
+            prop="refereeBsbNumber"
+            :label="$t('referralCode.refereeBsbNumber')"
+          />
+
           <el-table-column
             align="center"
             prop="refereeAccount"
             :label="$t('referralCode.refereeAccount')"
-            width="140"
+            width="100"
           />
           <el-table-column
             align="center"
@@ -96,7 +109,7 @@
       <el-dialog
         :title="$t('referralCode.cashOutState')"
         :visible.sync="cashOutDialogVisible"
-        width="400px"
+        width="300px"
         center
         :modal="true"
         :close-on-click-modal="false"

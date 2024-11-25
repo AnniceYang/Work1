@@ -1,5 +1,75 @@
 import request from "@/router/axios";
 import axios from "axios";
+
+//获取澳洲电网公司列表，哔哩哔气
+export function listPowerGrid() {
+  return request({
+    url: "/admin/powerGrid/getPowerGridList",
+    method: "get",
+  });
+}
+
+//保存电网名称以及NMI
+export function saveGridNMI(data) {
+  return request({
+    url: "/admin/powerGrid/save",
+    method: "post",
+    data,
+  });
+}
+
+// 通过id查询电网信息
+export function qryPowerGrid(query) {
+  return request({
+    url: "/admin/powerGrid/get",
+    method: "get",
+    params: query,
+  });
+}
+
+// 发电机设置详情
+export function qryGenerator(query) {
+  return request({
+    url: "/admin/generator/info",
+    method: "get",
+    params: query,
+  });
+}
+
+// 发电机控制模式列表
+export function listGeneratorControlMode() {
+  return request({
+    url: "/admin/generator/controlModeList",
+    method: "get",
+  });
+}
+
+// 发电机输出模式列表
+export function listGeneratorOutputMode() {
+  return request({
+    url: "/admin/generator/outputModeList",
+    method: "get",
+  });
+}
+
+//保存发电机设置
+export function generatorSet(data) {
+  return request({
+    url: "/admin/generator/operate",
+    method: "post",
+    data,
+  });
+}
+
+// 删除发电机设置
+export function delGenerator(data) {
+  return request({
+    url: "/admin/generator/del",
+    method: "post",
+    data,
+  });
+}
+
 // 设备信息管理  查询
 export function qryDevice(query) {
   return request({
