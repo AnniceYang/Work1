@@ -1315,7 +1315,19 @@ export default {
     TP_0X03_214: "Abilita Gestione Modalità Uso",
   },
 
+  energyFlow: {
+    pv: "FV",
+    battery: "Batteria",
+    grid: "Rete",
+    load: "Carico",
+    faultMessage:
+      "Dispositivo offline, impossibile visualizzare il flusso energetico.",
+  },
+
   deviceManage: {
+    energyFlow: "Flusso Energetico",
+    loadingMessage: "Caricamento flusso, attendere",
+
     //设备安装自检框翻译
     wifiConnectivity: "Segnale WiFi",
     systemStatus: "Stato Sistema",

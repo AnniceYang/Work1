@@ -1319,7 +1319,18 @@ export default {
     TP_0X03_214: "Use Mode Management Enable",
   },
 
+  energyFlow: {
+    pv: "PV",
+    battery: "Battery",
+    grid: "Grid",
+    load: "Load",
+    faultMessage: "Device offline, unable to display energy flow.",
+  },
+
   deviceManage: {
+    energyFlow: "Energy Flow",
+    loadingMessage: "Loading energy flow, please wait",
+
     //设备安装自检框翻译
     wifiConnectivity: "WiFi Signal",
     systemStatus: "System Status",

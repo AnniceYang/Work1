@@ -1317,8 +1317,19 @@ export default {
     TP_0X03_214: "用电模式管理使能",
   },
 
+  energyFlow: {
+    pv: "光伏",
+    battery: "电池",
+    grid: "电网",
+    load: "负载",
+    faultMessage: "设备不在线，无法显示能流图",
+  },
+
   //单相系统配置中文
   deviceManage: {
+    energyFlow: "能流图",
+    loadingMessage: "正在加载能流数据，请稍后",
+
     //设备安装自检框翻译
     wifiConnectivity: "Wifi 信号",
     systemStatus: "系统运行状态",

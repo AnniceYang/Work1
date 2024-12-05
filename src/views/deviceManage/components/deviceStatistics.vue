@@ -254,11 +254,80 @@
               }}</el-descriptions-item>
             </el-descriptions>
           </el-dialog>
+
+          <el-dialog
+            :visible.sync="showFlowDialog"
+            :title="$t('deviceManage.energyFlow')"
+            :close-on-click-modal="false"
+            @close="stopEnergyFlow"
+            class="energy-flow-dialog"
+            width="600px"
+          >
+            <div class="energy-flow-container">
+              <template v-if="loading">
+                <el-spin tip="Loading..." />
+                <p>{{ $t("deviceManage.loadingMessage") }}</p>
+              </template>
+              <template v-else>
+                <div class="energy-flow-content">
+                  <!-- 上部文字和数值 -->
+                  <div class="flow-item top">
+                    <span class="flow-text">{{ $t("energyFlow.pv") }}</span>
+                    <span class="flow-value"
+                      >{{ energyFlowData.pvPower }} W</span
+                    >
+                  </div>
+
+                  <!-- 下部文字和数值 -->
+                  <div class="flow-item bottom">
+                    <span class="flow-text">{{
+                      $t("energyFlow.battery")
+                    }}</span>
+                    <span class="flow-value"
+                      >{{ energyFlowData.batteryPower }} W</span
+                    >
+                  </div>
+
+                  <!-- 左部文字和数值 -->
+                  <div class="flow-item left">
+                    <span class="flow-text">{{ $t("energyFlow.grid") }}</span>
+                    <span class="flow-value"
+                      >{{ energyFlowData.gridPower }} W</span
+                    >
+                  </div>
+
+                  <!-- 右部文字和数值 -->
+                  <div class="flow-item right">
+                    <span class="flow-text">{{ $t("energyFlow.load") }}</span>
+                    <span class="flow-value"
+                      >{{ energyFlowData.loadPower }} W</span
+                    >
+                  </div>
+
+                  <!-- 图片 -->
+                  <img
+                    :src="currentGif"
+                    alt="Energy Flow"
+                    class="energy-flow-img"
+                  />
+                </div>
+              </template>
+            </div>
+          </el-dialog>
         </el-descriptions-item>
 
-        <el-descriptions-item :label="$t('deviceManage.snCode')">{{
-          deviceInfo.sn
-        }}</el-descriptions-item>
+        <el-descriptions-item :label="$t('deviceManage.snCode')"
+          >{{ deviceInfo.sn }}
+          <span style="margin-left: 15px"></span>
+          <el-button
+            v-if="isAdmin"
+            class="unbind"
+            icon="el-icon-more"
+            @click="showEnergyFlow"
+            >{{ $t("deviceManage.energyFlow") }}</el-button
+          >
+        </el-descriptions-item>
+
         <el-descriptions-item :label="$t('deviceManage.modelName')">{{
           deviceInfo.modelName
         }}</el-descriptions-item>
@@ -621,6 +690,7 @@ import {
   unbindAgent,
   unbindUser,
   qryDeviceDetail,
+  getConfigData,
 } from "@/api/device";
 import ElectricityData from "./electricityData.vue";
 import IncomeData from "./incomeData.vue";
@@ -913,6 +983,12 @@ export default {
       otaCrc: null,
       isUpgradeResultVisible: false,
       upgradeResultMessage: "",
+
+      showFlowDialog: false,
+      energyFlowData: {},
+      currentGif: "",
+      loading: false,
+      flowUpdateInterval: null,
     };
   },
   methods: {
@@ -1059,6 +1135,155 @@ export default {
       }
 
       return statusDisplay;
+    },
+
+    showEnergyFlow() {
+      if (this.deviceInfo.onlineStatus === 1) {
+        this.loading = true;
+        this.showFlowDialog = true; // 显示对话框
+        this.initEnergyFlow(); // 初始化能流图
+      } else {
+        this.$message.warning(this.$t("energyFlow.faultMessage"));
+      }
+    },
+
+    startFlowUpdate() {
+      this.getEnergyFlowData();
+      if (this.flowUpdateInterval) {
+        clearInterval(this.flowUpdateInterval); // 清除已有定时器
+      }
+
+      this.flowUpdateInterval = setInterval(() => {
+        this.getEnergyFlowData();
+      }, 5000);
+    },
+
+    // 停止能流图监听
+    stopEnergyFlow() {
+      this.showFlowDialog = false; // 关闭弹窗
+      this.loading = false;
+      if (this.flowUpdateInterval) {
+        clearInterval(this.flowUpdateInterval);
+        this.flowUpdateInterval = null;
+      }
+      if (this.mqttClient) {
+        this.mqttClient.end(true, () => {
+          console.log("MQTT 连接已断开");
+        });
+        this.mqttClient = null;
+      }
+    },
+
+    getEnergyFlowData() {
+      getConfigData({
+        deviceId: this.deviceInfo.id,
+        val: 3,
+      })
+        .then((response) => {
+          this.loading = false;
+
+          console.log("每 5 秒请求到的数据：", response);
+        })
+        .catch((error) => {
+          this.loading = false;
+          console.error("获取数据失败：", error);
+        });
+    },
+
+    //初始化能流图数据监听
+    initEnergyFlow() {
+      if (this.deviceInfo.onlineStatus === 1) {
+        this.mqttClient = mqtt.connect(baseMqtt, {
+          protocolVersion: 4,
+          reconnectPeriod: 1000,
+          connectTimeout: 30 * 1000,
+          resubscribe: true,
+          keepalive: 3,
+          clientId: "mqttjs_" + Math.random().toString(16).substr(2, 8),
+        });
+
+        this.mqttClient.on("connect", (res) => {
+          this.connectState = "connect";
+          this.subscribeEnergyFlowInfo(); //初次订阅
+          console.log("mqtt连接成功", res);
+        });
+
+        this.mqttClient.on("message", (topic, message) => {
+          const messageInfo = JSON.parse(message.toString());
+
+          if (messageInfo.msgOperation === 1 && messageInfo.valType === 0) {
+            const valData = JSON.parse(messageInfo.val);
+
+            this.updateEnergyFlow(valData);
+          }
+        });
+      } else {
+        console.log("设备不在线状态，跳过MQTT连接");
+      }
+    },
+
+    // 订阅EnergyFlow
+    subscribeEnergyFlowInfo() {
+      if (!this.mqttClient || this.connectState !== "connect") {
+        console.log("====通讯未连接=====");
+        this.toast("通讯未连接");
+        return;
+      }
+
+      let subscriptionTimeout = setTimeout(() => {
+        console.log("订阅主题超时");
+      }, 3000);
+
+      this.mqttClient.subscribe(
+        `/APP/${this.deviceInfo.id}/NEWS`,
+        (err, granted) => {
+          if (!err) {
+            clearTimeout(subscriptionTimeout);
+            console.log("===订阅主题 订阅成功===");
+            // 仅在需要时获取数据
+            this.startFlowUpdate(); // 可选：根据你的逻辑决定是否需要调用
+          }
+        }
+      );
+    },
+
+    updateEnergyFlow(data) {
+      console.log(data, "接收到 page3 数据");
+
+      // 根据接收到的能流图数据更新界面
+      this.energyFlowData = {
+        ...data,
+        pvPower: data.pvPower || 0,
+        gridPower: data.gridPower || 0,
+        loadPower: data.loadPower || 0,
+        batteryPower: data.batteryPower || 0,
+      };
+
+      const flowValue = this.calculateFlowValue(data.flowOne);
+
+      console.log("计算的能流值：", flowValue);
+      try {
+        this.currentGif = `/img/energyflowgif/detail_${flowValue}.gif`;
+
+        console.log("加载的 GIF 路径：", this.currentGif);
+        this.loading = false;
+      } catch (error) {
+        console.error("加载 GIF 失败：", error);
+        this.currentGif = null; // 处理错误路径
+        this.loading = false;
+      }
+    },
+
+    calculateFlowValue(flowOne) {
+      if (flowOne && flowOne.length >= 16) {
+        const pv = parseInt(`${flowOne[6]}${flowOne[7]}`, 2);
+        const battery = parseInt(`${flowOne[8]}${flowOne[9]}`, 2);
+        const grid = parseInt(`${flowOne[12]}${flowOne[13]}`, 2);
+        const load = parseInt(`${flowOne[14]}${flowOne[15]}`, 2);
+
+        return `${pv}${battery}${grid}${load}`;
+      }
+      return "0000"; // 默认值
     },
 
     // mqtt初始化
@@ -1406,5 +1631,94 @@ export default {
     height: 30px;
     line-height: 30px;
   }
+}
+
+.energy-flow-dialog {
+  .el-dialog__body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+  }
+}
+
+.energy-flow-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.energy-flow-content {
+  position: relative;
+  width: 500px; /* 图片与文字区域限制在弹窗内 */
+  height: 500px;
+  background-color: #fff;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.energy-flow-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* 确保图片完整显示 */
+  position: absolute;
+  z-index: 1;
+}
+
+.flow-item {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+
+.flow-text {
+  color: #555;
+  font-size: 16px;
+  font-weight: bold;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
+  margin-bottom: 4px;
+}
+
+.flow-value {
+  color: #333;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* 上部文字和数值 */
+.top {
+  top: 21%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 下部文字和数值 */
+.bottom {
+  bottom: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 左部文字和数值 */
+.left {
+  top: 57%;
+  left: 17%;
+  transform: translateY(-50%);
+}
+
+/* 右部文字和数值 */
+.right {
+  top: 57%;
+  right: 16%;
+  transform: translateY(-50%);
 }
 </style>
