@@ -1148,11 +1148,11 @@ export default {
         batteryPower: data.batteryPower || 0,
       };
 
-      const flowValue = this.calculateFlowValue(data.flowOne);
+      const flowValue = this.calculateFlowValue(data.flowTwo);
 
       console.log("计算的能流值：", flowValue);
       try {
-        this.currentGif = `/img/energyflowgif/detail_${flowValue}.gif`;
+        this.currentGif = `/img/threePhaseEnergyflowgif/detail_${flowValue}.gif`;
 
         console.log("加载的 GIF 路径：", this.currentGif);
         this.loading = false;
@@ -1163,16 +1163,20 @@ export default {
       }
     },
 
-    calculateFlowValue(flowOne) {
-      if (flowOne && flowOne.length >= 16) {
-        const pv = parseInt(`${flowOne[6]}${flowOne[7]}`, 2);
-        const battery = parseInt(`${flowOne[8]}${flowOne[9]}`, 2);
-        const grid = parseInt(`${flowOne[12]}${flowOne[13]}`, 2);
-        const load = parseInt(`${flowOne[14]}${flowOne[15]}`, 2);
+    calculateFlowValue(flowTwo) {
+      if (flowTwo && flowTwo.length >= 16) {
+        // 根据位段定义解析各字段
+        const batteryToLoad = parseInt(`${flowTwo[4]}${flowTwo[5]}`, 2); // BIT11 BIT10
+        const gridToBattery = parseInt(`${flowTwo[6]}${flowTwo[7]}`, 2); // BIT9 BIT8
+        const gridToLoad = parseInt(`${flowTwo[8]}${flowTwo[9]}`, 2); // BIT7 BIT6
+        const pvToLoad = parseInt(`${flowTwo[10]}${flowTwo[11]}`, 2); // BIT5 BIT4
+        const pvToBattery = parseInt(`${flowTwo[12]}${flowTwo[13]}`, 2); // BIT3 BIT2
+        const pvToGrid = parseInt(`${flowTwo[14]}${flowTwo[15]}`, 2); // BIT1 BIT0
 
-        return `${pv}${battery}${grid}${load}`;
+        // 将各字段按顺序拼接成字符串返回
+        return `${batteryToLoad}${gridToBattery}${gridToLoad}${pvToLoad}${pvToBattery}${pvToGrid}`;
       }
-      return "0000"; // 默认值
+      return "000000"; // 默认值（6个状态）
     },
 
     // mqtt初始化

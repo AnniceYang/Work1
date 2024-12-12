@@ -499,6 +499,14 @@ export default {
     TP_0X04_110: "Phase B Active Power",
     TP_0X04_111: "Phase C Active Power",
 
+    // V1.8
+    TP_0X04_112: "Monitor A-phase inverter current",
+    TP_0X04_113: "Monitor B-phase inverter current",
+    TP_0X04_114: "Monitor C-phase inverter current",
+    TP_0X04_115: "Monitor A-phase active power",
+    TP_0X04_116: "Monitor B-phase active power",
+    TP_0X04_117: "Monitor C-phase active power",
+
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
     TP_0X04_1025: "Inverter Active Power Setting",
@@ -694,6 +702,13 @@ export default {
     TP_0X04_1297: "Real-Time Protection Threshold",
 
     TP_0X04_1045_1046: "PV Generation",
+
+    // V1.8
+    TP_0X04_1298: "Self-check protection threshold",
+    TP_0X04_1299: "Self-check protection time",
+    TP_0X04_1292: "Energy flow segment 2",
+    TP_0X04_1079: "Battery max SOC",
+    TP_0X04_1080: "Battery min SOC",
 
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
@@ -1105,7 +1120,8 @@ export default {
     TP_0X03_1039: "Grid-Off Mode (Anti-Reverse Flow Enable)",
     TP_0X03_1040: "Australia Region Activation",
     TP_0X03_1041: "Australia Region Selection",
-    TP_0X03_1042: "AC Type",
+    TP_0X03_1042: "AC coupling",
+
     TP_0X03_1043: "System Mode Setting",
     TP_0X03_1044: "PV Connection Setting",
     TP_0X03_1045: "Rated Output Voltage Setting",
@@ -2253,6 +2269,9 @@ export default {
     Ireland: "Ireland",
     France: "France",
     Greece: "Greece",
+    Republic: "Czech Republic",
+    Netherlands: "Netherlands",
+
     systemTimeSetting: "system time setting",
     inverterActivePowerSetting: "Inverter active power setting",
     communicationProtocolType485: "485 communication protocol type",
@@ -3851,6 +3870,14 @@ export default {
     TP_0X04_110: "Phase B Active Power",
     TP_0X04_111: "Phase C Active Power",
 
+    // V1.8
+    TP_0X04_112: "Monitor A-phase inverter current",
+    TP_0X04_113: "Monitor B-phase inverter current",
+    TP_0X04_114: "Monitor C-phase inverter current",
+    TP_0X04_115: "Monitor A-phase active power",
+    TP_0X04_116: "Monitor B-phase active power",
+    TP_0X04_117: "Monitor C-phase active power",
+
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
     TP_0X04_1025: "Inverter Active Power Setting",
@@ -4044,6 +4071,13 @@ export default {
     TP_0X04_1297: "Real-Time Protection Threshold",
 
     TP_0X04_1045_1046: "PV Generation",
+
+    // V1.8
+    TP_0X04_1298: "Self-check protection threshold",
+    TP_0X04_1299: "Self-check protection time",
+    TP_0X04_1292: "Energy flow segment 2",
+    TP_0X04_1079: "Battery max SOC",
+    TP_0X04_1080: "Battery min SOC",
 
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
@@ -4423,7 +4457,8 @@ export default {
     TP_0X03_1039: "Grid-Off Mode (Anti-Reverse Flow Enable)",
     TP_0X03_1040: "Australia Region Activation",
     TP_0X03_1041: "Australia Region Selection",
-    TP_0X03_1042: "AC Type",
+    TP_0X03_1042: "AC coupling",
+
     TP_0X03_1043: "System Mode Setting",
     TP_0X03_1044: "PV Connection Setting",
     TP_0X03_1045: "Rated Output Voltage Setting",

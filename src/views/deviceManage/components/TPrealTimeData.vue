@@ -447,6 +447,42 @@
               >
                 {{ voListMap["41"]["TP_0X04_111"].val }}W
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_112')"
+                v-if="CCIsDisplay('41', 'TP_0X04_112')"
+              >
+                {{ voListMap["41"]["TP_0X04_112"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_113')"
+                v-if="CCIsDisplay('41', 'TP_0X04_113')"
+              >
+                {{ voListMap["41"]["TP_0X04_113"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_114')"
+                v-if="CCIsDisplay('41', 'TP_0X04_114')"
+              >
+                {{ voListMap["41"]["TP_0X04_114"].val }}A
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_115')"
+                v-if="CCIsDisplay('41', 'TP_0X04_115')"
+              >
+                {{ voListMap["41"]["TP_0X04_115"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_116')"
+                v-if="CCIsDisplay('41', 'TP_0X04_116')"
+              >
+                {{ voListMap["41"]["TP_0X04_116"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_117')"
+                v-if="CCIsDisplay('41', 'TP_0X04_117')"
+              >
+                {{ voListMap["41"]["TP_0X04_117"].val }}W
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -1613,6 +1649,37 @@
                 v-if="CCIsDisplay('42', 'TP_0X04_1297')"
               >
                 {{ voListMap["42"]["TP_0X04_1297"].val }}V/Hz
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1298')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1298')"
+              >
+                {{ voListMap["42"]["TP_0X04_1298"].val }}V/Hz
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1299')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1299')"
+              >
+                {{ voListMap["42"]["TP_0X04_1299"].val }}ms
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1292')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1292')"
+              >
+                {{ voListMap["42"]["TP_0X04_1292"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1079')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1079')"
+              >
+                {{ voListMap["42"]["TP_0X04_1079"].val }}%
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1080')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1080')"
+              >
+                {{ voListMap["42"]["TP_0X04_1080"].val }}%
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
@@ -4279,7 +4346,19 @@
                     />
                     <el-option :label="$t('deviceManage.England')" value="6" />
                     <el-option :label="$t('deviceManage.Spain')" value="7" />
+                    <el-option :label="$t('deviceManage.Ireland')" value="9" />
+                    <el-option :label="$t('deviceManage.France')" value="10" />
+                    <el-option :label="$t('deviceManage.Greece')" value="11" />
+                    <el-option
+                      :label="$t('deviceManage.Republic')"
+                      value="12"
+                    />
+                    <el-option
+                      :label="$t('deviceManage.Netherlands')"
+                      value="13"
+                    />
                   </el-select>
+
                   <el-button
                     type="text"
                     style="margin-left: 5px"
@@ -4799,14 +4878,8 @@
                     :placeholder="$t('common.selectPrompt')"
                     style="width: 100%"
                   >
-                    <el-option
-                      :label="$t('deviceManage.powerGrid')"
-                      value="0"
-                    />
-                    <el-option
-                      :label="$t('deviceManage.alternator')"
-                      value="1"
-                    />
+                    <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
                   </el-select>
                   <el-button
                     type="text"
@@ -6078,7 +6151,7 @@
                   >
                 </div>
               </el-descriptions-item>
-              <el-descriptions-item
+              <!-- <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_1092')"
                 v-if="CCIsDisplay('48', 'TP_0X03_1092')"
               >
@@ -6197,7 +6270,7 @@
                     >{{ $t("common.save") }}</el-button
                   >
                 </div>
-              </el-descriptions-item>
+              </el-descriptions-item> -->
               <el-descriptions-item
                 :label="$t('threePhase.TP_0X03_1096')"
                 v-if="CCIsDisplay('48', 'TP_0X03_1096')"
@@ -11182,8 +11255,13 @@ export default {
         3: this.$t("deviceManage.Australia"),
         4: this.$t("deviceManage.Belgium"),
         5: this.$t("deviceManage.SouthAfrica"),
-        // this.$t("deviceManage.England"),
-        // this.$t("deviceManage.Spain"),
+        6: this.$t("deviceManage.England"),
+        7: this.$t("deviceManage.Spain"),
+        8: this.$t("deviceManage.Europe50549"),
+        9: this.$t("deviceManage.Ireland"),
+        10: this.$t("deviceManage.France"),
+        11: this.$t("deviceManage.Republic"),
+        12: this.$t("deviceManage.Netherlands"),
       },
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),

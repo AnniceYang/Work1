@@ -498,6 +498,14 @@ export default {
     TP_0X04_110: "Potenza Attiva Fase B",
     TP_0X04_111: "Potenza Attiva Fase C",
 
+    // V1.8
+    TP_0X04_112: "Monitora corrente inverter fase A",
+    TP_0X04_113: "Monitora corrente inverter fase B",
+    TP_0X04_114: "Monitora corrente inverter fase C",
+    TP_0X04_115: "Monitora potenza attiva fase A",
+    TP_0X04_116: "Monitora potenza attiva fase B",
+    TP_0X04_117: "Monitora potenza attiva fase C",
+
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
     TP_0X04_1026: "Impostazione Potenza Attiva PV",
@@ -692,6 +700,13 @@ export default {
     TP_0X04_1297: "Soglia Protezione in Tempo Reale",
 
     TP_0X04_1045_1046: "Generazione PV",
+
+    // V1.8
+    TP_0X04_1298: "Soglia protezione auto-test",
+    TP_0X04_1299: "Tempo protezione auto-test",
+    TP_0X04_1292: "Segmento flusso energia 2",
+    TP_0X04_1079: "SOC max batteria",
+    TP_0X04_1080: "SOC min batteria",
 
     //page43 电表数据
     TP_0X04_2048_2049: "1° Energia Attiva Combinata",
@@ -1101,7 +1116,8 @@ export default {
     TP_0X03_1039: "Modalità Grid-Off",
     TP_0X03_1040: "Attivazione Regione Australia",
     TP_0X03_1041: "Selezione Regione Australia",
-    TP_0X03_1042: "Tipo AC",
+    TP_0X03_1042: "Accoppiamento AC",
+
     TP_0X03_1043: "Impostazione Modalità Sistema",
     TP_0X03_1044: "Impostazione Connessione PV",
     TP_0X03_1045: "Impostazione Tensione Nominale Uscita",
@@ -2249,6 +2265,9 @@ export default {
     Ireland: "Irlanda",
     France: "Francia",
     Greece: "Grecia",
+    Republic: "Repubblica Ceca",
+    Netherlands: "Paesi Bassi",
+
     systemTimeSetting: "Impostazione dell'orario di sistema",
     inverterActivePowerSetting:
       "Impostazione della potenza attiva dell'inverter",
@@ -3875,6 +3894,14 @@ export default {
     TP_0X04_110: "Potenza Attiva Fase B",
     TP_0X04_111: "Potenza Attiva Fase C",
 
+    // V1.8
+    TP_0X04_112: "Monitora corrente inverter fase A",
+    TP_0X04_113: "Monitora corrente inverter fase B",
+    TP_0X04_114: "Monitora corrente inverter fase C",
+    TP_0X04_115: "Monitora potenza attiva fase A",
+    TP_0X04_116: "Monitora potenza attiva fase B",
+    TP_0X04_117: "Monitora potenza attiva fase C",
+
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
     TP_0X04_1026: "Impostazione Potenza Attiva PV",
@@ -4066,6 +4093,13 @@ export default {
     TP_0X04_1297: "Soglia Protezione in Tempo Reale",
 
     TP_0X04_1045_1046: "Generazione PV",
+
+    // V1.8
+    TP_0X04_1298: "Soglia protezione auto-test",
+    TP_0X04_1299: "Tempo protezione auto-test",
+    TP_0X04_1292: "Segmento flusso energia 2",
+    TP_0X04_1079: "SOC max batteria",
+    TP_0X04_1080: "SOC min batteria",
 
     //page43 电表数据
     TP_0X04_2048_2049: "1° Energia Attiva Combinata",
@@ -4438,7 +4472,8 @@ export default {
     TP_0X03_1039: "Modalità Grid-Off",
     TP_0X03_1040: "Attivazione Regione Australia",
     TP_0X03_1041: "Selezione Regione Australia",
-    TP_0X03_1042: "Tipo AC",
+    TP_0X03_1042: "Accoppiamento AC",
+
     TP_0X03_1043: "Impostazione Modalità Sistema",
     TP_0X03_1044: "Impostazione Connessione PV",
     TP_0X03_1045: "Impostazione Tensione Nominale Uscita",
