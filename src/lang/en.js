@@ -1613,6 +1613,7 @@ export default {
     snCode: "SN code",
     serialNumber: "Serial number",
     cellVoltage: "Cell Voltage",
+    onlineStatus: "Online Status",
     deviceStatus1: "Device Upgrade Status",
     offline: "Offline",
     online: "Online",

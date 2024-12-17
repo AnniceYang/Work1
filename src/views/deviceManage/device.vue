@@ -16,7 +16,7 @@
                 :placeholder="$t('common.inputPrompt')"
               ></el-input>
             </el-form-item>
-            <template v-if="isAdmin">
+            <template v-show="isAdmin">
               <el-form-item :label="$t('deviceManage.cellVoltage')">
                 <el-select
                   v-model="listQuery.cellVoltage"
@@ -59,12 +59,15 @@
               <el-select
                 v-model="listQuery.installUserId"
                 :placeholder="$t('common.selectPrompt')"
+                filterable
+                :filter-method="filterInstallUser"
+                @focus="resetFilter"
               >
                 <el-option
+                  v-for="item in filterInstallUserList"
+                  :key="item.userId"
                   :label="item.username"
                   :value="item.userId"
-                  v-for="item in installUserList"
-                  :key="item.userId"
                 ></el-option>
               </el-select>
             </el-form-item>
@@ -638,6 +641,8 @@ export default {
 
       pageState: 1,
       installUserList: [],
+      filterInstallUserList: [],
+
       devStatusFilter: [
         this.$t("userManage.normal"),
         this.$t("deviceManage.maintenance"),
@@ -701,6 +706,7 @@ export default {
     // 查询安装商用户
     qryinstallUser().then((res) => {
       this.installUserList = res;
+      this.filterInstallUserList = res;
       console.log("installUserList是：", this.installUserList);
     });
 
@@ -718,6 +724,23 @@ export default {
     this.getData();
   },
   methods: {
+    //安装商列表模糊查询
+    filterInstallUser(query) {
+      if (!query) {
+        this.filterInstallUserList = this.installUserList; //输入为空时，显示完整列表
+        return;
+      }
+
+      const lowerCaseQuery = query.toLowerCase();
+      this.filterInstallUserList = this.installUserList.filter(
+        (item) => item.username.toLowerCase().startsWith(lowerCaseQuery) //根据用户名模糊匹配
+      );
+    },
+    // 重置过滤列表为完整列表
+    resetFilter() {
+      this.filterInstallUserList = this.installUserList;
+    },
+
     //UserSettings dialog巴啦啦
     openUserSettingDialog(scopeRow) {
       this.selectedRow = scopeRow;
@@ -1034,6 +1057,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header-search {
+  display: flex;
+  flex-wrap: nowrap; /* 防止换行 */
+  width: 100%; /* 确保占满父容器 */
+  justify-content: space-between;
+}
+
+.el-form {
+  display: flex;
+  flex-wrap: wrap;
+}
+.rside {
+  margin-top: 110px;
+}
+
 .large-icon {
   font-size: 32px;
   margin-left: 8px;
