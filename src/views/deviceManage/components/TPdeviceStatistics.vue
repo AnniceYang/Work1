@@ -1148,12 +1148,22 @@ export default {
         batteryPower: data.batteryPower || 0,
       };
 
-      const flowValue = this.calculateFlowValue(data.flowTwo);
-
-      console.log("计算的能流值：", flowValue);
+      let flowValue;
       try {
-        this.currentGif = `/img/threePhaseEnergyflowgif/detail_${flowValue}.gif`;
+        if (data.flowOne) {
+          // 优先处理 flowOne 数据
+          flowValue = this.calculateFlow1Value(data.flowOne);
+          this.currentGif = `/img/energyflowgif/detail_${flowValue}.gif`;
+        } else if (data.flowTwo) {
+          // 如果没有 flowOne 数据，则处理 flowTwo 数据
+          flowValue = this.calculateFlow2Value(data.flowTwo);
+          this.currentGif = `/img/threePhaseEnergyflowgif/detail_${flowValue}.gif`;
+        } else {
+          // 如果没有任何能流数据
+          throw new Error("没有可用的能流数据");
+        }
 
+        console.log("计算的能流值：", flowValue);
         console.log("加载的 GIF 路径：", this.currentGif);
         this.loading = false;
       } catch (error) {
@@ -1163,7 +1173,19 @@ export default {
       }
     },
 
-    calculateFlowValue(flowTwo) {
+    calculateFlow1Value(flowOne) {
+      if (flowOne && flowOne.length >= 16) {
+        const pv = parseInt(`${flowOne[6]}${flowOne[7]}`, 2);
+        const battery = parseInt(`${flowOne[8]}${flowOne[9]}`, 2);
+        const grid = parseInt(`${flowOne[12]}${flowOne[13]}`, 2);
+        const load = parseInt(`${flowOne[14]}${flowOne[15]}`, 2);
+
+        return `${pv}${battery}${grid}${load}`;
+      }
+      return "0000"; // 默认值
+    },
+
+    calculateFlow2Value(flowTwo) {
       if (flowTwo && flowTwo.length >= 16) {
         // 根据位段定义解析各字段
         const batteryToLoad = parseInt(`${flowTwo[4]}${flowTwo[5]}`, 2); // BIT11 BIT10
