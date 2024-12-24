@@ -86,9 +86,22 @@ export default {
       yDataBatteryTotalSoc,
     } = {}) {
       this.chart.setOption({
+        grid: {
+          top: 40,
+          bottom: 35,
+          left: 50,
+          right: 50,
+        },
         xAxis: {
           type: "category",
           data: xData,
+          boundaryGap: false, // 设置为 false，消除横轴上的间距
+          axisLabel: {
+            show: true, // 显示横坐标标签
+            textStyle: {
+              color: "#666", // 可选：设置横坐标标签颜色
+            },
+          },
         },
         legend: {
           data: [
@@ -104,14 +117,7 @@ export default {
           trigger: "axis",
           // formatter: '{b0}<br />电池：{c0}w<br />光伏：{c1}w<br />负载：{c2}w<br />卖电：{c3}w<br />买电：{c4}w'
         },
-        grid: {
-          // top: 20,
-          top: 40,
-          bottom: 35,
-          // right: 10,
-          right: 50,
-          left: 50,
-        },
+
         yAxis: [
           {
             type: "value",

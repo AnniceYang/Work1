@@ -104,7 +104,15 @@
               </el-select>
             </el-form-item>
 
-            <!-- <el-form-item :label="$t('common.timeZone')">
+            <el-form-item :label="$t('deviceManage.serialNumber')">
+              <el-input
+                v-model="listQuery.serialNumber"
+                :placeholder="$t('common.inputPrompt')"
+                @input="handleSerialNumberSearch"
+              />
+            </el-form-item>
+
+            <el-form-item :label="$t('common.timeZone')">
               <el-select
                 v-model="listQuery.timeZone"
                 :placeholder="$t('common.selectPrompt')"
@@ -218,7 +226,68 @@
                   :value="-11"
                 ></el-option>
               </el-select>
-            </el-form-item> -->
+            </el-form-item>
+
+            <el-form-item :label="$t('common.usernameEmail')">
+              <el-input
+                v-model="listQuery.username"
+                :placeholder="$t('common.inputPrompt')"
+                @input="handleUserNameSearch"
+              />
+            </el-form-item>
+
+            <el-form-item :label="$t('deviceManage.countryCode')">
+              <el-select
+                v-model="listQuery.countryCode"
+                :placeholder="$t('common.selectPrompt')"
+              >
+                <el-option
+                  :label="$t('deviceManage.China')"
+                  :value="0"
+                ></el-option>
+
+                <el-option
+                  :label="$t('deviceManage.Italy')"
+                  :value="1"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Germany')"
+                  :value="2"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Australia')"
+                  :value="3"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Belgium')"
+                  :value="4"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.SouthAfrica')"
+                  :value="5"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.England')"
+                  :value="6"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Spain')"
+                  :value="7"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Ireland')"
+                  :value="9"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.France')"
+                  :value="10"
+                ></el-option>
+                <el-option
+                  :label="$t('deviceManage.Greece')"
+                  :value="11"
+                ></el-option>
+              </el-select>
+            </el-form-item>
 
             <el-form-item>
               <el-button type="primary" @click="getData(true)">{{
@@ -663,6 +732,8 @@ export default {
         current: 1,
         size: 10,
       },
+      users: [],
+      filteredUsers: [],
     };
   },
   computed: {
@@ -724,6 +795,25 @@ export default {
     this.getData();
   },
   methods: {
+    handleSerialNumberSearch() {
+      const searchTerm = this.listQuery.serialNumber.toLowerCase();
+
+      this.filteredSerialNumbers = this.serialNumbers.filter((serial) =>
+        serial.toLowerCase().includes(searchTerm)
+      );
+    },
+
+    handleUserNameSearch() {
+      if (!this.listQuery.username) {
+        this.filteredUsers = this.users;
+      } else {
+        const searchQuery = this.listQuery.username.toLowerCase();
+        this.filteredUsers = this.users.filter((user) =>
+          user.name.toLowerCase().includes(searchQuery)
+        );
+      }
+    },
+
     //安装商列表模糊查询
     filterInstallUser(query) {
       if (!query) {
@@ -1069,7 +1159,7 @@ export default {
   flex-wrap: wrap;
 }
 .rside {
-  margin-top: 110px;
+  margin-top: 170px;
 }
 
 .large-icon {

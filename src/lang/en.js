@@ -1,5 +1,6 @@
 export default {
   common: {
+    usernameEmail: "User Email",
     inputInvalid: "Invalid input",
     deviceSelfcheck: "Installation Check",
     instructionMsg1: "Device operating normally. Acknowledged.",

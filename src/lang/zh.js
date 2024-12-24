@@ -1,5 +1,6 @@
 export default {
   common: {
+    usernameEmail: "用户邮箱",
     inputInvalid: "输入无效",
     deviceSelfcheck: "安装自检",
     instructionMsg1: "设备运行正常，已知悉结果",

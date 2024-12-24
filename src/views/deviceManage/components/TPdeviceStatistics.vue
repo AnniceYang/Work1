@@ -179,7 +179,7 @@
             :close-on-click-modal="false"
             @close="stopEnergyFlow"
             class="energy-flow-dialog"
-            width="600px"
+            width="700px"
           >
             <div class="energy-flow-container">
               <template v-if="loading">
@@ -1150,11 +1150,11 @@ export default {
 
       let flowValue;
       try {
-        if (data.flowOne) {
+        if (data.flowOne && this.isFlowValid(data.flowOne)) {
           // 优先处理 flowOne 数据
           flowValue = this.calculateFlow1Value(data.flowOne);
           this.currentGif = `/img/energyflowgif/detail_${flowValue}.gif`;
-        } else if (data.flowTwo) {
+        } else if (data.flowTwo && this.isFlowValid(data.flowTwo)) {
           // 如果没有 flowOne 数据，则处理 flowTwo 数据
           flowValue = this.calculateFlow2Value(data.flowTwo);
           this.currentGif = `/img/threePhaseEnergyflowgif/detail_${flowValue}.gif`;
@@ -1171,6 +1171,11 @@ export default {
         this.currentGif = null; // 处理错误路径
         this.loading = false;
       }
+    },
+
+    isFlowValid(flow) {
+      // 校验 flow 数据是否有效（长度足够且不全是 0）
+      return flow.length >= 16 && flow.some((bit) => bit !== 0);
     },
 
     calculateFlow1Value(flowOne) {
@@ -1582,8 +1587,8 @@ export default {
 }
 
 .energy-flow-img {
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   object-fit: contain; /* 确保图片完整显示 */
   position: absolute;
   z-index: 1;
@@ -1599,21 +1604,25 @@ export default {
 
 .flow-text {
   color: #555;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   margin-bottom: 4px;
+
+  line-height: 1.2;
 }
 
 .flow-value {
   color: #333;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
+
+  line-height: 1.2;
 }
 
 /* 上部文字和数值 */
 .top {
-  top: 21%;
+  top: 19%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1627,15 +1636,15 @@ export default {
 
 /* 左部文字和数值 */
 .left {
-  top: 57%;
-  left: 17%;
+  top: 55%;
+  left: 13%;
   transform: translateY(-50%);
 }
 
 /* 右部文字和数值 */
 .right {
-  top: 57%;
-  right: 16%;
+  top: 55%;
+  right: 13%;
   transform: translateY(-50%);
 }
 </style>

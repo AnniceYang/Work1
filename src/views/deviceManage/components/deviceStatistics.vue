@@ -261,7 +261,7 @@
             :close-on-click-modal="false"
             @close="stopEnergyFlow"
             class="energy-flow-dialog"
-            width="600px"
+            width="700px"
           >
             <div class="energy-flow-container">
               <template v-if="loading">
@@ -1632,7 +1632,6 @@ export default {
     line-height: 30px;
   }
 }
-
 .energy-flow-dialog {
   .el-dialog__body {
     display: flex;
@@ -1665,8 +1664,8 @@ export default {
 }
 
 .energy-flow-img {
-  width: 100%;
-  height: 100%;
+  width: 110%;
+  height: 110%;
   object-fit: contain; /* 确保图片完整显示 */
   position: absolute;
   z-index: 1;
@@ -1682,21 +1681,25 @@ export default {
 
 .flow-text {
   color: #555;
-  font-size: 16px;
+  font-size: 13px;
   font-weight: bold;
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2);
   margin-bottom: 4px;
+
+  line-height: 1.2;
 }
 
 .flow-value {
   color: #333;
-  font-size: 18px;
+  font-size: 12px;
   font-weight: bold;
+
+  line-height: 1.2;
 }
 
 /* 上部文字和数值 */
 .top {
-  top: 21%;
+  top: 19%;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -1710,15 +1713,15 @@ export default {
 
 /* 左部文字和数值 */
 .left {
-  top: 57%;
-  left: 17%;
+  top: 55%;
+  left: 13%;
   transform: translateY(-50%);
 }
 
 /* 右部文字和数值 */
 .right {
-  top: 57%;
-  right: 16%;
+  top: 55%;
+  right: 13%;
   transform: translateY(-50%);
 }
 </style>

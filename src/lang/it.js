@@ -1,5 +1,6 @@
 export default {
   common: {
+    usernameEmail: "Email dell'utente",
     inputInvalid: "Input non valido",
     deviceSelfcheck: "Controllo Installazione",
     instructionMsg1: "Dispositivo operativo. Preso atto.",
