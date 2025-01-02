@@ -263,12 +263,12 @@
         <el-descriptions-item :label="$t('versionManage.inverterMCU')">{{
           deviceInfo.versionMcu
         }}</el-descriptions-item>
-        <el-descriptions-item :label="$t('versionManage.bcu')">{{
+        <!-- <el-descriptions-item :label="$t('versionManage.bcu')">{{
           deviceInfo.versionBcu
         }}</el-descriptions-item>
         <el-descriptions-item :label="$t('versionManage.battery')">{{
           deviceInfo.versionBat
-        }}</el-descriptions-item>
+        }}</el-descriptions-item> -->
 
         <!-- <el-descriptions-item :label="$t('deviceManage.buyingElectricity')"
           >{{ deviceInfo.buyElectricity }}kWh</el-descriptions-item
@@ -1150,11 +1150,7 @@ export default {
 
       let flowValue;
       try {
-        if (data.flowOne && this.isFlowValid(data.flowOne)) {
-          // 优先处理 flowOne 数据
-          flowValue = this.calculateFlow1Value(data.flowOne);
-          this.currentGif = `/img/energyflowgif/detail_${flowValue}.gif`;
-        } else if (data.flowTwo && this.isFlowValid(data.flowTwo)) {
+        if (data.flowTwo && this.isFlowValid(data.flowTwo)) {
           // 如果没有 flowOne 数据，则处理 flowTwo 数据
           flowValue = this.calculateFlow2Value(data.flowTwo);
           this.currentGif = `/img/threePhaseEnergyflowgif/detail_${flowValue}.gif`;
@@ -1176,18 +1172,6 @@ export default {
     isFlowValid(flow) {
       // 校验 flow 数据是否有效（长度足够且不全是 0）
       return flow.length >= 16 && flow.some((bit) => bit !== 0);
-    },
-
-    calculateFlow1Value(flowOne) {
-      if (flowOne && flowOne.length >= 16) {
-        const pv = parseInt(`${flowOne[6]}${flowOne[7]}`, 2);
-        const battery = parseInt(`${flowOne[8]}${flowOne[9]}`, 2);
-        const grid = parseInt(`${flowOne[12]}${flowOne[13]}`, 2);
-        const load = parseInt(`${flowOne[14]}${flowOne[15]}`, 2);
-
-        return `${pv}${battery}${grid}${load}`;
-      }
-      return "0000"; // 默认值
     },
 
     calculateFlow2Value(flowTwo) {
