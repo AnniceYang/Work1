@@ -189,6 +189,7 @@ import {
   listGeneratorOutputMode,
   generatorSet,
   delGenerator,
+  qryDeviceBind,
 } from "@/api/device";
 
 export default {

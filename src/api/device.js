@@ -105,6 +105,15 @@ export function qryDeviceDetail(query) {
   });
 }
 
+// 设备信息绑定及详情查询
+export function qryDeviceBind(data) {
+  return request({
+    url: "/admin/lsydevice/detail",
+    method: "get",
+    params: data,
+  });
+}
+
 // 修改
 export function editDevice(data) {
   return request({

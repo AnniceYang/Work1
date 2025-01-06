@@ -691,6 +691,7 @@ import {
   unbindUser,
   qryDeviceDetail,
   getConfigData,
+  qryDeviceBind,
 } from "@/api/device";
 import ElectricityData from "./electricityData.vue";
 import IncomeData from "./incomeData.vue";
@@ -1047,13 +1048,19 @@ export default {
       })
         .then(() => {
           unbindFunction({ id }).then((response) => {
-            console.log(response);
             if (response) {
-              this.$message.success(this.$t("common.successfullyUnbind"));
+              qryDeviceBind({ id }).then((deviceInfoResponse) => {
+                if (deviceInfoResponse) {
+                  this.deviceInfo = deviceInfoResponse; // 更新设备信息
+                  this.$message.success(this.$t("common.successfullyUnbind"));
+                } else {
+                  this.$message.error(this.$t("common.failedUpdateDeviceInfo"));
+                }
+              });
             } else {
               this.$message.error(this.$t("common.failedUnbind"));
             }
-          }); //调用对应的解绑接口
+          });
         })
         .catch(() => {
           this.$message.error("An error occurred.");
