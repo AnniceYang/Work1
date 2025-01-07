@@ -150,6 +150,7 @@ export default {
     endTime: "Ora Fine",
     ratedPowerWarning: "Seleziona la potenza nominale",
     timeWarning: "L'ora di fine deve essere successiva a quella di inizio",
+    timeConflictWarning: "Conflitto intervallo orario.",
   },
 
   dataBoard: {

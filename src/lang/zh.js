@@ -149,6 +149,8 @@ export default {
     endTime: "截止时间",
     ratedPowerWarning: "请选择额定功率",
     timeWarning: "结束时间必须大于开始时间！",
+    timeConflictWarning: "时间段范围冲突",
+    fetchError: "获取发电机数据失败",
   },
 
   dataBoard: {

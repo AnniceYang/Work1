@@ -152,6 +152,8 @@ export default {
     endTime: "End Time",
     ratedPowerWarning: "Please select rated power",
     timeWarning: "End time must be later than start time",
+    timeConflictWarning: "Time slot range conflict.",
+    fetchError: "Impossibile recuperare dati del generatore",
   },
 
   dataBoard: {

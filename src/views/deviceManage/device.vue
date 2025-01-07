@@ -577,7 +577,10 @@
       <GridSet ref="gridSet" />
 
       <!-- 发电机设置 -->
-      <GeneratorSet ref="generatorSet" />
+      <GeneratorSet
+        :deviceId="selectedRow ? selectedRow.id : null"
+        ref="generatorSet"
+      />
 
       <!-- ota升级 -->
       <DeviceUpgrade ref="deviceUpgrade" />

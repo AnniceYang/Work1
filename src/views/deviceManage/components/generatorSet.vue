@@ -189,15 +189,21 @@ import {
   listGeneratorOutputMode,
   generatorSet,
   delGenerator,
-  qryDeviceBind,
 } from "@/api/device";
 
 export default {
+  props: {
+    deviceId: {
+      type: [String, Number],
+      required: true,
+    },
+  },
   data() {
     return {
       isVisible: false,
+
       form: {
-        deviceId: null,
+        deviceId: "",
         onOff: 0,
         ratedPower: null,
         availablePowerPercentage: null,
@@ -234,6 +240,7 @@ export default {
       },
     };
   },
+
   methods: {
     fetchDropdownOptions() {
       Promise.all([listGeneratorControlMode(), listGeneratorOutputMode()])
@@ -294,7 +301,43 @@ export default {
       this.form.controlModelDto.timeSlotDtoList.splice(index, 1);
     },
 
+    //校验时间段重合
+    validateTimeSlots() {
+      const timeSlotList = this.form.controlModelDto.timeSlotDtoList;
+      for (let i = 0; i < timeSlotList.length; i++) {
+        const timeSlot1 = timeSlotList[i];
+        if (timeSlot1.start === "00:00" && timeSlot1.end === "00:00") {
+          this.$message.error(this.$t("generator.timeConflictWarning"));
+          return false;
+        }
+        for (let j = i + 1; j < timeSlotList.length; j++) {
+          const timeSlot2 = timeSlotList[j];
+          if (
+            this.convertToMinutes(timeSlot1.start) <
+              this.convertToMinutes(timeSlot2.end) &&
+            this.convertToMinutes(timeSlot1.end) >
+              this.convertToMinutes(timeSlot2.start)
+          ) {
+            this.$message.error(this.$t("generator.timeConflictWarning"));
+            return false;
+          }
+        }
+      }
+      return true;
+    },
+
     saveSettings() {
+      console.log("Device ID:", this.form.deviceId);
+      if (!this.form.deviceId) {
+        this.$message.error("设备ID不能为空！");
+        return;
+      }
+
+      //先校验时间段
+      if (!this.validateTimeSlots()) {
+        return;
+      }
+
       const timeSlotList = this.form.controlModelDto.timeSlotDtoList.map(
         (timeSlot) => {
           if (
@@ -350,11 +393,15 @@ export default {
 
     handleClose() {
       this.isVisible = false;
+      this.resetForm();
     },
 
     // 初始化方法：加载发电机设置详情和下拉选项
     init(deviceId) {
+      console.log("设备id", deviceId);
       this.form.deviceId = deviceId;
+      console.log("初始化中的formID", this.form.deviceId);
+
       this.isVisible = true;
 
       if (!deviceId) {
@@ -362,10 +409,11 @@ export default {
         return;
       } else {
         // Otherwise, fetch the device details
-        qryGenerator({ deviceId })
+        qryGenerator({ deviceId: this.form.deviceId })
           .then((response) => {
-            if (response) {
+            if (response && response.deviceId === deviceId) {
               this.form = {
+                deviceId: this.form.deviceId,
                 ...this.form,
                 ...response,
                 controlModelDto: {
@@ -387,10 +435,13 @@ export default {
 
               this.updateControlModeName();
               this.updateOutputModeName();
+            } else {
+              this.resetForm(); // Reset if no matching data
             }
           })
           .catch((error) => {
             console.error("获取发电机详情失败：", error);
+            this.resetForm();
           });
       }
       this.fetchDropdownOptions(); // Always fetch dropdown options on init
@@ -398,7 +449,7 @@ export default {
 
     resetForm() {
       this.form = {
-        deviceId: null,
+        deviceId: this.form.deviceId,
         onOff: 0,
         ratedPower: null,
         availablePowerPercentage: null,
