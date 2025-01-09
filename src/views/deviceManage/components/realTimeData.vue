@@ -4137,6 +4137,211 @@
                 >
               </div>
             </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_437')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_437')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.HM_0X03_437Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option
+                    :label="$t('deviceManage.genControlMode0')"
+                    value="0"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.genControlMode1')"
+                    value="1"
+                  />
+                  <el-option
+                    :label="$t('deviceManage.genControlMode2')"
+                    value="2"
+                  />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_437')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_437',
+                      systemSet.alternatorSetObj.HM_0X03_437Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_438')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_438')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.HM_0X03_438Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_438')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_438',
+                      systemSet.alternatorSetObj.HM_0X03_438Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_480')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_480')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.alternatorSetObj.HM_0X03_480Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                  <el-option :label="$t('deviceManage.enable')" value="1" />
+                </el-select>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_480')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_480',
+                      systemSet.alternatorSetObj.HM_0X03_480Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_481')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_481')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.HM_0X03_481Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">h</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_481')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_481',
+                      systemSet.alternatorSetObj.HM_0X03_481Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_482')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_482')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.HM_0X03_482Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">min</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_482')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_482',
+                      systemSet.alternatorSetObj.HM_0X03_482Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_483')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_483')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.HM_0X03_483Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">h</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_483')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_483',
+                      systemSet.alternatorSetObj.HM_0X03_483Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_484')"
+              v-if="systemSetIsDisplay('alternatorSetObj', 'HM_0X03_484')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.alternatorSetObj.HM_0X03_484Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">min</template>
+                </el-input>
+                <el-button
+                  v-if="
+                    systemSetBtnIsDisplay('alternatorSetObj', 'HM_0X03_484')
+                  "
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_484',
+                      systemSet.alternatorSetObj.HM_0X03_484Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
           </el-descriptions>
         </el-card>
 
@@ -7955,6 +8160,319 @@
                     handleSave(
                       'HM_0X03_448',
                       systemSet.otherSetObj.HM_0X03_448Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+          </el-descriptions>
+        </el-card>
+
+        <el-card style="margin-top: 10px" v-if="systemSet.voltWatt">
+          <el-descriptions
+            :title="$t('deviceManage.voltWatt')"
+            :column="3"
+            border
+          >
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_661')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_661')"
+            >
+              <div style="display: flex">
+                <el-select
+                  v-model="systemSet.voltWattObj.HM_0X03_661Val"
+                  :placeholder="$t('common.selectPrompt')"
+                  style="width: 100%"
+                >
+                  <el-option :label="$t('deviceManage.voltType0')" value="0" />
+                  <el-option :label="$t('deviceManage.voltType1')" value="1" />
+                </el-select>
+
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_661')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_661',
+                      systemSet.voltWattObj.HM_0X03_661Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_662')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_662')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_662Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_662')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_662',
+                      systemSet.voltWattObj.HM_0X03_662Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_663')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_663')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_663Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_663')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_663',
+                      systemSet.voltWattObj.HM_0X03_663Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_664')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_664')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_664Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_664')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_664',
+                      systemSet.voltWattObj.HM_0X03_664Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_665')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_665')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_665Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_665')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_665',
+                      systemSet.voltWattObj.HM_0X03_665Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_666')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_666')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_666Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_666')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_666',
+                      systemSet.voltWattObj.HM_0X03_666Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_667')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_667')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_667Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_667')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_667',
+                      systemSet.voltWattObj.HM_0X03_667Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_668')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_668')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_668Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_668')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_668',
+                      systemSet.voltWattObj.HM_0X03_668Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_669')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_669')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_669Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_669')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_669',
+                      systemSet.voltWattObj.HM_0X03_669Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_670')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_670')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_670Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_670')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_670',
+                      systemSet.voltWattObj.HM_0X03_670Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_671')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_671')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_671Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">V</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_671')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_671',
+                      systemSet.voltWattObj.HM_0X03_671Val
+                    )
+                  "
+                  >{{ $t("common.save") }}</el-button
+                >
+              </div>
+            </el-descriptions-item>
+            <el-descriptions-item
+              :label="$t('deviceManage.HM_0X03_672')"
+              v-if="systemSetIsDisplay('voltWattObj', 'HM_0X03_672')"
+            >
+              <div style="display: flex">
+                <el-input
+                  v-model="systemSet.voltWattObj.HM_0X03_672Val"
+                  :placeholder="$t('common.inputPrompt')"
+                >
+                  <template slot="append">%Wmax/s</template>
+                </el-input>
+                <el-button
+                  v-if="systemSetBtnIsDisplay('voltWattObj', 'HM_0X03_672')"
+                  type="text"
+                  style="margin-left: 5px"
+                  @click="
+                    handleSave(
+                      'HM_0X03_672',
+                      systemSet.voltWattObj.HM_0X03_672Val
                     )
                   "
                   >{{ $t("common.save") }}</el-button
@@ -16890,6 +17408,8 @@ export default {
         gridOvervoltageSetObj: {},
         otherSet: false,
         otherSetObj: {},
+        voltWatt: false,
+        voltWattObj: {},
       },
       batteryParameter: {
         isShow: false,

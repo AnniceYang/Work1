@@ -552,9 +552,7 @@
             <div slot="header" class="card-header">
               <span>{{ $t("deviceManage.powerGenerationRevenue") }}</span>
               <span style="margin-left: 10px; font-weight: bold"
-                >({{ $t("deviceManage.totalRevenue") }}：￥{{
-                  money || 0
-                }})</span
+                >({{ $t("deviceManage.totalRevenue") }}：{{ money || 0 }})</span
               >
             </div>
             <div class="card-content">
