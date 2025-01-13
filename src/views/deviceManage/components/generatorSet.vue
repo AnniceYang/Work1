@@ -167,7 +167,7 @@
             :min="0"
             :placeholder="$t('common.inputPrompt')"
           />
-          <span class="percent-symbol">kW</span>
+          <span class="percent-symbol">W</span>
         </el-form-item>
       </div>
     </el-form>

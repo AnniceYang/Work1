@@ -5090,20 +5090,25 @@
                 v-if="CCIsDisplay('48', 'TP_0X03_1050')"
               >
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1050Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
+                  <el-tooltip content="Range: 180-650V" placement="top">
+                    <el-input
+                      v-model="settingList['TP_0X03_1050Val']"
+                      :placeholder="$t('common.inputPrompt')"
+                    >
+                      <template slot="append">V</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1050')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1050',
-                        settingList['TP_0X03_1050Val']
+                        settingList['TP_0X03_1050Val'],
+                        180,
+                        650,
+                        settingList['TP_0X03_1051Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -5115,20 +5120,25 @@
                 v-if="CCIsDisplay('48', 'TP_0X03_1051')"
               >
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1051Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
+                  <el-tooltip content="Range: 180-650V" placement="top">
+                    <el-input
+                      v-model="settingList['TP_0X03_1051Val']"
+                      :placeholder="$t('common.inputPrompt')"
+                    >
+                      <template slot="append">V</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1051')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1051',
-                        settingList['TP_0X03_1051Val']
+                        settingList['TP_0X03_1051Val'],
+                        180,
+                        650,
+                        settingList['TP_0X03_1050Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -5140,20 +5150,26 @@
                 v-if="CCIsDisplay('48', 'TP_0X03_1052')"
               >
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1052Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
+                  <el-tooltip content="Range: 150-600V" placement="top">
+                    <el-input
+                      v-model="settingList['TP_0X03_1052Val']"
+                      type="number"
+                      :placeholder="$t('common.inputPrompt')"
+                    >
+                      <template slot="append">V</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1052')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1052',
-                        settingList['TP_0X03_1052Val']
+                        settingList['TP_0X03_1052Val'],
+                        150,
+                        600,
+                        settingList['TP_0X03_1053Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -5165,20 +5181,26 @@
                 v-if="CCIsDisplay('48', 'TP_0X03_1053')"
               >
                 <div style="display: flex">
-                  <el-input
-                    v-model="settingList['TP_0X03_1053Val']"
-                    :placeholder="$t('common.inputPrompt')"
-                  >
-                    <template slot="append">V</template>
-                  </el-input>
+                  <el-tooltip content="Range: 150-600V" placement="top">
+                    <el-input
+                      v-model="settingList['TP_0X03_1053Val']"
+                      type="number"
+                      :placeholder="$t('common.inputPrompt')"
+                    >
+                      <template slot="append">V</template>
+                    </el-input>
+                  </el-tooltip>
                   <el-button
                     type="text"
                     style="margin-left: 5px"
                     v-if="CCIsSetting('48', 'TP_0X03_1053')"
                     @click="
-                      handleSave2(
+                      handleSaveWithValidation(
                         'TP_0X03_1053',
-                        settingList['TP_0X03_1053Val']
+                        settingList['TP_0X03_1053Val'],
+                        150,
+                        600,
+                        settingList['TP_0X03_1052Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -5208,7 +5230,8 @@
                         'TP_0X03_1054',
                         settingList['TP_0X03_1054Val'],
                         15,
-                        80
+                        80,
+                        settingList['TP_0X03_1055Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -5238,7 +5261,8 @@
                         'TP_0X03_1055',
                         settingList['TP_0X03_1055Val'],
                         1,
-                        15
+                        15,
+                        settingList['TP_0X03_1054Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -11785,15 +11809,76 @@ export default {
   },
   methods: {
     //三相并离网单独处理
-    handleSaveWithValidation(key, value, min, max) {
+    handleSaveWithValidation(key, value, min, max, comparisonValue = null) {
       value = parseFloat(value);
+      const epsilon = 0.00001; //small tolerance to handle floating-point precision
       console.log("Value entered:", value);
 
       //Validate range
       if (value < min || value > max) {
-        this.$message.error(`Please enter value between ${min}% and ${max}%.`);
+        this.$message.error(`Please enter value between ${min} and ${max}.`);
         return;
       }
+
+      // Check for additional comparison if `comparisonValue` is provided
+      if (comparisonValue !== null) {
+        comparisonValue = parseFloat(comparisonValue);
+
+        if (key === "TP_0X03_1054") {
+          if (value <= comparisonValue + 10 - epsilon) {
+            this.$message.error(
+              "Grid-connected SOC value must be at least 10% higher than off-grid SOC value."
+            );
+            return;
+          }
+        }
+
+        if (key === "TP_0X03_1055") {
+          if (value >= this.settingList["TP_0X03_1054Val"] - 10 + epsilon) {
+            this.$message.error(
+              "Off-grid SOC value must be at most 10% lower than grid-connected SOC value."
+            );
+            return;
+          }
+        }
+
+        if (key === "TP_0X03_1053") {
+          if (value < comparisonValue + 1 - epsilon) {
+            this.$message.error(
+              "The value of Battery DOD must be at least 1V higher than Battery EOD."
+            );
+            return;
+          }
+        }
+
+        if (key === "TP_0X03_1052") {
+          if (value > this.settingList["TP_0X03_1053Val"] - 1 + epsilon) {
+            this.$message.error(
+              "The value of Battery EOD must be at least 1V lower than Battery DOD."
+            );
+            return;
+          }
+        }
+
+        if (key === "TP_0X03_1050") {
+          if (value < comparisonValue + 1 - epsilon) {
+            this.$message.error(
+              "The value of Battery Bulk Charge Voltage must be at least 1V higher than Battery Float Charge Voltage."
+            );
+            return;
+          }
+        }
+
+        if (key === "TP_0X03_1051") {
+          if (value > this.settingList["TP_0X03_1050Val"] - 1 + epsilon) {
+            this.$message.error(
+              "The value of Battery Float Charge Voltage must be at least 1V lower than Battery Bulk Charge Voltage."
+            );
+            return;
+          }
+        }
+      }
+
       this.handleSave2(key, value);
     },
 

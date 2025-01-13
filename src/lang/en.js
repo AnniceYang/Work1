@@ -145,15 +145,15 @@ export default {
     lowerLimit: "Lower Limit",
     upperLimit: "Upper Limit",
     timeSlotDtoList: "Time Range Control",
-    outputModelDto: "Output Mode",
+    outputModelDto: "Operation Mode",
     batteryChargingPower: "Battery Charging Power",
     timeRange: "Time Range",
     startingTime: "Start Time",
     endTime: "End Time",
     ratedPowerWarning: "Please select rated power",
     timeWarning: "End time must be later than start time",
-    timeConflictWarning: "Time slot range conflict.",
-    fetchError: "Impossibile recuperare dati del generatore",
+    timeConflictWarning: "Time range conflict.",
+    fetchError: "Failed to fetch generator data",
   },
 
   dataBoard: {
