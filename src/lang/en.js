@@ -154,6 +154,10 @@ export default {
     timeWarning: "End time must be later than start time",
     timeConflictWarning: "Time range conflict.",
     fetchError: "Failed to fetch generator data",
+    startingTimeRequired: "Start time not set",
+    endTimeRequired: "End time not set",
+    timeRangeRequired: "Time range not set",
+    gridConnectedError: "电网连接正常，无法开启发电机",
   },
 
   dataBoard: {
@@ -1715,6 +1719,14 @@ export default {
       "Please enter the selling time period for charging up to SOC",
     validateData: "Please fill in the data completely",
     validateTimePeriod: "The time period range cannot overlap",
+
+    validateTimeEmpty:
+      "The time period cannot be empty. Please add at least one valid time period.",
+    timeEmptyError: "There are missing start or end times. Please check!",
+    timeStartEndError:
+      "The start time cannot be greater than or equal to the end time. Please check!！",
+    timeOverlapError: "There is an overlap in the time periods. Please check!",
+
     versionNumber: "Version number",
     updateTime: "Update time",
     upgradeStatus: "Upgrade status",
@@ -2879,6 +2891,10 @@ export default {
     batchImport: "Batch Import",
     batchImportSuccess: "Batch Import Succeed",
     batchImportFailed: "Batch Import Failed",
+    page7frequency: "Page7 Call Frequency",
+    page7endDay: "Days until cancellation after increase",
+    page7beginTime: "Page7 Start Time",
+    page7endTime: "Page7 End Time",
   },
   modelManage: {
     modeName: "Mode name",

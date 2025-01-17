@@ -85,6 +85,8 @@ export default {
       yDataBuyElec,
       yDataBatteryTotalSoc,
     } = {}) {
+      const sanitizeData = (data) => data.map((value) => Math.max(0, value)); // 过滤负值
+
       this.chart.setOption({
         grid: {
           top: 40,
@@ -134,7 +136,7 @@ export default {
         ],
         series: [
           {
-            data: yDataBattery,
+            data: sanitizeData(yDataBattery),
             type: "line",
             name: this.$t("deviceManage.battery"),
             color: "#50EE55",
@@ -142,7 +144,7 @@ export default {
             symbol: "roundRect",
           },
           {
-            data: yDataPvElec,
+            data: sanitizeData(yDataPvElec),
             type: "line",
             name: this.$t("deviceManage.photovoltaic"),
             color: "#FAC858",
@@ -150,7 +152,7 @@ export default {
             symbol: "roundRect",
           },
           {
-            data: yDataLoadElec,
+            data: sanitizeData(yDataLoadElec),
             type: "line",
             name: this.$t("deviceManage.load"),
             color: "#21BDE8",
@@ -158,7 +160,7 @@ export default {
             symbol: "roundRect",
           },
           {
-            data: yDataFeedNetwork,
+            data: sanitizeData(yDataFeedNetwork),
             type: "line",
             name: this.$t("deviceManage.sellingElectricity"),
             color: "#FF3D44",
@@ -166,7 +168,7 @@ export default {
             symbol: "roundRect",
           },
           {
-            data: yDataBuyElec,
+            data: sanitizeData(yDataBuyElec),
             type: "line",
             name: this.$t("deviceManage.buyingElectricity"),
             color: "#B65FF3",
@@ -174,7 +176,7 @@ export default {
             symbol: "roundRect",
           },
           {
-            data: yDataBatteryTotalSoc,
+            data: sanitizeData(yDataBatteryTotalSoc),
             type: "line",
             name: this.$t("deviceManage.batteryTotalSoc"),
             color: "#6B8E23",

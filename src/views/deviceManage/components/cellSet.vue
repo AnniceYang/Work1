@@ -287,7 +287,6 @@ export default {
       }
     },
   },
-
   methods: {
     init(info) {
       this.dataForm = {
@@ -376,8 +375,203 @@ export default {
         this.getInfo();
       });
     },
+
+    // 校验时间段逻辑
+    validateTimeSettings() {
+      const errors = [];
+
+      // 校验转换为分钟后的时间段
+      const convertToMinutes = (timeQuantum) => {
+        return timeQuantum.map((item) => ({
+          start: this.timeToMin(item.start),
+          end: this.timeToMin(item.end),
+        }));
+      };
+
+      // 检查是否填写了起始时间和截止时间
+      const validateEmptyStartEnd = (timeQuantum, label) => {
+        timeQuantum.forEach((item) => {
+          if (item.start === undefined || item.end === undefined) {
+            errors.push(this.$t("deviceManage.timeEmptyError", { label }));
+          }
+        });
+      };
+
+      // 验证单个功能内部的时间段
+      const validateOverlap = (timeQuantum, label) => {
+        // 检查每个时间段的起始时间是否大于或等于结束时间
+        timeQuantum.forEach((item) => {
+          if (item.start >= item.end) {
+            errors.push(this.$t("deviceManage.timeStartEndError"));
+          }
+        });
+
+        // 排序时间段后再进行重叠检测
+        const sorted = timeQuantum
+          .filter((item) => item.start && item.end)
+          .sort((a, b) => a.start - b.start); // 使用数字比较，确保按时间顺序排序
+        for (let i = 0; i < sorted.length - 1; i++) {
+          if (sorted[i].end > sorted[i + 1].start) {
+            errors.push(this.$t("deviceManage.timeOverlapError"));
+          }
+        }
+      };
+
+      // 验证功能间时间段是否重叠
+      const validateCrossFeatureOverlap = (time1, time2, label1, label2) => {
+        time1.forEach((t1) => {
+          time2.forEach((t2) => {
+            if (t1.end > t2.start && t1.start < t2.end) {
+              errors.push(this.$t("deviceManage.timeOverlapError"));
+            }
+          });
+        });
+      };
+
+      // 校验每个功能的时间段是否填写并转换为分钟
+      if (this.dataForm.chargeSwitch === 1) {
+        const chargeTimeQuantum = convertToMinutes(
+          this.dataForm.chargeTimeQuantum
+        );
+        validateEmptyStartEnd(
+          chargeTimeQuantum,
+          this.$t("deviceManage.timePeriodOfCharging")
+        );
+        validateOverlap(
+          chargeTimeQuantum,
+          this.$t("deviceManage.timePeriodOfCharging")
+        );
+      }
+      if (this.dataForm.dischargeSwitch === 1) {
+        const dischargeTimeQuantum = convertToMinutes(
+          this.dataForm.dischargeTimeQuantum
+        );
+        validateEmptyStartEnd(
+          dischargeTimeQuantum,
+          this.$t("deviceManage.timePeriodOfDischarging")
+        );
+        validateOverlap(
+          dischargeTimeQuantum,
+          this.$t("deviceManage.timePeriodOfDischarging")
+        );
+      }
+      if (this.dataForm.releaseSwitch === 1) {
+        const releaseTimeQuantum = convertToMinutes(
+          this.dataForm.releaseTimeQuantum
+        );
+        validateEmptyStartEnd(
+          releaseTimeQuantum,
+          this.$t("deviceManage.timePeriodOfElectricitySales")
+        );
+        validateOverlap(
+          releaseTimeQuantum,
+          this.$t("deviceManage.timePeriodOfElectricitySales")
+        );
+      }
+
+      // 功能之间时间段的交叉验证
+      if (
+        this.dataForm.chargeSwitch === 1 &&
+        this.dataForm.dischargeSwitch === 1
+      ) {
+        const chargeTimeQuantum = convertToMinutes(
+          this.dataForm.chargeTimeQuantum
+        );
+        const dischargeTimeQuantum = convertToMinutes(
+          this.dataForm.dischargeTimeQuantum
+        );
+        validateCrossFeatureOverlap(
+          chargeTimeQuantum,
+          dischargeTimeQuantum,
+          this.$t("deviceManage.timePeriodOfCharging"),
+          this.$t("deviceManage.timePeriodOfElectricitySales")
+        );
+      }
+      if (
+        this.dataForm.chargeSwitch === 1 &&
+        this.dataForm.releaseSwitch === 1
+      ) {
+        const chargeTimeQuantum = convertToMinutes(
+          this.dataForm.chargeTimeQuantum
+        );
+        const releaseTimeQuantum = convertToMinutes(
+          this.dataForm.releaseTimeQuantum
+        );
+        validateCrossFeatureOverlap(
+          chargeTimeQuantum,
+          releaseTimeQuantum,
+          this.$t("deviceManage.timePeriodOfCharging"),
+          this.$t("deviceManage.timePeriodOfDischarging")
+        );
+      }
+      if (
+        this.dataForm.dischargeSwitch === 1 &&
+        this.dataForm.releaseSwitch === 1
+      ) {
+        const dischargeTimeQuantum = convertToMinutes(
+          this.dataForm.dischargeTimeQuantum
+        );
+        const releaseTimeQuantum = convertToMinutes(
+          this.dataForm.releaseTimeQuantum
+        );
+        validateCrossFeatureOverlap(
+          dischargeTimeQuantum,
+          releaseTimeQuantum,
+          this.$t("deviceManage.timePeriodOfElectricitySales"),
+          this.$t("deviceManage.timePeriodOfDischarging")
+        );
+      }
+
+      return errors;
+    },
+
+    // 校验时间段重叠
+    checkTimeOverlap() {
+      const timePeriods = [
+        ...this.dataForm.chargeTimeQuantum.map((item) => ({
+          type: "charging",
+          start: this.timeToMin(item.start),
+          end: this.timeToMin(item.end),
+        })),
+        ...this.dataForm.dischargeTimeQuantum.map((item) => ({
+          type: "discharging",
+          start: this.timeToMin(item.start),
+          end: this.timeToMin(item.end),
+        })),
+        ...this.dataForm.releaseTimeQuantum.map((item) => ({
+          type: "selling",
+          start: this.timeToMin(item.start),
+          end: this.timeToMin(item.end),
+        })),
+      ];
+
+      for (let i = 0; i < timePeriods.length; i++) {
+        for (let j = i + 1; j < timePeriods.length; j++) {
+          if (
+            timePeriods[i].start < timePeriods[j].end &&
+            timePeriods[i].end > timePeriods[j].start
+          ) {
+            this.$message.error(this.$t("deviceManage.timeOverlapError"));
+            return false;
+          }
+        }
+      }
+      return true; // 没有重叠
+    },
+
     handleSubmit() {
       console.log("this.dataForm", this.dataForm);
+
+      const errors = this.validateTimeSettings();
+      if (errors.length > 0) {
+        this.$message.error(errors.join("\n"));
+        return;
+      }
+
+      if (!this.checkTimeOverlap()) {
+        return; // 如果校验失败，直接返回
+      }
+
       this.$refs.dataForm.validate((valid) => {
         if (valid) {
           this.loadingState = true;
@@ -462,18 +656,16 @@ export default {
         this.dataForm.chargeTimeQuantum[
           this.dataForm.chargeTimeQuantum.length - 1
         ];
-      if (this.verifyData(lastData, "chargeTime")) {
-        const sort = lastData.sort + 1;
-        let startTime = "";
-        if (lastData.end) {
-          startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
-        }
-        this.dataForm.chargeTimeQuantum.push({
-          start: startTime,
-          end: "",
-          sort: sort,
-        });
+      const sort = lastData ? lastData.sort + 1 : 1;
+      let startTime = "";
+      if (lastData && lastData.end) {
+        startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
       }
+      this.dataForm.chargeTimeQuantum.push({
+        start: startTime,
+        end: "",
+        sort: sort,
+      });
     },
     delChargeTime(index) {
       this.dataForm.chargeTimeQuantum.splice(index, 1);
@@ -483,18 +675,16 @@ export default {
         this.dataForm.dischargeTimeQuantum[
           this.dataForm.dischargeTimeQuantum.length - 1
         ];
-      if (this.verifyData(lastData, "dischargeTime")) {
-        const sort = lastData.sort + 1;
-        let startTime = "";
-        if (lastData.end) {
-          startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
-        }
-        this.dataForm.dischargeTimeQuantum.push({
-          start: startTime,
-          end: "",
-          sort: sort,
-        });
+      const sort = lastData ? lastData.sort + 1 : 1;
+      let startTime = "";
+      if (lastData && lastData.end) {
+        startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
       }
+      this.dataForm.dischargeTimeQuantum.push({
+        start: startTime,
+        end: "",
+        sort: sort,
+      });
     },
     delDischargeTime(index) {
       this.dataForm.dischargeTimeQuantum.splice(index, 1);
@@ -504,18 +694,16 @@ export default {
         this.dataForm.releaseTimeQuantum[
           this.dataForm.releaseTimeQuantum.length - 1
         ];
-      if (this.verifyData(lastData, "releaseTime")) {
-        const sort = lastData.sort + 1;
-        let startTime = "";
-        if (lastData.end) {
-          startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
-        }
-        this.dataForm.releaseTimeQuantum.push({
-          start: startTime,
-          end: "",
-          sort: sort,
-        });
+      const sort = lastData ? lastData.sort + 1 : 1;
+      let startTime = "";
+      if (lastData && lastData.end) {
+        startTime = this.minToTime(this.timeToMin(lastData.end) + 1);
       }
+      this.dataForm.releaseTimeQuantum.push({
+        start: startTime,
+        end: "",
+        sort: sort,
+      });
     },
     delReleaseTime(index) {
       this.dataForm.releaseTimeQuantum.splice(index, 1);

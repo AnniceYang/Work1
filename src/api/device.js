@@ -123,6 +123,15 @@ export function editDevice(data) {
   });
 }
 
+// 设备-编辑-回显信息
+export function editFeedback(data) {
+  return request({
+    url: "/admin/lsydevice/editFeedback",
+    method: "get",
+    params: data,
+  });
+}
+
 // 新增
 export function addDevice(data) {
   return request({

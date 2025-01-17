@@ -151,6 +151,10 @@ export default {
     timeWarning: "结束时间必须大于开始时间！",
     timeConflictWarning: "时间段范围冲突",
     fetchError: "获取发电机数据失败",
+    startingTimeRequired: "未设置起始时间",
+    endTimeRequired: "未设置结束时间",
+    timeRangeRequired: "未设置时间范围",
+    gridConnectedError: "电网连接正常，无法开启发电机",
   },
 
   dataBoard: {
@@ -1728,6 +1732,12 @@ export default {
     validateDischarge: "请输入卖电时间段充电截至SOC",
     validateData: "请将数据填写完整",
     validateTimePeriod: "时间段范围不能重合",
+
+    validateTimeEmpty: "时间段不能为空，请添加至少一个有效时间段。",
+    timeEmptyError: "存在未填写起始时间或截止时间，请检查！",
+    timeStartEndError: "存在起始时间大于或等于结束时间，请检查！",
+    timeOverlapError: "存在时间段重叠，请检查！",
+
     versionNumber: "版本号",
     updateTime: "更新时间",
     upgradeStatus: "升级状态",
@@ -2813,6 +2823,10 @@ export default {
     batchImport: "批量导入",
     batchImportSuccess: "批量导入成功",
     batchImportFailed: "批量导入失败",
+    page7frequency: "Page7调用频率",
+    page7endDay: "Page7调用提高N天后取消",
+    page7beginTime: "Page7调用开始时间",
+    page7endTime: "Page7调用结束时间",
   },
   modelManage: {
     modeName: "模式名称",

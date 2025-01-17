@@ -1,6 +1,6 @@
 <template>
   <el-dialog
-    :title="$t('common.edit')"
+    :title="isEditMode ? $t('common.edit') : $t('common.add')"
     :close-on-click-modal="false"
     :visible.sync="visible"
     :destroy-on-close="true"
@@ -168,6 +168,57 @@
           />
         </el-select>
       </el-form-item>
+
+      <!-- page7调用频率 -->
+      <el-form-item
+        v-if="isEditMode && !isRoleExcluded && dataForm.tpType === 1"
+        :label="$t('deviceManage.page7frequency')"
+        prop="page7frequency"
+      >
+        <el-select
+          v-model="dataForm.page7frequency"
+          :placeholder="$t('common.selectPrompt')"
+          style="width: 100%"
+        >
+          <el-option :label="$t('deviceManage.none')" :value="0" />
+          <el-option v-for="i in 30" :key="i" :label="`${i}s`" :value="i" />
+        </el-select>
+      </el-form-item>
+      <!-- 恢复采样时间 -->
+      <el-form-item
+        v-if="isEditMode && !isRoleExcluded && dataForm.tpType === 1"
+        :label="$t('deviceManage.page7endDay')"
+        prop="page7endDay"
+      >
+        <el-select
+          v-model="dataForm.page7endDay"
+          :placeholder="$t('common.selectPrompt')"
+          style="width: 100%"
+        >
+          <el-option
+            v-for="i in 30"
+            :key="i"
+            :label="`${i} ${$t('deviceManage.day')}`"
+            :value="i"
+          />
+        </el-select>
+      </el-form-item>
+
+      <!-- 显示起始时间和结束时间 -->
+      <el-form-item
+        v-if="isEditMode && !isRoleExcluded && shouldShowTimeFields"
+        :label="$t('deviceManage.page7beginTime')"
+        prop="page7beginTime"
+      >
+        {{ formattedBeginTime }}
+      </el-form-item>
+      <el-form-item
+        v-if="isEditMode && !isRoleExcluded && shouldShowTimeFields"
+        :label="$t('deviceManage.page7endTime')"
+        prop="page7endTime"
+      >
+        {{ formattedEndTime }}
+      </el-form-item>
     </el-form>
 
     <span slot="footer" class="dialog-footer">
@@ -193,15 +244,22 @@
 </template>
 
 <script>
-import { addDevice, editDevice, importExcel } from "@/api/device";
+import { addDevice, editDevice, importExcel, editFeedback } from "@/api/device";
 import { qryModel } from "@/api/model";
 import { qryDeviceType } from "@/api/deviceType";
 export default {
+  props: {
+    isEditMode: Boolean,
+    isRoleExcluded: Boolean,
+    dataForm: Object,
+  },
   data() {
     return {
       visible: false,
       loadingState: false,
       dataForm: {},
+      isEditMode: false,
+
       dataRule: {
         sn: [
           {
@@ -227,23 +285,75 @@ export default {
           { required: true, message: "", trigger: "blur" },
         ],
         timeZone: [{ required: true, message: "", trigger: "blur" }],
+        page7frequency: [
+          {
+            required: () =>
+              this.isEditMode &&
+              !this.isRoleExcluded &&
+              this.dataForm.tpType === 1,
+            message: "",
+            trigger: "blur",
+          },
+        ],
+        page7endDay: [
+          {
+            required: () =>
+              this.isEditMode &&
+              !this.isRoleExcluded &&
+              this.dataForm.tpType === 1,
+            message: "",
+            trigger: "blur",
+          },
+        ],
       },
       modelList: [],
       typeList: [],
     };
   },
-  created() {
-    // qryModel({ status: 0, size: 100 }).then(res => {
-    //   this.modelList = res.records
-    // })
-    // qryDeviceType({ size: 9999 }).then(res => {
-    //   this.typeList = res.records
-    // })
+  computed: {
+    isRoleExcluded() {
+      return this.$store.state.user.roles.includes("3");
+    },
+
+    shouldShowTimeFields() {
+      return (
+        this.dataForm.tpType === 1 &&
+        this.dataForm.page7beginTime &&
+        this.dataForm.page7endTime &&
+        this.dataForm.page7beginTime !== "0" &&
+        this.dataForm.page7endTime !== "0"
+      );
+    },
+    formattedBeginTime() {
+      return this.formatTimestamp(this.dataForm.page7beginTime);
+    },
+    formattedEndTime() {
+      return this.formatTimestamp(this.dataForm.page7endTime);
+    },
   },
+
   methods: {
-    init(ilk, info) {
+    // 查询设备回显信息
+    fetchDeviceFeedback(info) {
+      const query = { id: info.id };
+      editFeedback(query)
+        .then((res) => {
+          console.log("--------返回的编辑响应", res);
+          const data = res;
+
+          this.dataForm = { ...this.dataForm, ...data };
+          this.visible = true;
+        })
+        .catch((error) => {
+          console.error("获取设备回显信息失败:", error);
+        });
+    },
+
+    init(ilk, info, isEditMode = false) {
+      this.isEditMode = isEditMode;
       this.dataForm = {
         ilk: ilk,
+        id: null,
         name: null,
         timeZone: null,
         sn: null,
@@ -252,7 +362,15 @@ export default {
         tpType: 1,
         energyFlowSwitch: 1,
         batteryConditionSwitch: 1,
+        page7frequency: 0,
+        page7endDay: 1,
+        page7beginTime: null,
+        page7endTime: null,
       };
+      if (this.isEditMode) {
+        this.fetchDeviceFeedback(info);
+      }
+
       if (info) {
         for (const key in this.dataForm) {
           this.dataForm[key] = info[key];
@@ -283,33 +401,58 @@ export default {
           this.$message.error(this.$t("deviceManage.batchImportFailed"));
         });
     },
+    formatTimestamp(timestamp) {
+      if (!timestamp) return "--"; // 如果没有传入时间戳，返回默认值 "--"
+
+      const timestampInMilliseconds = Number(timestamp) * 1000; // 转换时间戳为毫秒
+
+      // 检查时间戳是否有效
+      if (isNaN(timestampInMilliseconds) || timestampInMilliseconds < 0) {
+        return "--"; // 如果是无效的时间戳，返回默认值 "--"
+      }
+
+      const date = new Date(timestampInMilliseconds); // 创建日期对象
+
+      // 检查日期对象是否有效
+      if (isNaN(date.getTime())) {
+        return "--"; // 如果无法解析日期，返回默认值 "--"
+      }
+
+      // 提取时间并格式化
+      const year = String(date.getFullYear()).slice(-2); // 取年份的后两位
+      const month = String(date.getMonth() + 1).padStart(2, "0"); // 月份是0索引，需要加1并填充
+      const day = String(date.getDate()).padStart(2, "0"); // 添加单日数字前的零
+      const hour = String(date.getHours()).padStart(2, "0"); // 添加小时前的零
+      const minute = String(date.getMinutes()).padStart(2, "0"); // 添加分钟前的零
+      const second = String(date.getSeconds()).padStart(2, "0"); // 添加秒数前的零
+
+      return `${year}-${month}-${day} ${hour}:${minute}:${second}`; // 格式化返回
+    },
 
     handleSubmit() {
       this.$refs.dataForm.validate((valid) => {
-        if (valid) {
-          this.loadingState = true;
-          if (this.dataForm.id) {
-            editDevice(this.dataForm)
-              .then((res) => {
-                this.$message.success(this.$t("common.successfulModification"));
-                this.visible = false;
-                this.$emit("back");
-              })
-              .finally(() => {
-                this.loadingState = false;
-              });
-          } else {
-            addDevice(this.dataForm)
-              .then((res) => {
-                this.$message.success(this.$t("common.addedSuccessfully"));
-                this.visible = false;
-                this.$emit("back");
-              })
-              .finally(() => {
-                this.loadingState = false;
-              });
-          }
-        }
+        if (!valid) return; // 如果验证失败，直接返回
+        this.loadingState = true; // 启用加载状态
+        const payload = { ...this.dataForm };
+        const apiCall = payload.id ? editDevice : addDevice;
+        const successMessage = payload.id
+          ? this.$t("common.successfulModification")
+          : this.$t("common.addedSuccessfully");
+
+        apiCall(payload)
+          .then(() => {
+            this.$message.success(successMessage); // 显示成功消息
+
+            this.visible = false; // 关闭窗口
+            this.$emit("refreshData"); // 通知父组件
+          })
+          .catch((error) => {
+            console.error("提交失败：", error);
+            this.$message.error(error.message || this.$t("common.savefailed")); // 显示错误提示
+          })
+          .finally(() => {
+            this.loadingState = false; // 重置加载状态
+          });
       });
     },
   },
@@ -317,11 +460,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn {
+.dialog-footer {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* 按钮右对齐 */
+  gap: 10px; /* 按钮之间的间距 */
+  padding: 10px 20px; /* 增加内边距 */
 }
 .import-btn {
-  margin-right: 10px;
+  margin-right: 20px;
 }
 </style>

@@ -499,7 +499,7 @@
                 >
                 <el-button
                   type="text"
-                  @click="handleForm(scope.row)"
+                  @click="handleForm1(scope.row)"
                   v-if="permissions.admin_lsydevice_edit"
                   >{{ $t("common.edit") }}</el-button
                 >
@@ -1021,7 +1021,17 @@ export default {
     // 新增
     handleForm(info) {
       this.$nextTick(() => {
+        this.dataForm = {};
         this.$refs.deviceForm.init(this.listQuery.ilk, info);
+        this.visible = true;
+      });
+    },
+
+    //编辑
+    handleForm1(info) {
+      this.$nextTick(() => {
+        this.$refs.deviceForm.init(this.listQuery.ilk, info, true);
+        this.visible = true;
       });
     },
     // 删除

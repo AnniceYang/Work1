@@ -152,6 +152,9 @@ export default {
     timeWarning: "L'ora di fine deve essere successiva a quella di inizio",
     timeConflictWarning: "Conflitto intervallo orario",
     fetchError: "Errore nel recupero dati generatore",
+    startingTimeRequired: "Inizio non impostato",
+    endTimeRequired: "Fine non impostato",
+    timeRangeRequired: "Intervallo non impostato",
   },
 
   dataBoard: {
@@ -1711,6 +1714,14 @@ export default {
     validateDischarge: "Inserisci SOC di fine vendita per il periodo di carica",
     validateData: "Si prega di compilare tutti i dati",
     validateTimePeriod: "Il periodo non può sovrapporsi",
+
+    validateTimeEmpty:
+      "Il periodo di tempo non può essere vuoto. Aggiungi almeno un periodo valido.",
+    timeEmptyError: "Mancano l'orario di inizio o fine. Controlla!",
+    timeStartEndError:
+      "L'orario di inizio non può essere maggiore o uguale all'orario di fine. Controlla!",
+    timeOverlapError: "I periodi di tempo si sovrappongono. Controlla!",
+
     versionNumber: "Numero versione",
     updateTime: "Ora aggiornamento",
     upgradeStatus: "Stato aggiornamento",
@@ -2874,6 +2885,10 @@ export default {
     batchImport: "Importazione Batch",
     batchImportSuccess: "Importazione batch riuscita",
     batchImportFailed: "Importazione batch non riuscita",
+    page7frequency: "Page7 Frequenza Chiamate",
+    page7endDay: "Giorni fino alla cancellazione dopo l'aumento",
+    page7beginTime: "Page7 Orario Inizio",
+    page7endTime: "Page7 Orario Fine",
   },
   modelManage: {
     modeName: "Nome modalità",

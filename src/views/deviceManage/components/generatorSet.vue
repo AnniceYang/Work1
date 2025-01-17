@@ -11,6 +11,7 @@
       :rules="rules"
       ref="generatorForm"
       label-width="160px"
+      :disabled="isSwitchLoading"
     >
       <!-- Generator Enable Switch -->
       <el-form-item :label="$t('generator.onOff')" prop="onOff">
@@ -20,6 +21,7 @@
           :inactive-value="0"
           :active-text="$t('generator.on')"
           :inactive-text="$t('generator.off')"
+          @change="handleSwitchChange"
         />
       </el-form-item>
 
@@ -29,6 +31,7 @@
           v-model="form.ratedPower"
           :placeholder="$t('common.selectPrompt')"
           clearable
+          :disabled="form.onOff === 0"
         >
           <el-option
             v-for="power in dieselPowerOptions"
@@ -51,6 +54,7 @@
             :max="100"
             :step="1"
             :placeholder="$t('generator.availablePowerPercentage')"
+            :disabled="form.onOff === 0"
           />
           <span class="percent-symbol">%</span>
         </div>
@@ -66,6 +70,7 @@
           :placeholder="$t('common.selectPrompt')"
           clearable
           @change="updateControlModeName"
+          :disabled="form.onOff === 0"
         >
           <el-option
             v-for="mode in controlModeOptions"
@@ -84,12 +89,14 @@
               v-model="form.controlModelDto.socLowerLimit"
               :placeholder="$t('generator.lowerLimit')"
               class="soc-input"
+              :disabled="form.onOff === 0"
             />
             <span class="soc-divider">-</span>
             <el-input
               v-model="form.controlModelDto.socUpperLimit"
               :placeholder="$t('generator.upperLimit')"
               class="soc-input"
+              :disabled="form.onOff === 0"
             />
           </div>
         </el-form-item>
@@ -109,6 +116,7 @@
               class="time-input"
               format="HH:mm"
               value-format="HH:mm"
+              :disabled="form.onOff === 0"
             />
             <span class="time-divider">-</span>
             <el-time-picker
@@ -117,6 +125,7 @@
               class="time-input"
               format="HH:mm"
               value-format="HH:mm"
+              :disabled="form.onOff === 0"
             />
 
             <el-button
@@ -125,12 +134,14 @@
               type="danger"
               icon="el-icon-delete"
               class="remove-btn"
+              :disabled="form.onOff === 0"
             ></el-button>
             <el-button
               v-if="form.controlModelDto.timeSlotDtoList.length === index + 1"
               @click="addTimeSlot"
               type="primary"
               icon="el-icon-plus"
+              :disabled="form.onOff === 0"
             ></el-button>
           </div>
         </el-form-item>
@@ -143,6 +154,7 @@
           :placeholder="$t('common.selectPrompt')"
           clearable
           @change="updateOutputModeName"
+          :disabled="form.onOff === 0"
         >
           <el-option
             v-for="output in outputModeOptions"
@@ -166,13 +178,14 @@
             v-model="form.batteryChargingPower"
             :min="0"
             :placeholder="$t('common.inputPrompt')"
+            :disabled="form.onOff === 0"
           />
           <span class="percent-symbol">W</span>
         </el-form-item>
       </div>
     </el-form>
 
-    <div slot="footer" class="dialog-footer">
+    <div slot="footer" class="dialog-footer" :disabled="form.gridStatus === 0">
       <el-button @click="deleteGenerator">{{ $t("common.delete") }}</el-button>
       <el-button @click="handleClose">{{ $t("common.cancel") }}</el-button>
       <el-button type="primary" @click="saveSettings">{{
@@ -201,12 +214,14 @@ export default {
   data() {
     return {
       isVisible: false,
+      isSwitchLoading: false, // 是否正在检查状态
 
       form: {
         deviceId: "",
         onOff: 0,
         ratedPower: null,
         availablePowerPercentage: null,
+        gridStatus: 0,
         controlModelDto: {
           controlModeId: null,
           controlModeName: null,
@@ -242,6 +257,30 @@ export default {
   },
 
   methods: {
+    //发电机仅离网可开启
+    handleSwitchChange() {
+      const previousState = this.form.onOff; // 保存当前状态
+      if (this.form.onOff === 1) {
+        // 从关闭变为打开
+        this.isSwitchLoading = true;
+        qryGenerator({ deviceId: this.deviceId })
+          .then((response) => {
+            this.form.gridStatus = response.gridStatus;
+            if (this.form.gridStatus === 0) {
+              this.$message.error(this.$t("generator.gridConnectedError"));
+              this.form.onOff = 0; // 重置为关闭
+            }
+          })
+          .catch((error) => {
+            console.error("Failed to fetch grid status:", error);
+            this.form.onOff = previousState; // 恢复之前状态
+          })
+          .finally(() => {
+            this.isSwitchLoading = false;
+          });
+      }
+    },
+
     fetchDropdownOptions() {
       Promise.all([listGeneratorControlMode(), listGeneratorOutputMode()])
         .then(([controlModes, outputModes]) => {
@@ -304,40 +343,75 @@ export default {
     //校验时间段重合
     validateTimeSlots() {
       const timeSlotList = this.form.controlModelDto.timeSlotDtoList;
+
+      if (!timeSlotList.length) {
+        this.$message.error(this.$t("generator.timeRangeRequired")); // 未设置时间范围
+        return false;
+      }
+
       for (let i = 0; i < timeSlotList.length; i++) {
-        const timeSlot1 = timeSlotList[i];
-        if (timeSlot1.start === "00:00" && timeSlot1.end === "00:00") {
-          this.$message.error(this.$t("generator.timeConflictWarning"));
+        const slot = timeSlotList[i];
+
+        // 检查是否设置起始时间
+        if (!slot.start) {
+          this.$message.error(this.$t("generator.startingTimeRequired"));
           return false;
         }
+
+        // 检查是否设置结束时间
+        if (!slot.end) {
+          this.$message.error(this.$t("generator.endTimeRequired"));
+          return false;
+        }
+
+        const start1 = this.convertToMinutes(timeSlotList[i].start);
+        const end1 = this.convertToMinutes(timeSlotList[i].end);
+
+        if (start1 >= end1) {
+          return {
+            valid: false,
+            message: this.$t("generator.timeWarning"), // 时间范围无效提示
+          };
+        }
+
         for (let j = i + 1; j < timeSlotList.length; j++) {
-          const timeSlot2 = timeSlotList[j];
+          const start2 = this.convertToMinutes(timeSlotList[j].start);
+          const end2 = this.convertToMinutes(timeSlotList[j].end);
+
+          // 检测重叠情况
           if (
-            this.convertToMinutes(timeSlot1.start) <
-              this.convertToMinutes(timeSlot2.end) &&
-            this.convertToMinutes(timeSlot1.end) >
-              this.convertToMinutes(timeSlot2.start)
+            (start1 < end2 && end1 > start2) || // Slot1 和 Slot2 重叠
+            (start2 < end1 && end2 > start1) ||
+            (start1 === start2 && end1 === end2) // Slot2 和 Slot1 重叠
           ) {
-            this.$message.error(this.$t("generator.timeConflictWarning"));
-            return false;
+            return {
+              valid: false,
+              message: this.$t("generator.timeConflictWarning"), // 时间段冲突提示
+            };
           }
         }
       }
-      return true;
+
+      return { valid: true }; // 校验通过
     },
 
     saveSettings() {
       console.log("Device ID:", this.form.deviceId);
+
+      // 校验设备ID
       if (!this.form.deviceId) {
         this.$message.error("设备ID不能为空！");
         return;
       }
 
-      //先校验时间段
-      if (!this.validateTimeSlots()) {
-        return;
+      // 校验时间段
+      const validation = this.validateTimeSlots();
+      if (!validation.valid) {
+        this.$message.error(validation.message); // 显示错误提示
+        return; // 阻止保存
       }
 
+      // 转换时间并校验时间范围
       const timeSlotList = this.form.controlModelDto.timeSlotDtoList.map(
         (timeSlot) => {
           if (
@@ -362,6 +436,7 @@ export default {
         },
       };
 
+      // 提交保存
       generatorSet(data)
         .then(() => {
           this.$message.success(this.$t("common.savesuccessfully"));

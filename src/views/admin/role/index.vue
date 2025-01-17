@@ -14,11 +14,11 @@
             prop="roleCode"
             :label="$t('roleManage.roleIdentification')"
           />
-          <el-table-column
+          <!-- <el-table-column
             align="center"
             prop="roleDesc"
             :label="$t('roleManage.roleDescription')"
-          />
+          /> -->
           <el-table-column :label="$t('common.operate')" align="center">
             <template slot-scope="scope">
               <el-button type="text" @click="handlePermission(scope.row)">{{

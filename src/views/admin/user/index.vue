@@ -73,7 +73,7 @@
           >
             <template slot-scope="scope">
               <div v-if="scope.row.username !== 'admin'">
-                <el-button
+                <!-- <el-button
                   type="text"
                   v-if="permissions.sys_user_lock"
                   @click="handleNormal(scope.row.userId)"
@@ -82,7 +82,7 @@
                       ? $t("common.disable")
                       : $t("common.restore")
                   }}</el-button
-                >
+                > -->
                 <el-button
                   type="text"
                   v-if="permissions.sys_user_edit"
