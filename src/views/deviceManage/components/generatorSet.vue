@@ -11,7 +11,6 @@
       :rules="rules"
       ref="generatorForm"
       label-width="160px"
-      :disabled="isSwitchLoading"
     >
       <!-- Generator Enable Switch -->
       <el-form-item :label="$t('generator.onOff')" prop="onOff">
@@ -21,7 +20,7 @@
           :inactive-value="0"
           :active-text="$t('generator.on')"
           :inactive-text="$t('generator.off')"
-          @change="handleSwitchChange"
+          @change="handleOnOffChange"
         />
       </el-form-item>
 
@@ -185,7 +184,7 @@
       </div>
     </el-form>
 
-    <div slot="footer" class="dialog-footer" :disabled="form.gridStatus === 0">
+    <div slot="footer" class="dialog-footer">
       <el-button @click="deleteGenerator">{{ $t("common.delete") }}</el-button>
       <el-button @click="handleClose">{{ $t("common.cancel") }}</el-button>
       <el-button type="primary" @click="saveSettings">{{
@@ -214,14 +213,12 @@ export default {
   data() {
     return {
       isVisible: false,
-      isSwitchLoading: false, // 是否正在检查状态
 
       form: {
         deviceId: "",
         onOff: 0,
         ratedPower: null,
         availablePowerPercentage: null,
-        gridStatus: 0,
         controlModelDto: {
           controlModeId: null,
           controlModeName: null,
@@ -240,6 +237,7 @@ export default {
           outputModeName: null,
         },
         batteryChargingPower: null,
+        gridStatus: null,
       },
       dieselPowerOptions: [10, 20, 30, 40, 50],
       controlModeOptions: [],
@@ -257,27 +255,10 @@ export default {
   },
 
   methods: {
-    //发电机仅离网可开启
-    handleSwitchChange() {
-      const previousState = this.form.onOff; // 保存当前状态
-      if (this.form.onOff === 1) {
-        // 从关闭变为打开
-        this.isSwitchLoading = true;
-        qryGenerator({ deviceId: this.deviceId })
-          .then((response) => {
-            this.form.gridStatus = response.gridStatus;
-            if (this.form.gridStatus === 0) {
-              this.$message.error(this.$t("generator.gridConnectedError"));
-              this.form.onOff = 0; // 重置为关闭
-            }
-          })
-          .catch((error) => {
-            console.error("Failed to fetch grid status:", error);
-            this.form.onOff = previousState; // 恢复之前状态
-          })
-          .finally(() => {
-            this.isSwitchLoading = false;
-          });
+    handleOnOffChange(value) {
+      if (value === 1 && this.form.gridStatus === 0) {
+        this.form.onOff = 0;
+        this.$message.error(this.$t("generator.gridConnectedError"));
       }
     },
 
@@ -343,100 +324,128 @@ export default {
     //校验时间段重合
     validateTimeSlots() {
       const timeSlotList = this.form.controlModelDto.timeSlotDtoList;
-
-      if (!timeSlotList.length) {
-        this.$message.error(this.$t("generator.timeRangeRequired")); // 未设置时间范围
-        return false;
-      }
-
       for (let i = 0; i < timeSlotList.length; i++) {
-        const slot = timeSlotList[i];
-
-        // 检查是否设置起始时间
-        if (!slot.start) {
-          this.$message.error(this.$t("generator.startingTimeRequired"));
-          return false;
-        }
-
-        // 检查是否设置结束时间
-        if (!slot.end) {
-          this.$message.error(this.$t("generator.endTimeRequired"));
-          return false;
-        }
-
-        const start1 = this.convertToMinutes(timeSlotList[i].start);
-        const end1 = this.convertToMinutes(timeSlotList[i].end);
-
-        if (start1 >= end1) {
-          return {
-            valid: false,
-            message: this.$t("generator.timeWarning"), // 时间范围无效提示
-          };
-        }
+        const timeSlot1 = timeSlotList[i];
 
         for (let j = i + 1; j < timeSlotList.length; j++) {
-          const start2 = this.convertToMinutes(timeSlotList[j].start);
-          const end2 = this.convertToMinutes(timeSlotList[j].end);
-
-          // 检测重叠情况
+          const timeSlot2 = timeSlotList[j];
           if (
-            (start1 < end2 && end1 > start2) || // Slot1 和 Slot2 重叠
-            (start2 < end1 && end2 > start1) ||
-            (start1 === start2 && end1 === end2) // Slot2 和 Slot1 重叠
+            this.convertToMinutes(timeSlot1.start) <
+              this.convertToMinutes(timeSlot2.end) &&
+            this.convertToMinutes(timeSlot1.end) >
+              this.convertToMinutes(timeSlot2.start)
           ) {
-            return {
-              valid: false,
-              message: this.$t("generator.timeConflictWarning"), // 时间段冲突提示
-            };
+            this.$message.error(this.$t("generator.timeConflictWarning"));
+            return false;
           }
         }
       }
-
-      return { valid: true }; // 校验通过
+      return true;
     },
 
+    // 保存设置
     saveSettings() {
-      console.log("Device ID:", this.form.deviceId);
-
-      // 校验设备ID
-      if (!this.form.deviceId) {
-        this.$message.error("设备ID不能为空！");
+      if (this.form.onOff === 0) {
+        // 发电机关闭，直接保存
+        this.submitForm();
         return;
       }
 
-      // 校验时间段
-      const validation = this.validateTimeSlots();
-      if (!validation.valid) {
-        this.$message.error(validation.message); // 显示错误提示
-        return; // 阻止保存
+      // 必填项校验
+      if (!this.form.deviceId) {
+        this.$message.error(this.$t("generator.idEmpty"));
+        return;
+      }
+      if (!this.form.ratedPower || !this.form.availablePowerPercentage) {
+        this.$message.error(this.$t("generator.validationMessage"));
+        return;
       }
 
-      // 转换时间并校验时间范围
-      const timeSlotList = this.form.controlModelDto.timeSlotDtoList.map(
-        (timeSlot) => {
+      // 设置模式校验
+      const { controlModeId, socLowerLimit, socUpperLimit, timeSlotDtoList } =
+        this.form.controlModelDto;
+
+      if (controlModeId === "1") {
+        // 校验 SOC 范围
+        if (!socLowerLimit || !socUpperLimit) {
+          this.$message.error(this.$t("generator.socRequired"));
+          return;
+        }
+        if (parseInt(socUpperLimit, 10) <= parseInt(socLowerLimit, 10)) {
+          this.$message.error(this.$t("generator.socInvalidRange"));
+          return;
+        }
+      }
+
+      if (controlModeId === "2") {
+        // 校验时间段
+        if (!this.validateTimeSlots()) return;
+
+        for (const timeSlot of timeSlotDtoList) {
           if (
             this.convertToMinutes(timeSlot.end) <=
             this.convertToMinutes(timeSlot.start)
           ) {
             this.$message.error(this.$t("generator.timeWarning"));
-            throw new Error(this.$t("generator.timeWarning"));
+            return;
           }
-          return {
-            start: this.convertToMinutes(timeSlot.start),
-            end: this.convertToMinutes(timeSlot.end),
-          };
         }
-      );
+      }
+
+      // 校验电池充电功率
+      if (
+        this.form.outputModelDto.outputModeId === "1" &&
+        !this.form.batteryChargingPower
+      ) {
+        this.$message.error(this.$t("generator.batteryPowerRequired"));
+        return;
+      }
+
+      // 提交表单
+      this.submitForm();
+    },
+
+    // 提交表单方法
+    submitForm() {
+      // 过滤并构造提交的数据，确保不包含 gridStatus
+      const { gridStatus, ...restForm } = this.form;
+
+      const timeSlotList =
+        restForm.controlModelDto.controlModeId === "2"
+          ? restForm.controlModelDto.timeSlotDtoList.map((timeSlot, index) => ({
+              start: this.convertToMinutes(timeSlot.start),
+              end: this.convertToMinutes(timeSlot.end),
+              sort: index + 1, // 添加 sort 字段
+            }))
+          : [];
+
+      const controlModelDtoList = [
+        {
+          ...restForm.controlModelDto,
+          timeSlotDtoList: timeSlotList,
+        },
+      ];
+
+      const outputModelDtoList = [
+        {
+          ...restForm.outputModelDto,
+        },
+      ];
 
       const data = {
-        ...this.form,
+        ...restForm,
+        controlModelDtoList,
+        outputModelDtoList,
         controlModelDto: {
-          ...this.form.controlModelDto,
+          ...restForm.controlModelDto,
           timeSlotDtoList: timeSlotList,
+        },
+        outputModelDto: {
+          ...restForm.outputModelDto,
         },
       };
 
-      // 提交保存
+      // 提交数据
       generatorSet(data)
         .then(() => {
           this.$message.success(this.$t("common.savesuccessfully"));
@@ -551,6 +560,10 @@ export default {
   },
 
   mounted() {
+    qryGenerator(this.form.deviceId).then((res) => {
+      this.form.gridStatus = res.gridStatus;
+    });
+
     this.fetchDropdownOptions();
   },
 };

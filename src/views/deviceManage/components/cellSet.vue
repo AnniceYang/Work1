@@ -527,24 +527,40 @@ export default {
 
     // 校验时间段重叠
     checkTimeOverlap() {
-      const timePeriods = [
-        ...this.dataForm.chargeTimeQuantum.map((item) => ({
-          type: "charging",
-          start: this.timeToMin(item.start),
-          end: this.timeToMin(item.end),
-        })),
-        ...this.dataForm.dischargeTimeQuantum.map((item) => ({
-          type: "discharging",
-          start: this.timeToMin(item.start),
-          end: this.timeToMin(item.end),
-        })),
-        ...this.dataForm.releaseTimeQuantum.map((item) => ({
-          type: "selling",
-          start: this.timeToMin(item.start),
-          end: this.timeToMin(item.end),
-        })),
-      ];
+      const timePeriods = [];
 
+      // 只添加启用的功能时间段
+      if (this.dataForm.chargeSwitch === 1) {
+        timePeriods.push(
+          ...this.dataForm.chargeTimeQuantum.map((item) => ({
+            type: "charging",
+            start: this.timeToMin(item.start),
+            end: this.timeToMin(item.end),
+          }))
+        );
+      }
+
+      if (this.dataForm.dischargeSwitch === 1) {
+        timePeriods.push(
+          ...this.dataForm.dischargeTimeQuantum.map((item) => ({
+            type: "discharging",
+            start: this.timeToMin(item.start),
+            end: this.timeToMin(item.end),
+          }))
+        );
+      }
+
+      if (this.dataForm.releaseSwitch === 1) {
+        timePeriods.push(
+          ...this.dataForm.releaseTimeQuantum.map((item) => ({
+            type: "selling",
+            start: this.timeToMin(item.start),
+            end: this.timeToMin(item.end),
+          }))
+        );
+      }
+
+      // 校验重叠
       for (let i = 0; i < timePeriods.length; i++) {
         for (let j = i + 1; j < timePeriods.length; j++) {
           if (
