@@ -1,5 +1,8 @@
 export default {
   common: {
+    deviceOffline: "Dispositivo offline",
+    errorThreePhase:
+      "Impostazione valida solo in modalità trifase a quattro fili",
     usernameEmail: "Email dell'utente",
     inputInvalid: "Input non valido",
     deviceSelfcheck: "Controllo Installazione",
@@ -722,6 +725,14 @@ export default {
     TP_0X04_1079: "SOC max batteria",
     TP_0X04_1080: "SOC min batteria",
 
+    //V2.3
+    TP_0X04_1081: "Stato manutenzione batteria",
+    TP_0X04_1045: "ID versione software CPU1 diversa",
+    TP_0X04_1046: "ID versione software CPU2 diversa",
+    TP_0X04_1056: "AC auxiliary power statusStato alimentazione ausiliaria AC",
+    ACpower0: "Alimentazione AC attiva",
+    ACpower1: "Alimentazione AC disattiva",
+
     //page43 电表数据
     TP_0X04_2048_2049: "1° Energia Attiva Combinata",
     TP_0X04_2050_2051: "2° Energia Attiva Combinata",
@@ -1039,9 +1050,9 @@ export default {
     batteryWork2: "Batteria funzionante",
 
     TP_0X04_5713: "Versione Software BMS",
-    TP_0X03_5714_5739: "ID Batteria",
+    TP_0X04_5714: "Stato ventola",
+    TP_0X04_5719: "Stato riscaldamento",
 
-    TP_0X04_5719: "Sommario Stato Carica/Scarica Difettoso",
     totalStatus0: "Carica e Scarica OK",
     totalStatus1: "Solo Scarica Consentita",
     totalStatus2: "Solo Carica Consentita",
@@ -1111,6 +1122,8 @@ export default {
 
     TP_0X03_71: "Modalità Pianificata",
     TP_0X03_72: "Modalità Operativa",
+
+    TP_0X03_42: "Modalità fredda BMS",
 
     TP_0X03_1024: "Codice Paese",
     TP_0X03_1025: "Auto Esecuzione",
@@ -1200,6 +1213,15 @@ export default {
     generatorMode1: "Generatore",
     generatorMode2: "Carico Intelligente",
     generatorMode3: "Inverter Fotovoltaico",
+
+    //V2.3
+    TP_0X03_1113: "Limite superiore tensione sbilanciamento",
+    TP_0X03_1114: "Limite inferiore tensione sbilanciamento",
+    TP_0X03_1115: "Abilita controllo sbilanciamento",
+    TP_0X03_1116: "Regolazione anti-ritorno",
+    TP_0X03_1117: "Abilita mascheramento guasti",
+    faultMasking0: "Non mascherato",
+    faultMasking1: "Mascherato",
 
     //page49 定时设置
     // Pagina 49: Impostazioni Programmate
@@ -2317,6 +2339,7 @@ export default {
     Greece: "Grecia",
     Republic: "Repubblica Ceca",
     Netherlands: "Paesi Bassi",
+    Austria: "Austria",
 
     systemTimeSetting: "Impostazione dell'orario di sistema",
     inverterActivePowerSetting:
@@ -4183,6 +4206,12 @@ export default {
     TP_0X04_1079: "SOC max batteria",
     TP_0X04_1080: "SOC min batteria",
 
+    //V2.3
+    TP_0X04_1081: "Stato manutenzione batteria",
+    TP_0X04_1045: "ID versione software CPU1 diversa",
+    TP_0X04_1046: "ID versione software CPU2 diversa",
+    TP_0X04_1056: "AC auxiliary power statusStato alimentazione ausiliaria AC",
+
     //page43 电表数据
     TP_0X04_2048_2049: "1° Energia Attiva Combinata",
     TP_0X04_2050_2051: "2° Energia Attiva Combinata",
@@ -4470,9 +4499,9 @@ export default {
     TP_0X04_5705: "Stato batteria",
 
     TP_0X04_5713: "Versione Software BMS",
-    TP_0X03_5714_5739: "ID Batteria",
+    TP_0X04_5714: "Stato ventola",
+    TP_0X04_5719: "Stato riscaldamento",
 
-    TP_0X04_5719: "Sommario Stato Carica/Scarica Difettoso",
     TP_0X04_5720: "Max Tensione Carica",
     TP_0X04_5721: "Max Corrente Carica",
     TP_0X04_5722: "Max Potenza Carica",
@@ -4535,6 +4564,8 @@ export default {
 
     TP_0X03_71: "Modalità Pianificata",
     TP_0X03_72: "Modalità Operativa",
+
+    TP_0X03_42: "Modalità fredda BMS",
 
     TP_0X03_1024: "Codice Paese",
     TP_0X03_1025: "Auto Esecuzione",
@@ -4616,6 +4647,13 @@ export default {
     TP_0X03_1099: "Perc. Potenza Anti-Retrof. Fase C",
     TP_0X03_1100: "Selezione Tre/Four Fili",
     TP_0X03_1101: "Modalità Interfaccia Generatore",
+
+    //V2.3
+    TP_0X03_1113: "Limite superiore tensione sbilanciamento",
+    TP_0X03_1114: "Limite inferiore tensione sbilanciamento",
+    TP_0X03_1115: "Abilita controllo sbilanciamento",
+    TP_0X03_1116: "Regolazione anti-ritorno",
+    TP_0X03_1117: "Abilita mascheramento guasti",
 
     //page49 定时设置
     // Pagina 49: Impostazioni Programmate

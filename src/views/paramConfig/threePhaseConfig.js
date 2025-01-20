@@ -5635,7 +5635,7 @@ export const info3 = {
       unit: "",
     },
     {
-      key: "TP_0X03_5714_5739",
+      key: "TP_0X04_5714",
       isShow: 1,
       canSet: 1,
       installerIsShow: 1,
@@ -5645,17 +5645,18 @@ export const info3 = {
       val: "",
       unit: "",
     },
-    // {
-    //   key: "TP_0X04_5719",
-    //   isShow: 1,
-    //   canSet: 1,
-    //   installerIsShow: 1,
-    //   installerCanSet: 1,
-    //   consumerIsShow: 1,
-    //   consumerCanSet: 1,
-    //   val: "",
-    //   unit: "",
-    // },
+
+    {
+      key: "TP_0X04_5719",
+      isShow: 1,
+      canSet: 1,
+      installerIsShow: 1,
+      installerCanSet: 1,
+      consumerIsShow: 1,
+      consumerCanSet: 1,
+      val: "",
+      unit: "",
+    },
     // {
     //   key: "TP_0X04_5720",
     //   isShow: 1,

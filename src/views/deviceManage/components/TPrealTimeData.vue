@@ -1681,6 +1681,30 @@
               >
                 {{ voListMap["42"]["TP_0X04_1080"].val }}%
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1081')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1081')"
+              >
+                {{ batteryMaintain[voListMap["42"]["TP_0X04_1081"].val] }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1045')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1045')"
+              >
+                {{ voListMap["42"]["TP_0X04_1045"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1046')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1046')"
+              >
+                {{ voListMap["42"]["TP_0X04_1046"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_1056')"
+                v-if="CCIsDisplay('42', 'TP_0X04_1056')"
+              >
+                {{ ACpowerFilter[voListMap["42"]["TP_0X04_1056"].val] }}
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -3384,10 +3408,16 @@
                 {{ voListMap["45"]["TP_0X04_5713"].val }}
               </el-descriptions-item>
               <el-descriptions-item
-                :label="$t('threePhase.TP_0X03_5714_5739')"
-                v-if="CCIsDisplay('45', 'TP_0X03_5714_5739')"
+                :label="$t('threePhase.TP_0X04_5714')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5714')"
               >
-                {{ voListMap["45"]["TP_0X03_5714_5739"].val }}
+                {{ voListMap["45"]["TP_0X04_5714"].val }}
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_5719')"
+                v-if="CCIsDisplay('45', 'TP_0X04_5719')"
+              >
+                {{ voListMap["45"]["TP_0X04_5719"].val }}
               </el-descriptions-item>
             </el-descriptions>
           </el-card>
@@ -4311,6 +4341,29 @@
                   >
                 </div>
               </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_42')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_42Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_42')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('threePhase.close')" value="0" />
+                    <el-option :label="$t('threePhase.open')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_42')"
+                    @click="
+                      handleSave1('TP_0X03_42', settingList['TP_0X03_42Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -4357,6 +4410,7 @@
                       :label="$t('deviceManage.Netherlands')"
                       value="13"
                     />
+                    <el-option :label="$t('deviceManage.Austria')" value="14" />
                   </el-select>
 
                   <el-button
@@ -6458,6 +6512,142 @@
                       handleSave2(
                         'TP_0X03_1101',
                         settingList['TP_0X03_1101Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1113')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1113')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1113Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1113')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1113',
+                        settingList['TP_0X03_1113Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1114')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1114')"
+              >
+                <div style="display: flex">
+                  <el-input
+                    v-model="settingList['TP_0X03_1114Val']"
+                    :placeholder="$t('common.inputPrompt')"
+                  >
+                    <template slot="append">V</template>
+                  </el-input>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1114')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1114',
+                        settingList['TP_0X03_1114Val']
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1115')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1115')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1115Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('deviceManage.prohibit')" value="0" />
+                    <el-option :label="$t('deviceManage.enable')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1115')"
+                    @click="saveTPX03_1115"
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1116')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1116')"
+              >
+                <div style="display: flex">
+                  <el-tooltip content="Range: -1000-1000W" placement="top">
+                    <el-input
+                      v-model="settingList['TP_0X03_1116Val']"
+                      :placeholder="$t('common.inputPrompt')"
+                    >
+                      <template slot="append">W</template>
+                    </el-input>
+                  </el-tooltip>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1116')"
+                    @click="
+                      validateAndSave(
+                        'TP_0X03_1116',
+                        settingList['TP_0X03_1116Val'],
+                        -1000,
+                        1000
+                      )
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X03_1117')"
+                v-if="CCIsDisplay('48', 'TP_0X03_1117')"
+              >
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_1117Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    style="width: 100%"
+                  >
+                    <el-option
+                      :label="$t('threePhase.faultMasking0')"
+                      value="0"
+                    />
+                    <el-option
+                      :label="$t('threePhase.faultMasking1')"
+                      value="1"
+                    />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('48', 'TP_0X03_1117')"
+                    @click="
+                      handleSave2(
+                        'TP_0X03_1117',
+                        settingList['TP_0X03_1117Val']
                       )
                     "
                     >{{ $t("common.save") }}</el-button
@@ -11189,6 +11379,10 @@ export default {
     return {
       formData: {},
       deviceInfo: {},
+      ACpowerFilter: {
+        0: this.$t("threePhase.ACpower0"),
+        1: this.$t("threePhase.ACpower1"),
+      },
       TP_0X04_0Filter: {
         1: this.$t("threePhase.EAST"), // 将 '1' 映射到 "EAST"
         2: this.$t("threePhase.LESY"), // 将 '2' 映射到 "LESY"
@@ -11284,8 +11478,10 @@ export default {
         8: this.$t("deviceManage.Europe50549"),
         9: this.$t("deviceManage.Ireland"),
         10: this.$t("deviceManage.France"),
-        11: this.$t("deviceManage.Republic"),
-        12: this.$t("deviceManage.Netherlands"),
+        11: this.$t("deviceManage.Greece"),
+        12: this.$t("deviceManage.Republic"),
+        13: this.$t("deviceManage.Netherlands"),
+        14: this.$t("deviceManage.Austria"),
       },
       batteryStatusFilter: [
         this.$t("deviceManage.nothing"),
@@ -11300,6 +11496,11 @@ export default {
       BMSdisplayFilter: {
         0: this.$t("threePhase.BMSdisplay1"),
         1: this.$t("threePhase.BMSdisplay2"),
+      },
+      batteryMaintain: {
+        0: this.$t("deviceManage.none"),
+        1: this.$t("deviceManage.forceDischarging"),
+        2: this.$t("deviceManage.forceCharging"),
       },
       chargeFilter: {
         0: this.$t("threePhase.chargeStatenone"),
@@ -11541,6 +11742,7 @@ export default {
 
         TP_0X03_71Val: "",
         TP_0X03_72Val: "",
+        TP_0X03_42Val: "",
 
         //page48 主控用户
         TP_0X03_1024Val: "",
@@ -11625,6 +11827,12 @@ export default {
         TP_0X03_1099Val: "",
         TP_0X03_1100Val: "",
         TP_0X03_1101Val: "",
+
+        TP_0X03_1113Val: "",
+        TP_0X03_1114Val: "",
+        TP_0X03_1115Val: "",
+        TP_0X03_1116Val: "",
+        TP_0X03_1117Val: "",
 
         TP_0X03_76Val: "",
         TP_0X03_77Val: "",
@@ -11808,6 +12016,41 @@ export default {
     console.log("userInfo---------", userInfo);
   },
   methods: {
+    saveTPX03_1115() {
+      console.log(
+        "注意Value of TP_0X03_1100:",
+        this.settingList["TP_0X03_1100Val"]
+      );
+
+      // 强制转换为整数，确保类型一致
+      const TP_0X03_1100Val = parseInt(this.settingList["TP_0X03_1100Val"], 10);
+
+      if (TP_0X03_1100Val === 1) {
+        // 调用保存方法
+        this.handleSave2("TP_0X03_1115", this.settingList["TP_0X03_1115Val"]);
+      } else {
+        // 提示错误信息
+        this.$message.error(this.$t("common.errorThreePhase"));
+      }
+    },
+    //三相防逆流调节量校验
+    validateAndSave(key, value, min, max) {
+      value = parseFloat(value); // 确保是数值
+      if (isNaN(value)) {
+        this.$message.error("Please enter a valid number.");
+        return;
+      }
+
+      // 检查范围
+      if (value < min || value > max) {
+        this.$message.error(`Please enter a value between ${min} and ${max}.`);
+        return;
+      }
+
+      // 保存
+      this.handleSave2(key, value);
+    },
+
     //三相并离网单独处理
     handleSaveWithValidation(key, value, min, max, comparisonValue = null) {
       value = parseFloat(value);
@@ -11958,7 +12201,7 @@ export default {
 
     getStatus5660(val) {
       const status = [
-        "LLC 软起故障", // bit0
+        "预留", // bit0
         "预留", // bit1
         "预留", // bit2
         "输入连接异常告警", // bit3
@@ -12072,8 +12315,8 @@ export default {
         "以太网自检状态",
         "存储芯片自检状态",
         "BMU 供电电压自检状态",
-        "RFU",
-        "RFU",
+        "允许充电",
+        "允许放电",
         "RFU",
         "RFU",
         "RFU",
@@ -12421,7 +12664,7 @@ export default {
       if (this.deviceInfo.onlineStatus === 1) {
         this.handleMqttInit();
       } else {
-        this.$message.info("设备不在线");
+        this.$message.info(this.$t("common.deviceOffline"));
         console.log("这个设备不在线");
       }
     },
@@ -12436,7 +12679,7 @@ export default {
           this.getData();
         }
       } else {
-        this.$message.info("设备不在线");
+        this.$message.info(this.$t("common.deviceOffline"));
         console.log("AKB48你是大傻瓜");
       }
     },

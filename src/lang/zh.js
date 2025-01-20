@@ -1,5 +1,7 @@
 export default {
   common: {
+    deviceOffline: "设备不在线",
+    errorThreePhase: "必须在三相四线制下才有效，否则设置无效",
     usernameEmail: "用户邮箱",
     inputInvalid: "输入无效",
     deviceSelfcheck: "安装自检",
@@ -714,6 +716,14 @@ export default {
     TP_0X04_1079: "电池最大SOC",
     TP_0X04_1080: "电池最小SOC",
 
+    //V2.3
+    TP_0X04_1081: "电池维护状态",
+    TP_0X04_1045: "CPU1软件版本不同ID",
+    TP_0X04_1046: "CPU2软件版本不同ID",
+    TP_0X04_1056: "AC辅源状态",
+    ACpower0: "AC辅源开启",
+    ACpower1: "AC辅源关闭",
+
     //page43 电表数据
     TP_0X04_2048_2049: "1路组合有功总电能",
     TP_0X04_2050_2051: "2路组合有功总电能",
@@ -1032,9 +1042,9 @@ export default {
     batteryWork2: "电池正常工作",
 
     TP_0X04_5713: "BMS软件版本号",
-    TP_0X03_5714_5739: "电池 ID",
+    TP_0X04_5714: "风扇状态",
+    TP_0X04_5719: "加热状态",
 
-    TP_0X04_5719: "故障充放电状态汇总",
     totalStatus0: "允许充电允许放电",
     totalStatus1: "不可充电可放电",
     totalStatus2: "可充电不可放电",
@@ -1104,6 +1114,8 @@ export default {
 
     TP_0X03_71: "定时模式类型",
     TP_0X03_72: "系统当前运行模式",
+
+    TP_0X03_42: "BMS寒冷模式",
 
     //page48 主控用户
     TP_0X03_1024: "国家码",
@@ -1190,6 +1202,15 @@ export default {
     generatorMode1: "发电机",
     generatorMode2: "智能负载",
     generatorMode3: "光伏逆变器",
+
+    //V2.3
+    TP_0X03_1113: "不平衡控制电压上限",
+    TP_0X03_1114: "不平衡控制电压下限",
+    TP_0X03_1115: "不平衡控制使能",
+    TP_0X03_1116: "防逆流调节量",
+    TP_0X03_1117: "特殊故障屏蔽使能",
+    faultMasking0: "不屏蔽",
+    faultMasking1: "屏蔽",
 
     //page49 定时设置
     TP_0X03_76: "季度1_起始",
@@ -2318,6 +2339,7 @@ export default {
     Greece: "希腊",
     Republic: "捷克",
     Netherlands: "荷兰",
+    Austria: "奥地利",
     systemTimeSetting: "系统时间设置",
     inverterActivePowerSetting: "逆变有功设定",
     communicationProtocolType485: "485通讯协议类型",
@@ -3398,6 +3420,12 @@ export default {
     TP_0X04_1079: "电池最大SOC",
     TP_0X04_1080: "电池最小SOC",
 
+    //V2.3
+    TP_0X04_1081: "电池维护状态",
+    TP_0X04_1045: "CPU1软件版本不同ID",
+    TP_0X04_1046: "CPU2软件版本不同ID",
+    TP_0X04_1056: "AC辅源状态",
+
     //page43 电表数据
     TP_0X04_2048_2049: "1路组合有功总电能",
     TP_0X04_2050_2051: "2路组合有功总电能",
@@ -3684,9 +3712,9 @@ export default {
     TP_0X04_5705: "电池工作状态",
 
     TP_0X04_5713: "BMS软件版本号",
-    TP_0X03_5714_5739: "电池 ID",
+    TP_0X04_5714: "风扇状态",
+    TP_0X04_5719: "加热状态",
 
-    TP_0X04_5719: "故障充放电状态汇总",
     totalStatus0: "允许充电允许放电",
     totalStatus1: "不可充电可放电",
     totalStatus2: "可充电不可放电",
@@ -3757,6 +3785,8 @@ export default {
 
     TP_0X03_71: "定时模式类型",
     TP_0X03_72: "系统当前运行模式",
+
+    TP_0X03_42: "BMS寒冷模式",
 
     //page48 主控用户
     TP_0X03_1024: "国家码",
@@ -3837,6 +3867,13 @@ export default {
     TP_0X03_1099: "C相防逆流功率百分比",
     TP_0X03_1100: "三相三线/四线制选择",
     TP_0X03_1101: "发电机接口模式",
+
+    //V2.3
+    TP_0X03_1113: "不平衡控制电压上限",
+    TP_0X03_1114: "不平衡控制电压下限",
+    TP_0X03_1115: "不平衡控制使能",
+    TP_0X03_1116: "防逆流调节量",
+    TP_0X03_1117: "特殊故障屏蔽使能",
 
     //page49 定时设置
     TP_0X03_76: "季度1_起始",

@@ -1,5 +1,7 @@
 export default {
   common: {
+    deviceOffline: "Device is Offline",
+    errorThreePhase: "This setting is only valid in three-phase four-wire mode",
     usernameEmail: "User Email",
     inputInvalid: "Invalid input",
     deviceSelfcheck: "Installation Check",
@@ -723,6 +725,14 @@ export default {
     TP_0X04_1079: "Battery max SOC",
     TP_0X04_1080: "Battery min SOC",
 
+    //V2.3
+    TP_0X04_1081: "Battery maintenance status",
+    TP_0X04_1045: "CPU1 software version mismatch ID",
+    TP_0X04_1046: "CPU2 software version mismatch ID",
+    TP_0X04_1056: "AC auxiliary power status",
+    ACpower0: "AC auxiliary power ON",
+    ACpower1: "AC auxiliary power OFF",
+
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
     TP_0X04_2050_2051: "2nd Combined Active Energy",
@@ -1040,9 +1050,9 @@ export default {
     batteryWork2: "Battery Working Normally",
 
     TP_0X04_5713: "BMS Software Version Number",
-    TP_0X03_5714_5739: "Battery ID",
+    TP_0X04_5714: "Fan status",
+    TP_0X04_5719: "Heating status",
 
-    TP_0X04_5719: "Faulty Charge/Discharge Status Summary",
     totalStatus0: "Charge Allowed, Discharge Allowed",
     totalStatus1: "Charge Not Allowed, Discharge Allowed",
     totalStatus2: "Charge Allowed, Discharge Not Allowed",
@@ -1113,6 +1123,8 @@ export default {
 
     TP_0X03_71: "Scheduled Mode Type",
     TP_0X03_72: "Current System Operation Mode",
+
+    TP_0X03_42: "BMS cold mode",
 
     //page48 Main Control User
     TP_0X03_1024: "Country Code",
@@ -1200,6 +1212,15 @@ export default {
     generatorMode1: "Generator",
     generatorMode2: "Smart Load",
     generatorMode3: "PV Inverter",
+
+    //V2.3
+    TP_0X03_1113: "Imbalance control voltage upper limit",
+    TP_0X03_1114: "Imbalance control voltage lower limit",
+    TP_0X03_1115: "Imbalance control enable",
+    TP_0X03_1116: "Anti-backflow adjustment",
+    TP_0X03_1117: "Special fault masking enable",
+    faultMasking0: "Not masked",
+    faultMasking1: "Masked",
 
     //page49 定时设置
     // Page 49: Scheduled Settings
@@ -2321,6 +2342,7 @@ export default {
     Greece: "Greece",
     Republic: "Czech Republic",
     Netherlands: "Netherlands",
+    Austria: "Austria",
 
     systemTimeSetting: "system time setting",
     inverterActivePowerSetting: "Inverter active power setting",
@@ -4161,6 +4183,12 @@ export default {
     TP_0X04_1079: "Battery max SOC",
     TP_0X04_1080: "Battery min SOC",
 
+    //V2.3
+    TP_0X04_1081: "Battery maintenance status",
+    TP_0X04_1045: "CPU1 software version mismatch ID",
+    TP_0X04_1046: "CPU2 software version mismatch ID",
+    TP_0X04_1056: "AC auxiliary power status",
+
     // Page43 Meter Data
     TP_0X04_2048_2049: "1st Combined Active Energy",
     TP_0X04_2050_2051: "2nd Combined Active Energy",
@@ -4451,9 +4479,9 @@ export default {
     TP_0X04_5705: "Battery Operating Status",
 
     TP_0X04_5713: "BMS Software Version Number",
-    TP_0X03_5714_5739: "Battery ID",
+    TP_0X04_5714: "Fan status",
+    TP_0X04_5719: "Heating status",
 
-    TP_0X04_5719: "Faulty Charge/Discharge Status Summary",
     TP_0X04_5720: "Maximum Charge Voltage",
     TP_0X04_5721: "Maximum Charge Current",
     TP_0X04_5722: "Maximum Charge Power",
@@ -4518,6 +4546,8 @@ export default {
 
     TP_0X03_71: "Scheduled Mode Type",
     TP_0X03_72: "Current System Operation Mode",
+
+    TP_0X03_42: "BMS cold mode",
 
     //page48 Main Control User
     TP_0X03_1024: "Country Code",
@@ -4600,6 +4630,13 @@ export default {
     TP_0X03_1099: "C Phase Anti-Reverse Flow Power Percentage",
     TP_0X03_1100: "Three-Phase Three-Wire/Four-Wire Selection",
     TP_0X03_1101: "Generator Interface Mode",
+
+    //V2.3
+    TP_0X03_1113: "Imbalance control voltage upper limit",
+    TP_0X03_1114: "Imbalance control voltage lower limit",
+    TP_0X03_1115: "Imbalance control enable",
+    TP_0X03_1116: "Anti-backflow adjustment",
+    TP_0X03_1117: "Special fault masking enable",
 
     //page49 定时设置
     // Page 49: Scheduled Settings
