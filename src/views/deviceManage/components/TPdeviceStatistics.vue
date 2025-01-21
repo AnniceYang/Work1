@@ -605,6 +605,7 @@ import {
   unbindAgent,
   unbindUser,
   getConfigData,
+  qryDeviceBind,
 } from "@/api/device";
 import ElectricityData from "./electricityData.vue";
 import IncomeData from "./incomeData.vue";
@@ -929,17 +930,14 @@ export default {
         .then(() => {
           unbindFunction({ id }).then((response) => {
             if (response) {
-              // 清空解绑后的字段并立即更新页面显示
-              if (type === "agent") {
-                this.$set(this.deviceInfo, "installerName", ""); // 清空安装商名称
-              } else if (type === "user") {
-                this.$set(this.deviceInfo, "userName", ""); // 清空用户账号
-              }
-
-              this.deviceInfo = { ...info };
-              console.log("解绑后的info,", this.deviceInfo);
-
-              this.$message.success(this.$t("common.successfullyUnbind"));
+              qryDeviceBind({ id }).then((deviceInfoResponse) => {
+                if (deviceInfoResponse) {
+                  this.deviceInfo = deviceInfoResponse; // 更新设备信息
+                  this.$message.success(this.$t("common.successfullyUnbind"));
+                } else {
+                  this.$message.error(this.$t("common.failedUpdateDeviceInfo"));
+                }
+              });
             } else {
               this.$message.error(this.$t("common.failedUnbind"));
             }
