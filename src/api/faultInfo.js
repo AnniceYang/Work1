@@ -44,3 +44,12 @@ export function qryDeviceAlarm(query) {
     params: query,
   });
 }
+
+// 根据设备，时间范围批量删除
+export function delBatchFault(data) {
+  return request({
+    url: "/admin/lsydevicealarm/edit",
+    method: "post",
+    data,
+  });
+}
