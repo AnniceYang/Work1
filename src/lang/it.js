@@ -133,6 +133,19 @@ export default {
     cashOutWarning: "Confermi la modifica dello stato del pagamento?",
   },
 
+  ieee: {
+    index: "Indice",
+    ieeeTitle: "Centro di Gestione Dispositivi IEEE",
+    deviceSn: "SN",
+    deviceNmi: "NMI",
+    deviceLFDI: "LFDI",
+    gridCompany: "Compagnia della Rete",
+    operation: "Operazione",
+    export: "Esporta",
+    receivedGridList: "Elenco Reti Ricevute",
+    sendRequestList: "Elenco Richieste Inviate",
+  },
+
   generator: {
     onOff: "Abilita Generatore",
     on: "Acceso",
@@ -376,7 +389,7 @@ export default {
     deleteEndTime: "Fine Eliminazione",
     timePairRequired: "Intervallo completo richiesto",
     endTimeAfterStart: "Fine deve essere dopo inizio",
-    confirmDeleteAlarm: "Confermi eliminazione guasto?",
+    confirmDeleteAlarm: "Confermi l'eliminazione/nascondimento dell'allarme?",
     tip: "Avviso",
     submitSuccess: "Inviato",
     submitError: "Errore invio",

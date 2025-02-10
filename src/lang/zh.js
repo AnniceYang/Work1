@@ -131,6 +131,18 @@ export default {
 
     cashOutWarning: "请确定更改返现状态？",
   },
+  ieee: {
+    index: "序号",
+    ieeeTitle: "IEEE 设备管理中心",
+    deviceSn: "SN码",
+    deviceNmi: "NMI码",
+    deviceLFDI: "LFDI码",
+    gridCompany: "电网公司",
+    operation: "操作",
+    export: "导出",
+    receivedGridList: "收到电网列表",
+    sendRequestList: "发送列表",
+  },
   generator: {
     onOff: "启用发电机",
     on: "开",
@@ -371,7 +383,7 @@ export default {
     deleteEndTime: "删除结束时间",
     timePairRequired: "时间段必须完整",
     endTimeAfterStart: "截止时间必须大于起始时间",
-    confirmDeleteAlarm: "确认删除报警？",
+    confirmDeleteAlarm: "确认删除/隐藏报警？",
     tip: "警告提醒",
     submitSuccess: "提交成功",
     submitError: "提交报错",

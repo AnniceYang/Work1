@@ -133,6 +133,18 @@ export default {
     cashOut1: "Cashed Out",
     cashOutWarning: "Please confirm the change of cashOut status?",
   },
+  ieee: {
+    index: "Index",
+    ieeeTitle: "IEEE Device Management Center",
+    deviceSn: "SN",
+    deviceNmi: "NMI",
+    deviceLFDI: "LFDI",
+    gridCompany: "Grid Company",
+    operation: "Operation",
+    export: "Export",
+    receivedGridList: "Received Grid List",
+    sendRequestList: "Sent Request List",
+  },
 
   generator: {
     onOff: "Enable Generator",
@@ -376,7 +388,7 @@ export default {
     deleteEndTime: "Delete End Time",
     timePairRequired: "Complete time range required",
     endTimeAfterStart: "End time must be after start",
-    confirmDeleteAlarm: "Confirm delete alarm?",
+    confirmDeleteAlarm: "Confirm delete/hide alarm?",
     tip: "Warning",
     submitSuccess: "Submitted",
     submitError: "Submission error",
