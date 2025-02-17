@@ -138,10 +138,18 @@ export default {
     deviceNmi: "NMI码",
     deviceLFDI: "LFDI码",
     gridCompany: "电网公司",
+    createTime: "创建时间",
+    updateTime: "更新时间",
+    registerState: "注册状态",
+    registered: "已注册",
+    notRegistered: "未注册",
+
     operation: "操作",
     export: "导出",
     receivedGridList: "收到电网列表",
     sendRequestList: "发送列表",
+    commandRecords: "IEEE 指令记录",
+    exportConfirmMessage: "确认导出 IEEE 指令记录？",
   },
   generator: {
     onOff: "启用发电机",

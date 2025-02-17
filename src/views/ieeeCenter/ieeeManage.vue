@@ -21,24 +21,53 @@
 
           <el-table-column
             align="center"
-            prop="deviceSn"
+            prop="sn"
             :label="$t('ieee.deviceSn')"
           />
           <el-table-column
             align="center"
-            prop="deviceNmi"
+            prop="nmi"
             :label="$t('ieee.deviceNmi')"
           />
           <el-table-column
             align="center"
-            prop="deviceLFDI"
+            prop="lfdi"
             :label="$t('ieee.deviceLFDI')"
           />
           <el-table-column
             align="center"
-            prop="gridCompany"
+            prop="powerGrid"
             :label="$t('ieee.gridCompany')"
           />
+
+          <el-table-column
+            align="center"
+            prop="registered"
+            :label="$t('ieee.registerState')"
+            ><template slot-scope="scope">{{
+              scope.row.registered === 1
+                ? $t("ieee.registered")
+                : $t("ieee.notRegistered")
+            }}</template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="createTime"
+            :label="$t('ieee.createTime')"
+          >
+            <template slot-scope="scope">
+              {{ formatDate(scope.row.createTime) }}
+            </template>
+          </el-table-column>
+          <el-table-column
+            align="center"
+            prop="updateTime"
+            :label="$t('ieee.updateTime')"
+          >
+            <template slot-scope="scope">
+              {{ formatDate(scope.row.updateTime) }}
+            </template>
+          </el-table-column>
 
           <el-table-column
             :label="$t('ieee.operation')"
@@ -67,11 +96,8 @@
               :placeholder="$t('common.selectPrompt')"
               style="width: 100%"
             >
-              <el-option
-                :label="$t('ieee.receivedGridList')"
-                value="received"
-              />
-              <el-option :label="$t('ieee.sendRequestList')" value="sent" />
+              <el-option :label="$t('ieee.receivedGridList')" value="receive" />
+              <el-option :label="$t('ieee.sendRequestList')" value="send" />
             </el-select>
           </el-form-item>
 
@@ -91,31 +117,24 @@
 
 <script>
 import { qryIeeeDeviceList } from "@/api/device";
+import moment from "moment";
+import { baseUrl } from "@/config/env";
 
 export default {
   data() {
     return {
       loading: false,
-      deviceList: [
-        {
-          deviceSn: "SN123456",
-          deviceNmi: "NMI789012",
-          deviceLFDI: "LFDI345678",
-          gridCompany: "Example Grid",
-        },
-        {
-          deviceSn: "SN654321",
-          deviceNmi: "NMI210987",
-          deviceLFDI: "LFDI876543",
-          gridCompany: "Test Grid",
-        },
-      ],
+      deviceList: [],
       exportDialogVisible: false,
       selectedDeviceSn: "",
       exportOptions: {
-        selectedPage: "received",
+        selectedPage: "receive",
       },
     };
+  },
+
+  created() {
+    this.fetchDeviceList();
   },
 
   methods: {
@@ -123,22 +142,35 @@ export default {
       this.loading = true;
       qryIeeeDeviceList()
         .then((res) => {
-          this.deviceList = res;
+          console.log("res.records------ieee导出是", res.records);
+          this.deviceList = res.records;
         })
         .finally(() => {
           this.loading = false;
         });
     },
 
+    formatDate(timestamp) {
+      return timestamp ? moment(timestamp).format("YYYY-MM-DD") : "-";
+    },
+
     openExportDialog(row) {
-      this.selectedDeviceSn = row.deviceSn;
+      this.selectedDeviceSn = row.sn;
       this.exportDialogVisible = true;
     },
 
     exportData() {
+      if (!this.selectedDeviceSn) {
+        this.$message.error("请选择设备");
+        return;
+      }
+
       const page = this.exportOptions.selectedPage;
       const deviceId = this.selectedDeviceSn;
       console.log(`模拟导出: 设备SN=${deviceId}, 导出类别=${page}`);
+
+      let exportUrl = `${baseUrl}/excel/ieee/${page}/${deviceId}`;
+      window.open(exportUrl, "_blank");
 
       this.exportDialogVisible = false;
     },
@@ -155,11 +187,21 @@ export default {
 .basic-container {
   width: 100%;
   max-width: 1200px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header-title {
   text-align: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+  }
 }
 
 .avue-crud {
@@ -168,12 +210,22 @@ export default {
 
 .custom-table {
   width: 100%;
-  min-width: 800px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.export-button {
+  color: #409eff;
+  font-size: 14px;
 }
 
 .dialog-footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 15px;
+
+  .el-button {
+    margin-left: 10px;
+  }
 }
 </style>

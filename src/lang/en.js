@@ -134,16 +134,24 @@ export default {
     cashOutWarning: "Please confirm the change of cashOut status?",
   },
   ieee: {
-    index: "Index",
-    ieeeTitle: "IEEE Device Management Center",
+    index: "No.",
+    ieeeTitle: "IEEE Device Management",
     deviceSn: "SN",
     deviceNmi: "NMI",
     deviceLFDI: "LFDI",
     gridCompany: "Grid Company",
+    createTime: "Created Time",
+    updateTime: "Updated Time",
+    registerState: "Registration",
+    registered: "Registered",
+    notRegistered: "Not Registered",
+
     operation: "Operation",
     export: "Export",
-    receivedGridList: "Received Grid List",
-    sendRequestList: "Sent Request List",
+    receivedGridList: "Received List",
+    sendRequestList: "Sent List",
+    commandRecords: "IEEE Commands",
+    exportConfirmMessage: "Confirm export of IEEE command records?",
   },
 
   generator: {

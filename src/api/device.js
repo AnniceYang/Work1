@@ -473,3 +473,12 @@ export function qrySelfCheckRecord(data) {
     params: data,
   });
 }
+
+// ieee设备列表
+export function qryIeeeDeviceList(data) {
+  return request({
+    url: "/admin/ieee/page",
+    method: "get",
+    params: data,
+  });
+}

@@ -134,16 +134,24 @@ export default {
   },
 
   ieee: {
-    index: "Indice",
-    ieeeTitle: "Centro di Gestione Dispositivi IEEE",
+    index: "N.",
+    ieeeTitle: "Gestione Dispositivi IEEE",
     deviceSn: "SN",
     deviceNmi: "NMI",
     deviceLFDI: "LFDI",
-    gridCompany: "Compagnia della Rete",
+    gridCompany: "Azienda di Rete",
+    createTime: "Data Creazione",
+    updateTime: "Data Aggiornamento",
+    registerState: "Stato Registrazione",
+    registered: "Registrato",
+    notRegistered: "Non Registrato",
+
     operation: "Operazione",
     export: "Esporta",
-    receivedGridList: "Elenco Reti Ricevute",
-    sendRequestList: "Elenco Richieste Inviate",
+    receivedGridList: "Lista Ricevuta",
+    sendRequestList: "Lista Inviata",
+    commandRecords: "Comandi IEEE",
+    exportConfirmMessage: "Confermare l'esportazione dei comandi IEEE?",
   },
 
   generator: {
