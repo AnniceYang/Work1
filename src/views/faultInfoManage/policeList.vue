@@ -387,51 +387,61 @@ export default {
       }
 
       this.$refs.editForm.validate((valid) => {
-        if (valid) {
-          this.$confirm(
-            this.$t("faultInfo.confirmDeleteAlarm"),
-            this.$t("faultInfo.tip"),
-            {
-              confirmButtonText: this.$t("common.confirm"),
-              cancelButtonText: this.$t("common.cancel"),
-              type: "warning",
-            }
-          )
-            .then(() => {
-              this.submitLoading = true;
-              const formData = this.editForm;
-              const beginTime = formData.beginTime
-                ? Math.floor(formData.beginTime / 1000)
-                : null;
-              const endTime = formData.endTime
-                ? Math.floor(formData.endTime / 1000)
-                : null;
-              const requestData = {
-                beginTime,
-                endTime,
-
-                faultCode: formData.faultCode,
-                sn: formData.sn,
-              };
-
-              delBatchFault(requestData)
-                .then(() => {
-                  this.editDialogVisible = false;
-                  this.submitLoading = false;
-                  this.$message.success(this.$t("faultInfo.submitSuccess"));
-                  this.getData(true);
-                })
-                .catch(() => {
-                  this.submitLoading = false;
-                  this.$message.error(this.$t("faultInfo.submitError"));
-                });
-            })
-            .catch(() => {
-              this.$message.info(this.$t("faultInfo.canceled"));
-            });
-        } else {
+        if (!valid) {
           this.$message.warning(this.$t("faultInfo.formValidationError"));
+          return;
         }
+
+        //新增逻辑：删除时间不能超过当前时间
+        const now = Date.now();
+        if (this.editForm.beginTime && this.editForm.beginTime > now) {
+          this.$message.warning(this.$t("faultInfo.timeNotInFuture"));
+          return;
+        }
+
+        if (this.editForm.endTime && this.editForm.endTime > now) {
+          this.$message.warning(this.$t("faultInfo.timeNotInFuture"));
+          return;
+        }
+
+        this.$confirm(
+          this.$t("faultInfo.confirmDeleteAlarm"),
+          this.$t("faultInfo.tip"),
+          {
+            confirmButtonText: this.$t("common.confirm"),
+            cancelButtonText: this.$t("common.cancel"),
+            type: "warning",
+          }
+        )
+          .then(() => {
+            this.submitLoading = true;
+            const formData = this.editForm;
+            const beginTime = formData.beginTime
+              ? Math.floor(formData.beginTime / 1000)
+              : null;
+            const endTime = formData.endTime
+              ? Math.floor(formData.endTime / 1000)
+              : null;
+            const requestData = {
+              beginTime,
+              endTime,
+              faultCode: formData.faultCode,
+              sn: formData.sn,
+            };
+
+            return delBatchFault(requestData);
+          })
+          .then(() => {
+            this.submitLoading = false;
+
+            this.editDialogVisible = false;
+            this.$message.success(this.$t("faultInfo.submitSuccess"));
+            this.getData(true);
+          })
+
+          .finally(() => {
+            this.submitLoading = false;
+          });
       });
     },
 

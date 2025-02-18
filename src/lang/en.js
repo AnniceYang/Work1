@@ -389,6 +389,7 @@ export default {
     validateE: "Enterprise name code cannot be empty",
   },
   faultInfo: {
+    timeNotInFuture: "Time cannot be in future",
     specificEdit: "Specific Edit",
     hideAlarm: "Hide Fault",
     deleteAlarm: "Delete Fault",

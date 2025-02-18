@@ -384,6 +384,7 @@ export default {
     validateE: "企业名称不能为空",
   },
   faultInfo: {
+    timeNotInFuture: "删除时间不能超过当前时间",
     specificEdit: "特定编辑",
     hideAlarm: "隐藏故障",
     deleteAlarm: "删除故障",

@@ -390,6 +390,7 @@ export default {
     validateE: "Il nome dell'impresa non può essere vuoto",
   },
   faultInfo: {
+    timeNotInFuture: "Il tempo non può essere nel futuro",
     specificEdit: "Modifica Specifica",
     hideAlarm: "Nascondi Guasto",
     deleteAlarm: "Elimina Guasto",
