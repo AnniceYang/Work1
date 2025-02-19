@@ -552,13 +552,17 @@ export default {
     TP_0X04_110: "Potenza Attiva Fase B",
     TP_0X04_111: "Potenza Attiva Fase C",
 
-    // V1.8
-    TP_0X04_112: "Monitora corrente inverter fase A",
-    TP_0X04_113: "Monitora corrente inverter fase B",
-    TP_0X04_114: "Monitora corrente inverter fase C",
-    TP_0X04_115: "Monitora potenza attiva fase A",
-    TP_0X04_116: "Monitora potenza attiva fase B",
-    TP_0X04_117: "Monitora potenza attiva fase C",
+    // V1.8->V2.4
+    TP_0X04_112: "Monitora Corrente di Carica Fase A",
+    TP_0X04_113: "Monitora Corrente di Carica Fase B",
+    TP_0X04_114: "Monitora Corrente di Carica Fase C",
+    TP_0X04_115: "Monitora Potenza Attiva Fase A",
+    TP_0X04_116: "Monitora Potenza Attiva Fase B",
+    TP_0X04_117: "Monitora Potenza Attiva Fase C",
+
+    TP_0X04_118: "Monitora Potenza Attiva Rete",
+    TP_0X04_119: "Monitora Potenza Attiva Carica",
+    TP_0X04_120: "Potenza Totale Tempo Reale",
 
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
@@ -1161,6 +1165,9 @@ export default {
     TP_0X03_72: "Modalità Operativa",
 
     TP_0X03_42: "Modalità fredda BMS",
+    TP_0X03_12: "Impostazione Direzione CT",
+    forward: "Avanti",
+    reverse: "Indietro",
 
     TP_0X03_1024: "Codice Paese",
     TP_0X03_1025: "Auto Esecuzione",
@@ -4036,13 +4043,17 @@ export default {
     TP_0X04_110: "Potenza Attiva Fase B",
     TP_0X04_111: "Potenza Attiva Fase C",
 
-    // V1.8
-    TP_0X04_112: "Monitora corrente inverter fase A",
-    TP_0X04_113: "Monitora corrente inverter fase B",
-    TP_0X04_114: "Monitora corrente inverter fase C",
-    TP_0X04_115: "Monitora potenza attiva fase A",
-    TP_0X04_116: "Monitora potenza attiva fase B",
-    TP_0X04_117: "Monitora potenza attiva fase C",
+    // V1.8->V2.4
+    TP_0X04_112: "Monitora Corrente di Carica Fase A",
+    TP_0X04_113: "Monitora Corrente di Carica Fase B",
+    TP_0X04_114: "Monitora Corrente di Carica Fase C",
+    TP_0X04_115: "Monitora Potenza Attiva Fase A",
+    TP_0X04_116: "Monitora Potenza Attiva Fase B",
+    TP_0X04_117: "Monitora Potenza Attiva Fase C",
+
+    TP_0X04_118: "Monitora Potenza Attiva Rete",
+    TP_0X04_119: "Monitora Potenza Attiva Carica",
+    TP_0X04_120: "Potenza Totale Tempo Reale",
 
     TP_0X04_1024: "Comando Accensione/Spegnimento",
     TP_0X04_1025: "Impostazione Potenza Attiva Inverter",
@@ -4603,6 +4614,7 @@ export default {
     TP_0X03_72: "Modalità Operativa",
 
     TP_0X03_42: "Modalità fredda BMS",
+    TP_0X03_12: "Impostazione Direzione CT",
 
     TP_0X03_1024: "Codice Paese",
     TP_0X03_1025: "Auto Esecuzione",

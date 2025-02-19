@@ -550,13 +550,17 @@ export default {
     TP_0X04_110: "Phase B Active Power",
     TP_0X04_111: "Phase C Active Power",
 
-    // V1.8
-    TP_0X04_112: "Monitor A-phase inverter current",
-    TP_0X04_113: "Monitor B-phase inverter current",
-    TP_0X04_114: "Monitor C-phase inverter current",
-    TP_0X04_115: "Monitor A-phase active power",
-    TP_0X04_116: "Monitor B-phase active power",
-    TP_0X04_117: "Monitor C-phase active power",
+    // V1.8->V2.4
+    TP_0X04_112: "Monitor Phase A Charge Current",
+    TP_0X04_113: "Monitor Phase B Charge Current",
+    TP_0X04_114: "Monitor Phase C Charge Current",
+    TP_0X04_115: "Monitor Phase A Active Power",
+    TP_0X04_116: "Monitor Phase B Active Power",
+    TP_0X04_117: "Monitor Phase C Active Power",
+
+    TP_0X04_118: "Monitor Grid Active Power",
+    TP_0X04_119: "Monitor Charge Active Power",
+    TP_0X04_120: "Load Real-Time Power",
 
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
@@ -1161,6 +1165,9 @@ export default {
     TP_0X03_72: "Current System Operation Mode",
 
     TP_0X03_42: "BMS cold mode",
+    TP_0X03_12: "CT Direction Setting",
+    forward: "Forward",
+    reverse: "Reverse",
 
     //page48 Main Control User
     TP_0X03_1024: "Country Code",
@@ -4010,13 +4017,17 @@ export default {
     TP_0X04_110: "Phase B Active Power",
     TP_0X04_111: "Phase C Active Power",
 
-    // V1.8
-    TP_0X04_112: "Monitor A-phase inverter current",
-    TP_0X04_113: "Monitor B-phase inverter current",
-    TP_0X04_114: "Monitor C-phase inverter current",
-    TP_0X04_115: "Monitor A-phase active power",
-    TP_0X04_116: "Monitor B-phase active power",
-    TP_0X04_117: "Monitor C-phase active power",
+    //V1.8->V2.4
+    TP_0X04_112: "Monitor Phase A Charge Current",
+    TP_0X04_113: "Monitor Phase B Charge Current",
+    TP_0X04_114: "Monitor Phase C Charge Current",
+    TP_0X04_115: "Monitor Phase A Active Power",
+    TP_0X04_116: "Monitor Phase B Active Power",
+    TP_0X04_117: "Monitor Phase C Active Power",
+
+    TP_0X04_118: "Monitor Grid Active Power",
+    TP_0X04_119: "Monitor Charge Active Power",
+    TP_0X04_120: "Load Real-Time Power",
 
     // Page 42 主控数据
     TP_0X04_1024: "Power On/Off Command",
@@ -4584,6 +4595,7 @@ export default {
     TP_0X03_72: "Current System Operation Mode",
 
     TP_0X03_42: "BMS cold mode",
+    TP_0X03_12: "CT Direction Setting",
 
     //page48 Main Control User
     TP_0X03_1024: "Country Code",

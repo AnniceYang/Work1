@@ -928,22 +928,25 @@ export default {
         type: "warning",
       })
         .then(() => {
-          unbindFunction({ id }).then((response) => {
-            if (response) {
-              qryDeviceBind({ id }).then((deviceInfoResponse) => {
-                if (deviceInfoResponse) {
-                  this.deviceInfo = deviceInfoResponse; // 更新设备信息
-                  this.$message.success(this.$t("common.successfullyUnbind"));
-                } else {
-                  this.$message.error(this.$t("common.failedUpdateDeviceInfo"));
-                }
-              });
-            } else {
-              this.$message.error(this.$t("common.failedUnbind"));
-            }
-          });
+          return unbindFunction({ id }); // **解绑操作**
         })
-        .catch(() => {
+        .then((response) => {
+          if (!response) {
+            throw new Error(this.$t("common.failedUnbind")); // **抛出错误，进入 catch**
+          }
+
+          // **解绑成功后，重新查询设备信息**
+          return qryDeviceBind({ id });
+        })
+        .then((deviceInfoResponse) => {
+          if (deviceInfoResponse) {
+            this.$set(this, "deviceInfo", { ...deviceInfoResponse }); // **Vue 响应式更新**
+            this.$message.success(this.$t("common.successfullyUnbind"));
+          } else {
+            this.$message.error(this.$t("common.failedUpdateDeviceInfo"));
+          }
+        })
+        .catch((error) => {
           this.$message.error("An error occurred.");
         });
     },
@@ -1169,7 +1172,7 @@ export default {
         this.loading = false;
       } catch (error) {
         console.error("加载 GIF 失败：", error);
-        this.currentGif = null; // 处理错误路径
+        this.currentGif = `/img/threePhaseEnergyflowgif/ic_flow_bg.png`; // 设置为空白图
         this.loading = false;
       }
     },

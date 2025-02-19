@@ -626,7 +626,7 @@
 </template>
 <script>
 import { qryAppUser, qryinstallUser } from "@/api/appUser";
-import { qryDevice, delDevice, checkDevice } from "@/api/device";
+import { qryDevice, delDevice, checkDevice, qryDeviceBind } from "@/api/device";
 import QrCode from "@/components/QrCode/index.vue";
 import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
@@ -1006,18 +1006,27 @@ export default {
     },
     // 统计
     handleStatistics(info) {
-      if (info.tpType === 1) {
-        this.pageState = 2;
-        this.$nextTick(() => {
-          this.$refs.deviceStatistics.init(info);
-        });
-      } else {
-        this.pageState = 4;
-        this.$nextTick(() => {
-          this.$refs.TPdeviceStatistics.init(info);
-        });
-      }
+      qryDeviceBind({ id: info.id }).then((deviceInfoResponse) => {
+        if (deviceInfoResponse) {
+          this.deviceInfo = { ...deviceInfoResponse }; // **强制刷新设备信息**
+        }
+
+        if (info.tpType === 1) {
+          this.pageState = 2;
+          this.$nextTick(() => {
+            this.$refs.deviceStatistics.init(this.deviceInfo);
+            window.scrollTo(0, 0);
+          });
+        } else {
+          this.pageState = 4;
+          this.$nextTick(() => {
+            this.$refs.TPdeviceStatistics.init(this.deviceInfo);
+            window.scrollTo(0, 0);
+          });
+        }
+      });
     },
+
     // 新增
     handleForm(info) {
       this.$nextTick(() => {

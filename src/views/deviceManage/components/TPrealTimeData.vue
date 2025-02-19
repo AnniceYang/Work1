@@ -483,6 +483,24 @@
               >
                 {{ voListMap["41"]["TP_0X04_117"].val }}W
               </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_118')"
+                v-if="CCIsDisplay('41', 'TP_0X04_118')"
+              >
+                {{ voListMap["41"]["TP_0X04_118"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_119')"
+                v-if="CCIsDisplay('41', 'TP_0X04_119')"
+              >
+                {{ voListMap["41"]["TP_0X04_119"].val }}W
+              </el-descriptions-item>
+              <el-descriptions-item
+                :label="$t('threePhase.TP_0X04_120')"
+                v-if="CCIsDisplay('41', 'TP_0X04_120')"
+              >
+                {{ voListMap["41"]["TP_0X04_120"].val }}W
+              </el-descriptions-item>
             </el-descriptions>
           </el-card>
         </template>
@@ -4359,6 +4377,29 @@
                     v-if="CCIsSetting('47', 'TP_0X03_42')"
                     @click="
                       handleSave1('TP_0X03_42', settingList['TP_0X03_42Val'])
+                    "
+                    >{{ $t("common.save") }}</el-button
+                  >
+                </div>
+              </el-descriptions-item>
+
+              <el-descriptions-item :label="$t('threePhase.TP_0X03_12')">
+                <div style="display: flex">
+                  <el-select
+                    v-model="settingList['TP_0X03_12Val']"
+                    :placeholder="$t('common.selectPrompt')"
+                    v-if="CCIsDisplay('47', 'TP_0X03_12')"
+                    style="width: 100%"
+                  >
+                    <el-option :label="$t('threePhase.forward')" value="0" />
+                    <el-option :label="$t('threePhase.reverse')" value="1" />
+                  </el-select>
+                  <el-button
+                    type="text"
+                    style="margin-left: 5px"
+                    v-if="CCIsSetting('47', 'TP_0X03_12')"
+                    @click="
+                      handleSave1('TP_0X03_12', settingList['TP_0X03_12Val'])
                     "
                     >{{ $t("common.save") }}</el-button
                   >
@@ -11743,6 +11784,7 @@ export default {
         TP_0X03_71Val: "",
         TP_0X03_72Val: "",
         TP_0X03_42Val: "",
+        TP_0X03_12Val: "",
 
         //page48 主控用户
         TP_0X03_1024Val: "",
