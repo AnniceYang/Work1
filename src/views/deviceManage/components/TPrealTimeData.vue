@@ -12752,7 +12752,7 @@ export default {
           } else {
             if (messageInfo.msgOperation === 5) {
               console.log("dataList", JSON.parse(messageInfo.val));
-              console.log("MessageInfo:", messageInfo);
+              // console.log("MessageInfo:", messageInfo);
 
               this.loading = false;
               this.paramsChange(JSON.parse(messageInfo.val));
@@ -12873,127 +12873,55 @@ export default {
       }
     },
 
-    // 三相
-    threePhaseMeterParameterIsDisplay(key2) {
-      let role = this.userInfo.roles[0];
-      // console.log(this.batteryParameter[key1][key2 + 'isShow'])
-      if (role == "1") {
-        if (
-          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "isShow"
-          ]
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "2") {
-        if (
-          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "installerIsShow"
-          ]
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "3") {
-        if (
-          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "consumerIsShow"
-          ]
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "4") {
-        if (
-          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "installerIsShow"
-          ]
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      if (role == "5") {
-        if (
-          this.threePhaseMeterParameter["threePhaseMeterBasicObj"][
-            key2 + "isShow"
-          ]
-        ) {
-          return true;
-        } else {
-          return false;
-        }
-      }
-      return true;
-    },
     // 数据处理转换
     paramsChange(res) {
       console.log(res, "res------");
-      console.log(Array.isArray(res), "res是数组吗"); //false
-      console.log("res类型是：", typeof res); //object
+      console.log("res类型是：", typeof res);
       console.log(res.pageType, "res.pageType值");
 
-      if (res.pageType && res.voList) {
-        //数据正常进行处理
-        //Clear voListMap for the current pageType
+      if (res.pageType) {
+        // 清除当前 pageType 对应的数据
         this.clearVoListMap(res.pageType);
 
-        this.voListMap[res.pageType] = {};
+        // 确保 voListMap 存在
+        if (!this.voListMap[res.pageType]) {
+          this.$set(this.voListMap, res.pageType, {});
+        }
 
-        console.log("这个voList的类型是：", typeof this.voList);
-        console.log(`page ${res.pageType} 的 this.voList是`, this.voList);
+        if (res.voList && res.voList.length > 0) {
+          res.voList.forEach((item) => {
+            const key = `${item.key}Val`;
+            if (this.settingList.hasOwnProperty(key)) {
+              this.$set(this.settingList, key, item.val);
+            }
 
-        res.voList.forEach((item) => {
-          const key = `${item.key}Val`;
-          if (this.settingList.hasOwnProperty(key)) {
-            this.$set(this.settingList, key, item.val);
-          }
-
-          this.$set(this.voListMap[res.pageType], item.key, {
-            val: item.val,
-            isShow: item.isShow,
-            installerIsShow: item.installerIsShow,
-            consumerIsShow: item.consumerIsShow,
-            canSet: item.canSet,
-            installerCanSet: item.installerCanSet,
-            consumerCanSet: item.consumerCanSet,
-            unit: item.unit,
+            this.$set(this.voListMap[res.pageType], item.key, {
+              val:
+                item.val !== undefined && item.val !== null ? item.val : "--",
+              isShow: item.isShow ? item.isShow : true,
+              installerIsShow: item.installerIsShow
+                ? item.installerIsShow
+                : true,
+              consumerIsShow: item.consumerIsShow ? item.consumerIsShow : true,
+              canSet: item.canSet ? item.canSet : false,
+              installerCanSet: item.installerCanSet
+                ? item.installerCanSet
+                : false,
+              consumerCanSet: item.consumerCanSet ? item.consumerCanSet : false,
+              unit: item.unit ? item.unit : "",
+            });
           });
+        }
 
-          // this.$set(this.voListMap, item.key, item.val);
-
-          // //添加其他属性到this.voListMap
-          // this.$set(this.voListMap, `${item.key}isShow`, item.isShow);
-          // this.$set(
-          //   this.voListMap,
-          //   `${item.key}installerIsShow`,
-          //   item.installerIsShow
-          // );
-          // this.$set(
-          //   this.voListMap,
-          //   `${item.key}consumerIsShow`,
-          //   item.consumerIsShow
-          // );
-          // this.$set(this.voListMap, `${item.key}unit`, item.unit);
-
-          // this.voListMap[res.pageType].push(item);
-        });
-        console.log("this.voListMap:里面是啥呢？", this.voListMap);
-        console.log("this.settingList:里面是什么？", this.settingList);
+        console.log("this.voListMap: 里面是啥呢？", this.voListMap);
+        console.log("this.settingList: 里面是什么？", this.settingList);
       }
     },
 
     clearVoListMap(pageType) {
       if (this.voListMap[pageType]) {
-        delete this.voListMap[pageType];
+        // 直接清空 pageType 对应的数据
+        this.$set(this.voListMap, pageType, {});
       }
     },
 

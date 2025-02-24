@@ -5,6 +5,18 @@
         <h2>{{ $t("ieee.ieeeTitle") }}</h2>
       </div>
 
+      <div class="search-bar">
+        <el-input
+          v-model="sn"
+          :placeholder="$t('ieee.deviceSn')"
+          style="width: 200px; margin-right: 10px"
+          clearable
+        />
+        <el-button type="primary" @click="searchDeviceList">{{
+          $t("common.search")
+        }}</el-button>
+      </div>
+
       <div class="avue-crud">
         <el-table
           border
@@ -111,6 +123,18 @@
           </div>
         </el-form>
       </el-dialog>
+
+      <div class="table-pagination">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="pagination.currentPage"
+          :page-sizes="[10, 20, 50]"
+          :page-size="pagination.pageSize"
+          layout="total, sizes, prev, pager, next"
+          :total="pagination.total"
+        />
+      </div>
     </basic-container>
   </div>
 </template>
@@ -125,6 +149,12 @@ export default {
     return {
       loading: false,
       deviceList: [],
+      sn: "",
+      pagination: {
+        currentPage: 1,
+        pageSize: 10,
+        total: 0,
+      },
       exportDialogVisible: false,
       selectedDeviceSn: "",
       exportOptions: {
@@ -140,18 +170,43 @@ export default {
   methods: {
     fetchDeviceList() {
       this.loading = true;
-      qryIeeeDeviceList()
+
+      const params = {
+        sn: this.sn || null,
+        current: this.pagination.currentPage, // 发送当前页码
+        size: this.pagination.pageSize, // 发送每页数量
+      };
+      qryIeeeDeviceList(params)
         .then((res) => {
           console.log("res.records------ieee导出是", res.records);
           this.deviceList = res.records;
+          this.pagination.total = res.total;
+          this.pagination.currentPage = res.current || 1;
         })
         .finally(() => {
           this.loading = false;
         });
     },
 
+    searchDeviceList() {
+      this.pagination.currentPage = 1; // 重置到第一页
+      this.fetchDeviceList();
+    },
+
     formatDate(timestamp) {
       return timestamp ? moment(timestamp).format("YYYY-MM-DD") : "-";
+    },
+
+    //处理分页大小变化
+    handleSizeChange(newSize) {
+      this.pagination.pageSize = newSize;
+      this.fetchDeviceList(); // 重新请求数据
+    },
+
+    /** 处理页码变化 */
+    handleCurrentChange(newPage) {
+      this.pagination.currentPage = newPage;
+      this.fetchDeviceList(); // 重新请求数据
     },
 
     openExportDialog(row) {
@@ -196,7 +251,6 @@ export default {
 .header-title {
   text-align: center;
   margin-bottom: 20px;
-
   h2 {
     font-size: 22px;
     font-weight: 600;
@@ -204,8 +258,10 @@ export default {
   }
 }
 
-.avue-crud {
-  padding: 0;
+.search-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
 }
 
 .custom-table {
@@ -214,18 +270,9 @@ export default {
   overflow: hidden;
 }
 
-.export-button {
-  color: #409eff;
-  font-size: 14px;
-}
-
-.dialog-footer {
+.table-pagination {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   margin-top: 15px;
-
-  .el-button {
-    margin-left: 10px;
-  }
 }
 </style>
