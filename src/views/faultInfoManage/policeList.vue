@@ -360,6 +360,13 @@ export default {
   methods: {
     openEditDialog() {
       this.editDialogVisible = true;
+
+      this.editForm = {
+        sn: "",
+        faultCode: "",
+        beginTime: null,
+        endTime: null,
+      };
     },
 
     handleEditConfirm() {
@@ -433,6 +440,13 @@ export default {
           })
           .then(() => {
             this.submitLoading = false;
+
+            this.editForm = {
+              sn: "",
+              faultCode: "",
+              beginTime: null,
+              endTime: null,
+            };
 
             this.editDialogVisible = false;
             this.$message.success(this.$t("faultInfo.submitSuccess"));
