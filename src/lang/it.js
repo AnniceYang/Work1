@@ -2916,8 +2916,8 @@ export default {
     USB1: "Esportazione della cronologia in corso",
     USB2: "Esportazione della configurazione dei parametri in corso",
     USB3: "Importazione della configurazione dei parametri in corso",
-    USB4: "Aggiornamento della scheda di monitoraggio dell'inverter in corso",
-    USB5: "Aggiornamento della scheda di monitoraggio dell'inverter in corso",
+    USB4: "Aggiornamento scheda di monitoraggio inverter",
+    USB5: "Aggiornamento scheda di controllo principale inverter",
     USB6: "Importazione del firmware in corso",
     USB7: "Aggiornamento della batteria",
 

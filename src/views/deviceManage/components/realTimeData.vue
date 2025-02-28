@@ -5545,11 +5545,11 @@
                     value="3"
                   />
                   <el-option
-                    :label="$t('deviceManage.masterUpgrade')"
+                    :label="$t('deviceManage.monitoringUpgrade')"
                     value="4"
                   />
                   <el-option
-                    :label="$t('deviceManage.monitoringUpgrade')"
+                    :label="$t('deviceManage.masterUpgrade')"
                     value="5"
                   />
                   <el-option

@@ -360,13 +360,6 @@ export default {
   methods: {
     openEditDialog() {
       this.editDialogVisible = true;
-
-      this.editForm = {
-        sn: "",
-        faultCode: "",
-        beginTime: null,
-        endTime: null,
-      };
     },
 
     handleEditConfirm() {
