@@ -1,5 +1,12 @@
 export default {
   common: {
+    timeCannotBeEmpty: "时间不能为空",
+    endTimeError: "结束时间需大于起始时间",
+    priceMustBeGreaterThanZero: "电价不能为0",
+    timeOverlapError: "时间不能重合",
+    buyTimeNotFullCoverage: "买电时间未完整覆盖 00:00 - 23:59",
+    sellTimeNotFullCoverage: "卖电时间未完整覆盖 00:00 - 23:59",
+
     deviceOffline: "设备不在线",
     errorThreePhase: "必须在三相四线制下才有效，否则设置无效",
     usernameEmail: "用户邮箱",
@@ -1723,6 +1730,9 @@ export default {
     gridSettingsAus: "电网设置（澳洲）",
     powerGrid: "电网公司",
     nmi: "NMI 号码",
+
+    priceSettings: "电价设置",
+    missingUserBinding: "没有用户ID绑定，无法设置电价",
 
     batterySettings: "电池设置",
     OTAupgrade: "OTA升级",

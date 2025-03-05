@@ -543,6 +543,15 @@
           </el-col>
           <el-col :span="24">
             <el-button
+              class="dialog-button"
+              type="primary"
+              block
+              @click="handlePriceSettings"
+              >{{ $t("deviceManage.priceSettings") }}</el-button
+            >
+          </el-col>
+          <el-col :span="24">
+            <el-button
               v-if="selectedRow.countryCode === '3'"
               class="dialog-button"
               type="primary"
@@ -580,6 +589,12 @@
       <GeneratorSet
         :deviceId="selectedRow ? selectedRow.id : null"
         ref="generatorSet"
+      />
+
+      <!-- 电价设置 -->
+      <PriceSet
+        :deviceId="selectedRow ? selectedRow.id : null"
+        ref="priceSet"
       />
 
       <!-- ota升级 -->
@@ -632,6 +647,7 @@ import DeviceForm from "./components/deviceForm.vue";
 import CellSet from "./components/cellSet.vue";
 import GridSet from "./components/gridSet.vue";
 import GeneratorSet from "./components/generatorSet.vue";
+import PriceSet from "./components/priceSet.vue";
 import DeviceStatistics from "./components/deviceStatistics.vue";
 import TPdeviceStatistics from "./components/TPdeviceStatistics.vue";
 import RealTimeData from "./components/realTimeData.vue";
@@ -651,6 +667,7 @@ export default {
     CellSet,
     GridSet,
     GeneratorSet,
+    PriceSet,
     DeviceStatistics,
     TPdeviceStatistics,
     RealTimeData,
@@ -869,6 +886,22 @@ export default {
           this.$refs.gridSet.init(this.selectedRow.sn); // 初始化电网公司设置
         });
       }
+    },
+
+    // 电价设置
+    handlePriceSettings() {
+      // console.log(
+      //   "用户设置bindUserId的值----------",
+      //   this.selectedRow.bindUserId
+      // );
+      if (!this.selectedRow.bindUserId || this.selectedRow.bindUserId === "0") {
+        this.$message.error(this.$t("deviceManage.missingUserBinding"));
+        return;
+      }
+      this.isDialogVisible = false;
+      this.$nextTick(() => {
+        this.$refs.priceSet.init(this.selectedRow);
+      });
     },
 
     // 发电机设置

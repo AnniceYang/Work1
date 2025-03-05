@@ -1,5 +1,10 @@
 export default {
   common: {
+    timeCannotBeEmpty: "Time cannot be empty.",
+    endTimeError: "End time must be later than start time.",
+    priceMustBeGreaterThanZero: "Price must be greater than 0.",
+    timeOverlapError: "Time cannot overlap.",
+
     deviceOffline: "Device is Offline",
     errorThreePhase: "This setting is only valid in three-phase four-wire mode",
     usernameEmail: "User Email",
@@ -1708,6 +1713,9 @@ export default {
     gridSettingsAus: "Grid Settings (AUS)",
     powerGrid: "Grid Company",
     nmi: "NMI Number",
+
+    priceSettings: "Price Setting",
+    missingUserBinding: "No user ID bound, price setting unavailable.",
 
     batterySettings: "Battery settings",
     OTAupgrade: "OTA Upgrade",

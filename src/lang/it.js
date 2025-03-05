@@ -1,5 +1,10 @@
 export default {
   common: {
+    timeCannotBeEmpty: "L'ora non può essere vuota.",
+    endTimeError: "L'ora di fine deve essere successiva all'inizio.",
+    priceMustBeGreaterThanZero: "Il prezzo deve essere superiore a 0.",
+    timeOverlapError: "L'orario non può sovrapporsi.",
+
     deviceOffline: "Dispositivo offline",
     errorThreePhase:
       "Impostazione valida solo in modalità trifase a quattro fili",
@@ -1708,6 +1713,10 @@ export default {
     gridSettingsAus: "Impostazioni Rete (AUS)",
     powerGrid: "Compagnia Elettrica",
     nmi: "Numero NMI",
+
+    priceSettings: "Impostazione del Prezzo",
+    missingUserBinding:
+      "Nessun ID utente associato, impostazione prezzo non disponibile.",
 
     batterySettings: "Impostazioni della batteria",
     OTAupgrade: "Aggiornamento OTA",
