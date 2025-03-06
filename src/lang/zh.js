@@ -2,10 +2,12 @@ export default {
   common: {
     timeCannotBeEmpty: "时间不能为空",
     endTimeError: "结束时间需大于起始时间",
-    priceMustBeGreaterThanZero: "电价不能为0",
+    priceMustBeGreaterThanZero: "电价不能为0或空",
     timeOverlapError: "时间不能重合",
     buyTimeNotFullCoverage: "买电时间未完整覆盖 00:00 - 23:59",
     sellTimeNotFullCoverage: "卖电时间未完整覆盖 00:00 - 23:59",
+    priceMustBeLessThan100: "电价必须小于100",
+    priceDecimalLimit: "电价最多只能7位小数",
 
     deviceOffline: "设备不在线",
     errorThreePhase: "必须在三相四线制下才有效，否则设置无效",

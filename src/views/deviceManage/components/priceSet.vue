@@ -256,21 +256,31 @@ export default {
         return false;
       }
 
-      // 校验电价，确保每个时间段电价输入不为空且大于 0
-      for (let i = 0; i < this.dataForm.buyTimeQuantum.length; i++) {
-        const price = parseFloat(this.dataForm.buyTimeQuantum[i].price);
+      // 验证电价是否在合法范围内，并且小数点位数不超过7位
+      const validatePrice = (price) => {
         if (isNaN(price) || price <= 0) {
           this.$message.error(this.$t("common.priceMustBeGreaterThanZero"));
           return false;
         }
+        if (price > 100) {
+          this.$message.error(this.$t("common.priceMustBeLessThan100"));
+          return false;
+        }
+        if (!/^\d+(\.\d{1,7})?$/.test(price)) {
+          this.$message.error(this.$t("common.priceDecimalLimit"));
+          return false;
+        }
+        return true;
+      };
+
+      for (let i = 0; i < this.dataForm.buyTimeQuantum.length; i++) {
+        if (!validatePrice(this.dataForm.buyTimeQuantum[i].price)) return false;
       }
       for (let i = 0; i < this.dataForm.sellTimeQuantum.length; i++) {
-        const price = parseFloat(this.dataForm.sellTimeQuantum[i].price);
-        if (isNaN(price) || price <= 0) {
-          this.$message.error(this.$t("common.priceMustBeGreaterThanZero"));
+        if (!validatePrice(this.dataForm.sellTimeQuantum[i].price))
           return false;
-        }
       }
+
       return true;
     },
 

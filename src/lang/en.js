@@ -4,6 +4,10 @@ export default {
     endTimeError: "End time must be later than start time.",
     priceMustBeGreaterThanZero: "Price must be greater than 0.",
     timeOverlapError: "Time cannot overlap.",
+    buyTimeNotFullCoverage: "Buy time must fully cover 00:00 - 23:59",
+    sellTimeNotFullCoverage: "Sell time must fully cover 00:00 - 23:59",
+    priceMustBeLessThan100: "Price must be less than 100",
+    priceDecimalLimit: "Max 7 decimal places allowed",
 
     deviceOffline: "Device is Offline",
     errorThreePhase: "This setting is only valid in three-phase four-wire mode",

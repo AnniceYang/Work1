@@ -4,6 +4,10 @@ export default {
     endTimeError: "L'ora di fine deve essere successiva all'inizio.",
     priceMustBeGreaterThanZero: "Il prezzo deve essere superiore a 0.",
     timeOverlapError: "L'orario non può sovrapporsi.",
+    buyTimeNotFullCoverage: "L'orario di acquisto deve coprire 00:00 - 23:59.",
+    sellTimeNotFullCoverage: "L'orario di vendita deve coprire 00:00 - 23:59.",
+    priceMustBeLessThan100: "Il prezzo deve essere inferiore a 100.",
+    priceDecimalLimit: "Massimo 7 decimali consentiti.",
 
     deviceOffline: "Dispositivo offline",
     errorThreePhase:

@@ -543,6 +543,7 @@
           </el-col>
           <el-col :span="24">
             <el-button
+              v-if="isAdmin"
               class="dialog-button"
               type="primary"
               block

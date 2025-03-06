@@ -38,11 +38,11 @@
             </el-form-item>
           </el-form>
         </div>
-        <div class="rside">
+        <!-- <div class="rside">
           <el-button type="primary" @click="handleDefaultSet()">{{
             $t("ordinaryUser.defaultElSettings")
           }}</el-button>
-        </div>
+        </div> -->
       </div>
 
       <div class="avue-crud">
@@ -98,7 +98,7 @@
               {{ scope.row.createTime | parseTime }}
             </template>
           </el-table-column>
-          <el-table-column :label="$t('common.operate')" align="center">
+          <!-- <el-table-column :label="$t('common.operate')" align="center">
             <template slot-scope="scope">
               <el-button
                 type="text"
@@ -107,7 +107,7 @@
                 >{{ $t("ordinaryUser.electricityPriceSetting") }}</el-button
               >
             </template>
-          </el-table-column>
+          </el-table-column> -->
         </el-table>
       </div>
       <div class="table-pagination">
